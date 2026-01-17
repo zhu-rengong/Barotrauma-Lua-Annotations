@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "H:/Source/Repos/FakeFishGames/annotations/Library/Client",
+		},
+		{
+			"path": "H:/Source/Repos/FakeFishGames/annotations/Library/Server",
+		},
+	],
+	"settings": {
+		"Lua.diagnostics.libraryFiles": "Enable",
+		"Lua.workspace.ignoreDir": [],
+		"Lua.workspace.library": [],
+		"Lua.diagnostics.disable": [],
+		"Lua.diagnostics.workspaceDelay": 300000,
+	}
+}

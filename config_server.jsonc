@@ -1,0 +1,397 @@
+{
+  "assemblies": [
+    {
+      "path": "E:/Program Files (x86)/Steam/steamapps/workshop/content/602960/2559634234/Binary/System.Runtime.dll",
+      "types": [
+        "System.Object",
+        "System.Void",
+        "System.Type",
+        "System.ValueType",
+        "System.Boolean",
+        "System.SByte",
+        "System.Int16",
+        "System.Int32",
+        "System.Int64",
+        "System.Byte",
+        "System.UInt16",
+        "System.UInt32",
+        "System.UInt64",
+        "System.Single",
+        "System.Double",
+        "System.Decimal",
+        "System.Char",
+        "System.String",
+        "System.Text.StringBuilder",
+        "System.Delegate",
+        "System.MulticastDelegate",
+
+        "System.Math",
+        "System.MathF",
+
+        "System.TimeSpan",
+        "System.Exception",
+      ]
+    },
+    {
+      "path": "E:/Program Files (x86)/Steam/steamapps/workshop/content/602960/2559634234/Binary/System.Net.Primitives.dll",
+      "types": [
+        "System.Net.IPAddress",
+      ]
+    },
+    {
+      "path": "E:/Program Files (x86)/Steam/steamapps/workshop/content/602960/2559634234/Binary/System.Console.dll",
+      "types": [
+        "System.Console",
+      ]
+    },
+    {
+      "path": "E:/Program Files (x86)/Steam/steamapps/workshop/content/602960/2559634234/Binary/System.Xml.XDocument.dll",
+      "types": [
+        "System.Xml.Linq.XObject",
+        "System.Xml.Linq.XElement",
+        "System.Xml.Linq.XName",
+        "System.Xml.Linq.XAttribute",
+        "System.Xml.Linq.XContainer",
+        "System.Xml.Linq.XDocument",
+        "System.Xml.Linq.XNode",
+      ]
+    },
+    {
+      "path": "E:/Program Files (x86)/Steam/steamapps/workshop/content/602960/2559634234/Binary/XNATypes.dll",
+      "types": [
+        "Microsoft.Xna.Framework.Matrix",
+        "Microsoft.Xna.Framework.Vector2",
+        "Microsoft.Xna.Framework.Vector3",
+        "Microsoft.Xna.Framework.Vector4",
+        "Microsoft.Xna.Framework.Color",
+        "Microsoft.Xna.Framework.Point",
+        "Microsoft.Xna.Framework.Rectangle",
+
+        "Microsoft.Xna.Framework.MathHelper",
+      ]
+    },
+    {
+      "path": "E:/Program Files (x86)/Steam/steamapps/workshop/content/602960/2559634234/Binary/Facepunch.Steamworks.Win64.dll",
+      "types": [
+        "Steamworks.SteamServer",
+        "Steamworks.Friend",
+        "Steamworks.Ugc.Item",
+      ]
+    },
+    {
+      "path": "E:/Program Files (x86)/Steam/steamapps/workshop/content/602960/2559634234/Binary/MoonSharp.Interpreter.dll",
+      "types": [
+        "MoonSharp.Interpreter.Interop.IUserDataDescriptor",
+      ]
+    },
+    {
+      "path": "E:/Program Files (x86)/Steam/steamapps/workshop/content/602960/2559634234/Binary/BarotraumaCore.dll",
+      "types": [
+        "Barotrauma.Identifier",
+
+        "Barotrauma.MathUtils",
+
+        "Barotrauma.Networking.DeliveryMethod",
+        "Barotrauma.Networking.*PacketHeader",
+        "Barotrauma.Networking.ConnectionInitialization",
+
+        "Barotrauma.Alignment",
+
+        "Barotrauma.Networking.*Address",
+      ]
+    },
+    {
+      "path": "E:/Program Files (x86)/Steam/steamapps/workshop/content/602960/2559634234/Binary/Farseer.NetStandard.dll",
+      "types": [
+        "FarseerPhysics.ConvertUnits",
+
+        "FarseerPhysics.Collision.AABB",
+        "FarseerPhysics.Collision.ContactFeature",
+        "FarseerPhysics.Collision.ManifoldPoint",
+        "FarseerPhysics.Collision.ContactID",
+        "FarseerPhysics.Collision.Manifold",
+        "FarseerPhysics.Collision.RayCastInput",
+        "FarseerPhysics.Collision.ClipVertex",
+        "FarseerPhysics.Collision.RayCastOutput",
+        "FarseerPhysics.Collision.EPAxis",
+        "FarseerPhysics.Collision.ReferenceFace",
+        "FarseerPhysics.Collision.Collision",
+
+        "FarseerPhysics.Dynamics.World",
+        "FarseerPhysics.Dynamics.Fixture",
+      ]
+    },
+    {
+      "path": "E:/Program Files (x86)/Steam/steamapps/workshop/content/602960/2559634234/Binary/DedicatedServer.dll",
+      "types": [
+        // Server:
+        "Barotrauma.TraitorManager+ActiveTraitorEvent",
+
+        "Barotrauma.Networking.GameServer",
+
+        "Barotrauma.Networking.*Peer",
+        "Barotrauma.Networking.FileSender",
+
+        "Barotrauma.Networking.VoipServer",
+
+        // Shared:
+        "Barotrauma.LuaSByte",
+        "Barotrauma.LuaByte",
+        "Barotrauma.LuaInt16",
+        "Barotrauma.LuaUInt16",
+        "Barotrauma.LuaInt32",
+        "Barotrauma.LuaUInt32",
+        "Barotrauma.LuaInt64",
+        "Barotrauma.LuaUInt64",
+        "Barotrauma.LuaSingle",
+        "Barotrauma.LuaDouble",
+
+        "Barotrauma.LuaCsLogger",
+        "Barotrauma.LuaUserData",
+        "Barotrauma.LuaGame",
+        "Barotrauma.LuaCsHook*",
+        "Barotrauma.LuaCsTimer",
+        "Barotrauma.LuaCsFile",
+        "Barotrauma.LuaCsNetworking",
+        "Barotrauma.LuaCsSteam",
+        "Barotrauma.LuaCsPerformanceCounter",
+        "Barotrauma.LuaCsConfig",
+        "Barotrauma.LuaCsSetup*",
+        "Barotrauma.AssemblyManager",
+        "Barotrauma.CsPackageManager",
+
+        "Barotrauma.ToolBox",
+
+        "Barotrauma.Rand",
+        "Barotrauma.Rand+RandSync",
+        "Barotrauma.SteamWorkshopId",
+
+        "Barotrauma.PerformanceCounter",
+
+        "Barotrauma.GameMain",
+        
+        "Barotrauma.SerializableProperty",
+
+        "Barotrauma.RichString",
+        "Barotrauma.RichTextData",
+        
+        "Barotrauma.*String",
+
+        "Barotrauma.TextManager",
+        "Barotrauma.TextPack",
+
+        "Barotrauma.LanguageIdentifier",
+
+        "Barotrauma.Networking.AccountInfo",
+        "Barotrauma.Networking.*Id",
+        "Barotrauma.Networking.*point",
+
+        "Barotrauma.Md5Hash",
+        "Barotrauma.Content*",
+        "Barotrauma.*Package",
+
+        "Barotrauma.*File",
+
+        "Barotrauma.XMLExtensions",
+
+        "Barotrauma.Camera",
+
+        "Barotrauma.CauseOfDeathType",
+        "Barotrauma.CauseOfDeath",
+
+        "Barotrauma.SpawnType",
+        "Barotrauma.WayPoint",
+
+        "Barotrauma.Networking.ServerLog",
+        "Barotrauma.Networking.ServerLog+MessageType",
+
+        "Barotrauma.PropertyConditional*",
+        "Barotrauma.StatusEffect*",
+        "Barotrauma.DelayedEffect",
+        "Barotrauma.DelayedListElement",
+        "Barotrauma.DurationListElement",
+        "Barotrauma.OutpostGenerator",
+
+        "Barotrauma.FireSource",
+        "Barotrauma.DummyFireSource",
+        "Barotrauma.Explosion",
+
+        "Barotrauma.TransitionMode",
+        "Barotrauma.ActionType",
+        "Barotrauma.AbilityEffectType",
+        "Barotrauma.StatTypes",
+        "Barotrauma.AbilityFlags",
+
+        "Barotrauma.*Screen",
+
+        "Barotrauma.GameSettings",
+
+        "Barotrauma.GameSession",
+
+        "Barotrauma.CampaignMetadata",
+        "Barotrauma.CharacterCampaignData",
+        "Barotrauma.Faction",
+        "Barotrauma.FactionPrefab",
+        "Barotrauma.Reputation",
+
+        "Barotrauma.*GameMode*",
+        "Barotrauma.CampaignMode",
+
+        "Barotrauma.MultiPlayerCampaign",
+        "Barotrauma.CoOpMode",
+        "Barotrauma.MissionMode",
+        "Barotrauma.PvPMode",
+
+        "Barotrauma.AutoItemPlacer",
+        "Barotrauma.CargoManager",
+        "Barotrauma.CrewManager",
+        "Barotrauma.SteeringManager",
+        "Barotrauma.IndoorsSteeringManager",
+        "Barotrauma.SteeringPath",
+        "Barotrauma.HireManager",
+        "Barotrauma.MedicalClinic",
+        "Barotrauma.ReadyCheck",
+
+        "Barotrauma.MissionPrefab",
+        "Barotrauma.*Mission",
+
+        "Barotrauma.Level*",
+        "Barotrauma.DestructibleLevelWall",
+
+        "Barotrauma.Biome",
+        "Barotrauma.Map",
+        "Barotrauma.Radiation",
+
+        "Barotrauma.PriceInfo",
+        "Barotrauma.LocationType",
+        "Barotrauma.Location",
+        "Barotrauma.LocationConnection",
+        "Barotrauma.LocationTypeChange",
+
+        "Barotrauma.*Event*",
+
+        "Barotrauma.Entity",
+        "Barotrauma.EntitySpawner",
+        "Barotrauma.EntityGrid",
+
+        "Barotrauma.MapEntityCategory",
+        "Barotrauma.MapEntity",
+        "Barotrauma.Prefab",
+        "Barotrauma.PrefabWithUintIdentifier",
+        "Barotrauma.MapEntityPrefab",
+        "Barotrauma.CoreEntityPrefab",
+
+        "Barotrauma.*Character*",
+        "Barotrauma.*Creature*",
+
+        "Barotrauma.*Behavior*",
+
+        "Barotrauma.LatchOntoAI",
+
+        "Barotrauma.Order*",
+
+        "Barotrauma.AI*",
+
+        "Barotrauma.Limb*",
+        "Barotrauma.Ragdoll",
+        "Barotrauma.*Controller",
+        "Barotrauma.*Params",
+
+        "Barotrauma.Skill*",
+        "Barotrauma.Job*",
+
+        "Barotrauma.Decal*",
+
+        "Barotrauma.Talent*",
+
+        "Barotrauma.*Prefab",
+
+        "Barotrauma.*Inventory",
+
+        "Barotrauma.Item",
+        "Barotrauma.RelatedItem",
+        "Barotrauma.Items.Components.*",
+        "Barotrauma.CircuitBox*",
+
+        "Barotrauma.*Submarine*",
+
+        "Barotrauma.WallSection",
+        "Barotrauma.Structure",
+
+        "Barotrauma.Affliction*",
+
+        "Barotrauma.Attack*",
+        "Barotrauma.DamageModifier",
+
+        "Barotrauma.InvSlotType",
+
+        "Barotrauma.*Command*",
+
+        "Barotrauma.*Traitor*",
+
+        "Barotrauma.Physics",
+        "Barotrauma.PhysicsBody",
+
+        "Barotrauma.Hull",
+        "Barotrauma.Gap",
+
+        "Voronoi2.DoubleVector2",
+        "Voronoi2.Site",
+        "Voronoi2.Edge",
+        "Voronoi2.Halfedge",
+        "Voronoi2.VoronoiCell",
+        "Voronoi2.GraphEdge",
+
+        "Barotrauma.*Sprite*",
+
+        "Barotrauma.DeconstructItem",
+        "Barotrauma.PreferredContainer",
+        "Barotrauma.SwappableItem",
+        "Barotrauma.FabricationRecipe*",
+        "Barotrauma.PurchasedItem",
+        "Barotrauma.PurchasedItemSwap",
+        "Barotrauma.SoldItem",
+        "Barotrauma.StartItem",
+        "Barotrauma.StartItemSet",
+
+        "Barotrauma.*Upgrade*",
+
+        "Barotrauma.Networking.NetConfig",
+        "Barotrauma.Networking.ServerSettings",
+
+        "Barotrauma.Networking.ChatMessageType",
+        "Barotrauma.Networking.ChatMessage",
+
+        "Barotrauma.Networking.*Message",
+        "Barotrauma.Networking.*PacketHeader",
+
+        "Barotrauma.Networking.*Client*",
+
+        "Barotrauma.Networking.NetworkConnectionStatus",
+        "Barotrauma.Networking.*Connection",
+
+        "Barotrauma.Networking.NetworkMember",
+
+        "Barotrauma.Networking.BanList",
+        "Barotrauma.Networking.BannedPlayer",
+
+        "Barotrauma.InputType",
+        "Barotrauma.Key",
+        
+        "Barotrauma.NumberType",
+
+        "Barotrauma.ChatMode",
+        "Barotrauma.Networking.VoipConfig",
+        "Barotrauma.Networking.VoipQueue",
+        "Barotrauma.Voting",
+        "Barotrauma.Networking.VoteType",
+
+        "Barotrauma.KarmaManager",
+        "Barotrauma.Networking.RespawnManager*",
+
+        "Barotrauma.DebugConsole",
+      ]
+    },
+  ],
+  "outputDir": "H:/Source/Repos/FakeFishGames/annotations/Library/Server/Auto"
+}
