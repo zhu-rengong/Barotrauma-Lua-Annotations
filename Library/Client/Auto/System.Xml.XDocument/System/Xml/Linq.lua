@@ -89,11 +89,15 @@ function CS.System.Xml.Linq.XAttribute.GetPrefixOfNamespace(ns) end
 ---@param value System.String
 function CS.System.Xml.Linq.XAttribute.ValidateAttribute(name, value) end
 
+do
 ---@overload fun(other: System.Xml.Linq.XAttribute): System.Xml.Linq.XAttribute
 ---@param name System.Xml.Linq.XName
 ---@param value System.Object
 ---@return System.Xml.Linq.XAttribute
-function CS.System.Xml.Linq.XAttribute(name, value) end
+local __ctor = function(name, value) end
+CS.System.Xml.Linq.XAttribute = __ctor
+CS.System.Xml.Linq.XAttribute.__new = __ctor
+end
 
 ---@class System.Xml.Linq.XContainer: System.Xml.Linq.XNode
 ---@field FirstNode System.Xml.Linq.XNode
@@ -274,10 +278,14 @@ function CS.System.Xml.Linq.XContainer.AddContentToList(list, content) end
 ---@return System.Object
 function CS.System.Xml.Linq.XContainer.GetContentSnapshot(content) end
 
+do
 ---@package
 ---@overload fun(other: System.Xml.Linq.XContainer): System.Xml.Linq.XContainer
 ---@return System.Xml.Linq.XContainer
-function CS.System.Xml.Linq.XContainer() end
+local __ctor = function() end
+CS.System.Xml.Linq.XContainer = __ctor
+CS.System.Xml.Linq.XContainer.__new = __ctor
+end
 
 ---@class System.Xml.Linq.XDocument: System.Xml.Linq.XContainer
 ---@field Declaration System.Xml.Linq.XDeclaration
@@ -411,11 +419,15 @@ function CS.System.Xml.Linq.XDocument.ValidateDocument(previous, allowBefore, al
 ---@param s System.String
 function CS.System.Xml.Linq.XDocument.ValidateString(s) end
 
+do
 ---@overload fun(...: System.Object): System.Xml.Linq.XDocument
 ---@overload fun(declaration: System.Xml.Linq.XDeclaration, ...: System.Object): System.Xml.Linq.XDocument
 ---@overload fun(other: System.Xml.Linq.XDocument): System.Xml.Linq.XDocument
 ---@return System.Xml.Linq.XDocument
-function CS.System.Xml.Linq.XDocument() end
+local __ctor = function() end
+CS.System.Xml.Linq.XDocument = __ctor
+CS.System.Xml.Linq.XDocument.__new = __ctor
+end
 
 ---@class System.Xml.Linq.XElement: System.Xml.Linq.XContainer
 ---@field EmptySequence userdata | (fun(): System.Xml.Linq.XElement)
@@ -711,6 +723,7 @@ function CS.System.Xml.Linq.XElement.SetEndElementLineInfo(lineNumber, linePosit
 ---@param previous System.Xml.Linq.XNode
 function CS.System.Xml.Linq.XElement.ValidateNode(node, previous) end
 
+do
 ---@overload fun(name: System.Xml.Linq.XName, content: System.Object): System.Xml.Linq.XElement
 ---@overload fun(name: System.Xml.Linq.XName, ...: System.Object): System.Xml.Linq.XElement
 ---@overload fun(other: System.Xml.Linq.XElement): System.Xml.Linq.XElement
@@ -721,7 +734,10 @@ function CS.System.Xml.Linq.XElement.ValidateNode(node, previous) end
 ---@overload fun(r: System.Xml.XmlReader, o: System.Xml.Linq.LoadOptions): System.Xml.Linq.XElement
 ---@param name System.Xml.Linq.XName
 ---@return System.Xml.Linq.XElement
-function CS.System.Xml.Linq.XElement(name) end
+local __ctor = function(name) end
+CS.System.Xml.Linq.XElement = __ctor
+CS.System.Xml.Linq.XElement.__new = __ctor
+end
 
 ---@class System.Xml.Linq.XName: System.Object
 ---@field LocalName System.String
@@ -780,11 +796,15 @@ function CS.System.Xml.Linq.XName.Equals(other) end
 ---@param context System.Runtime.Serialization.StreamingContext
 function CS.System.Xml.Linq.XName.GetObjectData(info, context) end
 
+do
 ---@package
 ---@param ns System.Xml.Linq.XNamespace
 ---@param localName System.String
 ---@return System.Xml.Linq.XName
-function CS.System.Xml.Linq.XName(ns, localName) end
+local __ctor = function(ns, localName) end
+CS.System.Xml.Linq.XName = __ctor
+CS.System.Xml.Linq.XName.__new = __ctor
+end
 
 ---@class System.Xml.Linq.XNode: System.Xml.Linq.XObject
 ---@field NextNode System.Xml.Linq.XNode
@@ -940,9 +960,13 @@ function CS.System.Xml.Linq.XNode.GetXmlWriterSettings(o) end
 ---@return System.String
 function CS.System.Xml.Linq.XNode.GetXmlString(o) end
 
+do
 ---@package
 ---@return System.Xml.Linq.XNode
-function CS.System.Xml.Linq.XNode() end
+local __ctor = function() end
+CS.System.Xml.Linq.XNode = __ctor
+CS.System.Xml.Linq.XNode.__new = __ctor
+end
 
 ---@class System.Xml.Linq.XObject: System.Object
 ---@field BaseUri System.String
@@ -1049,7 +1073,11 @@ function CS.System.Xml.Linq.XObject.SkipNotify() end
 ---@return System.Xml.Linq.SaveOptions
 function CS.System.Xml.Linq.XObject.GetSaveOptionsFromAnnotations() end
 
+do
 ---@package
 ---@return System.Xml.Linq.XObject
-function CS.System.Xml.Linq.XObject() end
+local __ctor = function() end
+CS.System.Xml.Linq.XObject = __ctor
+CS.System.Xml.Linq.XObject.__new = __ctor
+end
 

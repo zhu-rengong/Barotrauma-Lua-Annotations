@@ -13,9 +13,13 @@ function CS.Voronoi2.DoubleVector2.SetPoint(x, y) end
 
 function CS.Voronoi2.DoubleVector2.Normalize() end
 
+do
 ---@overload fun(x: System.Double, y: System.Double): Voronoi2.DoubleVector2
 ---@return Voronoi2.DoubleVector2
-function CS.Voronoi2.DoubleVector2() end
+local __ctor = function() end
+CS.Voronoi2.DoubleVector2 = __ctor
+CS.Voronoi2.DoubleVector2.__new = __ctor
+end
 
 ---@class Voronoi2.Site: System.Object
 ---@field Coord Voronoi2.DoubleVector2
@@ -25,8 +29,12 @@ CS.Voronoi2.Site = {}
 ---@param point Microsoft.Xna.Framework.Vector2
 function CS.Voronoi2.Site.SetPoint(point) end
 
+do
 ---@return Voronoi2.Site
-function CS.Voronoi2.Site() end
+local __ctor = function() end
+CS.Voronoi2.Site = __ctor
+CS.Voronoi2.Site.__new = __ctor
+end
 
 ---@class Voronoi2.Edge: System.Object
 ---@field a System.Double
@@ -37,8 +45,12 @@ function CS.Voronoi2.Site() end
 ---@field edgenbr System.Int32
 CS.Voronoi2.Edge = {}
 
+do
 ---@return Voronoi2.Edge
-function CS.Voronoi2.Edge() end
+local __ctor = function() end
+CS.Voronoi2.Edge = __ctor
+CS.Voronoi2.Edge.__new = __ctor
+end
 
 ---@class Voronoi2.Halfedge: System.Object
 ---@field ELleft Voronoi2.Halfedge
@@ -51,8 +63,12 @@ function CS.Voronoi2.Edge() end
 ---@field PQnext Voronoi2.Halfedge
 CS.Voronoi2.Halfedge = {}
 
+do
 ---@return Voronoi2.Halfedge
-function CS.Voronoi2.Halfedge() end
+local __ctor = function() end
+CS.Voronoi2.Halfedge = __ctor
+CS.Voronoi2.Halfedge.__new = __ctor
+end
 
 ---@class Voronoi2.VoronoiCell: System.Object
 ---@field Center Microsoft.Xna.Framework.Vector2
@@ -84,10 +100,14 @@ function CS.Voronoi2.VoronoiCell.IsPointInsideAABB(point2, margin) end
 ---@param max Microsoft.Xna.Framework.Vector2
 function CS.Voronoi2.VoronoiCell.GetBounds(min, max) end
 
+do
 ---@overload fun(site: Voronoi2.Site): Voronoi2.VoronoiCell
 ---@param vertices Microsoft.Xna.Framework.Vector2[]
 ---@return Voronoi2.VoronoiCell
-function CS.Voronoi2.VoronoiCell(vertices) end
+local __ctor = function(vertices) end
+CS.Voronoi2.VoronoiCell = __ctor
+CS.Voronoi2.VoronoiCell.__new = __ctor
+end
 
 ---@class Voronoi2.GraphEdge: System.Object
 ---@field Center Microsoft.Xna.Framework.Vector2
@@ -128,8 +148,12 @@ function CS.Voronoi2.GraphEdge.GetNormal(cell, point1, point2) end
 ---@return System.String
 function CS.Voronoi2.GraphEdge.ToString() end
 
+do
 ---@param point1 Microsoft.Xna.Framework.Vector2
 ---@param point2 Microsoft.Xna.Framework.Vector2
 ---@return Voronoi2.GraphEdge
-function CS.Voronoi2.GraphEdge(point1, point2) end
+local __ctor = function(point1, point2) end
+CS.Voronoi2.GraphEdge = __ctor
+CS.Voronoi2.GraphEdge.__new = __ctor
+end
 

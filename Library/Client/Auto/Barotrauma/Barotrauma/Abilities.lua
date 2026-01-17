@@ -9,10 +9,14 @@ CS.Barotrauma.Abilities.AbilityConditionInFriendlySubmarine = {}
 ---@return System.Boolean
 function CS.Barotrauma.Abilities.AbilityConditionInFriendlySubmarine.MatchesConditionSpecific() end
 
+do
 ---@param characterTalent Barotrauma.CharacterTalent
 ---@param conditionElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.AbilityConditionInFriendlySubmarine
-function CS.Barotrauma.Abilities.AbilityConditionInFriendlySubmarine(characterTalent, conditionElement) end
+local __ctor = function(characterTalent, conditionElement) end
+CS.Barotrauma.Abilities.AbilityConditionInFriendlySubmarine = __ctor
+CS.Barotrauma.Abilities.AbilityConditionInFriendlySubmarine.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.AbilityConditionNearbyCharacterCount: Barotrauma.Abilities.AbilityConditionDataless
 ---@field private distance System.Single
@@ -24,10 +28,14 @@ CS.Barotrauma.Abilities.AbilityConditionNearbyCharacterCount = {}
 ---@return System.Boolean
 function CS.Barotrauma.Abilities.AbilityConditionNearbyCharacterCount.MatchesConditionSpecific() end
 
+do
 ---@param characterTalent Barotrauma.CharacterTalent
 ---@param conditionElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.AbilityConditionNearbyCharacterCount
-function CS.Barotrauma.Abilities.AbilityConditionNearbyCharacterCount(characterTalent, conditionElement) end
+local __ctor = function(characterTalent, conditionElement) end
+CS.Barotrauma.Abilities.AbilityConditionNearbyCharacterCount = __ctor
+CS.Barotrauma.Abilities.AbilityConditionNearbyCharacterCount.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.AbilityConditionOnMission: Barotrauma.Abilities.AbilityConditionDataless
 CS.Barotrauma.Abilities.AbilityConditionOnMission = {}
@@ -36,10 +44,14 @@ CS.Barotrauma.Abilities.AbilityConditionOnMission = {}
 ---@return System.Boolean
 function CS.Barotrauma.Abilities.AbilityConditionOnMission.MatchesConditionSpecific() end
 
+do
 ---@param characterTalent Barotrauma.CharacterTalent
 ---@param conditionElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.AbilityConditionOnMission
-function CS.Barotrauma.Abilities.AbilityConditionOnMission(characterTalent, conditionElement) end
+local __ctor = function(characterTalent, conditionElement) end
+CS.Barotrauma.Abilities.AbilityConditionOnMission = __ctor
+CS.Barotrauma.Abilities.AbilityConditionOnMission.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.AbilityConditionCharacter: Barotrauma.Abilities.AbilityConditionData
 ---@field private targetTypes userdata | { [System.Int32]: Barotrauma.Abilities.AbilityCondition.TargetType } | (fun(): Barotrauma.Abilities.AbilityCondition.TargetType)
@@ -61,10 +73,14 @@ function CS.Barotrauma.Abilities.AbilityConditionCharacter.MatchesConditionSpeci
 ---@return System.Boolean
 function CS.Barotrauma.Abilities.AbilityConditionCharacter.MatchesCharacter(character) end
 
+do
 ---@param characterTalent Barotrauma.CharacterTalent
 ---@param conditionElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.AbilityConditionCharacter
-function CS.Barotrauma.Abilities.AbilityConditionCharacter(characterTalent, conditionElement) end
+local __ctor = function(characterTalent, conditionElement) end
+CS.Barotrauma.Abilities.AbilityConditionCharacter = __ctor
+CS.Barotrauma.Abilities.AbilityConditionCharacter.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.AbilityConditionCharacterNotLooted: Barotrauma.Abilities.AbilityConditionCharacter
 ---@field private identifier Barotrauma.Identifier
@@ -75,10 +91,14 @@ CS.Barotrauma.Abilities.AbilityConditionCharacterNotLooted = {}
 ---@return System.Boolean
 function CS.Barotrauma.Abilities.AbilityConditionCharacterNotLooted.MatchesCharacter(character) end
 
+do
 ---@param characterTalent Barotrauma.CharacterTalent
 ---@param conditionElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.AbilityConditionCharacterNotLooted
-function CS.Barotrauma.Abilities.AbilityConditionCharacterNotLooted(characterTalent, conditionElement) end
+local __ctor = function(characterTalent, conditionElement) end
+CS.Barotrauma.Abilities.AbilityConditionCharacterNotLooted = __ctor
+CS.Barotrauma.Abilities.AbilityConditionCharacterNotLooted.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.AbilityConditionCharacterUnconcious: Barotrauma.Abilities.AbilityConditionCharacter
 CS.Barotrauma.Abilities.AbilityConditionCharacterUnconcious = {}
@@ -88,10 +108,14 @@ CS.Barotrauma.Abilities.AbilityConditionCharacterUnconcious = {}
 ---@return System.Boolean
 function CS.Barotrauma.Abilities.AbilityConditionCharacterUnconcious.MatchesCharacter(character) end
 
+do
 ---@param characterTalent Barotrauma.CharacterTalent
 ---@param conditionElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.AbilityConditionCharacterUnconcious
-function CS.Barotrauma.Abilities.AbilityConditionCharacterUnconcious(characterTalent, conditionElement) end
+local __ctor = function(characterTalent, conditionElement) end
+CS.Barotrauma.Abilities.AbilityConditionCharacterUnconcious = __ctor
+CS.Barotrauma.Abilities.AbilityConditionCharacterUnconcious.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.AbilityConditionInSubmarine: Barotrauma.Abilities.AbilityConditionData
 ---@field private submarineType Barotrauma.SubmarineType|nil
@@ -105,10 +129,14 @@ function CS.Barotrauma.Abilities.AbilityConditionInSubmarine.MatchesConditionSpe
 ---@return System.Boolean
 function CS.Barotrauma.Abilities.AbilityConditionInSubmarine.MatchesCondition() end
 
+do
 ---@param characterTalent Barotrauma.CharacterTalent
 ---@param conditionElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.AbilityConditionInSubmarine
-function CS.Barotrauma.Abilities.AbilityConditionInSubmarine(characterTalent, conditionElement) end
+local __ctor = function(characterTalent, conditionElement) end
+CS.Barotrauma.Abilities.AbilityConditionInSubmarine = __ctor
+CS.Barotrauma.Abilities.AbilityConditionInSubmarine.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.AbilityConditionMission: Barotrauma.Abilities.AbilityConditionData
 ---@field private missionType userdata | (fun(): Barotrauma.Identifier)
@@ -120,10 +148,14 @@ CS.Barotrauma.Abilities.AbilityConditionMission = {}
 ---@return System.Boolean
 function CS.Barotrauma.Abilities.AbilityConditionMission.MatchesConditionSpecific(abilityObject) end
 
+do
 ---@param characterTalent Barotrauma.CharacterTalent
 ---@param conditionElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.AbilityConditionMission
-function CS.Barotrauma.Abilities.AbilityConditionMission(characterTalent, conditionElement) end
+local __ctor = function(characterTalent, conditionElement) end
+CS.Barotrauma.Abilities.AbilityConditionMission = __ctor
+CS.Barotrauma.Abilities.AbilityConditionMission.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.IAbilityItemPrefab
 ---@field ItemPrefab Barotrauma.ItemPrefab
@@ -173,9 +205,13 @@ function CS.Barotrauma.Abilities.IAbilitySubmarine.set_Submarine(value) end
 ---@field Character Barotrauma.Character
 CS.Barotrauma.Abilities.AbilityCharacter = {}
 
+do
 ---@param character Barotrauma.Character
 ---@return Barotrauma.Abilities.AbilityCharacter
-function CS.Barotrauma.Abilities.AbilityCharacter(character) end
+local __ctor = function(character) end
+CS.Barotrauma.Abilities.AbilityCharacter = __ctor
+CS.Barotrauma.Abilities.AbilityCharacter.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbility: System.Object
 ---@field CharacterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
@@ -229,10 +265,14 @@ function CS.Barotrauma.Abilities.CharacterAbility.LogAbilityObjectMismatch() end
 ---@return Barotrauma.Abilities.CharacterAbility
 function CS.Barotrauma.Abilities.CharacterAbility.Load(abilityElement, characterAbilityGroup, errorMessages) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbility
-function CS.Barotrauma.Abilities.CharacterAbility(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbility = __ctor
+CS.Barotrauma.Abilities.CharacterAbility.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityApplyForce: Barotrauma.Abilities.CharacterAbility
 ---@field AppliesEffectOnIntervalUpdate System.Boolean
@@ -248,10 +288,14 @@ function CS.Barotrauma.Abilities.CharacterAbilityApplyForce.get_AppliesEffectOnI
 ---@protected
 function CS.Barotrauma.Abilities.CharacterAbilityApplyForce.ApplyEffect() end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityApplyForce
-function CS.Barotrauma.Abilities.CharacterAbilityApplyForce(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityApplyForce = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityApplyForce.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityApplyStatusEffects: Barotrauma.Abilities.CharacterAbility
 ---@field AppliesEffectOnIntervalUpdate System.Boolean
@@ -282,10 +326,14 @@ function CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffects.ApplyEffectS
 ---@overload fun(abilityObject: Barotrauma.Abilities.AbilityObject)
 function CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffects.ApplyEffect() end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityApplyStatusEffects
-function CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffects(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffects = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffects.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToAllies: Barotrauma.Abilities.CharacterAbilityApplyStatusEffects
 ---@field AllowClientSimulation System.Boolean
@@ -299,10 +347,14 @@ CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToAllies = {}
 ---@overload fun(abilityObject: Barotrauma.Abilities.AbilityObject)
 function CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToAllies.ApplyEffect() end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToAllies
-function CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToAllies(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToAllies = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToAllies.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToApprenticeship: Barotrauma.Abilities.CharacterAbilityApplyStatusEffects
 ---@field private invert System.Boolean
@@ -318,10 +370,14 @@ function CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToApprentices
 ---@return Barotrauma.JobPrefab
 function CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToApprenticeship.GetApprenticeJob(character, jobList) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToApprenticeship
-function CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToApprenticeship(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToApprenticeship = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToApprenticeship.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToAttacker: Barotrauma.Abilities.CharacterAbilityApplyStatusEffects
 CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToAttacker = {}
@@ -330,10 +386,14 @@ CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToAttacker = {}
 ---@param abilityObject Barotrauma.Abilities.AbilityObject
 function CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToAttacker.ApplyEffect(abilityObject) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToAttacker
-function CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToAttacker(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToAttacker = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToAttacker.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToLastOrderedCharacter: Barotrauma.Abilities.CharacterAbilityApplyStatusEffects
 CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToLastOrderedCharacter = {}
@@ -346,10 +406,14 @@ function CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToLastOrdered
 ---@return System.Boolean
 function CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToLastOrderedCharacter.IsViableTarget(targetCharacter) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToLastOrderedCharacter
-function CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToLastOrderedCharacter(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToLastOrderedCharacter = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToLastOrderedCharacter.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToNearestAlly: Barotrauma.Abilities.CharacterAbilityApplyStatusEffects
 ---@field protected squaredMaxDistance System.Single
@@ -358,10 +422,14 @@ CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToNearestAlly = {}
 ---@protected
 function CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToNearestAlly.ApplyEffect() end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToNearestAlly
-function CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToNearestAlly(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToNearestAlly = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToNearestAlly.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToRandomAlly: Barotrauma.Abilities.CharacterAbilityApplyStatusEffects
 ---@field AllowClientSimulation System.Boolean
@@ -381,10 +449,14 @@ function CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToRandomAlly.
 ---@param thisCharacter Barotrauma.Character
 function CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToRandomAlly.ApplyEffect(thisCharacter) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToRandomAlly
-function CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToRandomAlly(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToRandomAlly = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToRandomAlly.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityApplyStatusEffectToNonHumans: Barotrauma.Abilities.CharacterAbilityApplyStatusEffects
 ---@field private maxDistance System.Single
@@ -394,10 +466,14 @@ CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectToNonHumans = {}
 ---@overload fun(abilityObject: Barotrauma.Abilities.AbilityObject)
 function CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectToNonHumans.ApplyEffect() end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityApplyStatusEffectToNonHumans
-function CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectToNonHumans(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectToNonHumans = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityApplyStatusEffectToNonHumans.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityGainSimultaneousSkill: Barotrauma.Abilities.CharacterAbility
 ---@field private skillIdentifier Barotrauma.Identifier
@@ -409,10 +485,14 @@ CS.Barotrauma.Abilities.CharacterAbilityGainSimultaneousSkill = {}
 ---@param abilityObject Barotrauma.Abilities.AbilityObject
 function CS.Barotrauma.Abilities.CharacterAbilityGainSimultaneousSkill.ApplyEffect(abilityObject) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityGainSimultaneousSkill
-function CS.Barotrauma.Abilities.CharacterAbilityGainSimultaneousSkill(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityGainSimultaneousSkill = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityGainSimultaneousSkill.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityGiveAffliction: Barotrauma.Abilities.CharacterAbility
 ---@field private afflictionId Barotrauma.Identifier
@@ -434,10 +514,14 @@ function CS.Barotrauma.Abilities.CharacterAbilityGiveAffliction.ApplyEffect() en
 ---@param character Barotrauma.Character
 function CS.Barotrauma.Abilities.CharacterAbilityGiveAffliction.ApplyAfflictionToCharacter(character) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityGiveAffliction
-function CS.Barotrauma.Abilities.CharacterAbilityGiveAffliction(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityGiveAffliction = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityGiveAffliction.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityGiveExperience: Barotrauma.Abilities.CharacterAbility
 ---@field AppliesEffectOnIntervalUpdate System.Boolean
@@ -457,10 +541,14 @@ function CS.Barotrauma.Abilities.CharacterAbilityGiveExperience.ApplyEffectSpeci
 ---@param abilityObject Barotrauma.Abilities.AbilityObject
 function CS.Barotrauma.Abilities.CharacterAbilityGiveExperience.ApplyEffect(abilityObject) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityGiveExperience
-function CS.Barotrauma.Abilities.CharacterAbilityGiveExperience(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityGiveExperience = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityGiveExperience.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityGiveFlag: Barotrauma.Abilities.CharacterAbility
 ---@field private abilityFlag Barotrauma.AbilityFlags
@@ -469,10 +557,14 @@ CS.Barotrauma.Abilities.CharacterAbilityGiveFlag = {}
 ---@param addingFirstTime System.Boolean
 function CS.Barotrauma.Abilities.CharacterAbilityGiveFlag.InitializeAbility(addingFirstTime) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityGiveFlag
-function CS.Barotrauma.Abilities.CharacterAbilityGiveFlag(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityGiveFlag = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityGiveFlag.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityGiveItemStat: Barotrauma.Abilities.CharacterAbility
 ---@field private stat Barotrauma.ItemTalentStats
@@ -490,10 +582,14 @@ function CS.Barotrauma.Abilities.CharacterAbilityGiveItemStat.VerifyState(condit
 ---@param abilityObject Barotrauma.Abilities.AbilityObject
 function CS.Barotrauma.Abilities.CharacterAbilityGiveItemStat.ApplyEffect(abilityObject) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityGiveItemStat
-function CS.Barotrauma.Abilities.CharacterAbilityGiveItemStat(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityGiveItemStat = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityGiveItemStat.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityGiveItemStatToTags: Barotrauma.Abilities.CharacterAbility
 ---@field private stat Barotrauma.ItemTalentStats
@@ -514,10 +610,14 @@ function CS.Barotrauma.Abilities.CharacterAbilityGiveItemStatToTags.VerifyState(
 ---@protected
 function CS.Barotrauma.Abilities.CharacterAbilityGiveItemStatToTags.ApplyEffect() end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityGiveItemStatToTags
-function CS.Barotrauma.Abilities.CharacterAbilityGiveItemStatToTags(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityGiveItemStatToTags = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityGiveItemStatToTags.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityGiveMoney: Barotrauma.Abilities.CharacterAbility
 ---@field AppliesEffectOnIntervalUpdate System.Boolean
@@ -537,10 +637,14 @@ function CS.Barotrauma.Abilities.CharacterAbilityGiveMoney.ApplyEffectSpecific(t
 ---@param abilityObject Barotrauma.Abilities.AbilityObject
 function CS.Barotrauma.Abilities.CharacterAbilityGiveMoney.ApplyEffect(abilityObject) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityGiveMoney
-function CS.Barotrauma.Abilities.CharacterAbilityGiveMoney(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityGiveMoney = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityGiveMoney.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityGivePermanentStat: Barotrauma.Abilities.CharacterAbility
 ---@field AllowClientSimulation System.Boolean
@@ -580,10 +684,14 @@ function CS.Barotrauma.Abilities.CharacterAbilityGivePermanentStat.ApplyEffectSp
 ---@return Barotrauma.Identifier
 function CS.Barotrauma.Abilities.CharacterAbilityGivePermanentStat.HandlePlaceholders(placeholder, original) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityGivePermanentStat
-function CS.Barotrauma.Abilities.CharacterAbilityGivePermanentStat(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityGivePermanentStat = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityGivePermanentStat.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityGiveReputation: Barotrauma.Abilities.CharacterAbility
 ---@field private factionIdentifier Barotrauma.Identifier
@@ -594,10 +702,14 @@ CS.Barotrauma.Abilities.CharacterAbilityGiveReputation = {}
 ---@overload fun(abilityObject: Barotrauma.Abilities.AbilityObject)
 function CS.Barotrauma.Abilities.CharacterAbilityGiveReputation.ApplyEffect() end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityGiveReputation
-function CS.Barotrauma.Abilities.CharacterAbilityGiveReputation(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityGiveReputation = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityGiveReputation.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityGiveResistance: Barotrauma.Abilities.CharacterAbility
 ---@field private resistanceId Barotrauma.Identifier
@@ -607,10 +719,14 @@ CS.Barotrauma.Abilities.CharacterAbilityGiveResistance = {}
 ---@param addingFirstTime System.Boolean
 function CS.Barotrauma.Abilities.CharacterAbilityGiveResistance.InitializeAbility(addingFirstTime) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityGiveResistance
-function CS.Barotrauma.Abilities.CharacterAbilityGiveResistance(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityGiveResistance = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityGiveResistance.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityGiveStat: Barotrauma.Abilities.CharacterAbility
 ---@field private statType Barotrauma.StatTypes
@@ -620,10 +736,14 @@ CS.Barotrauma.Abilities.CharacterAbilityGiveStat = {}
 ---@param addingFirstTime System.Boolean
 function CS.Barotrauma.Abilities.CharacterAbilityGiveStat.InitializeAbility(addingFirstTime) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityGiveStat
-function CS.Barotrauma.Abilities.CharacterAbilityGiveStat(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityGiveStat = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityGiveStat.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityGiveTalentPoints: Barotrauma.Abilities.CharacterAbility
 ---@field private amount System.Int32
@@ -632,10 +752,14 @@ CS.Barotrauma.Abilities.CharacterAbilityGiveTalentPoints = {}
 ---@param addingFirstTime System.Boolean
 function CS.Barotrauma.Abilities.CharacterAbilityGiveTalentPoints.InitializeAbility(addingFirstTime) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityGiveTalentPoints
-function CS.Barotrauma.Abilities.CharacterAbilityGiveTalentPoints(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityGiveTalentPoints = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityGiveTalentPoints.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityGiveTalentPointsToAllies: Barotrauma.Abilities.CharacterAbility
 ---@field private amount System.Int32
@@ -644,10 +768,14 @@ CS.Barotrauma.Abilities.CharacterAbilityGiveTalentPointsToAllies = {}
 ---@param addingFirstTime System.Boolean
 function CS.Barotrauma.Abilities.CharacterAbilityGiveTalentPointsToAllies.InitializeAbility(addingFirstTime) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityGiveTalentPointsToAllies
-function CS.Barotrauma.Abilities.CharacterAbilityGiveTalentPointsToAllies(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityGiveTalentPointsToAllies = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityGiveTalentPointsToAllies.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityIncreaseSkill: Barotrauma.Abilities.CharacterAbility
 ---@field AppliesEffectOnIntervalUpdate System.Boolean
@@ -666,10 +794,14 @@ function CS.Barotrauma.Abilities.CharacterAbilityIncreaseSkill.ApplyEffect() end
 ---@param character Barotrauma.Character
 function CS.Barotrauma.Abilities.CharacterAbilityIncreaseSkill.ApplyEffectSpecific(character) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityIncreaseSkill
-function CS.Barotrauma.Abilities.CharacterAbilityIncreaseSkill(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityIncreaseSkill = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityIncreaseSkill.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityMarkAsLooted: Barotrauma.Abilities.CharacterAbility
 ---@field private identifier Barotrauma.Identifier
@@ -679,10 +811,14 @@ CS.Barotrauma.Abilities.CharacterAbilityMarkAsLooted = {}
 ---@param abilityObject Barotrauma.Abilities.AbilityObject
 function CS.Barotrauma.Abilities.CharacterAbilityMarkAsLooted.ApplyEffect(abilityObject) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityMarkAsLooted
-function CS.Barotrauma.Abilities.CharacterAbilityMarkAsLooted(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityMarkAsLooted = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityMarkAsLooted.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityModifyAffliction: Barotrauma.Abilities.CharacterAbility
 ---@field private afflictionIdentifiers Barotrauma.Identifier[]
@@ -694,10 +830,14 @@ CS.Barotrauma.Abilities.CharacterAbilityModifyAffliction = {}
 ---@param abilityObject Barotrauma.Abilities.AbilityObject
 function CS.Barotrauma.Abilities.CharacterAbilityModifyAffliction.ApplyEffect(abilityObject) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityModifyAffliction
-function CS.Barotrauma.Abilities.CharacterAbilityModifyAffliction(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityModifyAffliction = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityModifyAffliction.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityModifyAttackData: Barotrauma.Abilities.CharacterAbility
 ---@field private afflictions userdata | { [System.Int32]: Barotrauma.Affliction } | (fun(): Barotrauma.Affliction)
@@ -710,10 +850,14 @@ CS.Barotrauma.Abilities.CharacterAbilityModifyAttackData = {}
 ---@param abilityObject Barotrauma.Abilities.AbilityObject
 function CS.Barotrauma.Abilities.CharacterAbilityModifyAttackData.ApplyEffect(abilityObject) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityModifyAttackData
-function CS.Barotrauma.Abilities.CharacterAbilityModifyAttackData(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityModifyAttackData = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityModifyAttackData.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityModifyFlag: Barotrauma.Abilities.CharacterAbility
 ---@field AllowClientSimulation System.Boolean
@@ -729,10 +873,14 @@ function CS.Barotrauma.Abilities.CharacterAbilityModifyFlag.get_AllowClientSimul
 ---@param timeSinceLastUpdate System.Single
 function CS.Barotrauma.Abilities.CharacterAbilityModifyFlag.VerifyState(conditionsMatched, timeSinceLastUpdate) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityModifyFlag
-function CS.Barotrauma.Abilities.CharacterAbilityModifyFlag(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityModifyFlag = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityModifyFlag.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityModifyResistance: Barotrauma.Abilities.CharacterAbility
 ---@field AllowClientSimulation System.Boolean
@@ -748,10 +896,14 @@ function CS.Barotrauma.Abilities.CharacterAbilityModifyResistance.get_AllowClien
 ---@param timeSinceLastUpdate System.Single
 function CS.Barotrauma.Abilities.CharacterAbilityModifyResistance.UpdateCharacterAbility(conditionsMatched, timeSinceLastUpdate) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityModifyResistance
-function CS.Barotrauma.Abilities.CharacterAbilityModifyResistance(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityModifyResistance = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityModifyResistance.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityModifyStat: Barotrauma.Abilities.CharacterAbility
 ---@field AllowClientSimulation System.Boolean
@@ -771,10 +923,14 @@ function CS.Barotrauma.Abilities.CharacterAbilityModifyStat.InitializeAbility(ad
 ---@param timeSinceLastUpdate System.Single
 function CS.Barotrauma.Abilities.CharacterAbilityModifyStat.VerifyState(conditionsMatched, timeSinceLastUpdate) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityModifyStat
-function CS.Barotrauma.Abilities.CharacterAbilityModifyStat(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityModifyStat = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityModifyStat.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityModifyStatToFlooding: Barotrauma.Abilities.CharacterAbility
 ---@field AllowClientSimulation System.Boolean
@@ -791,10 +947,14 @@ function CS.Barotrauma.Abilities.CharacterAbilityModifyStatToFlooding.get_AllowC
 ---@param timeSinceLastUpdate System.Single
 function CS.Barotrauma.Abilities.CharacterAbilityModifyStatToFlooding.VerifyState(conditionsMatched, timeSinceLastUpdate) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityModifyStatToFlooding
-function CS.Barotrauma.Abilities.CharacterAbilityModifyStatToFlooding(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityModifyStatToFlooding = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityModifyStatToFlooding.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityModifyStatToLevel: Barotrauma.Abilities.CharacterAbility
 ---@field AllowClientSimulation System.Boolean
@@ -812,10 +972,14 @@ function CS.Barotrauma.Abilities.CharacterAbilityModifyStatToLevel.get_AllowClie
 ---@param timeSinceLastUpdate System.Single
 function CS.Barotrauma.Abilities.CharacterAbilityModifyStatToLevel.VerifyState(conditionsMatched, timeSinceLastUpdate) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityModifyStatToLevel
-function CS.Barotrauma.Abilities.CharacterAbilityModifyStatToLevel(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityModifyStatToLevel = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityModifyStatToLevel.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityModifyStatToSkill: Barotrauma.Abilities.CharacterAbility
 ---@field AllowClientSimulation System.Boolean
@@ -834,10 +998,14 @@ function CS.Barotrauma.Abilities.CharacterAbilityModifyStatToSkill.get_AllowClie
 ---@param timeSinceLastUpdate System.Single
 function CS.Barotrauma.Abilities.CharacterAbilityModifyStatToSkill.VerifyState(conditionsMatched, timeSinceLastUpdate) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityModifyStatToSkill
-function CS.Barotrauma.Abilities.CharacterAbilityModifyStatToSkill(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityModifyStatToSkill = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityModifyStatToSkill.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityModifyValue: Barotrauma.Abilities.CharacterAbility
 ---@field AllowClientSimulation System.Boolean
@@ -852,10 +1020,14 @@ function CS.Barotrauma.Abilities.CharacterAbilityModifyValue.get_AllowClientSimu
 ---@param abilityObject Barotrauma.Abilities.AbilityObject
 function CS.Barotrauma.Abilities.CharacterAbilityModifyValue.ApplyEffect(abilityObject) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityModifyValue
-function CS.Barotrauma.Abilities.CharacterAbilityModifyValue(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityModifyValue = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityModifyValue.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityPutItem: Barotrauma.Abilities.CharacterAbility
 ---@field AppliesEffectOnIntervalUpdate System.Boolean
@@ -869,10 +1041,14 @@ function CS.Barotrauma.Abilities.CharacterAbilityPutItem.get_AppliesEffectOnInte
 ---@protected
 function CS.Barotrauma.Abilities.CharacterAbilityPutItem.ApplyEffect() end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityPutItem
-function CS.Barotrauma.Abilities.CharacterAbilityPutItem(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityPutItem = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityPutItem.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityReduceAffliction: Barotrauma.Abilities.CharacterAbility
 ---@field private afflictionId Barotrauma.Identifier
@@ -892,10 +1068,14 @@ function CS.Barotrauma.Abilities.CharacterAbilityReduceAffliction.ApplyEffectToC
 ---@param timeSinceLastUpdate System.Single
 function CS.Barotrauma.Abilities.CharacterAbilityReduceAffliction.VerifyState(conditionsMatched, timeSinceLastUpdate) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityReduceAffliction
-function CS.Barotrauma.Abilities.CharacterAbilityReduceAffliction(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityReduceAffliction = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityReduceAffliction.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityRemoveRandomIngredient: Barotrauma.Abilities.CharacterAbility
 ---@field private condition Barotrauma.Abilities.AbilityConditionItem
@@ -905,10 +1085,14 @@ CS.Barotrauma.Abilities.CharacterAbilityRemoveRandomIngredient = {}
 ---@param abilityObject Barotrauma.Abilities.AbilityObject
 function CS.Barotrauma.Abilities.CharacterAbilityRemoveRandomIngredient.ApplyEffect(abilityObject) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityRemoveRandomIngredient
-function CS.Barotrauma.Abilities.CharacterAbilityRemoveRandomIngredient(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityRemoveRandomIngredient = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityRemoveRandomIngredient.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityReplaceAffliction: Barotrauma.Abilities.CharacterAbility
 ---@field private afflictionId Barotrauma.Identifier
@@ -924,10 +1108,14 @@ function CS.Barotrauma.Abilities.CharacterAbilityReplaceAffliction.ApplyEffect()
 ---@param timeSinceLastUpdate System.Single
 function CS.Barotrauma.Abilities.CharacterAbilityReplaceAffliction.VerifyState(conditionsMatched, timeSinceLastUpdate) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityReplaceAffliction
-function CS.Barotrauma.Abilities.CharacterAbilityReplaceAffliction(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityReplaceAffliction = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityReplaceAffliction.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityResetPermanentStat: Barotrauma.Abilities.CharacterAbility
 ---@field AppliesEffectOnIntervalUpdate System.Boolean
@@ -949,10 +1137,14 @@ function CS.Barotrauma.Abilities.CharacterAbilityResetPermanentStat.ApplyEffect(
 ---@private
 function CS.Barotrauma.Abilities.CharacterAbilityResetPermanentStat.ApplyEffectSpecific() end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityResetPermanentStat
-function CS.Barotrauma.Abilities.CharacterAbilityResetPermanentStat(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityResetPermanentStat = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityResetPermanentStat.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilitySetMetadataInt: Barotrauma.Abilities.CharacterAbility
 ---@field private identifier Barotrauma.Identifier
@@ -966,10 +1158,14 @@ function CS.Barotrauma.Abilities.CharacterAbilitySetMetadataInt.InitializeAbilit
 ---@overload fun(abilityObject: Barotrauma.Abilities.AbilityObject)
 function CS.Barotrauma.Abilities.CharacterAbilitySetMetadataInt.ApplyEffect() end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilitySetMetadataInt
-function CS.Barotrauma.Abilities.CharacterAbilitySetMetadataInt(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilitySetMetadataInt = __ctor
+CS.Barotrauma.Abilities.CharacterAbilitySetMetadataInt.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilitySpawnItemsToContainer: Barotrauma.Abilities.CharacterAbility
 ---@field private statusEffects userdata | { [System.Int32]: Barotrauma.StatusEffect } | (fun(): Barotrauma.StatusEffect)
@@ -982,10 +1178,14 @@ CS.Barotrauma.Abilities.CharacterAbilitySpawnItemsToContainer = {}
 ---@param abilityObject Barotrauma.Abilities.AbilityObject
 function CS.Barotrauma.Abilities.CharacterAbilitySpawnItemsToContainer.ApplyEffect(abilityObject) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilitySpawnItemsToContainer
-function CS.Barotrauma.Abilities.CharacterAbilitySpawnItemsToContainer(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilitySpawnItemsToContainer = __ctor
+CS.Barotrauma.Abilities.CharacterAbilitySpawnItemsToContainer.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityUpgradeSubmarine: Barotrauma.Abilities.CharacterAbility
 ---@field AllowClientSimulation System.Boolean
@@ -1009,10 +1209,14 @@ function CS.Barotrauma.Abilities.CharacterAbilityUpgradeSubmarine.InitializeAbil
 ---@private
 function CS.Barotrauma.Abilities.CharacterAbilityUpgradeSubmarine.ApplyEffectSpecific() end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityUpgradeSubmarine
-function CS.Barotrauma.Abilities.CharacterAbilityUpgradeSubmarine(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityUpgradeSubmarine = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityUpgradeSubmarine.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityAlienHoarder: Barotrauma.Abilities.CharacterAbility
 ---@field private addedDamageMultiplierPerItem System.Single
@@ -1024,10 +1228,14 @@ CS.Barotrauma.Abilities.CharacterAbilityAlienHoarder = {}
 ---@param abilityObject Barotrauma.Abilities.AbilityObject
 function CS.Barotrauma.Abilities.CharacterAbilityAlienHoarder.ApplyEffect(abilityObject) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityAlienHoarder
-function CS.Barotrauma.Abilities.CharacterAbilityAlienHoarder(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityAlienHoarder = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityAlienHoarder.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityApprenticeship: Barotrauma.Abilities.CharacterAbility
 ---@field private ignoreAbilitySkillGain System.Boolean
@@ -1037,10 +1245,14 @@ CS.Barotrauma.Abilities.CharacterAbilityApprenticeship = {}
 ---@param abilityObject Barotrauma.Abilities.AbilityObject
 function CS.Barotrauma.Abilities.CharacterAbilityApprenticeship.ApplyEffect(abilityObject) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityApprenticeship
-function CS.Barotrauma.Abilities.CharacterAbilityApprenticeship(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityApprenticeship = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityApprenticeship.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityAtmosMachine: Barotrauma.Abilities.CharacterAbility
 ---@field private addedValue System.Single
@@ -1052,10 +1264,14 @@ CS.Barotrauma.Abilities.CharacterAbilityAtmosMachine = {}
 ---@param abilityObject Barotrauma.Abilities.AbilityObject
 function CS.Barotrauma.Abilities.CharacterAbilityAtmosMachine.ApplyEffect(abilityObject) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityAtmosMachine
-function CS.Barotrauma.Abilities.CharacterAbilityAtmosMachine(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityAtmosMachine = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityAtmosMachine.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityBountyHunter: Barotrauma.Abilities.CharacterAbility
 ---@field private vitalityPercentage System.Single
@@ -1065,10 +1281,14 @@ CS.Barotrauma.Abilities.CharacterAbilityBountyHunter = {}
 ---@param abilityObject Barotrauma.Abilities.AbilityObject
 function CS.Barotrauma.Abilities.CharacterAbilityBountyHunter.ApplyEffect(abilityObject) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityBountyHunter
-function CS.Barotrauma.Abilities.CharacterAbilityBountyHunter(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityBountyHunter = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityBountyHunter.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityByTheBook: Barotrauma.Abilities.CharacterAbility
 ---@field private moneyAmount System.Int32
@@ -1079,10 +1299,14 @@ CS.Barotrauma.Abilities.CharacterAbilityByTheBook = {}
 ---@protected
 function CS.Barotrauma.Abilities.CharacterAbilityByTheBook.ApplyEffect() end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityByTheBook
-function CS.Barotrauma.Abilities.CharacterAbilityByTheBook(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityByTheBook = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityByTheBook.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityInsurancePolicy: Barotrauma.Abilities.CharacterAbility
 ---@field AppliesEffectOnIntervalUpdate System.Boolean
@@ -1096,10 +1320,14 @@ function CS.Barotrauma.Abilities.CharacterAbilityInsurancePolicy.get_AppliesEffe
 ---@param abilityObject Barotrauma.Abilities.AbilityObject
 function CS.Barotrauma.Abilities.CharacterAbilityInsurancePolicy.ApplyEffect(abilityObject) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityInsurancePolicy
-function CS.Barotrauma.Abilities.CharacterAbilityInsurancePolicy(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityInsurancePolicy = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityInsurancePolicy.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityMultitasker: Barotrauma.Abilities.CharacterAbility
 ---@field private lastSkillIdentifier Barotrauma.Identifier
@@ -1109,10 +1337,14 @@ CS.Barotrauma.Abilities.CharacterAbilityMultitasker = {}
 ---@param abilityObject Barotrauma.Abilities.AbilityObject
 function CS.Barotrauma.Abilities.CharacterAbilityMultitasker.ApplyEffect(abilityObject) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityMultitasker
-function CS.Barotrauma.Abilities.CharacterAbilityMultitasker(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityMultitasker = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityMultitasker.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityPsychoClown: Barotrauma.Abilities.CharacterAbility
 ---@field AllowClientSimulation System.Boolean
@@ -1131,10 +1363,14 @@ function CS.Barotrauma.Abilities.CharacterAbilityPsychoClown.get_AllowClientSimu
 ---@param timeSinceLastUpdate System.Single
 function CS.Barotrauma.Abilities.CharacterAbilityPsychoClown.VerifyState(conditionsMatched, timeSinceLastUpdate) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityPsychoClown
-function CS.Barotrauma.Abilities.CharacterAbilityPsychoClown(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityPsychoClown = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityPsychoClown.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityRegenerateLoot: Barotrauma.Abilities.CharacterAbility
 ---@field private randomChance System.Single
@@ -1146,10 +1382,14 @@ CS.Barotrauma.Abilities.CharacterAbilityRegenerateLoot = {}
 ---@param abilityObject Barotrauma.Abilities.AbilityObject
 function CS.Barotrauma.Abilities.CharacterAbilityRegenerateLoot.ApplyEffect(abilityObject) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityRegenerateLoot
-function CS.Barotrauma.Abilities.CharacterAbilityRegenerateLoot(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityRegenerateLoot = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityRegenerateLoot.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityTandemFire: Barotrauma.Abilities.CharacterAbilityApplyStatusEffectsToNearestAlly
 ---@field private tag Barotrauma.Identifier
@@ -1158,10 +1398,14 @@ CS.Barotrauma.Abilities.CharacterAbilityTandemFire = {}
 ---@protected
 function CS.Barotrauma.Abilities.CharacterAbilityTandemFire.ApplyEffect() end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityTandemFire
-function CS.Barotrauma.Abilities.CharacterAbilityTandemFire(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityTandemFire = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityTandemFire.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityUnlockApprenticeshipTalentTree: Barotrauma.Abilities.CharacterAbility
 ---@field AllowClientSimulation System.Boolean
@@ -1177,10 +1421,14 @@ function CS.Barotrauma.Abilities.CharacterAbilityUnlockApprenticeshipTalentTree.
 ---@param abilityObject Barotrauma.Abilities.AbilityObject
 function CS.Barotrauma.Abilities.CharacterAbilityUnlockApprenticeshipTalentTree.ApplyEffect(abilityObject) end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityUnlockApprenticeshipTalentTree
-function CS.Barotrauma.Abilities.CharacterAbilityUnlockApprenticeshipTalentTree(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityUnlockApprenticeshipTalentTree = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityUnlockApprenticeshipTalentTree.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityWarStories: Barotrauma.Abilities.CharacterAbility
 ---@field private targetStat Barotrauma.Identifier
@@ -1195,10 +1443,14 @@ CS.Barotrauma.Abilities.CharacterAbilityWarStories = {}
 ---@overload fun(abilityObject: Barotrauma.Abilities.AbilityObject)
 function CS.Barotrauma.Abilities.CharacterAbilityWarStories.ApplyEffect() end
 
+do
 ---@param characterAbilityGroup Barotrauma.Abilities.CharacterAbilityGroup
 ---@param abilityElement Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityWarStories
-function CS.Barotrauma.Abilities.CharacterAbilityWarStories(characterAbilityGroup, abilityElement) end
+local __ctor = function(characterAbilityGroup, abilityElement) end
+CS.Barotrauma.Abilities.CharacterAbilityWarStories = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityWarStories.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityGroup: System.Object
 ---@field CharacterTalent Barotrauma.CharacterTalent
@@ -1269,11 +1521,15 @@ function CS.Barotrauma.Abilities.CharacterAbilityGroup.ParseAfflictions(characte
 ---@return Barotrauma.AbilityFlags
 function CS.Barotrauma.Abilities.CharacterAbilityGroup.ParseFlagType(flagTypeString, debugIdentifier) end
 
+do
 ---@param abilityEffectType Barotrauma.AbilityEffectType
 ---@param characterTalent Barotrauma.CharacterTalent
 ---@param abilityElementGroup Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityGroup
-function CS.Barotrauma.Abilities.CharacterAbilityGroup(abilityEffectType, characterTalent, abilityElementGroup) end
+local __ctor = function(abilityEffectType, characterTalent, abilityElementGroup) end
+CS.Barotrauma.Abilities.CharacterAbilityGroup = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityGroup.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityGroupEffect: Barotrauma.Abilities.CharacterAbilityGroup
 ---@field private IsOverTriggerCount System.Boolean
@@ -1291,11 +1547,15 @@ function CS.Barotrauma.Abilities.CharacterAbilityGroupEffect.get_IsOverTriggerCo
 ---@return System.Boolean
 function CS.Barotrauma.Abilities.CharacterAbilityGroupEffect.IsApplicable(abilityObject) end
 
+do
 ---@param abilityEffectType Barotrauma.AbilityEffectType
 ---@param characterTalent Barotrauma.CharacterTalent
 ---@param abilityElementGroup Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityGroupEffect
-function CS.Barotrauma.Abilities.CharacterAbilityGroupEffect(abilityEffectType, characterTalent, abilityElementGroup) end
+local __ctor = function(abilityEffectType, characterTalent, abilityElementGroup) end
+CS.Barotrauma.Abilities.CharacterAbilityGroupEffect = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityGroupEffect.__new = __ctor
+end
 
 ---@class Barotrauma.Abilities.CharacterAbilityGroupInterval: Barotrauma.Abilities.CharacterAbilityGroup
 ---@field TimeSinceLastUpdate System.Single
@@ -1311,11 +1571,15 @@ function CS.Barotrauma.Abilities.CharacterAbilityGroupInterval.UpdateAbilityGrou
 ---@return System.Boolean
 function CS.Barotrauma.Abilities.CharacterAbilityGroupInterval.AllConditionsMatched() end
 
+do
 ---@param abilityEffectType Barotrauma.AbilityEffectType
 ---@param characterTalent Barotrauma.CharacterTalent
 ---@param abilityElementGroup Barotrauma.ContentXElement
 ---@return Barotrauma.Abilities.CharacterAbilityGroupInterval
-function CS.Barotrauma.Abilities.CharacterAbilityGroupInterval(abilityEffectType, characterTalent, abilityElementGroup) end
+local __ctor = function(abilityEffectType, characterTalent, abilityElementGroup) end
+CS.Barotrauma.Abilities.CharacterAbilityGroupInterval = __ctor
+CS.Barotrauma.Abilities.CharacterAbilityGroupInterval.__new = __ctor
+end
 
 ---@enum Barotrauma.Abilities.AbilityConditionAllyNearby.NearbyCharacterTruthy
 CS.Barotrauma.Abilities.AbilityConditionAllyNearby.NearbyCharacterTruthy = {

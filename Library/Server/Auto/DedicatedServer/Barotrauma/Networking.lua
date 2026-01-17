@@ -253,11 +253,15 @@ function CS.Barotrauma.Networking.Client.SanitizeName(name, maxLength) end
 
 function CS.Barotrauma.Networking.Client.Dispose() end
 
+do
 ---@overload fun(): Barotrauma.Networking.Client
 ---@param name System.String
 ---@param sessionId System.Byte
 ---@return Barotrauma.Networking.Client
-function CS.Barotrauma.Networking.Client(name, sessionId) end
+local __ctor = function(name, sessionId) end
+CS.Barotrauma.Networking.Client = __ctor
+CS.Barotrauma.Networking.Client.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.BannedPlayer: System.Object
 ---@field Expired System.Boolean
@@ -276,12 +280,16 @@ function CS.Barotrauma.Networking.BannedPlayer.get_Expired() end
 ---@return System.Boolean
 function CS.Barotrauma.Networking.BannedPlayer.MatchesClient(client) end
 
+do
 ---@param name System.String
 ---@param addressOrAccountId userdata
 ---@param reason System.String
 ---@param expirationTime userdata
 ---@return Barotrauma.Networking.BannedPlayer
-function CS.Barotrauma.Networking.BannedPlayer(name, addressOrAccountId, reason, expirationTime) end
+local __ctor = function(name, addressOrAccountId, reason, expirationTime) end
+CS.Barotrauma.Networking.BannedPlayer = __ctor
+CS.Barotrauma.Networking.BannedPlayer.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.BanList: System.Object
 ---@field BannedPlayers userdata | { [System.Int32]: Barotrauma.Networking.BannedPlayer } | (fun(): Barotrauma.Networking.BannedPlayer)
@@ -347,8 +355,12 @@ function CS.Barotrauma.Networking.BanList.get_BannedAddresses() end
 ---@private
 function CS.Barotrauma.Networking.BanList.InitProjectSpecific() end
 
+do
 ---@return Barotrauma.Networking.BanList
-function CS.Barotrauma.Networking.BanList() end
+local __ctor = function() end
+CS.Barotrauma.Networking.BanList = __ctor
+CS.Barotrauma.Networking.BanList.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.ChatMessage: System.Object
 ---@field TranslatedText System.String
@@ -458,6 +470,7 @@ function CS.Barotrauma.Networking.ChatMessage.EstimateLengthBytesClient() end
 ---@return System.Boolean
 function CS.Barotrauma.Networking.ChatMessage.CanUseRadio(sender, ignoreJamming) end
 
+do
 ---@protected
 ---@overload fun(): Barotrauma.Networking.ChatMessage
 ---@param senderName System.String
@@ -468,7 +481,10 @@ function CS.Barotrauma.Networking.ChatMessage.CanUseRadio(sender, ignoreJamming)
 ---@param changeType? Barotrauma.Networking.PlayerConnectionChangeType
 ---@param textColor? Microsoft.Xna.Framework.Color|nil
 ---@return Barotrauma.Networking.ChatMessage
-function CS.Barotrauma.Networking.ChatMessage(senderName, text, type, sender, client, changeType, textColor) end
+local __ctor = function(senderName, text, type, sender, client, changeType, textColor) end
+CS.Barotrauma.Networking.ChatMessage = __ctor
+CS.Barotrauma.Networking.ChatMessage.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.FileSender: System.Object
 ---@field ActiveTransfers userdata | { [System.Int32]: Barotrauma.Networking.FileSender.FileTransferOut } | (fun(): Barotrauma.Networking.FileSender.FileTransferOut)
@@ -505,10 +521,14 @@ function CS.Barotrauma.Networking.FileSender.CancelTransfer(transfer) end
 ---@param client Barotrauma.Networking.Client
 function CS.Barotrauma.Networking.FileSender.ReadFileRequest(inc, client) end
 
+do
 ---@param serverPeer Barotrauma.Networking.ServerPeer
 ---@param mtu System.Int32
 ---@return Barotrauma.Networking.FileSender
-function CS.Barotrauma.Networking.FileSender(serverPeer, mtu) end
+local __ctor = function(serverPeer, mtu) end
+CS.Barotrauma.Networking.FileSender = __ctor
+CS.Barotrauma.Networking.FileSender.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.GameServer: Barotrauma.Networking.NetworkMember
 ---@field IsServer System.Boolean
@@ -1017,6 +1037,7 @@ function CS.Barotrauma.Networking.GameServer.AssignClientToPvpTeamMidgame(client
 ---@private
 function CS.Barotrauma.Networking.GameServer.StopAutoBalanceCountdown() end
 
+do
 ---@overload fun(): Barotrauma.Networking.GameServer
 ---@param name System.String
 ---@param listenIp System.Net.IPAddress
@@ -1029,7 +1050,10 @@ function CS.Barotrauma.Networking.GameServer.StopAutoBalanceCountdown() end
 ---@param ownerKey userdata
 ---@param ownerEndpoint userdata
 ---@return Barotrauma.Networking.GameServer
-function CS.Barotrauma.Networking.GameServer(name, listenIp, port, queryPort, isPublic, password, attemptUPnP, maxPlayers, ownerKey, ownerEndpoint) end
+local __ctor = function(name, listenIp, port, queryPort, isPublic, password, attemptUPnP, maxPlayers, ownerKey, ownerEndpoint) end
+CS.Barotrauma.Networking.GameServer = __ctor
+CS.Barotrauma.Networking.GameServer.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.ServerEntityEvent: Barotrauma.Networking.NetEntityEvent
 ---@field CreateTime System.Double
@@ -1046,10 +1070,14 @@ function CS.Barotrauma.Networking.ServerEntityEvent.ResetCreateTime() end
 ---@param recipient Barotrauma.Networking.Client
 function CS.Barotrauma.Networking.ServerEntityEvent.Write(msg, recipient) end
 
+do
 ---@param serializableEntity Barotrauma.Networking.IServerSerializable
 ---@param id System.UInt16
 ---@return Barotrauma.Networking.ServerEntityEvent
-function CS.Barotrauma.Networking.ServerEntityEvent(serializableEntity, id) end
+local __ctor = function(serializableEntity, id) end
+CS.Barotrauma.Networking.ServerEntityEvent = __ctor
+CS.Barotrauma.Networking.ServerEntityEvent.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.ServerEntityEventManager: Barotrauma.Networking.NetEntityEventManager
 ---@field Events userdata | { [System.Int32]: Barotrauma.Networking.ServerEntityEvent } | (fun(): Barotrauma.Networking.ServerEntityEvent)
@@ -1121,9 +1149,13 @@ function CS.Barotrauma.Networking.ServerEntityEventManager.ReadEvent(buffer, ent
 
 function CS.Barotrauma.Networking.ServerEntityEventManager.Clear() end
 
+do
 ---@param server Barotrauma.Networking.GameServer
 ---@return Barotrauma.Networking.ServerEntityEventManager
-function CS.Barotrauma.Networking.ServerEntityEventManager(server) end
+local __ctor = function(server) end
+CS.Barotrauma.Networking.ServerEntityEventManager = __ctor
+CS.Barotrauma.Networking.ServerEntityEventManager.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.NetworkMember: System.Object
 ---@field Character Barotrauma.Character
@@ -1201,9 +1233,13 @@ function CS.Barotrauma.Networking.NetworkMember.UnbanPlayer(playerName) end
 ---@return System.Boolean
 function CS.Barotrauma.Networking.NetworkMember.IsCompatible(myVersion, remoteVersion) end
 
+do
 ---@protected
 ---@return Barotrauma.Networking.NetworkMember
-function CS.Barotrauma.Networking.NetworkMember() end
+local __ctor = function() end
+CS.Barotrauma.Networking.NetworkMember = __ctor
+CS.Barotrauma.Networking.NetworkMember.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.OrderChatMessage: Barotrauma.Networking.ChatMessage
 ---@field TargetEntity Barotrauma.ISpatialEntity
@@ -1250,13 +1286,17 @@ function CS.Barotrauma.Networking.OrderChatMessage.WriteOrder(msg) end
 ---@return Barotrauma.Networking.OrderChatMessage.OrderMessageInfo
 function CS.Barotrauma.Networking.OrderChatMessage.ReadOrder(msg) end
 
+do
 ---@overload fun(order: Barotrauma.Order, text: System.String, targetCharacter: Barotrauma.Character, sender: Barotrauma.Entity, isNewOrder?: System.Boolean): Barotrauma.Networking.OrderChatMessage
 ---@param order Barotrauma.Order
 ---@param targetCharacter Barotrauma.Character
 ---@param sender Barotrauma.Character
 ---@param isNewOrder? System.Boolean
 ---@return Barotrauma.Networking.OrderChatMessage
-function CS.Barotrauma.Networking.OrderChatMessage(order, targetCharacter, sender, isNewOrder) end
+local __ctor = function(order, targetCharacter, sender, isNewOrder) end
+CS.Barotrauma.Networking.OrderChatMessage = __ctor
+CS.Barotrauma.Networking.OrderChatMessage.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.LidgrenServerPeer: userdata
 ---@field private netPeerConfiguration Lidgren.Network.NetPeerConfiguration
@@ -1416,11 +1456,15 @@ function CS.Barotrauma.Networking.LidgrenServerPeer.ReferenceEquals(objA, objB) 
 ---@return System.Int32
 function CS.Barotrauma.Networking.LidgrenServerPeer.GetHashCode() end
 
+do
 ---@param ownKey userdata
 ---@param settings Barotrauma.Networking.ServerSettings
 ---@param callbacks Barotrauma.Networking.ServerPeer.Callbacks
 ---@return Barotrauma.Networking.LidgrenServerPeer
-function CS.Barotrauma.Networking.LidgrenServerPeer(ownKey, settings, callbacks) end
+local __ctor = function(ownKey, settings, callbacks) end
+CS.Barotrauma.Networking.LidgrenServerPeer = __ctor
+CS.Barotrauma.Networking.LidgrenServerPeer.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.P2PServerPeer: userdata
 ---@field private started System.Boolean
@@ -1562,12 +1606,16 @@ function CS.Barotrauma.Networking.P2PServerPeer.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.Networking.P2PServerPeer.GetHashCode() end
 
+do
 ---@param ownerEp Barotrauma.Networking.P2PEndpoint
 ---@param ownerKey System.Int32
 ---@param settings Barotrauma.Networking.ServerSettings
 ---@param callbacks Barotrauma.Networking.ServerPeer.Callbacks
 ---@return Barotrauma.Networking.P2PServerPeer
-function CS.Barotrauma.Networking.P2PServerPeer(ownerEp, ownerKey, settings, callbacks) end
+local __ctor = function(ownerEp, ownerKey, settings, callbacks) end
+CS.Barotrauma.Networking.P2PServerPeer = __ctor
+CS.Barotrauma.Networking.P2PServerPeer.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.ServerPeer: System.Object
 ---@field protected callbacks Barotrauma.Networking.ServerPeer.Callbacks
@@ -1603,10 +1651,14 @@ function CS.Barotrauma.Networking.ServerPeer.LogMalformedMessage() end
 ---@return System.Boolean
 function CS.Barotrauma.Networking.ServerPeer.ShouldAskForPassword(serverSettings, connection) end
 
+do
 ---@protected
 ---@param callbacks Barotrauma.Networking.ServerPeer.Callbacks
 ---@return Barotrauma.Networking.ServerPeer
-function CS.Barotrauma.Networking.ServerPeer(callbacks) end
+local __ctor = function(callbacks) end
+CS.Barotrauma.Networking.ServerPeer = __ctor
+CS.Barotrauma.Networking.ServerPeer.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.RespawnManager: Barotrauma.Entity
 ---@field IsShuttleInsideLevel System.Boolean
@@ -1795,10 +1847,14 @@ function CS.Barotrauma.Networking.RespawnManager.FindSpawnPos(respawnShuttle, ma
 ---@return userdata | { [System.Int32]: Barotrauma.Level.InterestingPosition } | (fun(): Barotrauma.Level.InterestingPosition)
 function CS.Barotrauma.Networking.RespawnManager.FindValidSpawnPoints(respawnShuttle, minWidth, minHeight, minDistFromSubs, minDistFromCharacters) end
 
+do
 ---@param networkMember Barotrauma.Networking.NetworkMember
 ---@param shuttleInfo Barotrauma.SubmarineInfo
 ---@return Barotrauma.Networking.RespawnManager
-function CS.Barotrauma.Networking.RespawnManager(networkMember, shuttleInfo) end
+local __ctor = function(networkMember, shuttleInfo) end
+CS.Barotrauma.Networking.RespawnManager = __ctor
+CS.Barotrauma.Networking.RespawnManager.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.ServerSettings: System.Object
 ---@field Name System.String
@@ -2219,6 +2275,7 @@ function CS.Barotrauma.Networking.ServerSettings.UpdateServerListInfo(setter) en
 ---@overload fun(availableMissionClasses: (userdata | (fun(): System.Type)))
 function CS.Barotrauma.Networking.ServerSettings.ValidateMissionTypes() end
 
+do
 ---@overload fun(): Barotrauma.Networking.ServerSettings
 ---@param networkMember Barotrauma.Networking.NetworkMember
 ---@param serverName System.String
@@ -2229,7 +2286,10 @@ function CS.Barotrauma.Networking.ServerSettings.ValidateMissionTypes() end
 ---@param enableUPnP System.Boolean
 ---@param listenIp System.Net.IPAddress
 ---@return Barotrauma.Networking.ServerSettings
-function CS.Barotrauma.Networking.ServerSettings(networkMember, serverName, port, queryPort, maxPlayers, isPublic, enableUPnP, listenIp) end
+local __ctor = function(networkMember, serverName, port, queryPort, maxPlayers, isPublic, enableUPnP, listenIp) end
+CS.Barotrauma.Networking.ServerSettings = __ctor
+CS.Barotrauma.Networking.ServerSettings.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.VoipServer: System.Object
 ---@field private netServer Barotrauma.Networking.ServerPeer
@@ -2257,9 +2317,13 @@ function CS.Barotrauma.Networking.VoipServer.CanReceive(sender, recipient, dista
 ---@param connectedClient Barotrauma.Networking.Client
 function CS.Barotrauma.Networking.VoipServer.Read(inc, connectedClient) end
 
+do
 ---@param server Barotrauma.Networking.ServerPeer
 ---@return Barotrauma.Networking.VoipServer
-function CS.Barotrauma.Networking.VoipServer(server) end
+local __ctor = function(server) end
+CS.Barotrauma.Networking.VoipServer = __ctor
+CS.Barotrauma.Networking.VoipServer.__new = __ctor
+end
 
 ---@enum Barotrauma.Networking.ChatMessageType
 CS.Barotrauma.Networking.ChatMessageType = {
@@ -2376,9 +2440,13 @@ function CS.Barotrauma.Networking.NetConfig.InterpolateCursorPositionError(curso
 ---@return Microsoft.Xna.Framework.Vector2
 function CS.Barotrauma.Networking.NetConfig.Quantize(value, min, max, numberOfBits) end
 
+do
 ---@private
 ---@return Barotrauma.Networking.NetConfig
-function CS.Barotrauma.Networking.NetConfig() end
+local __ctor = function() end
+CS.Barotrauma.Networking.NetConfig = __ctor
+CS.Barotrauma.Networking.NetConfig.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.NetEntityEvent: System.Object
 ---@field EntityID System.UInt16
@@ -2398,21 +2466,29 @@ function CS.Barotrauma.Networking.NetEntityEvent.SetData(data) end
 ---@return System.Boolean
 function CS.Barotrauma.Networking.NetEntityEvent.IsDuplicate(other) end
 
+do
 ---@protected
 ---@param serializableEntity Barotrauma.Networking.INetSerializable
 ---@param id System.UInt16
 ---@return Barotrauma.Networking.NetEntityEvent
-function CS.Barotrauma.Networking.NetEntityEvent(serializableEntity, id) end
+local __ctor = function(serializableEntity, id) end
+CS.Barotrauma.Networking.NetEntityEvent = __ctor
+CS.Barotrauma.Networking.NetEntityEvent.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.EntityEventException: System.Exception
 ---@field Entity Barotrauma.Entity
 CS.Barotrauma.Networking.EntityEventException = {}
 
+do
 ---@param errorMessage System.String
 ---@param causingEntity Barotrauma.Entity
 ---@param innerException? System.Exception
 ---@return Barotrauma.Networking.EntityEventException
-function CS.Barotrauma.Networking.EntityEventException(errorMessage, causingEntity, innerException) end
+local __ctor = function(errorMessage, causingEntity, innerException) end
+CS.Barotrauma.Networking.EntityEventException = __ctor
+CS.Barotrauma.Networking.EntityEventException.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.NetEntityEventManager: System.Object
 ---@field MaxEventBufferLength System.Int32
@@ -2436,9 +2512,13 @@ function CS.Barotrauma.Networking.NetEntityEventManager.ValidateEntity(entity) e
 ---@param recipient? Barotrauma.Networking.Client
 function CS.Barotrauma.Networking.NetEntityEventManager.WriteEvent(buffer, entityEvent, recipient) end
 
+do
 ---@protected
 ---@return Barotrauma.Networking.NetEntityEventManager
-function CS.Barotrauma.Networking.NetEntityEventManager() end
+local __ctor = function() end
+CS.Barotrauma.Networking.NetEntityEventManager = __ctor
+CS.Barotrauma.Networking.NetEntityEventManager.__new = __ctor
+end
 
 ---@enum Barotrauma.Networking.ClientPacketHeader
 CS.Barotrauma.Networking.ClientPacketHeader = {
@@ -2569,12 +2649,16 @@ function CS.Barotrauma.Networking.AccountInfo.op_Equality(a, b) end
 ---@return System.Boolean
 function CS.Barotrauma.Networking.AccountInfo.op_Inequality(a, b) end
 
+do
 ---@overload fun(accountId: userdata, ...: Barotrauma.Networking.AccountId): Barotrauma.Networking.AccountInfo
 ---@overload fun(): Barotrauma.Networking.AccountInfo
 ---@param accountId Barotrauma.Networking.AccountId
 ---@param ... Barotrauma.Networking.AccountId
 ---@return Barotrauma.Networking.AccountInfo
-function CS.Barotrauma.Networking.AccountInfo(accountId, ...) end
+local __ctor = function(accountId, ...) end
+CS.Barotrauma.Networking.AccountInfo = __ctor
+CS.Barotrauma.Networking.AccountInfo.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.Endpoint: System.Object
 ---@field StringRepresentation System.String
@@ -2612,9 +2696,13 @@ function CS.Barotrauma.Networking.Endpoint.op_Equality(a, b) end
 ---@return System.Boolean
 function CS.Barotrauma.Networking.Endpoint.op_Inequality(a, b) end
 
+do
 ---@param address Barotrauma.Networking.Address
 ---@return Barotrauma.Networking.Endpoint
-function CS.Barotrauma.Networking.Endpoint(address) end
+local __ctor = function(address) end
+CS.Barotrauma.Networking.Endpoint = __ctor
+CS.Barotrauma.Networking.Endpoint.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.EosP2PEndpoint: Barotrauma.Networking.P2PEndpoint
 ---@field ProductUserId Barotrauma.EosInterface.ProductUserId
@@ -2643,10 +2731,14 @@ function CS.Barotrauma.Networking.EosP2PEndpoint.Parse(endpointStr) end
 ---@return Barotrauma.Networking.P2PConnection
 function CS.Barotrauma.Networking.EosP2PEndpoint.MakeConnectionFromEndpoint() end
 
+do
 ---@overload fun(address: Barotrauma.Networking.EosP2PAddress): Barotrauma.Networking.EosP2PEndpoint
 ---@param puid Barotrauma.EosInterface.ProductUserId
 ---@return Barotrauma.Networking.EosP2PEndpoint
-function CS.Barotrauma.Networking.EosP2PEndpoint(puid) end
+local __ctor = function(puid) end
+CS.Barotrauma.Networking.EosP2PEndpoint = __ctor
+CS.Barotrauma.Networking.EosP2PEndpoint.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.LidgrenEndpoint: Barotrauma.Networking.Endpoint
 ---@field Port System.Int32
@@ -2687,11 +2779,15 @@ function CS.Barotrauma.Networking.LidgrenEndpoint.op_Equality(a, b) end
 ---@return System.Boolean
 function CS.Barotrauma.Networking.LidgrenEndpoint.op_Inequality(a, b) end
 
+do
 ---@overload fun(netEndpoint: System.Net.IPEndPoint): Barotrauma.Networking.LidgrenEndpoint
 ---@param address System.Net.IPAddress
 ---@param port System.Int32
 ---@return Barotrauma.Networking.LidgrenEndpoint
-function CS.Barotrauma.Networking.LidgrenEndpoint(address, port) end
+local __ctor = function(address, port) end
+CS.Barotrauma.Networking.LidgrenEndpoint = __ctor
+CS.Barotrauma.Networking.LidgrenEndpoint.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.P2PEndpoint: Barotrauma.Networking.Endpoint
 CS.Barotrauma.Networking.P2PEndpoint = {}
@@ -2703,10 +2799,14 @@ function CS.Barotrauma.Networking.P2PEndpoint.MakeConnectionFromEndpoint() end
 ---@return userdata
 function CS.Barotrauma.Networking.P2PEndpoint.Parse(str) end
 
+do
 ---@protected
 ---@param address Barotrauma.Networking.P2PAddress
 ---@return Barotrauma.Networking.P2PEndpoint
-function CS.Barotrauma.Networking.P2PEndpoint(address) end
+local __ctor = function(address) end
+CS.Barotrauma.Networking.P2PEndpoint = __ctor
+CS.Barotrauma.Networking.P2PEndpoint.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.SteamP2PEndpoint: Barotrauma.Networking.P2PEndpoint
 ---@field SteamId Barotrauma.Networking.SteamId
@@ -2734,9 +2834,13 @@ function CS.Barotrauma.Networking.SteamP2PEndpoint.Parse(endpointStr) end
 ---@return Barotrauma.Networking.P2PConnection
 function CS.Barotrauma.Networking.SteamP2PEndpoint.MakeConnectionFromEndpoint() end
 
+do
 ---@param steamId Barotrauma.Networking.SteamId
 ---@return Barotrauma.Networking.SteamP2PEndpoint
-function CS.Barotrauma.Networking.SteamP2PEndpoint(steamId) end
+local __ctor = function(steamId) end
+CS.Barotrauma.Networking.SteamP2PEndpoint = __ctor
+CS.Barotrauma.Networking.SteamP2PEndpoint.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.IReadMessage
 ---@field BitPosition System.Int32
@@ -3037,8 +3141,12 @@ function CS.Barotrauma.Networking.WriteOnlyMessage.WriteBytes(val, startPos, len
 ---@return System.Byte[]
 function CS.Barotrauma.Networking.WriteOnlyMessage.PrepareForSending(compressPastThreshold, isCompressed, length) end
 
+do
 ---@return Barotrauma.Networking.WriteOnlyMessage
-function CS.Barotrauma.Networking.WriteOnlyMessage() end
+local __ctor = function() end
+CS.Barotrauma.Networking.WriteOnlyMessage = __ctor
+CS.Barotrauma.Networking.WriteOnlyMessage.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.ReadOnlyMessage: System.Object
 ---@field BitPosition System.Int32
@@ -3134,13 +3242,17 @@ function CS.Barotrauma.Networking.ReadOnlyMessage.ReadRangedSingle(min, max, bit
 ---@return System.Byte[]
 function CS.Barotrauma.Networking.ReadOnlyMessage.ReadBytes(numberOfBytes) end
 
+do
 ---@param inBuf System.Byte[]
 ---@param isCompressed System.Boolean
 ---@param startPos System.Int32
 ---@param byteLength System.Int32
 ---@param sender Barotrauma.Networking.NetworkConnection
 ---@return Barotrauma.Networking.ReadOnlyMessage
-function CS.Barotrauma.Networking.ReadOnlyMessage(inBuf, isCompressed, startPos, byteLength, sender) end
+local __ctor = function(inBuf, isCompressed, startPos, byteLength, sender) end
+CS.Barotrauma.Networking.ReadOnlyMessage = __ctor
+CS.Barotrauma.Networking.ReadOnlyMessage.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.ReadWriteMessage: System.Object
 ---@field BitPosition System.Int32
@@ -3312,9 +3424,13 @@ function CS.Barotrauma.Networking.ReadWriteMessage.ReadBytes(numberOfBytes) end
 ---@return System.Byte[]
 function CS.Barotrauma.Networking.ReadWriteMessage.PrepareForSending(compressPastThreshold, isCompressed, outLength) end
 
+do
 ---@overload fun(b: System.Byte[], bitPos: System.Int32, lBits: System.Int32, copyBuf: System.Boolean): Barotrauma.Networking.ReadWriteMessage
 ---@return Barotrauma.Networking.ReadWriteMessage
-function CS.Barotrauma.Networking.ReadWriteMessage() end
+local __ctor = function() end
+CS.Barotrauma.Networking.ReadWriteMessage = __ctor
+CS.Barotrauma.Networking.ReadWriteMessage.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.EosP2PConnection: userdata
 ---@field Endpoint Barotrauma.Networking.EosP2PEndpoint
@@ -3384,9 +3500,13 @@ function CS.Barotrauma.Networking.EosP2PConnection.ReferenceEquals(objA, objB) e
 ---@return System.Int32
 function CS.Barotrauma.Networking.EosP2PConnection.GetHashCode() end
 
+do
 ---@param endpoint Barotrauma.Networking.EosP2PEndpoint
 ---@return Barotrauma.Networking.EosP2PConnection
-function CS.Barotrauma.Networking.EosP2PConnection(endpoint) end
+local __ctor = function(endpoint) end
+CS.Barotrauma.Networking.EosP2PConnection = __ctor
+CS.Barotrauma.Networking.EosP2PConnection.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.LidgrenConnection: userdata
 ---@field Endpoint Barotrauma.Networking.LidgrenEndpoint
@@ -3450,9 +3570,13 @@ function CS.Barotrauma.Networking.LidgrenConnection.ReferenceEquals(objA, objB) 
 ---@return System.Int32
 function CS.Barotrauma.Networking.LidgrenConnection.GetHashCode() end
 
+do
 ---@param netConnection Lidgren.Network.NetConnection
 ---@return Barotrauma.Networking.LidgrenConnection
-function CS.Barotrauma.Networking.LidgrenConnection(netConnection) end
+local __ctor = function(netConnection) end
+CS.Barotrauma.Networking.LidgrenConnection = __ctor
+CS.Barotrauma.Networking.LidgrenConnection.__new = __ctor
+end
 
 ---@enum Barotrauma.Networking.NetworkConnectionStatus
 CS.Barotrauma.Networking.NetworkConnectionStatus = {
@@ -3489,10 +3613,14 @@ function CS.Barotrauma.Networking.NetworkConnection.SetAccountInfo(newInfo) end
 ---@return System.String
 function CS.Barotrauma.Networking.NetworkConnection.ToString() end
 
+do
 ---@protected
 ---@param endpoint Barotrauma.Networking.Endpoint
 ---@return Barotrauma.Networking.NetworkConnection
-function CS.Barotrauma.Networking.NetworkConnection(endpoint) end
+local __ctor = function(endpoint) end
+CS.Barotrauma.Networking.NetworkConnection = __ctor
+CS.Barotrauma.Networking.NetworkConnection.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.P2PConnection: userdata
 ---@field Endpoint Barotrauma.Networking.P2PEndpoint
@@ -3560,10 +3688,14 @@ function CS.Barotrauma.Networking.P2PConnection.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.Networking.P2PConnection.GetHashCode() end
 
+do
 ---@protected
 ---@param endpoint Barotrauma.Networking.P2PEndpoint
 ---@return Barotrauma.Networking.P2PConnection
-function CS.Barotrauma.Networking.P2PConnection(endpoint) end
+local __ctor = function(endpoint) end
+CS.Barotrauma.Networking.P2PConnection = __ctor
+CS.Barotrauma.Networking.P2PConnection.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.PipeEndpoint: Barotrauma.Networking.Endpoint
 ---@field StringRepresentation System.String
@@ -3593,8 +3725,12 @@ function CS.Barotrauma.Networking.PipeEndpoint.op_Equality(a, b) end
 ---@return System.Boolean
 function CS.Barotrauma.Networking.PipeEndpoint.op_Inequality(a, b) end
 
+do
 ---@return Barotrauma.Networking.PipeEndpoint
-function CS.Barotrauma.Networking.PipeEndpoint() end
+local __ctor = function() end
+CS.Barotrauma.Networking.PipeEndpoint = __ctor
+CS.Barotrauma.Networking.PipeEndpoint.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.PipeConnection: userdata
 ---@field Endpoint Barotrauma.Networking.PipeEndpoint
@@ -3657,9 +3793,13 @@ function CS.Barotrauma.Networking.PipeConnection.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.Networking.PipeConnection.GetHashCode() end
 
+do
 ---@param accountId userdata
 ---@return Barotrauma.Networking.PipeConnection
-function CS.Barotrauma.Networking.PipeConnection(accountId) end
+local __ctor = function(accountId) end
+CS.Barotrauma.Networking.PipeConnection = __ctor
+CS.Barotrauma.Networking.PipeConnection.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.SteamP2PConnection: userdata
 ---@field Endpoint Barotrauma.Networking.SteamP2PEndpoint
@@ -3729,10 +3869,14 @@ function CS.Barotrauma.Networking.SteamP2PConnection.ReferenceEquals(objA, objB)
 ---@return System.Int32
 function CS.Barotrauma.Networking.SteamP2PConnection.GetHashCode() end
 
+do
 ---@overload fun(endpoint: Barotrauma.Networking.SteamP2PEndpoint): Barotrauma.Networking.SteamP2PConnection
 ---@param steamId Barotrauma.Networking.SteamId
 ---@return Barotrauma.Networking.SteamP2PConnection
-function CS.Barotrauma.Networking.SteamP2PConnection(steamId) end
+local __ctor = function(steamId) end
+CS.Barotrauma.Networking.SteamP2PConnection = __ctor
+CS.Barotrauma.Networking.SteamP2PConnection.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.ClientAuthTicketAndVersionPacket: System.ValueType
 ---@field Name System.String
@@ -3803,9 +3947,13 @@ function CS.Barotrauma.Networking.ServerContentPackage.get_ContentPackage() end
 ---@return System.String
 function CS.Barotrauma.Networking.ServerContentPackage.GetPackageStr() end
 
+do
 ---@overload fun(contentPackage: Barotrauma.ContentPackage, referenceTime: Barotrauma.SerializableDateTime): Barotrauma.Networking.ServerContentPackage
 ---@return Barotrauma.Networking.ServerContentPackage
-function CS.Barotrauma.Networking.ServerContentPackage() end
+local __ctor = function() end
+CS.Barotrauma.Networking.ServerContentPackage = __ctor
+CS.Barotrauma.Networking.ServerContentPackage.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.ServerLog: System.Object
 ---@field LinesPerFile System.Int32
@@ -3831,9 +3979,13 @@ function CS.Barotrauma.Networking.ServerLog.WriteLine(line, messageType, logToCo
 
 function CS.Barotrauma.Networking.ServerLog.Save() end
 
+do
 ---@param serverName System.String
 ---@return Barotrauma.Networking.ServerLog
-function CS.Barotrauma.Networking.ServerLog(serverName) end
+local __ctor = function(serverName) end
+CS.Barotrauma.Networking.ServerLog = __ctor
+CS.Barotrauma.Networking.ServerLog.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.VoipConfig: System.Object
 ---@field SEND_INTERVAL System.TimeSpan
@@ -3846,9 +3998,13 @@ CS.Barotrauma.Networking.VoipConfig = {}
 ---@return Concentus.Structs.OpusDecoder
 function CS.Barotrauma.Networking.VoipConfig.CreateDecoder() end
 
+do
 ---@private
 ---@return Barotrauma.Networking.VoipConfig
-function CS.Barotrauma.Networking.VoipConfig() end
+local __ctor = function() end
+CS.Barotrauma.Networking.VoipConfig = __ctor
+CS.Barotrauma.Networking.VoipConfig.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.VoipQueue: System.Object
 ---@field EnqueuedTotalLength System.Int32
@@ -3887,11 +4043,15 @@ function CS.Barotrauma.Networking.VoipQueue.Read(msg, discardData) end
 
 function CS.Barotrauma.Networking.VoipQueue.Dispose() end
 
+do
 ---@param id System.Byte
 ---@param canSend System.Boolean
 ---@param canReceive System.Boolean
 ---@return Barotrauma.Networking.VoipQueue
-function CS.Barotrauma.Networking.VoipQueue(id, canSend, canReceive) end
+local __ctor = function(id, canSend, canReceive) end
+CS.Barotrauma.Networking.VoipQueue = __ctor
+CS.Barotrauma.Networking.VoipQueue.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.ServerEntityEventManager.BufferedEvent: System.Object
 ---@field Sender Barotrauma.Networking.Client
@@ -3903,13 +4063,17 @@ function CS.Barotrauma.Networking.VoipQueue(id, canSend, canReceive) end
 ---@field RequireCharacter System.Boolean
 CS.Barotrauma.Networking.ServerEntityEventManager.BufferedEvent = {}
 
+do
 ---@param sender Barotrauma.Networking.Client
 ---@param senderCharacter Barotrauma.Character
 ---@param characterStateID System.UInt16
 ---@param targetEntity Barotrauma.Networking.IClientSerializable
 ---@param data Barotrauma.Networking.ReadWriteMessage
 ---@return Barotrauma.Networking.ServerEntityEventManager.BufferedEvent
-function CS.Barotrauma.Networking.ServerEntityEventManager.BufferedEvent(sender, senderCharacter, characterStateID, targetEntity, data) end
+local __ctor = function(sender, senderCharacter, characterStateID, targetEntity, data) end
+CS.Barotrauma.Networking.ServerEntityEventManager.BufferedEvent = __ctor
+CS.Barotrauma.Networking.ServerEntityEventManager.BufferedEvent.__new = __ctor
+end
 
 ---@enum Barotrauma.Networking.RespawnManager.State
 CS.Barotrauma.Networking.RespawnManager.State = {
@@ -3935,9 +4099,13 @@ CS.Barotrauma.Networking.RespawnManager.State = {
 ---@field RespawnItems userdata | { [System.Int32]: Barotrauma.Item } | (fun(): Barotrauma.Item)
 CS.Barotrauma.Networking.RespawnManager.TeamSpecificState = {}
 
+do
 ---@param teamID Barotrauma.CharacterTeamType
 ---@return Barotrauma.Networking.RespawnManager.TeamSpecificState
-function CS.Barotrauma.Networking.RespawnManager.TeamSpecificState(teamID) end
+local __ctor = function(teamID) end
+CS.Barotrauma.Networking.RespawnManager.TeamSpecificState = __ctor
+CS.Barotrauma.Networking.RespawnManager.TeamSpecificState.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.ServerSettings.SavedClientPermission: System.Object
 ---@field AddressOrAccountId userdata
@@ -3946,12 +4114,16 @@ function CS.Barotrauma.Networking.RespawnManager.TeamSpecificState(teamID) end
 ---@field Permissions Barotrauma.Networking.ClientPermissions
 CS.Barotrauma.Networking.ServerSettings.SavedClientPermission = {}
 
+do
 ---@param name System.String
 ---@param addressOrAccountId userdata
 ---@param permissions Barotrauma.Networking.ClientPermissions
 ---@param permittedCommands userdata | (fun(): Barotrauma.DebugConsole.Command)
 ---@return Barotrauma.Networking.ServerSettings.SavedClientPermission
-function CS.Barotrauma.Networking.ServerSettings.SavedClientPermission(name, addressOrAccountId, permissions, permittedCommands) end
+local __ctor = function(name, addressOrAccountId, permissions, permittedCommands) end
+CS.Barotrauma.Networking.ServerSettings.SavedClientPermission = __ctor
+CS.Barotrauma.Networking.ServerSettings.SavedClientPermission.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.NetEntityEvent.IData
 CS.Barotrauma.Networking.NetEntityEvent.IData = {}
@@ -3963,21 +4135,29 @@ CS.Barotrauma.Networking.NetEntityEvent.IData = {}
 ---@field MessageId System.UInt16
 CS.Barotrauma.Networking.MessageFragment.Id = {}
 
+do
 ---@param FragmentIndex System.UInt16
 ---@param FragmentCount System.UInt16
 ---@param MessageId System.UInt16
 ---@return Barotrauma.Networking.MessageFragment.Id
-function CS.Barotrauma.Networking.MessageFragment.Id(FragmentIndex, FragmentCount, MessageId) end
+local __ctor = function(FragmentIndex, FragmentCount, MessageId) end
+CS.Barotrauma.Networking.MessageFragment.Id = __ctor
+CS.Barotrauma.Networking.MessageFragment.Id.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.ServerLog.LogMessage: System.ValueType
 ---@field Text Barotrauma.RichString
 ---@field Type Barotrauma.Networking.ServerLog.MessageType
 CS.Barotrauma.Networking.ServerLog.LogMessage = {}
 
+do
 ---@param text System.String
 ---@param type Barotrauma.Networking.ServerLog.MessageType
 ---@return Barotrauma.Networking.ServerLog.LogMessage
-function CS.Barotrauma.Networking.ServerLog.LogMessage(text, type) end
+local __ctor = function(text, type) end
+CS.Barotrauma.Networking.ServerLog.LogMessage = __ctor
+CS.Barotrauma.Networking.ServerLog.LogMessage.__new = __ctor
+end
 
 ---@enum Barotrauma.Networking.ServerLog.MessageType
 CS.Barotrauma.Networking.ServerLog.MessageType = {

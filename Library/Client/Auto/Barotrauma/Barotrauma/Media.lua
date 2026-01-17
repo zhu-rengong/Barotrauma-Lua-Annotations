@@ -62,12 +62,16 @@ function CS.Barotrauma.Media.Video.VideoFrameUpdate(videoInternal, data, dataEle
 ---@param dataLen System.Int32
 function CS.Barotrauma.Media.Video.VideoAudioUpdate(videoInternal, data, dataElemSize, dataLen) end
 
+do
 ---@private
 ---@param graphicsDevice Microsoft.Xna.Framework.Graphics.GraphicsDevice
 ---@param soundManager Barotrauma.Sounds.SoundManager
 ---@param filename System.String
 ---@return Barotrauma.Media.Video
-function CS.Barotrauma.Media.Video(graphicsDevice, soundManager, filename) end
+local __ctor = function(graphicsDevice, soundManager, filename) end
+CS.Barotrauma.Media.Video = __ctor
+CS.Barotrauma.Media.Video.__new = __ctor
+end
 
 ---@class Barotrauma.Media.Video.Internal.EventCallback: System.MulticastDelegate
 CS.Barotrauma.Media.Video.Internal.EventCallback = {}
@@ -90,8 +94,12 @@ function CS.Barotrauma.Media.Video.Internal.EventCallback.BeginInvoke(videoInter
 ---@param result System.IAsyncResult
 function CS.Barotrauma.Media.Video.Internal.EventCallback.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return Barotrauma.Media.Video.Internal.EventCallback
-function CS.Barotrauma.Media.Video.Internal.EventCallback(object, method) end
+local __ctor = function(object, method) end
+CS.Barotrauma.Media.Video.Internal.EventCallback = __ctor
+CS.Barotrauma.Media.Video.Internal.EventCallback.__new = __ctor
+end
 

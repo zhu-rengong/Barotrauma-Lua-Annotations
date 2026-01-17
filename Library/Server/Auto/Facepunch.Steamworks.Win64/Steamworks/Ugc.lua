@@ -217,7 +217,11 @@ function CS.Steamworks.Ugc.Item.RemoveDependency(child) end
 ---@return Steamworks.Result
 function CS.Steamworks.Ugc.Item.get_Result() end
 
+do
 ---@param id Steamworks.Data.PublishedFileId
 ---@return Steamworks.Ugc.Item
-function CS.Steamworks.Ugc.Item(id) end
+local __ctor = function(id) end
+CS.Steamworks.Ugc.Item = __ctor
+CS.Steamworks.Ugc.Item.__new = __ctor
+end
 

@@ -101,10 +101,14 @@ function CS.Barotrauma.Lights.LightManager.DebugDrawLos(spriteBatch, cam) end
 
 function CS.Barotrauma.Lights.LightManager.ClearLights() end
 
+do
 ---@overload fun(): Barotrauma.Lights.LightManager
 ---@param graphics Microsoft.Xna.Framework.Graphics.GraphicsDevice
 ---@return Barotrauma.Lights.LightManager
-function CS.Barotrauma.Lights.LightManager(graphics) end
+local __ctor = function(graphics) end
+CS.Barotrauma.Lights.LightManager = __ctor
+CS.Barotrauma.Lights.LightManager.__new = __ctor
+end
 
 ---@class Barotrauma.Lights.LightSourceParams: System.Object
 ---@field Name System.String
@@ -176,10 +180,14 @@ function CS.Barotrauma.Lights.LightSourceParams.Deserialize(element) end
 ---@param element System.Xml.Linq.XElement
 function CS.Barotrauma.Lights.LightSourceParams.Serialize(element) end
 
+do
 ---@overload fun(range: System.Single, color: Microsoft.Xna.Framework.Color): Barotrauma.Lights.LightSourceParams
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Lights.LightSourceParams
-function CS.Barotrauma.Lights.LightSourceParams(element) end
+local __ctor = function(element) end
+CS.Barotrauma.Lights.LightSourceParams = __ctor
+CS.Barotrauma.Lights.LightSourceParams.__new = __ctor
+end
 
 ---@class Barotrauma.Lights.LightSource: System.Object
 ---@field CastShadows System.Boolean
@@ -381,11 +389,15 @@ function CS.Barotrauma.Lights.LightSource.Reset() end
 
 function CS.Barotrauma.Lights.LightSource.Remove() end
 
+do
 ---@overload fun(lightSourceParams: Barotrauma.Lights.LightSourceParams): Barotrauma.Lights.LightSource
 ---@overload fun(position: Microsoft.Xna.Framework.Vector2, range: System.Single, color: Microsoft.Xna.Framework.Color, submarine: Barotrauma.Submarine, addLight?: System.Boolean): Barotrauma.Lights.LightSource
 ---@overload fun(): Barotrauma.Lights.LightSource
 ---@param element Barotrauma.ContentXElement
 ---@param conditionalTarget? Barotrauma.ISerializableEntity
 ---@return Barotrauma.Lights.LightSource
-function CS.Barotrauma.Lights.LightSource(element, conditionalTarget) end
+local __ctor = function(element, conditionalTarget) end
+CS.Barotrauma.Lights.LightSource = __ctor
+CS.Barotrauma.Lights.LightSource.__new = __ctor
+end
 

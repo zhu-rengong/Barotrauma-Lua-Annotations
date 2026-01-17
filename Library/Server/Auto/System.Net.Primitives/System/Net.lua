@@ -199,6 +199,7 @@ function CS.System.Net.IPAddress.ThrowAddressNullException() end
 ---@private
 function CS.System.Net.IPAddress.ThrowSocketOperationNotSupported() end
 
+do
 ---@overload fun(address: System.Byte[], scopeid: System.Int64): System.Net.IPAddress
 ---@overload fun(address: (userdata | { [System.Int32]: System.Byte }), scopeid: System.Int64): System.Net.IPAddress
 ---@overload fun(numbers: (userdata | { [System.Int32]: System.UInt16 }), scopeid: System.UInt32): System.Net.IPAddress
@@ -208,5 +209,8 @@ function CS.System.Net.IPAddress.ThrowSocketOperationNotSupported() end
 ---@overload fun(): System.Net.IPAddress
 ---@param newAddress System.Int64
 ---@return System.Net.IPAddress
-function CS.System.Net.IPAddress(newAddress) end
+local __ctor = function(newAddress) end
+CS.System.Net.IPAddress = __ctor
+CS.System.Net.IPAddress.__new = __ctor
+end
 

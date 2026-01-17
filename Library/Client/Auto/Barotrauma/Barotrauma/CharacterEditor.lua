@@ -624,9 +624,13 @@ function CS.Barotrauma.CharacterEditor.CharacterEditorScreen.GetJointSelectionWi
 ---@return Barotrauma.Widget
 function CS.Barotrauma.CharacterEditor.CharacterEditorScreen.GetLimbEditWidget(ID, limb, size, shape, initMethod) end
 
+do
 ---@overload fun(): Barotrauma.CharacterEditor.CharacterEditorScreen
 ---@return Barotrauma.CharacterEditor.CharacterEditorScreen
-function CS.Barotrauma.CharacterEditor.CharacterEditorScreen() end
+local __ctor = function() end
+CS.Barotrauma.CharacterEditor.CharacterEditorScreen = __ctor
+CS.Barotrauma.CharacterEditor.CharacterEditorScreen.__new = __ctor
+end
 
 ---@class Barotrauma.CharacterEditor.Wizard: System.Object
 ---@field IsCopy System.Boolean
@@ -674,8 +678,12 @@ function CS.Barotrauma.CharacterEditor.Wizard.AddToGUIUpdateList() end
 ---@param animations? userdata | (fun(): Barotrauma.AnimationParams)
 function CS.Barotrauma.CharacterEditor.Wizard.CreateCharacter(ragdollElement, characterElement, animations) end
 
+do
 ---@return Barotrauma.CharacterEditor.Wizard
-function CS.Barotrauma.CharacterEditor.Wizard() end
+local __ctor = function() end
+CS.Barotrauma.CharacterEditor.Wizard = __ctor
+CS.Barotrauma.CharacterEditor.Wizard.__new = __ctor
+end
 
 ---@enum Barotrauma.CharacterEditor.CharacterEditorScreen.JointCreationMode
 CS.Barotrauma.CharacterEditor.CharacterEditorScreen.JointCreationMode = {
@@ -691,9 +699,13 @@ CS.Barotrauma.CharacterEditor.CharacterEditorScreen.WallGroup = {}
 ---@return Barotrauma.CharacterEditor.CharacterEditorScreen.WallGroup
 function CS.Barotrauma.CharacterEditor.CharacterEditorScreen.WallGroup.Clone() end
 
+do
 ---@param entities userdata | { [System.Int32]: Barotrauma.MapEntity } | (fun(): Barotrauma.MapEntity)
 ---@return Barotrauma.CharacterEditor.CharacterEditorScreen.WallGroup
-function CS.Barotrauma.CharacterEditor.CharacterEditorScreen.WallGroup(entities) end
+local __ctor = function(entities) end
+CS.Barotrauma.CharacterEditor.CharacterEditorScreen.WallGroup = __ctor
+CS.Barotrauma.CharacterEditor.CharacterEditorScreen.WallGroup.__new = __ctor
+end
 
 ---@enum Barotrauma.CharacterEditor.CharacterEditorScreen.Direction
 CS.Barotrauma.CharacterEditor.CharacterEditorScreen.Direction = {
@@ -722,10 +734,14 @@ function CS.Barotrauma.CharacterEditor.CharacterEditorScreen.ToggleButton.Refres
 ---@param panel Barotrauma.RectTransform
 function CS.Barotrauma.CharacterEditor.CharacterEditorScreen.ToggleButton.UpdateOpenState(deltaTime, hiddenPos, panel) end
 
+do
 ---@param rectT Barotrauma.RectTransform
 ---@param dir Barotrauma.CharacterEditor.CharacterEditorScreen.Direction
 ---@return Barotrauma.CharacterEditor.CharacterEditorScreen.ToggleButton
-function CS.Barotrauma.CharacterEditor.CharacterEditorScreen.ToggleButton(rectT, dir) end
+local __ctor = function(rectT, dir) end
+CS.Barotrauma.CharacterEditor.CharacterEditorScreen.ToggleButton = __ctor
+CS.Barotrauma.CharacterEditor.CharacterEditorScreen.ToggleButton.__new = __ctor
+end
 
 ---@enum Barotrauma.CharacterEditor.CharacterEditorScreen.WidgetType
 CS.Barotrauma.CharacterEditor.CharacterEditorScreen.WidgetType = {
@@ -753,8 +769,12 @@ function CS.Barotrauma.CharacterEditor.Wizard.CharacterView.Release() end
 ---@return Barotrauma.GUIMessageBox
 function CS.Barotrauma.CharacterEditor.Wizard.CharacterView.Create() end
 
+do
 ---@return Barotrauma.CharacterEditor.Wizard.CharacterView
-function CS.Barotrauma.CharacterEditor.Wizard.CharacterView() end
+local __ctor = function() end
+CS.Barotrauma.CharacterEditor.Wizard.CharacterView = __ctor
+CS.Barotrauma.CharacterEditor.Wizard.CharacterView.__new = __ctor
+end
 
 ---@class Barotrauma.CharacterEditor.Wizard.RagdollView: Barotrauma.CharacterEditor.Wizard.View
 ---@field private instance Barotrauma.CharacterEditor.Wizard.RagdollView
@@ -788,8 +808,12 @@ function CS.Barotrauma.CharacterEditor.Wizard.RagdollView.CreateLimbGUIElement(p
 ---@param jointName? System.String
 function CS.Barotrauma.CharacterEditor.Wizard.RagdollView.CreateJointGUIElement(parent, elementSize, id1, id2, anchor1, anchor2, jointName) end
 
+do
 ---@return Barotrauma.CharacterEditor.Wizard.RagdollView
-function CS.Barotrauma.CharacterEditor.Wizard.RagdollView() end
+local __ctor = function() end
+CS.Barotrauma.CharacterEditor.Wizard.RagdollView = __ctor
+CS.Barotrauma.CharacterEditor.Wizard.RagdollView.__new = __ctor
+end
 
 ---@class Barotrauma.CharacterEditor.Wizard.View: System.Object
 ---@field IsCopy System.Boolean
@@ -931,7 +955,11 @@ function CS.Barotrauma.CharacterEditor.Wizard.View.HasOnlyOneLimbOfType(elements
 ---@return System.Boolean
 function CS.Barotrauma.CharacterEditor.Wizard.View.IsType(element, type) end
 
+do
 ---@protected
 ---@return Barotrauma.CharacterEditor.Wizard.View
-function CS.Barotrauma.CharacterEditor.Wizard.View() end
+local __ctor = function() end
+CS.Barotrauma.CharacterEditor.Wizard.View = __ctor
+CS.Barotrauma.CharacterEditor.Wizard.View.__new = __ctor
+end
 

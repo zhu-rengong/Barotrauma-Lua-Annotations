@@ -7,9 +7,13 @@
 ---@field Amplitude System.Single
 CS.Barotrauma.SpriteDeformations.CustomDeformationParams = {}
 
+do
 ---@param element System.Xml.Linq.XElement
 ---@return Barotrauma.SpriteDeformations.CustomDeformationParams
-function CS.Barotrauma.SpriteDeformations.CustomDeformationParams(element) end
+local __ctor = function(element) end
+CS.Barotrauma.SpriteDeformations.CustomDeformationParams = __ctor
+CS.Barotrauma.SpriteDeformations.CustomDeformationParams.__new = __ctor
+end
 
 ---@class Barotrauma.SpriteDeformations.CustomDeformation: Barotrauma.SpriteDeformations.SpriteDeformation
 ---@field private CustomDeformationParams Barotrauma.SpriteDeformations.CustomDeformationParams
@@ -42,18 +46,26 @@ function CS.Barotrauma.SpriteDeformations.CustomDeformation.Update(deltaTime) en
 ---@param element System.Xml.Linq.XElement
 function CS.Barotrauma.SpriteDeformations.CustomDeformation.Save(element) end
 
+do
 ---@param element System.Xml.Linq.XElement
 ---@return Barotrauma.SpriteDeformations.CustomDeformation
-function CS.Barotrauma.SpriteDeformations.CustomDeformation(element) end
+local __ctor = function(element) end
+CS.Barotrauma.SpriteDeformations.CustomDeformation = __ctor
+CS.Barotrauma.SpriteDeformations.CustomDeformation.__new = __ctor
+end
 
 ---@class Barotrauma.SpriteDeformations.InflateParams: Barotrauma.SpriteDeformations.SpriteDeformationParams
 ---@field Frequency System.Single
 ---@field Scale System.Single
 CS.Barotrauma.SpriteDeformations.InflateParams = {}
 
+do
 ---@param element System.Xml.Linq.XElement
 ---@return Barotrauma.SpriteDeformations.InflateParams
-function CS.Barotrauma.SpriteDeformations.InflateParams(element) end
+local __ctor = function(element) end
+CS.Barotrauma.SpriteDeformations.InflateParams = __ctor
+CS.Barotrauma.SpriteDeformations.InflateParams.__new = __ctor
+end
 
 ---@class Barotrauma.SpriteDeformations.Inflate: Barotrauma.SpriteDeformations.SpriteDeformation
 ---@field Phase System.Single
@@ -82,16 +94,24 @@ function CS.Barotrauma.SpriteDeformations.Inflate.GetDeformation(deformation, mu
 ---@param deltaTime System.Single
 function CS.Barotrauma.SpriteDeformations.Inflate.Update(deltaTime) end
 
+do
 ---@param element System.Xml.Linq.XElement
 ---@return Barotrauma.SpriteDeformations.Inflate
-function CS.Barotrauma.SpriteDeformations.Inflate(element) end
+local __ctor = function(element) end
+CS.Barotrauma.SpriteDeformations.Inflate = __ctor
+CS.Barotrauma.SpriteDeformations.Inflate.__new = __ctor
+end
 
 ---@class Barotrauma.SpriteDeformations.JointBendDeformationParams: Barotrauma.SpriteDeformations.SpriteDeformationParams
 CS.Barotrauma.SpriteDeformations.JointBendDeformationParams = {}
 
+do
 ---@param element System.Xml.Linq.XElement
 ---@return Barotrauma.SpriteDeformations.JointBendDeformationParams
-function CS.Barotrauma.SpriteDeformations.JointBendDeformationParams(element) end
+local __ctor = function(element) end
+CS.Barotrauma.SpriteDeformations.JointBendDeformationParams = __ctor
+CS.Barotrauma.SpriteDeformations.JointBendDeformationParams.__new = __ctor
+end
 
 ---@class Barotrauma.SpriteDeformations.JointBendDeformation: Barotrauma.SpriteDeformations.SpriteDeformation
 ---@field BendRight System.Single
@@ -155,9 +175,13 @@ function CS.Barotrauma.SpriteDeformations.JointBendDeformation.Update(deltaTime)
 ---@return Microsoft.Xna.Framework.Vector2
 function CS.Barotrauma.SpriteDeformations.JointBendDeformation.RotatePointAroundTarget(point, target, angle) end
 
+do
 ---@param element System.Xml.Linq.XElement
 ---@return Barotrauma.SpriteDeformations.JointBendDeformation
-function CS.Barotrauma.SpriteDeformations.JointBendDeformation(element) end
+local __ctor = function(element) end
+CS.Barotrauma.SpriteDeformations.JointBendDeformation = __ctor
+CS.Barotrauma.SpriteDeformations.JointBendDeformation.__new = __ctor
+end
 
 ---@class Barotrauma.SpriteDeformations.NoiseDeformationParams: Barotrauma.SpriteDeformations.SpriteDeformationParams
 ---@field Frequency System.Single
@@ -165,9 +189,13 @@ function CS.Barotrauma.SpriteDeformations.JointBendDeformation(element) end
 ---@field ChangeSpeed System.Single
 CS.Barotrauma.SpriteDeformations.NoiseDeformationParams = {}
 
+do
 ---@param element System.Xml.Linq.XElement
 ---@return Barotrauma.SpriteDeformations.NoiseDeformationParams
-function CS.Barotrauma.SpriteDeformations.NoiseDeformationParams(element) end
+local __ctor = function(element) end
+CS.Barotrauma.SpriteDeformations.NoiseDeformationParams = __ctor
+CS.Barotrauma.SpriteDeformations.NoiseDeformationParams.__new = __ctor
+end
 
 ---@class Barotrauma.SpriteDeformations.NoiseDeformation: Barotrauma.SpriteDeformations.SpriteDeformation
 ---@field private NoiseDeformationParams Barotrauma.SpriteDeformations.NoiseDeformationParams
@@ -191,9 +219,13 @@ function CS.Barotrauma.SpriteDeformations.NoiseDeformation.GetDeformation(deform
 ---@param deltaTime System.Single
 function CS.Barotrauma.SpriteDeformations.NoiseDeformation.Update(deltaTime) end
 
+do
 ---@param element System.Xml.Linq.XElement
 ---@return Barotrauma.SpriteDeformations.NoiseDeformation
-function CS.Barotrauma.SpriteDeformations.NoiseDeformation(element) end
+local __ctor = function(element) end
+CS.Barotrauma.SpriteDeformations.NoiseDeformation = __ctor
+CS.Barotrauma.SpriteDeformations.NoiseDeformation.__new = __ctor
+end
 
 ---@class Barotrauma.SpriteDeformations.PositionalDeformationParams: Barotrauma.SpriteDeformations.SpriteDeformationParams
 ---@field Falloff System.Single
@@ -202,9 +234,13 @@ function CS.Barotrauma.SpriteDeformations.NoiseDeformation(element) end
 ---@field RecoverSpeed System.Single
 CS.Barotrauma.SpriteDeformations.PositionalDeformationParams = {}
 
+do
 ---@param element System.Xml.Linq.XElement
 ---@return Barotrauma.SpriteDeformations.PositionalDeformationParams
-function CS.Barotrauma.SpriteDeformations.PositionalDeformationParams(element) end
+local __ctor = function(element) end
+CS.Barotrauma.SpriteDeformations.PositionalDeformationParams = __ctor
+CS.Barotrauma.SpriteDeformations.PositionalDeformationParams.__new = __ctor
+end
 
 ---@class Barotrauma.SpriteDeformations.PositionalDeformation: Barotrauma.SpriteDeformations.SpriteDeformation
 ---@field private positionalDeformationParams Barotrauma.SpriteDeformations.PositionalDeformationParams
@@ -231,9 +267,13 @@ function CS.Barotrauma.SpriteDeformations.PositionalDeformation.Deform(worldPosi
 ---@param inverseY System.Boolean
 function CS.Barotrauma.SpriteDeformations.PositionalDeformation.GetDeformation(deformation, multiplier, flippedHorizontally, inverseY) end
 
+do
 ---@param element System.Xml.Linq.XElement
 ---@return Barotrauma.SpriteDeformations.PositionalDeformation
-function CS.Barotrauma.SpriteDeformations.PositionalDeformation(element) end
+local __ctor = function(element) end
+CS.Barotrauma.SpriteDeformations.PositionalDeformation = __ctor
+CS.Barotrauma.SpriteDeformations.PositionalDeformation.__new = __ctor
+end
 
 ---@class Barotrauma.SpriteDeformations.SpriteDeformationParams: System.Object
 ---@field Sync System.Int32
@@ -262,10 +302,14 @@ function CS.Barotrauma.SpriteDeformations.SpriteDeformationParams.get_Resolution
 ---@param value Microsoft.Xna.Framework.Point
 function CS.Barotrauma.SpriteDeformations.SpriteDeformationParams.set_Resolution(value) end
 
+do
 ---@overload fun(): Barotrauma.SpriteDeformations.SpriteDeformationParams
 ---@param element System.Xml.Linq.XElement
 ---@return Barotrauma.SpriteDeformations.SpriteDeformationParams
-function CS.Barotrauma.SpriteDeformations.SpriteDeformationParams(element) end
+local __ctor = function(element) end
+CS.Barotrauma.SpriteDeformations.SpriteDeformationParams = __ctor
+CS.Barotrauma.SpriteDeformations.SpriteDeformationParams.__new = __ctor
+end
 
 ---@class Barotrauma.SpriteDeformations.SpriteDeformation: System.Object
 ---@field Phase System.Single
@@ -330,12 +374,16 @@ function CS.Barotrauma.SpriteDeformations.SpriteDeformation.GetDeformation(anima
 ---@param element System.Xml.Linq.XElement
 function CS.Barotrauma.SpriteDeformations.SpriteDeformation.Save(element) end
 
+do
 ---@protected
 ---@overload fun(): Barotrauma.SpriteDeformations.SpriteDeformation
 ---@param element System.Xml.Linq.XElement
 ---@param deformationParams Barotrauma.SpriteDeformations.SpriteDeformationParams
 ---@return Barotrauma.SpriteDeformations.SpriteDeformation
-function CS.Barotrauma.SpriteDeformations.SpriteDeformation(element, deformationParams) end
+local __ctor = function(element, deformationParams) end
+CS.Barotrauma.SpriteDeformations.SpriteDeformation = __ctor
+CS.Barotrauma.SpriteDeformations.SpriteDeformation.__new = __ctor
+end
 
 ---@enum Barotrauma.SpriteDeformations.PositionalDeformation.ReactionType
 CS.Barotrauma.SpriteDeformations.PositionalDeformation.ReactionType = {

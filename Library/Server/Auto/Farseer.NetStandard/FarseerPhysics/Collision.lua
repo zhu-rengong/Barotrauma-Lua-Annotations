@@ -120,12 +120,16 @@ function CS.FarseerPhysics.Collision.AABB.TestOverlap(a, b) end
 ---@return System.Boolean
 function CS.FarseerPhysics.Collision.AABB.RayCast(output, input, doInteriorCheck) end
 
+do
 ---@overload fun(min: Microsoft.Xna.Framework.Vector2, max: Microsoft.Xna.Framework.Vector2): FarseerPhysics.Collision.AABB
 ---@overload fun(center: Microsoft.Xna.Framework.Vector2, width: System.Single, height: System.Single): FarseerPhysics.Collision.AABB
 ---@param min Microsoft.Xna.Framework.Vector2
 ---@param max Microsoft.Xna.Framework.Vector2
 ---@return FarseerPhysics.Collision.AABB
-function CS.FarseerPhysics.Collision.AABB(min, max) end
+local __ctor = function(min, max) end
+CS.FarseerPhysics.Collision.AABB = __ctor
+CS.FarseerPhysics.Collision.AABB.__new = __ctor
+end
 
 ---@class FarseerPhysics.Collision.EPAxis: System.ValueType
 ---@field Index System.Int32

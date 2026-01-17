@@ -223,9 +223,13 @@ function CS.Steamworks.SteamServer.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Steamworks.SteamServer.GetHashCode() end
 
+do
 ---@overload fun(): Steamworks.SteamServer
 ---@return Steamworks.SteamServer
-function CS.Steamworks.SteamServer() end
+local __ctor = function() end
+CS.Steamworks.SteamServer = __ctor
+CS.Steamworks.SteamServer.__new = __ctor
+end
 
 ---@class Steamworks.Friend: System.ValueType
 ---@field IsMe System.Boolean
@@ -349,7 +353,11 @@ function CS.Steamworks.Friend.GetAchievement(statName, defult) end
 ---@return System.DateTime
 function CS.Steamworks.Friend.GetAchievementUnlockTime(statName) end
 
+do
 ---@param steamid Steamworks.SteamId
 ---@return Steamworks.Friend
-function CS.Steamworks.Friend(steamid) end
+local __ctor = function(steamid) end
+CS.Steamworks.Friend = __ctor
+CS.Steamworks.Friend.__new = __ctor
+end
 

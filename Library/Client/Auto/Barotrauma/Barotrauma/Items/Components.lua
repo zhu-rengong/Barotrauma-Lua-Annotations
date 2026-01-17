@@ -270,11 +270,15 @@ function CS.Barotrauma.Items.Components.Door.TrySetState(open, isNetworkMessage,
 ---@param forcedOpen System.Boolean
 function CS.Barotrauma.Items.Components.Door.SetState(open, isNetworkMessage, sendNetworkMessage, forcedOpen) end
 
+do
 ---@overload fun(): Barotrauma.Items.Components.Door
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.Door
-function CS.Barotrauma.Items.Components.Door(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.Door = __ctor
+CS.Barotrauma.Items.Components.Door.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.ElectricalDischarger: Barotrauma.Items.Components.Powered
 ---@field List userdata | (fun(): Barotrauma.Items.Components.ElectricalDischarger)
@@ -376,11 +380,15 @@ function CS.Barotrauma.Items.Components.ElectricalDischarger.RemoveComponentSpec
 ---@param extraData? Barotrauma.Networking.NetEntityEvent.IData
 function CS.Barotrauma.Items.Components.ElectricalDischarger.ServerEventWrite(msg, c, extraData) end
 
+do
 ---@overload fun(): Barotrauma.Items.Components.ElectricalDischarger
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.ElectricalDischarger
-function CS.Barotrauma.Items.Components.ElectricalDischarger(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.ElectricalDischarger = __ctor
+CS.Barotrauma.Items.Components.ElectricalDischarger.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.EntitySpawnerComponent: Barotrauma.Items.Components.ItemComponent
 ---@field DrawSize Microsoft.Xna.Framework.Vector2
@@ -459,10 +467,14 @@ function CS.Barotrauma.Items.Components.EntitySpawnerComponent.Spawn() end
 ---@param onSpawn? fun(obj: Barotrauma.Character)
 function CS.Barotrauma.Items.Components.EntitySpawnerComponent.SpawnCharacter(pos, onSpawn) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.EntitySpawnerComponent
-function CS.Barotrauma.Items.Components.EntitySpawnerComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.EntitySpawnerComponent = __ctor
+CS.Barotrauma.Items.Components.EntitySpawnerComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.GeneticMaterial: Barotrauma.Items.Components.ItemComponent
 ---@field TooltipValueMin System.Single
@@ -588,10 +600,14 @@ function CS.Barotrauma.Items.Components.GeneticMaterial.SetTainted(newValue, aff
 ---@return Barotrauma.LocalizedString
 function CS.Barotrauma.Items.Components.GeneticMaterial.TryCreateName(prefab, element) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.GeneticMaterial
-function CS.Barotrauma.Items.Components.GeneticMaterial(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.GeneticMaterial = __ctor
+CS.Barotrauma.Items.Components.GeneticMaterial.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.VineSprite: System.Object
 ---@field SourceRect Microsoft.Xna.Framework.Rectangle
@@ -599,9 +615,13 @@ function CS.Barotrauma.Items.Components.GeneticMaterial(item, element) end
 ---@field AbsoluteOrigin Microsoft.Xna.Framework.Vector2
 CS.Barotrauma.Items.Components.VineSprite = {}
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.VineSprite
-function CS.Barotrauma.Items.Components.VineSprite(element) end
+local __ctor = function(element) end
+CS.Barotrauma.Items.Components.VineSprite = __ctor
+CS.Barotrauma.Items.Components.VineSprite.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Growable: Barotrauma.Items.Components.ItemComponent
 ---@field GrowthSpeed System.Single
@@ -767,11 +787,15 @@ function CS.Barotrauma.Items.Components.Growable.RandomInt(min, max, random) end
 ---@return System.Double
 function CS.Barotrauma.Items.Components.Growable.RandomDouble(min, max, random) end
 
+do
 ---@overload fun(): Barotrauma.Items.Components.Growable
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.Growable
-function CS.Barotrauma.Items.Components.Growable(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.Growable = __ctor
+CS.Barotrauma.Items.Components.Growable.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Holdable: Barotrauma.Items.Components.Pickable
 ---@field DrawSize Microsoft.Xna.Framework.Vector2
@@ -1040,11 +1064,15 @@ function CS.Barotrauma.Items.Components.Holdable.RemoveComponentSpecific() end
 ---@return System.Xml.Linq.XElement
 function CS.Barotrauma.Items.Components.Holdable.Save(parentElement) end
 
+do
 ---@overload fun(): Barotrauma.Items.Components.Holdable
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.Holdable
-function CS.Barotrauma.Items.Components.Holdable(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.Holdable = __ctor
+CS.Barotrauma.Items.Components.Holdable.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.IdCard: Barotrauma.Items.Components.Pickable
 ---@field TeamID Barotrauma.CharacterTeamType
@@ -1095,10 +1123,14 @@ function CS.Barotrauma.Items.Components.IdCard.Unequip(character) end
 
 function CS.Barotrauma.Items.Components.IdCard.OnItemLoaded() end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.IdCard
-function CS.Barotrauma.Items.Components.IdCard(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.IdCard = __ctor
+CS.Barotrauma.Items.Components.IdCard.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.RangedWeapon: Barotrauma.Items.Components.ItemComponent
 ---@field ChargeSoundWindupPitchSlide Microsoft.Xna.Framework.Vector2
@@ -1233,10 +1265,14 @@ function CS.Barotrauma.Items.Components.RangedWeapon.IsSuitableProjectile(projec
 ---@private
 function CS.Barotrauma.Items.Components.RangedWeapon.LaunchProjSpecific() end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.RangedWeapon
-function CS.Barotrauma.Items.Components.RangedWeapon(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.RangedWeapon = __ctor
+CS.Barotrauma.Items.Components.RangedWeapon.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Sprayer: Barotrauma.Items.Components.RangedWeapon
 ---@field DrawSize Microsoft.Xna.Framework.Vector2
@@ -1287,10 +1323,14 @@ function CS.Barotrauma.Items.Components.Sprayer.OnItemLoaded() end
 ---@param element Barotrauma.ContentXElement
 function CS.Barotrauma.Items.Components.Sprayer.InitProjSpecific(element) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.Sprayer
-function CS.Barotrauma.Items.Components.Sprayer(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.Sprayer = __ctor
+CS.Barotrauma.Items.Components.Sprayer.__new = __ctor
+end
 
 ---@enum Barotrauma.Items.Components.SoundSelectionMode
 CS.Barotrauma.Items.Components.SoundSelectionMode = {
@@ -1317,12 +1357,16 @@ function CS.Barotrauma.Items.Components.ItemSound.get_VolumeMultiplier() end
 ---@return System.Single
 function CS.Barotrauma.Items.Components.ItemSound.get_Range() end
 
+do
 ---@param sound Barotrauma.RoundSound
 ---@param type Barotrauma.ActionType
 ---@param loop? System.Boolean
 ---@param onlyPlayInSameSub? System.Boolean
 ---@return Barotrauma.Items.Components.ItemSound
-function CS.Barotrauma.Items.Components.ItemSound(sound, type, loop, onlyPlayInSameSub) end
+local __ctor = function(sound, type, loop, onlyPlayInSameSub) end
+CS.Barotrauma.Items.Components.ItemSound = __ctor
+CS.Barotrauma.Items.Components.ItemSound.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.ItemComponent: System.Object
 ---@field HasSounds System.Boolean
@@ -1769,10 +1813,14 @@ function CS.Barotrauma.Items.Components.ItemComponent.ParseMsg() end
 ---@return System.Boolean
 function CS.Barotrauma.Items.Components.ItemComponent.ValidateEventData(data) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.ItemComponent
-function CS.Barotrauma.Items.Components.ItemComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.ItemComponent = __ctor
+CS.Barotrauma.Items.Components.ItemComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.ItemContainer: Barotrauma.Items.Components.ItemComponent
 ---@field InventoryTopSprite Barotrauma.Sprite
@@ -2121,10 +2169,14 @@ function CS.Barotrauma.Items.Components.ItemContainer.Load(componentElement, use
 ---@return System.Xml.Linq.XElement
 function CS.Barotrauma.Items.Components.ItemContainer.Save(parentElement) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.ItemContainer
-function CS.Barotrauma.Items.Components.ItemContainer(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.ItemContainer = __ctor
+CS.Barotrauma.Items.Components.ItemContainer.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.ItemLabel: Barotrauma.Items.Components.ItemComponent
 ---@field Padding Microsoft.Xna.Framework.Vector4
@@ -2245,11 +2297,15 @@ function CS.Barotrauma.Items.Components.ItemLabel.get_DrawSize() end
 ---@param connection Barotrauma.Items.Components.Connection
 function CS.Barotrauma.Items.Components.ItemLabel.ReceiveSignal(signal, connection) end
 
+do
 ---@overload fun(): Barotrauma.Items.Components.ItemLabel
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.ItemLabel
-function CS.Barotrauma.Items.Components.ItemLabel(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.ItemLabel = __ctor
+CS.Barotrauma.Items.Components.ItemLabel.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Ladder: Barotrauma.Items.Components.ItemComponent
 ---@field BackgroundSpriteDepth System.Single
@@ -2284,11 +2340,15 @@ function CS.Barotrauma.Items.Components.Ladder.RemoveComponentSpecific() end
 ---@private
 function CS.Barotrauma.Items.Components.Ladder.RemoveProjSpecific() end
 
+do
 ---@overload fun(): Barotrauma.Items.Components.Ladder
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.Ladder
-function CS.Barotrauma.Items.Components.Ladder(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.Ladder = __ctor
+CS.Barotrauma.Items.Components.Ladder.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.LevelResource: Barotrauma.Items.Components.ItemComponent
 ---@field DeattachDuration System.Single
@@ -2329,10 +2389,14 @@ function CS.Barotrauma.Items.Components.LevelResource.CreateTriggerBody() end
 ---@protected
 function CS.Barotrauma.Items.Components.LevelResource.RemoveComponentSpecific() end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.LevelResource
-function CS.Barotrauma.Items.Components.LevelResource(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.LevelResource = __ctor
+CS.Barotrauma.Items.Components.LevelResource.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.LightComponent: Barotrauma.Items.Components.Powered
 ---@field LightSpriteScale System.Single
@@ -2537,10 +2601,14 @@ function CS.Barotrauma.Items.Components.LightComponent.SetLightSourceTransform()
 ---@private
 function CS.Barotrauma.Items.Components.LightComponent.SetLightSourceTransformProjSpecific() end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.LightComponent
-function CS.Barotrauma.Items.Components.LightComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.LightComponent = __ctor
+CS.Barotrauma.Items.Components.LightComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Controller: Barotrauma.Items.Components.ItemComponent
 ---@field Direction Barotrauma.Direction
@@ -2708,10 +2776,14 @@ function CS.Barotrauma.Items.Components.Controller.OnItemLoaded() end
 
 function CS.Barotrauma.Items.Components.Controller.Reset() end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.Controller
-function CS.Barotrauma.Items.Components.Controller(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.Controller = __ctor
+CS.Barotrauma.Items.Components.Controller.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Deconstructor: Barotrauma.Items.Components.Powered
 ---@field ActivateButton Barotrauma.GUIButton
@@ -2831,10 +2903,14 @@ function CS.Barotrauma.Items.Components.Deconstructor.GetAvailableOutputs(checkR
 ---@param createNetworkEvent? System.Boolean
 function CS.Barotrauma.Items.Components.Deconstructor.SetActive(active, user, createNetworkEvent) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.Deconstructor
-function CS.Barotrauma.Items.Components.Deconstructor(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.Deconstructor = __ctor
+CS.Barotrauma.Items.Components.Deconstructor.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Engine: Barotrauma.Items.Components.Powered
 ---@field AnimSpeed System.Single
@@ -2956,10 +3032,14 @@ function CS.Barotrauma.Items.Components.Engine.ReceiveSignal(signal, connection)
 ---@return System.Xml.Linq.XElement
 function CS.Barotrauma.Items.Components.Engine.Save(parentElement) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.Engine
-function CS.Barotrauma.Items.Components.Engine(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.Engine = __ctor
+CS.Barotrauma.Items.Components.Engine.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Fabricator: Barotrauma.Items.Components.Powered
 ---@field ActivateButton Barotrauma.GUIButton
@@ -3279,10 +3359,14 @@ function CS.Barotrauma.Items.Components.Fabricator.OnMapLoaded() end
 ---@protected
 function CS.Barotrauma.Items.Components.Fabricator.RemoveComponentSpecific() end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.Fabricator
-function CS.Barotrauma.Items.Components.Fabricator(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.Fabricator = __ctor
+CS.Barotrauma.Items.Components.Fabricator.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.MiniMapGUIComponent: System.ValueType
 ---@field RectComponent Barotrauma.GUIComponent
@@ -3293,23 +3377,31 @@ CS.Barotrauma.Items.Components.MiniMapGUIComponent = {}
 ---@param borderComponent Barotrauma.GUIComponent
 function CS.Barotrauma.Items.Components.MiniMapGUIComponent.Deconstruct(component, borderComponent) end
 
+do
 ---@overload fun(rectComponent: Barotrauma.GUIComponent): Barotrauma.Items.Components.MiniMapGUIComponent
 ---@param RectComponent Barotrauma.GUIComponent
 ---@param BorderComponent Barotrauma.GUIComponent
 ---@return Barotrauma.Items.Components.MiniMapGUIComponent
-function CS.Barotrauma.Items.Components.MiniMapGUIComponent(RectComponent, BorderComponent) end
+local __ctor = function(RectComponent, BorderComponent) end
+CS.Barotrauma.Items.Components.MiniMapGUIComponent = __ctor
+CS.Barotrauma.Items.Components.MiniMapGUIComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.MiniMapSprite: System.ValueType
 ---@field Sprite Barotrauma.Sprite
 ---@field Color Microsoft.Xna.Framework.Color
 CS.Barotrauma.Items.Components.MiniMapSprite = {}
 
+do
 ---@overload fun(prefab: Barotrauma.JobPrefab): Barotrauma.Items.Components.MiniMapSprite
 ---@overload fun(order: Barotrauma.Order): Barotrauma.Items.Components.MiniMapSprite
 ---@param Sprite Barotrauma.Sprite
 ---@param Color Microsoft.Xna.Framework.Color
 ---@return Barotrauma.Items.Components.MiniMapSprite
-function CS.Barotrauma.Items.Components.MiniMapSprite(Sprite, Color) end
+local __ctor = function(Sprite, Color) end
+CS.Barotrauma.Items.Components.MiniMapSprite = __ctor
+CS.Barotrauma.Items.Components.MiniMapSprite.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.MiniMapHullData: System.ValueType
 ---@field Polygon userdata | { [System.Int32]: userdata | { [System.Int32]: Microsoft.Xna.Framework.Vector2 } | (fun(): Microsoft.Xna.Framework.Vector2) } | (fun(): userdata | { [System.Int32]: Microsoft.Xna.Framework.Vector2 } | (fun(): Microsoft.Xna.Framework.Vector2))
@@ -3318,13 +3410,17 @@ function CS.Barotrauma.Items.Components.MiniMapSprite(Sprite, Color) end
 ---@field ParentSize Microsoft.Xna.Framework.Point
 CS.Barotrauma.Items.Components.MiniMapHullData = {}
 
+do
 ---@param polygon userdata | { [System.Int32]: userdata | { [System.Int32]: Microsoft.Xna.Framework.Vector2 } | (fun(): Microsoft.Xna.Framework.Vector2) } | (fun(): userdata | { [System.Int32]: Microsoft.Xna.Framework.Vector2 } | (fun(): Microsoft.Xna.Framework.Vector2))
 ---@param bounds Microsoft.Xna.Framework.RectangleF
 ---@param parentSize Microsoft.Xna.Framework.Point
 ---@param rects userdata | { [System.Int32]: Microsoft.Xna.Framework.RectangleF } | (fun(): Microsoft.Xna.Framework.RectangleF)
 ---@param hulls userdata | { [System.Int32]: Barotrauma.Hull } | (fun(): Barotrauma.Hull)
 ---@return Barotrauma.Items.Components.MiniMapHullData
-function CS.Barotrauma.Items.Components.MiniMapHullData(polygon, bounds, parentSize, rects, hulls) end
+local __ctor = function(polygon, bounds, parentSize, rects, hulls) end
+CS.Barotrauma.Items.Components.MiniMapHullData = __ctor
+CS.Barotrauma.Items.Components.MiniMapHullData.__new = __ctor
+end
 
 ---@enum Barotrauma.Items.Components.MiniMapMode
 CS.Barotrauma.Items.Components.MiniMapMode = {
@@ -3359,10 +3455,14 @@ function CS.Barotrauma.Items.Components.RelativeEntityRect.RectangleRelativeTo(f
 ---@param sizeY System.Single
 function CS.Barotrauma.Items.Components.RelativeEntityRect.Deconstruct(posX, posY, sizeX, sizeY) end
 
+do
 ---@param worldBorders Microsoft.Xna.Framework.RectangleF
 ---@param entityRect Microsoft.Xna.Framework.RectangleF
 ---@return Barotrauma.Items.Components.RelativeEntityRect
-function CS.Barotrauma.Items.Components.RelativeEntityRect(worldBorders, entityRect) end
+local __ctor = function(worldBorders, entityRect) end
+CS.Barotrauma.Items.Components.RelativeEntityRect = __ctor
+CS.Barotrauma.Items.Components.RelativeEntityRect.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.MiniMapSettings: System.ValueType
 ---@field CreateHullElements System.Boolean
@@ -3370,11 +3470,15 @@ function CS.Barotrauma.Items.Components.RelativeEntityRect(worldBorders, entityR
 ---@field Default Barotrauma.Items.Components.MiniMapSettings
 CS.Barotrauma.Items.Components.MiniMapSettings = {}
 
+do
 ---@overload fun(): Barotrauma.Items.Components.MiniMapSettings
 ---@param createHullElements? System.Boolean
 ---@param elementColor? Microsoft.Xna.Framework.Color|nil
 ---@return Barotrauma.Items.Components.MiniMapSettings
-function CS.Barotrauma.Items.Components.MiniMapSettings(createHullElements, elementColor) end
+local __ctor = function(createHullElements, elementColor) end
+CS.Barotrauma.Items.Components.MiniMapSettings = __ctor
+CS.Barotrauma.Items.Components.MiniMapSettings.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.MiniMap: Barotrauma.Items.Components.Powered
 ---@field private Zoom System.Single
@@ -3643,11 +3747,15 @@ function CS.Barotrauma.Items.Components.MiniMap.GetCurrentPowerConsumption(conne
 ---@return System.Boolean
 function CS.Barotrauma.Items.Components.MiniMap.Pick(picker) end
 
+do
 ---@overload fun(): Barotrauma.Items.Components.MiniMap
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.MiniMap
-function CS.Barotrauma.Items.Components.MiniMap(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.MiniMap = __ctor
+CS.Barotrauma.Items.Components.MiniMap.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.OutpostTerminal: Barotrauma.Items.Components.ItemComponent
 ---@field private selectionUI Barotrauma.SubmarineSelection
@@ -3664,10 +3772,14 @@ function CS.Barotrauma.Items.Components.OutpostTerminal.Update(deltaTime, cam) e
 ---@protected
 function CS.Barotrauma.Items.Components.OutpostTerminal.RemoveComponentSpecific() end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.OutpostTerminal
-function CS.Barotrauma.Items.Components.OutpostTerminal(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.OutpostTerminal = __ctor
+CS.Barotrauma.Items.Components.OutpostTerminal.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Pump: Barotrauma.Items.Components.Powered
 ---@field PowerButton Barotrauma.GUIButton
@@ -3802,10 +3914,14 @@ function CS.Barotrauma.Items.Components.Pump.CrewAIOperate(deltaTime, character,
 ---@protected
 function CS.Barotrauma.Items.Components.Pump.RemoveComponentSpecific() end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.Pump
-function CS.Barotrauma.Items.Components.Pump(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.Pump = __ctor
+CS.Barotrauma.Items.Components.Pump.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Reactor: Barotrauma.Items.Components.Powered
 ---@field AutoTempSwitch Barotrauma.GUIButton
@@ -4135,11 +4251,15 @@ function CS.Barotrauma.Items.Components.Reactor.GetMaxOutput() end
 ---@return System.Single
 function CS.Barotrauma.Items.Components.Reactor.GetFuelConsumption() end
 
+do
 ---@overload fun(): Barotrauma.Items.Components.Reactor
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.Reactor
-function CS.Barotrauma.Items.Components.Reactor(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.Reactor = __ctor
+CS.Barotrauma.Items.Components.Reactor.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Sonar: Barotrauma.Items.Components.Powered
 ---@field SonarModeSwitch Barotrauma.GUIButton
@@ -4496,10 +4616,14 @@ function CS.Barotrauma.Items.Components.Sonar.ServerEventRead(msg, c) end
 ---@param extraData? Barotrauma.Networking.NetEntityEvent.IData
 function CS.Barotrauma.Items.Components.Sonar.ServerEventWrite(msg, c, extraData) end
 
+do
 ---@private
 ---@overload fun(item: Barotrauma.Item, element: Barotrauma.ContentXElement): Barotrauma.Items.Components.Sonar
 ---@return Barotrauma.Items.Components.Sonar
-function CS.Barotrauma.Items.Components.Sonar() end
+local __ctor = function() end
+CS.Barotrauma.Items.Components.Sonar = __ctor
+CS.Barotrauma.Items.Components.Sonar.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.SonarBlip: System.Object
 ---@field FadeTimer System.Single
@@ -4512,12 +4636,16 @@ function CS.Barotrauma.Items.Components.Sonar() end
 ---@field Alpha System.Single
 CS.Barotrauma.Items.Components.SonarBlip = {}
 
+do
 ---@param pos Microsoft.Xna.Framework.Vector2
 ---@param fadeTimer System.Single
 ---@param scale System.Single
 ---@param blipType? Barotrauma.Items.Components.Sonar.BlipType
 ---@return Barotrauma.Items.Components.SonarBlip
-function CS.Barotrauma.Items.Components.SonarBlip(pos, fadeTimer, scale, blipType) end
+local __ctor = function(pos, fadeTimer, scale, blipType) end
+CS.Barotrauma.Items.Components.SonarBlip = __ctor
+CS.Barotrauma.Items.Components.SonarBlip.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Steering: Barotrauma.Items.Components.Powered
 ---@field ControlContainer Barotrauma.GUIComponent
@@ -4813,10 +4941,14 @@ function CS.Barotrauma.Items.Components.Steering.CrewAIOperate(deltaTime, charac
 ---@param connection Barotrauma.Items.Components.Connection
 function CS.Barotrauma.Items.Components.Steering.ReceiveSignal(signal, connection) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.Steering
-function CS.Barotrauma.Items.Components.Steering(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.Steering = __ctor
+CS.Barotrauma.Items.Components.Steering.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Planter: Barotrauma.Items.Components.Pickable
 ---@field DrawSize Microsoft.Xna.Framework.Vector2
@@ -4898,11 +5030,15 @@ function CS.Barotrauma.Items.Components.Planter.GetSuitableItem(character) end
 ---@return System.Boolean
 function CS.Barotrauma.Items.Components.Planter.HasAnyFinishedGrowing() end
 
+do
 ---@overload fun(): Barotrauma.Items.Components.Planter
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.Planter
-function CS.Barotrauma.Items.Components.Planter(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.Planter = __ctor
+CS.Barotrauma.Items.Components.Planter.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.PowerContainer: Barotrauma.Items.Components.Powered
 ---@field RechargeWarningIndicatorLow System.Single
@@ -5082,10 +5218,14 @@ function CS.Barotrauma.Items.Components.PowerContainer.ReceiveSignal(signal, con
 ---@return System.Single
 function CS.Barotrauma.Items.Components.PowerContainer.GetCapacity() end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.PowerContainer
-function CS.Barotrauma.Items.Components.PowerContainer(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.PowerContainer = __ctor
+CS.Barotrauma.Items.Components.PowerContainer.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.PowerDistributor: Barotrauma.Items.Components.PowerTransfer
 ---@field protected Priority Barotrauma.Items.Components.PowerPriority
@@ -5174,10 +5314,14 @@ function CS.Barotrauma.Items.Components.PowerDistributor.SharedEventWrite(msg, e
 ---@param newRatio System.Single
 function CS.Barotrauma.Items.Components.PowerDistributor.SharedEventRead(msg, eventType, powerGroup, newName, newRatio) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.PowerDistributor
-function CS.Barotrauma.Items.Components.PowerDistributor(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.PowerDistributor = __ctor
+CS.Barotrauma.Items.Components.PowerDistributor.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Powered: Barotrauma.Items.Components.ItemComponent
 ---@field PoweredList userdata | (fun(): Barotrauma.Items.Components.Powered)
@@ -5320,11 +5464,15 @@ function CS.Barotrauma.Items.Components.Powered.GetDirectlyConnectedBatteries() 
 ---@protected
 function CS.Barotrauma.Items.Components.Powered.RemoveComponentSpecific() end
 
+do
 ---@overload fun(): Barotrauma.Items.Components.Powered
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.Powered
-function CS.Barotrauma.Items.Components.Powered(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.Powered = __ctor
+CS.Barotrauma.Items.Components.Powered.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.PowerTransfer: Barotrauma.Items.Components.Powered
 ---@field RecreateGUIOnResolutionChange System.Boolean
@@ -5458,11 +5606,15 @@ function CS.Barotrauma.Items.Components.PowerTransfer.ReceiveSignal(signal, conn
 ---@protected
 function CS.Barotrauma.Items.Components.PowerTransfer.RemoveComponentSpecific() end
 
+do
 ---@overload fun(): Barotrauma.Items.Components.PowerTransfer
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.PowerTransfer
-function CS.Barotrauma.Items.Components.PowerTransfer(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.PowerTransfer = __ctor
+CS.Barotrauma.Items.Components.PowerTransfer.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Projectile: Barotrauma.Items.Components.ItemComponent
 ---@field SpreadCounter System.Byte
@@ -5673,10 +5825,14 @@ function CS.Barotrauma.Items.Components.Projectile.RemoveComponentSpecific() end
 ---@param endLocation Microsoft.Xna.Framework.Vector2
 function CS.Barotrauma.Items.Components.Projectile.LaunchProjSpecific(startLocation, endLocation) end
 
+do
 ---@private
 ---@overload fun(item: Barotrauma.Item, element: Barotrauma.ContentXElement): Barotrauma.Items.Components.Projectile
 ---@return Barotrauma.Items.Components.Projectile
-function CS.Barotrauma.Items.Components.Projectile() end
+local __ctor = function() end
+CS.Barotrauma.Items.Components.Projectile = __ctor
+CS.Barotrauma.Items.Components.Projectile.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Quality: Barotrauma.Items.Components.ItemComponent
 ---@field QualityLevel System.Int32
@@ -5705,10 +5861,14 @@ function CS.Barotrauma.Items.Components.Quality.GetValue(statType) end
 ---@return System.Int32
 function CS.Barotrauma.Items.Components.Quality.GetSpawnedItemQuality(submarine, level, randSync) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.Quality
-function CS.Barotrauma.Items.Components.Quality(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.Quality = __ctor
+CS.Barotrauma.Items.Components.Quality.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.RemoteController: Barotrauma.Items.Components.ItemComponent
 ---@field Target Barotrauma.Identifier
@@ -5750,10 +5910,14 @@ function CS.Barotrauma.Items.Components.RemoteController.Update(deltaTime, cam) 
 ---@param user Barotrauma.Character
 function CS.Barotrauma.Items.Components.RemoteController.FindTarget(user) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.RemoteController
-function CS.Barotrauma.Items.Components.RemoteController(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.RemoteController = __ctor
+CS.Barotrauma.Items.Components.RemoteController.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Repairable: Barotrauma.Items.Components.ItemComponent
 ---@field RepairButton Barotrauma.GUIButton
@@ -5979,10 +6143,14 @@ function CS.Barotrauma.Items.Components.Repairable.UpdateFixAnimation(character)
 ---@param connection Barotrauma.Items.Components.Connection
 function CS.Barotrauma.Items.Components.Repairable.ReceiveSignal(signal, connection) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.Repairable
-function CS.Barotrauma.Items.Components.Repairable(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.Repairable = __ctor
+CS.Barotrauma.Items.Components.Repairable.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.RepairTool: Barotrauma.Items.Components.ItemComponent
 ---@field UsableIn Barotrauma.Items.Components.RepairTool.UseEnvironment
@@ -6113,11 +6281,15 @@ function CS.Barotrauma.Items.Components.RepairTool.CrewAIOperate(deltaTime, char
 ---@param structure? Barotrauma.Structure
 function CS.Barotrauma.Items.Components.RepairTool.ApplyStatusEffectsOnTarget(user, deltaTime, actionType, targetItem, character, limb, structure) end
 
+do
 ---@overload fun(): Barotrauma.Items.Components.RepairTool
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.RepairTool
-function CS.Barotrauma.Items.Components.RepairTool(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.RepairTool = __ctor
+CS.Barotrauma.Items.Components.RepairTool.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Rope: Barotrauma.Items.Components.ItemComponent
 ---@field SpriteWidth System.Int32
@@ -6239,10 +6411,14 @@ function CS.Barotrauma.Items.Components.Rope.GetSourcePos(useDrawPosition) end
 ---@return Barotrauma.PhysicsBody
 function CS.Barotrauma.Items.Components.Rope.GetBodyToPull(target) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.Rope
-function CS.Barotrauma.Items.Components.Rope(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.Rope = __ctor
+CS.Barotrauma.Items.Components.Rope.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Scanner: Barotrauma.Items.Components.ItemComponent
 ---@field ScanDuration System.Single
@@ -6280,10 +6456,14 @@ function CS.Barotrauma.Items.Components.Scanner.UpdateProjSpecific() end
 
 function CS.Barotrauma.Items.Components.Scanner.OnItemLoaded() end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.Scanner
-function CS.Barotrauma.Items.Components.Scanner(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.Scanner = __ctor
+CS.Barotrauma.Items.Components.Scanner.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.ButtonTerminal: Barotrauma.Items.Components.ItemComponent
 ---@field Signals System.String[]
@@ -6356,10 +6536,14 @@ function CS.Barotrauma.Items.Components.ButtonTerminal.ValidateEventData(data) e
 ---@param extraData Barotrauma.Networking.NetEntityEvent.IData
 function CS.Barotrauma.Items.Components.ButtonTerminal.Write(msg, extraData) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.ButtonTerminal
-function CS.Barotrauma.Items.Components.ButtonTerminal(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.ButtonTerminal = __ctor
+CS.Barotrauma.Items.Components.ButtonTerminal.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.CircuitBox: Barotrauma.Items.Components.ItemComponent
 ---@field WireSprite Barotrauma.Sprite
@@ -6769,11 +6953,15 @@ function CS.Barotrauma.Items.Components.CircuitBox.IsInGame() end
 ---@return System.Boolean
 function CS.Barotrauma.Items.Components.CircuitBox.IsCircuitBoxSelected(character) end
 
+do
 ---@overload fun(): Barotrauma.Items.Components.CircuitBox
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.CircuitBox
-function CS.Barotrauma.Items.Components.CircuitBox(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.CircuitBox = __ctor
+CS.Barotrauma.Items.Components.CircuitBox.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Connection: System.Object
 ---@field FlashTimer System.Single
@@ -6987,13 +7175,17 @@ function CS.Barotrauma.Items.Components.Connection.InitializeFromLoaded() end
 ---@param parentElement System.Xml.Linq.XElement
 function CS.Barotrauma.Items.Components.Connection.Save(parentElement) end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param connectionIndex System.Int32
 ---@param connectionPanel Barotrauma.Items.Components.ConnectionPanel
 ---@param idRemap Barotrauma.IdRemap
 ---@param isItemSwap System.Boolean
 ---@return Barotrauma.Items.Components.Connection
-function CS.Barotrauma.Items.Components.Connection(element, connectionIndex, connectionPanel, idRemap, isItemSwap) end
+local __ctor = function(element, connectionIndex, connectionPanel, idRemap, isItemSwap) end
+CS.Barotrauma.Items.Components.Connection = __ctor
+CS.Barotrauma.Items.Components.Connection.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.ConnectionPanel: Barotrauma.Items.Components.ItemComponent
 ---@field ShouldDebugDrawWiring System.Boolean
@@ -7139,10 +7331,14 @@ function CS.Barotrauma.Items.Components.ConnectionPanel.ReceiveSignal(signal, co
 ---@param extraData? Barotrauma.Networking.NetEntityEvent.IData
 function CS.Barotrauma.Items.Components.ConnectionPanel.ClientEventWrite(msg, extraData) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.ConnectionPanel
-function CS.Barotrauma.Items.Components.ConnectionPanel(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.ConnectionPanel = __ctor
+CS.Barotrauma.Items.Components.ConnectionPanel.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.ConnectionSelectorComponent: Barotrauma.Items.Components.ItemComponent
 ---@field SelectedConnection System.Int32
@@ -7189,10 +7385,14 @@ function CS.Barotrauma.Items.Components.ConnectionSelectorComponent.OnItemLoaded
 ---@param connection Barotrauma.Items.Components.Connection
 function CS.Barotrauma.Items.Components.ConnectionSelectorComponent.ReceiveSignal(signal, connection) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.ConnectionSelectorComponent
-function CS.Barotrauma.Items.Components.ConnectionSelectorComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.ConnectionSelectorComponent = __ctor
+CS.Barotrauma.Items.Components.ConnectionSelectorComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.CustomInterface: Barotrauma.Items.Components.ItemComponent
 ---@field private ElementMaxSize Microsoft.Xna.Framework.Point
@@ -7330,10 +7530,14 @@ function CS.Barotrauma.Items.Components.CustomInterface.Save(parentElement) end
 ---@return System.Boolean
 function CS.Barotrauma.Items.Components.CustomInterface.TryParseFloatInvariantCulture(s, f) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.CustomInterface
-function CS.Barotrauma.Items.Components.CustomInterface(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.CustomInterface = __ctor
+CS.Barotrauma.Items.Components.CustomInterface.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.MemoryComponent: Barotrauma.Items.Components.ItemComponent
 ---@field MaxValueLength System.Int32
@@ -7367,10 +7571,14 @@ function CS.Barotrauma.Items.Components.MemoryComponent.Update(deltaTime, cam) e
 ---@param connection Barotrauma.Items.Components.Connection
 function CS.Barotrauma.Items.Components.MemoryComponent.ReceiveSignal(signal, connection) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.MemoryComponent
-function CS.Barotrauma.Items.Components.MemoryComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.MemoryComponent = __ctor
+CS.Barotrauma.Items.Components.MemoryComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.MotionSensor: Barotrauma.Items.Components.ItemComponent
 ---@field DrawSize Microsoft.Xna.Framework.Vector2
@@ -7488,10 +7696,14 @@ function CS.Barotrauma.Items.Components.MotionSensor.TriggersOn(character, trigg
 ---@return System.Xml.Linq.XElement
 function CS.Barotrauma.Items.Components.MotionSensor.Save(parentElement) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.MotionSensor
-function CS.Barotrauma.Items.Components.MotionSensor(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.MotionSensor = __ctor
+CS.Barotrauma.Items.Components.MotionSensor.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Terminal: Barotrauma.Items.Components.ItemComponent
 ---@field DisplayedWelcomeMessage Barotrauma.LocalizedString
@@ -7596,10 +7808,14 @@ function CS.Barotrauma.Items.Components.Terminal.Save(parentElement) end
 ---@param isItemSwap System.Boolean
 function CS.Barotrauma.Items.Components.Terminal.Load(componentElement, usePrefabValues, idRemap, isItemSwap) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.Terminal
-function CS.Barotrauma.Items.Components.Terminal(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.Terminal = __ctor
+CS.Barotrauma.Items.Components.Terminal.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.WifiComponent: Barotrauma.Items.Components.ItemComponent
 ---@field DrawSize Microsoft.Xna.Framework.Vector2
@@ -7718,11 +7934,15 @@ function CS.Barotrauma.Items.Components.WifiComponent.SharedEventWrite(msg) end
 ---@param msg Barotrauma.Networking.IReadMessage
 function CS.Barotrauma.Items.Components.WifiComponent.SharedEventRead(msg) end
 
+do
 ---@overload fun(): Barotrauma.Items.Components.WifiComponent
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.WifiComponent
-function CS.Barotrauma.Items.Components.WifiComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.WifiComponent = __ctor
+CS.Barotrauma.Items.Components.WifiComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Wire: Barotrauma.Items.Components.ItemComponent
 ---@field DrawSize Microsoft.Xna.Framework.Vector2
@@ -7975,11 +8195,15 @@ function CS.Barotrauma.Items.Components.Wire.ShallowRemoveComponentSpecific() en
 ---@protected
 function CS.Barotrauma.Items.Components.Wire.RemoveComponentSpecific() end
 
+do
 ---@overload fun(): Barotrauma.Items.Components.Wire
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.Wire
-function CS.Barotrauma.Items.Components.Wire(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.Wire = __ctor
+CS.Barotrauma.Items.Components.Wire.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.StatusHUD: Barotrauma.Items.Components.ItemComponent
 ---@field Range System.Single
@@ -8038,11 +8262,15 @@ function CS.Barotrauma.Items.Components.StatusHUD.DrawThermalOverlay(spriteBatch
 ---@param alpha? System.Single
 function CS.Barotrauma.Items.Components.StatusHUD.DrawCharacterInfo(spriteBatch, target, alpha) end
 
+do
 ---@overload fun(): Barotrauma.Items.Components.StatusHUD
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.StatusHUD
-function CS.Barotrauma.Items.Components.StatusHUD(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.StatusHUD = __ctor
+CS.Barotrauma.Items.Components.StatusHUD.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.TriggerComponent: Barotrauma.Items.Components.ItemComponent
 ---@field DrawSize Microsoft.Xna.Framework.Vector2
@@ -8204,10 +8432,14 @@ function CS.Barotrauma.Items.Components.TriggerComponent.RemoveComponentSpecific
 ---@param connection Barotrauma.Items.Components.Connection
 function CS.Barotrauma.Items.Components.TriggerComponent.ReceiveSignal(signal, connection) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.TriggerComponent
-function CS.Barotrauma.Items.Components.TriggerComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.TriggerComponent = __ctor
+CS.Barotrauma.Items.Components.TriggerComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Turret: Barotrauma.Items.Components.Powered
 ---@field UIElementHeight System.Int32
@@ -8642,10 +8874,14 @@ function CS.Barotrauma.Items.Components.Turret.OnItemLoaded() end
 ---@param extraData? Barotrauma.Networking.NetEntityEvent.IData
 function CS.Barotrauma.Items.Components.Turret.ServerEventWrite(msg, c, extraData) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.Turret
-function CS.Barotrauma.Items.Components.Turret(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.Turret = __ctor
+CS.Barotrauma.Items.Components.Turret.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Wearable: Barotrauma.Items.Components.Pickable
 ---@field DamageModifiers userdata | (fun(): Barotrauma.DamageModifier)
@@ -8732,10 +8968,14 @@ function CS.Barotrauma.Items.Components.Wearable.ServerEventWrite(msg, c, extraD
 ---@param sendingTime System.Single
 function CS.Barotrauma.Items.Components.Wearable.ClientEventRead(msg, sendingTime) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.Wearable
-function CS.Barotrauma.Items.Components.Wearable(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.Wearable = __ctor
+CS.Barotrauma.Items.Components.Wearable.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.DockingPort: Barotrauma.Items.Components.ItemComponent
 ---@field DrawSize Microsoft.Xna.Framework.Vector2
@@ -8881,11 +9121,15 @@ function CS.Barotrauma.Items.Components.DockingPort.OnMapLoaded() end
 ---@param connection Barotrauma.Items.Components.Connection
 function CS.Barotrauma.Items.Components.DockingPort.ReceiveSignal(signal, connection) end
 
+do
 ---@overload fun(): Barotrauma.Items.Components.DockingPort
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.DockingPort
-function CS.Barotrauma.Items.Components.DockingPort(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.DockingPort = __ctor
+CS.Barotrauma.Items.Components.DockingPort.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.ProducedItem: System.Object
 ---@field Probability System.Single
@@ -8898,12 +9142,16 @@ CS.Barotrauma.Items.Components.ProducedItem = {}
 ---@param element Barotrauma.ContentXElement
 function CS.Barotrauma.Items.Components.ProducedItem.LoadSubElements(element) end
 
+do
 ---@overload fun(producer: Barotrauma.Item, element: Barotrauma.ContentXElement): Barotrauma.Items.Components.ProducedItem
 ---@param producer Barotrauma.Item
 ---@param prefab Barotrauma.ItemPrefab
 ---@param probability System.Single
 ---@return Barotrauma.Items.Components.ProducedItem
-function CS.Barotrauma.Items.Components.ProducedItem(producer, prefab, probability) end
+local __ctor = function(producer, prefab, probability) end
+CS.Barotrauma.Items.Components.ProducedItem = __ctor
+CS.Barotrauma.Items.Components.ProducedItem.__new = __ctor
+end
 
 ---@enum Barotrauma.Items.Components.VineTileType
 CS.Barotrauma.Items.Components.VineTileType = {
@@ -8958,9 +9206,13 @@ function CS.Barotrauma.Items.Components.FoliageConfig.Deserialize(value) end
 ---@return Barotrauma.Items.Components.FoliageConfig
 function CS.Barotrauma.Items.Components.FoliageConfig.CreateRandomConfig(maxVariants, minScale, maxScale, random) end
 
+do
 ---@private
 ---@return Barotrauma.Items.Components.FoliageConfig
-function CS.Barotrauma.Items.Components.FoliageConfig() end
+local __ctor = function() end
+CS.Barotrauma.Items.Components.FoliageConfig = __ctor
+CS.Barotrauma.Items.Components.FoliageConfig.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.VineTile: System.Object
 ---@field GrowthStep System.Single
@@ -9015,6 +9267,7 @@ function CS.Barotrauma.Items.Components.VineTile.IsSideBlocked(side) end
 ---@return Microsoft.Xna.Framework.Rectangle
 function CS.Barotrauma.Items.Components.VineTile.CreatePlantRect(pos) end
 
+do
 ---@overload fun(): Barotrauma.Items.Components.VineTile
 ---@param parent Barotrauma.Items.Components.Growable
 ---@param position Microsoft.Xna.Framework.Vector2
@@ -9023,7 +9276,10 @@ function CS.Barotrauma.Items.Components.VineTile.CreatePlantRect(pos) end
 ---@param leafConfig? Barotrauma.Items.Components.FoliageConfig|nil
 ---@param rect? Microsoft.Xna.Framework.Rectangle|nil
 ---@return Barotrauma.Items.Components.VineTile
-function CS.Barotrauma.Items.Components.VineTile(parent, position, type, flowerConfig, leafConfig, rect) end
+local __ctor = function(parent, position, type, flowerConfig, leafConfig, rect) end
+CS.Barotrauma.Items.Components.VineTile = __ctor
+CS.Barotrauma.Items.Components.VineTile.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.GrowthSideExtension: System.Object
 CS.Barotrauma.Items.Components.GrowthSideExtension = {}
@@ -9123,10 +9379,14 @@ function CS.Barotrauma.Items.Components.MeleeWeapon.OnCollision(f1, f2, contact)
 ---@param targetFixture FarseerPhysics.Dynamics.Fixture
 function CS.Barotrauma.Items.Components.MeleeWeapon.HandleImpact(targetFixture) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.MeleeWeapon
-function CS.Barotrauma.Items.Components.MeleeWeapon(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.MeleeWeapon = __ctor
+CS.Barotrauma.Items.Components.MeleeWeapon.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Pickable: Barotrauma.Items.Components.ItemComponent
 ---@field IsAttached System.Boolean
@@ -9188,20 +9448,28 @@ function CS.Barotrauma.Items.Components.Pickable.ServerEventWrite(msg, c, extraD
 ---@param sendingTime System.Single
 function CS.Barotrauma.Items.Components.Pickable.ClientEventRead(msg, sendingTime) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.Pickable
-function CS.Barotrauma.Items.Components.Pickable(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.Pickable = __ctor
+CS.Barotrauma.Items.Components.Pickable.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.AbilityItemPickingTime: Barotrauma.Abilities.AbilityObject
 ---@field Value System.Single
 ---@field ItemPrefab Barotrauma.ItemPrefab
 CS.Barotrauma.Items.Components.AbilityItemPickingTime = {}
 
+do
 ---@param pickingTime System.Single
 ---@param itemPrefab Barotrauma.ItemPrefab
 ---@return Barotrauma.Items.Components.AbilityItemPickingTime
-function CS.Barotrauma.Items.Components.AbilityItemPickingTime(pickingTime, itemPrefab) end
+local __ctor = function(pickingTime, itemPrefab) end
+CS.Barotrauma.Items.Components.AbilityItemPickingTime = __ctor
+CS.Barotrauma.Items.Components.AbilityItemPickingTime.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Propulsion: Barotrauma.Items.Components.ItemComponent
 ---@field UsableIn Barotrauma.Items.Components.Propulsion.UseEnvironment
@@ -9227,18 +9495,26 @@ function CS.Barotrauma.Items.Components.Propulsion.Use(deltaTime, character) end
 ---@param cam Barotrauma.Camera
 function CS.Barotrauma.Items.Components.Propulsion.Update(deltaTime, cam) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.Propulsion
-function CS.Barotrauma.Items.Components.Propulsion(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.Propulsion = __ctor
+CS.Barotrauma.Items.Components.Propulsion.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.AbilityRangedWeapon: Barotrauma.Abilities.AbilityObject
 ---@field Item Barotrauma.Item
 CS.Barotrauma.Items.Components.AbilityRangedWeapon = {}
 
+do
 ---@param item Barotrauma.Item
 ---@return Barotrauma.Items.Components.AbilityRangedWeapon
-function CS.Barotrauma.Items.Components.AbilityRangedWeapon(item) end
+local __ctor = function(item) end
+CS.Barotrauma.Items.Components.AbilityRangedWeapon = __ctor
+CS.Barotrauma.Items.Components.AbilityRangedWeapon.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Throwable: Barotrauma.Items.Components.Holdable
 ---@field CurrentThrower Barotrauma.Character
@@ -9274,10 +9550,14 @@ function CS.Barotrauma.Items.Components.Throwable.UpdateBroken(deltaTime, cam) e
 ---@param cam Barotrauma.Camera
 function CS.Barotrauma.Items.Components.Throwable.Update(deltaTime, cam) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.Throwable
-function CS.Barotrauma.Items.Components.Throwable(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.Throwable = __ctor
+CS.Barotrauma.Items.Components.Throwable.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.IDrawableComponent
 ---@field DrawSize Microsoft.Xna.Framework.Vector2
@@ -9297,9 +9577,13 @@ function CS.Barotrauma.Items.Components.IDrawableComponent.Draw(spriteBatch, edi
 ---@field Item Barotrauma.Item
 CS.Barotrauma.Items.Components.AbilityItemContainer = {}
 
+do
 ---@param item Barotrauma.Item
 ---@return Barotrauma.Items.Components.AbilityItemContainer
-function CS.Barotrauma.Items.Components.AbilityItemContainer(item) end
+local __ctor = function(item) end
+CS.Barotrauma.Items.Components.AbilityItemContainer = __ctor
+CS.Barotrauma.Items.Components.AbilityItemContainer.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.LimbPos: System.Object
 ---@field LimbType Barotrauma.LimbType
@@ -9315,41 +9599,57 @@ function CS.Barotrauma.Items.Components.LimbPos.get_Name() end
 ---@return userdata | { [Barotrauma.Identifier]: Barotrauma.SerializableProperty } | (fun(): userdata)
 function CS.Barotrauma.Items.Components.LimbPos.get_SerializableProperties() end
 
+do
 ---@param limbType Barotrauma.LimbType
 ---@param position Microsoft.Xna.Framework.Vector2
 ---@param allowUsingLimb System.Boolean
 ---@return Barotrauma.Items.Components.LimbPos
-function CS.Barotrauma.Items.Components.LimbPos(limbType, position, allowUsingLimb) end
+local __ctor = function(limbType, position, allowUsingLimb) end
+CS.Barotrauma.Items.Components.LimbPos = __ctor
+CS.Barotrauma.Items.Components.LimbPos.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.AbilityDeconstructedItem: Barotrauma.Abilities.AbilityObject
 ---@field Item Barotrauma.Item
 ---@field Character Barotrauma.Character
 CS.Barotrauma.Items.Components.AbilityDeconstructedItem = {}
 
+do
 ---@param item Barotrauma.Item
 ---@param character Barotrauma.Character
 ---@return Barotrauma.Items.Components.AbilityDeconstructedItem
-function CS.Barotrauma.Items.Components.AbilityDeconstructedItem(item, character) end
+local __ctor = function(item, character) end
+CS.Barotrauma.Items.Components.AbilityDeconstructedItem = __ctor
+CS.Barotrauma.Items.Components.AbilityDeconstructedItem.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.AbilityItemCreationMultiplier: Barotrauma.Abilities.AbilityObject
 ---@field ItemPrefab Barotrauma.ItemPrefab
 ---@field Value System.Single
 CS.Barotrauma.Items.Components.AbilityItemCreationMultiplier = {}
 
+do
 ---@param itemPrefab Barotrauma.ItemPrefab
 ---@param itemAmountMultiplier System.Single
 ---@return Barotrauma.Items.Components.AbilityItemCreationMultiplier
-function CS.Barotrauma.Items.Components.AbilityItemCreationMultiplier(itemPrefab, itemAmountMultiplier) end
+local __ctor = function(itemPrefab, itemAmountMultiplier) end
+CS.Barotrauma.Items.Components.AbilityItemCreationMultiplier = __ctor
+CS.Barotrauma.Items.Components.AbilityItemCreationMultiplier.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.AbilityItemDeconstructedInventory: Barotrauma.Abilities.AbilityObject
 ---@field ItemPrefab Barotrauma.ItemPrefab
 ---@field Item Barotrauma.Item
 CS.Barotrauma.Items.Components.AbilityItemDeconstructedInventory = {}
 
+do
 ---@param itemPrefab Barotrauma.ItemPrefab
 ---@param item Barotrauma.Item
 ---@return Barotrauma.Items.Components.AbilityItemDeconstructedInventory
-function CS.Barotrauma.Items.Components.AbilityItemDeconstructedInventory(itemPrefab, item) end
+local __ctor = function(itemPrefab, item) end
+CS.Barotrauma.Items.Components.AbilityItemDeconstructedInventory = __ctor
+CS.Barotrauma.Items.Components.AbilityItemDeconstructedInventory.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.InheritConditionFromLinkedWall: Barotrauma.Items.Components.ItemComponent
 ---@field private linkedWalls userdata | { [System.Int32]: Barotrauma.Structure } | (fun(): Barotrauma.Structure)
@@ -9360,10 +9660,14 @@ function CS.Barotrauma.Items.Components.InheritConditionFromLinkedWall.OnMapLoad
 ---@private
 function CS.Barotrauma.Items.Components.InheritConditionFromLinkedWall.UpdateCondition() end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.InheritConditionFromLinkedWall
-function CS.Barotrauma.Items.Components.InheritConditionFromLinkedWall(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.InheritConditionFromLinkedWall = __ctor
+CS.Barotrauma.Items.Components.InheritConditionFromLinkedWall.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.OxygenGenerator: Barotrauma.Items.Components.Powered
 ---@field CurrFlow System.Single
@@ -9404,10 +9708,14 @@ function CS.Barotrauma.Items.Components.OxygenGenerator.UpdateVents(deltaOxygen,
 ---@return System.Single
 function CS.Barotrauma.Items.Components.OxygenGenerator.GetVentOxygenFlow(targetVent) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.OxygenGenerator
-function CS.Barotrauma.Items.Components.OxygenGenerator(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.OxygenGenerator = __ctor
+CS.Barotrauma.Items.Components.OxygenGenerator.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.SonarTransducer: Barotrauma.Items.Components.Powered
 ---@field private sendSignalTimer System.Single
@@ -9423,10 +9731,14 @@ function CS.Barotrauma.Items.Components.SonarTransducer.Update(deltaTime, cam) e
 ---@return System.Single
 function CS.Barotrauma.Items.Components.SonarTransducer.GetCurrentPowerConsumption(connection) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.SonarTransducer
-function CS.Barotrauma.Items.Components.SonarTransducer(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.SonarTransducer = __ctor
+CS.Barotrauma.Items.Components.SonarTransducer.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Vent: Barotrauma.Items.Components.ItemComponent
 ---@field OxygenFlow System.Single
@@ -9443,19 +9755,27 @@ function CS.Barotrauma.Items.Components.Vent.set_OxygenFlow(value) end
 ---@param cam Barotrauma.Camera
 function CS.Barotrauma.Items.Components.Vent.Update(deltaTime, cam) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.Vent
-function CS.Barotrauma.Items.Components.Vent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.Vent = __ctor
+CS.Barotrauma.Items.Components.Vent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.NameTag: Barotrauma.Items.Components.ItemComponent
 ---@field WrittenName System.String
 CS.Barotrauma.Items.Components.NameTag = {}
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.NameTag
-function CS.Barotrauma.Items.Components.NameTag(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.NameTag = __ctor
+CS.Barotrauma.Items.Components.NameTag.__new = __ctor
+end
 
 ---@enum Barotrauma.Items.Components.PlantItemType
 CS.Barotrauma.Items.Components.PlantItemType = {
@@ -9472,21 +9792,29 @@ CS.Barotrauma.Items.Components.SuitablePlantItem = {}
 ---@return System.Boolean
 function CS.Barotrauma.Items.Components.SuitablePlantItem.IsNull() end
 
+do
 ---@param item Barotrauma.Item
 ---@param type Barotrauma.Items.Components.PlantItemType
 ---@param progressBarMessage System.String
 ---@return Barotrauma.Items.Components.SuitablePlantItem
-function CS.Barotrauma.Items.Components.SuitablePlantItem(item, type, progressBarMessage) end
+local __ctor = function(item, type, progressBarMessage) end
+CS.Barotrauma.Items.Components.SuitablePlantItem = __ctor
+CS.Barotrauma.Items.Components.SuitablePlantItem.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.PlantSlot: System.ValueType
 ---@field Offset Microsoft.Xna.Framework.Vector2
 ---@field Size System.Single
 CS.Barotrauma.Items.Components.PlantSlot = {}
 
+do
 ---@overload fun(offset: Microsoft.Xna.Framework.Vector2, size: System.Single): Barotrauma.Items.Components.PlantSlot
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.PlantSlot
-function CS.Barotrauma.Items.Components.PlantSlot(element) end
+local __ctor = function(element) end
+CS.Barotrauma.Items.Components.PlantSlot = __ctor
+CS.Barotrauma.Items.Components.PlantSlot.__new = __ctor
+end
 
 ---@enum Barotrauma.Items.Components.PowerPriority
 CS.Barotrauma.Items.Components.PowerPriority = {
@@ -9515,12 +9843,16 @@ function CS.Barotrauma.Items.Components.PowerRange.op_Addition(a, b) end
 ---@return Barotrauma.Items.Components.PowerRange
 function CS.Barotrauma.Items.Components.PowerRange.op_Subtraction(a, b) end
 
+do
 ---@overload fun(min: System.Single, max: System.Single, reactorMaxOutput: System.Single): Barotrauma.Items.Components.PowerRange
 ---@overload fun(): Barotrauma.Items.Components.PowerRange
 ---@param min System.Single
 ---@param max System.Single
 ---@return Barotrauma.Items.Components.PowerRange
-function CS.Barotrauma.Items.Components.PowerRange(min, max) end
+local __ctor = function(min, max) end
+CS.Barotrauma.Items.Components.PowerRange = __ctor
+CS.Barotrauma.Items.Components.PowerRange.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.GridInfo: System.Object
 ---@field ID System.Int32
@@ -9540,17 +9872,25 @@ function CS.Barotrauma.Items.Components.GridInfo.AddConnection(c) end
 ---@param c Barotrauma.Items.Components.Connection
 function CS.Barotrauma.Items.Components.GridInfo.AddSrc(c) end
 
+do
 ---@param id System.Int32
 ---@return Barotrauma.Items.Components.GridInfo
-function CS.Barotrauma.Items.Components.GridInfo(id) end
+local __ctor = function(id) end
+CS.Barotrauma.Items.Components.GridInfo = __ctor
+CS.Barotrauma.Items.Components.GridInfo.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.PowerSourceGroup: System.Object
 ---@field MinMaxPower Barotrauma.Items.Components.PowerRange
 ---@field Connections userdata | { [System.Int32]: Barotrauma.Items.Components.Connection } | (fun(): Barotrauma.Items.Components.Connection)
 CS.Barotrauma.Items.Components.PowerSourceGroup = {}
 
+do
 ---@return Barotrauma.Items.Components.PowerSourceGroup
-function CS.Barotrauma.Items.Components.PowerSourceGroup() end
+local __ctor = function() end
+CS.Barotrauma.Items.Components.PowerSourceGroup = __ctor
+CS.Barotrauma.Items.Components.PowerSourceGroup.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.IDeteriorateUnderStress
 ---@field CurrentStress System.Single
@@ -9564,9 +9904,13 @@ function CS.Barotrauma.Items.Components.IDeteriorateUnderStress.get_CurrentStres
 ---@field Item Barotrauma.Item
 CS.Barotrauma.Items.Components.AbilityRepairable = {}
 
+do
 ---@param item Barotrauma.Item
 ---@return Barotrauma.Items.Components.AbilityRepairable
-function CS.Barotrauma.Items.Components.AbilityRepairable(item) end
+local __ctor = function(item) end
+CS.Barotrauma.Items.Components.AbilityRepairable = __ctor
+CS.Barotrauma.Items.Components.AbilityRepairable.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.AdderComponent: Barotrauma.Items.Components.ArithmeticComponent
 CS.Barotrauma.Items.Components.AdderComponent = {}
@@ -9577,10 +9921,14 @@ CS.Barotrauma.Items.Components.AdderComponent = {}
 ---@return System.Single
 function CS.Barotrauma.Items.Components.AdderComponent.Calculate(signal1, signal2) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.AdderComponent
-function CS.Barotrauma.Items.Components.AdderComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.AdderComponent = __ctor
+CS.Barotrauma.Items.Components.AdderComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.ArithmeticComponent: Barotrauma.Items.Components.ItemComponent
 ---@field ClampMax System.Single
@@ -9612,10 +9960,14 @@ function CS.Barotrauma.Items.Components.ArithmeticComponent.Calculate(signal1, s
 ---@param connection Barotrauma.Items.Components.Connection
 function CS.Barotrauma.Items.Components.ArithmeticComponent.ReceiveSignal(signal, connection) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.ArithmeticComponent
-function CS.Barotrauma.Items.Components.ArithmeticComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.ArithmeticComponent = __ctor
+CS.Barotrauma.Items.Components.ArithmeticComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.AndComponent: Barotrauma.Items.Components.BooleanOperatorComponent
 CS.Barotrauma.Items.Components.AndComponent = {}
@@ -9625,10 +9977,14 @@ CS.Barotrauma.Items.Components.AndComponent = {}
 ---@return System.Boolean
 function CS.Barotrauma.Items.Components.AndComponent.GetOutput(numTrueInputs) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.AndComponent
-function CS.Barotrauma.Items.Components.AndComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.AndComponent = __ctor
+CS.Barotrauma.Items.Components.AndComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.BooleanOperatorComponent: Barotrauma.Items.Components.ItemComponent
 ---@field TimeFrame System.Single
@@ -9680,10 +10036,14 @@ function CS.Barotrauma.Items.Components.BooleanOperatorComponent.Update(deltaTim
 ---@param connection Barotrauma.Items.Components.Connection
 function CS.Barotrauma.Items.Components.BooleanOperatorComponent.ReceiveSignal(signal, connection) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.BooleanOperatorComponent
-function CS.Barotrauma.Items.Components.BooleanOperatorComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.BooleanOperatorComponent = __ctor
+CS.Barotrauma.Items.Components.BooleanOperatorComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.OrComponent: Barotrauma.Items.Components.BooleanOperatorComponent
 CS.Barotrauma.Items.Components.OrComponent = {}
@@ -9693,10 +10053,14 @@ CS.Barotrauma.Items.Components.OrComponent = {}
 ---@return System.Boolean
 function CS.Barotrauma.Items.Components.OrComponent.GetOutput(numTrueInputs) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.OrComponent
-function CS.Barotrauma.Items.Components.OrComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.OrComponent = __ctor
+CS.Barotrauma.Items.Components.OrComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.XorComponent: Barotrauma.Items.Components.BooleanOperatorComponent
 CS.Barotrauma.Items.Components.XorComponent = {}
@@ -9706,10 +10070,14 @@ CS.Barotrauma.Items.Components.XorComponent = {}
 ---@return System.Boolean
 function CS.Barotrauma.Items.Components.XorComponent.GetOutput(numTrueInputs) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.XorComponent
-function CS.Barotrauma.Items.Components.XorComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.XorComponent = __ctor
+CS.Barotrauma.Items.Components.XorComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.ColorComponent: Barotrauma.Items.Components.ItemComponent
 ---@field UseHSV System.Boolean
@@ -9728,10 +10096,14 @@ function CS.Barotrauma.Items.Components.ColorComponent.UpdateOutput() end
 ---@param connection Barotrauma.Items.Components.Connection
 function CS.Barotrauma.Items.Components.ColorComponent.ReceiveSignal(signal, connection) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.ColorComponent
-function CS.Barotrauma.Items.Components.ColorComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.ColorComponent = __ctor
+CS.Barotrauma.Items.Components.ColorComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.ConcatComponent: Barotrauma.Items.Components.StringComponent
 ---@field MaxOutputLength System.Int32
@@ -9751,10 +10123,14 @@ function CS.Barotrauma.Items.Components.ConcatComponent.set_MaxOutputLength(valu
 ---@return System.String
 function CS.Barotrauma.Items.Components.ConcatComponent.Calculate(signal1, signal2) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.ConcatComponent
-function CS.Barotrauma.Items.Components.ConcatComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.ConcatComponent = __ctor
+CS.Barotrauma.Items.Components.ConcatComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.DelayComponent: Barotrauma.Items.Components.ItemComponent
 ---@field Delay System.Single
@@ -9781,10 +10157,14 @@ function CS.Barotrauma.Items.Components.DelayComponent.Update(deltaTime, cam) en
 ---@param connection Barotrauma.Items.Components.Connection
 function CS.Barotrauma.Items.Components.DelayComponent.ReceiveSignal(signal, connection) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.DelayComponent
-function CS.Barotrauma.Items.Components.DelayComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.DelayComponent = __ctor
+CS.Barotrauma.Items.Components.DelayComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.DemultiplexerComponent: Barotrauma.Items.Components.ConnectionSelectorComponent
 ---@field protected InputNameSetConnection System.String
@@ -9818,10 +10198,14 @@ function CS.Barotrauma.Items.Components.DemultiplexerComponent.GetConnectionName
 ---@return userdata | (fun(): Barotrauma.Items.Components.Connection)
 function CS.Barotrauma.Items.Components.DemultiplexerComponent.GetConnections() end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.DemultiplexerComponent
-function CS.Barotrauma.Items.Components.DemultiplexerComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.DemultiplexerComponent = __ctor
+CS.Barotrauma.Items.Components.DemultiplexerComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.DivideComponent: Barotrauma.Items.Components.ArithmeticComponent
 CS.Barotrauma.Items.Components.DivideComponent = {}
@@ -9832,10 +10216,14 @@ CS.Barotrauma.Items.Components.DivideComponent = {}
 ---@return System.Single
 function CS.Barotrauma.Items.Components.DivideComponent.Calculate(signal1, signal2) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.DivideComponent
-function CS.Barotrauma.Items.Components.DivideComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.DivideComponent = __ctor
+CS.Barotrauma.Items.Components.DivideComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.EqualsComponent: Barotrauma.Items.Components.ItemComponent
 ---@field MaxOutputLength System.Int32
@@ -9883,10 +10271,14 @@ function CS.Barotrauma.Items.Components.EqualsComponent.Update(deltaTime, cam) e
 ---@param connection Barotrauma.Items.Components.Connection
 function CS.Barotrauma.Items.Components.EqualsComponent.ReceiveSignal(signal, connection) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.EqualsComponent
-function CS.Barotrauma.Items.Components.EqualsComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.EqualsComponent = __ctor
+CS.Barotrauma.Items.Components.EqualsComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.ExponentiationComponent: Barotrauma.Items.Components.ItemComponent
 ---@field Exponent System.Single
@@ -9903,10 +10295,14 @@ function CS.Barotrauma.Items.Components.ExponentiationComponent.set_Exponent(val
 ---@param connection Barotrauma.Items.Components.Connection
 function CS.Barotrauma.Items.Components.ExponentiationComponent.ReceiveSignal(signal, connection) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.ExponentiationComponent
-function CS.Barotrauma.Items.Components.ExponentiationComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.ExponentiationComponent = __ctor
+CS.Barotrauma.Items.Components.ExponentiationComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.FunctionComponent: Barotrauma.Items.Components.ItemComponent
 ---@field Function Barotrauma.Items.Components.FunctionComponent.FunctionType
@@ -9916,10 +10312,14 @@ CS.Barotrauma.Items.Components.FunctionComponent = {}
 ---@param connection Barotrauma.Items.Components.Connection
 function CS.Barotrauma.Items.Components.FunctionComponent.ReceiveSignal(signal, connection) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.FunctionComponent
-function CS.Barotrauma.Items.Components.FunctionComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.FunctionComponent = __ctor
+CS.Barotrauma.Items.Components.FunctionComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.GreaterComponent: Barotrauma.Items.Components.EqualsComponent
 ---@field private val1 System.Single
@@ -9934,10 +10334,14 @@ function CS.Barotrauma.Items.Components.GreaterComponent.Update(deltaTime, cam) 
 ---@param connection Barotrauma.Items.Components.Connection
 function CS.Barotrauma.Items.Components.GreaterComponent.ReceiveSignal(signal, connection) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.GreaterComponent
-function CS.Barotrauma.Items.Components.GreaterComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.GreaterComponent = __ctor
+CS.Barotrauma.Items.Components.GreaterComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.ModuloComponent: Barotrauma.Items.Components.ItemComponent
 ---@field Modulus System.Single
@@ -9954,10 +10358,14 @@ function CS.Barotrauma.Items.Components.ModuloComponent.set_Modulus(value) end
 ---@param connection Barotrauma.Items.Components.Connection
 function CS.Barotrauma.Items.Components.ModuloComponent.ReceiveSignal(signal, connection) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.ModuloComponent
-function CS.Barotrauma.Items.Components.ModuloComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.ModuloComponent = __ctor
+CS.Barotrauma.Items.Components.ModuloComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.MultiplexerComponent: Barotrauma.Items.Components.ConnectionSelectorComponent
 ---@field protected InputNameSetConnection System.String
@@ -9991,10 +10399,14 @@ function CS.Barotrauma.Items.Components.MultiplexerComponent.GetConnectionName(c
 ---@return userdata | (fun(): Barotrauma.Items.Components.Connection)
 function CS.Barotrauma.Items.Components.MultiplexerComponent.GetConnections() end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.MultiplexerComponent
-function CS.Barotrauma.Items.Components.MultiplexerComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.MultiplexerComponent = __ctor
+CS.Barotrauma.Items.Components.MultiplexerComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.MultiplyComponent: Barotrauma.Items.Components.ArithmeticComponent
 CS.Barotrauma.Items.Components.MultiplyComponent = {}
@@ -10005,10 +10417,14 @@ CS.Barotrauma.Items.Components.MultiplyComponent = {}
 ---@return System.Single
 function CS.Barotrauma.Items.Components.MultiplyComponent.Calculate(signal1, signal2) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.MultiplyComponent
-function CS.Barotrauma.Items.Components.MultiplyComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.MultiplyComponent = __ctor
+CS.Barotrauma.Items.Components.MultiplyComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.NotComponent: Barotrauma.Items.Components.ItemComponent
 ---@field ContinuousOutput System.Boolean
@@ -10030,10 +10446,14 @@ function CS.Barotrauma.Items.Components.NotComponent.Update(deltaTime, cam) end
 ---@param connection Barotrauma.Items.Components.Connection
 function CS.Barotrauma.Items.Components.NotComponent.ReceiveSignal(signal, connection) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.NotComponent
-function CS.Barotrauma.Items.Components.NotComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.NotComponent = __ctor
+CS.Barotrauma.Items.Components.NotComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.OscillatorComponent: Barotrauma.Items.Components.ItemComponent
 ---@field OutputType Barotrauma.Items.Components.OscillatorComponent.WaveType
@@ -10056,10 +10476,14 @@ function CS.Barotrauma.Items.Components.OscillatorComponent.Update(deltaTime, ca
 ---@param connection Barotrauma.Items.Components.Connection
 function CS.Barotrauma.Items.Components.OscillatorComponent.ReceiveSignal(signal, connection) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.OscillatorComponent
-function CS.Barotrauma.Items.Components.OscillatorComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.OscillatorComponent = __ctor
+CS.Barotrauma.Items.Components.OscillatorComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.OxygenDetector: Barotrauma.Items.Components.ItemComponent
 ---@field OxygenSignal System.String
@@ -10071,10 +10495,14 @@ CS.Barotrauma.Items.Components.OxygenDetector = {}
 ---@param cam Barotrauma.Camera
 function CS.Barotrauma.Items.Components.OxygenDetector.Update(deltaTime, cam) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.OxygenDetector
-function CS.Barotrauma.Items.Components.OxygenDetector(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.OxygenDetector = __ctor
+CS.Barotrauma.Items.Components.OxygenDetector.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.RegExFindComponent: Barotrauma.Items.Components.ItemComponent
 ---@field MaxOutputLength System.Int32
@@ -10127,11 +10555,15 @@ function CS.Barotrauma.Items.Components.RegExFindComponent.Update(deltaTime, cam
 ---@param connection Barotrauma.Items.Components.Connection
 function CS.Barotrauma.Items.Components.RegExFindComponent.ReceiveSignal(signal, connection) end
 
+do
 ---@overload fun(): Barotrauma.Items.Components.RegExFindComponent
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.RegExFindComponent
-function CS.Barotrauma.Items.Components.RegExFindComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.RegExFindComponent = __ctor
+CS.Barotrauma.Items.Components.RegExFindComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.RelayComponent: Barotrauma.Items.Components.PowerTransfer
 ---@field protected Priority Barotrauma.Items.Components.PowerPriority
@@ -10224,11 +10656,15 @@ function CS.Barotrauma.Items.Components.RelayComponent.ServerEventWrite(msg, c, 
 ---@param sendingTime System.Single
 function CS.Barotrauma.Items.Components.RelayComponent.ClientEventRead(msg, sendingTime) end
 
+do
 ---@overload fun(): Barotrauma.Items.Components.RelayComponent
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.RelayComponent
-function CS.Barotrauma.Items.Components.RelayComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.RelayComponent = __ctor
+CS.Barotrauma.Items.Components.RelayComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Signal: System.ValueType
 ---@field TimeSinceCreated System.Double
@@ -10259,6 +10695,7 @@ function CS.Barotrauma.Items.Components.Signal.op_Equality(a, b) end
 ---@return System.Boolean
 function CS.Barotrauma.Items.Components.Signal.op_Inequality(a, b) end
 
+do
 ---@param value System.String
 ---@param stepsTaken? System.Int32
 ---@param sender? Barotrauma.Character
@@ -10266,7 +10703,10 @@ function CS.Barotrauma.Items.Components.Signal.op_Inequality(a, b) end
 ---@param power? System.Single
 ---@param strength? System.Single
 ---@return Barotrauma.Items.Components.Signal
-function CS.Barotrauma.Items.Components.Signal(value, stepsTaken, sender, source, power, strength) end
+local __ctor = function(value, stepsTaken, sender, source, power, strength) end
+CS.Barotrauma.Items.Components.Signal = __ctor
+CS.Barotrauma.Items.Components.Signal.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.SignalCheckComponent: Barotrauma.Items.Components.ItemComponent
 ---@field MaxOutputLength System.Int32
@@ -10300,10 +10740,14 @@ function CS.Barotrauma.Items.Components.SignalCheckComponent.set_FalseOutput(val
 ---@param connection Barotrauma.Items.Components.Connection
 function CS.Barotrauma.Items.Components.SignalCheckComponent.ReceiveSignal(signal, connection) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.SignalCheckComponent
-function CS.Barotrauma.Items.Components.SignalCheckComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.SignalCheckComponent = __ctor
+CS.Barotrauma.Items.Components.SignalCheckComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.SmokeDetector: Barotrauma.Items.Components.ItemComponent
 ---@field FireInRange System.Boolean
@@ -10343,10 +10787,14 @@ function CS.Barotrauma.Items.Components.SmokeDetector.IsFireInRange() end
 ---@param cam Barotrauma.Camera
 function CS.Barotrauma.Items.Components.SmokeDetector.Update(deltaTime, cam) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.SmokeDetector
-function CS.Barotrauma.Items.Components.SmokeDetector(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.SmokeDetector = __ctor
+CS.Barotrauma.Items.Components.SmokeDetector.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.StringComponent: Barotrauma.Items.Components.ItemComponent
 ---@field TimeFrame System.Single
@@ -10375,10 +10823,14 @@ function CS.Barotrauma.Items.Components.StringComponent.Calculate(signal1, signa
 ---@param connection Barotrauma.Items.Components.Connection
 function CS.Barotrauma.Items.Components.StringComponent.ReceiveSignal(signal, connection) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.StringComponent
-function CS.Barotrauma.Items.Components.StringComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.StringComponent = __ctor
+CS.Barotrauma.Items.Components.StringComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.SubtractComponent: Barotrauma.Items.Components.ArithmeticComponent
 CS.Barotrauma.Items.Components.SubtractComponent = {}
@@ -10389,10 +10841,14 @@ CS.Barotrauma.Items.Components.SubtractComponent = {}
 ---@return System.Single
 function CS.Barotrauma.Items.Components.SubtractComponent.Calculate(signal1, signal2) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.SubtractComponent
-function CS.Barotrauma.Items.Components.SubtractComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.SubtractComponent = __ctor
+CS.Barotrauma.Items.Components.SubtractComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.TerminalMessage: System.ValueType
 ---@field Text System.String
@@ -10404,11 +10860,15 @@ CS.Barotrauma.Items.Components.TerminalMessage = {}
 ---@param color Microsoft.Xna.Framework.Color
 function CS.Barotrauma.Items.Components.TerminalMessage.Deconstruct(text, color) end
 
+do
 ---@param text System.String
 ---@param color Microsoft.Xna.Framework.Color
 ---@param isWelcomeMessage System.Boolean
 ---@return Barotrauma.Items.Components.TerminalMessage
-function CS.Barotrauma.Items.Components.TerminalMessage(text, color, isWelcomeMessage) end
+local __ctor = function(text, color, isWelcomeMessage) end
+CS.Barotrauma.Items.Components.TerminalMessage = __ctor
+CS.Barotrauma.Items.Components.TerminalMessage.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.TrigonometricFunctionComponent: Barotrauma.Items.Components.ItemComponent
 ---@field Function Barotrauma.Items.Components.TrigonometricFunctionComponent.FunctionType
@@ -10426,10 +10886,14 @@ function CS.Barotrauma.Items.Components.TrigonometricFunctionComponent.Update(de
 ---@param connection Barotrauma.Items.Components.Connection
 function CS.Barotrauma.Items.Components.TrigonometricFunctionComponent.ReceiveSignal(signal, connection) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.TrigonometricFunctionComponent
-function CS.Barotrauma.Items.Components.TrigonometricFunctionComponent(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.TrigonometricFunctionComponent = __ctor
+CS.Barotrauma.Items.Components.TrigonometricFunctionComponent.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.WaterDetector: Barotrauma.Items.Components.ItemComponent
 ---@field MaxOutputLength System.Int32
@@ -10479,10 +10943,14 @@ function CS.Barotrauma.Items.Components.WaterDetector.GetWaterPercentage(hull) e
 ---@param cam Barotrauma.Camera
 function CS.Barotrauma.Items.Components.WaterDetector.Update(deltaTime, cam) end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Items.Components.WaterDetector
-function CS.Barotrauma.Items.Components.WaterDetector(item, element) end
+local __ctor = function(item, element) end
+CS.Barotrauma.Items.Components.WaterDetector = __ctor
+CS.Barotrauma.Items.Components.WaterDetector.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.ElectricalDischarger.Node: System.ValueType
 ---@field WorldPosition Microsoft.Xna.Framework.Vector2
@@ -10491,12 +10959,16 @@ function CS.Barotrauma.Items.Components.WaterDetector(item, element) end
 ---@field Angle System.Single
 CS.Barotrauma.Items.Components.ElectricalDischarger.Node = {}
 
+do
 ---@param worldPosition Microsoft.Xna.Framework.Vector2
 ---@param parentIndex System.Int32
 ---@param length? System.Single
 ---@param angle? System.Single
 ---@return Barotrauma.Items.Components.ElectricalDischarger.Node
-function CS.Barotrauma.Items.Components.ElectricalDischarger.Node(worldPosition, parentIndex, length, angle) end
+local __ctor = function(worldPosition, parentIndex, length, angle) end
+CS.Barotrauma.Items.Components.ElectricalDischarger.Node = __ctor
+CS.Barotrauma.Items.Components.ElectricalDischarger.Node.__new = __ctor
+end
 
 ---@enum Barotrauma.Items.Components.EntitySpawnerComponent.AreaShape
 CS.Barotrauma.Items.Components.EntitySpawnerComponent.AreaShape = {
@@ -10516,10 +10988,14 @@ CS.Barotrauma.Items.Components.GeneticMaterial.CombineResult = {
 ---@field Attacher Barotrauma.Character
 CS.Barotrauma.Items.Components.Holdable.AttachEventData = {}
 
+do
 ---@param attachPos Microsoft.Xna.Framework.Vector2
 ---@param attacher Barotrauma.Character
 ---@return Barotrauma.Items.Components.Holdable.AttachEventData
-function CS.Barotrauma.Items.Components.Holdable.AttachEventData(attachPos, attacher) end
+local __ctor = function(attachPos, attacher) end
+CS.Barotrauma.Items.Components.Holdable.AttachEventData = __ctor
+CS.Barotrauma.Items.Components.Holdable.AttachEventData.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.IdCard.OwnerAppearance: System.ValueType
 ---@field Portrait Barotrauma.Sprite
@@ -10562,18 +11038,26 @@ function CS.Barotrauma.Items.Components.ItemComponent.GUILayoutSettings.Load(ele
 ---@param target Barotrauma.RectTransform
 function CS.Barotrauma.Items.Components.ItemComponent.GUILayoutSettings.ApplyTo(target) end
 
+do
 ---@return Barotrauma.Items.Components.ItemComponent.GUILayoutSettings
-function CS.Barotrauma.Items.Components.ItemComponent.GUILayoutSettings() end
+local __ctor = function() end
+CS.Barotrauma.Items.Components.ItemComponent.GUILayoutSettings = __ctor
+CS.Barotrauma.Items.Components.ItemComponent.GUILayoutSettings.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.ItemComponent.ItemUseInfo: System.ValueType
 ---@field Item Barotrauma.Item
 ---@field User Barotrauma.Character
 CS.Barotrauma.Items.Components.ItemComponent.ItemUseInfo = {}
 
+do
 ---@param Item Barotrauma.Item
 ---@param User Barotrauma.Character
 ---@return Barotrauma.Items.Components.ItemComponent.ItemUseInfo
-function CS.Barotrauma.Items.Components.ItemComponent.ItemUseInfo(Item, User) end
+local __ctor = function(Item, User) end
+CS.Barotrauma.Items.Components.ItemComponent.ItemUseInfo = __ctor
+CS.Barotrauma.Items.Components.ItemComponent.ItemUseInfo.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.ItemComponent.IEventData
 CS.Barotrauma.Items.Components.ItemComponent.IEventData = {}
@@ -10587,13 +11071,17 @@ CS.Barotrauma.Items.Components.ItemComponent.IEventData = {}
 ---@field BlameEquipperForDeath System.Boolean
 CS.Barotrauma.Items.Components.ItemContainer.ActiveContainedItem = {}
 
+do
 ---@param Item Barotrauma.Item
 ---@param StatusEffect Barotrauma.StatusEffect
 ---@param ExcludeBroken System.Boolean
 ---@param ExcludeFullCondition System.Boolean
 ---@param BlameEquipperForDeath System.Boolean
 ---@return Barotrauma.Items.Components.ItemContainer.ActiveContainedItem
-function CS.Barotrauma.Items.Components.ItemContainer.ActiveContainedItem(Item, StatusEffect, ExcludeBroken, ExcludeFullCondition, BlameEquipperForDeath) end
+local __ctor = function(Item, StatusEffect, ExcludeBroken, ExcludeFullCondition, BlameEquipperForDeath) end
+CS.Barotrauma.Items.Components.ItemContainer.ActiveContainedItem = __ctor
+CS.Barotrauma.Items.Components.ItemContainer.ActiveContainedItem.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.ItemContainer.ContainedItem: System.ValueType
 ---@field Item Barotrauma.Item
@@ -10602,12 +11090,16 @@ function CS.Barotrauma.Items.Components.ItemContainer.ActiveContainedItem(Item, 
 ---@field Rotation System.Single
 CS.Barotrauma.Items.Components.ItemContainer.ContainedItem = {}
 
+do
 ---@param Item Barotrauma.Item
 ---@param Hide System.Boolean
 ---@param ItemPos Microsoft.Xna.Framework.Vector2|nil
 ---@param Rotation System.Single
 ---@return Barotrauma.Items.Components.ItemContainer.ContainedItem
-function CS.Barotrauma.Items.Components.ItemContainer.ContainedItem(Item, Hide, ItemPos, Rotation) end
+local __ctor = function(Item, Hide, ItemPos, Rotation) end
+CS.Barotrauma.Items.Components.ItemContainer.ContainedItem = __ctor
+CS.Barotrauma.Items.Components.ItemContainer.ContainedItem.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.ItemContainer.SlotRestrictions: System.Object
 ---@field MaxStackSize System.Int32
@@ -10621,11 +11113,15 @@ CS.Barotrauma.Items.Components.ItemContainer.SlotRestrictions = {}
 ---@return System.Boolean
 function CS.Barotrauma.Items.Components.ItemContainer.SlotRestrictions.MatchesItem(item) end
 
+do
 ---@param maxStackSize System.Int32
 ---@param containableItems userdata | { [System.Int32]: Barotrauma.RelatedItem } | (fun(): Barotrauma.RelatedItem)
 ---@param autoInject System.Boolean
 ---@return Barotrauma.Items.Components.ItemContainer.SlotRestrictions
-function CS.Barotrauma.Items.Components.ItemContainer.SlotRestrictions(maxStackSize, containableItems, autoInject) end
+local __ctor = function(maxStackSize, containableItems, autoInject) end
+CS.Barotrauma.Items.Components.ItemContainer.SlotRestrictions = __ctor
+CS.Barotrauma.Items.Components.ItemContainer.SlotRestrictions.__new = __ctor
+end
 
 ---@enum Barotrauma.Items.Components.Controller.UseEnvironment
 CS.Barotrauma.Items.Components.Controller.UseEnvironment = {
@@ -10647,8 +11143,12 @@ CS.Barotrauma.Items.Components.Fabricator.SortBy = {
 ---@field Tooltip Barotrauma.LocalizedString
 CS.Barotrauma.Items.Components.Fabricator.ToolTip = {}
 
+do
 ---@return Barotrauma.Items.Components.Fabricator.ToolTip
-function CS.Barotrauma.Items.Components.Fabricator.ToolTip() end
+local __ctor = function() end
+CS.Barotrauma.Items.Components.Fabricator.ToolTip = __ctor
+CS.Barotrauma.Items.Components.Fabricator.ToolTip.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Fabricator.SelectedRecipe: System.ValueType
 ---@field User Barotrauma.Character
@@ -10656,11 +11156,15 @@ function CS.Barotrauma.Items.Components.Fabricator.ToolTip() end
 ---@field OverrideRequiredTime userdata
 CS.Barotrauma.Items.Components.Fabricator.SelectedRecipe = {}
 
+do
 ---@param User Barotrauma.Character
 ---@param SelectedItem Barotrauma.FabricationRecipe
 ---@param OverrideRequiredTime userdata
 ---@return Barotrauma.Items.Components.Fabricator.SelectedRecipe
-function CS.Barotrauma.Items.Components.Fabricator.SelectedRecipe(User, SelectedItem, OverrideRequiredTime) end
+local __ctor = function(User, SelectedItem, OverrideRequiredTime) end
+CS.Barotrauma.Items.Components.Fabricator.SelectedRecipe = __ctor
+CS.Barotrauma.Items.Components.Fabricator.SelectedRecipe.__new = __ctor
+end
 
 ---@enum Barotrauma.Items.Components.Fabricator.FabricatorState
 CS.Barotrauma.Items.Components.Fabricator.FabricatorState = {
@@ -10692,41 +11196,57 @@ function CS.Barotrauma.Items.Components.Fabricator.QualityResult.get_TotalPlusTw
 ---@return System.Int32
 function CS.Barotrauma.Items.Components.Fabricator.QualityResult.RollQuality() end
 
+do
 ---@overload fun(): Barotrauma.Items.Components.Fabricator.QualityResult
 ---@param Quality System.Int32
 ---@param HasRandomQuality System.Boolean
 ---@param PlusOnePercentage System.Single
 ---@param PlusTwoPercentage System.Single
 ---@return Barotrauma.Items.Components.Fabricator.QualityResult
-function CS.Barotrauma.Items.Components.Fabricator.QualityResult(Quality, HasRandomQuality, PlusOnePercentage, PlusTwoPercentage) end
+local __ctor = function(Quality, HasRandomQuality, PlusOnePercentage, PlusTwoPercentage) end
+CS.Barotrauma.Items.Components.Fabricator.QualityResult = __ctor
+CS.Barotrauma.Items.Components.Fabricator.QualityResult.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Fabricator.AbilityFabricatorSkillGain: Barotrauma.Abilities.AbilityObject
 ---@field Value System.Single
 ---@field SkillIdentifier Barotrauma.Identifier
 CS.Barotrauma.Items.Components.Fabricator.AbilityFabricatorSkillGain = {}
 
+do
 ---@param skillIdentifier Barotrauma.Identifier
 ---@param skillAmount System.Single
 ---@return Barotrauma.Items.Components.Fabricator.AbilityFabricatorSkillGain
-function CS.Barotrauma.Items.Components.Fabricator.AbilityFabricatorSkillGain(skillIdentifier, skillAmount) end
+local __ctor = function(skillIdentifier, skillAmount) end
+CS.Barotrauma.Items.Components.Fabricator.AbilityFabricatorSkillGain = __ctor
+CS.Barotrauma.Items.Components.Fabricator.AbilityFabricatorSkillGain.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Fabricator.AbilityFabricationItemAmount: Barotrauma.Abilities.AbilityObject
 ---@field Value System.Single
 ---@field ItemPrefab Barotrauma.ItemPrefab
 CS.Barotrauma.Items.Components.Fabricator.AbilityFabricationItemAmount = {}
 
+do
 ---@param itemPrefab Barotrauma.ItemPrefab
 ---@param itemAmount System.Single
 ---@return Barotrauma.Items.Components.Fabricator.AbilityFabricationItemAmount
-function CS.Barotrauma.Items.Components.Fabricator.AbilityFabricationItemAmount(itemPrefab, itemAmount) end
+local __ctor = function(itemPrefab, itemAmount) end
+CS.Barotrauma.Items.Components.Fabricator.AbilityFabricationItemAmount = __ctor
+CS.Barotrauma.Items.Components.Fabricator.AbilityFabricationItemAmount.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Fabricator.AbilityFabricationItemIngredients: Barotrauma.Abilities.AbilityObject
 ---@field Items userdata | { [System.Int32]: Barotrauma.Item } | (fun(): Barotrauma.Item)
 CS.Barotrauma.Items.Components.Fabricator.AbilityFabricationItemIngredients = {}
 
+do
 ---@param items userdata | { [System.Int32]: Barotrauma.Item } | (fun(): Barotrauma.Item)
 ---@return Barotrauma.Items.Components.Fabricator.AbilityFabricationItemIngredients
-function CS.Barotrauma.Items.Components.Fabricator.AbilityFabricationItemIngredients(items) end
+local __ctor = function(items) end
+CS.Barotrauma.Items.Components.Fabricator.AbilityFabricationItemIngredients = __ctor
+CS.Barotrauma.Items.Components.Fabricator.AbilityFabricationItemIngredients.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.MiniMap.HullData: System.Object
 ---@field HullOxygenAmount System.Single|nil
@@ -10741,8 +11261,12 @@ function CS.Barotrauma.Items.Components.Fabricator.AbilityFabricationItemIngredi
 ---@field LinkedHulls userdata | { [System.Int32]: Barotrauma.Hull } | (fun(): Barotrauma.Hull)
 CS.Barotrauma.Items.Components.MiniMap.HullData = {}
 
+do
 ---@return Barotrauma.Items.Components.MiniMap.HullData
-function CS.Barotrauma.Items.Components.MiniMap.HullData() end
+local __ctor = function() end
+CS.Barotrauma.Items.Components.MiniMap.HullData = __ctor
+CS.Barotrauma.Items.Components.MiniMap.HullData.__new = __ctor
+end
 
 ---@enum Barotrauma.Items.Components.Reactor.InfographicArrowStyle
 CS.Barotrauma.Items.Components.Reactor.InfographicArrowStyle = {
@@ -10771,11 +11295,15 @@ CS.Barotrauma.Items.Components.Sonar.Mode = {
 ---@field DisconnectTimer System.Single
 CS.Barotrauma.Items.Components.Sonar.ConnectedTransducer = {}
 
+do
 ---@param transducer Barotrauma.Items.Components.SonarTransducer
 ---@param signalStrength System.Single
 ---@param disconnectTimer System.Single
 ---@return Barotrauma.Items.Components.Sonar.ConnectedTransducer
-function CS.Barotrauma.Items.Components.Sonar.ConnectedTransducer(transducer, signalStrength, disconnectTimer) end
+local __ctor = function(transducer, signalStrength, disconnectTimer) end
+CS.Barotrauma.Items.Components.Sonar.ConnectedTransducer = __ctor
+CS.Barotrauma.Items.Components.Sonar.ConnectedTransducer.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Sonar.ActivePing: System.Object
 ---@field State System.Single
@@ -10784,8 +11312,12 @@ function CS.Barotrauma.Items.Components.Sonar.ConnectedTransducer(transducer, si
 ---@field PrevPingRadius System.Single
 CS.Barotrauma.Items.Components.Sonar.ActivePing = {}
 
+do
 ---@return Barotrauma.Items.Components.Sonar.ActivePing
-function CS.Barotrauma.Items.Components.Sonar.ActivePing() end
+local __ctor = function() end
+CS.Barotrauma.Items.Components.Sonar.ActivePing = __ctor
+CS.Barotrauma.Items.Components.Sonar.ActivePing.__new = __ctor
+end
 
 ---@enum Barotrauma.Items.Components.Steering.Destination
 CS.Barotrauma.Items.Components.Steering.Destination = {
@@ -10802,13 +11334,17 @@ CS.Barotrauma.Items.Components.Steering.Destination = {
 ---@field AvoidStrength Microsoft.Xna.Framework.Vector2
 CS.Barotrauma.Items.Components.Steering.ObstacleDebugInfo = {}
 
+do
 ---@param edge Voronoi2.GraphEdge
 ---@param intersection Microsoft.Xna.Framework.Vector2|nil
 ---@param dot System.Single
 ---@param avoidStrength Microsoft.Xna.Framework.Vector2
 ---@param translation Microsoft.Xna.Framework.Vector2
 ---@return Barotrauma.Items.Components.Steering.ObstacleDebugInfo
-function CS.Barotrauma.Items.Components.Steering.ObstacleDebugInfo(edge, intersection, dot, avoidStrength, translation) end
+local __ctor = function(edge, intersection, dot, avoidStrength, translation) end
+CS.Barotrauma.Items.Components.Steering.ObstacleDebugInfo = __ctor
+CS.Barotrauma.Items.Components.Steering.ObstacleDebugInfo.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.PowerDistributor.PowerGroup: System.Object
 ---@field IsVisible System.Boolean
@@ -10867,13 +11403,17 @@ function CS.Barotrauma.Items.Components.PowerDistributor.PowerGroup.ReceiveRatio
 
 function CS.Barotrauma.Items.Components.PowerDistributor.PowerGroup.SendRatioSignal() end
 
+do
 ---@param distributor Barotrauma.Items.Components.PowerDistributor
 ---@param power Barotrauma.Items.Components.Connection
 ---@param element? System.Xml.Linq.XElement
 ---@param ratioInput? Barotrauma.Items.Components.Connection
 ---@param ratioOutput? Barotrauma.Items.Components.Connection
 ---@return Barotrauma.Items.Components.PowerDistributor.PowerGroup
-function CS.Barotrauma.Items.Components.PowerDistributor.PowerGroup(distributor, power, element, ratioInput, ratioOutput) end
+local __ctor = function(distributor, power, element, ratioInput, ratioOutput) end
+CS.Barotrauma.Items.Components.PowerDistributor.PowerGroup = __ctor
+CS.Barotrauma.Items.Components.PowerDistributor.PowerGroup.__new = __ctor
+end
 
 ---@enum Barotrauma.Items.Components.PowerDistributor.EventType
 CS.Barotrauma.Items.Components.PowerDistributor.EventType = {
@@ -10886,10 +11426,14 @@ CS.Barotrauma.Items.Components.PowerDistributor.EventType = {
 ---@field EventType Barotrauma.Items.Components.PowerDistributor.EventType
 CS.Barotrauma.Items.Components.PowerDistributor.EventData = {}
 
+do
 ---@param PowerGroup Barotrauma.Items.Components.PowerDistributor.PowerGroup
 ---@param EventType Barotrauma.Items.Components.PowerDistributor.EventType
 ---@return Barotrauma.Items.Components.PowerDistributor.EventData
-function CS.Barotrauma.Items.Components.PowerDistributor.EventData(PowerGroup, EventType) end
+local __ctor = function(PowerGroup, EventType) end
+CS.Barotrauma.Items.Components.PowerDistributor.EventData = __ctor
+CS.Barotrauma.Items.Components.PowerDistributor.EventData.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Projectile.HitscanResult: System.ValueType
 ---@field Fixture FarseerPhysics.Dynamics.Fixture
@@ -10899,13 +11443,17 @@ function CS.Barotrauma.Items.Components.PowerDistributor.EventData(PowerGroup, E
 ---@field Submarine Barotrauma.Submarine
 CS.Barotrauma.Items.Components.Projectile.HitscanResult = {}
 
+do
 ---@param fixture FarseerPhysics.Dynamics.Fixture
 ---@param point Microsoft.Xna.Framework.Vector2
 ---@param normal Microsoft.Xna.Framework.Vector2
 ---@param fraction System.Single
 ---@param sub Barotrauma.Submarine
 ---@return Barotrauma.Items.Components.Projectile.HitscanResult
-function CS.Barotrauma.Items.Components.Projectile.HitscanResult(fixture, point, normal, fraction, sub) end
+local __ctor = function(fixture, point, normal, fraction, sub) end
+CS.Barotrauma.Items.Components.Projectile.HitscanResult = __ctor
+CS.Barotrauma.Items.Components.Projectile.HitscanResult.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Projectile.Impact: System.ValueType
 ---@field Fixture FarseerPhysics.Dynamics.Fixture
@@ -10913,11 +11461,15 @@ function CS.Barotrauma.Items.Components.Projectile.HitscanResult(fixture, point,
 ---@field LinearVelocity Microsoft.Xna.Framework.Vector2
 CS.Barotrauma.Items.Components.Projectile.Impact = {}
 
+do
 ---@param fixture FarseerPhysics.Dynamics.Fixture
 ---@param normal Microsoft.Xna.Framework.Vector2
 ---@param velocity Microsoft.Xna.Framework.Vector2
 ---@return Barotrauma.Items.Components.Projectile.Impact
-function CS.Barotrauma.Items.Components.Projectile.Impact(fixture, normal, velocity) end
+local __ctor = function(fixture, normal, velocity) end
+CS.Barotrauma.Items.Components.Projectile.Impact = __ctor
+CS.Barotrauma.Items.Components.Projectile.Impact.__new = __ctor
+end
 
 ---@enum Barotrauma.Items.Components.Projectile.StickTargetType
 CS.Barotrauma.Items.Components.Projectile.StickTargetType = {
@@ -10964,9 +11516,13 @@ CS.Barotrauma.Items.Components.RepairTool.UseEnvironment = {
 ---@field SignalIndex System.Int32
 CS.Barotrauma.Items.Components.ButtonTerminal.EventData = {}
 
+do
 ---@param signalIndex System.Int32
 ---@return Barotrauma.Items.Components.ButtonTerminal.EventData
-function CS.Barotrauma.Items.Components.ButtonTerminal.EventData(signalIndex) end
+local __ctor = function(signalIndex) end
+CS.Barotrauma.Items.Components.ButtonTerminal.EventData = __ctor
+CS.Barotrauma.Items.Components.ButtonTerminal.EventData.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.CircuitBox.CreatedWire: System.ValueType
 ---@field Start Barotrauma.CircuitBoxConnectorIdentifier
@@ -10975,20 +11531,28 @@ function CS.Barotrauma.Items.Components.ButtonTerminal.EventData(signalIndex) en
 ---@field ID System.UInt16
 CS.Barotrauma.Items.Components.CircuitBox.CreatedWire = {}
 
+do
 ---@param Start Barotrauma.CircuitBoxConnectorIdentifier
 ---@param __End__ Barotrauma.CircuitBoxConnectorIdentifier
 ---@param Item userdata
 ---@param ID System.UInt16
 ---@return Barotrauma.Items.Components.CircuitBox.CreatedWire
-function CS.Barotrauma.Items.Components.CircuitBox.CreatedWire(Start, __End__, Item, ID) end
+local __ctor = function(Start, __End__, Item, ID) end
+CS.Barotrauma.Items.Components.CircuitBox.CreatedWire = __ctor
+CS.Barotrauma.Items.Components.CircuitBox.CreatedWire.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.CustomInterface.EventData: System.ValueType
 ---@field BtnElement Barotrauma.Items.Components.CustomInterface.CustomInterfaceElement
 CS.Barotrauma.Items.Components.CustomInterface.EventData = {}
 
+do
 ---@param btnElement Barotrauma.Items.Components.CustomInterface.CustomInterfaceElement
 ---@return Barotrauma.Items.Components.CustomInterface.EventData
-function CS.Barotrauma.Items.Components.CustomInterface.EventData(btnElement) end
+local __ctor = function(btnElement) end
+CS.Barotrauma.Items.Components.CustomInterface.EventData = __ctor
+CS.Barotrauma.Items.Components.CustomInterface.EventData.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.CustomInterface.CustomInterfaceElement: System.Object
 ---@field Label System.String
@@ -11023,12 +11587,16 @@ CS.Barotrauma.Items.Components.CustomInterface.CustomInterfaceElement = {}
 ---@return System.String
 function CS.Barotrauma.Items.Components.CustomInterface.CustomInterfaceElement.get_Name() end
 
+do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement
 ---@param parent Barotrauma.Items.Components.CustomInterface
 ---@param inputType Barotrauma.Items.Components.CustomInterface.CustomInterfaceElement.InputTypeOption
 ---@return Barotrauma.Items.Components.CustomInterface.CustomInterfaceElement
-function CS.Barotrauma.Items.Components.CustomInterface.CustomInterfaceElement(item, element, parent, inputType) end
+local __ctor = function(item, element, parent, inputType) end
+CS.Barotrauma.Items.Components.CustomInterface.CustomInterfaceElement = __ctor
+CS.Barotrauma.Items.Components.CustomInterface.CustomInterfaceElement.__new = __ctor
+end
 
 ---@enum Barotrauma.Items.Components.MotionSensor.TargetType
 CS.Barotrauma.Items.Components.MotionSensor.TargetType = {
@@ -11043,17 +11611,25 @@ CS.Barotrauma.Items.Components.MotionSensor.TargetType = {
 ---@field Text System.String
 CS.Barotrauma.Items.Components.Terminal.ClientEventData = {}
 
+do
 ---@param text System.String
 ---@return Barotrauma.Items.Components.Terminal.ClientEventData
-function CS.Barotrauma.Items.Components.Terminal.ClientEventData(text) end
+local __ctor = function(text) end
+CS.Barotrauma.Items.Components.Terminal.ClientEventData = __ctor
+CS.Barotrauma.Items.Components.Terminal.ClientEventData.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Wire.ClientEventData: System.ValueType
 ---@field NodeCount System.Int32
 CS.Barotrauma.Items.Components.Wire.ClientEventData = {}
 
+do
 ---@param nodeCount System.Int32
 ---@return Barotrauma.Items.Components.Wire.ClientEventData
-function CS.Barotrauma.Items.Components.Wire.ClientEventData(nodeCount) end
+local __ctor = function(nodeCount) end
+CS.Barotrauma.Items.Components.Wire.ClientEventData = __ctor
+CS.Barotrauma.Items.Components.Wire.ClientEventData.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Wire.WireSection: System.Object
 ---@field Start Microsoft.Xna.Framework.Vector2
@@ -11095,10 +11671,14 @@ function CS.Barotrauma.Items.Components.Wire.WireSection.get_Start() end
 ---@return Microsoft.Xna.Framework.Vector2
 function CS.Barotrauma.Items.Components.Wire.WireSection.get_End() end
 
+do
 ---@param start Microsoft.Xna.Framework.Vector2
 ---@param __end__ Microsoft.Xna.Framework.Vector2
 ---@return Barotrauma.Items.Components.Wire.WireSection
-function CS.Barotrauma.Items.Components.Wire.WireSection(start, __end__) end
+local __ctor = function(start, __end__) end
+CS.Barotrauma.Items.Components.Wire.WireSection = __ctor
+CS.Barotrauma.Items.Components.Wire.WireSection.__new = __ctor
+end
 
 ---@class Barotrauma.Items.Components.Wire.VisualSignal: System.ValueType
 ---@field TimeSent System.Single
@@ -11106,11 +11686,15 @@ function CS.Barotrauma.Items.Components.Wire.WireSection(start, __end__) end
 ---@field Direction System.Int32
 CS.Barotrauma.Items.Components.Wire.VisualSignal = {}
 
+do
 ---@param TimeSent System.Single
 ---@param Color Microsoft.Xna.Framework.Color
 ---@param Direction System.Int32
 ---@return Barotrauma.Items.Components.Wire.VisualSignal
-function CS.Barotrauma.Items.Components.Wire.VisualSignal(TimeSent, Color, Direction) end
+local __ctor = function(TimeSent, Color, Direction) end
+CS.Barotrauma.Items.Components.Wire.VisualSignal = __ctor
+CS.Barotrauma.Items.Components.Wire.VisualSignal.__new = __ctor
+end
 
 ---@enum Barotrauma.Items.Components.Turret.ChargingState
 CS.Barotrauma.Items.Components.Turret.ChargingState = {
@@ -11132,10 +11716,14 @@ CS.Barotrauma.Items.Components.Turret.TeamType = {
 ---@field Projectile Barotrauma.Item
 CS.Barotrauma.Items.Components.Turret.EventData = {}
 
+do
 ---@param projectile Barotrauma.Item
 ---@param turret Barotrauma.Items.Components.Turret
 ---@return Barotrauma.Items.Components.Turret.EventData
-function CS.Barotrauma.Items.Components.Turret.EventData(projectile, turret) end
+local __ctor = function(projectile, turret) end
+CS.Barotrauma.Items.Components.Turret.EventData = __ctor
+CS.Barotrauma.Items.Components.Turret.EventData.__new = __ctor
+end
 
 ---@enum Barotrauma.Items.Components.DockingPort.DirectionType
 CS.Barotrauma.Items.Components.DockingPort.DirectionType = {
@@ -11174,10 +11762,14 @@ CS.Barotrauma.Items.Components.Throwable.ThrowState = {
 ---@field SendDuration System.Int32
 CS.Barotrauma.Items.Components.DelayComponent.DelayedSignal = {}
 
+do
 ---@param signal Barotrauma.Items.Components.Signal
 ---@param sendTimer System.Int32
 ---@return Barotrauma.Items.Components.DelayComponent.DelayedSignal
-function CS.Barotrauma.Items.Components.DelayComponent.DelayedSignal(signal, sendTimer) end
+local __ctor = function(signal, sendTimer) end
+CS.Barotrauma.Items.Components.DelayComponent.DelayedSignal = __ctor
+CS.Barotrauma.Items.Components.DelayComponent.DelayedSignal.__new = __ctor
+end
 
 ---@enum Barotrauma.Items.Components.FunctionComponent.FunctionType
 CS.Barotrauma.Items.Components.FunctionComponent.FunctionType = {

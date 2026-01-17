@@ -276,6 +276,7 @@ function CS.System.Text.StringBuilder.MakeRoom(index, count, chunk, indexInChunk
 ---@param indexInChunk System.Int32
 function CS.System.Text.StringBuilder.Remove(startIndex, count, chunk, indexInChunk) end
 
+do
 ---@overload fun(capacity: System.Int32): System.Text.StringBuilder
 ---@overload fun(value: System.String): System.Text.StringBuilder
 ---@overload fun(value: System.String, capacity: System.Int32): System.Text.StringBuilder
@@ -285,5 +286,8 @@ function CS.System.Text.StringBuilder.Remove(startIndex, count, chunk, indexInCh
 ---@overload fun(from: System.Text.StringBuilder): System.Text.StringBuilder
 ---@overload fun(size: System.Int32, maxCapacity: System.Int32, previousBlock: System.Text.StringBuilder): System.Text.StringBuilder
 ---@return System.Text.StringBuilder
-function CS.System.Text.StringBuilder() end
+local __ctor = function() end
+CS.System.Text.StringBuilder = __ctor
+CS.System.Text.StringBuilder.__new = __ctor
+end
 

@@ -247,13 +247,17 @@ function CS.Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.CollidesWithWo
 ---@return System.Boolean
 function CS.Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.LineCollides(point1, point2) end
 
+do
 ---@overload fun(): Barotrauma.MapCreatures.Behavior.BallastFloraBehavior
 ---@param parent Barotrauma.Hull
 ---@param prefab Barotrauma.BallastFloraPrefab
 ---@param offset Microsoft.Xna.Framework.Vector2
 ---@param firstGrowth? System.Boolean
 ---@return Barotrauma.MapCreatures.Behavior.BallastFloraBehavior
-function CS.Barotrauma.MapCreatures.Behavior.BallastFloraBehavior(parent, prefab, offset, firstGrowth) end
+local __ctor = function(parent, prefab, offset, firstGrowth) end
+CS.Barotrauma.MapCreatures.Behavior.BallastFloraBehavior = __ctor
+CS.Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.__new = __ctor
+end
 
 ---@class Barotrauma.MapCreatures.Behavior.BallastFloraBranch: Barotrauma.Items.Components.VineTile
 ---@field Health System.Single
@@ -302,6 +306,7 @@ function CS.Barotrauma.MapCreatures.Behavior.BallastFloraBranch.UpdateHealth() e
 ---@param delay System.Single
 function CS.Barotrauma.MapCreatures.Behavior.BallastFloraBranch.UpdatePulse(deltaTime, inflateSpeed, deflateSpeed, delay) end
 
+do
 ---@param parent Barotrauma.MapCreatures.Behavior.BallastFloraBehavior
 ---@param parentBranch Barotrauma.MapCreatures.Behavior.BallastFloraBranch
 ---@param position Microsoft.Xna.Framework.Vector2
@@ -310,7 +315,10 @@ function CS.Barotrauma.MapCreatures.Behavior.BallastFloraBranch.UpdatePulse(delt
 ---@param leafConfig? Barotrauma.Items.Components.FoliageConfig|nil
 ---@param rect? Microsoft.Xna.Framework.Rectangle|nil
 ---@return Barotrauma.MapCreatures.Behavior.BallastFloraBranch
-function CS.Barotrauma.MapCreatures.Behavior.BallastFloraBranch(parent, parentBranch, position, type, flowerConfig, leafConfig, rect) end
+local __ctor = function(parent, parentBranch, position, type, flowerConfig, leafConfig, rect) end
+CS.Barotrauma.MapCreatures.Behavior.BallastFloraBranch = __ctor
+CS.Barotrauma.MapCreatures.Behavior.BallastFloraBranch.__new = __ctor
+end
 
 ---@class Barotrauma.MapCreatures.Behavior.BallastFloraStateMachine: System.Object
 ---@field private parent Barotrauma.MapCreatures.Behavior.BallastFloraBehavior
@@ -324,9 +332,13 @@ function CS.Barotrauma.MapCreatures.Behavior.BallastFloraStateMachine.EnterState
 ---@param deltaTime System.Single
 function CS.Barotrauma.MapCreatures.Behavior.BallastFloraStateMachine.Update(deltaTime) end
 
+do
 ---@param parent Barotrauma.MapCreatures.Behavior.BallastFloraBehavior
 ---@return Barotrauma.MapCreatures.Behavior.BallastFloraStateMachine
-function CS.Barotrauma.MapCreatures.Behavior.BallastFloraStateMachine(parent) end
+local __ctor = function(parent) end
+CS.Barotrauma.MapCreatures.Behavior.BallastFloraStateMachine = __ctor
+CS.Barotrauma.MapCreatures.Behavior.BallastFloraStateMachine.__new = __ctor
+end
 
 ---@class Barotrauma.MapCreatures.Behavior.DefendWithPumpState: System.Object
 ---@field private targetBranch Barotrauma.MapCreatures.Behavior.BallastFloraBranch
@@ -355,11 +367,15 @@ function CS.Barotrauma.MapCreatures.Behavior.DefendWithPumpState.SetPump(pump) e
 ---@param deltaTime System.Single
 function CS.Barotrauma.MapCreatures.Behavior.DefendWithPumpState.Update(deltaTime) end
 
+do
 ---@param branch Barotrauma.MapCreatures.Behavior.BallastFloraBranch
 ---@param items userdata | (fun(): Barotrauma.Item)
 ---@param attacker Barotrauma.Character
 ---@return Barotrauma.MapCreatures.Behavior.DefendWithPumpState
-function CS.Barotrauma.MapCreatures.Behavior.DefendWithPumpState(branch, items, attacker) end
+local __ctor = function(branch, items, attacker) end
+CS.Barotrauma.MapCreatures.Behavior.DefendWithPumpState = __ctor
+CS.Barotrauma.MapCreatures.Behavior.DefendWithPumpState.__new = __ctor
+end
 
 ---@class Barotrauma.MapCreatures.Behavior.GrowIdleState: System.Object
 ---@field Behavior Barotrauma.MapCreatures.Behavior.BallastFloraBehavior
@@ -395,9 +411,13 @@ function CS.Barotrauma.MapCreatures.Behavior.GrowIdleState.GrowRandomly() end
 ---@return Barotrauma.Item
 function CS.Barotrauma.MapCreatures.Behavior.GrowIdleState.ScanForTargets(branch) end
 
+do
 ---@param behavior Barotrauma.MapCreatures.Behavior.BallastFloraBehavior
 ---@return Barotrauma.MapCreatures.Behavior.GrowIdleState
-function CS.Barotrauma.MapCreatures.Behavior.GrowIdleState(behavior) end
+local __ctor = function(behavior) end
+CS.Barotrauma.MapCreatures.Behavior.GrowIdleState = __ctor
+CS.Barotrauma.MapCreatures.Behavior.GrowIdleState.__new = __ctor
+end
 
 ---@class Barotrauma.MapCreatures.Behavior.GrowToTargetState: Barotrauma.MapCreatures.Behavior.GrowIdleState
 ---@field TargetBranches userdata | { [System.Int32]: Barotrauma.MapCreatures.Behavior.BallastFloraBranch } | (fun(): Barotrauma.MapCreatures.Behavior.BallastFloraBranch)
@@ -422,11 +442,15 @@ function CS.Barotrauma.MapCreatures.Behavior.GrowToTargetState.GrowTowardsTarget
 ---@return Barotrauma.Items.Components.TileSide
 function CS.Barotrauma.MapCreatures.Behavior.GrowToTargetState.GetClosestSide(tile, targetPos) end
 
+do
 ---@param behavior Barotrauma.MapCreatures.Behavior.BallastFloraBehavior
 ---@param starter Barotrauma.MapCreatures.Behavior.BallastFloraBranch
 ---@param target Barotrauma.Item
 ---@return Barotrauma.MapCreatures.Behavior.GrowToTargetState
-function CS.Barotrauma.MapCreatures.Behavior.GrowToTargetState(behavior, starter, target) end
+local __ctor = function(behavior, starter, target) end
+CS.Barotrauma.MapCreatures.Behavior.GrowToTargetState = __ctor
+CS.Barotrauma.MapCreatures.Behavior.GrowToTargetState.__new = __ctor
+end
 
 ---@enum Barotrauma.MapCreatures.Behavior.ExitState
 CS.Barotrauma.MapCreatures.Behavior.ExitState = {
@@ -477,9 +501,13 @@ CS.Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.AITarget = {}
 ---@return System.Boolean
 function CS.Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.AITarget.Matches(item) end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.AITarget
-function CS.Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.AITarget(element) end
+local __ctor = function(element) end
+CS.Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.AITarget = __ctor
+CS.Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.AITarget.__new = __ctor
+end
 
 ---@class Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.IEventData
 ---@field NetworkHeader Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.NetworkHeader
@@ -522,10 +550,14 @@ CS.Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.BranchCreateEventData =
 ---@return Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.NetworkHeader
 function CS.Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.BranchCreateEventData.get_NetworkHeader() end
 
+do
 ---@param newBranch Barotrauma.MapCreatures.Behavior.BallastFloraBranch
 ---@param parent Barotrauma.MapCreatures.Behavior.BallastFloraBranch
 ---@return Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.BranchCreateEventData
-function CS.Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.BranchCreateEventData(newBranch, parent) end
+local __ctor = function(newBranch, parent) end
+CS.Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.BranchCreateEventData = __ctor
+CS.Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.BranchCreateEventData.__new = __ctor
+end
 
 ---@class Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.BranchRemoveEventData: System.ValueType
 ---@field NetworkHeader Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.NetworkHeader
@@ -535,9 +567,13 @@ CS.Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.BranchRemoveEventData =
 ---@return Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.NetworkHeader
 function CS.Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.BranchRemoveEventData.get_NetworkHeader() end
 
+do
 ---@param branch Barotrauma.MapCreatures.Behavior.BallastFloraBranch
 ---@return Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.BranchRemoveEventData
-function CS.Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.BranchRemoveEventData(branch) end
+local __ctor = function(branch) end
+CS.Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.BranchRemoveEventData = __ctor
+CS.Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.BranchRemoveEventData.__new = __ctor
+end
 
 ---@class Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.BranchDamageEventData: System.ValueType
 ---@field NetworkHeader Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.NetworkHeader
@@ -547,9 +583,13 @@ CS.Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.BranchDamageEventData =
 ---@return Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.NetworkHeader
 function CS.Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.BranchDamageEventData.get_NetworkHeader() end
 
+do
 ---@param branch Barotrauma.MapCreatures.Behavior.BallastFloraBranch
 ---@return Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.BranchDamageEventData
-function CS.Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.BranchDamageEventData(branch) end
+local __ctor = function(branch) end
+CS.Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.BranchDamageEventData = __ctor
+CS.Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.BranchDamageEventData.__new = __ctor
+end
 
 ---@class Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.InfectEventData: System.ValueType
 ---@field NetworkHeader Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.NetworkHeader
@@ -561,11 +601,15 @@ CS.Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.InfectEventData = {}
 ---@return Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.NetworkHeader
 function CS.Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.InfectEventData.get_NetworkHeader() end
 
+do
 ---@param item Barotrauma.Item
 ---@param infect Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.InfectEventData.InfectState
 ---@param infector Barotrauma.MapCreatures.Behavior.BallastFloraBranch
 ---@return Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.InfectEventData
-function CS.Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.InfectEventData(item, infect, infector) end
+local __ctor = function(item, infect, infector) end
+CS.Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.InfectEventData = __ctor
+CS.Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.InfectEventData.__new = __ctor
+end
 
 ---@enum Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.InfectEventData.InfectState
 CS.Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.InfectEventData.InfectState = {

@@ -109,12 +109,16 @@ function CS.FarseerPhysics.Dynamics.Fixture.CloneOnto(body) end
 ---@return FarseerPhysics.Dynamics.Fixture
 function CS.FarseerPhysics.Dynamics.Fixture.CloneOnto(body, shape) end
 
+do
 ---@package
 ---@overload fun(shape: FarseerPhysics.Collision.Shapes.Shape, collisionCategory: FarseerPhysics.Dynamics.Category, collidesWith: FarseerPhysics.Dynamics.Category): FarseerPhysics.Dynamics.Fixture
 ---@param collisionCategory FarseerPhysics.Dynamics.Category
 ---@param collidesWith FarseerPhysics.Dynamics.Category
 ---@return FarseerPhysics.Dynamics.Fixture
-function CS.FarseerPhysics.Dynamics.Fixture(collisionCategory, collidesWith) end
+local __ctor = function(collisionCategory, collidesWith) end
+CS.FarseerPhysics.Dynamics.Fixture = __ctor
+CS.FarseerPhysics.Dynamics.Fixture.__new = __ctor
+end
 
 ---@class FarseerPhysics.Dynamics.World: System.Object
 ---@field Fluid FarseerPhysics.Fluids.FluidSystem2
@@ -439,8 +443,12 @@ function CS.FarseerPhysics.Dynamics.World.CreateSolidArc(density, radians, sides
 ---@return FarseerPhysics.Common.Path
 function CS.FarseerPhysics.Dynamics.World.CreateChain(start, __end__, linkWidth, linkHeight, numberOfLinks, linkDensity, attachRopeJoint) end
 
+do
 ---@overload fun(gravity: Microsoft.Xna.Framework.Vector2): FarseerPhysics.Dynamics.World
 ---@overload fun(broadPhase: FarseerPhysics.Collision.IBroadPhase): FarseerPhysics.Dynamics.World
 ---@return FarseerPhysics.Dynamics.World
-function CS.FarseerPhysics.Dynamics.World() end
+local __ctor = function() end
+CS.FarseerPhysics.Dynamics.World = __ctor
+CS.FarseerPhysics.Dynamics.World.__new = __ctor
+end
 

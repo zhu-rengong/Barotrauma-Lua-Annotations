@@ -96,9 +96,13 @@ function CS.Microsoft.Xna.Framework.Graphics.SpriteBatch.DrawString(spriteFont, 
 ---@param disposing System.Boolean
 function CS.Microsoft.Xna.Framework.Graphics.SpriteBatch.Dispose(disposing) end
 
+do
 ---@param graphicsDevice Microsoft.Xna.Framework.Graphics.GraphicsDevice
 ---@return Microsoft.Xna.Framework.Graphics.SpriteBatch
-function CS.Microsoft.Xna.Framework.Graphics.SpriteBatch(graphicsDevice) end
+local __ctor = function(graphicsDevice) end
+CS.Microsoft.Xna.Framework.Graphics.SpriteBatch = __ctor
+CS.Microsoft.Xna.Framework.Graphics.SpriteBatch.__new = __ctor
+end
 
 ---@class Microsoft.Xna.Framework.Graphics.Texture2D: Microsoft.Xna.Framework.Graphics.Texture
 ---@field package TexelWidth System.Single
@@ -248,6 +252,7 @@ function CS.Microsoft.Xna.Framework.Graphics.Texture2D.GetTextureSampleDescripti
 ---@param textureStream System.IO.Stream
 function CS.Microsoft.Xna.Framework.Graphics.Texture2D.PlatformReload(textureStream) end
 
+do
 ---@overload fun(graphicsDevice: Microsoft.Xna.Framework.Graphics.GraphicsDevice, width: System.Int32, height: System.Int32, mipmap: System.Boolean, format: Microsoft.Xna.Framework.Graphics.SurfaceFormat): Microsoft.Xna.Framework.Graphics.Texture2D
 ---@overload fun(graphicsDevice: Microsoft.Xna.Framework.Graphics.GraphicsDevice, width: System.Int32, height: System.Int32, mipmap: System.Boolean, format: Microsoft.Xna.Framework.Graphics.SurfaceFormat, arraySize: System.Int32): Microsoft.Xna.Framework.Graphics.Texture2D
 ---@overload fun(graphicsDevice: Microsoft.Xna.Framework.Graphics.GraphicsDevice, width: System.Int32, height: System.Int32, mipmap: System.Boolean, format: Microsoft.Xna.Framework.Graphics.SurfaceFormat, type: Microsoft.Xna.Framework.Graphics.Texture2D.SurfaceType): Microsoft.Xna.Framework.Graphics.Texture2D
@@ -256,5 +261,8 @@ function CS.Microsoft.Xna.Framework.Graphics.Texture2D.PlatformReload(textureStr
 ---@param width System.Int32
 ---@param height System.Int32
 ---@return Microsoft.Xna.Framework.Graphics.Texture2D
-function CS.Microsoft.Xna.Framework.Graphics.Texture2D(graphicsDevice, width, height) end
+local __ctor = function(graphicsDevice, width, height) end
+CS.Microsoft.Xna.Framework.Graphics.Texture2D = __ctor
+CS.Microsoft.Xna.Framework.Graphics.Texture2D.__new = __ctor
+end
 

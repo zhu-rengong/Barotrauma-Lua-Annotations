@@ -295,7 +295,11 @@ function CS.System.Console.Write(format, arg0) end
 ---@param ctx System.Runtime.InteropServices.PosixSignalContext
 function CS.System.Console.HandlePosixSignal(ctx) end
 
+do
 ---@private
 ---@return System.Console
-function CS.System.Console() end
+local __ctor = function() end
+CS.System.Console = __ctor
+CS.System.Console.__new = __ctor
+end
 

@@ -157,9 +157,13 @@ function CS.Barotrauma.Camera.GetZoomAmount(offset) end
 ---@return System.Single
 function CS.Barotrauma.Camera.GetZoomAmountFromPrevious() end
 
+do
 ---@overload fun(): Barotrauma.Camera
 ---@return Barotrauma.Camera
-function CS.Barotrauma.Camera() end
+local __ctor = function() end
+CS.Barotrauma.Camera = __ctor
+CS.Barotrauma.Camera.__new = __ctor
+end
 
 ---@class Barotrauma.AICharacter: Barotrauma.Character
 ---@field AIController Barotrauma.AIController
@@ -180,6 +184,7 @@ function CS.Barotrauma.AICharacter.SetAI(aiController) end
 ---@param cam Barotrauma.Camera
 function CS.Barotrauma.AICharacter.Update(deltaTime, cam) end
 
+do
 ---@param prefab Barotrauma.CharacterPrefab
 ---@param position Microsoft.Xna.Framework.Vector2
 ---@param seed System.String
@@ -189,7 +194,10 @@ function CS.Barotrauma.AICharacter.Update(deltaTime, cam) end
 ---@param ragdoll? Barotrauma.RagdollParams
 ---@param spawnInitialItems? System.Boolean
 ---@return Barotrauma.AICharacter
-function CS.Barotrauma.AICharacter(prefab, position, seed, characterInfo, id, isNetworkPlayer, ragdoll, spawnInitialItems) end
+local __ctor = function(prefab, position, seed, characterInfo, id, isNetworkPlayer, ragdoll, spawnInitialItems) end
+CS.Barotrauma.AICharacter = __ctor
+CS.Barotrauma.AICharacter.__new = __ctor
+end
 
 ---@class Barotrauma.AIController: System.Object
 ---@field SelectedAiTarget Barotrauma.AITarget
@@ -394,9 +402,13 @@ function CS.Barotrauma.AIController.OnStateChanged(from, to) end
 ---@param newTarget Barotrauma.AITarget
 function CS.Barotrauma.AIController.OnTargetChanged(previousTarget, newTarget) end
 
+do
 ---@param c Barotrauma.Character
 ---@return Barotrauma.AIController
-function CS.Barotrauma.AIController(c) end
+local __ctor = function(c) end
+CS.Barotrauma.AIController = __ctor
+CS.Barotrauma.AIController.__new = __ctor
+end
 
 ---@class Barotrauma.AITarget: System.Object
 ---@field Entity Barotrauma.Entity
@@ -506,12 +518,16 @@ function CS.Barotrauma.AITarget.Remove() end
 
 function CS.Barotrauma.AITarget.Reset() end
 
+do
 ---@overload fun(e: Barotrauma.Entity): Barotrauma.AITarget
 ---@overload fun(): Barotrauma.AITarget
 ---@param e Barotrauma.Entity
 ---@param element System.Xml.Linq.XElement
 ---@return Barotrauma.AITarget
-function CS.Barotrauma.AITarget(e, element) end
+local __ctor = function(e, element) end
+CS.Barotrauma.AITarget = __ctor
+CS.Barotrauma.AITarget.__new = __ctor
+end
 
 ---@class Barotrauma.EnemyAIController: Barotrauma.AIController
 ---@field State Barotrauma.AIState
@@ -1031,10 +1047,14 @@ function CS.Barotrauma.EnemyAIController.GetTargetLimb(attackLimb, target, targe
 ---@return Barotrauma.Character
 function CS.Barotrauma.EnemyAIController.GetOwner(item) end
 
+do
 ---@param c Barotrauma.Character
 ---@param seed System.String
 ---@return Barotrauma.EnemyAIController
-function CS.Barotrauma.EnemyAIController(c, seed) end
+local __ctor = function(c, seed) end
+CS.Barotrauma.EnemyAIController = __ctor
+CS.Barotrauma.EnemyAIController.__new = __ctor
+end
 
 ---@class Barotrauma.HumanAIController: Barotrauma.AIController
 ---@field SortTimer System.Single
@@ -1428,10 +1448,14 @@ function CS.Barotrauma.HumanAIController.IsTrueForAllBotsInTheCrew(predicate) en
 ---@return System.Int32
 function CS.Barotrauma.HumanAIController.CountBotsInTheCrew(predicate) end
 
+do
 ---@overload fun(): Barotrauma.HumanAIController
 ---@param c Barotrauma.Character
 ---@return Barotrauma.HumanAIController
-function CS.Barotrauma.HumanAIController(c) end
+local __ctor = function(c) end
+CS.Barotrauma.HumanAIController = __ctor
+CS.Barotrauma.HumanAIController.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjective: System.Object
 ---@field ObjectiveIconColor Microsoft.Xna.Framework.Color
@@ -1720,12 +1744,16 @@ function CS.Barotrauma.AIObjective.CanEquip(item, allowWearing) end
 ---@return System.Boolean
 function CS.Barotrauma.AIObjective.IsDuplicate(otherObjective) end
 
+do
 ---@param character Barotrauma.Character
 ---@param objectiveManager Barotrauma.AIObjectiveManager
 ---@param priorityModifier System.Single
 ---@param option? Barotrauma.Identifier
 ---@return Barotrauma.AIObjective
-function CS.Barotrauma.AIObjective(character, objectiveManager, priorityModifier, option) end
+local __ctor = function(character, objectiveManager, priorityModifier, option) end
+CS.Barotrauma.AIObjective = __ctor
+CS.Barotrauma.AIObjective.__new = __ctor
+end
 
 ---@class Barotrauma.Ragdoll: System.Object
 ---@field SpriteDeformations userdata | (fun(): Barotrauma.SpriteDeformations.SpriteDeformation)
@@ -2206,12 +2234,16 @@ function CS.Barotrauma.Ragdoll.Remove() end
 
 function CS.Barotrauma.Ragdoll.RemoveAll() end
 
+do
 ---@overload fun(): Barotrauma.Ragdoll
 ---@param character Barotrauma.Character
 ---@param seed System.String
 ---@param ragdollParams? Barotrauma.RagdollParams
 ---@return Barotrauma.Ragdoll
-function CS.Barotrauma.Ragdoll(character, seed, ragdollParams) end
+local __ctor = function(character, seed, ragdollParams) end
+CS.Barotrauma.Ragdoll = __ctor
+CS.Barotrauma.Ragdoll.__new = __ctor
+end
 
 ---@class Barotrauma.Attack: System.Object
 ---@field StructureSoundType System.String
@@ -2459,6 +2491,7 @@ function CS.Barotrauma.Attack.GetAttackTargetTypeFromEntity(entity) end
 ---@return Microsoft.Xna.Framework.Vector2
 function CS.Barotrauma.Attack.CalculateAttackPhase(easing) end
 
+do
 ---@overload fun(element: Barotrauma.ContentXElement, parentDebugName: System.String, sourceItem: Barotrauma.Item): Barotrauma.Attack
 ---@overload fun(element: Barotrauma.ContentXElement, parentDebugName: System.String): Barotrauma.Attack
 ---@param damage System.Single
@@ -2468,7 +2501,10 @@ function CS.Barotrauma.Attack.CalculateAttackPhase(easing) end
 ---@param itemDamage System.Single
 ---@param range? System.Single
 ---@return Barotrauma.Attack
-function CS.Barotrauma.Attack(damage, bleedingDamage, burnDamage, structureDamage, itemDamage, range) end
+local __ctor = function(damage, bleedingDamage, burnDamage, structureDamage, itemDamage, range) end
+CS.Barotrauma.Attack = __ctor
+CS.Barotrauma.Attack.__new = __ctor
+end
 
 ---@class Barotrauma.Character: Barotrauma.Entity
 ---@field IsVisible System.Boolean
@@ -4228,6 +4264,7 @@ function CS.Barotrauma.Character.ResetNetState() end
 ---@private
 function CS.Barotrauma.Character.UpdateNetInput() end
 
+do
 ---@protected
 ---@overload fun(): Barotrauma.Character
 ---@param prefab Barotrauma.CharacterPrefab
@@ -4239,7 +4276,10 @@ function CS.Barotrauma.Character.UpdateNetInput() end
 ---@param ragdollParams? Barotrauma.RagdollParams
 ---@param spawnInitialItems? System.Boolean
 ---@return Barotrauma.Character
-function CS.Barotrauma.Character(prefab, position, seed, characterInfo, id, isRemotePlayer, ragdollParams, spawnInitialItems) end
+local __ctor = function(prefab, position, seed, characterInfo, id, isRemotePlayer, ragdollParams, spawnInitialItems) end
+CS.Barotrauma.Character = __ctor
+CS.Barotrauma.Character.__new = __ctor
+end
 
 ---@class Barotrauma.CharacterHUD: System.Object
 ---@field HUDFrame Barotrauma.GUIFrame
@@ -4355,9 +4395,13 @@ function CS.Barotrauma.CharacterHUD.RecreateHudTextsIfControlling(character) end
 ---@param ... Barotrauma.Item
 function CS.Barotrauma.CharacterHUD.RecreateHudTextsIfFocused(...) end
 
+do
 ---@overload fun(): Barotrauma.CharacterHUD
 ---@return Barotrauma.CharacterHUD
-function CS.Barotrauma.CharacterHUD() end
+local __ctor = function() end
+CS.Barotrauma.CharacterHUD = __ctor
+CS.Barotrauma.CharacterHUD.__new = __ctor
+end
 
 ---@class Barotrauma.CharacterInfo: System.Object
 ---@field CrewListIndex System.Int32
@@ -4988,6 +5032,7 @@ function CS.Barotrauma.CharacterInfo.GetSavedStatValueWithBotsInMp(statType, sta
 ---@param setValue? System.Boolean
 function CS.Barotrauma.CharacterInfo.ChangeSavedStatValue(statType, value, statIdentifier, removeOnDeath, maxValue, setValue) end
 
+do
 ---@overload fun(infoElement: Barotrauma.ContentXElement, npcIdentifier?: Barotrauma.Identifier): Barotrauma.CharacterInfo
 ---@overload fun(): Barotrauma.CharacterInfo
 ---@param speciesName Barotrauma.Identifier
@@ -4998,7 +5043,10 @@ function CS.Barotrauma.CharacterInfo.ChangeSavedStatValue(statType, value, statI
 ---@param randSync? Barotrauma.Rand.RandSync
 ---@param npcIdentifier? Barotrauma.Identifier
 ---@return Barotrauma.CharacterInfo
-function CS.Barotrauma.CharacterInfo(speciesName, name, originalName, jobOrJobPrefab, variant, randSync, npcIdentifier) end
+local __ctor = function(speciesName, name, originalName, jobOrJobPrefab, variant, randSync, npcIdentifier) end
+CS.Barotrauma.CharacterInfo = __ctor
+CS.Barotrauma.CharacterInfo.__new = __ctor
+end
 
 ---@class Barotrauma.CharacterSound: System.Object
 ---@field Type Barotrauma.CharacterSound.SoundType
@@ -5029,9 +5077,13 @@ function CS.Barotrauma.CharacterSound.get_Sound() end
 ---@return System.Boolean
 function CS.Barotrauma.CharacterSound.get_IgnoreMuffling() end
 
+do
 ---@param soundParams Barotrauma.CharacterParams.SoundParams
 ---@return Barotrauma.CharacterSound
-function CS.Barotrauma.CharacterSound(soundParams) end
+local __ctor = function(soundParams) end
+CS.Barotrauma.CharacterSound = __ctor
+CS.Barotrauma.CharacterSound.__new = __ctor
+end
 
 ---@class Barotrauma.AfflictionPsychosis: Barotrauma.Affliction
 ---@field CurrentFloodType Barotrauma.AfflictionPsychosis.FloodType
@@ -5096,10 +5148,14 @@ function CS.Barotrauma.AfflictionPsychosis.Update(characterHealth, targetLimb, d
 ---@param deltaTime System.Single
 function CS.Barotrauma.AfflictionPsychosis.UpdateProjSpecific(characterHealth, targetLimb, deltaTime) end
 
+do
 ---@param prefab Barotrauma.AfflictionPrefab
 ---@param strength System.Single
 ---@return Barotrauma.AfflictionPsychosis
-function CS.Barotrauma.AfflictionPsychosis(prefab, strength) end
+local __ctor = function(prefab, strength) end
+CS.Barotrauma.AfflictionPsychosis = __ctor
+CS.Barotrauma.AfflictionPsychosis.__new = __ctor
+end
 
 ---@class Barotrauma.CharacterHealth: System.Object
 ---@field DamageOverlay Barotrauma.Sprite
@@ -5692,11 +5748,15 @@ function CS.Barotrauma.CharacterHealth.Save(healthElement) end
 ---@param afflictionPredicate? fun(arg: Barotrauma.AfflictionPrefab): System.Boolean
 function CS.Barotrauma.CharacterHealth.Load(element, afflictionPredicate) end
 
+do
 ---@overload fun(element: Barotrauma.ContentXElement, character: Barotrauma.Character, limbHealthElement?: Barotrauma.ContentXElement): Barotrauma.CharacterHealth
 ---@overload fun(): Barotrauma.CharacterHealth
 ---@param character Barotrauma.Character
 ---@return Barotrauma.CharacterHealth
-function CS.Barotrauma.CharacterHealth(character) end
+local __ctor = function(character) end
+CS.Barotrauma.CharacterHealth = __ctor
+CS.Barotrauma.CharacterHealth.__new = __ctor
+end
 
 ---@class Barotrauma.DamageModifier: System.Object
 ---@field DamageSound System.String
@@ -5767,11 +5827,15 @@ function CS.Barotrauma.DamageModifier.Serialize(element) end
 ---@param element System.Xml.Linq.XElement
 function CS.Barotrauma.DamageModifier.Deserialize(element) end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param parentDebugName System.String
 ---@param checkErrors? System.Boolean
 ---@return Barotrauma.DamageModifier
-function CS.Barotrauma.DamageModifier(element, parentDebugName, checkErrors) end
+local __ctor = function(element, parentDebugName, checkErrors) end
+CS.Barotrauma.DamageModifier = __ctor
+CS.Barotrauma.DamageModifier.__new = __ctor
+end
 
 ---@class Barotrauma.HUDProgressBar: System.Object
 ---@field Progress System.Single
@@ -5813,12 +5877,16 @@ function CS.Barotrauma.HUDProgressBar.Update(deltatime) end
 ---@param cam Barotrauma.Camera
 function CS.Barotrauma.HUDProgressBar.Draw(spriteBatch, cam) end
 
+do
 ---@overload fun(worldPosition: Microsoft.Xna.Framework.Vector2, parentSubmarine: Barotrauma.Submarine, emptyColor: Microsoft.Xna.Framework.Color, fullColor: Microsoft.Xna.Framework.Color, textTag: System.String): Barotrauma.HUDProgressBar
 ---@param worldPosition Microsoft.Xna.Framework.Vector2
 ---@param textTag System.String
 ---@param parentSubmarine? Barotrauma.Submarine
 ---@return Barotrauma.HUDProgressBar
-function CS.Barotrauma.HUDProgressBar(worldPosition, textTag, parentSubmarine) end
+local __ctor = function(worldPosition, textTag, parentSubmarine) end
+CS.Barotrauma.HUDProgressBar = __ctor
+CS.Barotrauma.HUDProgressBar.__new = __ctor
+end
 
 ---@class Barotrauma.JobPrefab: Barotrauma.PrefabWithUintIdentifier
 ---@field ItemRepairPriorities userdata | { [Barotrauma.Identifier]: System.Single } | (fun(): userdata)
@@ -5886,11 +5954,15 @@ function CS.Barotrauma.JobPrefab.get_PrimarySkill() end
 ---@return Barotrauma.JobPrefab
 function CS.Barotrauma.JobPrefab.Random(sync, predicate) end
 
+do
 ---@overload fun(): Barotrauma.JobPrefab
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.JobsFile
 ---@return Barotrauma.JobPrefab
-function CS.Barotrauma.JobPrefab(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.JobPrefab = __ctor
+CS.Barotrauma.JobPrefab.__new = __ctor
+end
 
 ---@class Barotrauma.LimbJoint: System.Object
 ---@field CanBeSevered System.Boolean
@@ -5990,13 +6062,17 @@ function CS.Barotrauma.LimbJoint.get_JointAngle() end
 
 function CS.Barotrauma.LimbJoint.LoadParams() end
 
+do
 ---@overload fun(limbA: Barotrauma.Limb, limbB: Barotrauma.Limb, anchor1: Microsoft.Xna.Framework.Vector2, anchor2: Microsoft.Xna.Framework.Vector2, weld?: System.Boolean): Barotrauma.LimbJoint
 ---@param limbA Barotrauma.Limb
 ---@param limbB Barotrauma.Limb
 ---@param jointParams Barotrauma.RagdollParams.JointParams
 ---@param ragdoll Barotrauma.Ragdoll
 ---@return Barotrauma.LimbJoint
-function CS.Barotrauma.LimbJoint(limbA, limbB, jointParams, ragdoll) end
+local __ctor = function(limbA, limbB, jointParams, ragdoll) end
+CS.Barotrauma.LimbJoint = __ctor
+CS.Barotrauma.LimbJoint.__new = __ctor
+end
 
 ---@class Barotrauma.Limb: System.Object
 ---@field private Deformations userdata | { [System.Int32]: Barotrauma.SpriteDeformations.SpriteDeformation } | (fun(): Barotrauma.SpriteDeformations.SpriteDeformation)
@@ -6494,11 +6570,15 @@ function CS.Barotrauma.Limb.LoadParams() end
 ---@private
 function CS.Barotrauma.Limb.LoadParamsProjSpecific() end
 
+do
 ---@param ragdoll Barotrauma.Ragdoll
 ---@param character Barotrauma.Character
 ---@param limbParams Barotrauma.RagdollParams.LimbParams
 ---@return Barotrauma.Limb
-function CS.Barotrauma.Limb(ragdoll, character, limbParams) end
+local __ctor = function(ragdoll, character, limbParams) end
+CS.Barotrauma.Limb = __ctor
+CS.Barotrauma.Limb.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxComponent: Barotrauma.CircuitBoxNode
 ---@field private Sprite Barotrauma.Sprite
@@ -6542,6 +6622,7 @@ function CS.Barotrauma.CircuitBoxComponent.Save() end
 
 function CS.Barotrauma.CircuitBoxComponent.Remove() end
 
+do
 ---@overload fun(): Barotrauma.CircuitBoxComponent
 ---@param id System.UInt16
 ---@param item Barotrauma.Item
@@ -6549,7 +6630,10 @@ function CS.Barotrauma.CircuitBoxComponent.Remove() end
 ---@param circuitBox Barotrauma.Items.Components.CircuitBox
 ---@param usedResource Barotrauma.ItemPrefab
 ---@return Barotrauma.CircuitBoxComponent
-function CS.Barotrauma.CircuitBoxComponent(id, item, position, circuitBox, usedResource) end
+local __ctor = function(id, item, position, circuitBox, usedResource) end
+CS.Barotrauma.CircuitBoxComponent = __ctor
+CS.Barotrauma.CircuitBoxComponent.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxConnection: System.Object
 ---@field Name System.String
@@ -6615,13 +6699,17 @@ function CS.Barotrauma.CircuitBoxConnection.ReceiveSignal(signal) end
 ---@return System.Boolean
 function CS.Barotrauma.CircuitBoxConnection.Contains(pos) end
 
+do
 ---@protected
 ---@overload fun(): Barotrauma.CircuitBoxConnection
 ---@param position Microsoft.Xna.Framework.Vector2
 ---@param connection Barotrauma.Items.Components.Connection
 ---@param circuitBox Barotrauma.Items.Components.CircuitBox
 ---@return Barotrauma.CircuitBoxConnection
-function CS.Barotrauma.CircuitBoxConnection(position, connection, circuitBox) end
+local __ctor = function(position, connection, circuitBox) end
+CS.Barotrauma.CircuitBoxConnection = __ctor
+CS.Barotrauma.CircuitBoxConnection.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxInputOutputNode: Barotrauma.CircuitBoxNode
 ---@field NodeType Barotrauma.CircuitBoxInputOutputNode.Type
@@ -6650,12 +6738,16 @@ function CS.Barotrauma.CircuitBoxInputOutputNode.Save() end
 ---@param element Barotrauma.ContentXElement
 function CS.Barotrauma.CircuitBoxInputOutputNode.Load(element) end
 
+do
 ---@param conns userdata | { [System.Int32]: Barotrauma.CircuitBoxConnection } | (fun(): Barotrauma.CircuitBoxConnection)
 ---@param initialPosition Microsoft.Xna.Framework.Vector2
 ---@param type Barotrauma.CircuitBoxInputOutputNode.Type
 ---@param circuitBox Barotrauma.Items.Components.CircuitBox
 ---@return Barotrauma.CircuitBoxInputOutputNode
-function CS.Barotrauma.CircuitBoxInputOutputNode(conns, initialPosition, type, circuitBox) end
+local __ctor = function(conns, initialPosition, type, circuitBox) end
+CS.Barotrauma.CircuitBoxInputOutputNode = __ctor
+CS.Barotrauma.CircuitBoxInputOutputNode.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxLabel: System.ValueType
 ---@field Value Barotrauma.LocalizedString
@@ -6663,10 +6755,14 @@ function CS.Barotrauma.CircuitBoxInputOutputNode(conns, initialPosition, type, c
 ---@field Font Barotrauma.GUIFont
 CS.Barotrauma.CircuitBoxLabel = {}
 
+do
 ---@param value Barotrauma.LocalizedString
 ---@param font Barotrauma.GUIFont
 ---@return Barotrauma.CircuitBoxLabel
-function CS.Barotrauma.CircuitBoxLabel(value, font) end
+local __ctor = function(value, font) end
+CS.Barotrauma.CircuitBoxLabel = __ctor
+CS.Barotrauma.CircuitBoxLabel.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxLabelNode: Barotrauma.CircuitBoxNode
 ---@field ID System.UInt16
@@ -6722,13 +6818,17 @@ function CS.Barotrauma.CircuitBoxLabelNode.Save() end
 ---@return Barotrauma.CircuitBoxLabelNode
 function CS.Barotrauma.CircuitBoxLabelNode.LoadFromXML(element, circuitBox) end
 
+do
 ---@overload fun(): Barotrauma.CircuitBoxLabelNode
 ---@param id System.UInt16
 ---@param color Microsoft.Xna.Framework.Color
 ---@param pos Microsoft.Xna.Framework.Vector2
 ---@param circuitBox Barotrauma.Items.Components.CircuitBox
 ---@return Barotrauma.CircuitBoxLabelNode
-function CS.Barotrauma.CircuitBoxLabelNode(id, color, pos, circuitBox) end
+local __ctor = function(id, color, pos, circuitBox) end
+CS.Barotrauma.CircuitBoxLabelNode = __ctor
+CS.Barotrauma.CircuitBoxLabelNode.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxMouseDragSnapshotHandler: System.Object
 ---@field Nodes userdata | (fun(): Barotrauma.CircuitBoxNode)
@@ -6804,9 +6904,13 @@ function CS.Barotrauma.CircuitBoxMouseDragSnapshotHandler.EndDragging() end
 ---@param cursorPos Microsoft.Xna.Framework.Vector2
 function CS.Barotrauma.CircuitBoxMouseDragSnapshotHandler.UpdateDrag(cursorPos) end
 
+do
 ---@param ui Barotrauma.CircuitBoxUI
 ---@return Barotrauma.CircuitBoxMouseDragSnapshotHandler
-function CS.Barotrauma.CircuitBoxMouseDragSnapshotHandler(ui) end
+local __ctor = function(ui) end
+CS.Barotrauma.CircuitBoxMouseDragSnapshotHandler = __ctor
+CS.Barotrauma.CircuitBoxMouseDragSnapshotHandler.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxNode: Barotrauma.CircuitBoxSelectable
 ---@field IsResizable System.Boolean
@@ -6893,10 +6997,14 @@ function CS.Barotrauma.CircuitBoxNode.CalculateSize(conns) end
 ---@protected
 function CS.Barotrauma.CircuitBoxNode.UpdatePositions() end
 
+do
 ---@overload fun(): Barotrauma.CircuitBoxNode
 ---@param circuitBox Barotrauma.Items.Components.CircuitBox
 ---@return Barotrauma.CircuitBoxNode
-function CS.Barotrauma.CircuitBoxNode(circuitBox) end
+local __ctor = function(circuitBox) end
+CS.Barotrauma.CircuitBoxNode = __ctor
+CS.Barotrauma.CircuitBoxNode.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxUI: System.Object
 ---@field Locked System.Boolean
@@ -7008,10 +7116,14 @@ function CS.Barotrauma.CircuitBoxUI.GetTopmostNode(nodes) end
 
 function CS.Barotrauma.CircuitBoxUI.AddToGUIUpdateList() end
 
+do
 ---@overload fun(): Barotrauma.CircuitBoxUI
 ---@param box Barotrauma.Items.Components.CircuitBox
 ---@return Barotrauma.CircuitBoxUI
-function CS.Barotrauma.CircuitBoxUI(box) end
+local __ctor = function(box) end
+CS.Barotrauma.CircuitBoxUI = __ctor
+CS.Barotrauma.CircuitBoxUI.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxWire: Barotrauma.CircuitBoxSelectable
 ---@field ID System.UInt16
@@ -7043,6 +7155,7 @@ function CS.Barotrauma.CircuitBoxWire.Remove() end
 ---@return Barotrauma.ItemPrefab
 function CS.Barotrauma.CircuitBoxWire.get_DefaultWirePrefab() end
 
+do
 ---@overload fun(): Barotrauma.CircuitBoxWire
 ---@param circuitBox Barotrauma.Items.Components.CircuitBox
 ---@param Id System.UInt16
@@ -7051,7 +7164,10 @@ function CS.Barotrauma.CircuitBoxWire.get_DefaultWirePrefab() end
 ---@param to Barotrauma.CircuitBoxConnection
 ---@param prefab Barotrauma.ItemPrefab
 ---@return Barotrauma.CircuitBoxWire
-function CS.Barotrauma.CircuitBoxWire(circuitBox, Id, backingItem, from, to, prefab) end
+local __ctor = function(circuitBox, Id, backingItem, from, to, prefab) end
+CS.Barotrauma.CircuitBoxWire = __ctor
+CS.Barotrauma.CircuitBoxWire.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxWireRenderer: System.Object
 ---@field private texture Microsoft.Xna.Framework.Graphics.Texture2D
@@ -7085,13 +7201,17 @@ function CS.Barotrauma.CircuitBoxWireRenderer.Contains(pos) end
 ---@param selectionColor Microsoft.Xna.Framework.Color
 function CS.Barotrauma.CircuitBoxWireRenderer.Draw(spriteBatch, selectionColor) end
 
+do
 ---@param wire userdata
 ---@param start Microsoft.Xna.Framework.Vector2
 ---@param __end__ Microsoft.Xna.Framework.Vector2
 ---@param color Microsoft.Xna.Framework.Color
 ---@param wireSprite Barotrauma.Sprite
 ---@return Barotrauma.CircuitBoxWireRenderer
-function CS.Barotrauma.CircuitBoxWireRenderer(wire, start, __end__, color, wireSprite) end
+local __ctor = function(wire, start, __end__, color, wireSprite) end
+CS.Barotrauma.CircuitBoxWireRenderer = __ctor
+CS.Barotrauma.CircuitBoxWireRenderer.__new = __ctor
+end
 
 ---@class Barotrauma.ContentPackageManager: System.Object
 ---@field ModsEnabled System.Boolean
@@ -7140,9 +7260,13 @@ function CS.Barotrauma.ContentPackageManager.CheckMissingDependencies() end
 
 function CS.Barotrauma.ContentPackageManager.LogEnabledRegularPackageErrors() end
 
+do
 ---@private
 ---@return Barotrauma.ContentPackageManager
-function CS.Barotrauma.ContentPackageManager() end
+local __ctor = function() end
+CS.Barotrauma.ContentPackageManager = __ctor
+CS.Barotrauma.ContentPackageManager.__new = __ctor
+end
 
 ---@class Barotrauma.DebugConsole: System.Object
 ---@field IsOpen System.Boolean
@@ -7491,9 +7615,13 @@ function CS.Barotrauma.DebugConsole.ToggleEnemyAITargetingRestrictions(restricti
 
 function CS.Barotrauma.DebugConsole.DeactivateCheats() end
 
+do
 ---@private
 ---@return Barotrauma.DebugConsole
-function CS.Barotrauma.DebugConsole() end
+local __ctor = function() end
+CS.Barotrauma.DebugConsole = __ctor
+CS.Barotrauma.DebugConsole.__new = __ctor
+end
 
 ---@class Barotrauma.Decal: System.Object
 ---@field FadeTimer System.Single
@@ -7559,13 +7687,17 @@ function CS.Barotrauma.Decal.Clean(val) end
 ---@return System.Single
 function CS.Barotrauma.Decal.GetAlpha() end
 
+do
 ---@param prefab Barotrauma.DecalPrefab
 ---@param scale System.Single
 ---@param worldPosition Microsoft.Xna.Framework.Vector2
 ---@param hull Barotrauma.Hull
 ---@param spriteIndex? System.Int32|nil
 ---@return Barotrauma.Decal
-function CS.Barotrauma.Decal(prefab, scale, worldPosition, hull, spriteIndex) end
+local __ctor = function(prefab, scale, worldPosition, hull, spriteIndex) end
+CS.Barotrauma.Decal = __ctor
+CS.Barotrauma.Decal.__new = __ctor
+end
 
 ---@class Barotrauma.EventLogAction: Barotrauma.EventAction
 ---@field Id Barotrauma.Identifier
@@ -7596,10 +7728,14 @@ function CS.Barotrauma.EventLogAction.AddEntryProjSpecific(eventLog, displayText
 ---@return System.String
 function CS.Barotrauma.EventLogAction.ToDebugString() end
 
+do
 ---@param parentEvent Barotrauma.ScriptedEvent
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.EventLogAction
-function CS.Barotrauma.EventLogAction(parentEvent, element) end
+local __ctor = function(parentEvent, element) end
+CS.Barotrauma.EventLogAction = __ctor
+CS.Barotrauma.EventLogAction.__new = __ctor
+end
 
 ---@class Barotrauma.EventObjectiveAction: Barotrauma.EventAction
 ---@field Type Barotrauma.EventObjectiveAction.SegmentActionType
@@ -7640,10 +7776,14 @@ function CS.Barotrauma.EventObjectiveAction.IsFinished(goToLabel) end
 
 function CS.Barotrauma.EventObjectiveAction.Reset() end
 
+do
 ---@param parentEvent Barotrauma.ScriptedEvent
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.EventObjectiveAction
-function CS.Barotrauma.EventObjectiveAction(parentEvent, element) end
+local __ctor = function(parentEvent, element) end
+CS.Barotrauma.EventObjectiveAction = __ctor
+CS.Barotrauma.EventObjectiveAction.__new = __ctor
+end
 
 ---@class Barotrauma.EventLog: System.Object
 ---@field UnreadEntries System.Boolean
@@ -7668,8 +7808,12 @@ function CS.Barotrauma.EventLog.TryAddEntryInternal(eventPrefabId, entryId, text
 
 function CS.Barotrauma.EventLog.Clear() end
 
+do
 ---@return Barotrauma.EventLog
-function CS.Barotrauma.EventLog() end
+local __ctor = function() end
+CS.Barotrauma.EventLog = __ctor
+CS.Barotrauma.EventLog.__new = __ctor
+end
 
 ---@class Barotrauma.EventManager: System.Object
 ---@field PinnedEvent Barotrauma.Event
@@ -7935,8 +8079,12 @@ function CS.Barotrauma.EventManager.Load(element) end
 ---@return System.Xml.Linq.XElement
 function CS.Barotrauma.EventManager.Save() end
 
+do
 ---@return Barotrauma.EventManager
-function CS.Barotrauma.EventManager() end
+local __ctor = function() end
+CS.Barotrauma.EventManager = __ctor
+CS.Barotrauma.EventManager.__new = __ctor
+end
 
 ---@class Barotrauma.AbandonedOutpostMission: Barotrauma.Mission
 ---@field State System.Int32
@@ -8023,11 +8171,15 @@ function CS.Barotrauma.AbandonedOutpostMission.InitCharacter(character, element)
 ---@return Barotrauma.Character
 function CS.Barotrauma.AbandonedOutpostMission.LoadHuman(humanPrefab, element, submarine) end
 
+do
 ---@param prefab Barotrauma.MissionPrefab
 ---@param locations Barotrauma.Location[]
 ---@param sub Barotrauma.Submarine
 ---@return Barotrauma.AbandonedOutpostMission
-function CS.Barotrauma.AbandonedOutpostMission(prefab, locations, sub) end
+local __ctor = function(prefab, locations, sub) end
+CS.Barotrauma.AbandonedOutpostMission = __ctor
+CS.Barotrauma.AbandonedOutpostMission.__new = __ctor
+end
 
 ---@class Barotrauma.BeaconMission: Barotrauma.Mission
 ---@field DisplayAsCompleted System.Boolean
@@ -8074,11 +8226,15 @@ function CS.Barotrauma.BeaconMission.AdjustLevelData(levelData) end
 ---@return Barotrauma.SubmarineInfo
 function CS.Barotrauma.BeaconMission.GetRandomBeaconByTags(tags, levelData) end
 
+do
 ---@param prefab Barotrauma.MissionPrefab
 ---@param locations Barotrauma.Location[]
 ---@param sub Barotrauma.Submarine
 ---@return Barotrauma.BeaconMission
-function CS.Barotrauma.BeaconMission(prefab, locations, sub) end
+local __ctor = function(prefab, locations, sub) end
+CS.Barotrauma.BeaconMission = __ctor
+CS.Barotrauma.BeaconMission.__new = __ctor
+end
 
 ---@class Barotrauma.CargoMission: Barotrauma.Mission
 ---@field DisplayAsCompleted System.Boolean
@@ -8147,11 +8303,15 @@ function CS.Barotrauma.CargoMission.EndMissionSpecific(completed) end
 ---@return System.Boolean
 function CS.Barotrauma.CargoMission.IsItemDelivered(item) end
 
+do
 ---@param prefab Barotrauma.MissionPrefab
 ---@param locations Barotrauma.Location[]
 ---@param sub Barotrauma.Submarine
 ---@return Barotrauma.CargoMission
-function CS.Barotrauma.CargoMission(prefab, locations, sub) end
+local __ctor = function(prefab, locations, sub) end
+CS.Barotrauma.CargoMission = __ctor
+CS.Barotrauma.CargoMission.__new = __ctor
+end
 
 ---@class Barotrauma.CombatMission: Barotrauma.Mission
 ---@field Description Barotrauma.LocalizedString
@@ -8245,12 +8405,16 @@ function CS.Barotrauma.CombatMission.StartMissionSpecific(level) end
 ---@return System.Boolean
 function CS.Barotrauma.CombatMission.DetermineCompleted() end
 
+do
 ---@overload fun(): Barotrauma.CombatMission
 ---@param prefab Barotrauma.MissionPrefab
 ---@param locations Barotrauma.Location[]
 ---@param sub Barotrauma.Submarine
 ---@return Barotrauma.CombatMission
-function CS.Barotrauma.CombatMission(prefab, locations, sub) end
+local __ctor = function(prefab, locations, sub) end
+CS.Barotrauma.CombatMission = __ctor
+CS.Barotrauma.CombatMission.__new = __ctor
+end
 
 ---@class Barotrauma.EliminateTargetsMission: Barotrauma.Mission
 ---@field DisplayAsCompleted System.Boolean
@@ -8309,11 +8473,15 @@ function CS.Barotrauma.EliminateTargetsMission.DetermineCompleted() end
 ---@param completed System.Boolean
 function CS.Barotrauma.EliminateTargetsMission.EndMissionSpecific(completed) end
 
+do
 ---@param prefab Barotrauma.MissionPrefab
 ---@param locations Barotrauma.Location[]
 ---@param sub Barotrauma.Submarine
 ---@return Barotrauma.EliminateTargetsMission
-function CS.Barotrauma.EliminateTargetsMission(prefab, locations, sub) end
+local __ctor = function(prefab, locations, sub) end
+CS.Barotrauma.EliminateTargetsMission = __ctor
+CS.Barotrauma.EliminateTargetsMission.__new = __ctor
+end
 
 ---@class Barotrauma.EndMission: Barotrauma.Mission
 ---@field DisplayAsCompleted System.Boolean
@@ -8381,11 +8549,15 @@ function CS.Barotrauma.EndMission.OnStateChangedProjSpecific() end
 ---@return System.Boolean
 function CS.Barotrauma.EndMission.DetermineCompleted() end
 
+do
 ---@param prefab Barotrauma.MissionPrefab
 ---@param locations Barotrauma.Location[]
 ---@param sub Barotrauma.Submarine
 ---@return Barotrauma.EndMission
-function CS.Barotrauma.EndMission(prefab, locations, sub) end
+local __ctor = function(prefab, locations, sub) end
+CS.Barotrauma.EndMission = __ctor
+CS.Barotrauma.EndMission.__new = __ctor
+end
 
 ---@class Barotrauma.EscortMission: Barotrauma.Mission
 ---@field DisplayAsCompleted System.Boolean
@@ -8466,11 +8638,15 @@ function CS.Barotrauma.EscortMission.DetermineCompleted() end
 ---@param completed System.Boolean
 function CS.Barotrauma.EscortMission.EndMissionSpecific(completed) end
 
+do
 ---@param prefab Barotrauma.MissionPrefab
 ---@param locations Barotrauma.Location[]
 ---@param sub Barotrauma.Submarine
 ---@return Barotrauma.EscortMission
-function CS.Barotrauma.EscortMission(prefab, locations, sub) end
+local __ctor = function(prefab, locations, sub) end
+CS.Barotrauma.EscortMission = __ctor
+CS.Barotrauma.EscortMission.__new = __ctor
+end
 
 ---@class Barotrauma.GoToMission: Barotrauma.Mission
 ---@field DisplayAsCompleted System.Boolean
@@ -8491,11 +8667,15 @@ function CS.Barotrauma.GoToMission.UpdateMissionSpecific(deltaTime) end
 ---@return System.Boolean
 function CS.Barotrauma.GoToMission.DetermineCompleted() end
 
+do
 ---@param prefab Barotrauma.MissionPrefab
 ---@param locations Barotrauma.Location[]
 ---@param sub Barotrauma.Submarine
 ---@return Barotrauma.GoToMission
-function CS.Barotrauma.GoToMission(prefab, locations, sub) end
+local __ctor = function(prefab, locations, sub) end
+CS.Barotrauma.GoToMission = __ctor
+CS.Barotrauma.GoToMission.__new = __ctor
+end
 
 ---@class Barotrauma.MineralMission: Barotrauma.Mission
 ---@field DisplayAsCompleted System.Boolean
@@ -8588,12 +8768,16 @@ function CS.Barotrauma.MineralMission.CalculateMissionClusterPositions() end
 ---@return Barotrauma.LocalizedString
 function CS.Barotrauma.MineralMission.ModifyMessage(message, color) end
 
+do
 ---@overload fun(): Barotrauma.MineralMission
 ---@param prefab Barotrauma.MissionPrefab
 ---@param locations Barotrauma.Location[]
 ---@param sub Barotrauma.Submarine
 ---@return Barotrauma.MineralMission
-function CS.Barotrauma.MineralMission(prefab, locations, sub) end
+local __ctor = function(prefab, locations, sub) end
+CS.Barotrauma.MineralMission = __ctor
+CS.Barotrauma.MineralMission.__new = __ctor
+end
 
 ---@class Barotrauma.Mission: System.Object
 ---@field ShownMessages userdata | (fun(): Barotrauma.LocalizedString)
@@ -8940,11 +9124,15 @@ function CS.Barotrauma.Mission.GetCargoSpawnPosition(itemPrefab, cargoRoomSub) e
 ---@return Barotrauma.SubmarineInfo
 function CS.Barotrauma.Mission.GetRandomSubmarineByTagsAndDifficulty(tags, levelData, submarineSelector, submarineTypeName) end
 
+do
 ---@param prefab Barotrauma.MissionPrefab
 ---@param locations Barotrauma.Location[]
 ---@param sub Barotrauma.Submarine
 ---@return Barotrauma.Mission
-function CS.Barotrauma.Mission(prefab, locations, sub) end
+local __ctor = function(prefab, locations, sub) end
+CS.Barotrauma.Mission = __ctor
+CS.Barotrauma.Mission.__new = __ctor
+end
 
 ---@class Barotrauma.MissionMode: Barotrauma.GameMode
 ---@field Missions userdata | (fun(): Barotrauma.Mission)
@@ -8967,11 +9155,15 @@ function CS.Barotrauma.MissionMode.ValidateMissionPrefabs(missionPrefabs, missio
 ---@return userdata | (fun(): Barotrauma.Identifier)
 function CS.Barotrauma.MissionMode.ValidateMissionTypes(missionTypes, missionClasses) end
 
+do
 ---@overload fun(preset: Barotrauma.GameModePreset, missionTypes: (userdata | (fun(): Barotrauma.Identifier)), seed: System.String): Barotrauma.MissionMode
 ---@param preset Barotrauma.GameModePreset
 ---@param missionPrefabs userdata | (fun(): Barotrauma.MissionPrefab)
 ---@return Barotrauma.MissionMode
-function CS.Barotrauma.MissionMode(preset, missionPrefabs) end
+local __ctor = function(preset, missionPrefabs) end
+CS.Barotrauma.MissionMode = __ctor
+CS.Barotrauma.MissionMode.__new = __ctor
+end
 
 ---@class Barotrauma.MissionPrefab: Barotrauma.PrefabWithUintIdentifier
 ---@field HasPortraits System.Boolean
@@ -9116,11 +9308,15 @@ function CS.Barotrauma.MissionPrefab.Dispose() end
 ---@return userdata | (fun(): Barotrauma.Identifier)
 function CS.Barotrauma.MissionPrefab.GetAllMultiplayerSelectableMissionTypes() end
 
+do
 ---@overload fun(): Barotrauma.MissionPrefab
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.MissionsFile
 ---@return Barotrauma.MissionPrefab
-function CS.Barotrauma.MissionPrefab(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.MissionPrefab = __ctor
+CS.Barotrauma.MissionPrefab.__new = __ctor
+end
 
 ---@class Barotrauma.MonsterMission: Barotrauma.Mission
 ---@field DisplayAsCompleted System.Boolean
@@ -9175,11 +9371,15 @@ function CS.Barotrauma.MonsterMission.EndMissionSpecific(completed) end
 ---@return System.Boolean
 function CS.Barotrauma.MonsterMission.IsEliminated(enemy) end
 
+do
 ---@param prefab Barotrauma.MissionPrefab
 ---@param locations Barotrauma.Location[]
 ---@param sub Barotrauma.Submarine
 ---@return Barotrauma.MonsterMission
-function CS.Barotrauma.MonsterMission(prefab, locations, sub) end
+local __ctor = function(prefab, locations, sub) end
+CS.Barotrauma.MonsterMission = __ctor
+CS.Barotrauma.MonsterMission.__new = __ctor
+end
 
 ---@class Barotrauma.NestMission: Barotrauma.Mission
 ---@field DisplayAsCompleted System.Boolean
@@ -9244,11 +9444,15 @@ function CS.Barotrauma.NestMission.DetermineCompleted() end
 ---@param completed System.Boolean
 function CS.Barotrauma.NestMission.EndMissionSpecific(completed) end
 
+do
 ---@param prefab Barotrauma.MissionPrefab
 ---@param locations Barotrauma.Location[]
 ---@param sub Barotrauma.Submarine
 ---@return Barotrauma.NestMission
-function CS.Barotrauma.NestMission(prefab, locations, sub) end
+local __ctor = function(prefab, locations, sub) end
+CS.Barotrauma.NestMission = __ctor
+CS.Barotrauma.NestMission.__new = __ctor
+end
 
 ---@class Barotrauma.PirateMission: Barotrauma.Mission
 ---@field DisplayAsCompleted System.Boolean
@@ -9365,11 +9569,15 @@ function CS.Barotrauma.PirateMission.DetermineCompleted() end
 ---@param completed System.Boolean
 function CS.Barotrauma.PirateMission.EndMissionSpecific(completed) end
 
+do
 ---@param prefab Barotrauma.MissionPrefab
 ---@param locations Barotrauma.Location[]
 ---@param sub Barotrauma.Submarine
 ---@return Barotrauma.PirateMission
-function CS.Barotrauma.PirateMission(prefab, locations, sub) end
+local __ctor = function(prefab, locations, sub) end
+CS.Barotrauma.PirateMission = __ctor
+CS.Barotrauma.PirateMission.__new = __ctor
+end
 
 ---@class Barotrauma.SalvageMission: Barotrauma.Mission
 ---@field DisplayAsCompleted System.Boolean
@@ -9458,11 +9666,15 @@ function CS.Barotrauma.SalvageMission.AdjustLevelData(levelData) end
 ---@return Barotrauma.SubmarineInfo
 function CS.Barotrauma.SalvageMission.GetRandomWreckByTags(tags, levelData) end
 
+do
 ---@param prefab Barotrauma.MissionPrefab
 ---@param locations Barotrauma.Location[]
 ---@param sub Barotrauma.Submarine
 ---@return Barotrauma.SalvageMission
-function CS.Barotrauma.SalvageMission(prefab, locations, sub) end
+local __ctor = function(prefab, locations, sub) end
+CS.Barotrauma.SalvageMission = __ctor
+CS.Barotrauma.SalvageMission.__new = __ctor
+end
 
 ---@class Barotrauma.ScanMission: Barotrauma.Mission
 ---@field HudIconTargets userdata | (fun(): Barotrauma.Entity)
@@ -9554,11 +9766,15 @@ function CS.Barotrauma.ScanMission.DetermineCompleted() end
 ---@param completed System.Boolean
 function CS.Barotrauma.ScanMission.EndMissionSpecific(completed) end
 
+do
 ---@param prefab Barotrauma.MissionPrefab
 ---@param locations Barotrauma.Location[]
 ---@param sub Barotrauma.Submarine
 ---@return Barotrauma.ScanMission
-function CS.Barotrauma.ScanMission(prefab, locations, sub) end
+local __ctor = function(prefab, locations, sub) end
+CS.Barotrauma.ScanMission = __ctor
+CS.Barotrauma.ScanMission.__new = __ctor
+end
 
 ---@class Barotrauma.ScalableFont: System.Object
 ---@field DynamicLoading System.Boolean
@@ -9705,13 +9921,17 @@ function CS.Barotrauma.ScalableFont.GetGlyphDataAndTextureForChar(c) end
 
 function CS.Barotrauma.ScalableFont.Dispose() end
 
+do
 ---@overload fun(filename: System.String, size: System.UInt32, gd?: Microsoft.Xna.Framework.Graphics.GraphicsDevice, dynamicLoading?: System.Boolean, speciallyHandledCharCategory?: Barotrauma.TextManager.SpeciallyHandledCharCategory): Barotrauma.ScalableFont
 ---@overload fun(): Barotrauma.ScalableFont
 ---@param element Barotrauma.ContentXElement
 ---@param defaultSize? System.UInt32
 ---@param gd? Microsoft.Xna.Framework.Graphics.GraphicsDevice
 ---@return Barotrauma.ScalableFont
-function CS.Barotrauma.ScalableFont(element, defaultSize, gd) end
+local __ctor = function(element, defaultSize, gd) end
+CS.Barotrauma.ScalableFont = __ctor
+CS.Barotrauma.ScalableFont.__new = __ctor
+end
 
 ---@class Barotrauma.GameMain: Microsoft.Xna.Framework.Game
 ---@field IsSingleplayer System.Boolean
@@ -9892,10 +10112,14 @@ function CS.Barotrauma.GameMain.ShowOpenUriPrompt(url, promptTextTag, promptExte
 
 function CS.Barotrauma.GameMain.ResetIMEWorkaround() end
 
+do
 ---@overload fun(): Barotrauma.GameMain
 ---@param args System.String[]
 ---@return Barotrauma.GameMain
-function CS.Barotrauma.GameMain(args) end
+local __ctor = function(args) end
+CS.Barotrauma.GameMain = __ctor
+CS.Barotrauma.GameMain.__new = __ctor
+end
 
 ---@class Barotrauma.CargoManager: System.Object
 ---@field private SoldEntities userdata | { [System.Int32]: Barotrauma.CargoManager.SoldEntity } | (fun(): Barotrauma.CargoManager.SoldEntity)
@@ -10122,10 +10346,14 @@ function CS.Barotrauma.CargoManager.SavePurchasedItems(parentElement) end
 ---@param element System.Xml.Linq.XElement
 function CS.Barotrauma.CargoManager.LoadPurchasedItems(element) end
 
+do
 ---@overload fun(): Barotrauma.CargoManager
 ---@param campaign Barotrauma.CampaignMode
 ---@return Barotrauma.CargoManager
-function CS.Barotrauma.CargoManager(campaign) end
+local __ctor = function(campaign) end
+CS.Barotrauma.CargoManager = __ctor
+CS.Barotrauma.CargoManager.__new = __ctor
+end
 
 ---@class Barotrauma.CrewManager: System.Object
 ---@field ReportButtonFrame Barotrauma.GUIComponent
@@ -10830,12 +11058,16 @@ function CS.Barotrauma.CrewManager.SaveActiveOrders(element) end
 ---@param element System.Xml.Linq.XElement
 function CS.Barotrauma.CrewManager.LoadActiveOrders(element) end
 
+do
 ---@overload fun(isSinglePlayer: System.Boolean): Barotrauma.CrewManager
 ---@overload fun(): Barotrauma.CrewManager
 ---@param element System.Xml.Linq.XElement
 ---@param isSinglePlayer System.Boolean
 ---@return Barotrauma.CrewManager
-function CS.Barotrauma.CrewManager(element, isSinglePlayer) end
+local __ctor = function(element, isSinglePlayer) end
+CS.Barotrauma.CrewManager = __ctor
+CS.Barotrauma.CrewManager.__new = __ctor
+end
 
 ---@class Barotrauma.CampaignMetadata: System.Object
 ---@field private data userdata | { [Barotrauma.Identifier]: System.Object } | (fun(): userdata)
@@ -10893,8 +11125,12 @@ function CS.Barotrauma.CampaignMetadata.GetValue(identifier) end
 ---@param modeElement System.Xml.Linq.XElement
 function CS.Barotrauma.CampaignMetadata.Save(modeElement) end
 
+do
 ---@return Barotrauma.CampaignMetadata
-function CS.Barotrauma.CampaignMetadata() end
+local __ctor = function() end
+CS.Barotrauma.CampaignMetadata = __ctor
+CS.Barotrauma.CampaignMetadata.__new = __ctor
+end
 
 ---@class Barotrauma.GameMode: System.Object
 ---@field CrewManager Barotrauma.CrewManager
@@ -10951,10 +11187,14 @@ function CS.Barotrauma.GameMode.End(transitionType) end
 
 function CS.Barotrauma.GameMode.Remove() end
 
+do
 ---@overload fun(): Barotrauma.GameMode
 ---@param preset Barotrauma.GameModePreset
 ---@return Barotrauma.GameMode
-function CS.Barotrauma.GameMode(preset) end
+local __ctor = function(preset) end
+CS.Barotrauma.GameMode = __ctor
+CS.Barotrauma.GameMode.__new = __ctor
+end
 
 ---@class Barotrauma.CampaignMode: Barotrauma.GameMode
 ---@field CrewDead System.Boolean
@@ -11306,11 +11546,15 @@ function CS.Barotrauma.CampaignMode.SaveActiveOrders(parentElement) end
 
 function CS.Barotrauma.CampaignMode.LoadActiveOrders() end
 
+do
 ---@protected
 ---@param preset Barotrauma.GameModePreset
 ---@param settings Barotrauma.CampaignSettings
 ---@return Barotrauma.CampaignMode
-function CS.Barotrauma.CampaignMode(preset, settings) end
+local __ctor = function(preset, settings) end
+CS.Barotrauma.CampaignMode = __ctor
+CS.Barotrauma.CampaignMode.__new = __ctor
+end
 
 ---@class Barotrauma.MultiPlayerCampaign: Barotrauma.CampaignMode
 ---@field Paused System.Boolean
@@ -11487,10 +11731,14 @@ function CS.Barotrauma.MultiPlayerCampaign.ReadPurchasedItems(msg, sender) end
 ---@return userdata | { [Barotrauma.Identifier]: userdata | { [System.Int32]: Barotrauma.SoldItem } | (fun(): Barotrauma.SoldItem) } | (fun(): userdata)
 function CS.Barotrauma.MultiPlayerCampaign.ReadSoldItems(msg) end
 
+do
 ---@private
 ---@param settings Barotrauma.CampaignSettings
 ---@return Barotrauma.MultiPlayerCampaign
-function CS.Barotrauma.MultiPlayerCampaign(settings) end
+local __ctor = function(settings) end
+CS.Barotrauma.MultiPlayerCampaign = __ctor
+CS.Barotrauma.MultiPlayerCampaign.__new = __ctor
+end
 
 ---@class Barotrauma.SinglePlayerCampaign: Barotrauma.CampaignMode
 ---@field Paused System.Boolean
@@ -11586,12 +11834,16 @@ function CS.Barotrauma.SinglePlayerCampaign.EnableRoundSummaryGameOverState() en
 ---@param isSavingOnLoading System.Boolean
 function CS.Barotrauma.SinglePlayerCampaign.Save(element, isSavingOnLoading) end
 
+do
 ---@private
 ---@overload fun(element: System.Xml.Linq.XElement): Barotrauma.SinglePlayerCampaign
 ---@param mapSeed System.String
 ---@param settings Barotrauma.CampaignSettings
 ---@return Barotrauma.SinglePlayerCampaign
-function CS.Barotrauma.SinglePlayerCampaign(mapSeed, settings) end
+local __ctor = function(mapSeed, settings) end
+CS.Barotrauma.SinglePlayerCampaign = __ctor
+CS.Barotrauma.SinglePlayerCampaign.__new = __ctor
+end
 
 ---@class Barotrauma.TestGameMode: Barotrauma.GameMode
 ---@field BackgroundParams Barotrauma.LevelGenerationParams
@@ -11619,9 +11871,13 @@ function CS.Barotrauma.TestGameMode.Update(deltaTime) end
 ---@param submarine Barotrauma.Submarine
 function CS.Barotrauma.TestGameMode.GenerateOutpost(submarine) end
 
+do
 ---@param preset Barotrauma.GameModePreset
 ---@return Barotrauma.TestGameMode
-function CS.Barotrauma.TestGameMode(preset) end
+local __ctor = function(preset) end
+CS.Barotrauma.TestGameMode = __ctor
+CS.Barotrauma.TestGameMode.__new = __ctor
+end
 
 ---@class Barotrauma.GameSession: System.Object
 ---@field RoundSummary Barotrauma.RoundSummary
@@ -11897,6 +12153,7 @@ function CS.Barotrauma.GameSession.IsCompatibleWithEnabledContentPackages(conten
 ---@param isSavingOnLoading System.Boolean
 function CS.Barotrauma.GameSession.Save(filePath, isSavingOnLoading) end
 
+do
 ---@private
 ---@overload fun(submarineInfo: Barotrauma.SubmarineInfo, enemySubmarineInfo: Barotrauma.SubmarineInfo): Barotrauma.GameSession
 ---@overload fun(submarineInfo: Barotrauma.SubmarineInfo, enemySub: userdata, dataPath: Barotrauma.CampaignDataPath, gameModePreset: Barotrauma.GameModePreset, settings: Barotrauma.CampaignSettings, seed?: System.String, missionTypes?: (userdata | (fun(): Barotrauma.Identifier))): Barotrauma.GameSession
@@ -11904,7 +12161,10 @@ function CS.Barotrauma.GameSession.Save(filePath, isSavingOnLoading) end
 ---@overload fun(submarineInfo: Barotrauma.SubmarineInfo, ownedSubmarines: (userdata | { [System.Int32]: Barotrauma.SubmarineInfo } | (fun(): Barotrauma.SubmarineInfo)), doc: System.Xml.Linq.XDocument, campaignData: Barotrauma.CampaignDataPath): Barotrauma.GameSession
 ---@param submarineInfo Barotrauma.SubmarineInfo
 ---@return Barotrauma.GameSession
-function CS.Barotrauma.GameSession(submarineInfo) end
+local __ctor = function(submarineInfo) end
+CS.Barotrauma.GameSession = __ctor
+CS.Barotrauma.GameSession.__new = __ctor
+end
 
 ---@class Barotrauma.MedicalClinic: System.Object
 ---@field private ui Barotrauma.MedicalClinicUI
@@ -12086,10 +12346,14 @@ function CS.Barotrauma.MedicalClinic.GetBalance() end
 ---@return userdata | { [System.Int32]: Barotrauma.CharacterInfo } | (fun(): Barotrauma.CharacterInfo)
 function CS.Barotrauma.MedicalClinic.GetCrewCharacters() end
 
+do
 ---@overload fun(): Barotrauma.MedicalClinic
 ---@param campaign Barotrauma.CampaignMode
 ---@return Barotrauma.MedicalClinic
-function CS.Barotrauma.MedicalClinic(campaign) end
+local __ctor = function(campaign) end
+CS.Barotrauma.MedicalClinic = __ctor
+CS.Barotrauma.MedicalClinic.__new = __ctor
+end
 
 ---@class Barotrauma.PvPMode: Barotrauma.MissionMode
 ---@field private scoreContainer Barotrauma.GUIComponent
@@ -12103,11 +12367,15 @@ function CS.Barotrauma.PvPMode.InitUI() end
 
 function CS.Barotrauma.PvPMode.AddToGUIUpdateList() end
 
+do
 ---@overload fun(preset: Barotrauma.GameModePreset, missionTypes: (userdata | (fun(): Barotrauma.Identifier)), seed: System.String): Barotrauma.PvPMode
 ---@param preset Barotrauma.GameModePreset
 ---@param missionPrefabs userdata | (fun(): Barotrauma.MissionPrefab)
 ---@return Barotrauma.PvPMode
-function CS.Barotrauma.PvPMode(preset, missionPrefabs) end
+local __ctor = function(preset, missionPrefabs) end
+CS.Barotrauma.PvPMode = __ctor
+CS.Barotrauma.PvPMode.__new = __ctor
+end
 
 ---@class Barotrauma.ReadyCheck: System.Object
 ---@field private lastSecond System.Int32
@@ -12187,6 +12455,7 @@ function CS.Barotrauma.ReadyCheck.EndReadyCheck() end
 ---@param deltaTime System.Single
 function CS.Barotrauma.ReadyCheck.Update(deltaTime) end
 
+do
 ---@overload fun(clients: (userdata | { [System.Int32]: System.Byte } | (fun(): System.Byte)), duration: System.Single): Barotrauma.ReadyCheck
 ---@overload fun(clients: (userdata | { [System.Int32]: System.Byte } | (fun(): System.Byte))): Barotrauma.ReadyCheck
 ---@overload fun(): Barotrauma.ReadyCheck
@@ -12194,7 +12463,10 @@ function CS.Barotrauma.ReadyCheck.Update(deltaTime) end
 ---@param startTime System.DateTime
 ---@param endTime System.DateTime
 ---@return Barotrauma.ReadyCheck
-function CS.Barotrauma.ReadyCheck(clients, startTime, endTime) end
+local __ctor = function(clients, startTime, endTime) end
+CS.Barotrauma.ReadyCheck = __ctor
+CS.Barotrauma.ReadyCheck.__new = __ctor
+end
 
 ---@class Barotrauma.UpgradeManager: System.Object
 ---@field private Metadata Barotrauma.CampaignMetadata
@@ -12343,11 +12615,15 @@ function CS.Barotrauma.UpgradeManager.FindMatchingUpgrade(prefab, category) end
 ---@return Barotrauma.Identifier
 function CS.Barotrauma.UpgradeManager.FormatIdentifier(prefab, category) end
 
+do
 ---@overload fun(campaign: Barotrauma.CampaignMode, element: System.Xml.Linq.XElement, isSingleplayer: System.Boolean): Barotrauma.UpgradeManager
 ---@overload fun(): Barotrauma.UpgradeManager
 ---@param campaign Barotrauma.CampaignMode
 ---@return Barotrauma.UpgradeManager
-function CS.Barotrauma.UpgradeManager(campaign) end
+local __ctor = function(campaign) end
+CS.Barotrauma.UpgradeManager = __ctor
+CS.Barotrauma.UpgradeManager.__new = __ctor
+end
 
 ---@class Barotrauma.ChatBox: System.Object
 ---@field IsSinglePlayer System.Boolean
@@ -12460,11 +12736,15 @@ function CS.Barotrauma.ChatBox.SetChannelMemory(index, channel) end
 ---@overload fun(inputBox: Barotrauma.GUITextBox, selectInputBox: System.Boolean, chatKeyStates: Barotrauma.ChatBox.ChatKeyStates)
 function CS.Barotrauma.ChatBox.ApplySelectionInputs() end
 
+do
 ---@overload fun(): Barotrauma.ChatBox
 ---@param parent Barotrauma.GUIComponent
 ---@param isSinglePlayer System.Boolean
 ---@return Barotrauma.ChatBox
-function CS.Barotrauma.ChatBox(parent, isSinglePlayer) end
+local __ctor = function(parent, isSinglePlayer) end
+CS.Barotrauma.ChatBox = __ctor
+CS.Barotrauma.ChatBox.__new = __ctor
+end
 
 ---@enum Barotrauma.SpriteFallBackState
 CS.Barotrauma.SpriteFallBackState = {
@@ -12526,11 +12806,15 @@ function CS.Barotrauma.GUIComponentStyle.GetSize(element) end
 
 function CS.Barotrauma.GUIComponentStyle.Dispose() end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.UIStyleFile
 ---@param parent? Barotrauma.GUIComponentStyle
 ---@return Barotrauma.GUIComponentStyle
-function CS.Barotrauma.GUIComponentStyle(element, file, parent) end
+local __ctor = function(element, file, parent) end
+CS.Barotrauma.GUIComponentStyle = __ctor
+CS.Barotrauma.GUIComponentStyle.__new = __ctor
+end
 
 ---@class Barotrauma.FileSelection: System.Object
 ---@field Open System.Boolean
@@ -12598,9 +12882,13 @@ function CS.Barotrauma.FileSelection.MoveToParentDirectory(button, userdata) end
 
 function CS.Barotrauma.FileSelection.AddToGUIUpdateList() end
 
+do
 ---@private
 ---@return Barotrauma.FileSelection
-function CS.Barotrauma.FileSelection() end
+local __ctor = function() end
+CS.Barotrauma.FileSelection = __ctor
+CS.Barotrauma.FileSelection.__new = __ctor
+end
 
 ---@class Barotrauma.Graph: System.Object
 ---@field private values System.Single[]
@@ -12623,9 +12911,13 @@ function CS.Barotrauma.Graph.Update(newValue) end
 ---@param doForEachValue? fun(spriteBatch: Microsoft.Xna.Framework.Graphics.SpriteBatch, value: System.Single, order: System.Int32, position: Microsoft.Xna.Framework.Vector2)
 function CS.Barotrauma.Graph.Draw(spriteBatch, rect, maxValue, xOffset, color, doForEachValue) end
 
+do
 ---@param arraySize? System.Int32
 ---@return Barotrauma.Graph
-function CS.Barotrauma.Graph(arraySize) end
+local __ctor = function(arraySize) end
+CS.Barotrauma.Graph = __ctor
+CS.Barotrauma.Graph.__new = __ctor
+end
 
 ---@enum Barotrauma.GUISoundType
 CS.Barotrauma.GUISoundType = {
@@ -13231,9 +13523,13 @@ function CS.Barotrauma.GUI.SetSavingIndicatorState(enabled) end
 ---@param delay? System.Single
 function CS.Barotrauma.GUI.DisableSavingIndicatorDelayed(delay) end
 
+do
 ---@private
 ---@return Barotrauma.GUI
-function CS.Barotrauma.GUI() end
+local __ctor = function() end
+CS.Barotrauma.GUI = __ctor
+CS.Barotrauma.GUI.__new = __ctor
+end
 
 ---@class Barotrauma.GUIButton: Barotrauma.GUIComponent
 ---@field TextBlock Barotrauma.GUITextBlock
@@ -13386,13 +13682,17 @@ function CS.Barotrauma.GUIButton.Draw(spriteBatch) end
 ---@param deltaTime System.Single
 function CS.Barotrauma.GUIButton.Update(deltaTime) end
 
+do
 ---@overload fun(rectT: Barotrauma.RectTransform, text: Barotrauma.LocalizedString, textAlignment?: Barotrauma.Alignment, style?: System.String, color?: (Microsoft.Xna.Framework.Color|nil)): Barotrauma.GUIButton
 ---@param rectT Barotrauma.RectTransform
 ---@param textAlignment? Barotrauma.Alignment
 ---@param style? System.String
 ---@param color? Microsoft.Xna.Framework.Color|nil
 ---@return Barotrauma.GUIButton
-function CS.Barotrauma.GUIButton(rectT, textAlignment, style, color) end
+local __ctor = function(rectT, textAlignment, style, color) end
+CS.Barotrauma.GUIButton = __ctor
+CS.Barotrauma.GUIButton.__new = __ctor
+end
 
 ---@class Barotrauma.GUICanvas: Barotrauma.RectTransform
 ---@field Instance Barotrauma.GUICanvas
@@ -13423,9 +13723,13 @@ function CS.Barotrauma.GUICanvas.RefreshChildren() end
 ---@private
 function CS.Barotrauma.GUICanvas.RecalculateSize() end
 
+do
 ---@protected
 ---@return Barotrauma.GUICanvas
-function CS.Barotrauma.GUICanvas() end
+local __ctor = function() end
+CS.Barotrauma.GUICanvas = __ctor
+CS.Barotrauma.GUICanvas.__new = __ctor
+end
 
 ---@class Barotrauma.GUIColorPicker: Barotrauma.GUIComponent
 ---@field OnColorSelected fun(component: Barotrauma.GUIColorPicker, color: Microsoft.Xna.Framework.Color): System.Boolean
@@ -13486,10 +13790,14 @@ function CS.Barotrauma.GUIColorPicker.DrawHVArea(x, y) end
 ---@return Microsoft.Xna.Framework.Color
 function CS.Barotrauma.GUIColorPicker.DrawHueArea(x, y) end
 
+do
 ---@param rectT Barotrauma.RectTransform
 ---@param style? System.String
 ---@return Barotrauma.GUIColorPicker
-function CS.Barotrauma.GUIColorPicker(rectT, style) end
+local __ctor = function(rectT, style) end
+CS.Barotrauma.GUIColorPicker = __ctor
+CS.Barotrauma.GUIColorPicker.__new = __ctor
+end
 
 ---@class Barotrauma.GUIComponent: System.Object
 ---@field Parent Barotrauma.GUIComponent
@@ -13918,13 +14226,17 @@ function CS.Barotrauma.GUIComponent.LoadGUIImage(element, parent) end
 ---@return Barotrauma.GUIButton
 function CS.Barotrauma.GUIComponent.LoadAccordion(element, parent, openOnTop) end
 
+do
 ---@protected
 ---@overload fun(style: System.String): Barotrauma.GUIComponent
 ---@overload fun(): Barotrauma.GUIComponent
 ---@param style System.String
 ---@param rectT Barotrauma.RectTransform
 ---@return Barotrauma.GUIComponent
-function CS.Barotrauma.GUIComponent(style, rectT) end
+local __ctor = function(style, rectT) end
+CS.Barotrauma.GUIComponent = __ctor
+CS.Barotrauma.GUIComponent.__new = __ctor
+end
 
 ---@class Barotrauma.ContextMenuOption: System.ValueType
 ---@field Label Barotrauma.LocalizedString
@@ -13934,6 +14246,7 @@ function CS.Barotrauma.GUIComponent(style, rectT) end
 ---@field Tooltip Barotrauma.LocalizedString
 CS.Barotrauma.ContextMenuOption = {}
 
+do
 ---@overload fun(labelTag: Barotrauma.Identifier, isEnabled: System.Boolean, onSelected: (fun())): Barotrauma.ContextMenuOption
 ---@overload fun(label: Barotrauma.LocalizedString, isEnabled: System.Boolean, onSelected: (fun())): Barotrauma.ContextMenuOption
 ---@overload fun(label: System.String, isEnabled: System.Boolean, ...: Barotrauma.ContextMenuOption): Barotrauma.ContextMenuOption
@@ -13941,7 +14254,10 @@ CS.Barotrauma.ContextMenuOption = {}
 ---@param isEnabled System.Boolean
 ---@param onSelected fun()
 ---@return Barotrauma.ContextMenuOption
-function CS.Barotrauma.ContextMenuOption(label, isEnabled, onSelected) end
+local __ctor = function(label, isEnabled, onSelected) end
+CS.Barotrauma.ContextMenuOption = __ctor
+CS.Barotrauma.ContextMenuOption.__new = __ctor
+end
 
 ---@class Barotrauma.GUIContextMenu: Barotrauma.GUIComponent
 ---@field private Options userdata | { [Barotrauma.ContextMenuOption]: Barotrauma.GUITextBlock } | (fun(): userdata)
@@ -13983,12 +14299,16 @@ function CS.Barotrauma.GUIContextMenu.AddToGUIUpdateList(ignoreChildren, order) 
 
 function CS.Barotrauma.GUIContextMenu.AddActiveToGUIUpdateList() end
 
+do
 ---@param position Microsoft.Xna.Framework.Vector2|nil
 ---@param header Barotrauma.LocalizedString
 ---@param style System.String
 ---@param ... Barotrauma.ContextMenuOption
 ---@return Barotrauma.GUIContextMenu
-function CS.Barotrauma.GUIContextMenu(position, header, style, ...) end
+local __ctor = function(position, header, style, ...) end
+CS.Barotrauma.GUIContextMenu = __ctor
+CS.Barotrauma.GUIContextMenu.__new = __ctor
+end
 
 ---@class Barotrauma.GUICustomComponent: Barotrauma.GUIComponent
 ---@field OnDraw fun(arg1: Microsoft.Xna.Framework.Graphics.SpriteBatch, arg2: Barotrauma.GUICustomComponent)
@@ -14004,11 +14324,15 @@ function CS.Barotrauma.GUICustomComponent.Draw(spriteBatch) end
 ---@param deltaTime System.Single
 function CS.Barotrauma.GUICustomComponent.Update(deltaTime) end
 
+do
 ---@param rectT Barotrauma.RectTransform
 ---@param onDraw? fun(arg1: Microsoft.Xna.Framework.Graphics.SpriteBatch, arg2: Barotrauma.GUICustomComponent)
 ---@param onUpdate? fun(arg1: System.Single, arg2: Barotrauma.GUICustomComponent)
 ---@return Barotrauma.GUICustomComponent
-function CS.Barotrauma.GUICustomComponent(rectT, onDraw, onUpdate) end
+local __ctor = function(rectT, onDraw, onUpdate) end
+CS.Barotrauma.GUICustomComponent = __ctor
+CS.Barotrauma.GUICustomComponent.__new = __ctor
+end
 
 ---@class Barotrauma.GUIDragHandle: Barotrauma.GUIComponent
 ---@field Dragging System.Boolean
@@ -14027,11 +14351,15 @@ function CS.Barotrauma.GUIDragHandle.get_Dragging() end
 ---@param deltaTime System.Single
 function CS.Barotrauma.GUIDragHandle.Update(deltaTime) end
 
+do
 ---@param rectT Barotrauma.RectTransform
 ---@param elementToMove Barotrauma.RectTransform
 ---@param style? System.String
 ---@return Barotrauma.GUIDragHandle
-function CS.Barotrauma.GUIDragHandle(rectT, elementToMove, style) end
+local __ctor = function(rectT, elementToMove, style) end
+CS.Barotrauma.GUIDragHandle = __ctor
+CS.Barotrauma.GUIDragHandle.__new = __ctor
+end
 
 ---@class Barotrauma.GUIDropDown: Barotrauma.GUIComponent
 ---@field Dropped System.Boolean
@@ -14205,6 +14533,7 @@ function CS.Barotrauma.GUIDropDown.AddToGUIUpdateList(ignoreChildren, order) end
 ---@param deltaTime System.Single
 function CS.Barotrauma.GUIDropDown.Update(deltaTime) end
 
+do
 ---@param rectT Barotrauma.RectTransform
 ---@param text? Barotrauma.LocalizedString
 ---@param elementCount? System.Int32
@@ -14214,7 +14543,10 @@ function CS.Barotrauma.GUIDropDown.Update(deltaTime) end
 ---@param textAlignment? Barotrauma.Alignment
 ---@param listBoxScale? System.Single
 ---@return Barotrauma.GUIDropDown
-function CS.Barotrauma.GUIDropDown(rectT, text, elementCount, style, selectMultiple, dropAbove, textAlignment, listBoxScale) end
+local __ctor = function(rectT, text, elementCount, style, selectMultiple, dropAbove, textAlignment, listBoxScale) end
+CS.Barotrauma.GUIDropDown = __ctor
+CS.Barotrauma.GUIDropDown.__new = __ctor
+end
 
 ---@class Barotrauma.GUIFrame: Barotrauma.GUIComponent
 ---@field OutlineThickness System.Single
@@ -14224,11 +14556,15 @@ CS.Barotrauma.GUIFrame = {}
 ---@param spriteBatch Microsoft.Xna.Framework.Graphics.SpriteBatch
 function CS.Barotrauma.GUIFrame.Draw(spriteBatch) end
 
+do
 ---@param rectT Barotrauma.RectTransform
 ---@param style? System.String
 ---@param color? Microsoft.Xna.Framework.Color|nil
 ---@return Barotrauma.GUIFrame
-function CS.Barotrauma.GUIFrame(rectT, style, color) end
+local __ctor = function(rectT, style, color) end
+CS.Barotrauma.GUIFrame = __ctor
+CS.Barotrauma.GUIFrame.__new = __ctor
+end
 
 ---@class Barotrauma.GUIImage: Barotrauma.GUIComponent
 ---@field LoadingTextures System.Boolean
@@ -14285,6 +14621,7 @@ function CS.Barotrauma.GUIImage.RecalculateScale() end
 ---@return userdata
 function CS.Barotrauma.GUIImage.LoadTextureAsync() end
 
+do
 ---@overload fun(rectT: Barotrauma.RectTransform, style: System.String, scaleToFit?: Barotrauma.GUIImage.ScalingMode): Barotrauma.GUIImage
 ---@overload fun(rectT: Barotrauma.RectTransform, sprite: Barotrauma.Sprite, scaleToFit: System.Boolean, sourceRect?: (Microsoft.Xna.Framework.Rectangle|nil)): Barotrauma.GUIImage
 ---@overload fun(rectT: Barotrauma.RectTransform, sprite: Barotrauma.Sprite, sourceRect?: (Microsoft.Xna.Framework.Rectangle|nil), scaleToFit?: Barotrauma.GUIImage.ScalingMode): Barotrauma.GUIImage
@@ -14294,7 +14631,10 @@ function CS.Barotrauma.GUIImage.LoadTextureAsync() end
 ---@param style System.String
 ---@param scaleToFit System.Boolean
 ---@return Barotrauma.GUIImage
-function CS.Barotrauma.GUIImage(rectT, style, scaleToFit) end
+local __ctor = function(rectT, style, scaleToFit) end
+CS.Barotrauma.GUIImage = __ctor
+CS.Barotrauma.GUIImage.__new = __ctor
+end
 
 ---@class Barotrauma.GUILayoutGroup: Barotrauma.GUIComponent
 ---@field IsHorizontal System.Boolean
@@ -14355,11 +14695,15 @@ function CS.Barotrauma.GUILayoutGroup.Update(deltaTime) end
 
 function CS.Barotrauma.GUILayoutGroup.ForceLayoutRecalculation() end
 
+do
 ---@param rectT Barotrauma.RectTransform
 ---@param isHorizontal? System.Boolean
 ---@param childAnchor? Barotrauma.Anchor
 ---@return Barotrauma.GUILayoutGroup
-function CS.Barotrauma.GUILayoutGroup(rectT, isHorizontal, childAnchor) end
+local __ctor = function(rectT, isHorizontal, childAnchor) end
+CS.Barotrauma.GUILayoutGroup = __ctor
+CS.Barotrauma.GUILayoutGroup.__new = __ctor
+end
 
 ---@class Barotrauma.GUIListBox: Barotrauma.GUIComponent
 ---@field ContentBackground Barotrauma.GUIFrame
@@ -14636,6 +14980,7 @@ function CS.Barotrauma.GUIListBox.ReceiveEditingInput(text, start, length) end
 ---@param key Microsoft.Xna.Framework.Input.Keys
 function CS.Barotrauma.GUIListBox.ReceiveSpecialInput(key) end
 
+do
 ---@param rectT Barotrauma.RectTransform
 ---@param isHorizontal? System.Boolean
 ---@param color? Microsoft.Xna.Framework.Color|nil
@@ -14643,7 +14988,10 @@ function CS.Barotrauma.GUIListBox.ReceiveSpecialInput(key) end
 ---@param isScrollBarOnDefaultSide? System.Boolean
 ---@param useMouseDownToSelect? System.Boolean
 ---@return Barotrauma.GUIListBox
-function CS.Barotrauma.GUIListBox(rectT, isHorizontal, color, style, isScrollBarOnDefaultSide, useMouseDownToSelect) end
+local __ctor = function(rectT, isHorizontal, color, style, isScrollBarOnDefaultSide, useMouseDownToSelect) end
+CS.Barotrauma.GUIListBox = __ctor
+CS.Barotrauma.GUIListBox.__new = __ctor
+end
 
 ---@class Barotrauma.GUIMessage: System.Object
 ---@field Text System.String
@@ -14685,13 +15033,17 @@ function CS.Barotrauma.GUIMessage.get_LifeTime() end
 ---@return Microsoft.Xna.Framework.Vector2
 function CS.Barotrauma.GUIMessage.get_DrawPos() end
 
+do
 ---@overload fun(text: System.String, color: Microsoft.Xna.Framework.Color, position: Microsoft.Xna.Framework.Vector2, velocity: Microsoft.Xna.Framework.Vector2, lifeTime: System.Single, textAlignment?: Barotrauma.Alignment, font?: Barotrauma.GUIFont, sub?: Barotrauma.Submarine): Barotrauma.GUIMessage
 ---@param text System.String
 ---@param color Microsoft.Xna.Framework.Color
 ---@param lifeTime System.Single
 ---@param font? Barotrauma.GUIFont
 ---@return Barotrauma.GUIMessage
-function CS.Barotrauma.GUIMessage(text, color, lifeTime, font) end
+local __ctor = function(text, color, lifeTime, font) end
+CS.Barotrauma.GUIMessage = __ctor
+CS.Barotrauma.GUIMessage.__new = __ctor
+end
 
 ---@class Barotrauma.GUIMessageBox: Barotrauma.GUIFrame
 ---@field private DefaultWidth System.Int32
@@ -14777,6 +15129,7 @@ function CS.Barotrauma.GUIMessageBox.AddButton(rectT, text, onClick) end
 ---@return Barotrauma.GUIMessageBox
 function CS.Barotrauma.GUIMessageBox.CreateLoadingBox(text, buttons, relativeSize) end
 
+do
 ---@overload fun(headerText: Barotrauma.RichString, text: Barotrauma.RichString, buttons: Barotrauma.LocalizedString[], relativeSize?: (Microsoft.Xna.Framework.Vector2|nil), minSize?: (Microsoft.Xna.Framework.Point|nil), textAlignment?: Barotrauma.Alignment, type?: Barotrauma.GUIMessageBox.Type, tag?: System.String, icon?: Barotrauma.Sprite, iconStyle?: System.String, backgroundIcon?: Barotrauma.Sprite, autoCloseCondition?: (fun(): System.Boolean), hideCloseButton?: System.Boolean): Barotrauma.GUIMessageBox
 ---@overload fun(hintIdentifier: Barotrauma.Identifier, text: Barotrauma.LocalizedString, icon: Barotrauma.Sprite): Barotrauma.GUIMessageBox
 ---@overload fun(): Barotrauma.GUIMessageBox
@@ -14786,7 +15139,10 @@ function CS.Barotrauma.GUIMessageBox.CreateLoadingBox(text, buttons, relativeSiz
 ---@param minSize? Microsoft.Xna.Framework.Point|nil
 ---@param type? Barotrauma.GUIMessageBox.Type
 ---@return Barotrauma.GUIMessageBox
-function CS.Barotrauma.GUIMessageBox(headerText, text, relativeSize, minSize, type) end
+local __ctor = function(headerText, text, relativeSize, minSize, type) end
+CS.Barotrauma.GUIMessageBox = __ctor
+CS.Barotrauma.GUIMessageBox.__new = __ctor
+end
 
 ---@class Barotrauma.GUINumberInput: Barotrauma.GUIComponent
 ---@field TextBox Barotrauma.GUITextBox
@@ -14944,6 +15300,7 @@ function CS.Barotrauma.GUINumberInput.UpdateText() end
 ---@param deltaTime System.Single
 function CS.Barotrauma.GUINumberInput.Update(deltaTime) end
 
+do
 ---@param rectT Barotrauma.RectTransform
 ---@param inputType Barotrauma.NumberType
 ---@param style? System.String
@@ -14952,7 +15309,10 @@ function CS.Barotrauma.GUINumberInput.Update(deltaTime) end
 ---@param buttonVisibility? Barotrauma.GUINumberInput.ButtonVisibility
 ---@param customPlusMinusButtons? userdata|nil
 ---@return Barotrauma.GUINumberInput
-function CS.Barotrauma.GUINumberInput(rectT, inputType, style, textAlignment, relativeButtonAreaWidth, buttonVisibility, customPlusMinusButtons) end
+local __ctor = function(rectT, inputType, style, textAlignment, relativeButtonAreaWidth, buttonVisibility, customPlusMinusButtons) end
+CS.Barotrauma.GUINumberInput = __ctor
+CS.Barotrauma.GUINumberInput.__new = __ctor
+end
 
 ---@class Barotrauma.GUIPrefab: Barotrauma.Prefab
 CS.Barotrauma.GUIPrefab = {}
@@ -14968,10 +15328,14 @@ function CS.Barotrauma.GUIPrefab.DetermineIdentifier(element) end
 ---@return System.Int32
 function CS.Barotrauma.GUIPrefab.ParseSize(element, attributeName) end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.UIStyleFile
 ---@return Barotrauma.GUIPrefab
-function CS.Barotrauma.GUIPrefab(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.GUIPrefab = __ctor
+CS.Barotrauma.GUIPrefab.__new = __ctor
+end
 
 ---@class Barotrauma.GUIFontPrefab: Barotrauma.GUIPrefab
 ---@field Font Barotrauma.ScalableFont
@@ -15024,10 +15388,14 @@ function CS.Barotrauma.GUIFontPrefab.GetShcc(element) end
 ---@return System.Boolean
 function CS.Barotrauma.GUIFontPrefab.IsValidOverride(element) end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.UIStyleFile
 ---@return Barotrauma.GUIFontPrefab
-function CS.Barotrauma.GUIFontPrefab(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.GUIFontPrefab = __ctor
+CS.Barotrauma.GUIFontPrefab.__new = __ctor
+end
 
 ---@class Barotrauma.GUIFont: userdata
 ---@field HasValue System.Boolean
@@ -15144,9 +15512,13 @@ function CS.Barotrauma.GUIFont.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.GUIFont.GetHashCode() end
 
+do
 ---@param identifier System.String
 ---@return Barotrauma.GUIFont
-function CS.Barotrauma.GUIFont(identifier) end
+local __ctor = function(identifier) end
+CS.Barotrauma.GUIFont = __ctor
+CS.Barotrauma.GUIFont.__new = __ctor
+end
 
 ---@class Barotrauma.GUIColorPrefab: Barotrauma.GUIPrefab
 ---@field Color Microsoft.Xna.Framework.Color
@@ -15154,10 +15526,14 @@ CS.Barotrauma.GUIColorPrefab = {}
 
 function CS.Barotrauma.GUIColorPrefab.Dispose() end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.UIStyleFile
 ---@return Barotrauma.GUIColorPrefab
-function CS.Barotrauma.GUIColorPrefab(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.GUIColorPrefab = __ctor
+CS.Barotrauma.GUIColorPrefab.__new = __ctor
+end
 
 ---@class Barotrauma.GUIColor: userdata
 ---@field Value Microsoft.Xna.Framework.Color
@@ -15209,10 +15585,14 @@ function CS.Barotrauma.GUIColor.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.GUIColor.GetHashCode() end
 
+do
 ---@param identifier System.String
 ---@param fallbackColor Microsoft.Xna.Framework.Color
 ---@return Barotrauma.GUIColor
-function CS.Barotrauma.GUIColor(identifier, fallbackColor) end
+local __ctor = function(identifier, fallbackColor) end
+CS.Barotrauma.GUIColor = __ctor
+CS.Barotrauma.GUIColor.__new = __ctor
+end
 
 ---@class Barotrauma.GUISpritePrefab: Barotrauma.GUIPrefab
 ---@field Sprite Barotrauma.UISprite
@@ -15220,10 +15600,14 @@ CS.Barotrauma.GUISpritePrefab = {}
 
 function CS.Barotrauma.GUISpritePrefab.Dispose() end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.UIStyleFile
 ---@return Barotrauma.GUISpritePrefab
-function CS.Barotrauma.GUISpritePrefab(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.GUISpritePrefab = __ctor
+CS.Barotrauma.GUISpritePrefab.__new = __ctor
+end
 
 ---@class Barotrauma.GUISprite: userdata
 ---@field Value Barotrauma.UISprite
@@ -15275,9 +15659,13 @@ function CS.Barotrauma.GUISprite.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.GUISprite.GetHashCode() end
 
+do
 ---@param identifier System.String
 ---@return Barotrauma.GUISprite
-function CS.Barotrauma.GUISprite(identifier) end
+local __ctor = function(identifier) end
+CS.Barotrauma.GUISprite = __ctor
+CS.Barotrauma.GUISprite.__new = __ctor
+end
 
 ---@class Barotrauma.GUISpriteSheetPrefab: Barotrauma.GUIPrefab
 ---@field SpriteSheet Barotrauma.SpriteSheet
@@ -15285,10 +15673,14 @@ CS.Barotrauma.GUISpriteSheetPrefab = {}
 
 function CS.Barotrauma.GUISpriteSheetPrefab.Dispose() end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.UIStyleFile
 ---@return Barotrauma.GUISpriteSheetPrefab
-function CS.Barotrauma.GUISpriteSheetPrefab(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.GUISpriteSheetPrefab = __ctor
+CS.Barotrauma.GUISpriteSheetPrefab.__new = __ctor
+end
 
 ---@class Barotrauma.GUISpriteSheet: userdata
 ---@field Value Barotrauma.SpriteSheet
@@ -15350,9 +15742,13 @@ function CS.Barotrauma.GUISpriteSheet.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.GUISpriteSheet.GetHashCode() end
 
+do
 ---@param identifier System.String
 ---@return Barotrauma.GUISpriteSheet
-function CS.Barotrauma.GUISpriteSheet(identifier) end
+local __ctor = function(identifier) end
+CS.Barotrauma.GUISpriteSheet = __ctor
+CS.Barotrauma.GUISpriteSheet.__new = __ctor
+end
 
 ---@class Barotrauma.GUICursorPrefab: Barotrauma.GUIPrefab
 ---@field Sprites Barotrauma.Sprite[]
@@ -15360,10 +15756,14 @@ CS.Barotrauma.GUICursorPrefab = {}
 
 function CS.Barotrauma.GUICursorPrefab.Dispose() end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.UIStyleFile
 ---@return Barotrauma.GUICursorPrefab
-function CS.Barotrauma.GUICursorPrefab(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.GUICursorPrefab = __ctor
+CS.Barotrauma.GUICursorPrefab.__new = __ctor
+end
 
 ---@class Barotrauma.GUICursor: userdata, { [Barotrauma.CursorState]: Barotrauma.Sprite }
 ---@field Prefabs userdata | (fun(): Barotrauma.GUICursorPrefab)
@@ -15404,9 +15804,13 @@ function CS.Barotrauma.GUICursor.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.GUICursor.GetHashCode() end
 
+do
 ---@param identifier System.String
 ---@return Barotrauma.GUICursor
-function CS.Barotrauma.GUICursor(identifier) end
+local __ctor = function(identifier) end
+CS.Barotrauma.GUICursor = __ctor
+CS.Barotrauma.GUICursor.__new = __ctor
+end
 
 ---@class Barotrauma.GUIProgressBar: Barotrauma.GUIComponent
 ---@field IsHorizontal System.Boolean
@@ -15439,13 +15843,17 @@ function CS.Barotrauma.GUIProgressBar.GetSliderRect(fillAmount) end
 ---@param spriteBatch Microsoft.Xna.Framework.Graphics.SpriteBatch
 function CS.Barotrauma.GUIProgressBar.Draw(spriteBatch) end
 
+do
 ---@param rectT Barotrauma.RectTransform
 ---@param barSize System.Single
 ---@param color? Microsoft.Xna.Framework.Color|nil
 ---@param style? System.String
 ---@param showFrame? System.Boolean
 ---@return Barotrauma.GUIProgressBar
-function CS.Barotrauma.GUIProgressBar(rectT, barSize, color, style, showFrame) end
+local __ctor = function(rectT, barSize, color, style, showFrame) end
+CS.Barotrauma.GUIProgressBar = __ctor
+CS.Barotrauma.GUIProgressBar.__new = __ctor
+end
 
 ---@class Barotrauma.GUIRadioButtonGroup: Barotrauma.GUIComponent
 ---@field Enabled System.Boolean
@@ -15478,8 +15886,12 @@ function CS.Barotrauma.GUIRadioButtonGroup.set_Selected(value) end
 ---@return Barotrauma.GUITickBox
 function CS.Barotrauma.GUIRadioButtonGroup.get_SelectedRadioButton() end
 
+do
 ---@return Barotrauma.GUIRadioButtonGroup
-function CS.Barotrauma.GUIRadioButtonGroup() end
+local __ctor = function() end
+CS.Barotrauma.GUIRadioButtonGroup = __ctor
+CS.Barotrauma.GUIRadioButtonGroup.__new = __ctor
+end
 
 ---@class Barotrauma.GUIScissorComponent: Barotrauma.GUIComponent
 ---@field Content Barotrauma.GUIComponent
@@ -15509,9 +15921,13 @@ function CS.Barotrauma.GUIScissorComponent.ClampChildMouseRects(child) end
 ---@param order? System.Int32
 function CS.Barotrauma.GUIScissorComponent.AddToGUIUpdateList(ignoreChildren, order) end
 
+do
 ---@param rectT Barotrauma.RectTransform
 ---@return Barotrauma.GUIScissorComponent
-function CS.Barotrauma.GUIScissorComponent(rectT) end
+local __ctor = function(rectT) end
+CS.Barotrauma.GUIScissorComponent = __ctor
+CS.Barotrauma.GUIScissorComponent.__new = __ctor
+end
 
 ---@class Barotrauma.GUIScrollBar: Barotrauma.GUIComponent
 ---@field DraggingBar Barotrauma.GUIScrollBar
@@ -15625,13 +16041,17 @@ function CS.Barotrauma.GUIScrollBar.SelectBar() end
 ---@param moveAmount Microsoft.Xna.Framework.Vector2
 function CS.Barotrauma.GUIScrollBar.MoveButton(moveAmount) end
 
+do
 ---@param rectT Barotrauma.RectTransform
 ---@param barSize? System.Single
 ---@param color? Microsoft.Xna.Framework.Color|nil
 ---@param style? System.String
 ---@param isHorizontal? System.Boolean|nil
 ---@return Barotrauma.GUIScrollBar
-function CS.Barotrauma.GUIScrollBar(rectT, barSize, color, style, isHorizontal) end
+local __ctor = function(rectT, barSize, color, style, isHorizontal) end
+CS.Barotrauma.GUIScrollBar = __ctor
+CS.Barotrauma.GUIScrollBar.__new = __ctor
+end
 
 ---@class Barotrauma.GUIStyle: System.Object
 ---@field ItemFrameMargin Microsoft.Xna.Framework.Point
@@ -15752,9 +16172,13 @@ function CS.Barotrauma.GUIStyle.RecalculateFonts() end
 
 function CS.Barotrauma.GUIStyle.RecalculateSizeRestrictions() end
 
+do
 ---@private
 ---@return Barotrauma.GUIStyle
-function CS.Barotrauma.GUIStyle() end
+local __ctor = function() end
+CS.Barotrauma.GUIStyle = __ctor
+CS.Barotrauma.GUIStyle.__new = __ctor
+end
 
 ---@class Barotrauma.GUITextBlock: Barotrauma.GUIComponent
 ---@field OverflowClipActive System.Boolean
@@ -15962,6 +16386,7 @@ function CS.Barotrauma.GUITextBlock.Draw(spriteBatch) end
 ---@param ... Barotrauma.GUITextBlock
 function CS.Barotrauma.GUITextBlock.AutoScaleAndNormalize(...) end
 
+do
 ---@param rectT Barotrauma.RectTransform
 ---@param text Barotrauma.RichString
 ---@param textColor? Microsoft.Xna.Framework.Color|nil
@@ -15971,7 +16396,10 @@ function CS.Barotrauma.GUITextBlock.AutoScaleAndNormalize(...) end
 ---@param style? System.String
 ---@param color? Microsoft.Xna.Framework.Color|nil
 ---@return Barotrauma.GUITextBlock
-function CS.Barotrauma.GUITextBlock(rectT, text, textColor, font, textAlignment, wrap, style, color) end
+local __ctor = function(rectT, text, textColor, font, textAlignment, wrap, style, color) end
+CS.Barotrauma.GUITextBlock = __ctor
+CS.Barotrauma.GUITextBlock.__new = __ctor
+end
 
 ---@class Barotrauma.TextBoxEvent: System.MulticastDelegate
 CS.Barotrauma.TextBoxEvent = {}
@@ -15990,10 +16418,14 @@ function CS.Barotrauma.TextBoxEvent.BeginInvoke(sender, key, callback, object) e
 ---@param result System.IAsyncResult
 function CS.Barotrauma.TextBoxEvent.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return Barotrauma.TextBoxEvent
-function CS.Barotrauma.TextBoxEvent(object, method) end
+local __ctor = function(object, method) end
+CS.Barotrauma.TextBoxEvent = __ctor
+CS.Barotrauma.TextBoxEvent.__new = __ctor
+end
 
 ---@class Barotrauma.GUITextBox: Barotrauma.GUIComponent
 ---@field OnTextChangedDelegate fun(textBox: Barotrauma.GUITextBox, text: System.String): System.Boolean
@@ -16244,6 +16676,7 @@ function CS.Barotrauma.GUITextBox.CalculateSelection() end
 
 function CS.Barotrauma.GUITextBox.ResetDelegates() end
 
+do
 ---@param rectT Barotrauma.RectTransform
 ---@param text? System.String
 ---@param textColor? Microsoft.Xna.Framework.Color|nil
@@ -16255,7 +16688,10 @@ function CS.Barotrauma.GUITextBox.ResetDelegates() end
 ---@param createClearButton? System.Boolean
 ---@param createPenIcon? System.Boolean
 ---@return Barotrauma.GUITextBox
-function CS.Barotrauma.GUITextBox(rectT, text, textColor, font, textAlignment, wrap, style, color, createClearButton, createPenIcon) end
+local __ctor = function(rectT, text, textColor, font, textAlignment, wrap, style, color, createClearButton, createPenIcon) end
+CS.Barotrauma.GUITextBox = __ctor
+CS.Barotrauma.GUITextBox.__new = __ctor
+end
 
 ---@class Barotrauma.GUITickBox: Barotrauma.GUIComponent
 ---@field Selected System.Boolean
@@ -16338,12 +16774,16 @@ function CS.Barotrauma.GUITickBox.SetSelected(selected, callOnSelected) end
 ---@param deltaTime System.Single
 function CS.Barotrauma.GUITickBox.Update(deltaTime) end
 
+do
 ---@param rectT Barotrauma.RectTransform
 ---@param label Barotrauma.LocalizedString
 ---@param font? Barotrauma.GUIFont
 ---@param style? System.String
 ---@return Barotrauma.GUITickBox
-function CS.Barotrauma.GUITickBox(rectT, label, font, style) end
+local __ctor = function(rectT, label, font, style) end
+CS.Barotrauma.GUITickBox = __ctor
+CS.Barotrauma.GUITickBox.__new = __ctor
+end
 
 ---@class Barotrauma.HRManagerUI: System.Object
 ---@field private campaign Barotrauma.CampaignMode
@@ -16511,10 +16951,14 @@ function CS.Barotrauma.HRManagerUI.SetPendingHires(characterInfos, characterInfo
 ---@param validateHires? System.Boolean
 function CS.Barotrauma.HRManagerUI.SendCrewState(updatePending, renameCharacter, firedCharacter, validateHires) end
 
+do
 ---@param campaignUI Barotrauma.CampaignUI
 ---@param parentComponent Barotrauma.GUIComponent
 ---@return Barotrauma.HRManagerUI
-function CS.Barotrauma.HRManagerUI(campaignUI, parentComponent) end
+local __ctor = function(campaignUI, parentComponent) end
+CS.Barotrauma.HRManagerUI = __ctor
+CS.Barotrauma.HRManagerUI.__new = __ctor
+end
 
 ---@class Barotrauma.HUDLayoutSettings: System.Object
 ---@field InventoryTopY System.Int32
@@ -16553,9 +16997,13 @@ function CS.Barotrauma.HUDLayoutSettings.CreateAreas() end
 ---@param spriteBatch Microsoft.Xna.Framework.Graphics.SpriteBatch
 function CS.Barotrauma.HUDLayoutSettings.Draw(spriteBatch) end
 
+do
 ---@private
 ---@return Barotrauma.HUDLayoutSettings
-function CS.Barotrauma.HUDLayoutSettings() end
+local __ctor = function() end
+CS.Barotrauma.HUDLayoutSettings = __ctor
+CS.Barotrauma.HUDLayoutSettings.__new = __ctor
+end
 
 ---@class Barotrauma.HUD: System.Object
 CS.Barotrauma.HUD = {}
@@ -16618,9 +17066,13 @@ function CS.Barotrauma.LoadingScreen.DisableSplashScreen() end
 ---@return userdata | (fun(): Barotrauma.CoroutineStatus)
 function CS.Barotrauma.LoadingScreen.DoLoading(loader) end
 
+do
 ---@param graphics Microsoft.Xna.Framework.Graphics.GraphicsDevice
 ---@return Barotrauma.LoadingScreen
-function CS.Barotrauma.LoadingScreen(graphics) end
+local __ctor = function(graphics) end
+CS.Barotrauma.LoadingScreen = __ctor
+CS.Barotrauma.LoadingScreen.__new = __ctor
+end
 
 ---@class Barotrauma.MedicalClinicUI: System.Object
 ---@field private medicalClinic Barotrauma.MedicalClinic
@@ -16753,10 +17205,14 @@ function CS.Barotrauma.MedicalClinicUI.Update(deltaTime) end
 
 function CS.Barotrauma.MedicalClinicUI.OnDeselected() end
 
+do
 ---@param clinic Barotrauma.MedicalClinic
 ---@param parent Barotrauma.GUIComponent
 ---@return Barotrauma.MedicalClinicUI
-function CS.Barotrauma.MedicalClinicUI(clinic, parent) end
+local __ctor = function(clinic, parent) end
+CS.Barotrauma.MedicalClinicUI = __ctor
+CS.Barotrauma.MedicalClinicUI.__new = __ctor
+end
 
 ---@class Barotrauma.ParamsEditor: System.Object
 ---@field Instance Barotrauma.ParamsEditor
@@ -16778,10 +17234,14 @@ function CS.Barotrauma.ParamsEditor.CreateEditorBox(rectT) end
 
 function CS.Barotrauma.ParamsEditor.Clear() end
 
+do
 ---@overload fun(): Barotrauma.ParamsEditor
 ---@param rectT? Barotrauma.RectTransform
 ---@return Barotrauma.ParamsEditor
-function CS.Barotrauma.ParamsEditor(rectT) end
+local __ctor = function(rectT) end
+CS.Barotrauma.ParamsEditor = __ctor
+CS.Barotrauma.ParamsEditor.__new = __ctor
+end
 
 ---@enum Barotrauma.Anchor
 CS.Barotrauma.Anchor = {
@@ -17175,6 +17635,7 @@ function CS.Barotrauma.RectTransform.CalculateAnchorPoint(anchor, parent) end
 
 function CS.Barotrauma.RectTransform.ResetGlobalScale() end
 
+do
 ---@overload fun(absoluteSize: Microsoft.Xna.Framework.Point, parent?: Barotrauma.RectTransform, anchor?: Barotrauma.Anchor, pivot?: (Barotrauma.Pivot|nil), scaleBasis?: Barotrauma.ScaleBasis, isFixedSize?: System.Boolean): Barotrauma.RectTransform
 ---@overload fun(): Barotrauma.RectTransform
 ---@param relativeSize Microsoft.Xna.Framework.Vector2
@@ -17185,7 +17646,10 @@ function CS.Barotrauma.RectTransform.ResetGlobalScale() end
 ---@param maxSize? Microsoft.Xna.Framework.Point|nil
 ---@param scaleBasis? Barotrauma.ScaleBasis
 ---@return Barotrauma.RectTransform
-function CS.Barotrauma.RectTransform(relativeSize, parent, anchor, pivot, minSize, maxSize, scaleBasis) end
+local __ctor = function(relativeSize, parent, anchor, pivot, minSize, maxSize, scaleBasis) end
+CS.Barotrauma.RectTransform = __ctor
+CS.Barotrauma.RectTransform.__new = __ctor
+end
 
 ---@class Barotrauma.ShapeExtensions: System.Object
 ---@field private _whitePixelTexture Microsoft.Xna.Framework.Graphics.Texture2D
@@ -17618,10 +18082,14 @@ function CS.Barotrauma.Store.SetClearAllButtonStatus() end
 ---@param deltaTime System.Single
 function CS.Barotrauma.Store.Update(deltaTime) end
 
+do
 ---@param campaignUI Barotrauma.CampaignUI
 ---@param parentComponent Barotrauma.GUIComponent
 ---@return Barotrauma.Store
-function CS.Barotrauma.Store(campaignUI, parentComponent) end
+local __ctor = function(campaignUI, parentComponent) end
+CS.Barotrauma.Store = __ctor
+CS.Barotrauma.Store.__new = __ctor
+end
 
 ---@class Barotrauma.SubmarineSelection: System.Object
 ---@field private TransferItemsOnSwitch System.Boolean
@@ -17754,12 +18222,16 @@ function CS.Barotrauma.SubmarineSelection.ShowBuyPrompt(purchaseOnly) end
 ---@return Barotrauma.LocalizedString
 function CS.Barotrauma.SubmarineSelection.GetItemTransferText() end
 
+do
 ---@overload fun(): Barotrauma.SubmarineSelection
 ---@param transfer System.Boolean
 ---@param closeAction fun()
 ---@param parent Barotrauma.RectTransform
 ---@return Barotrauma.SubmarineSelection
-function CS.Barotrauma.SubmarineSelection(transfer, closeAction, parent) end
+local __ctor = function(transfer, closeAction, parent) end
+CS.Barotrauma.SubmarineSelection = __ctor
+CS.Barotrauma.SubmarineSelection.__new = __ctor
+end
 
 ---@class Barotrauma.TabMenu: System.Object
 ---@field SelectedTab Barotrauma.TabMenu.InfoFrameTab
@@ -17958,19 +18430,27 @@ function CS.Barotrauma.TabMenu.OnExperienceChanged(character) end
 
 function CS.Barotrauma.TabMenu.OnClose() end
 
+do
 ---@overload fun(): Barotrauma.TabMenu
 ---@return Barotrauma.TabMenu
-function CS.Barotrauma.TabMenu() end
+local __ctor = function() end
+CS.Barotrauma.TabMenu = __ctor
+CS.Barotrauma.TabMenu.__new = __ctor
+end
 
 ---@class Barotrauma.TalentShowCaseButton: System.ValueType
 ---@field Buttons userdata | (fun(): Barotrauma.TalentButton)
 ---@field IconComponent Barotrauma.GUIComponent
 CS.Barotrauma.TalentShowCaseButton = {}
 
+do
 ---@param Buttons userdata | (fun(): Barotrauma.TalentButton)
 ---@param IconComponent Barotrauma.GUIComponent
 ---@return Barotrauma.TalentShowCaseButton
-function CS.Barotrauma.TalentShowCaseButton(Buttons, IconComponent) end
+local __ctor = function(Buttons, IconComponent) end
+CS.Barotrauma.TalentShowCaseButton = __ctor
+CS.Barotrauma.TalentShowCaseButton.__new = __ctor
+end
 
 ---@class Barotrauma.TalentButton: System.ValueType
 ---@field IconComponent Barotrauma.GUIComponent
@@ -17981,10 +18461,14 @@ CS.Barotrauma.TalentButton = {}
 ---@return Barotrauma.Identifier
 function CS.Barotrauma.TalentButton.get_Identifier() end
 
+do
 ---@param IconComponent Barotrauma.GUIComponent
 ---@param Prefab Barotrauma.TalentPrefab
 ---@return Barotrauma.TalentButton
-function CS.Barotrauma.TalentButton(IconComponent, Prefab) end
+local __ctor = function(IconComponent, Prefab) end
+CS.Barotrauma.TalentButton = __ctor
+CS.Barotrauma.TalentButton.__new = __ctor
+end
 
 ---@class Barotrauma.TalentCornerIcon: System.ValueType
 ---@field TalentTree Barotrauma.Identifier
@@ -17994,23 +18478,31 @@ function CS.Barotrauma.TalentButton(IconComponent, Prefab) end
 ---@field GlowComponent Barotrauma.GUIFrame
 CS.Barotrauma.TalentCornerIcon = {}
 
+do
 ---@param TalentTree Barotrauma.Identifier
 ---@param Index System.Int32
 ---@param IconComponent Barotrauma.GUIImage
 ---@param BackgroundComponent Barotrauma.GUIFrame
 ---@param GlowComponent Barotrauma.GUIFrame
 ---@return Barotrauma.TalentCornerIcon
-function CS.Barotrauma.TalentCornerIcon(TalentTree, Index, IconComponent, BackgroundComponent, GlowComponent) end
+local __ctor = function(TalentTree, Index, IconComponent, BackgroundComponent, GlowComponent) end
+CS.Barotrauma.TalentCornerIcon = __ctor
+CS.Barotrauma.TalentCornerIcon.__new = __ctor
+end
 
 ---@class Barotrauma.TalentTreeStyle: System.ValueType
 ---@field ComponentStyle Barotrauma.GUIComponentStyle
 ---@field Color Microsoft.Xna.Framework.Color
 CS.Barotrauma.TalentTreeStyle = {}
 
+do
 ---@param componentStyle System.String
 ---@param color Microsoft.Xna.Framework.Color
 ---@return Barotrauma.TalentTreeStyle
-function CS.Barotrauma.TalentTreeStyle(componentStyle, color) end
+local __ctor = function(componentStyle, color) end
+CS.Barotrauma.TalentTreeStyle = __ctor
+CS.Barotrauma.TalentTreeStyle.__new = __ctor
+end
 
 ---@class Barotrauma.TalentMenu: System.Object
 ---@field private character Barotrauma.Character
@@ -18134,9 +18626,13 @@ function CS.Barotrauma.TalentMenu.IsSpectatingInMultiplayer() end
 ---@return System.Boolean
 function CS.Barotrauma.TalentMenu.CanManageTalents(targetInfo) end
 
+do
 ---@overload fun(): Barotrauma.TalentMenu
 ---@return Barotrauma.TalentMenu
-function CS.Barotrauma.TalentMenu() end
+local __ctor = function() end
+CS.Barotrauma.TalentMenu = __ctor
+CS.Barotrauma.TalentMenu.__new = __ctor
+end
 
 ---@class Barotrauma.UISprite: System.Object
 ---@field Sprite Barotrauma.Sprite
@@ -18168,9 +18664,13 @@ function CS.Barotrauma.UISprite.GetSliceBorderScale(drawSize) end
 ---@param uvOffset? Microsoft.Xna.Framework.Vector2|nil
 function CS.Barotrauma.UISprite.Draw(spriteBatch, rect, color, spriteEffects, uvOffset) end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.UISprite
-function CS.Barotrauma.UISprite(element) end
+local __ctor = function(element) end
+CS.Barotrauma.UISprite = __ctor
+CS.Barotrauma.UISprite.__new = __ctor
+end
 
 ---@class Barotrauma.UpgradeStore: System.Object
 ---@field private Campaign Barotrauma.CampaignMode
@@ -18411,11 +18911,15 @@ function CS.Barotrauma.UpgradeStore.get_HasPermission() end
 ---@return Barotrauma.RectTransform
 function CS.Barotrauma.UpgradeStore.rectT(x, y, parentComponent, anchor, scaleBasis) end
 
+do
 ---@overload fun(): Barotrauma.UpgradeStore
 ---@param campaignUI Barotrauma.CampaignUI
 ---@param parent Barotrauma.GUIComponent
 ---@return Barotrauma.UpgradeStore
-function CS.Barotrauma.UpgradeStore(campaignUI, parent) end
+local __ctor = function(campaignUI, parent) end
+CS.Barotrauma.UpgradeStore = __ctor
+CS.Barotrauma.UpgradeStore.__new = __ctor
+end
 
 ---@class Barotrauma.VideoPlayer: System.Object
 ---@field IsPlaying System.Boolean
@@ -18481,8 +18985,12 @@ function CS.Barotrauma.VideoPlayer.DrawVideo(spriteBatch, rect) end
 
 function CS.Barotrauma.VideoPlayer.Remove() end
 
+do
 ---@return Barotrauma.VideoPlayer
-function CS.Barotrauma.VideoPlayer() end
+local __ctor = function() end
+CS.Barotrauma.VideoPlayer = __ctor
+CS.Barotrauma.VideoPlayer.__new = __ctor
+end
 
 ---@class Barotrauma.VotingInterface: System.Object
 ---@field private SubmarineColor Microsoft.Xna.Framework.Color
@@ -18598,8 +19106,12 @@ function CS.Barotrauma.VotingInterface.GetMoneyTransferVoteResultMessage(from, t
 
 function CS.Barotrauma.VotingInterface.Remove() end
 
+do
 ---@return Barotrauma.VotingInterface
-function CS.Barotrauma.VotingInterface() end
+local __ctor = function() end
+CS.Barotrauma.VotingInterface = __ctor
+CS.Barotrauma.VotingInterface.__new = __ctor
+end
 
 ---@class Barotrauma.Widget: System.Object
 ---@field DrawRect Microsoft.Xna.Framework.Rectangle
@@ -18667,12 +19179,16 @@ function CS.Barotrauma.Widget.Update(deltaTime) end
 ---@param deltaTime System.Single
 function CS.Barotrauma.Widget.Draw(spriteBatch, deltaTime) end
 
+do
 ---@overload fun(): Barotrauma.Widget
 ---@param id System.String
 ---@param size System.Int32
 ---@param shape Barotrauma.WidgetShape
 ---@return Barotrauma.Widget
-function CS.Barotrauma.Widget(id, size, shape) end
+local __ctor = function(id, size, shape) end
+CS.Barotrauma.Widget = __ctor
+CS.Barotrauma.Widget.__new = __ctor
+end
 
 ---@class Barotrauma.CharacterInventory: Barotrauma.Inventory
 ---@field LimbSlotIcons userdata | { [Barotrauma.InvSlotType]: Barotrauma.Sprite } | (fun(): userdata)
@@ -18871,12 +19387,16 @@ function CS.Barotrauma.CharacterInventory.PutItem(item, i, user, removeItem, cre
 ---@param slotRange System.Range
 function CS.Barotrauma.CharacterInventory.CreateNetworkEvent(slotRange) end
 
+do
 ---@overload fun(): Barotrauma.CharacterInventory
 ---@param element Barotrauma.ContentXElement
 ---@param character Barotrauma.Character
 ---@param spawnInitialItems System.Boolean
 ---@return Barotrauma.CharacterInventory
-function CS.Barotrauma.CharacterInventory(element, character, spawnInitialItems) end
+local __ctor = function(element, character, spawnInitialItems) end
+CS.Barotrauma.CharacterInventory = __ctor
+CS.Barotrauma.CharacterInventory.__new = __ctor
+end
 
 ---@class Barotrauma.VisualSlot: System.Object
 ---@field IsHighlighted System.Boolean
@@ -18927,10 +19447,14 @@ function CS.Barotrauma.VisualSlot.UpdateBorderHighlight() end
 ---@param newSlot Barotrauma.VisualSlot
 function CS.Barotrauma.VisualSlot.MoveBorderHighlight(newSlot) end
 
+do
 ---@overload fun(): Barotrauma.VisualSlot
 ---@param rect Microsoft.Xna.Framework.Rectangle
 ---@return Barotrauma.VisualSlot
-function CS.Barotrauma.VisualSlot(rect) end
+local __ctor = function(rect) end
+CS.Barotrauma.VisualSlot = __ctor
+CS.Barotrauma.VisualSlot.__new = __ctor
+end
 
 ---@class Barotrauma.Inventory: System.Object
 ---@field UIScale System.Single
@@ -19340,12 +19864,16 @@ function CS.Barotrauma.Inventory.SharedWrite(msg, slotRange) end
 
 function CS.Barotrauma.Inventory.DeleteAllItems() end
 
+do
 ---@overload fun(): Barotrauma.Inventory
 ---@param owner Barotrauma.Entity
 ---@param capacity System.Int32
 ---@param slotsPerRow? System.Int32
 ---@return Barotrauma.Inventory
-function CS.Barotrauma.Inventory(owner, capacity, slotsPerRow) end
+local __ctor = function(owner, capacity, slotsPerRow) end
+CS.Barotrauma.Inventory = __ctor
+CS.Barotrauma.Inventory.__new = __ctor
+end
 
 ---@class Barotrauma.Item: Barotrauma.MapEntity
 ---@field IconStyle Barotrauma.GUIComponentStyle
@@ -20462,6 +20990,7 @@ function CS.Barotrauma.Item.RemoveByPrefab(prefab) end
 ---@return System.Object
 function CS.Barotrauma.Item.GetComponentString(component) end
 
+do
 ---@overload fun(newRect: Microsoft.Xna.Framework.Rectangle, itemPrefab: Barotrauma.ItemPrefab, submarine: Barotrauma.Submarine, callOnItemLoaded?: System.Boolean, id?: System.UInt16): Barotrauma.Item
 ---@overload fun(): Barotrauma.Item
 ---@param itemPrefab Barotrauma.ItemPrefab
@@ -20470,7 +20999,10 @@ function CS.Barotrauma.Item.GetComponentString(component) end
 ---@param id? System.UInt16
 ---@param callOnItemLoaded? System.Boolean
 ---@return Barotrauma.Item
-function CS.Barotrauma.Item(itemPrefab, position, submarine, id, callOnItemLoaded) end
+local __ctor = function(itemPrefab, position, submarine, id, callOnItemLoaded) end
+CS.Barotrauma.Item = __ctor
+CS.Barotrauma.Item.__new = __ctor
+end
 
 ---@class Barotrauma.ItemInventory: Barotrauma.Inventory
 ---@field Container Barotrauma.Items.Components.ItemContainer
@@ -20534,12 +21066,16 @@ function CS.Barotrauma.ItemInventory.CreateNetworkEvent(slotRange) end
 ---@param item Barotrauma.Item
 function CS.Barotrauma.ItemInventory.RemoveItem(item) end
 
+do
 ---@param owner Barotrauma.Item
 ---@param container Barotrauma.Items.Components.ItemContainer
 ---@param capacity System.Int32
 ---@param slotsPerRow? System.Int32
 ---@return Barotrauma.ItemInventory
-function CS.Barotrauma.ItemInventory(owner, container, capacity, slotsPerRow) end
+local __ctor = function(owner, container, capacity, slotsPerRow) end
+CS.Barotrauma.ItemInventory = __ctor
+CS.Barotrauma.ItemInventory.__new = __ctor
+end
 
 ---@class Barotrauma.BrokenItemSprite: System.Object
 ---@field MaxConditionPercentage System.Single
@@ -20548,12 +21084,16 @@ function CS.Barotrauma.ItemInventory(owner, container, capacity, slotsPerRow) en
 ---@field Offset Microsoft.Xna.Framework.Point
 CS.Barotrauma.BrokenItemSprite = {}
 
+do
 ---@param sprite Barotrauma.Sprite
 ---@param maxCondition System.Single
 ---@param fadeIn System.Boolean
 ---@param offset Microsoft.Xna.Framework.Point
 ---@return Barotrauma.BrokenItemSprite
-function CS.Barotrauma.BrokenItemSprite(sprite, maxCondition, fadeIn, offset) end
+local __ctor = function(sprite, maxCondition, fadeIn, offset) end
+CS.Barotrauma.BrokenItemSprite = __ctor
+CS.Barotrauma.BrokenItemSprite.__new = __ctor
+end
 
 ---@class Barotrauma.ContainedItemSprite: System.Object
 ---@field Sprite Barotrauma.Sprite
@@ -20567,11 +21107,15 @@ CS.Barotrauma.ContainedItemSprite = {}
 ---@return System.Boolean
 function CS.Barotrauma.ContainedItemSprite.MatchesContainer(container) end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param path? System.String
 ---@param lazyLoad? System.Boolean
 ---@return Barotrauma.ContainedItemSprite
-function CS.Barotrauma.ContainedItemSprite(element, path, lazyLoad) end
+local __ctor = function(element, path, lazyLoad) end
+CS.Barotrauma.ContainedItemSprite = __ctor
+CS.Barotrauma.ContainedItemSprite.__new = __ctor
+end
 
 ---@class Barotrauma.ItemPrefab: Barotrauma.MapEntityPrefab
 ---@field UpgradeOverrideSprites userdata | { [Barotrauma.Identifier]: userdata | { [System.Int32]: Barotrauma.DecorativeSprite } | (fun(): Barotrauma.DecorativeSprite) } | (fun(): userdata)
@@ -20893,11 +21437,15 @@ function CS.Barotrauma.ItemPrefab.ToString() end
 ---@return Barotrauma.ItemPrefab
 function CS.Barotrauma.ItemPrefab.GetItemPrefab(itemNameOrId) end
 
+do
 ---@overload fun(): Barotrauma.ItemPrefab
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.ItemFile
 ---@return Barotrauma.ItemPrefab
-function CS.Barotrauma.ItemPrefab(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.ItemPrefab = __ctor
+CS.Barotrauma.ItemPrefab.__new = __ctor
+end
 
 ---@class Barotrauma.LuaCsLogger: System.Object
 ---@field private overlayFrame Barotrauma.GUIFrame
@@ -20939,9 +21487,13 @@ function CS.Barotrauma.LuaCsLogger.LogMessage(message, serverColor, clientColor)
 ---@param messageType? Barotrauma.Networking.ServerLog.MessageType
 function CS.Barotrauma.LuaCsLogger.Log(message, color, messageType) end
 
+do
 ---@overload fun(): Barotrauma.LuaCsLogger
 ---@return Barotrauma.LuaCsLogger
-function CS.Barotrauma.LuaCsLogger() end
+local __ctor = function() end
+CS.Barotrauma.LuaCsLogger = __ctor
+CS.Barotrauma.LuaCsLogger.__new = __ctor
+end
 
 ---@class Barotrauma.LuaCsNetworking: System.Object
 ---@field LastClientListUpdateID System.UInt16
@@ -21043,9 +21595,13 @@ function CS.Barotrauma.LuaCsNetworking.get_LastClientListUpdateID() end
 ---@param value System.UInt16
 function CS.Barotrauma.LuaCsNetworking.set_LastClientListUpdateID(value) end
 
+do
 ---@overload fun(): Barotrauma.LuaCsNetworking
 ---@return Barotrauma.LuaCsNetworking
-function CS.Barotrauma.LuaCsNetworking() end
+local __ctor = function() end
+CS.Barotrauma.LuaCsNetworking = __ctor
+CS.Barotrauma.LuaCsNetworking.__new = __ctor
+end
 
 ---@class Barotrauma.LuaCsSetup: System.Object
 ---@field IsRunningInsideWorkshop System.Boolean
@@ -21174,9 +21730,13 @@ function CS.Barotrauma.LuaCsSetup.RegisterLuaConverters() end
 ---@private
 function CS.Barotrauma.LuaCsSetup.RegisterAction() end
 
+do
 ---@overload fun(): Barotrauma.LuaCsSetup
 ---@return Barotrauma.LuaCsSetup
-function CS.Barotrauma.LuaCsSetup() end
+local __ctor = function() end
+CS.Barotrauma.LuaCsSetup = __ctor
+CS.Barotrauma.LuaCsSetup.__new = __ctor
+end
 
 ---@class Barotrauma.Explosion: System.Object
 ---@field CameraShake System.Single
@@ -21279,6 +21839,7 @@ function CS.Barotrauma.Explosion.GetObstacleDamageMultiplier(explosionSimPos, ex
 ---@param volume System.Single
 function CS.Barotrauma.Explosion.PlayTinnitusProjSpecific(volume) end
 
+do
 ---@overload fun(element: Barotrauma.ContentXElement, parentDebugName: System.String): Barotrauma.Explosion
 ---@overload fun(): Barotrauma.Explosion
 ---@param range System.Single
@@ -21289,7 +21850,10 @@ function CS.Barotrauma.Explosion.PlayTinnitusProjSpecific(volume) end
 ---@param empStrength? System.Single
 ---@param ballastFloraStrength? System.Single
 ---@return Barotrauma.Explosion
-function CS.Barotrauma.Explosion(range, force, damage, structureDamage, itemDamage, empStrength, ballastFloraStrength) end
+local __ctor = function(range, force, damage, structureDamage, itemDamage, empStrength, ballastFloraStrength) end
+CS.Barotrauma.Explosion = __ctor
+CS.Barotrauma.Explosion.__new = __ctor
+end
 
 ---@class Barotrauma.FireSource: System.Object
 ---@field protected SpreadToOtherHullsProbability System.Single
@@ -21422,12 +21986,16 @@ function CS.Barotrauma.FireSource.Extinguish(deltaTime, amount) end
 
 function CS.Barotrauma.FireSource.Remove() end
 
+do
 ---@param worldPosition Microsoft.Xna.Framework.Vector2
 ---@param spawningHull? Barotrauma.Hull
 ---@param sourceCharacter? Barotrauma.Character
 ---@param isNetworkMessage? System.Boolean
 ---@return Barotrauma.FireSource
-function CS.Barotrauma.FireSource(worldPosition, spawningHull, sourceCharacter, isNetworkMessage) end
+local __ctor = function(worldPosition, spawningHull, sourceCharacter, isNetworkMessage) end
+CS.Barotrauma.FireSource = __ctor
+CS.Barotrauma.FireSource.__new = __ctor
+end
 
 ---@class Barotrauma.Gap: Barotrauma.MapEntity
 ---@field SelectableInEditor System.Boolean
@@ -21641,12 +22209,16 @@ function CS.Barotrauma.Gap.Load(element, submarine, idRemap) end
 ---@return System.Xml.Linq.XElement
 function CS.Barotrauma.Gap.Save(parentElement) end
 
+do
 ---@overload fun(rect: Microsoft.Xna.Framework.Rectangle, submarine: Barotrauma.Submarine): Barotrauma.Gap
 ---@overload fun(rect: Microsoft.Xna.Framework.Rectangle, isHorizontal: System.Boolean, submarine: Barotrauma.Submarine, isDiagonal?: System.Boolean, id?: System.UInt16): Barotrauma.Gap
 ---@overload fun(): Barotrauma.Gap
 ---@param rectangle Microsoft.Xna.Framework.Rectangle
 ---@return Barotrauma.Gap
-function CS.Barotrauma.Gap(rectangle) end
+local __ctor = function(rectangle) end
+CS.Barotrauma.Gap = __ctor
+CS.Barotrauma.Gap.__new = __ctor
+end
 
 ---@class Barotrauma.Hull: Barotrauma.MapEntity
 ---@field DrawSurface System.Single
@@ -22141,11 +22713,15 @@ function CS.Barotrauma.Hull.Save(parentElement) end
 ---@return System.String
 function CS.Barotrauma.Hull.ToString() end
 
+do
 ---@overload fun(rectangle: Microsoft.Xna.Framework.Rectangle, submarine: Barotrauma.Submarine, id?: System.UInt16): Barotrauma.Hull
 ---@overload fun(): Barotrauma.Hull
 ---@param rectangle Microsoft.Xna.Framework.Rectangle
 ---@return Barotrauma.Hull
-function CS.Barotrauma.Hull(rectangle) end
+local __ctor = function(rectangle) end
+CS.Barotrauma.Hull = __ctor
+CS.Barotrauma.Hull.__new = __ctor
+end
 
 ---@class Barotrauma.ItemAssemblyPrefab: Barotrauma.MapEntityPrefab
 ---@field Name Barotrauma.LocalizedString
@@ -22222,11 +22798,15 @@ function CS.Barotrauma.ItemAssemblyPrefab.Delete() end
 
 function CS.Barotrauma.ItemAssemblyPrefab.Dispose() end
 
+do
 ---@overload fun(): Barotrauma.ItemAssemblyPrefab
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.ItemAssemblyFile
 ---@return Barotrauma.ItemAssemblyPrefab
-function CS.Barotrauma.ItemAssemblyPrefab(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.ItemAssemblyPrefab = __ctor
+CS.Barotrauma.ItemAssemblyPrefab.__new = __ctor
+end
 
 ---@class Barotrauma.BackgroundCreature: System.Object
 ---@field Depth System.Single
@@ -22302,10 +22882,14 @@ function CS.Barotrauma.BackgroundCreature.GetExtents(cam) end
 ---@param flippedHorizontally System.Boolean
 function CS.Barotrauma.BackgroundCreature.UpdateDeformations(deltaTime, flippedHorizontally) end
 
+do
 ---@param prefab Barotrauma.BackgroundCreaturePrefab
 ---@param position Microsoft.Xna.Framework.Vector2
 ---@return Barotrauma.BackgroundCreature
-function CS.Barotrauma.BackgroundCreature(prefab, position) end
+local __ctor = function(prefab, position) end
+CS.Barotrauma.BackgroundCreature = __ctor
+CS.Barotrauma.BackgroundCreature.__new = __ctor
+end
 
 ---@class Barotrauma.BackgroundCreatureManager: System.Object
 ---@field private checkVisibleTimer System.Single
@@ -22334,8 +22918,12 @@ function CS.Barotrauma.BackgroundCreatureManager.Draw(spriteBatch, cam) end
 ---@param cam Barotrauma.Camera
 function CS.Barotrauma.BackgroundCreatureManager.DrawLights(spriteBatch, cam) end
 
+do
 ---@return Barotrauma.BackgroundCreatureManager
-function CS.Barotrauma.BackgroundCreatureManager() end
+local __ctor = function() end
+CS.Barotrauma.BackgroundCreatureManager = __ctor
+CS.Barotrauma.BackgroundCreatureManager.__new = __ctor
+end
 
 ---@class Barotrauma.BackgroundCreaturePrefab: Barotrauma.Prefab
 ---@field Sprite Barotrauma.Sprite
@@ -22382,11 +22970,15 @@ function CS.Barotrauma.BackgroundCreaturePrefab.GetCommonness(levelData) end
 
 function CS.Barotrauma.BackgroundCreaturePrefab.Dispose() end
 
+do
 ---@overload fun(): Barotrauma.BackgroundCreaturePrefab
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.BackgroundCreaturePrefabsFile
 ---@return Barotrauma.BackgroundCreaturePrefab
-function CS.Barotrauma.BackgroundCreaturePrefab(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.BackgroundCreaturePrefab = __ctor
+CS.Barotrauma.BackgroundCreaturePrefab.__new = __ctor
+end
 
 ---@class Barotrauma.DestructibleLevelWall: Barotrauma.LevelWall
 ---@field Alpha System.Single
@@ -22434,13 +23026,17 @@ function CS.Barotrauma.DestructibleLevelWall.CreateFragments() end
 
 function CS.Barotrauma.DestructibleLevelWall.Destroy() end
 
+do
 ---@param vertices userdata | { [System.Int32]: Microsoft.Xna.Framework.Vector2 } | (fun(): Microsoft.Xna.Framework.Vector2)
 ---@param color Microsoft.Xna.Framework.Color
 ---@param level Barotrauma.Level
 ---@param health? System.Single|nil
 ---@param giftWrap? System.Boolean
 ---@return Barotrauma.DestructibleLevelWall
-function CS.Barotrauma.DestructibleLevelWall(vertices, color, level, health, giftWrap) end
+local __ctor = function(vertices, color, level, health, giftWrap) end
+CS.Barotrauma.DestructibleLevelWall = __ctor
+CS.Barotrauma.DestructibleLevelWall.__new = __ctor
+end
 
 ---@class Barotrauma.Level: Barotrauma.Entity
 ---@field BackgroundCreatureManager Barotrauma.BackgroundCreatureManager
@@ -22952,10 +23548,14 @@ function CS.Barotrauma.Level.DebugSetEndLocation(newEndLocation) end
 
 function CS.Barotrauma.Level.Remove() end
 
+do
 ---@private
 ---@param levelData Barotrauma.LevelData
 ---@return Barotrauma.Level
-function CS.Barotrauma.Level(levelData) end
+local __ctor = function(levelData) end
+CS.Barotrauma.Level = __ctor
+CS.Barotrauma.Level.__new = __ctor
+end
 
 ---@class Barotrauma.LevelGenerationParams: Barotrauma.PrefabWithUintIdentifier
 ---@field DisplayName Barotrauma.LocalizedString
@@ -23266,11 +23866,15 @@ function CS.Barotrauma.LevelGenerationParams.GetRandom(seed, type, difficulty, b
 
 function CS.Barotrauma.LevelGenerationParams.Dispose() end
 
+do
 ---@overload fun(): Barotrauma.LevelGenerationParams
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.LevelGenerationParametersFile
 ---@return Barotrauma.LevelGenerationParams
-function CS.Barotrauma.LevelGenerationParams(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.LevelGenerationParams = __ctor
+CS.Barotrauma.LevelGenerationParams.__new = __ctor
+end
 
 ---@class Barotrauma.LevelObject: System.Object
 ---@field CurrentScale Microsoft.Xna.Framework.Vector2
@@ -23385,12 +23989,16 @@ function CS.Barotrauma.LevelObject.ToString() end
 ---@param c Barotrauma.Networking.Client
 function CS.Barotrauma.LevelObject.ServerWrite(msg, c) end
 
+do
 ---@param prefab Barotrauma.LevelObjectPrefab
 ---@param position Microsoft.Xna.Framework.Vector3
 ---@param scale System.Single
 ---@param rotation? System.Single
 ---@return Barotrauma.LevelObject
-function CS.Barotrauma.LevelObject(prefab, position, scale, rotation) end
+local __ctor = function(prefab, position, scale, rotation) end
+CS.Barotrauma.LevelObject = __ctor
+CS.Barotrauma.LevelObject.__new = __ctor
+end
 
 ---@class Barotrauma.LevelObjectManager: Barotrauma.Entity
 ---@field GlobalForceDecreaseTimer System.Single
@@ -23509,9 +24117,13 @@ function CS.Barotrauma.LevelObjectManager.RemoveProjSpecific() end
 ---@param extraData? Barotrauma.Networking.NetEntityEvent.IData
 function CS.Barotrauma.LevelObjectManager.ServerEventWrite(msg, c, extraData) end
 
+do
 ---@overload fun(): Barotrauma.LevelObjectManager
 ---@return Barotrauma.LevelObjectManager
-function CS.Barotrauma.LevelObjectManager() end
+local __ctor = function() end
+CS.Barotrauma.LevelObjectManager = __ctor
+CS.Barotrauma.LevelObjectManager.__new = __ctor
+end
 
 ---@class Barotrauma.LevelObjectPrefab: Barotrauma.PrefabWithUintIdentifier
 ---@field ParticleEmitterTriggerIndex userdata | { [System.Int32]: System.Int32 } | (fun(): System.Int32)
@@ -23622,12 +24234,16 @@ function CS.Barotrauma.LevelObjectPrefab.GetCommonness(generationParams, require
 
 function CS.Barotrauma.LevelObjectPrefab.Dispose() end
 
+do
 ---@overload fun(): Barotrauma.LevelObjectPrefab
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.LevelObjectPrefabsFile
 ---@param identifierOverride? Barotrauma.Identifier
 ---@return Barotrauma.LevelObjectPrefab
-function CS.Barotrauma.LevelObjectPrefab(element, file, identifierOverride) end
+local __ctor = function(element, file, identifierOverride) end
+CS.Barotrauma.LevelObjectPrefab = __ctor
+CS.Barotrauma.LevelObjectPrefab.__new = __ctor
+end
 
 ---@class Barotrauma.LevelTrigger: System.Object
 ---@field StatusEffects userdata | (fun(): Barotrauma.StatusEffect)
@@ -23804,6 +24420,7 @@ function CS.Barotrauma.LevelTrigger.GetWaterFlowVelocity(viewPosition) end
 ---@param c Barotrauma.Networking.Client
 function CS.Barotrauma.LevelTrigger.ServerWrite(msg, c) end
 
+do
 ---@overload fun(): Barotrauma.LevelTrigger
 ---@param element Barotrauma.ContentXElement
 ---@param position Microsoft.Xna.Framework.Vector2
@@ -23811,7 +24428,10 @@ function CS.Barotrauma.LevelTrigger.ServerWrite(msg, c) end
 ---@param scale? System.Single
 ---@param parentDebugName? System.String
 ---@return Barotrauma.LevelTrigger
-function CS.Barotrauma.LevelTrigger(element, position, rotation, scale, parentDebugName) end
+local __ctor = function(element, position, rotation, scale, parentDebugName) end
+CS.Barotrauma.LevelTrigger = __ctor
+CS.Barotrauma.LevelTrigger.__new = __ctor
+end
 
 ---@class Barotrauma.LevelWallVertexBuffer: System.Object
 ---@field IsDisposed System.Boolean
@@ -23832,13 +24452,17 @@ function CS.Barotrauma.LevelWallVertexBuffer.Append(newWallVertices, newWallEdge
 
 function CS.Barotrauma.LevelWallVertexBuffer.Dispose() end
 
+do
 ---@param wallVertices Microsoft.Xna.Framework.Graphics.VertexPositionColorTexture[]
 ---@param wallEdgeVertices Microsoft.Xna.Framework.Graphics.VertexPositionColorTexture[]
 ---@param wallInnerVertices Microsoft.Xna.Framework.Graphics.VertexPositionColor[]
 ---@param wallTexture Microsoft.Xna.Framework.Graphics.Texture2D
 ---@param edgeTexture Microsoft.Xna.Framework.Graphics.Texture2D
 ---@return Barotrauma.LevelWallVertexBuffer
-function CS.Barotrauma.LevelWallVertexBuffer(wallVertices, wallEdgeVertices, wallInnerVertices, wallTexture, edgeTexture) end
+local __ctor = function(wallVertices, wallEdgeVertices, wallInnerVertices, wallTexture, edgeTexture) end
+CS.Barotrauma.LevelWallVertexBuffer = __ctor
+CS.Barotrauma.LevelWallVertexBuffer.__new = __ctor
+end
 
 ---@class Barotrauma.LevelRenderer: System.Object
 ---@field FlashColor Microsoft.Xna.Framework.Color
@@ -23906,9 +24530,13 @@ function CS.Barotrauma.LevelRenderer.RenderWalls(graphicsDevice, cam) end
 
 function CS.Barotrauma.LevelRenderer.Dispose() end
 
+do
 ---@param level Barotrauma.Level
 ---@return Barotrauma.LevelRenderer
-function CS.Barotrauma.LevelRenderer(level) end
+local __ctor = function(level) end
+CS.Barotrauma.LevelRenderer = __ctor
+CS.Barotrauma.LevelRenderer.__new = __ctor
+end
 
 ---@class Barotrauma.LevelWall: System.Object
 ---@field VertexBuffer Barotrauma.LevelWallVertexBuffer
@@ -23982,6 +24610,7 @@ function CS.Barotrauma.LevelWall.IsPointInside(point) end
 
 function CS.Barotrauma.LevelWall.Dispose() end
 
+do
 ---@overload fun(edgePositions: (userdata | { [System.Int32]: Microsoft.Xna.Framework.Vector2 } | (fun(): Microsoft.Xna.Framework.Vector2)), extendAmount: Microsoft.Xna.Framework.Vector2, color: Microsoft.Xna.Framework.Color, level: Barotrauma.Level): Barotrauma.LevelWall
 ---@param vertices userdata | { [System.Int32]: Microsoft.Xna.Framework.Vector2 } | (fun(): Microsoft.Xna.Framework.Vector2)
 ---@param color Microsoft.Xna.Framework.Color
@@ -23989,7 +24618,10 @@ function CS.Barotrauma.LevelWall.Dispose() end
 ---@param giftWrap? System.Boolean
 ---@param createBody? System.Boolean
 ---@return Barotrauma.LevelWall
-function CS.Barotrauma.LevelWall(vertices, color, level, giftWrap, createBody) end
+local __ctor = function(vertices, color, level, giftWrap, createBody) end
+CS.Barotrauma.LevelWall = __ctor
+CS.Barotrauma.LevelWall.__new = __ctor
+end
 
 ---@class Barotrauma.WaterVertexData: System.ValueType
 ---@field private DistortStrengthX System.Single
@@ -24002,12 +24634,16 @@ CS.Barotrauma.WaterVertexData = {}
 ---@return Microsoft.Xna.Framework.Color
 function CS.Barotrauma.WaterVertexData.op_Implicit(wd) end
 
+do
 ---@param distortStrengthX System.Single
 ---@param distortStrengthY System.Single
 ---@param waterColorStrength System.Single
 ---@param waterAlpha System.Single
 ---@return Barotrauma.WaterVertexData
-function CS.Barotrauma.WaterVertexData(distortStrengthX, distortStrengthY, waterColorStrength, waterAlpha) end
+local __ctor = function(distortStrengthX, distortStrengthY, waterColorStrength, waterAlpha) end
+CS.Barotrauma.WaterVertexData = __ctor
+CS.Barotrauma.WaterVertexData.__new = __ctor
+end
 
 ---@class Barotrauma.WaterRenderer: System.Object
 ---@field WavePos Microsoft.Xna.Framework.Vector2
@@ -24052,10 +24688,14 @@ function CS.Barotrauma.WaterRenderer.ResetBuffers() end
 
 function CS.Barotrauma.WaterRenderer.Dispose() end
 
+do
 ---@overload fun(): Barotrauma.WaterRenderer
 ---@param graphicsDevice Microsoft.Xna.Framework.Graphics.GraphicsDevice
 ---@return Barotrauma.WaterRenderer
-function CS.Barotrauma.WaterRenderer(graphicsDevice) end
+local __ctor = function(graphicsDevice) end
+CS.Barotrauma.WaterRenderer = __ctor
+CS.Barotrauma.WaterRenderer.__new = __ctor
+end
 
 ---@class Barotrauma.LinkedSubmarine: Barotrauma.MapEntity
 ---@field LoadSub System.Boolean
@@ -24142,10 +24782,14 @@ function CS.Barotrauma.LinkedSubmarine.OnMapLoaded() end
 ---@return System.Xml.Linq.XElement
 function CS.Barotrauma.LinkedSubmarine.Save(parentElement) end
 
+do
 ---@param submarine Barotrauma.Submarine
 ---@param id? System.UInt16
 ---@return Barotrauma.LinkedSubmarine
-function CS.Barotrauma.LinkedSubmarine(submarine, id) end
+local __ctor = function(submarine, id) end
+CS.Barotrauma.LinkedSubmarine = __ctor
+CS.Barotrauma.LinkedSubmarine.__new = __ctor
+end
 
 ---@class Barotrauma.MapEntity: Barotrauma.Entity
 ---@field StartMovingPos Microsoft.Xna.Framework.Vector2
@@ -24613,12 +25257,16 @@ function CS.Barotrauma.MapEntity.Save(parentElement) end
 ---@param e Barotrauma.MapEntity
 function CS.Barotrauma.MapEntity.RemoveLinked(e) end
 
+do
 ---@overload fun(): Barotrauma.MapEntity
 ---@param prefab Barotrauma.MapEntityPrefab
 ---@param submarine Barotrauma.Submarine
 ---@param id System.UInt16
 ---@return Barotrauma.MapEntity
-function CS.Barotrauma.MapEntity(prefab, submarine, id) end
+local __ctor = function(prefab, submarine, id) end
+CS.Barotrauma.MapEntity = __ctor
+CS.Barotrauma.MapEntity.__new = __ctor
+end
 
 ---@class Barotrauma.MapEntityPrefab: Barotrauma.PrefabWithUintIdentifier
 ---@field IsModded System.Boolean
@@ -24750,11 +25398,15 @@ function CS.Barotrauma.MapEntityPrefab.IsLinkAllowed(target) end
 ---@param element Barotrauma.ContentXElement
 function CS.Barotrauma.MapEntityPrefab.LoadDescription(element) end
 
+do
 ---@protected
 ---@overload fun(element: Barotrauma.ContentXElement, file: Barotrauma.ContentFile): Barotrauma.MapEntityPrefab
 ---@param identifier Barotrauma.Identifier
 ---@return Barotrauma.MapEntityPrefab
-function CS.Barotrauma.MapEntityPrefab(identifier) end
+local __ctor = function(identifier) end
+CS.Barotrauma.MapEntityPrefab = __ctor
+CS.Barotrauma.MapEntityPrefab.__new = __ctor
+end
 
 ---@class Barotrauma.Map: System.Object
 ---@field HighlightedLocation Barotrauma.Location
@@ -25048,11 +25700,15 @@ function CS.Barotrauma.Map.Remove() end
 ---@private
 function CS.Barotrauma.Map.RemoveProjSpecific() end
 
+do
 ---@overload fun(campaign: Barotrauma.CampaignMode, element: System.Xml.Linq.XElement): Barotrauma.Map
 ---@overload fun(campaign: Barotrauma.CampaignMode, seed: System.String): Barotrauma.Map
 ---@param settings Barotrauma.CampaignSettings
 ---@return Barotrauma.Map
-function CS.Barotrauma.Map(settings) end
+local __ctor = function(settings) end
+CS.Barotrauma.Map = __ctor
+CS.Barotrauma.Map.__new = __ctor
+end
 
 ---@class Barotrauma.Radiation: System.Object
 ---@field private maxFrames System.Int32
@@ -25111,11 +25767,15 @@ function CS.Barotrauma.Radiation.DepthInRadiation(pos) end
 ---@return System.Xml.Linq.XElement
 function CS.Barotrauma.Radiation.Save() end
 
+do
 ---@param map Barotrauma.Map
 ---@param radiationParams Barotrauma.RadiationParams
 ---@param element? System.Xml.Linq.XElement
 ---@return Barotrauma.Radiation
-function CS.Barotrauma.Radiation(map, radiationParams, element) end
+local __ctor = function(map, radiationParams, element) end
+CS.Barotrauma.Radiation = __ctor
+CS.Barotrauma.Radiation.__new = __ctor
+end
 
 ---@class Barotrauma.RoundSound: System.Object
 ---@field Sound Barotrauma.Sounds.Sound
@@ -25143,12 +25803,16 @@ function CS.Barotrauma.RoundSound.Reload(roundSound) end
 
 function CS.Barotrauma.RoundSound.RemoveAllRoundSounds() end
 
+do
 ---@private
 ---@overload fun(): Barotrauma.RoundSound
 ---@param element Barotrauma.ContentXElement
 ---@param sound Barotrauma.Sounds.Sound
 ---@return Barotrauma.RoundSound
-function CS.Barotrauma.RoundSound(element, sound) end
+local __ctor = function(element, sound) end
+CS.Barotrauma.RoundSound = __ctor
+CS.Barotrauma.RoundSound.__new = __ctor
+end
 
 ---@class Barotrauma.Structure: Barotrauma.MapEntity
 ---@field SelectableInEditor System.Boolean
@@ -25553,6 +26217,7 @@ function CS.Barotrauma.Structure.Reset() end
 ---@param cam Barotrauma.Camera
 function CS.Barotrauma.Structure.Update(deltaTime, cam) end
 
+do
 ---@overload fun(): Barotrauma.Structure
 ---@param rectangle Microsoft.Xna.Framework.Rectangle
 ---@param sp Barotrauma.StructurePrefab
@@ -25560,7 +26225,10 @@ function CS.Barotrauma.Structure.Update(deltaTime, cam) end
 ---@param id? System.UInt16
 ---@param element? System.Xml.Linq.XElement
 ---@return Barotrauma.Structure
-function CS.Barotrauma.Structure(rectangle, sp, submarine, id, element) end
+local __ctor = function(rectangle, sp, submarine, id, element) end
+CS.Barotrauma.Structure = __ctor
+CS.Barotrauma.Structure.__new = __ctor
+end
 
 ---@class Barotrauma.StructurePrefab: Barotrauma.MapEntityPrefab
 ---@field Name Barotrauma.LocalizedString
@@ -25639,11 +26307,15 @@ function CS.Barotrauma.StructurePrefab.CreateInstance(rect) end
 
 function CS.Barotrauma.StructurePrefab.Dispose() end
 
+do
 ---@overload fun(): Barotrauma.StructurePrefab
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.StructureFile
 ---@return Barotrauma.StructurePrefab
-function CS.Barotrauma.StructurePrefab(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.StructurePrefab = __ctor
+CS.Barotrauma.StructurePrefab.__new = __ctor
+end
 
 ---@class Barotrauma.Submarine: Barotrauma.Entity
 ---@field Info Barotrauma.SubmarineInfo
@@ -26211,13 +26883,17 @@ function CS.Barotrauma.Submarine.GetRelativeSimPosition(from, to, targetWorldPos
 ---@return Microsoft.Xna.Framework.Vector2
 function CS.Barotrauma.Submarine.GetRelativeSimPositionFromWorldPosition(targetWorldPos, fromSub, toSub) end
 
+do
 ---@overload fun(): Barotrauma.Submarine
 ---@param info Barotrauma.SubmarineInfo
 ---@param showErrorMessages? System.Boolean
 ---@param loadEntities? fun(arg: Barotrauma.Submarine): userdata | { [System.Int32]: Barotrauma.MapEntity } | (fun(): Barotrauma.MapEntity)
 ---@param linkedRemap? Barotrauma.IdRemap
 ---@return Barotrauma.Submarine
-function CS.Barotrauma.Submarine(info, showErrorMessages, loadEntities, linkedRemap) end
+local __ctor = function(info, showErrorMessages, loadEntities, linkedRemap) end
+CS.Barotrauma.Submarine = __ctor
+CS.Barotrauma.Submarine.__new = __ctor
+end
 
 ---@class Barotrauma.SubmarineBody: System.Object
 ---@field HullVertices userdata | { [System.Int32]: Microsoft.Xna.Framework.Vector2 } | (fun(): Microsoft.Xna.Framework.Vector2)
@@ -26355,10 +27031,14 @@ function CS.Barotrauma.SubmarineBody.ApplyImpact(impact, direction, impactPos, a
 
 function CS.Barotrauma.SubmarineBody.Remove() end
 
+do
 ---@param sub Barotrauma.Submarine
 ---@param showErrorMessages? System.Boolean
 ---@return Barotrauma.SubmarineBody
-function CS.Barotrauma.SubmarineBody(sub, showErrorMessages) end
+local __ctor = function(sub, showErrorMessages) end
+CS.Barotrauma.SubmarineBody = __ctor
+CS.Barotrauma.SubmarineBody.__new = __ctor
+end
 
 ---@class Barotrauma.SubmarineInfo: System.Object
 ---@field SavedSubmarines userdata | (fun(): Barotrauma.SubmarineInfo)
@@ -26575,12 +27255,16 @@ function CS.Barotrauma.SubmarineInfo.GetPrice(location, characterList) end
 ---@return System.Int32
 function CS.Barotrauma.SubmarineInfo.GetDefaultTier(price) end
 
+do
 ---@overload fun(filePath: System.String, hash?: System.String, element?: System.Xml.Linq.XElement, tryLoad?: System.Boolean, lazyLoad?: System.Boolean): Barotrauma.SubmarineInfo
 ---@overload fun(sub: Barotrauma.Submarine): Barotrauma.SubmarineInfo
 ---@overload fun(original: Barotrauma.SubmarineInfo): Barotrauma.SubmarineInfo
 ---@overload fun(): Barotrauma.SubmarineInfo
 ---@return Barotrauma.SubmarineInfo
-function CS.Barotrauma.SubmarineInfo() end
+local __ctor = function() end
+CS.Barotrauma.SubmarineInfo = __ctor
+CS.Barotrauma.SubmarineInfo.__new = __ctor
+end
 
 ---@class Barotrauma.SubmarinePreview: System.Object
 ---@field private submarineInfo Barotrauma.SubmarineInfo
@@ -26652,10 +27336,14 @@ function CS.Barotrauma.SubmarinePreview.RenderSubmarine(spriteBatch, scissorRect
 
 function CS.Barotrauma.SubmarinePreview.Dispose() end
 
+do
 ---@private
 ---@param subInfo Barotrauma.SubmarineInfo
 ---@return Barotrauma.SubmarinePreview
-function CS.Barotrauma.SubmarinePreview(subInfo) end
+local __ctor = function(subInfo) end
+CS.Barotrauma.SubmarinePreview = __ctor
+CS.Barotrauma.SubmarinePreview.__new = __ctor
+end
 
 ---@class Barotrauma.WayPoint: Barotrauma.MapEntity
 ---@field SelectableInEditor System.Boolean
@@ -26836,6 +27524,7 @@ function CS.Barotrauma.WayPoint.ShallowRemove() end
 
 function CS.Barotrauma.WayPoint.Remove() end
 
+do
 ---@overload fun(prefab: Barotrauma.MapEntityPrefab, rectangle: Microsoft.Xna.Framework.Rectangle): Barotrauma.WayPoint
 ---@overload fun(newRect: Microsoft.Xna.Framework.Rectangle, submarine: Barotrauma.Submarine): Barotrauma.WayPoint
 ---@overload fun(type: Barotrauma.WayPoint.Type, newRect: Microsoft.Xna.Framework.Rectangle, submarine: Barotrauma.Submarine, id?: System.UInt16): Barotrauma.WayPoint
@@ -26845,7 +27534,10 @@ function CS.Barotrauma.WayPoint.Remove() end
 ---@param submarine Barotrauma.Submarine
 ---@param gap? Barotrauma.Gap
 ---@return Barotrauma.WayPoint
-function CS.Barotrauma.WayPoint(position, spawnType, submarine, gap) end
+local __ctor = function(position, spawnType, submarine, gap) end
+CS.Barotrauma.WayPoint = __ctor
+CS.Barotrauma.WayPoint.__new = __ctor
+end
 
 ---@class Barotrauma.EntitySpawner: Barotrauma.Entity
 ---@field receivedEvents userdata | { [System.Int32]: userdata } | (fun(): userdata)
@@ -26898,8 +27590,12 @@ function CS.Barotrauma.EntitySpawner.Update(createNetworkEvents) end
 
 function CS.Barotrauma.EntitySpawner.Reset() end
 
+do
 ---@return Barotrauma.EntitySpawner
-function CS.Barotrauma.EntitySpawner() end
+local __ctor = function() end
+CS.Barotrauma.EntitySpawner = __ctor
+CS.Barotrauma.EntitySpawner.__new = __ctor
+end
 
 ---@class Barotrauma.KarmaManager: System.Object
 ---@field Name System.String
@@ -26981,9 +27677,13 @@ function CS.Barotrauma.KarmaManager.SaveCustomPreset() end
 
 function CS.Barotrauma.KarmaManager.Save() end
 
+do
 ---@overload fun(): Barotrauma.KarmaManager
 ---@return Barotrauma.KarmaManager
-function CS.Barotrauma.KarmaManager() end
+local __ctor = function() end
+CS.Barotrauma.KarmaManager = __ctor
+CS.Barotrauma.KarmaManager.__new = __ctor
+end
 
 ---@class Barotrauma.Voting: System.Object
 ---@field private voteCountYes userdata | { [Barotrauma.Networking.VoteType]: System.Int32 } | (fun(): userdata)
@@ -27044,8 +27744,12 @@ function CS.Barotrauma.Voting.ClientWrite(msg, voteType, data) end
 ---@param inc Barotrauma.Networking.IReadMessage
 function CS.Barotrauma.Voting.ClientRead(inc) end
 
+do
 ---@return Barotrauma.Voting
-function CS.Barotrauma.Voting() end
+local __ctor = function() end
+CS.Barotrauma.Voting = __ctor
+CS.Barotrauma.Voting.__new = __ctor
+end
 
 ---@class Barotrauma.PhysicsBody: System.Object
 ---@field NetworkPositionErrorOffset Microsoft.Xna.Framework.Vector2
@@ -27359,6 +28063,7 @@ function CS.Barotrauma.PhysicsBody.IsValidShape(radius, height, width) end
 ---@return Barotrauma.PhysicsBody.Shape
 function CS.Barotrauma.PhysicsBody.DefineBodyShape(radius, width, height) end
 
+do
 ---@overload fun(cParams: Barotrauma.RagdollParams.ColliderParams, findNewContacts?: System.Boolean): Barotrauma.PhysicsBody
 ---@overload fun(lParams: Barotrauma.RagdollParams.LimbParams, findNewContacts?: System.Boolean): Barotrauma.PhysicsBody
 ---@overload fun(width: System.Single, height: System.Single, radius: System.Single, density: System.Single, bodyType: FarseerPhysics.BodyType, collisionCategory: FarseerPhysics.Dynamics.Category, collidesWith: FarseerPhysics.Dynamics.Category, findNewContacts?: System.Boolean): Barotrauma.PhysicsBody
@@ -27371,7 +28076,10 @@ function CS.Barotrauma.PhysicsBody.DefineBodyShape(radius, width, height) end
 ---@param scale? System.Single
 ---@param findNewContacts? System.Boolean
 ---@return Barotrauma.PhysicsBody
-function CS.Barotrauma.PhysicsBody(element, scale, findNewContacts) end
+local __ctor = function(element, scale, findNewContacts) end
+CS.Barotrauma.PhysicsBody = __ctor
+CS.Barotrauma.PhysicsBody.__new = __ctor
+end
 
 ---@class Barotrauma.PlayerInput: System.Object
 ---@field MaxDoubleClickDistance System.Single
@@ -27527,9 +28235,13 @@ function CS.Barotrauma.PlayerInput.Update(deltaTime) end
 
 function CS.Barotrauma.PlayerInput.UpdateVariable() end
 
+do
 ---@overload fun(): Barotrauma.PlayerInput
 ---@return Barotrauma.PlayerInput
-function CS.Barotrauma.PlayerInput() end
+local __ctor = function() end
+CS.Barotrauma.PlayerInput = __ctor
+CS.Barotrauma.PlayerInput.__new = __ctor
+end
 
 ---@class Barotrauma.CampaignEndScreen: Barotrauma.Screen
 ---@field private creditsPlayer Barotrauma.CreditsPlayer
@@ -27550,8 +28262,12 @@ function CS.Barotrauma.CampaignEndScreen.Update(deltaTime) end
 ---@param spriteBatch Microsoft.Xna.Framework.Graphics.SpriteBatch
 function CS.Barotrauma.CampaignEndScreen.Draw(deltaTime, graphics, spriteBatch) end
 
+do
 ---@return Barotrauma.CampaignEndScreen
-function CS.Barotrauma.CampaignEndScreen() end
+local __ctor = function() end
+CS.Barotrauma.CampaignEndScreen = __ctor
+CS.Barotrauma.CampaignEndScreen.__new = __ctor
+end
 
 ---@class Barotrauma.CreditsPlayer: Barotrauma.GUIComponent
 ---@field Finished System.Boolean
@@ -27595,10 +28311,14 @@ function CS.Barotrauma.CreditsPlayer.Restart() end
 ---@param deltaTime System.Single
 function CS.Barotrauma.CreditsPlayer.Update(deltaTime) end
 
+do
 ---@param rectT Barotrauma.RectTransform
 ---@param configFile System.String
 ---@return Barotrauma.CreditsPlayer
-function CS.Barotrauma.CreditsPlayer(rectT, configFile) end
+local __ctor = function(rectT, configFile) end
+CS.Barotrauma.CreditsPlayer = __ctor
+CS.Barotrauma.CreditsPlayer.__new = __ctor
+end
 
 ---@class Barotrauma.EditorScreen: Barotrauma.Screen
 ---@field IsEditor System.Boolean
@@ -27615,9 +28335,13 @@ function CS.Barotrauma.EditorScreen.DeselectEditorSpecific() end
 
 function CS.Barotrauma.EditorScreen.CreateBackgroundColorPicker() end
 
+do
 ---@overload fun(): Barotrauma.EditorScreen
 ---@return Barotrauma.EditorScreen
-function CS.Barotrauma.EditorScreen() end
+local __ctor = function() end
+CS.Barotrauma.EditorScreen = __ctor
+CS.Barotrauma.EditorScreen.__new = __ctor
+end
 
 ---@class Barotrauma.EventNode: Barotrauma.EditorNode
 ---@field protected BackgroundColor Microsoft.Xna.Framework.Color
@@ -27646,10 +28370,14 @@ function CS.Barotrauma.EventNode.ScaleRectFromConnections(connections, baseRect)
 ---@return userdata[]
 function CS.Barotrauma.EventNode.GetOptions() end
 
+do
 ---@param type System.Type
 ---@param name System.String
 ---@return Barotrauma.EventNode
-function CS.Barotrauma.EventNode(type, name) end
+local __ctor = function(type, name) end
+CS.Barotrauma.EventNode = __ctor
+CS.Barotrauma.EventNode.__new = __ctor
+end
 
 ---@class Barotrauma.EventTextDisplayNode: Barotrauma.EventNode
 ---@field protected ShowOptions System.Boolean
@@ -27708,11 +28436,15 @@ function CS.Barotrauma.EventTextDisplayNode.ShouldDrawConnection(connection) end
 ---@param spriteBatch Microsoft.Xna.Framework.Graphics.SpriteBatch
 function CS.Barotrauma.EventTextDisplayNode.DrawConnections(spriteBatch) end
 
+do
 ---@protected
 ---@param type System.Type
 ---@param name System.String
 ---@return Barotrauma.EventTextDisplayNode
-function CS.Barotrauma.EventTextDisplayNode(type, name) end
+local __ctor = function(type, name) end
+CS.Barotrauma.EventTextDisplayNode = __ctor
+CS.Barotrauma.EventTextDisplayNode.__new = __ctor
+end
 
 ---@class Barotrauma.EventConversationNode: Barotrauma.EventTextDisplayNode
 ---@field protected ShowOptions System.Boolean
@@ -27722,10 +28454,14 @@ CS.Barotrauma.EventConversationNode = {}
 ---@return System.Boolean
 function CS.Barotrauma.EventConversationNode.get_ShowOptions() end
 
+do
 ---@param type System.Type
 ---@param name System.String
 ---@return Barotrauma.EventConversationNode
-function CS.Barotrauma.EventConversationNode(type, name) end
+local __ctor = function(type, name) end
+CS.Barotrauma.EventConversationNode = __ctor
+CS.Barotrauma.EventConversationNode.__new = __ctor
+end
 
 ---@class Barotrauma.EventLogNode: Barotrauma.EventTextDisplayNode
 ---@field protected ShowOptions System.Boolean
@@ -27735,10 +28471,14 @@ CS.Barotrauma.EventLogNode = {}
 ---@return System.Boolean
 function CS.Barotrauma.EventLogNode.get_ShowOptions() end
 
+do
 ---@param type System.Type
 ---@param name System.String
 ---@return Barotrauma.EventLogNode
-function CS.Barotrauma.EventLogNode(type, name) end
+local __ctor = function(type, name) end
+CS.Barotrauma.EventLogNode = __ctor
+CS.Barotrauma.EventLogNode.__new = __ctor
+end
 
 ---@class Barotrauma.EventEditorNodeConnection: System.Object
 ---@field Attribute System.String
@@ -27831,6 +28571,7 @@ function CS.Barotrauma.EventEditorNodeConnection.GetPropertyColor(valueType) end
 ---@return System.Boolean
 function CS.Barotrauma.EventEditorNodeConnection.CanConnect(otherNode) end
 
+do
 ---@overload fun(): Barotrauma.EventEditorNodeConnection
 ---@param parent Barotrauma.EditorNode
 ---@param type Barotrauma.NodeConnectionType
@@ -27838,7 +28579,10 @@ function CS.Barotrauma.EventEditorNodeConnection.CanConnect(otherNode) end
 ---@param valueType? System.Type
 ---@param propertyInfo? System.Reflection.PropertyInfo
 ---@return Barotrauma.EventEditorNodeConnection
-function CS.Barotrauma.EventEditorNodeConnection(parent, type, attribute, valueType, propertyInfo) end
+local __ctor = function(parent, type, attribute, valueType, propertyInfo) end
+CS.Barotrauma.EventEditorNodeConnection = __ctor
+CS.Barotrauma.EventEditorNodeConnection.__new = __ctor
+end
 
 ---@class Barotrauma.EventEditorScreen: Barotrauma.EditorScreen
 ---@field Cam Barotrauma.Camera
@@ -28008,9 +28752,13 @@ function CS.Barotrauma.EventEditorScreen.Draw(deltaTime, graphics, spriteBatch) 
 ---@param deltaTime System.Double
 function CS.Barotrauma.EventEditorScreen.Update(deltaTime) end
 
+do
 ---@overload fun(): Barotrauma.EventEditorScreen
 ---@return Barotrauma.EventEditorScreen
-function CS.Barotrauma.EventEditorScreen() end
+local __ctor = function() end
+CS.Barotrauma.EventEditorScreen = __ctor
+CS.Barotrauma.EventEditorScreen.__new = __ctor
+end
 
 ---@class Barotrauma.GameScreen: Barotrauma.Screen
 ---@field PostProcessEffect Microsoft.Xna.Framework.Graphics.Effect
@@ -28071,10 +28819,14 @@ function CS.Barotrauma.GameScreen.UpdateProjSpecific(deltaTime) end
 ---@private
 function CS.Barotrauma.GameScreen.ExecutePhysics() end
 
+do
 ---@overload fun(): Barotrauma.GameScreen
 ---@param graphics Microsoft.Xna.Framework.Graphics.GraphicsDevice
 ---@return Barotrauma.GameScreen
-function CS.Barotrauma.GameScreen(graphics) end
+local __ctor = function(graphics) end
+CS.Barotrauma.GameScreen = __ctor
+CS.Barotrauma.GameScreen.__new = __ctor
+end
 
 ---@class Barotrauma.LevelEditorScreen: Barotrauma.EditorScreen
 ---@field Cam Barotrauma.Camera
@@ -28190,8 +28942,12 @@ function CS.Barotrauma.LevelEditorScreen.SerializeAll() end
 ---@param genParams Barotrauma.LevelGenerationParams
 function CS.Barotrauma.LevelEditorScreen.Serialize(genParams) end
 
+do
 ---@return Barotrauma.LevelEditorScreen
-function CS.Barotrauma.LevelEditorScreen() end
+local __ctor = function() end
+CS.Barotrauma.LevelEditorScreen = __ctor
+CS.Barotrauma.LevelEditorScreen.__new = __ctor
+end
 
 ---@class Barotrauma.MainMenuScreen: Barotrauma.Screen
 ---@field private RemoteContentUrl System.String
@@ -28366,10 +29122,14 @@ function CS.Barotrauma.MainMenuScreen.FetchRemoteContent() end
 ---@param t System.Threading.Tasks.Task
 function CS.Barotrauma.MainMenuScreen.RemoteContentReceived(t) end
 
+do
 ---@overload fun(): Barotrauma.MainMenuScreen
 ---@param game Barotrauma.GameMain
 ---@return Barotrauma.MainMenuScreen
-function CS.Barotrauma.MainMenuScreen(game) end
+local __ctor = function(game) end
+CS.Barotrauma.MainMenuScreen = __ctor
+CS.Barotrauma.MainMenuScreen.__new = __ctor
+end
 
 ---@class Barotrauma.ModDownloadScreen: Barotrauma.Screen
 ---@field DownloadedPackages userdata | (fun(): Barotrauma.ContentPackage)
@@ -28405,8 +29165,12 @@ function CS.Barotrauma.ModDownloadScreen.CurrentDownloadFinished(transfer) end
 ---@param spriteBatch Microsoft.Xna.Framework.Graphics.SpriteBatch
 function CS.Barotrauma.ModDownloadScreen.Draw(deltaTime, graphics, spriteBatch) end
 
+do
 ---@return Barotrauma.ModDownloadScreen
-function CS.Barotrauma.ModDownloadScreen() end
+local __ctor = function() end
+CS.Barotrauma.ModDownloadScreen = __ctor
+CS.Barotrauma.ModDownloadScreen.__new = __ctor
+end
 
 ---@class Barotrauma.NetLobbyScreen: Barotrauma.Screen
 ---@field ChatInput Barotrauma.GUITextBox
@@ -29072,8 +29836,12 @@ function CS.Barotrauma.NetLobbyScreen.SetTraitorProbability(probability) end
 ---@param dangerLevel System.Int32
 function CS.Barotrauma.NetLobbyScreen.SetTraitorDangerLevel(dangerLevel) end
 
+do
 ---@return Barotrauma.NetLobbyScreen
-function CS.Barotrauma.NetLobbyScreen() end
+local __ctor = function() end
+CS.Barotrauma.NetLobbyScreen = __ctor
+CS.Barotrauma.NetLobbyScreen.__new = __ctor
+end
 
 ---@class Barotrauma.ParticleEditorScreen: Barotrauma.EditorScreen
 ---@field Cam Barotrauma.Camera
@@ -29133,8 +29901,12 @@ function CS.Barotrauma.ParticleEditorScreen.CreateContextMenu() end
 ---@param spriteBatch Microsoft.Xna.Framework.Graphics.SpriteBatch
 function CS.Barotrauma.ParticleEditorScreen.Draw(deltaTime, graphics, spriteBatch) end
 
+do
 ---@return Barotrauma.ParticleEditorScreen
-function CS.Barotrauma.ParticleEditorScreen() end
+local __ctor = function() end
+CS.Barotrauma.ParticleEditorScreen = __ctor
+CS.Barotrauma.ParticleEditorScreen.__new = __ctor
+end
 
 ---@class Barotrauma.RoundSummaryScreen: Barotrauma.Screen
 ---@field private backgroundSprite Barotrauma.Sprite
@@ -29159,8 +29931,12 @@ function CS.Barotrauma.RoundSummaryScreen.Draw(deltaTime, graphics, spriteBatch)
 ---@param deltaTime System.Double
 function CS.Barotrauma.RoundSummaryScreen.Update(deltaTime) end
 
+do
 ---@return Barotrauma.RoundSummaryScreen
-function CS.Barotrauma.RoundSummaryScreen() end
+local __ctor = function() end
+CS.Barotrauma.RoundSummaryScreen = __ctor
+CS.Barotrauma.RoundSummaryScreen.__new = __ctor
+end
 
 ---@class Barotrauma.Screen: System.Object
 ---@field Selected Barotrauma.Screen
@@ -29209,9 +29985,13 @@ function CS.Barotrauma.Screen.get_IsEditor() end
 ---@param deltaTime System.Double
 function CS.Barotrauma.Screen.Update(deltaTime) end
 
+do
 ---@protected
 ---@return Barotrauma.Screen
-function CS.Barotrauma.Screen() end
+local __ctor = function() end
+CS.Barotrauma.Screen = __ctor
+CS.Barotrauma.Screen.__new = __ctor
+end
 
 ---@class Barotrauma.ServerListScreen: Barotrauma.Screen
 ---@field private selectedTab Barotrauma.ServerListScreen.TabEnum
@@ -29409,9 +30189,13 @@ function CS.Barotrauma.ServerListScreen.StoreServerFilters() end
 
 function CS.Barotrauma.ServerListScreen.LoadServerFilters() end
 
+do
 ---@overload fun(): Barotrauma.ServerListScreen
 ---@return Barotrauma.ServerListScreen
-function CS.Barotrauma.ServerListScreen() end
+local __ctor = function() end
+CS.Barotrauma.ServerListScreen = __ctor
+CS.Barotrauma.ServerListScreen.__new = __ctor
+end
 
 ---@class Barotrauma.SlideshowPlayer: Barotrauma.GUIComponent
 ---@field LastTextShown System.Boolean
@@ -29446,10 +30230,14 @@ function CS.Barotrauma.SlideshowPlayer.RefreshText() end
 ---@param spriteBatch Microsoft.Xna.Framework.Graphics.SpriteBatch
 function CS.Barotrauma.SlideshowPlayer.Draw(spriteBatch) end
 
+do
 ---@param rectT Barotrauma.RectTransform
 ---@param prefab Barotrauma.SlideshowPrefab
 ---@return Barotrauma.SlideshowPlayer
-function CS.Barotrauma.SlideshowPlayer(rectT, prefab) end
+local __ctor = function(rectT, prefab) end
+CS.Barotrauma.SlideshowPlayer = __ctor
+CS.Barotrauma.SlideshowPlayer.__new = __ctor
+end
 
 ---@class Barotrauma.SpriteEditorScreen: Barotrauma.EditorScreen
 ---@field private SelectedTexture Microsoft.Xna.Framework.Graphics.Texture2D
@@ -29604,8 +30392,12 @@ function CS.Barotrauma.SpriteEditorScreen.GetWidget(id, sprite, size, shape, ini
 ---@private
 function CS.Barotrauma.SpriteEditorScreen.ResetWidgets() end
 
+do
 ---@return Barotrauma.SpriteEditorScreen
-function CS.Barotrauma.SpriteEditorScreen() end
+local __ctor = function() end
+CS.Barotrauma.SpriteEditorScreen = __ctor
+CS.Barotrauma.SpriteEditorScreen.__new = __ctor
+end
 
 ---@class Barotrauma.SubEditorScreen: Barotrauma.EditorScreen
 ---@field private MainSub Barotrauma.Submarine
@@ -30137,9 +30929,13 @@ function CS.Barotrauma.SubEditorScreen.IsLayerLinked(entity) end
 ---@return userdata | (fun(): Barotrauma.MapEntity)
 function CS.Barotrauma.SubEditorScreen.GetEntitiesInSameLayer(entity) end
 
+do
 ---@overload fun(): Barotrauma.SubEditorScreen
 ---@return Barotrauma.SubEditorScreen
-function CS.Barotrauma.SubEditorScreen() end
+local __ctor = function() end
+CS.Barotrauma.SubEditorScreen = __ctor
+CS.Barotrauma.SubEditorScreen.__new = __ctor
+end
 
 ---@class Barotrauma.TestScreen: Barotrauma.EditorScreen
 ---@field Cam Barotrauma.Camera
@@ -30161,8 +30957,12 @@ function CS.Barotrauma.TestScreen.Update(deltaTime) end
 ---@param spriteBatch Microsoft.Xna.Framework.Graphics.SpriteBatch
 function CS.Barotrauma.TestScreen.Draw(deltaTime, graphics, spriteBatch) end
 
+do
 ---@return Barotrauma.TestScreen
-function CS.Barotrauma.TestScreen() end
+local __ctor = function() end
+CS.Barotrauma.TestScreen = __ctor
+CS.Barotrauma.TestScreen.__new = __ctor
+end
 
 ---@class Barotrauma.SerializableEntityEditor: Barotrauma.GUIComponent
 ---@field Readonly System.Boolean
@@ -30351,6 +31151,7 @@ function CS.Barotrauma.SerializableEntityEditor.CommitCommandBuffer() end
 ---@return userdata | { [Barotrauma.ISerializableEntity]: System.Object } | (fun(): userdata)
 function CS.Barotrauma.SerializableEntityEditor.MultiSetProperties(property, parentObject, value) end
 
+do
 ---@overload fun(parent: Barotrauma.RectTransform, entity: Barotrauma.ISerializableEntity, properties: (userdata | (fun(): Barotrauma.SerializableProperty)), showName: System.Boolean, style?: System.String, elementHeight?: System.Int32, titleFont?: Barotrauma.GUIFont): Barotrauma.SerializableEntityEditor
 ---@param parent Barotrauma.RectTransform
 ---@param entity Barotrauma.ISerializableEntity
@@ -30360,7 +31161,10 @@ function CS.Barotrauma.SerializableEntityEditor.MultiSetProperties(property, par
 ---@param elementHeight? System.Int32
 ---@param titleFont? Barotrauma.GUIFont
 ---@return Barotrauma.SerializableEntityEditor
-function CS.Barotrauma.SerializableEntityEditor(parent, entity, inGame, showName, style, elementHeight, titleFont) end
+local __ctor = function(parent, entity, inGame, showName, style, elementHeight, titleFont) end
+CS.Barotrauma.SerializableEntityEditor = __ctor
+CS.Barotrauma.SerializableEntityEditor.__new = __ctor
+end
 
 ---@class Barotrauma.SettingsMenu: System.Object
 ---@field Instance Barotrauma.SettingsMenu
@@ -30514,12 +31318,16 @@ function CS.Barotrauma.SettingsMenu.Close() end
 ---@param setter fun(obj: T)
 function CS.Barotrauma.SettingsMenu.DropdownEnum(parent, textFunc, tooltipFunc, currentValue, setter) end
 
+do
 ---@private
 ---@overload fun(): Barotrauma.SettingsMenu
 ---@param mainParent Barotrauma.RectTransform
 ---@param setConfig? Barotrauma.GameSettings.Config
 ---@return Barotrauma.SettingsMenu
-function CS.Barotrauma.SettingsMenu(mainParent, setConfig) end
+local __ctor = function(mainParent, setConfig) end
+CS.Barotrauma.SettingsMenu = __ctor
+CS.Barotrauma.SettingsMenu.__new = __ctor
+end
 
 ---@class Barotrauma.SoundPlayer: System.Object
 ---@field private musicClips userdata | (fun(): Barotrauma.BackgroundMusic)
@@ -30687,9 +31495,13 @@ function CS.Barotrauma.SoundPlayer.PlayDamageSound(damageType, damage, body) end
 ---@param soundType Barotrauma.GUISoundType
 function CS.Barotrauma.SoundPlayer.PlayUISound(soundType) end
 
+do
 ---@private
 ---@return Barotrauma.SoundPlayer
-function CS.Barotrauma.SoundPlayer() end
+local __ctor = function() end
+CS.Barotrauma.SoundPlayer = __ctor
+CS.Barotrauma.SoundPlayer.__new = __ctor
+end
 
 ---@class Barotrauma.SoundPrefab: Barotrauma.Prefab
 ---@field FlowSounds userdata | { [System.Int32]: Barotrauma.SoundPrefab } | (fun(): Barotrauma.SoundPrefab)
@@ -30731,10 +31543,14 @@ function CS.Barotrauma.SoundPrefab.IsPlaying() end
 
 function CS.Barotrauma.SoundPrefab.Dispose() end
 
+do
 ---@private
 ---@overload fun(element: Barotrauma.ContentXElement, file: Barotrauma.SoundsFile, stream?: System.Boolean): Barotrauma.SoundPrefab
 ---@return Barotrauma.SoundPrefab
-function CS.Barotrauma.SoundPrefab() end
+local __ctor = function() end
+CS.Barotrauma.SoundPrefab = __ctor
+CS.Barotrauma.SoundPrefab.__new = __ctor
+end
 
 ---@class Barotrauma.DamageSound: Barotrauma.SoundPrefab
 ---@field DamageRange Microsoft.Xna.Framework.Vector2
@@ -30744,11 +31560,15 @@ function CS.Barotrauma.SoundPrefab() end
 ---@field DamageSoundPrefabs userdata | { [Barotrauma.Identifier]: Barotrauma.DamageSound } | { [System.String]: Barotrauma.DamageSound } | (fun(): Barotrauma.DamageSound)
 CS.Barotrauma.DamageSound = {}
 
+do
 ---@overload fun(): Barotrauma.DamageSound
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.SoundsFile
 ---@return Barotrauma.DamageSound
-function CS.Barotrauma.DamageSound(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.DamageSound = __ctor
+CS.Barotrauma.DamageSound.__new = __ctor
+end
 
 ---@class Barotrauma.BackgroundMusic: Barotrauma.SoundPrefab
 ---@field Type Barotrauma.Identifier
@@ -30763,22 +31583,30 @@ function CS.Barotrauma.DamageSound(element, file) end
 ---@field BackgroundMusicPrefabs userdata | { [Barotrauma.Identifier]: Barotrauma.BackgroundMusic } | { [System.String]: Barotrauma.BackgroundMusic } | (fun(): Barotrauma.BackgroundMusic)
 CS.Barotrauma.BackgroundMusic = {}
 
+do
 ---@overload fun(): Barotrauma.BackgroundMusic
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.SoundsFile
 ---@return Barotrauma.BackgroundMusic
-function CS.Barotrauma.BackgroundMusic(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.BackgroundMusic = __ctor
+CS.Barotrauma.BackgroundMusic.__new = __ctor
+end
 
 ---@class Barotrauma.GUISound: Barotrauma.SoundPrefab
 ---@field Type Barotrauma.GUISoundType
 ---@field GUISoundPrefabs userdata | { [Barotrauma.Identifier]: Barotrauma.GUISound } | { [System.String]: Barotrauma.GUISound } | (fun(): Barotrauma.GUISound)
 CS.Barotrauma.GUISound = {}
 
+do
 ---@overload fun(): Barotrauma.GUISound
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.SoundsFile
 ---@return Barotrauma.GUISound
-function CS.Barotrauma.GUISound(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.GUISound = __ctor
+CS.Barotrauma.GUISound.__new = __ctor
+end
 
 ---@class Barotrauma.ConditionalSprite: System.Object
 ---@field IsActive System.Boolean
@@ -30798,13 +31626,17 @@ function CS.Barotrauma.ConditionalSprite.get_ActiveSprite() end
 
 function CS.Barotrauma.ConditionalSprite.CheckConditionals() end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param target Barotrauma.ISerializableEntity
 ---@param file? System.String
 ---@param lazyLoad? System.Boolean
 ---@param sourceRectScale? System.Single
 ---@return Barotrauma.ConditionalSprite
-function CS.Barotrauma.ConditionalSprite(element, target, file, lazyLoad, sourceRectScale) end
+local __ctor = function(element, target, file, lazyLoad, sourceRectScale) end
+CS.Barotrauma.ConditionalSprite = __ctor
+CS.Barotrauma.ConditionalSprite.__new = __ctor
+end
 
 ---@class Barotrauma.DecorativeSprite: System.Object
 ---@field Name System.String
@@ -30898,12 +31730,16 @@ function CS.Barotrauma.DecorativeSprite.UpdateSpriteStates(spriteGroups, animSta
 
 function CS.Barotrauma.DecorativeSprite.Remove() end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param path? System.String
 ---@param file? System.String
 ---@param lazyLoad? System.Boolean
 ---@return Barotrauma.DecorativeSprite
-function CS.Barotrauma.DecorativeSprite(element, path, file, lazyLoad) end
+local __ctor = function(element, path, file, lazyLoad) end
+CS.Barotrauma.DecorativeSprite = __ctor
+CS.Barotrauma.DecorativeSprite.__new = __ctor
+end
 
 ---@class Barotrauma.DeformableSprite: System.Object
 ---@field Effect Microsoft.Xna.Framework.Graphics.Effect
@@ -30997,6 +31833,7 @@ function CS.Barotrauma.DeformableSprite.set_Origin(value) end
 ---@param invert System.Boolean
 function CS.Barotrauma.DeformableSprite.InitProjSpecific(element, subdivisionsX, subdivisionsY, lazyLoad, invert) end
 
+do
 ---@overload fun(): Barotrauma.DeformableSprite
 ---@param element Barotrauma.ContentXElement
 ---@param subdivisionsX? System.Int32|nil
@@ -31006,7 +31843,10 @@ function CS.Barotrauma.DeformableSprite.InitProjSpecific(element, subdivisionsX,
 ---@param invert? System.Boolean
 ---@param sourceRectScale? System.Single
 ---@return Barotrauma.DeformableSprite
-function CS.Barotrauma.DeformableSprite(element, subdivisionsX, subdivisionsY, filePath, lazyLoad, invert, sourceRectScale) end
+local __ctor = function(element, subdivisionsX, subdivisionsY, filePath, lazyLoad, invert, sourceRectScale) end
+CS.Barotrauma.DeformableSprite = __ctor
+CS.Barotrauma.DeformableSprite.__new = __ctor
+end
 
 ---@class Barotrauma.Sprite: System.Object
 ---@field Identifier Barotrauma.Identifier
@@ -31182,6 +32022,7 @@ function CS.Barotrauma.Sprite.ParseTexturePath(path, file) end
 ---@return System.Xml.Linq.XElement
 function CS.Barotrauma.Sprite.GetLocalizationOverrideElement() end
 
+do
 ---@overload fun(texture: Microsoft.Xna.Framework.Graphics.Texture2D, sourceRectangle: (Microsoft.Xna.Framework.Rectangle|nil), newOffset: (Microsoft.Xna.Framework.Vector2|nil), newRotation?: System.Single, path?: System.String): Barotrauma.Sprite
 ---@overload fun(element: Barotrauma.ContentXElement, path?: System.String, file?: System.String, lazyLoad?: System.Boolean, sourceRectScale?: System.Single): Barotrauma.Sprite
 ---@overload fun(newFile: System.String, newOrigin: Microsoft.Xna.Framework.Vector2): Barotrauma.Sprite
@@ -31189,7 +32030,10 @@ function CS.Barotrauma.Sprite.GetLocalizationOverrideElement() end
 ---@overload fun(): Barotrauma.Sprite
 ---@param other Barotrauma.Sprite
 ---@return Barotrauma.Sprite
-function CS.Barotrauma.Sprite(other) end
+local __ctor = function(other) end
+CS.Barotrauma.Sprite = __ctor
+CS.Barotrauma.Sprite.__new = __ctor
+end
 
 ---@class Barotrauma.SpriteSheet: Barotrauma.Sprite
 ---@field FrameCount System.Int32
@@ -31222,12 +32066,16 @@ function CS.Barotrauma.SpriteSheet.get_FrameCount() end
 ---@param rowCount System.Int32
 function CS.Barotrauma.SpriteSheet.Init(columnCount, rowCount) end
 
+do
 ---@overload fun(filePath: System.String, columnCount: System.Int32, rowCount: System.Int32, origin: Microsoft.Xna.Framework.Vector2, sourceRect?: (Microsoft.Xna.Framework.Rectangle|nil)): Barotrauma.SpriteSheet
 ---@param element Barotrauma.ContentXElement
 ---@param path? System.String
 ---@param file? System.String
 ---@return Barotrauma.SpriteSheet
-function CS.Barotrauma.SpriteSheet(element, path, file) end
+local __ctor = function(element, path, file) end
+CS.Barotrauma.SpriteSheet = __ctor
+CS.Barotrauma.SpriteSheet.__new = __ctor
+end
 
 ---@class Barotrauma.StatusEffect: System.Object
 ---@field Sounds userdata | (fun(): Barotrauma.RoundSound)
@@ -31550,10 +32398,14 @@ function CS.Barotrauma.StatusEffect.AddTag(tag) end
 ---@return System.Boolean
 function CS.Barotrauma.StatusEffect.HasTag(tag) end
 
+do
 ---@private
 ---@overload fun(element: Barotrauma.ContentXElement, parentDebugName: System.String): Barotrauma.StatusEffect
 ---@return Barotrauma.StatusEffect
-function CS.Barotrauma.StatusEffect() end
+local __ctor = function() end
+CS.Barotrauma.StatusEffect = __ctor
+CS.Barotrauma.StatusEffect.__new = __ctor
+end
 
 ---@class Barotrauma.InventorySlotItem: System.ValueType
 ---@field Slot System.Int32
@@ -31564,10 +32416,14 @@ CS.Barotrauma.InventorySlotItem = {}
 ---@param item Barotrauma.Item
 function CS.Barotrauma.InventorySlotItem.Deconstruct(slot, item) end
 
+do
 ---@param slot System.Int32
 ---@param item Barotrauma.Item
 ---@return Barotrauma.InventorySlotItem
-function CS.Barotrauma.InventorySlotItem(slot, item) end
+local __ctor = function(slot, item) end
+CS.Barotrauma.InventorySlotItem = __ctor
+CS.Barotrauma.InventorySlotItem.__new = __ctor
+end
 
 ---@class Barotrauma.Command: System.Object
 CS.Barotrauma.Command = {}
@@ -31581,9 +32437,13 @@ function CS.Barotrauma.Command.UnExecute() end
 
 function CS.Barotrauma.Command.Cleanup() end
 
+do
 ---@protected
 ---@return Barotrauma.Command
-function CS.Barotrauma.Command() end
+local __ctor = function() end
+CS.Barotrauma.Command = __ctor
+CS.Barotrauma.Command.__new = __ctor
+end
 
 ---@class Barotrauma.TransformCommand: Barotrauma.Command
 ---@field private Receivers userdata | { [System.Int32]: Barotrauma.MapEntity } | (fun(): Barotrauma.MapEntity)
@@ -31605,12 +32465,16 @@ function CS.Barotrauma.TransformCommand.SetRects(rects) end
 ---@return Barotrauma.LocalizedString
 function CS.Barotrauma.TransformCommand.GetDescription() end
 
+do
 ---@param receivers userdata | { [System.Int32]: Barotrauma.MapEntity } | (fun(): Barotrauma.MapEntity)
 ---@param newData userdata | { [System.Int32]: Microsoft.Xna.Framework.Rectangle } | (fun(): Microsoft.Xna.Framework.Rectangle)
 ---@param oldData userdata | { [System.Int32]: Microsoft.Xna.Framework.Rectangle } | (fun(): Microsoft.Xna.Framework.Rectangle)
 ---@param resized System.Boolean
 ---@return Barotrauma.TransformCommand
-function CS.Barotrauma.TransformCommand(receivers, newData, oldData, resized) end
+local __ctor = function(receivers, newData, oldData, resized) end
+CS.Barotrauma.TransformCommand = __ctor
+CS.Barotrauma.TransformCommand.__new = __ctor
+end
 
 ---@class Barotrauma.AddOrDeleteCommand: Barotrauma.Command
 ---@field private PreviousInventories userdata | { [Barotrauma.InventorySlotItem]: Barotrauma.Inventory } | (fun(): userdata)
@@ -31646,11 +32510,15 @@ function CS.Barotrauma.AddOrDeleteCommand.MergeInto(master) end
 ---@return Barotrauma.LocalizedString
 function CS.Barotrauma.AddOrDeleteCommand.GetDescription() end
 
+do
 ---@param receivers userdata | { [System.Int32]: Barotrauma.MapEntity } | (fun(): Barotrauma.MapEntity)
 ---@param wasDeleted System.Boolean
 ---@param handleInventoryBehavior? System.Boolean
 ---@return Barotrauma.AddOrDeleteCommand
-function CS.Barotrauma.AddOrDeleteCommand(receivers, wasDeleted, handleInventoryBehavior) end
+local __ctor = function(receivers, wasDeleted, handleInventoryBehavior) end
+CS.Barotrauma.AddOrDeleteCommand = __ctor
+CS.Barotrauma.AddOrDeleteCommand.__new = __ctor
+end
 
 ---@class Barotrauma.InventoryPlaceCommand: Barotrauma.Command
 ---@field private Inventory Barotrauma.Inventory
@@ -31671,11 +32539,15 @@ function CS.Barotrauma.InventoryPlaceCommand.ContainUncontain(drop) end
 ---@return Barotrauma.LocalizedString
 function CS.Barotrauma.InventoryPlaceCommand.GetDescription() end
 
+do
 ---@param inventory Barotrauma.Inventory
 ---@param items userdata | { [System.Int32]: Barotrauma.Item } | (fun(): Barotrauma.Item)
 ---@param dropped System.Boolean
 ---@return Barotrauma.InventoryPlaceCommand
-function CS.Barotrauma.InventoryPlaceCommand(inventory, items, dropped) end
+local __ctor = function(inventory, items, dropped) end
+CS.Barotrauma.InventoryPlaceCommand = __ctor
+CS.Barotrauma.InventoryPlaceCommand.__new = __ctor
+end
 
 ---@class Barotrauma.PropertyCommand: Barotrauma.Command
 ---@field private OldProperties userdata | { [System.Object]: userdata | { [System.Int32]: Barotrauma.ISerializableEntity } | (fun(): Barotrauma.ISerializableEntity) } | (fun(): userdata)
@@ -31706,13 +32578,17 @@ function CS.Barotrauma.PropertyCommand.SetProperties(undo) end
 ---@return Barotrauma.LocalizedString
 function CS.Barotrauma.PropertyCommand.GetDescription() end
 
+do
 ---@overload fun(receiver: Barotrauma.ISerializableEntity, propertyName: Barotrauma.Identifier, newData: System.Object, oldData: System.Object): Barotrauma.PropertyCommand
 ---@param receivers userdata | { [System.Int32]: Barotrauma.ISerializableEntity } | (fun(): Barotrauma.ISerializableEntity)
 ---@param propertyName Barotrauma.Identifier
 ---@param newData System.Object
 ---@param oldData userdata | { [System.Object]: userdata | { [System.Int32]: Barotrauma.ISerializableEntity } | (fun(): Barotrauma.ISerializableEntity) } | (fun(): userdata)
 ---@return Barotrauma.PropertyCommand
-function CS.Barotrauma.PropertyCommand(receivers, propertyName, newData, oldData) end
+local __ctor = function(receivers, propertyName, newData, oldData) end
+CS.Barotrauma.PropertyCommand = __ctor
+CS.Barotrauma.PropertyCommand.__new = __ctor
+end
 
 ---@class Barotrauma.InventoryMoveCommand: Barotrauma.Command
 ---@field private oldInventory Barotrauma.Inventory
@@ -31731,13 +32607,17 @@ function CS.Barotrauma.InventoryMoveCommand.Cleanup() end
 ---@return Barotrauma.LocalizedString
 function CS.Barotrauma.InventoryMoveCommand.GetDescription() end
 
+do
 ---@param oldInventory Barotrauma.Inventory
 ---@param newInventory Barotrauma.Inventory
 ---@param item Barotrauma.Item
 ---@param oldSlot System.Int32
 ---@param newSlot System.Int32
 ---@return Barotrauma.InventoryMoveCommand
-function CS.Barotrauma.InventoryMoveCommand(oldInventory, newInventory, item, oldSlot, newSlot) end
+local __ctor = function(oldInventory, newInventory, item, oldSlot, newSlot) end
+CS.Barotrauma.InventoryMoveCommand = __ctor
+CS.Barotrauma.InventoryMoveCommand.__new = __ctor
+end
 
 ---@class Barotrauma.TransformToolCommand: Barotrauma.Command
 ---@field private originalData userdata | { [Barotrauma.MapEntity]: Barotrauma.SubEditorScreen.TransformData } | (fun(): userdata)
@@ -31763,10 +32643,14 @@ function CS.Barotrauma.TransformToolCommand.UpdateTransforms(rotationRad, scaleM
 ---@return Barotrauma.LocalizedString
 function CS.Barotrauma.TransformToolCommand.GetDescription() end
 
+do
 ---@param data userdata | { [Barotrauma.MapEntity]: Barotrauma.SubEditorScreen.TransformData } | (fun(): userdata)
 ---@param pivot Microsoft.Xna.Framework.Vector2
 ---@return Barotrauma.TransformToolCommand
-function CS.Barotrauma.TransformToolCommand(data, pivot) end
+local __ctor = function(data, pivot) end
+CS.Barotrauma.TransformToolCommand = __ctor
+CS.Barotrauma.TransformToolCommand.__new = __ctor
+end
 
 ---@class Barotrauma.LimitLString: Barotrauma.LocalizedString
 ---@field Loaded System.Boolean
@@ -31785,11 +32669,15 @@ function CS.Barotrauma.LimitLString.MustRetrieveValue() end
 
 function CS.Barotrauma.LimitLString.RetrieveValue() end
 
+do
 ---@param text Barotrauma.LocalizedString
 ---@param font Barotrauma.GUIFont
 ---@param maxWidth System.Int32
 ---@return Barotrauma.LimitLString
-function CS.Barotrauma.LimitLString(text, font, maxWidth) end
+local __ctor = function(text, font, maxWidth) end
+CS.Barotrauma.LimitLString = __ctor
+CS.Barotrauma.LimitLString.__new = __ctor
+end
 
 ---@class Barotrauma.WrappedLString: Barotrauma.LocalizedString
 ---@field Loaded System.Boolean
@@ -31804,12 +32692,16 @@ function CS.Barotrauma.WrappedLString.get_Loaded() end
 
 function CS.Barotrauma.WrappedLString.RetrieveValue() end
 
+do
 ---@param text Barotrauma.LocalizedString
 ---@param lineLength System.Single
 ---@param font Barotrauma.GUIFont
 ---@param textScale? System.Single
 ---@return Barotrauma.WrappedLString
-function CS.Barotrauma.WrappedLString(text, lineLength, font, textScale) end
+local __ctor = function(text, lineLength, font, textScale) end
+CS.Barotrauma.WrappedLString = __ctor
+CS.Barotrauma.WrappedLString.__new = __ctor
+end
 
 ---@class Barotrauma.TraitorManager: System.Object
 CS.Barotrauma.TraitorManager = {}
@@ -31817,8 +32709,12 @@ CS.Barotrauma.TraitorManager = {}
 ---@param msg Barotrauma.Networking.IReadMessage
 function CS.Barotrauma.TraitorManager.ClientRead(msg) end
 
+do
 ---@return Barotrauma.TraitorManager
-function CS.Barotrauma.TraitorManager() end
+local __ctor = function() end
+CS.Barotrauma.TraitorManager = __ctor
+CS.Barotrauma.TraitorManager.__new = __ctor
+end
 
 ---@class Barotrauma.UpgradePrefab: Barotrauma.UpgradeContentPrefab
 ---@field Sprite Barotrauma.Sprite
@@ -31909,11 +32805,15 @@ function CS.Barotrauma.UpgradePrefab.ParsePercentage(value, attribute, sourceEle
 
 function CS.Barotrauma.UpgradePrefab.Dispose() end
 
+do
 ---@overload fun(): Barotrauma.UpgradePrefab
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.UpgradeModulesFile
 ---@return Barotrauma.UpgradePrefab
-function CS.Barotrauma.UpgradePrefab(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.UpgradePrefab = __ctor
+CS.Barotrauma.UpgradePrefab.__new = __ctor
+end
 
 ---@class Barotrauma.SpriteRecorder: System.Object
 ---@field Min Microsoft.Xna.Framework.Vector2
@@ -31954,8 +32854,12 @@ function CS.Barotrauma.SpriteRecorder.Render(cam) end
 
 function CS.Barotrauma.SpriteRecorder.Dispose() end
 
+do
 ---@return Barotrauma.SpriteRecorder
-function CS.Barotrauma.SpriteRecorder() end
+local __ctor = function() end
+CS.Barotrauma.SpriteRecorder = __ctor
+CS.Barotrauma.SpriteRecorder.__new = __ctor
+end
 
 ---@class Barotrauma.TextureLoader: System.Object
 ---@field PlaceHolderTexture Microsoft.Xna.Framework.Graphics.Texture2D
@@ -32265,9 +33169,13 @@ function CS.Barotrauma.ToolBox.GetClosestPointOnRectangle(rect, point) end
 ---@return userdata | { [System.Int32]: System.UInt32 } | (fun(): System.UInt32)
 function CS.Barotrauma.ToolBox.PrefabCollectionToUintIdentifierArray(prefabs) end
 
+do
 ---@private
 ---@return Barotrauma.ToolBox
-function CS.Barotrauma.ToolBox() end
+local __ctor = function() end
+CS.Barotrauma.ToolBox = __ctor
+CS.Barotrauma.ToolBox.__new = __ctor
+end
 
 ---@class Barotrauma.AIChatMessage: System.Object
 ---@field Message System.String
@@ -32277,12 +33185,16 @@ function CS.Barotrauma.ToolBox() end
 ---@field SendTime System.Double
 CS.Barotrauma.AIChatMessage = {}
 
+do
 ---@param message System.String
 ---@param type Barotrauma.Networking.ChatMessageType|nil
 ---@param identifier? Barotrauma.Identifier
 ---@param delay? System.Single
 ---@return Barotrauma.AIChatMessage
-function CS.Barotrauma.AIChatMessage(message, type, identifier, delay) end
+local __ctor = function(message, type, identifier, delay) end
+CS.Barotrauma.AIChatMessage = __ctor
+CS.Barotrauma.AIChatMessage.__new = __ctor
+end
 
 ---@enum Barotrauma.AIState
 CS.Barotrauma.AIState = {
@@ -32325,10 +33237,14 @@ function CS.Barotrauma.AITargetMemory.get_Priority() end
 ---@param value System.Single
 function CS.Barotrauma.AITargetMemory.set_Priority(value) end
 
+do
 ---@param target Barotrauma.AITarget
 ---@param priority System.Single
 ---@return Barotrauma.AITargetMemory
-function CS.Barotrauma.AITargetMemory(target, priority) end
+local __ctor = function(target, priority) end
+CS.Barotrauma.AITargetMemory = __ctor
+CS.Barotrauma.AITargetMemory.__new = __ctor
+end
 
 ---@class Barotrauma.IndoorsSteeringManager: Barotrauma.SteeringManager
 ---@field CanBreakDoors System.Boolean
@@ -32471,12 +33387,16 @@ function CS.Barotrauma.IndoorsSteeringManager.GetSingleNodePenalty(node) end
 ---@param stayStillInTightSpace? System.Boolean
 function CS.Barotrauma.IndoorsSteeringManager.Wander(deltaTime, wallAvoidDistance, stayStillInTightSpace) end
 
+do
 ---@overload fun(): Barotrauma.IndoorsSteeringManager
 ---@param host Barotrauma.ISteerable
 ---@param canOpenDoors System.Boolean
 ---@param canBreakDoors System.Boolean
 ---@return Barotrauma.IndoorsSteeringManager
-function CS.Barotrauma.IndoorsSteeringManager(host, canOpenDoors, canBreakDoors) end
+local __ctor = function(host, canOpenDoors, canBreakDoors) end
+CS.Barotrauma.IndoorsSteeringManager = __ctor
+CS.Barotrauma.IndoorsSteeringManager.__new = __ctor
+end
 
 ---@class Barotrauma.LatchOntoAI: System.Object
 ---@field AttachToSub System.Boolean
@@ -32546,10 +33466,14 @@ function CS.Barotrauma.LatchOntoAI.Reset() end
 ---@param causeOfDeath Barotrauma.CauseOfDeath
 function CS.Barotrauma.LatchOntoAI.OnCharacterDeath(character, causeOfDeath) end
 
+do
 ---@param element System.Xml.Linq.XElement
 ---@param enemyAI Barotrauma.EnemyAIController
 ---@return Barotrauma.LatchOntoAI
-function CS.Barotrauma.LatchOntoAI(element, enemyAI) end
+local __ctor = function(element, enemyAI) end
+CS.Barotrauma.LatchOntoAI = __ctor
+CS.Barotrauma.LatchOntoAI.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveChargeBatteries: userdata
 ---@field Identifier Barotrauma.Identifier
@@ -32963,12 +33887,16 @@ function CS.Barotrauma.AIObjectiveChargeBatteries.GetHashCode() end
 ---@return System.Boolean
 function CS.Barotrauma.AIObjectiveChargeBatteries.IsDuplicate(otherObjective) end
 
+do
 ---@param character Barotrauma.Character
 ---@param objectiveManager Barotrauma.AIObjectiveManager
 ---@param option Barotrauma.Identifier
 ---@param priorityModifier System.Single
 ---@return Barotrauma.AIObjectiveChargeBatteries
-function CS.Barotrauma.AIObjectiveChargeBatteries(character, objectiveManager, option, priorityModifier) end
+local __ctor = function(character, objectiveManager, option, priorityModifier) end
+CS.Barotrauma.AIObjectiveChargeBatteries = __ctor
+CS.Barotrauma.AIObjectiveChargeBatteries.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveCheckStolenItems: Barotrauma.AIObjective
 ---@field Identifier Barotrauma.Identifier
@@ -33034,12 +33962,16 @@ function CS.Barotrauma.AIObjectiveCheckStolenItems.InitTimers() end
 ---@return System.Boolean
 function CS.Barotrauma.AIObjectiveCheckStolenItems.IsItemIllegitimate(owner, item) end
 
+do
 ---@param character Barotrauma.Character
 ---@param target Barotrauma.Character
 ---@param objectiveManager Barotrauma.AIObjectiveManager
 ---@param priorityModifier? System.Single
 ---@return Barotrauma.AIObjectiveCheckStolenItems
-function CS.Barotrauma.AIObjectiveCheckStolenItems(character, target, objectiveManager, priorityModifier) end
+local __ctor = function(character, target, objectiveManager, priorityModifier) end
+CS.Barotrauma.AIObjectiveCheckStolenItems = __ctor
+CS.Barotrauma.AIObjectiveCheckStolenItems.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveCleanupItem: Barotrauma.AIObjective
 ---@field Identifier Barotrauma.Identifier
@@ -33084,12 +34016,16 @@ function CS.Barotrauma.AIObjectiveCleanupItem.Reset() end
 
 function CS.Barotrauma.AIObjectiveCleanupItem.DropTarget() end
 
+do
 ---@param item Barotrauma.Item
 ---@param character Barotrauma.Character
 ---@param objectiveManager Barotrauma.AIObjectiveManager
 ---@param priorityModifier? System.Single
 ---@return Barotrauma.AIObjectiveCleanupItem
-function CS.Barotrauma.AIObjectiveCleanupItem(item, character, objectiveManager, priorityModifier) end
+local __ctor = function(item, character, objectiveManager, priorityModifier) end
+CS.Barotrauma.AIObjectiveCleanupItem = __ctor
+CS.Barotrauma.AIObjectiveCleanupItem.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveCleanupItems: userdata
 ---@field Identifier Barotrauma.Identifier
@@ -33521,13 +34457,17 @@ function CS.Barotrauma.AIObjectiveCleanupItems.GetHashCode() end
 ---@return System.Boolean
 function CS.Barotrauma.AIObjectiveCleanupItems.IsDuplicate(otherObjective) end
 
+do
 ---@overload fun(character: Barotrauma.Character, objectiveManager: Barotrauma.AIObjectiveManager, prioritizedItems: (userdata | (fun(): Barotrauma.Item)), priorityModifier?: System.Single): Barotrauma.AIObjectiveCleanupItems
 ---@param character Barotrauma.Character
 ---@param objectiveManager Barotrauma.AIObjectiveManager
 ---@param prioritizedItem? Barotrauma.Item
 ---@param priorityModifier? System.Single
 ---@return Barotrauma.AIObjectiveCleanupItems
-function CS.Barotrauma.AIObjectiveCleanupItems(character, objectiveManager, prioritizedItem, priorityModifier) end
+local __ctor = function(character, objectiveManager, prioritizedItem, priorityModifier) end
+CS.Barotrauma.AIObjectiveCleanupItems = __ctor
+CS.Barotrauma.AIObjectiveCleanupItems.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveCombat: Barotrauma.AIObjective
 ---@field Identifier Barotrauma.Identifier
@@ -33844,6 +34784,7 @@ function CS.Barotrauma.AIObjectiveCombat.Speak(textIdentifier, delay, minDuratio
 ---@param newTimer System.Single
 function CS.Barotrauma.AIObjectiveCombat.SetAimTimer(newTimer) end
 
+do
 ---@param character Barotrauma.Character
 ---@param enemy Barotrauma.Character
 ---@param mode Barotrauma.AIObjectiveCombat.CombatMode
@@ -33851,7 +34792,10 @@ function CS.Barotrauma.AIObjectiveCombat.SetAimTimer(newTimer) end
 ---@param priorityModifier? System.Single
 ---@param coolDown? System.Single
 ---@return Barotrauma.AIObjectiveCombat
-function CS.Barotrauma.AIObjectiveCombat(character, enemy, mode, objectiveManager, priorityModifier, coolDown) end
+local __ctor = function(character, enemy, mode, objectiveManager, priorityModifier, coolDown) end
+CS.Barotrauma.AIObjectiveCombat = __ctor
+CS.Barotrauma.AIObjectiveCombat.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveContainItem: Barotrauma.AIObjective
 ---@field Identifier Barotrauma.Identifier
@@ -33916,6 +34860,7 @@ function CS.Barotrauma.AIObjectiveContainItem.IsInTargetSlot(item) end
 
 function CS.Barotrauma.AIObjectiveContainItem.Reset() end
 
+do
 ---@overload fun(character: Barotrauma.Character, itemIdentifier: Barotrauma.Identifier, container: Barotrauma.Items.Components.ItemContainer, objectiveManager: Barotrauma.AIObjectiveManager, priorityModifier?: System.Single, spawnItemIfNotFound?: System.Boolean): Barotrauma.AIObjectiveContainItem
 ---@overload fun(character: Barotrauma.Character, itemIdentifiers: (userdata | (fun(): Barotrauma.Identifier)), container: Barotrauma.Items.Components.ItemContainer, objectiveManager: Barotrauma.AIObjectiveManager, priorityModifier?: System.Single, spawnItemIfNotFound?: System.Boolean): Barotrauma.AIObjectiveContainItem
 ---@param character Barotrauma.Character
@@ -33924,7 +34869,10 @@ function CS.Barotrauma.AIObjectiveContainItem.Reset() end
 ---@param objectiveManager Barotrauma.AIObjectiveManager
 ---@param priorityModifier? System.Single
 ---@return Barotrauma.AIObjectiveContainItem
-function CS.Barotrauma.AIObjectiveContainItem(character, item, container, objectiveManager, priorityModifier) end
+local __ctor = function(character, item, container, objectiveManager, priorityModifier) end
+CS.Barotrauma.AIObjectiveContainItem = __ctor
+CS.Barotrauma.AIObjectiveContainItem.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveDeconstructItem: Barotrauma.AIObjective
 ---@field Identifier Barotrauma.Identifier
@@ -33966,12 +34914,16 @@ function CS.Barotrauma.AIObjectiveDeconstructItem.Reset() end
 
 function CS.Barotrauma.AIObjectiveDeconstructItem.DropTarget() end
 
+do
 ---@param item Barotrauma.Item
 ---@param character Barotrauma.Character
 ---@param objectiveManager Barotrauma.AIObjectiveManager
 ---@param priorityModifier? System.Single
 ---@return Barotrauma.AIObjectiveDeconstructItem
-function CS.Barotrauma.AIObjectiveDeconstructItem(item, character, objectiveManager, priorityModifier) end
+local __ctor = function(item, character, objectiveManager, priorityModifier) end
+CS.Barotrauma.AIObjectiveDeconstructItem = __ctor
+CS.Barotrauma.AIObjectiveDeconstructItem.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveDeconstructItems: userdata
 ---@field Identifier Barotrauma.Identifier
@@ -34392,11 +35344,15 @@ function CS.Barotrauma.AIObjectiveDeconstructItems.GetHashCode() end
 ---@return System.Boolean
 function CS.Barotrauma.AIObjectiveDeconstructItems.IsDuplicate(otherObjective) end
 
+do
 ---@param character Barotrauma.Character
 ---@param objectiveManager Barotrauma.AIObjectiveManager
 ---@param priorityModifier? System.Single
 ---@return Barotrauma.AIObjectiveDeconstructItems
-function CS.Barotrauma.AIObjectiveDeconstructItems(character, objectiveManager, priorityModifier) end
+local __ctor = function(character, objectiveManager, priorityModifier) end
+CS.Barotrauma.AIObjectiveDeconstructItems = __ctor
+CS.Barotrauma.AIObjectiveDeconstructItems.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveEscapeHandcuffs: Barotrauma.AIObjective
 ---@field Identifier Barotrauma.Identifier
@@ -34445,13 +35401,17 @@ function CS.Barotrauma.AIObjectiveEscapeHandcuffs.Act(deltaTime) end
 
 function CS.Barotrauma.AIObjectiveEscapeHandcuffs.Reset() end
 
+do
 ---@param character Barotrauma.Character
 ---@param objectiveManager Barotrauma.AIObjectiveManager
 ---@param shouldSwitchTeams? System.Boolean
 ---@param beginInstantly? System.Boolean
 ---@param priorityModifier? System.Single
 ---@return Barotrauma.AIObjectiveEscapeHandcuffs
-function CS.Barotrauma.AIObjectiveEscapeHandcuffs(character, objectiveManager, shouldSwitchTeams, beginInstantly, priorityModifier) end
+local __ctor = function(character, objectiveManager, shouldSwitchTeams, beginInstantly, priorityModifier) end
+CS.Barotrauma.AIObjectiveEscapeHandcuffs = __ctor
+CS.Barotrauma.AIObjectiveEscapeHandcuffs.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveExtinguishFire: Barotrauma.AIObjective
 ---@field Identifier Barotrauma.Identifier
@@ -34504,12 +35464,16 @@ function CS.Barotrauma.AIObjectiveExtinguishFire.OnCompleted() end
 ---@protected
 function CS.Barotrauma.AIObjectiveExtinguishFire.OnAbandon() end
 
+do
 ---@param character Barotrauma.Character
 ---@param targetHull Barotrauma.Hull
 ---@param objectiveManager Barotrauma.AIObjectiveManager
 ---@param priorityModifier? System.Single
 ---@return Barotrauma.AIObjectiveExtinguishFire
-function CS.Barotrauma.AIObjectiveExtinguishFire(character, targetHull, objectiveManager, priorityModifier) end
+local __ctor = function(character, targetHull, objectiveManager, priorityModifier) end
+CS.Barotrauma.AIObjectiveExtinguishFire = __ctor
+CS.Barotrauma.AIObjectiveExtinguishFire.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveExtinguishFires: userdata
 ---@field Identifier Barotrauma.Identifier
@@ -34927,11 +35891,15 @@ function CS.Barotrauma.AIObjectiveExtinguishFires.GetHashCode() end
 ---@return System.Boolean
 function CS.Barotrauma.AIObjectiveExtinguishFires.IsDuplicate(otherObjective) end
 
+do
 ---@param character Barotrauma.Character
 ---@param objectiveManager Barotrauma.AIObjectiveManager
 ---@param priorityModifier? System.Single
 ---@return Barotrauma.AIObjectiveExtinguishFires
-function CS.Barotrauma.AIObjectiveExtinguishFires(character, objectiveManager, priorityModifier) end
+local __ctor = function(character, objectiveManager, priorityModifier) end
+CS.Barotrauma.AIObjectiveExtinguishFires = __ctor
+CS.Barotrauma.AIObjectiveExtinguishFires.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveFightIntruders: userdata
 ---@field Identifier Barotrauma.Identifier
@@ -35352,11 +36320,15 @@ function CS.Barotrauma.AIObjectiveFightIntruders.GetHashCode() end
 ---@return System.Boolean
 function CS.Barotrauma.AIObjectiveFightIntruders.IsDuplicate(otherObjective) end
 
+do
 ---@param character Barotrauma.Character
 ---@param objectiveManager Barotrauma.AIObjectiveManager
 ---@param priorityModifier? System.Single
 ---@return Barotrauma.AIObjectiveFightIntruders
-function CS.Barotrauma.AIObjectiveFightIntruders(character, objectiveManager, priorityModifier) end
+local __ctor = function(character, objectiveManager, priorityModifier) end
+CS.Barotrauma.AIObjectiveFightIntruders = __ctor
+CS.Barotrauma.AIObjectiveFightIntruders.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveFindDivingGear: Barotrauma.AIObjective
 ---@field Identifier Barotrauma.Identifier
@@ -35418,12 +36390,16 @@ function CS.Barotrauma.AIObjectiveFindDivingGear.Reset() end
 ---@return System.Single
 function CS.Barotrauma.AIObjectiveFindDivingGear.GetMinOxygen(character) end
 
+do
 ---@param character Barotrauma.Character
 ---@param needsDivingSuit System.Boolean
 ---@param objectiveManager Barotrauma.AIObjectiveManager
 ---@param priorityModifier? System.Single
 ---@return Barotrauma.AIObjectiveFindDivingGear
-function CS.Barotrauma.AIObjectiveFindDivingGear(character, needsDivingSuit, objectiveManager, priorityModifier) end
+local __ctor = function(character, needsDivingSuit, objectiveManager, priorityModifier) end
+CS.Barotrauma.AIObjectiveFindDivingGear = __ctor
+CS.Barotrauma.AIObjectiveFindDivingGear.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveFindSafety: Barotrauma.AIObjective
 ---@field Identifier Barotrauma.Identifier
@@ -35517,11 +36493,15 @@ function CS.Barotrauma.AIObjectiveFindSafety.Reset() end
 ---@return System.Boolean
 function CS.Barotrauma.AIObjectiveFindSafety.NeedMoreDivingGear(targetHull, minOxygen) end
 
+do
 ---@param character Barotrauma.Character
 ---@param objectiveManager Barotrauma.AIObjectiveManager
 ---@param priorityModifier? System.Single
 ---@return Barotrauma.AIObjectiveFindSafety
-function CS.Barotrauma.AIObjectiveFindSafety(character, objectiveManager, priorityModifier) end
+local __ctor = function(character, objectiveManager, priorityModifier) end
+CS.Barotrauma.AIObjectiveFindSafety = __ctor
+CS.Barotrauma.AIObjectiveFindSafety.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveFindThieves: userdata
 ---@field Identifier Barotrauma.Identifier
@@ -35962,12 +36942,16 @@ function CS.Barotrauma.AIObjectiveFindThieves.GetHashCode() end
 ---@return System.Boolean
 function CS.Barotrauma.AIObjectiveFindThieves.IsDuplicate(otherObjective) end
 
+do
 ---@overload fun(): Barotrauma.AIObjectiveFindThieves
 ---@param character Barotrauma.Character
 ---@param objectiveManager Barotrauma.AIObjectiveManager
 ---@param priorityModifier? System.Single
 ---@return Barotrauma.AIObjectiveFindThieves
-function CS.Barotrauma.AIObjectiveFindThieves(character, objectiveManager, priorityModifier) end
+local __ctor = function(character, objectiveManager, priorityModifier) end
+CS.Barotrauma.AIObjectiveFindThieves = __ctor
+CS.Barotrauma.AIObjectiveFindThieves.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveFixLeak: Barotrauma.AIObjective
 ---@field Identifier Barotrauma.Identifier
@@ -36021,13 +37005,17 @@ function CS.Barotrauma.AIObjectiveFixLeak.Reset() end
 ---@return System.Single
 function CS.Barotrauma.AIObjectiveFixLeak.CalculateReach(repairTool, character) end
 
+do
 ---@param leak Barotrauma.Gap
 ---@param character Barotrauma.Character
 ---@param objectiveManager Barotrauma.AIObjectiveManager
 ---@param priorityModifier? System.Single
 ---@param isPriority? System.Boolean
 ---@return Barotrauma.AIObjectiveFixLeak
-function CS.Barotrauma.AIObjectiveFixLeak(leak, character, objectiveManager, priorityModifier, isPriority) end
+local __ctor = function(leak, character, objectiveManager, priorityModifier, isPriority) end
+CS.Barotrauma.AIObjectiveFixLeak = __ctor
+CS.Barotrauma.AIObjectiveFixLeak.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveFixLeaks: userdata
 ---@field Identifier Barotrauma.Identifier
@@ -36447,12 +37435,16 @@ function CS.Barotrauma.AIObjectiveFixLeaks.GetHashCode() end
 ---@return System.Boolean
 function CS.Barotrauma.AIObjectiveFixLeaks.IsDuplicate(otherObjective) end
 
+do
 ---@param character Barotrauma.Character
 ---@param objectiveManager Barotrauma.AIObjectiveManager
 ---@param priorityModifier? System.Single
 ---@param prioritizedHull? Barotrauma.Hull
 ---@return Barotrauma.AIObjectiveFixLeaks
-function CS.Barotrauma.AIObjectiveFixLeaks(character, objectiveManager, priorityModifier, prioritizedHull) end
+local __ctor = function(character, objectiveManager, priorityModifier, prioritizedHull) end
+CS.Barotrauma.AIObjectiveFixLeaks = __ctor
+CS.Barotrauma.AIObjectiveFixLeaks.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveGetItem: Barotrauma.AIObjective
 ---@field Identifier Barotrauma.Identifier
@@ -36585,6 +37577,7 @@ function CS.Barotrauma.AIObjectiveGetItem.OnAbandon() end
 ---@private
 function CS.Barotrauma.AIObjectiveGetItem.SpeakCannotFind() end
 
+do
 ---@overload fun(character: Barotrauma.Character, identifierOrTag: Barotrauma.Identifier, objectiveManager: Barotrauma.AIObjectiveManager, equip?: System.Boolean, checkInventory?: System.Boolean, priorityModifier?: System.Single, spawnItemIfNotFound?: System.Boolean): Barotrauma.AIObjectiveGetItem
 ---@overload fun(character: Barotrauma.Character, identifiersOrTags: (userdata | (fun(): Barotrauma.Identifier)), objectiveManager: Barotrauma.AIObjectiveManager, equip?: System.Boolean, checkInventory?: System.Boolean, priorityModifier?: System.Single, spawnItemIfNotFound?: System.Boolean): Barotrauma.AIObjectiveGetItem
 ---@overload fun(): Barotrauma.AIObjectiveGetItem
@@ -36594,7 +37587,10 @@ function CS.Barotrauma.AIObjectiveGetItem.SpeakCannotFind() end
 ---@param equip? System.Boolean
 ---@param priorityModifier? System.Single
 ---@return Barotrauma.AIObjectiveGetItem
-function CS.Barotrauma.AIObjectiveGetItem(character, targetItem, objectiveManager, equip, priorityModifier) end
+local __ctor = function(character, targetItem, objectiveManager, equip, priorityModifier) end
+CS.Barotrauma.AIObjectiveGetItem = __ctor
+CS.Barotrauma.AIObjectiveGetItem.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveGetItems: Barotrauma.AIObjective
 ---@field Identifier Barotrauma.Identifier
@@ -36643,12 +37639,16 @@ function CS.Barotrauma.AIObjectiveGetItems.Act(deltaTime) end
 
 function CS.Barotrauma.AIObjectiveGetItems.Reset() end
 
+do
 ---@param character Barotrauma.Character
 ---@param objectiveManager Barotrauma.AIObjectiveManager
 ---@param identifiersOrTags userdata | (fun(): Barotrauma.Identifier)
 ---@param priorityModifier? System.Single
 ---@return Barotrauma.AIObjectiveGetItems
-function CS.Barotrauma.AIObjectiveGetItems(character, objectiveManager, identifiersOrTags, priorityModifier) end
+local __ctor = function(character, objectiveManager, identifiersOrTags, priorityModifier) end
+CS.Barotrauma.AIObjectiveGetItems = __ctor
+CS.Barotrauma.AIObjectiveGetItems.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveGoTo: Barotrauma.AIObjective
 ---@field Identifier Barotrauma.Identifier
@@ -36785,6 +37785,7 @@ function CS.Barotrauma.AIObjectiveGoTo.Reset() end
 ---@return System.Boolean
 function CS.Barotrauma.AIObjectiveGoTo.ShouldRun(run) end
 
+do
 ---@overload fun(): Barotrauma.AIObjectiveGoTo
 ---@param target Barotrauma.ISpatialEntity
 ---@param character Barotrauma.Character
@@ -36794,7 +37795,10 @@ function CS.Barotrauma.AIObjectiveGoTo.ShouldRun(run) end
 ---@param priorityModifier? System.Single
 ---@param closeEnough? System.Single
 ---@return Barotrauma.AIObjectiveGoTo
-function CS.Barotrauma.AIObjectiveGoTo(target, character, objectiveManager, __repeat__, getDivingGearIfNeeded, priorityModifier, closeEnough) end
+local __ctor = function(target, character, objectiveManager, __repeat__, getDivingGearIfNeeded, priorityModifier, closeEnough) end
+CS.Barotrauma.AIObjectiveGoTo = __ctor
+CS.Barotrauma.AIObjectiveGoTo.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveIdle: Barotrauma.AIObjective
 ---@field Identifier Barotrauma.Identifier
@@ -36898,11 +37902,15 @@ function CS.Barotrauma.AIObjectiveIdle.Reset() end
 
 function CS.Barotrauma.AIObjectiveIdle.OnDeselected() end
 
+do
 ---@param character Barotrauma.Character
 ---@param objectiveManager Barotrauma.AIObjectiveManager
 ---@param priorityModifier? System.Single
 ---@return Barotrauma.AIObjectiveIdle
-function CS.Barotrauma.AIObjectiveIdle(character, objectiveManager, priorityModifier) end
+local __ctor = function(character, objectiveManager, priorityModifier) end
+CS.Barotrauma.AIObjectiveIdle = __ctor
+CS.Barotrauma.AIObjectiveIdle.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveInspectNoises: Barotrauma.AIObjective
 ---@field Identifier Barotrauma.Identifier
@@ -36933,11 +37941,15 @@ function CS.Barotrauma.AIObjectiveInspectNoises.Act(deltaTime) end
 ---@return System.Boolean
 function CS.Barotrauma.AIObjectiveInspectNoises.CheckObjectiveState() end
 
+do
 ---@param character Barotrauma.Character
 ---@param objectiveManager Barotrauma.AIObjectiveManager
 ---@param priorityModifier? System.Single
 ---@return Barotrauma.AIObjectiveInspectNoises
-function CS.Barotrauma.AIObjectiveInspectNoises(character, objectiveManager, priorityModifier) end
+local __ctor = function(character, objectiveManager, priorityModifier) end
+CS.Barotrauma.AIObjectiveInspectNoises = __ctor
+CS.Barotrauma.AIObjectiveInspectNoises.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveLoadItem: Barotrauma.AIObjective
 ---@field Identifier Barotrauma.Identifier
@@ -36985,6 +37997,7 @@ function CS.Barotrauma.AIObjectiveLoadItem.Reset() end
 ---@private
 function CS.Barotrauma.AIObjectiveLoadItem.IgnoreTargetItem() end
 
+do
 ---@overload fun(): Barotrauma.AIObjectiveLoadItem
 ---@param container Barotrauma.Item
 ---@param targetTags userdata | { [System.Int32]: Barotrauma.Identifier } | (fun(): Barotrauma.Identifier)
@@ -36994,7 +38007,10 @@ function CS.Barotrauma.AIObjectiveLoadItem.IgnoreTargetItem() end
 ---@param objectiveManager Barotrauma.AIObjectiveManager
 ---@param priorityModifier System.Single
 ---@return Barotrauma.AIObjectiveLoadItem
-function CS.Barotrauma.AIObjectiveLoadItem(container, targetTags, targetCondition, option, character, objectiveManager, priorityModifier) end
+local __ctor = function(container, targetTags, targetCondition, option, character, objectiveManager, priorityModifier) end
+CS.Barotrauma.AIObjectiveLoadItem = __ctor
+CS.Barotrauma.AIObjectiveLoadItem.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveLoadItems: userdata
 ---@field Identifier Barotrauma.Identifier
@@ -37418,6 +38434,7 @@ function CS.Barotrauma.AIObjectiveLoadItems.GetHashCode() end
 ---@return System.Boolean
 function CS.Barotrauma.AIObjectiveLoadItems.IsDuplicate(otherObjective) end
 
+do
 ---@param character Barotrauma.Character
 ---@param objectiveManager Barotrauma.AIObjectiveManager
 ---@param option Barotrauma.Identifier
@@ -37425,7 +38442,10 @@ function CS.Barotrauma.AIObjectiveLoadItems.IsDuplicate(otherObjective) end
 ---@param targetContainer? Barotrauma.Item
 ---@param priorityModifier? System.Single
 ---@return Barotrauma.AIObjectiveLoadItems
-function CS.Barotrauma.AIObjectiveLoadItems(character, objectiveManager, option, containerTags, targetContainer, priorityModifier) end
+local __ctor = function(character, objectiveManager, option, containerTags, targetContainer, priorityModifier) end
+CS.Barotrauma.AIObjectiveLoadItems = __ctor
+CS.Barotrauma.AIObjectiveLoadItems.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveManager: System.Object
 ---@field Objectives userdata | { [System.Int32]: Barotrauma.AIObjective } | (fun(): Barotrauma.AIObjective)
@@ -37541,9 +38561,13 @@ function CS.Barotrauma.AIObjectiveManager.AddObjective(objective) end
 ---@param callback? fun()
 function CS.Barotrauma.AIObjectiveManager.AddObjective(objective, delay, callback) end
 
+do
 ---@param character Barotrauma.Character
 ---@return Barotrauma.AIObjectiveManager
-function CS.Barotrauma.AIObjectiveManager(character) end
+local __ctor = function(character) end
+CS.Barotrauma.AIObjectiveManager = __ctor
+CS.Barotrauma.AIObjectiveManager.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveMoveItem: Barotrauma.AIObjective
 ---@field Identifier Barotrauma.Identifier
@@ -37599,6 +38623,7 @@ function CS.Barotrauma.AIObjectiveMoveItem.Reset() end
 ---@protected
 function CS.Barotrauma.AIObjectiveMoveItem.OnAbandon() end
 
+do
 ---@overload fun(character: Barotrauma.Character, itemIdentifier: Barotrauma.Identifier, objectiveManager: Barotrauma.AIObjectiveManager, sourceContainer: Barotrauma.Items.Components.ItemContainer, targetContainer?: Barotrauma.Items.Components.ItemContainer, priorityModifier?: System.Single): Barotrauma.AIObjectiveMoveItem
 ---@overload fun(character: Barotrauma.Character, itemIdentifiers: Barotrauma.Identifier[], objectiveManager: Barotrauma.AIObjectiveManager, sourceContainer: Barotrauma.Items.Components.ItemContainer, targetContainer?: Barotrauma.Items.Components.ItemContainer, priorityModifier?: System.Single): Barotrauma.AIObjectiveMoveItem
 ---@param character Barotrauma.Character
@@ -37608,7 +38633,10 @@ function CS.Barotrauma.AIObjectiveMoveItem.OnAbandon() end
 ---@param targetContainer? Barotrauma.Items.Components.ItemContainer
 ---@param priorityModifier? System.Single
 ---@return Barotrauma.AIObjectiveMoveItem
-function CS.Barotrauma.AIObjectiveMoveItem(character, targetItem, objectiveManager, sourceContainer, targetContainer, priorityModifier) end
+local __ctor = function(character, targetItem, objectiveManager, sourceContainer, targetContainer, priorityModifier) end
+CS.Barotrauma.AIObjectiveMoveItem = __ctor
+CS.Barotrauma.AIObjectiveMoveItem.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveOperateItem: Barotrauma.AIObjective
 ---@field Identifier Barotrauma.Identifier
@@ -37692,6 +38720,7 @@ function CS.Barotrauma.AIObjectiveOperateItem.IsItemOperatedByAnother(target) en
 ---@return System.Boolean
 function CS.Barotrauma.AIObjectiveOperateItem.IsDuplicate(otherObjective) end
 
+do
 ---@param item Barotrauma.Items.Components.ItemComponent
 ---@param character Barotrauma.Character
 ---@param objectiveManager Barotrauma.AIObjectiveManager
@@ -37702,7 +38731,10 @@ function CS.Barotrauma.AIObjectiveOperateItem.IsDuplicate(otherObjective) end
 ---@param controller? Barotrauma.Items.Components.ItemComponent
 ---@param priorityModifier? System.Single
 ---@return Barotrauma.AIObjectiveOperateItem
-function CS.Barotrauma.AIObjectiveOperateItem(item, character, objectiveManager, option, requireEquip, operateTarget, useController, controller, priorityModifier) end
+local __ctor = function(item, character, objectiveManager, option, requireEquip, operateTarget, useController, controller, priorityModifier) end
+CS.Barotrauma.AIObjectiveOperateItem = __ctor
+CS.Barotrauma.AIObjectiveOperateItem.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectivePrepare: Barotrauma.AIObjective
 ---@field Identifier Barotrauma.Identifier
@@ -37760,13 +38792,17 @@ function CS.Barotrauma.AIObjectivePrepare.Act(deltaTime) end
 
 function CS.Barotrauma.AIObjectivePrepare.Reset() end
 
+do
 ---@overload fun(character: Barotrauma.Character, objectiveManager: Barotrauma.AIObjectiveManager, optionalItems: (userdata | (fun(): Barotrauma.Identifier)), requiredItems?: (userdata | (fun(): Barotrauma.Identifier)), priorityModifier?: System.Single): Barotrauma.AIObjectivePrepare
 ---@param character Barotrauma.Character
 ---@param objectiveManager Barotrauma.AIObjectiveManager
 ---@param targetItem Barotrauma.Item
 ---@param priorityModifier? System.Single
 ---@return Barotrauma.AIObjectivePrepare
-function CS.Barotrauma.AIObjectivePrepare(character, objectiveManager, targetItem, priorityModifier) end
+local __ctor = function(character, objectiveManager, targetItem, priorityModifier) end
+CS.Barotrauma.AIObjectivePrepare = __ctor
+CS.Barotrauma.AIObjectivePrepare.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectivePumpWater: userdata
 ---@field Identifier Barotrauma.Identifier
@@ -38183,12 +39219,16 @@ function CS.Barotrauma.AIObjectivePumpWater.GetHashCode() end
 ---@return System.Boolean
 function CS.Barotrauma.AIObjectivePumpWater.IsDuplicate(otherObjective) end
 
+do
 ---@param character Barotrauma.Character
 ---@param objectiveManager Barotrauma.AIObjectiveManager
 ---@param option Barotrauma.Identifier
 ---@param priorityModifier? System.Single
 ---@return Barotrauma.AIObjectivePumpWater
-function CS.Barotrauma.AIObjectivePumpWater(character, objectiveManager, option, priorityModifier) end
+local __ctor = function(character, objectiveManager, option, priorityModifier) end
+CS.Barotrauma.AIObjectivePumpWater = __ctor
+CS.Barotrauma.AIObjectivePumpWater.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveRepairItem: Barotrauma.AIObjective
 ---@field Identifier Barotrauma.Identifier
@@ -38256,13 +39296,17 @@ function CS.Barotrauma.AIObjectiveRepairItem.OperateRepairTool(deltaTime) end
 
 function CS.Barotrauma.AIObjectiveRepairItem.Reset() end
 
+do
 ---@param character Barotrauma.Character
 ---@param item Barotrauma.Item
 ---@param objectiveManager Barotrauma.AIObjectiveManager
 ---@param priorityModifier? System.Single
 ---@param isPriority? System.Boolean
 ---@return Barotrauma.AIObjectiveRepairItem
-function CS.Barotrauma.AIObjectiveRepairItem(character, item, objectiveManager, priorityModifier, isPriority) end
+local __ctor = function(character, item, objectiveManager, priorityModifier, isPriority) end
+CS.Barotrauma.AIObjectiveRepairItem = __ctor
+CS.Barotrauma.AIObjectiveRepairItem.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveRepairItems: userdata
 ---@field Identifier Barotrauma.Identifier
@@ -38706,12 +39750,16 @@ function CS.Barotrauma.AIObjectiveRepairItems.IsDuplicate(otherObjective) end
 ---@return System.Boolean
 function CS.Barotrauma.AIObjectiveRepairItems.IsDuplicate(otherObjective) end
 
+do
 ---@param character Barotrauma.Character
 ---@param objectiveManager Barotrauma.AIObjectiveManager
 ---@param priorityModifier? System.Single
 ---@param prioritizedItem? Barotrauma.Item
 ---@return Barotrauma.AIObjectiveRepairItems
-function CS.Barotrauma.AIObjectiveRepairItems(character, objectiveManager, priorityModifier, prioritizedItem) end
+local __ctor = function(character, objectiveManager, priorityModifier, prioritizedItem) end
+CS.Barotrauma.AIObjectiveRepairItems = __ctor
+CS.Barotrauma.AIObjectiveRepairItems.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveRescue: Barotrauma.AIObjective
 ---@field Identifier Barotrauma.Identifier
@@ -38800,12 +39848,16 @@ function CS.Barotrauma.AIObjectiveRescue.Reset() end
 
 function CS.Barotrauma.AIObjectiveRescue.OnDeselected() end
 
+do
 ---@param character Barotrauma.Character
 ---@param targetCharacter Barotrauma.Character
 ---@param objectiveManager Barotrauma.AIObjectiveManager
 ---@param priorityModifier? System.Single
 ---@return Barotrauma.AIObjectiveRescue
-function CS.Barotrauma.AIObjectiveRescue(character, targetCharacter, objectiveManager, priorityModifier) end
+local __ctor = function(character, targetCharacter, objectiveManager, priorityModifier) end
+CS.Barotrauma.AIObjectiveRescue = __ctor
+CS.Barotrauma.AIObjectiveRescue.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveRescueAll: userdata
 ---@field Identifier Barotrauma.Identifier
@@ -39246,11 +40298,15 @@ function CS.Barotrauma.AIObjectiveRescueAll.GetHashCode() end
 ---@return System.Boolean
 function CS.Barotrauma.AIObjectiveRescueAll.IsDuplicate(otherObjective) end
 
+do
 ---@param character Barotrauma.Character
 ---@param objectiveManager Barotrauma.AIObjectiveManager
 ---@param priorityModifier? System.Single
 ---@return Barotrauma.AIObjectiveRescueAll
-function CS.Barotrauma.AIObjectiveRescueAll(character, objectiveManager, priorityModifier) end
+local __ctor = function(character, objectiveManager, priorityModifier) end
+CS.Barotrauma.AIObjectiveRescueAll = __ctor
+CS.Barotrauma.AIObjectiveRescueAll.__new = __ctor
+end
 
 ---@class Barotrauma.AIObjectiveReturn: Barotrauma.AIObjective
 ---@field Identifier Barotrauma.Identifier
@@ -39288,12 +40344,16 @@ function CS.Barotrauma.AIObjectiveReturn.Reset() end
 ---@protected
 function CS.Barotrauma.AIObjectiveReturn.OnAbandon() end
 
+do
 ---@param character Barotrauma.Character
 ---@param orderGiver Barotrauma.Character
 ---@param objectiveManager Barotrauma.AIObjectiveManager
 ---@param priorityModifier? System.Single
 ---@return Barotrauma.AIObjectiveReturn
-function CS.Barotrauma.AIObjectiveReturn(character, orderGiver, objectiveManager, priorityModifier) end
+local __ctor = function(character, orderGiver, objectiveManager, priorityModifier) end
+CS.Barotrauma.AIObjectiveReturn = __ctor
+CS.Barotrauma.AIObjectiveReturn.__new = __ctor
+end
 
 ---@enum Barotrauma.OrderCategory
 CS.Barotrauma.OrderCategory = {
@@ -39313,11 +40373,15 @@ CS.Barotrauma.OrderCategoryIcon = {}
 
 function CS.Barotrauma.OrderCategoryIcon.Dispose() end
 
+do
 ---@overload fun(): Barotrauma.OrderCategoryIcon
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.OrdersFile
 ---@return Barotrauma.OrderCategoryIcon
-function CS.Barotrauma.OrderCategoryIcon(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.OrderCategoryIcon = __ctor
+CS.Barotrauma.OrderCategoryIcon.__new = __ctor
+end
 
 ---@class Barotrauma.OrderPrefab: Barotrauma.PrefabWithUintIdentifier
 ---@field Dismissal Barotrauma.OrderPrefab
@@ -39469,11 +40533,15 @@ function CS.Barotrauma.OrderPrefab.Dispose() end
 ---@return Barotrauma.Order
 function CS.Barotrauma.OrderPrefab.CreateInstance(targetType, orderGiver, isAutonomous) end
 
+do
 ---@overload fun(): Barotrauma.OrderPrefab
 ---@param orderElement Barotrauma.ContentXElement
 ---@param file Barotrauma.OrdersFile
 ---@return Barotrauma.OrderPrefab
-function CS.Barotrauma.OrderPrefab(orderElement, file) end
+local __ctor = function(orderElement, file) end
+CS.Barotrauma.OrderPrefab = __ctor
+CS.Barotrauma.OrderPrefab.__new = __ctor
+end
 
 ---@class Barotrauma.Order: System.Object
 ---@field IsCurrentOrder System.Boolean
@@ -39736,6 +40804,7 @@ function CS.Barotrauma.Order.GetTargetItems(option) end
 ---@return System.String
 function CS.Barotrauma.Order.ToString() end
 
+do
 ---@overload fun(prefab: Barotrauma.OrderPrefab, option: Barotrauma.Identifier, targetEntity: Barotrauma.Entity, targetItem: Barotrauma.Items.Components.ItemComponent, orderGiver?: Barotrauma.Character, isAutonomous?: System.Boolean): Barotrauma.Order
 ---@overload fun(prefab: Barotrauma.OrderPrefab, target: Barotrauma.OrderTarget, orderGiver?: Barotrauma.Character): Barotrauma.Order
 ---@overload fun(prefab: Barotrauma.OrderPrefab, option: Barotrauma.Identifier, target: Barotrauma.OrderTarget, orderGiver?: Barotrauma.Character): Barotrauma.Order
@@ -39751,7 +40820,10 @@ function CS.Barotrauma.Order.ToString() end
 ---@param orderGiver? Barotrauma.Character
 ---@param isAutonomous? System.Boolean
 ---@return Barotrauma.Order
-function CS.Barotrauma.Order(prefab, targetEntity, targetItem, orderGiver, isAutonomous) end
+local __ctor = function(prefab, targetEntity, targetItem, orderGiver, isAutonomous) end
+CS.Barotrauma.Order = __ctor
+CS.Barotrauma.Order.__new = __ctor
+end
 
 ---@class Barotrauma.PetBehavior: System.Object
 ---@field Hunger System.Single
@@ -39822,10 +40894,14 @@ function CS.Barotrauma.PetBehavior.SavePets(petsElement) end
 ---@param petsElement System.Xml.Linq.XElement
 function CS.Barotrauma.PetBehavior.LoadPets(petsElement) end
 
+do
 ---@param element System.Xml.Linq.XElement
 ---@param aiController Barotrauma.EnemyAIController
 ---@return Barotrauma.PetBehavior
-function CS.Barotrauma.PetBehavior(element, aiController) end
+local __ctor = function(element, aiController) end
+CS.Barotrauma.PetBehavior = __ctor
+CS.Barotrauma.PetBehavior.__new = __ctor
+end
 
 ---@class Barotrauma.ShipCommandManager: System.Object
 ---@field Active System.Boolean
@@ -39889,9 +40965,13 @@ function CS.Barotrauma.ShipCommandManager.UpdateCommandDecision(timeSinceLastUpd
 ---@return System.Boolean
 function CS.Barotrauma.ShipCommandManager.TryInitializeShipCommandManager() end
 
+do
 ---@param character Barotrauma.Character
 ---@return Barotrauma.ShipCommandManager
-function CS.Barotrauma.ShipCommandManager(character) end
+local __ctor = function(character) end
+CS.Barotrauma.ShipCommandManager = __ctor
+CS.Barotrauma.ShipCommandManager.__new = __ctor
+end
 
 ---@class Barotrauma.SteeringManager: System.Object
 ---@field AvoidDir Microsoft.Xna.Framework.Vector2
@@ -39960,9 +41040,13 @@ function CS.Barotrauma.SteeringManager.DoSteeringWander(weight, avoidWanderingOu
 ---@return Microsoft.Xna.Framework.Vector2
 function CS.Barotrauma.SteeringManager.DoSteeringAvoid(deltaTime, lookAheadDistance, weight, heading) end
 
+do
 ---@param host Barotrauma.ISteerable
 ---@return Barotrauma.SteeringManager
-function CS.Barotrauma.SteeringManager(host) end
+local __ctor = function(host) end
+CS.Barotrauma.SteeringManager = __ctor
+CS.Barotrauma.SteeringManager.__new = __ctor
+end
 
 ---@class Barotrauma.SteeringPath: System.Object
 ---@field Unreachable System.Boolean
@@ -40029,9 +41113,13 @@ function CS.Barotrauma.SteeringPath.CheckProgress(simPosition, minSimDistance) e
 
 function CS.Barotrauma.SteeringPath.ClearPath() end
 
+do
 ---@param unreachable? System.Boolean
 ---@return Barotrauma.SteeringPath
-function CS.Barotrauma.SteeringPath(unreachable) end
+local __ctor = function(unreachable) end
+CS.Barotrauma.SteeringPath = __ctor
+CS.Barotrauma.SteeringPath.__new = __ctor
+end
 
 ---@class Barotrauma.SwarmBehavior: System.Object
 ---@field ForceActive System.Boolean
@@ -40056,10 +41144,14 @@ function CS.Barotrauma.SwarmBehavior.Refresh() end
 ---@param deltaTime System.Single
 function CS.Barotrauma.SwarmBehavior.UpdateSteering(deltaTime) end
 
+do
 ---@param element System.Xml.Linq.XElement
 ---@param ai Barotrauma.EnemyAIController
 ---@return Barotrauma.SwarmBehavior
-function CS.Barotrauma.SwarmBehavior(element, ai) end
+local __ctor = function(element, ai) end
+CS.Barotrauma.SwarmBehavior = __ctor
+CS.Barotrauma.SwarmBehavior.__new = __ctor
+end
 
 ---@class Barotrauma.SubmarineTurretAI: System.Object
 ---@field Submarine Barotrauma.Submarine
@@ -40083,10 +41175,14 @@ function CS.Barotrauma.SubmarineTurretAI.LoadTurret(turret, ammoFilter) end
 ---@param friendlyTag Barotrauma.Identifier
 function CS.Barotrauma.SubmarineTurretAI.OperateTurrets(deltaTime, friendlyTag) end
 
+do
 ---@param submarine Barotrauma.Submarine
 ---@param friendlyTag? Barotrauma.Identifier
 ---@return Barotrauma.SubmarineTurretAI
-function CS.Barotrauma.SubmarineTurretAI(submarine, friendlyTag) end
+local __ctor = function(submarine, friendlyTag) end
+CS.Barotrauma.SubmarineTurretAI = __ctor
+CS.Barotrauma.SubmarineTurretAI.__new = __ctor
+end
 
 ---@class Barotrauma.AnimController: Barotrauma.Ragdoll
 ---@field SerializableProperties userdata | { [Barotrauma.Identifier]: Barotrauma.SerializableProperty } | (fun(): userdata)
@@ -40390,11 +41486,15 @@ function CS.Barotrauma.AnimController.TryLoadAnimation(animationType, file, anim
 ---@return System.Boolean
 function CS.Barotrauma.AnimController.TrySwapAnimParams(newParams) end
 
+do
 ---@param character Barotrauma.Character
 ---@param seed System.String
 ---@param ragdollParams? Barotrauma.RagdollParams
 ---@return Barotrauma.AnimController
-function CS.Barotrauma.AnimController(character, seed, ragdollParams) end
+local __ctor = function(character, seed, ragdollParams) end
+CS.Barotrauma.AnimController = __ctor
+CS.Barotrauma.AnimController.__new = __ctor
+end
 
 ---@class Barotrauma.FishAnimController: Barotrauma.AnimController
 ---@field RagdollParams Barotrauma.RagdollParams
@@ -40561,11 +41661,15 @@ function CS.Barotrauma.FishAnimController.Flip() end
 ---@param lerp? System.Boolean
 function CS.Barotrauma.FishAnimController.Mirror(lerp) end
 
+do
 ---@param character Barotrauma.Character
 ---@param seed System.String
 ---@param ragdollParams? Barotrauma.FishRagdollParams
 ---@return Barotrauma.FishAnimController
-function CS.Barotrauma.FishAnimController(character, seed, ragdollParams) end
+local __ctor = function(character, seed, ragdollParams) end
+CS.Barotrauma.FishAnimController = __ctor
+CS.Barotrauma.FishAnimController.__new = __ctor
+end
 
 ---@class Barotrauma.HumanoidAnimController: Barotrauma.AnimController
 ---@field RagdollParams Barotrauma.RagdollParams
@@ -40761,12 +41865,16 @@ function CS.Barotrauma.HumanoidAnimController.Flip() end
 ---@return System.Single
 function CS.Barotrauma.HumanoidAnimController.GetSpeed(type) end
 
+do
 ---@overload fun(): Barotrauma.HumanoidAnimController
 ---@param character Barotrauma.Character
 ---@param seed System.String
 ---@param ragdollParams? Barotrauma.HumanRagdollParams
 ---@return Barotrauma.HumanoidAnimController
-function CS.Barotrauma.HumanoidAnimController(character, seed, ragdollParams) end
+local __ctor = function(character, seed, ragdollParams) end
+CS.Barotrauma.HumanoidAnimController = __ctor
+CS.Barotrauma.HumanoidAnimController.__new = __ctor
+end
 
 ---@enum Barotrauma.AttackContext
 CS.Barotrauma.AttackContext = {
@@ -40808,12 +41916,16 @@ CS.Barotrauma.AIBehaviorAfterAttack = {
 ---@field AppliedDamageModifiers userdata | { [System.Int32]: Barotrauma.DamageModifier } | (fun(): Barotrauma.DamageModifier)
 CS.Barotrauma.AttackResult = {}
 
+do
 ---@overload fun(damage: System.Single, appliedDamageModifiers?: (userdata | { [System.Int32]: Barotrauma.DamageModifier } | (fun(): Barotrauma.DamageModifier))): Barotrauma.AttackResult
 ---@param afflictions userdata | { [System.Int32]: Barotrauma.Affliction } | (fun(): Barotrauma.Affliction)
 ---@param hitLimb Barotrauma.Limb
 ---@param appliedDamageModifiers? userdata | { [System.Int32]: Barotrauma.DamageModifier } | (fun(): Barotrauma.DamageModifier)
 ---@return Barotrauma.AttackResult
-function CS.Barotrauma.AttackResult(afflictions, hitLimb, appliedDamageModifiers) end
+local __ctor = function(afflictions, hitLimb, appliedDamageModifiers) end
+CS.Barotrauma.AttackResult = __ctor
+CS.Barotrauma.AttackResult.__new = __ctor
+end
 
 ---@enum Barotrauma.CauseOfDeathType
 CS.Barotrauma.CauseOfDeathType = {
@@ -40833,12 +41945,16 @@ CS.Barotrauma.CauseOfDeathType = {
 ---@field DamageSource Barotrauma.Entity
 CS.Barotrauma.CauseOfDeath = {}
 
+do
 ---@param type Barotrauma.CauseOfDeathType
 ---@param affliction Barotrauma.AfflictionPrefab
 ---@param killer Barotrauma.Character
 ---@param damageSource Barotrauma.Entity
 ---@return Barotrauma.CauseOfDeath
-function CS.Barotrauma.CauseOfDeath(type, affliction, killer, damageSource) end
+local __ctor = function(type, affliction, killer, damageSource) end
+CS.Barotrauma.CauseOfDeath = __ctor
+CS.Barotrauma.CauseOfDeath.__new = __ctor
+end
 
 ---@enum Barotrauma.CharacterTeamType
 CS.Barotrauma.CharacterTeamType = {
@@ -40853,44 +41969,64 @@ CS.Barotrauma.CharacterTeamType = {
 ---@field TalentIdentifier Barotrauma.Identifier
 CS.Barotrauma.TalentResistanceIdentifier = {}
 
+do
 ---@param ResistanceIdentifier Barotrauma.Identifier
 ---@param TalentIdentifier Barotrauma.Identifier
 ---@return Barotrauma.TalentResistanceIdentifier
-function CS.Barotrauma.TalentResistanceIdentifier(ResistanceIdentifier, TalentIdentifier) end
+local __ctor = function(ResistanceIdentifier, TalentIdentifier) end
+CS.Barotrauma.TalentResistanceIdentifier = __ctor
+CS.Barotrauma.TalentResistanceIdentifier.__new = __ctor
+end
 
 ---@class Barotrauma.AbilityCharacterLoot: Barotrauma.Abilities.AbilityObject
 ---@field Character Barotrauma.Character
 CS.Barotrauma.AbilityCharacterLoot = {}
 
+do
 ---@param character Barotrauma.Character
 ---@return Barotrauma.AbilityCharacterLoot
-function CS.Barotrauma.AbilityCharacterLoot(character) end
+local __ctor = function(character) end
+CS.Barotrauma.AbilityCharacterLoot = __ctor
+CS.Barotrauma.AbilityCharacterLoot.__new = __ctor
+end
 
 ---@class Barotrauma.AbilityCharacterKill: Barotrauma.Abilities.AbilityObject
 ---@field Character Barotrauma.Character
 ---@field Killer Barotrauma.Character
 CS.Barotrauma.AbilityCharacterKill = {}
 
+do
 ---@param character Barotrauma.Character
 ---@param killer Barotrauma.Character
 ---@return Barotrauma.AbilityCharacterKill
-function CS.Barotrauma.AbilityCharacterKill(character, killer) end
+local __ctor = function(character, killer) end
+CS.Barotrauma.AbilityCharacterKill = __ctor
+CS.Barotrauma.AbilityCharacterKill.__new = __ctor
+end
 
 ---@class Barotrauma.AbilityCharacterKiller: Barotrauma.Abilities.AbilityObject
 ---@field Character Barotrauma.Character
 CS.Barotrauma.AbilityCharacterKiller = {}
 
+do
 ---@param character Barotrauma.Character
 ---@return Barotrauma.AbilityCharacterKiller
-function CS.Barotrauma.AbilityCharacterKiller(character) end
+local __ctor = function(character) end
+CS.Barotrauma.AbilityCharacterKiller = __ctor
+CS.Barotrauma.AbilityCharacterKiller.__new = __ctor
+end
 
 ---@class Barotrauma.AbilityOrderedCharacter: Barotrauma.Abilities.AbilityObject
 ---@field Character Barotrauma.Character
 CS.Barotrauma.AbilityOrderedCharacter = {}
 
+do
 ---@param character Barotrauma.Character
 ---@return Barotrauma.AbilityOrderedCharacter
-function CS.Barotrauma.AbilityOrderedCharacter(character) end
+local __ctor = function(character) end
+CS.Barotrauma.AbilityOrderedCharacter = __ctor
+CS.Barotrauma.AbilityOrderedCharacter.__new = __ctor
+end
 
 ---@class Barotrauma.NetCharacterInfo: System.ValueType
 ---@field NewName System.String
@@ -40905,6 +42041,7 @@ function CS.Barotrauma.AbilityOrderedCharacter(character) end
 ---@field JobVariants userdata | { [System.Int32]: Barotrauma.NetJobVariant } | (fun(): Barotrauma.NetJobVariant)
 CS.Barotrauma.NetCharacterInfo = {}
 
+do
 ---@param NewName System.String
 ---@param Tags userdata | { [System.Int32]: Barotrauma.Identifier } | (fun(): Barotrauma.Identifier)
 ---@param HairIndex System.Byte
@@ -40916,7 +42053,10 @@ CS.Barotrauma.NetCharacterInfo = {}
 ---@param FacialHairColor Microsoft.Xna.Framework.Color
 ---@param JobVariants userdata | { [System.Int32]: Barotrauma.NetJobVariant } | (fun(): Barotrauma.NetJobVariant)
 ---@return Barotrauma.NetCharacterInfo
-function CS.Barotrauma.NetCharacterInfo(NewName, Tags, HairIndex, BeardIndex, MoustacheIndex, FaceAttachmentIndex, SkinColor, HairColor, FacialHairColor, JobVariants) end
+local __ctor = function(NewName, Tags, HairIndex, BeardIndex, MoustacheIndex, FaceAttachmentIndex, SkinColor, HairColor, FacialHairColor, JobVariants) end
+CS.Barotrauma.NetCharacterInfo = __ctor
+CS.Barotrauma.NetCharacterInfo.__new = __ctor
+end
 
 ---@class Barotrauma.CharacterInfoPrefab: System.Object
 ---@field Heads userdata | { [System.Int32]: Barotrauma.CharacterInfo.HeadPreset } | (fun(): Barotrauma.CharacterInfo.HeadPreset)
@@ -40931,13 +42071,17 @@ CS.Barotrauma.CharacterInfoPrefab = {}
 ---@return System.String
 function CS.Barotrauma.CharacterInfoPrefab.ReplaceVars(str, headPreset) end
 
+do
 ---@param characterPrefab Barotrauma.CharacterPrefab
 ---@param headsElement Barotrauma.ContentXElement
 ---@param varsElement System.Xml.Linq.XElement
 ---@param menuCategoryElement System.Xml.Linq.XElement
 ---@param pronounsElement System.Xml.Linq.XElement
 ---@return Barotrauma.CharacterInfoPrefab
-function CS.Barotrauma.CharacterInfoPrefab(characterPrefab, headsElement, varsElement, menuCategoryElement, pronounsElement) end
+local __ctor = function(characterPrefab, headsElement, varsElement, menuCategoryElement, pronounsElement) end
+CS.Barotrauma.CharacterInfoPrefab = __ctor
+CS.Barotrauma.CharacterInfoPrefab.__new = __ctor
+end
 
 ---@class Barotrauma.CharacterStateInfo: Barotrauma.PosInfo
 ---@field Direction Barotrauma.Direction
@@ -40949,6 +42093,7 @@ function CS.Barotrauma.CharacterInfoPrefab(characterPrefab, headsElement, varsEl
 ---@field TargetMovement Microsoft.Xna.Framework.Vector2
 CS.Barotrauma.CharacterStateInfo = {}
 
+do
 ---@overload fun(pos: Microsoft.Xna.Framework.Vector2, rotation: (System.Single|nil), ID: System.UInt16, dir: Barotrauma.Direction, selectedCharacter: Barotrauma.Character, selectedItem: Barotrauma.Item, selectedSecondaryItem: Barotrauma.Item, targetMovement: Microsoft.Xna.Framework.Vector2, animation?: Barotrauma.AnimController.Animation, ignorePlatforms?: System.Boolean): Barotrauma.CharacterStateInfo
 ---@overload fun(pos: Microsoft.Xna.Framework.Vector2, rotation: (System.Single|nil), velocity: Microsoft.Xna.Framework.Vector2, angularVelocity: (System.Single|nil), ID: System.UInt16, time: System.Single, dir: Barotrauma.Direction, selectedCharacter: Barotrauma.Character, selectedItem: Barotrauma.Item, selectedSecondaryItem: Barotrauma.Item, targetMovement: Microsoft.Xna.Framework.Vector2, animation?: Barotrauma.AnimController.Animation, ignorePlatforms?: System.Boolean): Barotrauma.CharacterStateInfo
 ---@param pos Microsoft.Xna.Framework.Vector2
@@ -40964,7 +42109,10 @@ CS.Barotrauma.CharacterStateInfo = {}
 ---@param animation? Barotrauma.AnimController.Animation
 ---@param ignorePlatforms? System.Boolean
 ---@return Barotrauma.CharacterStateInfo
-function CS.Barotrauma.CharacterStateInfo(pos, rotation, velocity, angularVelocity, time, dir, selectedCharacter, selectedItem, selectedSecondaryItem, targetMovement, animation, ignorePlatforms) end
+local __ctor = function(pos, rotation, velocity, angularVelocity, time, dir, selectedCharacter, selectedItem, selectedSecondaryItem, targetMovement, animation, ignorePlatforms) end
+CS.Barotrauma.CharacterStateInfo = __ctor
+CS.Barotrauma.CharacterStateInfo.__new = __ctor
+end
 
 ---@class Barotrauma.CharacterPrefab: Barotrauma.PrefabWithUintIdentifier
 ---@field Name System.String
@@ -41034,11 +42182,15 @@ function CS.Barotrauma.CharacterPrefab.ParseName(element, file) end
 ---@return System.Boolean
 function CS.Barotrauma.CharacterPrefab.CheckSpeciesName(mainElement, file, name) end
 
+do
 ---@overload fun(): Barotrauma.CharacterPrefab
 ---@param mainElement Barotrauma.ContentXElement
 ---@param file Barotrauma.CharacterFile
 ---@return Barotrauma.CharacterPrefab
-function CS.Barotrauma.CharacterPrefab(mainElement, file) end
+local __ctor = function(mainElement, file) end
+CS.Barotrauma.CharacterPrefab = __ctor
+CS.Barotrauma.CharacterPrefab.__new = __ctor
+end
 
 ---@class Barotrauma.CorpsePrefab: Barotrauma.HumanPrefab
 ---@field SpawnPosition Barotrauma.Level.PositionType
@@ -41057,11 +42209,15 @@ function CS.Barotrauma.CorpsePrefab.Get(identifier) end
 ---@return Barotrauma.CorpsePrefab
 function CS.Barotrauma.CorpsePrefab.Random(sync) end
 
+do
 ---@overload fun(): Barotrauma.CorpsePrefab
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.CorpsesFile
 ---@return Barotrauma.CorpsePrefab
-function CS.Barotrauma.CorpsePrefab(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.CorpsePrefab = __ctor
+CS.Barotrauma.CorpsePrefab.__new = __ctor
+end
 
 ---@class Barotrauma.Affliction: System.Object
 ---@field Name System.String
@@ -41224,11 +42380,15 @@ function CS.Barotrauma.Affliction.SetStrength(strength) end
 ---@return System.Boolean
 function CS.Barotrauma.Affliction.ShouldShowIcon(afflictedCharacter) end
 
+do
 ---@overload fun(): Barotrauma.Affliction
 ---@param prefab Barotrauma.AfflictionPrefab
 ---@param strength System.Single
 ---@return Barotrauma.Affliction
-function CS.Barotrauma.Affliction(prefab, strength) end
+local __ctor = function(prefab, strength) end
+CS.Barotrauma.Affliction = __ctor
+CS.Barotrauma.Affliction.__new = __ctor
+end
 
 ---@class Barotrauma.AfflictionBleeding: Barotrauma.Affliction
 CS.Barotrauma.AfflictionBleeding = {}
@@ -41238,10 +42398,14 @@ CS.Barotrauma.AfflictionBleeding = {}
 ---@param deltaTime System.Single
 function CS.Barotrauma.AfflictionBleeding.Update(characterHealth, targetLimb, deltaTime) end
 
+do
 ---@param prefab Barotrauma.AfflictionPrefab
 ---@param strength System.Single
 ---@return Barotrauma.AfflictionBleeding
-function CS.Barotrauma.AfflictionBleeding(prefab, strength) end
+local __ctor = function(prefab, strength) end
+CS.Barotrauma.AfflictionBleeding = __ctor
+CS.Barotrauma.AfflictionBleeding.__new = __ctor
+end
 
 ---@class Barotrauma.AfflictionHusk: Barotrauma.Affliction
 ---@field Strength System.Single
@@ -41337,10 +42501,14 @@ function CS.Barotrauma.AfflictionHusk.GetHuskedSpeciesName(character, prefab) en
 ---@return Barotrauma.Identifier
 function CS.Barotrauma.AfflictionHusk.GetNonHuskedSpeciesName(character, prefab) end
 
+do
 ---@param prefab Barotrauma.AfflictionPrefab
 ---@param strength System.Single
 ---@return Barotrauma.AfflictionHusk
-function CS.Barotrauma.AfflictionHusk(prefab, strength) end
+local __ctor = function(prefab, strength) end
+CS.Barotrauma.AfflictionHusk = __ctor
+CS.Barotrauma.AfflictionHusk.__new = __ctor
+end
 
 ---@class Barotrauma.AfflictionPrefabHusk: Barotrauma.AfflictionPrefab
 ---@field AttachLimbId System.Int32
@@ -41358,11 +42526,15 @@ function CS.Barotrauma.AfflictionHusk(prefab, strength) end
 ---@field ControlHusk System.Boolean
 CS.Barotrauma.AfflictionPrefabHusk = {}
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.AfflictionsFile
 ---@param type? System.Type
 ---@return Barotrauma.AfflictionPrefabHusk
-function CS.Barotrauma.AfflictionPrefabHusk(element, file, type) end
+local __ctor = function(element, file, type) end
+CS.Barotrauma.AfflictionPrefabHusk = __ctor
+CS.Barotrauma.AfflictionPrefabHusk.__new = __ctor
+end
 
 ---@class Barotrauma.AfflictionPrefab: Barotrauma.PrefabWithUintIdentifier
 ---@field InternalDamage Barotrauma.AfflictionPrefab
@@ -41531,12 +42703,16 @@ function CS.Barotrauma.AfflictionPrefab.GetActiveEffect(currentStrength) end
 ---@return System.Single
 function CS.Barotrauma.AfflictionPrefab.GetTreatmentSuitability(item) end
 
+do
 ---@overload fun(): Barotrauma.AfflictionPrefab
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.AfflictionsFile
 ---@param type System.Type
 ---@return Barotrauma.AfflictionPrefab
-function CS.Barotrauma.AfflictionPrefab(element, file, type) end
+local __ctor = function(element, file, type) end
+CS.Barotrauma.AfflictionPrefab = __ctor
+CS.Barotrauma.AfflictionPrefab.__new = __ctor
+end
 
 ---@class Barotrauma.AfflictionSpaceHerpes: Barotrauma.Affliction
 ---@field private invertControlsCooldown System.Single
@@ -41550,10 +42726,14 @@ CS.Barotrauma.AfflictionSpaceHerpes = {}
 ---@param deltaTime System.Single
 function CS.Barotrauma.AfflictionSpaceHerpes.Update(characterHealth, targetLimb, deltaTime) end
 
+do
 ---@param prefab Barotrauma.AfflictionPrefab
 ---@param strength System.Single
 ---@return Barotrauma.AfflictionSpaceHerpes
-function CS.Barotrauma.AfflictionSpaceHerpes(prefab, strength) end
+local __ctor = function(prefab, strength) end
+CS.Barotrauma.AfflictionSpaceHerpes = __ctor
+CS.Barotrauma.AfflictionSpaceHerpes.__new = __ctor
+end
 
 ---@class Barotrauma.HumanPrefab: Barotrauma.PrefabWithUintIdentifier
 ---@field Job Barotrauma.Identifier
@@ -41652,11 +42832,15 @@ function CS.Barotrauma.HumanPrefab.InitializeItem(character, itemElement, submar
 
 function CS.Barotrauma.HumanPrefab.Dispose() end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.ContentFile
 ---@param npcSetIdentifier Barotrauma.Identifier
 ---@return Barotrauma.HumanPrefab
-function CS.Barotrauma.HumanPrefab(element, file, npcSetIdentifier) end
+local __ctor = function(element, file, npcSetIdentifier) end
+CS.Barotrauma.HumanPrefab = __ctor
+CS.Barotrauma.HumanPrefab.__new = __ctor
+end
 
 ---@class Barotrauma.Job: System.Object
 ---@field Name Barotrauma.LocalizedString
@@ -41723,22 +42907,30 @@ function CS.Barotrauma.Job.InitializeJobItem(character, isPvPMode, jobItem, allJ
 ---@return System.Xml.Linq.XElement
 function CS.Barotrauma.Job.Save(parentElement) end
 
+do
 ---@overload fun(jobPrefab: Barotrauma.JobPrefab, isPvP: System.Boolean, randSync: Barotrauma.Rand.RandSync, variant: System.Int32, ...: Barotrauma.Skill): Barotrauma.Job
 ---@overload fun(element: Barotrauma.ContentXElement): Barotrauma.Job
 ---@param jobPrefab Barotrauma.JobPrefab
 ---@param isPvP System.Boolean
 ---@return Barotrauma.Job
-function CS.Barotrauma.Job(jobPrefab, isPvP) end
+local __ctor = function(jobPrefab, isPvP) end
+CS.Barotrauma.Job = __ctor
+CS.Barotrauma.Job.__new = __ctor
+end
 
 ---@class Barotrauma.JobVariant: System.Object
 ---@field Prefab Barotrauma.JobPrefab
 ---@field Variant System.Int32
 CS.Barotrauma.JobVariant = {}
 
+do
 ---@param prefab Barotrauma.JobPrefab
 ---@param variant System.Int32
 ---@return Barotrauma.JobVariant
-function CS.Barotrauma.JobVariant(prefab, variant) end
+local __ctor = function(prefab, variant) end
+CS.Barotrauma.JobVariant = __ctor
+CS.Barotrauma.JobVariant.__new = __ctor
+end
 
 ---@class Barotrauma.Skill: System.Object
 ---@field HighestLevelDuringRound System.Single
@@ -41769,12 +42961,16 @@ function CS.Barotrauma.Skill.get_Icon() end
 ---@return Barotrauma.Identifier
 function CS.Barotrauma.Skill.GetIconJobId() end
 
+do
 ---@overload fun(identifier: Barotrauma.Identifier, level: System.Single): Barotrauma.Skill
 ---@param prefab Barotrauma.SkillPrefab
 ---@param isPvP System.Boolean
 ---@param randSync Barotrauma.Rand.RandSync
 ---@return Barotrauma.Skill
-function CS.Barotrauma.Skill(prefab, isPvP, randSync) end
+local __ctor = function(prefab, isPvP, randSync) end
+CS.Barotrauma.Skill = __ctor
+CS.Barotrauma.Skill.__new = __ctor
+end
 
 ---@class Barotrauma.SkillPrefab: System.Object
 ---@field IsPrimarySkill System.Boolean
@@ -41788,9 +42984,13 @@ CS.Barotrauma.SkillPrefab = {}
 ---@return userdata
 function CS.Barotrauma.SkillPrefab.GetLevelRange(isPvP) end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.SkillPrefab
-function CS.Barotrauma.SkillPrefab(element) end
+local __ctor = function(element) end
+CS.Barotrauma.SkillPrefab = __ctor
+CS.Barotrauma.SkillPrefab.__new = __ctor
+end
 
 ---@enum Barotrauma.LimbType
 CS.Barotrauma.LimbType = {
@@ -41820,10 +43020,14 @@ CS.Barotrauma.LimbType = {
 ---@field Affliction Barotrauma.Affliction
 CS.Barotrauma.AbilityAfflictionCharacter = {}
 
+do
 ---@param affliction Barotrauma.Affliction
 ---@param character Barotrauma.Character
 ---@return Barotrauma.AbilityAfflictionCharacter
-function CS.Barotrauma.AbilityAfflictionCharacter(affliction, character) end
+local __ctor = function(affliction, character) end
+CS.Barotrauma.AbilityAfflictionCharacter = __ctor
+CS.Barotrauma.AbilityAfflictionCharacter.__new = __ctor
+end
 
 ---@class Barotrauma.GroundedMovementParams: Barotrauma.AnimationParams
 ---@field StepSize Microsoft.Xna.Framework.Vector2
@@ -41847,18 +43051,26 @@ CS.Barotrauma.GroundedMovementParams = {}
 ---@return System.Boolean
 function CS.Barotrauma.GroundedMovementParams.Deserialize(element) end
 
+do
 ---@protected
 ---@return Barotrauma.GroundedMovementParams
-function CS.Barotrauma.GroundedMovementParams() end
+local __ctor = function() end
+CS.Barotrauma.GroundedMovementParams = __ctor
+CS.Barotrauma.GroundedMovementParams.__new = __ctor
+end
 
 ---@class Barotrauma.SwimParams: Barotrauma.AnimationParams
 ---@field SteerTorque System.Single
 ---@field LegTorque System.Single
 CS.Barotrauma.SwimParams = {}
 
+do
 ---@protected
 ---@return Barotrauma.SwimParams
-function CS.Barotrauma.SwimParams() end
+local __ctor = function() end
+CS.Barotrauma.SwimParams = __ctor
+CS.Barotrauma.SwimParams.__new = __ctor
+end
 
 ---@class Barotrauma.AnimationParams: Barotrauma.EditableParams
 ---@field SpeciesName Barotrauma.Identifier
@@ -41972,10 +43184,14 @@ function CS.Barotrauma.AnimationParams.Redo() end
 
 function CS.Barotrauma.AnimationParams.ClearHistory() end
 
+do
 ---@protected
 ---@overload fun(): Barotrauma.AnimationParams
 ---@return Barotrauma.AnimationParams
-function CS.Barotrauma.AnimationParams() end
+local __ctor = function() end
+CS.Barotrauma.AnimationParams = __ctor
+CS.Barotrauma.AnimationParams.__new = __ctor
+end
 
 ---@class Barotrauma.FishWalkParams: Barotrauma.FishGroundedParams
 ---@field protected Empty Barotrauma.FishWalkParams
@@ -41993,9 +43209,13 @@ function CS.Barotrauma.FishWalkParams.GetAnimParams(character, file, throwErrors
 
 function CS.Barotrauma.FishWalkParams.StoreSnapshot() end
 
+do
 ---@overload fun(): Barotrauma.FishWalkParams
 ---@return Barotrauma.FishWalkParams
-function CS.Barotrauma.FishWalkParams() end
+local __ctor = function() end
+CS.Barotrauma.FishWalkParams = __ctor
+CS.Barotrauma.FishWalkParams.__new = __ctor
+end
 
 ---@class Barotrauma.FishRunParams: Barotrauma.FishGroundedParams
 ---@field protected Empty Barotrauma.FishRunParams
@@ -42013,9 +43233,13 @@ function CS.Barotrauma.FishRunParams.GetAnimParams(character, file, throwErrors)
 
 function CS.Barotrauma.FishRunParams.StoreSnapshot() end
 
+do
 ---@overload fun(): Barotrauma.FishRunParams
 ---@return Barotrauma.FishRunParams
-function CS.Barotrauma.FishRunParams() end
+local __ctor = function() end
+CS.Barotrauma.FishRunParams = __ctor
+CS.Barotrauma.FishRunParams.__new = __ctor
+end
 
 ---@class Barotrauma.FishSwimFastParams: Barotrauma.FishSwimParams
 CS.Barotrauma.FishSwimFastParams = {}
@@ -42032,8 +43256,12 @@ function CS.Barotrauma.FishSwimFastParams.GetAnimParams(character, file, throwEr
 
 function CS.Barotrauma.FishSwimFastParams.StoreSnapshot() end
 
+do
 ---@return Barotrauma.FishSwimFastParams
-function CS.Barotrauma.FishSwimFastParams() end
+local __ctor = function() end
+CS.Barotrauma.FishSwimFastParams = __ctor
+CS.Barotrauma.FishSwimFastParams.__new = __ctor
+end
 
 ---@class Barotrauma.FishSwimSlowParams: Barotrauma.FishSwimParams
 CS.Barotrauma.FishSwimSlowParams = {}
@@ -42050,8 +43278,12 @@ function CS.Barotrauma.FishSwimSlowParams.GetAnimParams(character, file, throwEr
 
 function CS.Barotrauma.FishSwimSlowParams.StoreSnapshot() end
 
+do
 ---@return Barotrauma.FishSwimSlowParams
-function CS.Barotrauma.FishSwimSlowParams() end
+local __ctor = function() end
+CS.Barotrauma.FishSwimSlowParams = __ctor
+CS.Barotrauma.FishSwimSlowParams.__new = __ctor
+end
 
 ---@class Barotrauma.FishGroundedParams: Barotrauma.GroundedMovementParams
 ---@field Flip System.Boolean
@@ -42093,9 +43325,13 @@ function CS.Barotrauma.FishGroundedParams.get_TailAngle() end
 ---@param value System.Single
 function CS.Barotrauma.FishGroundedParams.set_TailAngle(value) end
 
+do
 ---@protected
 ---@return Barotrauma.FishGroundedParams
-function CS.Barotrauma.FishGroundedParams() end
+local __ctor = function() end
+CS.Barotrauma.FishGroundedParams = __ctor
+CS.Barotrauma.FishGroundedParams.__new = __ctor
+end
 
 ---@class Barotrauma.FishSwimParams: Barotrauma.SwimParams
 ---@field UseSineMovement System.Boolean
@@ -42128,9 +43364,13 @@ function CS.Barotrauma.FishSwimParams.get_TailAngle() end
 ---@param value System.Single
 function CS.Barotrauma.FishSwimParams.set_TailAngle(value) end
 
+do
 ---@protected
 ---@return Barotrauma.FishSwimParams
-function CS.Barotrauma.FishSwimParams() end
+local __ctor = function() end
+CS.Barotrauma.FishSwimParams = __ctor
+CS.Barotrauma.FishSwimParams.__new = __ctor
+end
 
 ---@class Barotrauma.HumanWalkParams: Barotrauma.HumanGroundedParams
 CS.Barotrauma.HumanWalkParams = {}
@@ -42147,8 +43387,12 @@ function CS.Barotrauma.HumanWalkParams.GetAnimParams(character, file, throwError
 
 function CS.Barotrauma.HumanWalkParams.StoreSnapshot() end
 
+do
 ---@return Barotrauma.HumanWalkParams
-function CS.Barotrauma.HumanWalkParams() end
+local __ctor = function() end
+CS.Barotrauma.HumanWalkParams = __ctor
+CS.Barotrauma.HumanWalkParams.__new = __ctor
+end
 
 ---@class Barotrauma.HumanRunParams: Barotrauma.HumanGroundedParams
 CS.Barotrauma.HumanRunParams = {}
@@ -42165,8 +43409,12 @@ function CS.Barotrauma.HumanRunParams.GetAnimParams(character, file, throwErrors
 
 function CS.Barotrauma.HumanRunParams.StoreSnapshot() end
 
+do
 ---@return Barotrauma.HumanRunParams
-function CS.Barotrauma.HumanRunParams() end
+local __ctor = function() end
+CS.Barotrauma.HumanRunParams = __ctor
+CS.Barotrauma.HumanRunParams.__new = __ctor
+end
 
 ---@class Barotrauma.HumanCrouchParams: Barotrauma.HumanGroundedParams
 ---@field MoveDownAmountWhenStationary System.Single
@@ -42186,8 +43434,12 @@ function CS.Barotrauma.HumanCrouchParams.GetAnimParams(character, file, throwErr
 
 function CS.Barotrauma.HumanCrouchParams.StoreSnapshot() end
 
+do
 ---@return Barotrauma.HumanCrouchParams
-function CS.Barotrauma.HumanCrouchParams() end
+local __ctor = function() end
+CS.Barotrauma.HumanCrouchParams = __ctor
+CS.Barotrauma.HumanCrouchParams.__new = __ctor
+end
 
 ---@class Barotrauma.HumanSwimFastParams: Barotrauma.HumanSwimParams
 CS.Barotrauma.HumanSwimFastParams = {}
@@ -42204,8 +43456,12 @@ function CS.Barotrauma.HumanSwimFastParams.GetAnimParams(character, file, throwE
 
 function CS.Barotrauma.HumanSwimFastParams.StoreSnapshot() end
 
+do
 ---@return Barotrauma.HumanSwimFastParams
-function CS.Barotrauma.HumanSwimFastParams() end
+local __ctor = function() end
+CS.Barotrauma.HumanSwimFastParams = __ctor
+CS.Barotrauma.HumanSwimFastParams.__new = __ctor
+end
 
 ---@class Barotrauma.HumanSwimSlowParams: Barotrauma.HumanSwimParams
 CS.Barotrauma.HumanSwimSlowParams = {}
@@ -42222,8 +43478,12 @@ function CS.Barotrauma.HumanSwimSlowParams.GetAnimParams(character, file, throwE
 
 function CS.Barotrauma.HumanSwimSlowParams.StoreSnapshot() end
 
+do
 ---@return Barotrauma.HumanSwimSlowParams
-function CS.Barotrauma.HumanSwimSlowParams() end
+local __ctor = function() end
+CS.Barotrauma.HumanSwimSlowParams = __ctor
+CS.Barotrauma.HumanSwimSlowParams.__new = __ctor
+end
 
 ---@class Barotrauma.HumanSwimParams: Barotrauma.SwimParams
 ---@field LegMoveAmount System.Single
@@ -42244,9 +43504,13 @@ function CS.Barotrauma.HumanSwimParams.get_FootAngle() end
 ---@param value System.Single
 function CS.Barotrauma.HumanSwimParams.set_FootAngle(value) end
 
+do
 ---@protected
 ---@return Barotrauma.HumanSwimParams
-function CS.Barotrauma.HumanSwimParams() end
+local __ctor = function() end
+CS.Barotrauma.HumanSwimParams = __ctor
+CS.Barotrauma.HumanSwimParams.__new = __ctor
+end
 
 ---@class Barotrauma.HumanGroundedParams: Barotrauma.GroundedMovementParams
 ---@field GetUpForce System.Single
@@ -42273,9 +43537,13 @@ function CS.Barotrauma.HumanGroundedParams.get_FootAngle() end
 ---@param value System.Single
 function CS.Barotrauma.HumanGroundedParams.set_FootAngle(value) end
 
+do
 ---@protected
 ---@return Barotrauma.HumanGroundedParams
-function CS.Barotrauma.HumanGroundedParams() end
+local __ctor = function() end
+CS.Barotrauma.HumanGroundedParams = __ctor
+CS.Barotrauma.HumanGroundedParams.__new = __ctor
+end
 
 ---@class Barotrauma.CharacterParams: Barotrauma.EditableParams
 ---@field SpeciesName Barotrauma.Identifier
@@ -42443,9 +43711,13 @@ function CS.Barotrauma.CharacterParams.RemoveInventory(inventory) end
 ---@return System.Boolean
 function CS.Barotrauma.CharacterParams.RemoveSubParam(subParam, collection) end
 
+do
 ---@param file Barotrauma.CharacterFile
 ---@return Barotrauma.CharacterParams
-function CS.Barotrauma.CharacterParams(file) end
+local __ctor = function(file) end
+CS.Barotrauma.CharacterParams = __ctor
+CS.Barotrauma.CharacterParams.__new = __ctor
+end
 
 ---@class Barotrauma.EditableParams: System.Object
 ---@field IsLoaded System.Boolean
@@ -42516,9 +43788,13 @@ function CS.Barotrauma.EditableParams.Reset(forceReload) end
 ---@param space? System.Int32
 function CS.Barotrauma.EditableParams.AddToEditor(editor, space) end
 
+do
 ---@protected
 ---@return Barotrauma.EditableParams
-function CS.Barotrauma.EditableParams() end
+local __ctor = function() end
+CS.Barotrauma.EditableParams = __ctor
+CS.Barotrauma.EditableParams.__new = __ctor
+end
 
 ---@enum Barotrauma.CanEnterSubmarine
 CS.Barotrauma.CanEnterSubmarine = {
@@ -42534,8 +43810,12 @@ CS.Barotrauma.HumanRagdollParams = {}
 ---@return Barotrauma.HumanRagdollParams
 function CS.Barotrauma.HumanRagdollParams.GetDefaultRagdollParams(character) end
 
+do
 ---@return Barotrauma.HumanRagdollParams
-function CS.Barotrauma.HumanRagdollParams() end
+local __ctor = function() end
+CS.Barotrauma.HumanRagdollParams = __ctor
+CS.Barotrauma.HumanRagdollParams.__new = __ctor
+end
 
 ---@class Barotrauma.FishRagdollParams: Barotrauma.RagdollParams
 CS.Barotrauma.FishRagdollParams = {}
@@ -42544,8 +43824,12 @@ CS.Barotrauma.FishRagdollParams = {}
 ---@return Barotrauma.FishRagdollParams
 function CS.Barotrauma.FishRagdollParams.GetDefaultRagdollParams(character) end
 
+do
 ---@return Barotrauma.FishRagdollParams
-function CS.Barotrauma.FishRagdollParams() end
+local __ctor = function() end
+CS.Barotrauma.FishRagdollParams = __ctor
+CS.Barotrauma.FishRagdollParams.__new = __ctor
+end
 
 ---@class Barotrauma.RagdollParams: Barotrauma.EditableParams
 ---@field SpeciesName Barotrauma.Identifier
@@ -42675,9 +43959,13 @@ function CS.Barotrauma.RagdollParams.ClearHistory() end
 ---@param source Barotrauma.RagdollParams
 function CS.Barotrauma.RagdollParams.RevertTo(source) end
 
+do
 ---@overload fun(): Barotrauma.RagdollParams
 ---@return Barotrauma.RagdollParams
-function CS.Barotrauma.RagdollParams() end
+local __ctor = function() end
+CS.Barotrauma.RagdollParams = __ctor
+CS.Barotrauma.RagdollParams.__new = __ctor
+end
 
 ---@class Barotrauma.SkillSettings: Barotrauma.Prefab
 ---@field Current Barotrauma.SkillSettings
@@ -42774,11 +44062,15 @@ function CS.Barotrauma.SkillSettings.GetCurrentSkillGainMultiplier() end
 
 function CS.Barotrauma.SkillSettings.Dispose() end
 
+do
 ---@overload fun(): Barotrauma.SkillSettings
 ---@param element System.Xml.Linq.XElement
 ---@param file Barotrauma.SkillSettingsFile
 ---@return Barotrauma.SkillSettings
-function CS.Barotrauma.SkillSettings(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.SkillSettings = __ctor
+CS.Barotrauma.SkillSettings.__new = __ctor
+end
 
 ---@class Barotrauma.CharacterTalent: System.Object
 ---@field Character Barotrauma.Character
@@ -42824,11 +44116,15 @@ function CS.Barotrauma.CharacterTalent.AddAbilityGroupEffect(characterAbilityGro
 ---@return Barotrauma.AbilityEffectType
 function CS.Barotrauma.CharacterTalent.ParseAbilityEffectType(characterTalent, abilityEffectTypeString) end
 
+do
 ---@overload fun(): Barotrauma.CharacterTalent
 ---@param talentPrefab Barotrauma.TalentPrefab
 ---@param character Barotrauma.Character
 ---@return Barotrauma.CharacterTalent
-function CS.Barotrauma.CharacterTalent(talentPrefab, character) end
+local __ctor = function(talentPrefab, character) end
+CS.Barotrauma.CharacterTalent = __ctor
+CS.Barotrauma.CharacterTalent.__new = __ctor
+end
 
 ---@class Barotrauma.TalentMigration: System.Object
 ---@field private version System.Version
@@ -42848,11 +44144,15 @@ function CS.Barotrauma.TalentMigration.Apply(info) end
 ---@return Barotrauma.TalentMigration
 function CS.Barotrauma.TalentMigration.FromXML(element) end
 
+do
 ---@protected
 ---@overload fun(): Barotrauma.TalentMigration
 ---@param targetVersion System.Version
 ---@return Barotrauma.TalentMigration
-function CS.Barotrauma.TalentMigration(targetVersion) end
+local __ctor = function(targetVersion) end
+CS.Barotrauma.TalentMigration = __ctor
+CS.Barotrauma.TalentMigration.__new = __ctor
+end
 
 ---@class Barotrauma.TalentMigrationAddStat: Barotrauma.TalentMigration
 ---@field StatType Barotrauma.StatTypes
@@ -42865,10 +44165,14 @@ CS.Barotrauma.TalentMigrationAddStat = {}
 ---@param info Barotrauma.CharacterInfo
 function CS.Barotrauma.TalentMigrationAddStat.Apply(info) end
 
+do
 ---@param targetVersion System.Version
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.TalentMigrationAddStat
-function CS.Barotrauma.TalentMigrationAddStat(targetVersion, element) end
+local __ctor = function(targetVersion, element) end
+CS.Barotrauma.TalentMigrationAddStat = __ctor
+CS.Barotrauma.TalentMigrationAddStat.__new = __ctor
+end
 
 ---@class Barotrauma.TalentMigrationUpdateStatIdentifier: Barotrauma.TalentMigration
 ---@field Old Barotrauma.Identifier
@@ -42879,10 +44183,14 @@ CS.Barotrauma.TalentMigrationUpdateStatIdentifier = {}
 ---@param info Barotrauma.CharacterInfo
 function CS.Barotrauma.TalentMigrationUpdateStatIdentifier.Apply(info) end
 
+do
 ---@param targetVersion System.Version
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.TalentMigrationUpdateStatIdentifier
-function CS.Barotrauma.TalentMigrationUpdateStatIdentifier(targetVersion, element) end
+local __ctor = function(targetVersion, element) end
+CS.Barotrauma.TalentMigrationUpdateStatIdentifier = __ctor
+CS.Barotrauma.TalentMigrationUpdateStatIdentifier.__new = __ctor
+end
 
 ---@class Barotrauma.TalentPrefab: Barotrauma.PrefabWithUintIdentifier
 ---@field OriginalName System.String
@@ -42903,11 +44211,15 @@ function CS.Barotrauma.TalentPrefab.get_OriginalName() end
 
 function CS.Barotrauma.TalentPrefab.Dispose() end
 
+do
 ---@overload fun(): Barotrauma.TalentPrefab
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.TalentsFile
 ---@return Barotrauma.TalentPrefab
-function CS.Barotrauma.TalentPrefab(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.TalentPrefab = __ctor
+CS.Barotrauma.TalentPrefab.__new = __ctor
+end
 
 ---@class Barotrauma.TalentTree: Barotrauma.Prefab
 ---@field ConfigElement Barotrauma.ContentXElement
@@ -42951,11 +44263,15 @@ function CS.Barotrauma.TalentTree.CheckTalentSelection(controlledCharacter, sele
 
 function CS.Barotrauma.TalentTree.Dispose() end
 
+do
 ---@overload fun(): Barotrauma.TalentTree
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.TalentTreesFile
 ---@return Barotrauma.TalentTree
-function CS.Barotrauma.TalentTree(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.TalentTree = __ctor
+CS.Barotrauma.TalentTree.__new = __ctor
+end
 
 ---@enum Barotrauma.TalentTreeType
 CS.Barotrauma.TalentTreeType = {
@@ -42985,9 +44301,13 @@ function CS.Barotrauma.TalentSubTree.HasMaxTalents(talents) end
 ---@return System.Boolean
 function CS.Barotrauma.TalentSubTree.HasAnyTalent(talents) end
 
+do
 ---@param subTreeElement Barotrauma.ContentXElement
 ---@return Barotrauma.TalentSubTree
-function CS.Barotrauma.TalentSubTree(subTreeElement) end
+local __ctor = function(subTreeElement) end
+CS.Barotrauma.TalentSubTree = __ctor
+CS.Barotrauma.TalentSubTree.__new = __ctor
+end
 
 ---@class Barotrauma.TalentOption: System.ValueType
 ---@field TalentIdentifiers userdata | (fun(): Barotrauma.Identifier)
@@ -43017,10 +44337,14 @@ function CS.Barotrauma.TalentOption.HasSelectedTalent(selectedTalents) end
 ---@return System.Int32
 function CS.Barotrauma.TalentOption.CountMatchingTalents(talents) end
 
+do
 ---@param talentOptionsElement Barotrauma.ContentXElement
 ---@param debugIdentifier Barotrauma.Identifier
 ---@return Barotrauma.TalentOption
-function CS.Barotrauma.TalentOption(talentOptionsElement, debugIdentifier) end
+local __ctor = function(talentOptionsElement, debugIdentifier) end
+CS.Barotrauma.TalentOption = __ctor
+CS.Barotrauma.TalentOption.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxInputConnection: Barotrauma.CircuitBoxConnection
 ---@field IsOutput System.Boolean
@@ -43033,11 +44357,15 @@ function CS.Barotrauma.CircuitBoxInputConnection.get_IsOutput() end
 ---@param signal Barotrauma.Items.Components.Signal
 function CS.Barotrauma.CircuitBoxInputConnection.ReceiveSignal(signal) end
 
+do
 ---@param position Microsoft.Xna.Framework.Vector2
 ---@param connection Barotrauma.Items.Components.Connection
 ---@param box Barotrauma.Items.Components.CircuitBox
 ---@return Barotrauma.CircuitBoxInputConnection
-function CS.Barotrauma.CircuitBoxInputConnection(position, connection, box) end
+local __ctor = function(position, connection, box) end
+CS.Barotrauma.CircuitBoxInputConnection = __ctor
+CS.Barotrauma.CircuitBoxInputConnection.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxOutputConnection: Barotrauma.CircuitBoxConnection
 ---@field IsOutput System.Boolean
@@ -43049,11 +44377,15 @@ function CS.Barotrauma.CircuitBoxOutputConnection.get_IsOutput() end
 ---@param signal Barotrauma.Items.Components.Signal
 function CS.Barotrauma.CircuitBoxOutputConnection.ReceiveSignal(signal) end
 
+do
 ---@param position Microsoft.Xna.Framework.Vector2
 ---@param connection Barotrauma.Items.Components.Connection
 ---@param circuitBox Barotrauma.Items.Components.CircuitBox
 ---@return Barotrauma.CircuitBoxOutputConnection
-function CS.Barotrauma.CircuitBoxOutputConnection(position, connection, circuitBox) end
+local __ctor = function(position, connection, circuitBox) end
+CS.Barotrauma.CircuitBoxOutputConnection = __ctor
+CS.Barotrauma.CircuitBoxOutputConnection.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxNodeConnection: Barotrauma.CircuitBoxConnection
 ---@field IsOutput System.Boolean
@@ -43070,12 +44402,16 @@ function CS.Barotrauma.CircuitBoxNodeConnection.get_HasAvailableSlots() end
 ---@param signal Barotrauma.Items.Components.Signal
 function CS.Barotrauma.CircuitBoxNodeConnection.ReceiveSignal(signal) end
 
+do
 ---@param position Microsoft.Xna.Framework.Vector2
 ---@param component Barotrauma.CircuitBoxComponent
 ---@param connection Barotrauma.Items.Components.Connection
 ---@param circuitBox Barotrauma.Items.Components.CircuitBox
 ---@return Barotrauma.CircuitBoxNodeConnection
-function CS.Barotrauma.CircuitBoxNodeConnection(position, component, connection, circuitBox) end
+local __ctor = function(position, component, connection, circuitBox) end
+CS.Barotrauma.CircuitBoxNodeConnection = __ctor
+CS.Barotrauma.CircuitBoxNodeConnection.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxCursor: System.Object
 ---@field HeldPrefab userdata
@@ -43104,9 +44440,13 @@ function CS.Barotrauma.CircuitBoxCursor.Update(deltaTime) end
 
 function CS.Barotrauma.CircuitBoxCursor.ResetTimers() end
 
+do
 ---@param info Barotrauma.NetCircuitBoxCursorInfo
 ---@return Barotrauma.CircuitBoxCursor
-function CS.Barotrauma.CircuitBoxCursor(info) end
+local __ctor = function(info) end
+CS.Barotrauma.CircuitBoxCursor = __ctor
+CS.Barotrauma.CircuitBoxCursor.__new = __ctor
+end
 
 ---@enum Barotrauma.CircuitBoxResizeDirection
 CS.Barotrauma.CircuitBoxResizeDirection = {
@@ -43160,10 +44500,14 @@ function CS.Barotrauma.CircuitBoxConnectorIdentifier.Load(element) end
 ---@return System.String
 function CS.Barotrauma.CircuitBoxConnectorIdentifier.ToString() end
 
+do
 ---@param SignalConnection Barotrauma.Identifier
 ---@param TargetId userdata
 ---@return Barotrauma.CircuitBoxConnectorIdentifier
-function CS.Barotrauma.CircuitBoxConnectorIdentifier(SignalConnection, TargetId) end
+local __ctor = function(SignalConnection, TargetId) end
+CS.Barotrauma.CircuitBoxConnectorIdentifier = __ctor
+CS.Barotrauma.CircuitBoxConnectorIdentifier.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxAddLabelEvent: System.ValueType
 ---@field Position Microsoft.Xna.Framework.Vector2
@@ -43172,12 +44516,16 @@ function CS.Barotrauma.CircuitBoxConnectorIdentifier(SignalConnection, TargetId)
 ---@field Body Barotrauma.NetLimitedString
 CS.Barotrauma.CircuitBoxAddLabelEvent = {}
 
+do
 ---@param Position Microsoft.Xna.Framework.Vector2
 ---@param Color Microsoft.Xna.Framework.Color
 ---@param Header Barotrauma.NetLimitedString
 ---@param Body Barotrauma.NetLimitedString
 ---@return Barotrauma.CircuitBoxAddLabelEvent
-function CS.Barotrauma.CircuitBoxAddLabelEvent(Position, Color, Header, Body) end
+local __ctor = function(Position, Color, Header, Body) end
+CS.Barotrauma.CircuitBoxAddLabelEvent = __ctor
+CS.Barotrauma.CircuitBoxAddLabelEvent.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxServerAddLabelEvent: System.ValueType
 ---@field ID System.UInt16
@@ -43188,6 +44536,7 @@ function CS.Barotrauma.CircuitBoxAddLabelEvent(Position, Color, Header, Body) en
 ---@field Body Barotrauma.NetLimitedString
 CS.Barotrauma.CircuitBoxServerAddLabelEvent = {}
 
+do
 ---@param ID System.UInt16
 ---@param Position Microsoft.Xna.Framework.Vector2
 ---@param Size Microsoft.Xna.Framework.Vector2
@@ -43195,7 +44544,10 @@ CS.Barotrauma.CircuitBoxServerAddLabelEvent = {}
 ---@param Header Barotrauma.NetLimitedString
 ---@param Body Barotrauma.NetLimitedString
 ---@return Barotrauma.CircuitBoxServerAddLabelEvent
-function CS.Barotrauma.CircuitBoxServerAddLabelEvent(ID, Position, Size, Color, Header, Body) end
+local __ctor = function(ID, Position, Size, Color, Header, Body) end
+CS.Barotrauma.CircuitBoxServerAddLabelEvent = __ctor
+CS.Barotrauma.CircuitBoxServerAddLabelEvent.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxResizeLabelEvent: System.ValueType
 ---@field ID System.UInt16
@@ -43203,29 +44555,41 @@ function CS.Barotrauma.CircuitBoxServerAddLabelEvent(ID, Position, Size, Color, 
 ---@field Size Microsoft.Xna.Framework.Vector2
 CS.Barotrauma.CircuitBoxResizeLabelEvent = {}
 
+do
 ---@param ID System.UInt16
 ---@param Position Microsoft.Xna.Framework.Vector2
 ---@param Size Microsoft.Xna.Framework.Vector2
 ---@return Barotrauma.CircuitBoxResizeLabelEvent
-function CS.Barotrauma.CircuitBoxResizeLabelEvent(ID, Position, Size) end
+local __ctor = function(ID, Position, Size) end
+CS.Barotrauma.CircuitBoxResizeLabelEvent = __ctor
+CS.Barotrauma.CircuitBoxResizeLabelEvent.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxRemoveLabelEvent: System.ValueType
 ---@field TargetIDs userdata | { [System.Int32]: System.UInt16 } | (fun(): System.UInt16)
 CS.Barotrauma.CircuitBoxRemoveLabelEvent = {}
 
+do
 ---@param TargetIDs userdata | { [System.Int32]: System.UInt16 } | (fun(): System.UInt16)
 ---@return Barotrauma.CircuitBoxRemoveLabelEvent
-function CS.Barotrauma.CircuitBoxRemoveLabelEvent(TargetIDs) end
+local __ctor = function(TargetIDs) end
+CS.Barotrauma.CircuitBoxRemoveLabelEvent = __ctor
+CS.Barotrauma.CircuitBoxRemoveLabelEvent.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxAddComponentEvent: System.ValueType
 ---@field PrefabIdentifier System.UInt32
 ---@field Position Microsoft.Xna.Framework.Vector2
 CS.Barotrauma.CircuitBoxAddComponentEvent = {}
 
+do
 ---@param PrefabIdentifier System.UInt32
 ---@param Position Microsoft.Xna.Framework.Vector2
 ---@return Barotrauma.CircuitBoxAddComponentEvent
-function CS.Barotrauma.CircuitBoxAddComponentEvent(PrefabIdentifier, Position) end
+local __ctor = function(PrefabIdentifier, Position) end
+CS.Barotrauma.CircuitBoxAddComponentEvent = __ctor
+CS.Barotrauma.CircuitBoxAddComponentEvent.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxServerCreateComponentEvent: System.ValueType
 ---@field BackingItemId System.UInt16
@@ -43234,20 +44598,28 @@ function CS.Barotrauma.CircuitBoxAddComponentEvent(PrefabIdentifier, Position) e
 ---@field Position Microsoft.Xna.Framework.Vector2
 CS.Barotrauma.CircuitBoxServerCreateComponentEvent = {}
 
+do
 ---@param BackingItemId System.UInt16
 ---@param UsedResource System.UInt32
 ---@param ComponentId System.UInt16
 ---@param Position Microsoft.Xna.Framework.Vector2
 ---@return Barotrauma.CircuitBoxServerCreateComponentEvent
-function CS.Barotrauma.CircuitBoxServerCreateComponentEvent(BackingItemId, UsedResource, ComponentId, Position) end
+local __ctor = function(BackingItemId, UsedResource, ComponentId, Position) end
+CS.Barotrauma.CircuitBoxServerCreateComponentEvent = __ctor
+CS.Barotrauma.CircuitBoxServerCreateComponentEvent.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxRemoveComponentEvent: System.ValueType
 ---@field TargetIDs userdata | { [System.Int32]: System.UInt16 } | (fun(): System.UInt16)
 CS.Barotrauma.CircuitBoxRemoveComponentEvent = {}
 
+do
 ---@param TargetIDs userdata | { [System.Int32]: System.UInt16 } | (fun(): System.UInt16)
 ---@return Barotrauma.CircuitBoxRemoveComponentEvent
-function CS.Barotrauma.CircuitBoxRemoveComponentEvent(TargetIDs) end
+local __ctor = function(TargetIDs) end
+CS.Barotrauma.CircuitBoxRemoveComponentEvent = __ctor
+CS.Barotrauma.CircuitBoxRemoveComponentEvent.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxMoveComponentEvent: System.ValueType
 ---@field TargetIDs userdata | { [System.Int32]: System.UInt16 } | (fun(): System.UInt16)
@@ -43256,12 +44628,16 @@ function CS.Barotrauma.CircuitBoxRemoveComponentEvent(TargetIDs) end
 ---@field MoveAmount Microsoft.Xna.Framework.Vector2
 CS.Barotrauma.CircuitBoxMoveComponentEvent = {}
 
+do
 ---@param TargetIDs userdata | { [System.Int32]: System.UInt16 } | (fun(): System.UInt16)
 ---@param IOs userdata | { [System.Int32]: Barotrauma.CircuitBoxInputOutputNode.Type } | (fun(): Barotrauma.CircuitBoxInputOutputNode.Type)
 ---@param LabelIDs userdata | { [System.Int32]: System.UInt16 } | (fun(): System.UInt16)
 ---@param MoveAmount Microsoft.Xna.Framework.Vector2
 ---@return Barotrauma.CircuitBoxMoveComponentEvent
-function CS.Barotrauma.CircuitBoxMoveComponentEvent(TargetIDs, IOs, LabelIDs, MoveAmount) end
+local __ctor = function(TargetIDs, IOs, LabelIDs, MoveAmount) end
+CS.Barotrauma.CircuitBoxMoveComponentEvent = __ctor
+CS.Barotrauma.CircuitBoxMoveComponentEvent.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxSelectNodesEvent: System.ValueType
 ---@field TargetIDs userdata | { [System.Int32]: System.UInt16 } | (fun(): System.UInt16)
@@ -43271,13 +44647,17 @@ function CS.Barotrauma.CircuitBoxMoveComponentEvent(TargetIDs, IOs, LabelIDs, Mo
 ---@field CharacterID System.UInt16
 CS.Barotrauma.CircuitBoxSelectNodesEvent = {}
 
+do
 ---@param TargetIDs userdata | { [System.Int32]: System.UInt16 } | (fun(): System.UInt16)
 ---@param IOs userdata | { [System.Int32]: Barotrauma.CircuitBoxInputOutputNode.Type } | (fun(): Barotrauma.CircuitBoxInputOutputNode.Type)
 ---@param LabelIDs userdata | { [System.Int32]: System.UInt16 } | (fun(): System.UInt16)
 ---@param Overwrite System.Boolean
 ---@param CharacterID System.UInt16
 ---@return Barotrauma.CircuitBoxSelectNodesEvent
-function CS.Barotrauma.CircuitBoxSelectNodesEvent(TargetIDs, IOs, LabelIDs, Overwrite, CharacterID) end
+local __ctor = function(TargetIDs, IOs, LabelIDs, Overwrite, CharacterID) end
+CS.Barotrauma.CircuitBoxSelectNodesEvent = __ctor
+CS.Barotrauma.CircuitBoxSelectNodesEvent.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxServerUpdateSelection: System.ValueType
 ---@field ComponentIds userdata | { [System.Int32]: Barotrauma.CircuitBoxIdSelectionPair } | (fun(): Barotrauma.CircuitBoxIdSelectionPair)
@@ -43286,32 +44666,44 @@ function CS.Barotrauma.CircuitBoxSelectNodesEvent(TargetIDs, IOs, LabelIDs, Over
 ---@field LabelIds userdata | { [System.Int32]: Barotrauma.CircuitBoxIdSelectionPair } | (fun(): Barotrauma.CircuitBoxIdSelectionPair)
 CS.Barotrauma.CircuitBoxServerUpdateSelection = {}
 
+do
 ---@param ComponentIds userdata | { [System.Int32]: Barotrauma.CircuitBoxIdSelectionPair } | (fun(): Barotrauma.CircuitBoxIdSelectionPair)
 ---@param WireIds userdata | { [System.Int32]: Barotrauma.CircuitBoxIdSelectionPair } | (fun(): Barotrauma.CircuitBoxIdSelectionPair)
 ---@param InputOutputs userdata | { [System.Int32]: Barotrauma.CircuitBoxTypeSelectionPair } | (fun(): Barotrauma.CircuitBoxTypeSelectionPair)
 ---@param LabelIds userdata | { [System.Int32]: Barotrauma.CircuitBoxIdSelectionPair } | (fun(): Barotrauma.CircuitBoxIdSelectionPair)
 ---@return Barotrauma.CircuitBoxServerUpdateSelection
-function CS.Barotrauma.CircuitBoxServerUpdateSelection(ComponentIds, WireIds, InputOutputs, LabelIds) end
+local __ctor = function(ComponentIds, WireIds, InputOutputs, LabelIds) end
+CS.Barotrauma.CircuitBoxServerUpdateSelection = __ctor
+CS.Barotrauma.CircuitBoxServerUpdateSelection.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxIdSelectionPair: System.ValueType
 ---@field ID System.UInt16
 ---@field SelectedBy userdata
 CS.Barotrauma.CircuitBoxIdSelectionPair = {}
 
+do
 ---@param ID System.UInt16
 ---@param SelectedBy userdata
 ---@return Barotrauma.CircuitBoxIdSelectionPair
-function CS.Barotrauma.CircuitBoxIdSelectionPair(ID, SelectedBy) end
+local __ctor = function(ID, SelectedBy) end
+CS.Barotrauma.CircuitBoxIdSelectionPair = __ctor
+CS.Barotrauma.CircuitBoxIdSelectionPair.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxTypeSelectionPair: System.ValueType
 ---@field Type Barotrauma.CircuitBoxInputOutputNode.Type
 ---@field SelectedBy userdata
 CS.Barotrauma.CircuitBoxTypeSelectionPair = {}
 
+do
 ---@param Type Barotrauma.CircuitBoxInputOutputNode.Type
 ---@param SelectedBy userdata
 ---@return Barotrauma.CircuitBoxTypeSelectionPair
-function CS.Barotrauma.CircuitBoxTypeSelectionPair(Type, SelectedBy) end
+local __ctor = function(Type, SelectedBy) end
+CS.Barotrauma.CircuitBoxTypeSelectionPair = __ctor
+CS.Barotrauma.CircuitBoxTypeSelectionPair.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxSelectWiresEvent: System.ValueType
 ---@field TargetIDs userdata | { [System.Int32]: System.UInt16 } | (fun(): System.UInt16)
@@ -43319,11 +44711,15 @@ function CS.Barotrauma.CircuitBoxTypeSelectionPair(Type, SelectedBy) end
 ---@field CharacterID System.UInt16
 CS.Barotrauma.CircuitBoxSelectWiresEvent = {}
 
+do
 ---@param TargetIDs userdata | { [System.Int32]: System.UInt16 } | (fun(): System.UInt16)
 ---@param Overwrite System.Boolean
 ---@param CharacterID System.UInt16
 ---@return Barotrauma.CircuitBoxSelectWiresEvent
-function CS.Barotrauma.CircuitBoxSelectWiresEvent(TargetIDs, Overwrite, CharacterID) end
+local __ctor = function(TargetIDs, Overwrite, CharacterID) end
+CS.Barotrauma.CircuitBoxSelectWiresEvent = __ctor
+CS.Barotrauma.CircuitBoxSelectWiresEvent.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxClientAddWireEvent: System.ValueType
 ---@field Color Microsoft.Xna.Framework.Color
@@ -43332,12 +44728,16 @@ function CS.Barotrauma.CircuitBoxSelectWiresEvent(TargetIDs, Overwrite, Characte
 ---@field SelectedWirePrefabIdentifier System.UInt32
 CS.Barotrauma.CircuitBoxClientAddWireEvent = {}
 
+do
 ---@param Color Microsoft.Xna.Framework.Color
 ---@param Start Barotrauma.CircuitBoxConnectorIdentifier
 ---@param __End__ Barotrauma.CircuitBoxConnectorIdentifier
 ---@param SelectedWirePrefabIdentifier System.UInt32
 ---@return Barotrauma.CircuitBoxClientAddWireEvent
-function CS.Barotrauma.CircuitBoxClientAddWireEvent(Color, Start, __End__, SelectedWirePrefabIdentifier) end
+local __ctor = function(Color, Start, __End__, SelectedWirePrefabIdentifier) end
+CS.Barotrauma.CircuitBoxClientAddWireEvent = __ctor
+CS.Barotrauma.CircuitBoxClientAddWireEvent.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxServerCreateWireEvent: System.ValueType
 ---@field Request Barotrauma.CircuitBoxClientAddWireEvent
@@ -43345,19 +44745,27 @@ function CS.Barotrauma.CircuitBoxClientAddWireEvent(Color, Start, __End__, Selec
 ---@field BackingItemId userdata
 CS.Barotrauma.CircuitBoxServerCreateWireEvent = {}
 
+do
 ---@param Request Barotrauma.CircuitBoxClientAddWireEvent
 ---@param WireId System.UInt16
 ---@param BackingItemId userdata
 ---@return Barotrauma.CircuitBoxServerCreateWireEvent
-function CS.Barotrauma.CircuitBoxServerCreateWireEvent(Request, WireId, BackingItemId) end
+local __ctor = function(Request, WireId, BackingItemId) end
+CS.Barotrauma.CircuitBoxServerCreateWireEvent = __ctor
+CS.Barotrauma.CircuitBoxServerCreateWireEvent.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxRemoveWireEvent: System.ValueType
 ---@field TargetIDs userdata | { [System.Int32]: System.UInt16 } | (fun(): System.UInt16)
 CS.Barotrauma.CircuitBoxRemoveWireEvent = {}
 
+do
 ---@param TargetIDs userdata | { [System.Int32]: System.UInt16 } | (fun(): System.UInt16)
 ---@return Barotrauma.CircuitBoxRemoveWireEvent
-function CS.Barotrauma.CircuitBoxRemoveWireEvent(TargetIDs) end
+local __ctor = function(TargetIDs) end
+CS.Barotrauma.CircuitBoxRemoveWireEvent = __ctor
+CS.Barotrauma.CircuitBoxRemoveWireEvent.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxRenameLabelEvent: System.ValueType
 ---@field LabelId System.UInt16
@@ -43366,30 +44774,42 @@ function CS.Barotrauma.CircuitBoxRemoveWireEvent(TargetIDs) end
 ---@field NewBody Barotrauma.NetLimitedString
 CS.Barotrauma.CircuitBoxRenameLabelEvent = {}
 
+do
 ---@param LabelId System.UInt16
 ---@param Color Microsoft.Xna.Framework.Color
 ---@param NewHeader Barotrauma.NetLimitedString
 ---@param NewBody Barotrauma.NetLimitedString
 ---@return Barotrauma.CircuitBoxRenameLabelEvent
-function CS.Barotrauma.CircuitBoxRenameLabelEvent(LabelId, Color, NewHeader, NewBody) end
+local __ctor = function(LabelId, Color, NewHeader, NewBody) end
+CS.Barotrauma.CircuitBoxRenameLabelEvent = __ctor
+CS.Barotrauma.CircuitBoxRenameLabelEvent.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxRenameConnectionLabelsEvent: System.ValueType
 ---@field Type Barotrauma.CircuitBoxInputOutputNode.Type
 ---@field Override userdata
 CS.Barotrauma.CircuitBoxRenameConnectionLabelsEvent = {}
 
+do
 ---@param Type Barotrauma.CircuitBoxInputOutputNode.Type
 ---@param Override userdata
 ---@return Barotrauma.CircuitBoxRenameConnectionLabelsEvent
-function CS.Barotrauma.CircuitBoxRenameConnectionLabelsEvent(Type, Override) end
+local __ctor = function(Type, Override) end
+CS.Barotrauma.CircuitBoxRenameConnectionLabelsEvent = __ctor
+CS.Barotrauma.CircuitBoxRenameConnectionLabelsEvent.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxErrorEvent: System.ValueType
 ---@field Message System.String
 CS.Barotrauma.CircuitBoxErrorEvent = {}
 
+do
 ---@param Message System.String
 ---@return Barotrauma.CircuitBoxErrorEvent
-function CS.Barotrauma.CircuitBoxErrorEvent(Message) end
+local __ctor = function(Message) end
+CS.Barotrauma.CircuitBoxErrorEvent = __ctor
+CS.Barotrauma.CircuitBoxErrorEvent.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxInitializeStateFromServerEvent: System.ValueType
 ---@field Components userdata | { [System.Int32]: Barotrauma.CircuitBoxServerCreateComponentEvent } | (fun(): Barotrauma.CircuitBoxServerCreateComponentEvent)
@@ -43400,6 +44820,7 @@ function CS.Barotrauma.CircuitBoxErrorEvent(Message) end
 ---@field OutputPos Microsoft.Xna.Framework.Vector2
 CS.Barotrauma.CircuitBoxInitializeStateFromServerEvent = {}
 
+do
 ---@param Components userdata | { [System.Int32]: Barotrauma.CircuitBoxServerCreateComponentEvent } | (fun(): Barotrauma.CircuitBoxServerCreateComponentEvent)
 ---@param Wires userdata | { [System.Int32]: Barotrauma.CircuitBoxServerCreateWireEvent } | (fun(): Barotrauma.CircuitBoxServerCreateWireEvent)
 ---@param Labels userdata | { [System.Int32]: Barotrauma.CircuitBoxServerAddLabelEvent } | (fun(): Barotrauma.CircuitBoxServerAddLabelEvent)
@@ -43407,7 +44828,10 @@ CS.Barotrauma.CircuitBoxInitializeStateFromServerEvent = {}
 ---@param InputPos Microsoft.Xna.Framework.Vector2
 ---@param OutputPos Microsoft.Xna.Framework.Vector2
 ---@return Barotrauma.CircuitBoxInitializeStateFromServerEvent
-function CS.Barotrauma.CircuitBoxInitializeStateFromServerEvent(Components, Wires, Labels, LabelOverrides, InputPos, OutputPos) end
+local __ctor = function(Components, Wires, Labels, LabelOverrides, InputPos, OutputPos) end
+CS.Barotrauma.CircuitBoxInitializeStateFromServerEvent = __ctor
+CS.Barotrauma.CircuitBoxInitializeStateFromServerEvent.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxEventData: System.ValueType
 ---@field Data Barotrauma.INetSerializableStruct
@@ -43417,9 +44841,13 @@ CS.Barotrauma.CircuitBoxEventData = {}
 ---@return Barotrauma.CircuitBoxOpcode
 function CS.Barotrauma.CircuitBoxEventData.get_Opcode() end
 
+do
 ---@param Data Barotrauma.INetSerializableStruct
 ---@return Barotrauma.CircuitBoxEventData
-function CS.Barotrauma.CircuitBoxEventData(Data) end
+local __ctor = function(Data) end
+CS.Barotrauma.CircuitBoxEventData = __ctor
+CS.Barotrauma.CircuitBoxEventData.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxSelectable: System.Object
 ---@field IsSelectedByMe System.Boolean
@@ -43433,8 +44861,12 @@ function CS.Barotrauma.CircuitBoxSelectable.get_IsSelectedByMe() end
 ---@param selectedBy userdata
 function CS.Barotrauma.CircuitBoxSelectable.SetSelected(selectedBy) end
 
+do
 ---@return Barotrauma.CircuitBoxSelectable
-function CS.Barotrauma.CircuitBoxSelectable() end
+local __ctor = function() end
+CS.Barotrauma.CircuitBoxSelectable = __ctor
+CS.Barotrauma.CircuitBoxSelectable.__new = __ctor
+end
 
 ---@class Barotrauma.CircuitBoxSizes: System.Object
 ---@field ConnectorSize System.Int32
@@ -43470,10 +44902,14 @@ function CS.Barotrauma.AfflictionsFile.UnloadFile() end
 
 function CS.Barotrauma.AfflictionsFile.Sort() end
 
+do
 ---@private
 ---@overload fun(contentPackage: Barotrauma.ContentPackage, path: Barotrauma.ContentPath): Barotrauma.AfflictionsFile
 ---@return Barotrauma.AfflictionsFile
-function CS.Barotrauma.AfflictionsFile() end
+local __ctor = function() end
+CS.Barotrauma.AfflictionsFile = __ctor
+CS.Barotrauma.AfflictionsFile.__new = __ctor
+end
 
 ---@class Barotrauma.BackgroundCreaturePrefabsFile: userdata
 ---@field protected Prefabs userdata | { [Barotrauma.Identifier]: Barotrauma.BackgroundCreaturePrefab } | { [System.String]: Barotrauma.BackgroundCreaturePrefab } | (fun(): Barotrauma.BackgroundCreaturePrefab)
@@ -43572,10 +45008,14 @@ function CS.Barotrauma.BackgroundCreaturePrefabsFile.ReferenceEquals(objA, objB)
 ---@return System.Int32
 function CS.Barotrauma.BackgroundCreaturePrefabsFile.GetHashCode() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.BackgroundCreaturePrefabsFile
-function CS.Barotrauma.BackgroundCreaturePrefabsFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.BackgroundCreaturePrefabsFile = __ctor
+CS.Barotrauma.BackgroundCreaturePrefabsFile.__new = __ctor
+end
 
 ---@class Barotrauma.BallastFloraFile: userdata
 ---@field protected Prefabs userdata | { [Barotrauma.Identifier]: Barotrauma.BallastFloraPrefab } | { [System.String]: Barotrauma.BallastFloraPrefab } | (fun(): Barotrauma.BallastFloraPrefab)
@@ -43673,18 +45113,26 @@ function CS.Barotrauma.BallastFloraFile.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.BallastFloraFile.GetHashCode() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.BallastFloraFile
-function CS.Barotrauma.BallastFloraFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.BallastFloraFile = __ctor
+CS.Barotrauma.BallastFloraFile.__new = __ctor
+end
 
 ---@class Barotrauma.BeaconStationFile: Barotrauma.BaseSubFile
 CS.Barotrauma.BeaconStationFile = {}
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.BeaconStationFile
-function CS.Barotrauma.BeaconStationFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.BeaconStationFile = __ctor
+CS.Barotrauma.BeaconStationFile.__new = __ctor
+end
 
 ---@class Barotrauma.CaveGenerationParametersFile: userdata
 ---@field protected Prefabs userdata | { [Barotrauma.Identifier]: Barotrauma.CaveGenerationParams } | { [System.String]: Barotrauma.CaveGenerationParams } | (fun(): Barotrauma.CaveGenerationParams)
@@ -43782,10 +45230,14 @@ function CS.Barotrauma.CaveGenerationParametersFile.ReferenceEquals(objA, objB) 
 ---@return System.Int32
 function CS.Barotrauma.CaveGenerationParametersFile.GetHashCode() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.CaveGenerationParametersFile
-function CS.Barotrauma.CaveGenerationParametersFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.CaveGenerationParametersFile = __ctor
+CS.Barotrauma.CaveGenerationParametersFile.__new = __ctor
+end
 
 ---@class Barotrauma.CharacterFile: Barotrauma.ContentFile
 CS.Barotrauma.CharacterFile = {}
@@ -43802,10 +45254,14 @@ function CS.Barotrauma.CharacterFile.Sort() end
 ---@param addPreloadedSprite fun(obj: Barotrauma.Sprite)
 function CS.Barotrauma.CharacterFile.Preload(addPreloadedSprite) end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.CharacterFile
-function CS.Barotrauma.CharacterFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.CharacterFile = __ctor
+CS.Barotrauma.CharacterFile.__new = __ctor
+end
 
 ---@class Barotrauma.ContainerTagFile: userdata
 ---@field protected Prefabs userdata | { [Barotrauma.Identifier]: Barotrauma.ContainerTagPrefab } | { [System.String]: Barotrauma.ContainerTagPrefab } | (fun(): Barotrauma.ContainerTagPrefab)
@@ -43903,10 +45359,14 @@ function CS.Barotrauma.ContainerTagFile.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.ContainerTagFile.GetHashCode() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.ContainerTagFile
-function CS.Barotrauma.ContainerTagFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.ContainerTagFile = __ctor
+CS.Barotrauma.ContainerTagFile.__new = __ctor
+end
 
 ---@class Barotrauma.ContentFile: System.Object
 ---@field NotSyncedInMultiplayer System.Boolean
@@ -43942,10 +45402,14 @@ function CS.Barotrauma.ContentFile.CalculateHash() end
 ---@return System.Boolean
 function CS.Barotrauma.ContentFile.get_NotSyncedInMultiplayer() end
 
+do
 ---@private
 ---@overload fun(contentPackage: Barotrauma.ContentPackage, path: Barotrauma.ContentPath): Barotrauma.ContentFile
 ---@return Barotrauma.ContentFile
-function CS.Barotrauma.ContentFile() end
+local __ctor = function() end
+CS.Barotrauma.ContentFile = __ctor
+CS.Barotrauma.ContentFile.__new = __ctor
+end
 
 ---@class Barotrauma.CorpsesFile: userdata
 ---@field protected Prefabs userdata | { [Barotrauma.Identifier]: Barotrauma.CorpsePrefab } | { [System.String]: Barotrauma.CorpsePrefab } | (fun(): Barotrauma.CorpsePrefab)
@@ -44043,10 +45507,14 @@ function CS.Barotrauma.CorpsesFile.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.CorpsesFile.GetHashCode() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.CorpsesFile
-function CS.Barotrauma.CorpsesFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.CorpsesFile = __ctor
+CS.Barotrauma.CorpsesFile.__new = __ctor
+end
 
 ---@class Barotrauma.DecalsFile: Barotrauma.ContentFile
 CS.Barotrauma.DecalsFile = {}
@@ -44057,10 +45525,14 @@ function CS.Barotrauma.DecalsFile.UnloadFile() end
 
 function CS.Barotrauma.DecalsFile.Sort() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.DecalsFile
-function CS.Barotrauma.DecalsFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.DecalsFile = __ctor
+CS.Barotrauma.DecalsFile.__new = __ctor
+end
 
 ---@class Barotrauma.DisembarkPerkFile: userdata
 ---@field protected Prefabs userdata | { [Barotrauma.Identifier]: Barotrauma.DisembarkPerkPrefab } | { [System.String]: Barotrauma.DisembarkPerkPrefab } | (fun(): Barotrauma.DisembarkPerkPrefab)
@@ -44158,18 +45630,26 @@ function CS.Barotrauma.DisembarkPerkFile.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.DisembarkPerkFile.GetHashCode() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.DisembarkPerkFile
-function CS.Barotrauma.DisembarkPerkFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.DisembarkPerkFile = __ctor
+CS.Barotrauma.DisembarkPerkFile.__new = __ctor
+end
 
 ---@class Barotrauma.EnemySubmarineFile: Barotrauma.BaseSubFile
 CS.Barotrauma.EnemySubmarineFile = {}
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.EnemySubmarineFile
-function CS.Barotrauma.EnemySubmarineFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.EnemySubmarineFile = __ctor
+CS.Barotrauma.EnemySubmarineFile.__new = __ctor
+end
 
 ---@class Barotrauma.EventManagerSettingsFile: userdata
 ---@field protected Prefabs userdata | { [Barotrauma.Identifier]: Barotrauma.EventManagerSettings } | { [System.String]: Barotrauma.EventManagerSettings } | (fun(): Barotrauma.EventManagerSettings)
@@ -44267,10 +45747,14 @@ function CS.Barotrauma.EventManagerSettingsFile.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.EventManagerSettingsFile.GetHashCode() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.EventManagerSettingsFile
-function CS.Barotrauma.EventManagerSettingsFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.EventManagerSettingsFile = __ctor
+CS.Barotrauma.EventManagerSettingsFile.__new = __ctor
+end
 
 ---@class Barotrauma.FactionsFile: userdata
 ---@field protected Prefabs userdata | { [Barotrauma.Identifier]: Barotrauma.FactionPrefab } | { [System.String]: Barotrauma.FactionPrefab } | (fun(): Barotrauma.FactionPrefab)
@@ -44368,10 +45852,14 @@ function CS.Barotrauma.FactionsFile.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.FactionsFile.GetHashCode() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.FactionsFile
-function CS.Barotrauma.FactionsFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.FactionsFile = __ctor
+CS.Barotrauma.FactionsFile.__new = __ctor
+end
 
 ---@class Barotrauma.HashlessFile: Barotrauma.ContentFile
 CS.Barotrauma.HashlessFile = {}
@@ -44379,10 +45867,14 @@ CS.Barotrauma.HashlessFile = {}
 ---@return Barotrauma.Md5Hash
 function CS.Barotrauma.HashlessFile.CalculateHash() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.HashlessFile
-function CS.Barotrauma.HashlessFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.HashlessFile = __ctor
+CS.Barotrauma.HashlessFile.__new = __ctor
+end
 
 ---@class Barotrauma.ItemAssemblyFile: userdata
 ---@field protected Prefabs userdata | { [Barotrauma.Identifier]: Barotrauma.ItemAssemblyPrefab } | { [System.String]: Barotrauma.ItemAssemblyPrefab } | (fun(): Barotrauma.ItemAssemblyPrefab)
@@ -44480,10 +45972,14 @@ function CS.Barotrauma.ItemAssemblyFile.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.ItemAssemblyFile.GetHashCode() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.ItemAssemblyFile
-function CS.Barotrauma.ItemAssemblyFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.ItemAssemblyFile = __ctor
+CS.Barotrauma.ItemAssemblyFile.__new = __ctor
+end
 
 ---@class Barotrauma.ItemFile: userdata
 ---@field protected Prefabs userdata | { [Barotrauma.Identifier]: Barotrauma.ItemPrefab } | { [System.String]: Barotrauma.ItemPrefab } | (fun(): Barotrauma.ItemPrefab)
@@ -44581,10 +46077,14 @@ function CS.Barotrauma.ItemFile.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.ItemFile.GetHashCode() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.ItemFile
-function CS.Barotrauma.ItemFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.ItemFile = __ctor
+CS.Barotrauma.ItemFile.__new = __ctor
+end
 
 ---@class Barotrauma.JobsFile: Barotrauma.ContentFile
 CS.Barotrauma.JobsFile = {}
@@ -44600,10 +46100,14 @@ function CS.Barotrauma.JobsFile.UnloadFile() end
 
 function CS.Barotrauma.JobsFile.Sort() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.JobsFile
-function CS.Barotrauma.JobsFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.JobsFile = __ctor
+CS.Barotrauma.JobsFile.__new = __ctor
+end
 
 ---@class Barotrauma.LevelGenerationParametersFile: Barotrauma.ContentFile
 CS.Barotrauma.LevelGenerationParametersFile = {}
@@ -44629,10 +46133,14 @@ function CS.Barotrauma.LevelGenerationParametersFile.UnloadFile() end
 
 function CS.Barotrauma.LevelGenerationParametersFile.Sort() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.LevelGenerationParametersFile
-function CS.Barotrauma.LevelGenerationParametersFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.LevelGenerationParametersFile = __ctor
+CS.Barotrauma.LevelGenerationParametersFile.__new = __ctor
+end
 
 ---@class Barotrauma.LevelObjectPrefabsFile: userdata
 ---@field protected Prefabs userdata | { [Barotrauma.Identifier]: Barotrauma.LevelObjectPrefab } | { [System.String]: Barotrauma.LevelObjectPrefab } | (fun(): Barotrauma.LevelObjectPrefab)
@@ -44730,10 +46238,14 @@ function CS.Barotrauma.LevelObjectPrefabsFile.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.LevelObjectPrefabsFile.GetHashCode() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.LevelObjectPrefabsFile
-function CS.Barotrauma.LevelObjectPrefabsFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.LevelObjectPrefabsFile = __ctor
+CS.Barotrauma.LevelObjectPrefabsFile.__new = __ctor
+end
 
 ---@class Barotrauma.LocationTypesFile: userdata
 ---@field protected Prefabs userdata | { [Barotrauma.Identifier]: Barotrauma.LocationType } | { [System.String]: Barotrauma.LocationType } | (fun(): Barotrauma.LocationType)
@@ -44831,10 +46343,14 @@ function CS.Barotrauma.LocationTypesFile.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.LocationTypesFile.GetHashCode() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.LocationTypesFile
-function CS.Barotrauma.LocationTypesFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.LocationTypesFile = __ctor
+CS.Barotrauma.LocationTypesFile.__new = __ctor
+end
 
 ---@class Barotrauma.MapGenerationParametersFile: Barotrauma.ContentFile
 CS.Barotrauma.MapGenerationParametersFile = {}
@@ -44845,10 +46361,14 @@ function CS.Barotrauma.MapGenerationParametersFile.UnloadFile() end
 
 function CS.Barotrauma.MapGenerationParametersFile.Sort() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.MapGenerationParametersFile
-function CS.Barotrauma.MapGenerationParametersFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.MapGenerationParametersFile = __ctor
+CS.Barotrauma.MapGenerationParametersFile.__new = __ctor
+end
 
 ---@class Barotrauma.MissionsFile: userdata
 ---@field protected Prefabs userdata | { [Barotrauma.Identifier]: Barotrauma.MissionPrefab } | { [System.String]: Barotrauma.MissionPrefab } | (fun(): Barotrauma.MissionPrefab)
@@ -44946,10 +46466,14 @@ function CS.Barotrauma.MissionsFile.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.MissionsFile.GetHashCode() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.MissionsFile
-function CS.Barotrauma.MissionsFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.MissionsFile = __ctor
+CS.Barotrauma.MissionsFile.__new = __ctor
+end
 
 ---@class Barotrauma.NPCConversationsFile: Barotrauma.ContentFile
 CS.Barotrauma.NPCConversationsFile = {}
@@ -44960,10 +46484,14 @@ function CS.Barotrauma.NPCConversationsFile.UnloadFile() end
 
 function CS.Barotrauma.NPCConversationsFile.Sort() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.NPCConversationsFile
-function CS.Barotrauma.NPCConversationsFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.NPCConversationsFile = __ctor
+CS.Barotrauma.NPCConversationsFile.__new = __ctor
+end
 
 ---@class Barotrauma.NPCPersonalityTraitsFile: userdata
 ---@field protected Prefabs userdata | { [Barotrauma.Identifier]: Barotrauma.NPCPersonalityTrait } | { [System.String]: Barotrauma.NPCPersonalityTrait } | (fun(): Barotrauma.NPCPersonalityTrait)
@@ -45061,10 +46589,14 @@ function CS.Barotrauma.NPCPersonalityTraitsFile.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.NPCPersonalityTraitsFile.GetHashCode() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.NPCPersonalityTraitsFile
-function CS.Barotrauma.NPCPersonalityTraitsFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.NPCPersonalityTraitsFile = __ctor
+CS.Barotrauma.NPCPersonalityTraitsFile.__new = __ctor
+end
 
 ---@class Barotrauma.NPCSetsFile: userdata
 ---@field protected Prefabs userdata | { [Barotrauma.Identifier]: Barotrauma.NPCSet } | { [System.String]: Barotrauma.NPCSet } | (fun(): Barotrauma.NPCSet)
@@ -45162,10 +46694,14 @@ function CS.Barotrauma.NPCSetsFile.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.NPCSetsFile.GetHashCode() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.NPCSetsFile
-function CS.Barotrauma.NPCSetsFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.NPCSetsFile = __ctor
+CS.Barotrauma.NPCSetsFile.__new = __ctor
+end
 
 ---@class Barotrauma.OrdersFile: Barotrauma.ContentFile
 CS.Barotrauma.OrdersFile = {}
@@ -45180,10 +46716,14 @@ function CS.Barotrauma.OrdersFile.UnloadFile() end
 
 function CS.Barotrauma.OrdersFile.Sort() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.OrdersFile
-function CS.Barotrauma.OrdersFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.OrdersFile = __ctor
+CS.Barotrauma.OrdersFile.__new = __ctor
+end
 
 ---@class Barotrauma.OtherFile: Barotrauma.HashlessFile
 CS.Barotrauma.OtherFile = {}
@@ -45194,10 +46734,14 @@ function CS.Barotrauma.OtherFile.UnloadFile() end
 
 function CS.Barotrauma.OtherFile.Sort() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.OtherFile
-function CS.Barotrauma.OtherFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.OtherFile = __ctor
+CS.Barotrauma.OtherFile.__new = __ctor
+end
 
 ---@class Barotrauma.OutpostConfigFile: userdata
 ---@field protected Prefabs userdata | { [Barotrauma.Identifier]: Barotrauma.OutpostGenerationParams } | { [System.String]: Barotrauma.OutpostGenerationParams } | (fun(): Barotrauma.OutpostGenerationParams)
@@ -45295,26 +46839,38 @@ function CS.Barotrauma.OutpostConfigFile.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.OutpostConfigFile.GetHashCode() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.OutpostConfigFile
-function CS.Barotrauma.OutpostConfigFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.OutpostConfigFile = __ctor
+CS.Barotrauma.OutpostConfigFile.__new = __ctor
+end
 
 ---@class Barotrauma.OutpostFile: Barotrauma.BaseSubFile
 CS.Barotrauma.OutpostFile = {}
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.OutpostFile
-function CS.Barotrauma.OutpostFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.OutpostFile = __ctor
+CS.Barotrauma.OutpostFile.__new = __ctor
+end
 
 ---@class Barotrauma.OutpostModuleFile: Barotrauma.BaseSubFile
 CS.Barotrauma.OutpostModuleFile = {}
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.OutpostModuleFile
-function CS.Barotrauma.OutpostModuleFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.OutpostModuleFile = __ctor
+CS.Barotrauma.OutpostModuleFile.__new = __ctor
+end
 
 ---@class Barotrauma.ParticlesFile: userdata
 ---@field protected Prefabs userdata | { [Barotrauma.Identifier]: Barotrauma.Particles.ParticlePrefab } | { [System.String]: Barotrauma.Particles.ParticlePrefab } | (fun(): Barotrauma.Particles.ParticlePrefab)
@@ -45413,10 +46969,14 @@ function CS.Barotrauma.ParticlesFile.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.ParticlesFile.GetHashCode() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.ParticlesFile
-function CS.Barotrauma.ParticlesFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.ParticlesFile = __ctor
+CS.Barotrauma.ParticlesFile.__new = __ctor
+end
 
 ---@class Barotrauma.RandomEventsFile: Barotrauma.ContentFile
 CS.Barotrauma.RandomEventsFile = {}
@@ -45431,10 +46991,14 @@ function CS.Barotrauma.RandomEventsFile.UnloadFile() end
 
 function CS.Barotrauma.RandomEventsFile.Sort() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.RandomEventsFile
-function CS.Barotrauma.RandomEventsFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.RandomEventsFile = __ctor
+CS.Barotrauma.RandomEventsFile.__new = __ctor
+end
 
 ---@class Barotrauma.RuinConfigFile: userdata
 ---@field protected Prefabs userdata | { [Barotrauma.Identifier]: Barotrauma.RuinGeneration.RuinGenerationParams } | { [System.String]: Barotrauma.RuinGeneration.RuinGenerationParams } | (fun(): Barotrauma.RuinGeneration.RuinGenerationParams)
@@ -45532,10 +47096,14 @@ function CS.Barotrauma.RuinConfigFile.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.RuinConfigFile.GetHashCode() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.RuinConfigFile
-function CS.Barotrauma.RuinConfigFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.RuinConfigFile = __ctor
+CS.Barotrauma.RuinConfigFile.__new = __ctor
+end
 
 ---@class Barotrauma.ServerExecutableFile: Barotrauma.OtherFile
 CS.Barotrauma.ServerExecutableFile = {}
@@ -45544,10 +47112,14 @@ CS.Barotrauma.ServerExecutableFile = {}
 ---@return Barotrauma.ContentPath
 function CS.Barotrauma.ServerExecutableFile.MutateContentPath(path) end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.ServerExecutableFile
-function CS.Barotrauma.ServerExecutableFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.ServerExecutableFile = __ctor
+CS.Barotrauma.ServerExecutableFile.__new = __ctor
+end
 
 ---@class Barotrauma.SkillSettingsFile: Barotrauma.ContentFile
 CS.Barotrauma.SkillSettingsFile = {}
@@ -45558,10 +47130,14 @@ function CS.Barotrauma.SkillSettingsFile.UnloadFile() end
 
 function CS.Barotrauma.SkillSettingsFile.Sort() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.SkillSettingsFile
-function CS.Barotrauma.SkillSettingsFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.SkillSettingsFile = __ctor
+CS.Barotrauma.SkillSettingsFile.__new = __ctor
+end
 
 ---@class Barotrauma.SlideshowsFile: userdata
 ---@field protected Prefabs userdata | { [Barotrauma.Identifier]: Barotrauma.SlideshowPrefab } | { [System.String]: Barotrauma.SlideshowPrefab } | (fun(): Barotrauma.SlideshowPrefab)
@@ -45659,10 +47235,14 @@ function CS.Barotrauma.SlideshowsFile.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.SlideshowsFile.GetHashCode() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.SlideshowsFile
-function CS.Barotrauma.SlideshowsFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.SlideshowsFile = __ctor
+CS.Barotrauma.SlideshowsFile.__new = __ctor
+end
 
 ---@class Barotrauma.SoundsFile: userdata
 ---@field protected Prefabs userdata | { [Barotrauma.Identifier]: Barotrauma.SoundPrefab } | { [System.String]: Barotrauma.SoundPrefab } | (fun(): Barotrauma.SoundPrefab)
@@ -45761,10 +47341,14 @@ function CS.Barotrauma.SoundsFile.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.SoundsFile.GetHashCode() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.SoundsFile
-function CS.Barotrauma.SoundsFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.SoundsFile = __ctor
+CS.Barotrauma.SoundsFile.__new = __ctor
+end
 
 ---@class Barotrauma.StartItemsFile: userdata
 ---@field protected Prefabs userdata | { [Barotrauma.Identifier]: Barotrauma.StartItemSet } | { [System.String]: Barotrauma.StartItemSet } | (fun(): Barotrauma.StartItemSet)
@@ -45862,10 +47446,14 @@ function CS.Barotrauma.StartItemsFile.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.StartItemsFile.GetHashCode() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.StartItemsFile
-function CS.Barotrauma.StartItemsFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.StartItemsFile = __ctor
+CS.Barotrauma.StartItemsFile.__new = __ctor
+end
 
 ---@class Barotrauma.StructureFile: userdata
 ---@field protected Prefabs userdata | { [Barotrauma.Identifier]: Barotrauma.StructurePrefab } | { [System.String]: Barotrauma.StructurePrefab } | (fun(): Barotrauma.StructurePrefab)
@@ -45963,10 +47551,14 @@ function CS.Barotrauma.StructureFile.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.StructureFile.GetHashCode() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.StructureFile
-function CS.Barotrauma.StructureFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.StructureFile = __ctor
+CS.Barotrauma.StructureFile.__new = __ctor
+end
 
 ---@class Barotrauma.BaseSubFile: Barotrauma.ContentFile
 ---@field UintIdentifier System.UInt32
@@ -45981,19 +47573,27 @@ function CS.Barotrauma.BaseSubFile.Sort() end
 ---@return Barotrauma.Md5Hash
 function CS.Barotrauma.BaseSubFile.CalculateHash() end
 
+do
 ---@protected
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.BaseSubFile
-function CS.Barotrauma.BaseSubFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.BaseSubFile = __ctor
+CS.Barotrauma.BaseSubFile.__new = __ctor
+end
 
 ---@class Barotrauma.SubmarineFile: Barotrauma.BaseSubFile
 CS.Barotrauma.SubmarineFile = {}
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.SubmarineFile
-function CS.Barotrauma.SubmarineFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.SubmarineFile = __ctor
+CS.Barotrauma.SubmarineFile.__new = __ctor
+end
 
 ---@class Barotrauma.TalentsFile: userdata
 ---@field protected Prefabs userdata | { [Barotrauma.Identifier]: Barotrauma.TalentPrefab } | { [System.String]: Barotrauma.TalentPrefab } | (fun(): Barotrauma.TalentPrefab)
@@ -46091,10 +47691,14 @@ function CS.Barotrauma.TalentsFile.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.TalentsFile.GetHashCode() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.TalentsFile
-function CS.Barotrauma.TalentsFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.TalentsFile = __ctor
+CS.Barotrauma.TalentsFile.__new = __ctor
+end
 
 ---@class Barotrauma.TalentTreesFile: userdata
 ---@field protected Prefabs userdata | { [Barotrauma.Identifier]: Barotrauma.TalentTree } | { [System.String]: Barotrauma.TalentTree } | (fun(): Barotrauma.TalentTree)
@@ -46192,10 +47796,14 @@ function CS.Barotrauma.TalentTreesFile.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.TalentTreesFile.GetHashCode() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.TalentTreesFile
-function CS.Barotrauma.TalentTreesFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.TalentTreesFile = __ctor
+CS.Barotrauma.TalentTreesFile.__new = __ctor
+end
 
 ---@class Barotrauma.TextFile: Barotrauma.ContentFile
 CS.Barotrauma.TextFile = {}
@@ -46206,10 +47814,14 @@ function CS.Barotrauma.TextFile.UnloadFile() end
 
 function CS.Barotrauma.TextFile.Sort() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.TextFile
-function CS.Barotrauma.TextFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.TextFile = __ctor
+CS.Barotrauma.TextFile.__new = __ctor
+end
 
 ---@class Barotrauma.TutorialsFile: userdata
 ---@field protected Prefabs userdata | { [Barotrauma.Identifier]: Barotrauma.TutorialPrefab } | { [System.String]: Barotrauma.TutorialPrefab } | (fun(): Barotrauma.TutorialPrefab)
@@ -46307,10 +47919,14 @@ function CS.Barotrauma.TutorialsFile.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.TutorialsFile.GetHashCode() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.TutorialsFile
-function CS.Barotrauma.TutorialsFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.TutorialsFile = __ctor
+CS.Barotrauma.TutorialsFile.__new = __ctor
+end
 
 ---@class Barotrauma.UIStyleFile: Barotrauma.HashlessFile
 CS.Barotrauma.UIStyleFile = {}
@@ -46325,10 +47941,14 @@ function CS.Barotrauma.UIStyleFile.UnloadFile() end
 
 function CS.Barotrauma.UIStyleFile.Sort() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.UIStyleFile
-function CS.Barotrauma.UIStyleFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.UIStyleFile = __ctor
+CS.Barotrauma.UIStyleFile.__new = __ctor
+end
 
 ---@class Barotrauma.UpgradeModulesFile: userdata
 ---@field protected Prefabs userdata | { [Barotrauma.Identifier]: Barotrauma.UpgradeContentPrefab } | { [System.String]: Barotrauma.UpgradeContentPrefab } | (fun(): Barotrauma.UpgradeContentPrefab)
@@ -46426,10 +48046,14 @@ function CS.Barotrauma.UpgradeModulesFile.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.UpgradeModulesFile.GetHashCode() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.UpgradeModulesFile
-function CS.Barotrauma.UpgradeModulesFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.UpgradeModulesFile = __ctor
+CS.Barotrauma.UpgradeModulesFile.__new = __ctor
+end
 
 ---@class Barotrauma.WreckAIConfigFile: userdata
 ---@field protected Prefabs userdata | { [Barotrauma.Identifier]: Barotrauma.WreckAIConfig } | { [System.String]: Barotrauma.WreckAIConfig } | (fun(): Barotrauma.WreckAIConfig)
@@ -46527,18 +48151,26 @@ function CS.Barotrauma.WreckAIConfigFile.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Barotrauma.WreckAIConfigFile.GetHashCode() end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.WreckAIConfigFile
-function CS.Barotrauma.WreckAIConfigFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.WreckAIConfigFile = __ctor
+CS.Barotrauma.WreckAIConfigFile.__new = __ctor
+end
 
 ---@class Barotrauma.WreckFile: Barotrauma.BaseSubFile
 CS.Barotrauma.WreckFile = {}
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param path Barotrauma.ContentPath
 ---@return Barotrauma.WreckFile
-function CS.Barotrauma.WreckFile(contentPackage, path) end
+local __ctor = function(contentPackage, path) end
+CS.Barotrauma.WreckFile = __ctor
+CS.Barotrauma.WreckFile.__new = __ctor
+end
 
 ---@class Barotrauma.ContentPackage: System.Object
 ---@field Name System.String
@@ -46655,12 +48287,16 @@ function CS.Barotrauma.ContentPackage.TryDeleteLocal() end
 ---@return System.Boolean
 function CS.Barotrauma.ContentPackage.TryCreateLocalFromWorkshop() end
 
+do
 ---@protected
 ---@overload fun(): Barotrauma.ContentPackage
 ---@param doc System.Xml.Linq.XDocument
 ---@param path System.String
 ---@return Barotrauma.ContentPackage
-function CS.Barotrauma.ContentPackage(doc, path) end
+local __ctor = function(doc, path) end
+CS.Barotrauma.ContentPackage = __ctor
+CS.Barotrauma.ContentPackage.__new = __ctor
+end
 
 ---@class Barotrauma.ContentPackageId: System.Object
 ---@field StringRepresentation System.String
@@ -46683,9 +48319,13 @@ function CS.Barotrauma.ContentPackageId.GetHashCode() end
 ---@return userdata
 function CS.Barotrauma.ContentPackageId.Parse(s) end
 
+do
 ---@protected
 ---@return Barotrauma.ContentPackageId
-function CS.Barotrauma.ContentPackageId() end
+local __ctor = function() end
+CS.Barotrauma.ContentPackageId = __ctor
+CS.Barotrauma.ContentPackageId.__new = __ctor
+end
 
 ---@class Barotrauma.SteamWorkshopId: Barotrauma.ContentPackageId
 ---@field StringRepresentation System.String
@@ -46707,33 +48347,49 @@ function CS.Barotrauma.SteamWorkshopId.GetHashCode() end
 ---@return userdata
 function CS.Barotrauma.SteamWorkshopId.Parse(s) end
 
+do
 ---@param value System.UInt64
 ---@return Barotrauma.SteamWorkshopId
-function CS.Barotrauma.SteamWorkshopId(value) end
+local __ctor = function(value) end
+CS.Barotrauma.SteamWorkshopId = __ctor
+CS.Barotrauma.SteamWorkshopId.__new = __ctor
+end
 
 ---@class Barotrauma.RequiredByCorePackage: System.Attribute
 ---@field AlternativeTypes userdata | (fun(): System.Type)
 CS.Barotrauma.RequiredByCorePackage = {}
 
+do
 ---@param ... System.Type
 ---@return Barotrauma.RequiredByCorePackage
-function CS.Barotrauma.RequiredByCorePackage(...) end
+local __ctor = function(...) end
+CS.Barotrauma.RequiredByCorePackage = __ctor
+CS.Barotrauma.RequiredByCorePackage.__new = __ctor
+end
 
 ---@class Barotrauma.CorePackage: Barotrauma.ContentPackage
 CS.Barotrauma.CorePackage = {}
 
+do
 ---@param doc System.Xml.Linq.XDocument
 ---@param path System.String
 ---@return Barotrauma.CorePackage
-function CS.Barotrauma.CorePackage(doc, path) end
+local __ctor = function(doc, path) end
+CS.Barotrauma.CorePackage = __ctor
+CS.Barotrauma.CorePackage.__new = __ctor
+end
 
 ---@class Barotrauma.RegularPackage: Barotrauma.ContentPackage
 CS.Barotrauma.RegularPackage = {}
 
+do
 ---@param doc System.Xml.Linq.XDocument
 ---@param path System.String
 ---@return Barotrauma.RegularPackage
-function CS.Barotrauma.RegularPackage(doc, path) end
+local __ctor = function(doc, path) end
+CS.Barotrauma.RegularPackage = __ctor
+CS.Barotrauma.RegularPackage.__new = __ctor
+end
 
 ---@class Barotrauma.ContentPath: System.Object
 ---@field Value System.String
@@ -46805,12 +48461,16 @@ function CS.Barotrauma.ContentPath.EndsWith(suffix) end
 ---@return System.String
 function CS.Barotrauma.ContentPath.ToString() end
 
+do
 ---@private
 ---@overload fun(): Barotrauma.ContentPath
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param rawValue System.String
 ---@return Barotrauma.ContentPath
-function CS.Barotrauma.ContentPath(contentPackage, rawValue) end
+local __ctor = function(contentPackage, rawValue) end
+CS.Barotrauma.ContentPath = __ctor
+CS.Barotrauma.ContentPath.__new = __ctor
+end
 
 ---@class Barotrauma.ContentXElement: System.Object
 ---@field ContentPackage Barotrauma.ContentPackage
@@ -47047,10 +48707,14 @@ function CS.Barotrauma.ContentXElement.op_Equality(a, b) end
 ---@return System.Boolean
 function CS.Barotrauma.ContentXElement.op_Inequality(a, b) end
 
+do
 ---@param contentPackage Barotrauma.ContentPackage
 ---@param element System.Xml.Linq.XElement
 ---@return Barotrauma.ContentXElement
-function CS.Barotrauma.ContentXElement(contentPackage, element) end
+local __ctor = function(contentPackage, element) end
+CS.Barotrauma.ContentXElement = __ctor
+CS.Barotrauma.ContentXElement.__new = __ctor
+end
 
 ---@class Barotrauma.ContentXElementExtensions: System.Object
 CS.Barotrauma.ContentXElementExtensions = {}
@@ -47072,11 +48736,15 @@ CS.Barotrauma.GrimeSprite = {}
 
 function CS.Barotrauma.GrimeSprite.Dispose() end
 
+do
 ---@param spr Barotrauma.Sprite
 ---@param file Barotrauma.DecalsFile
 ---@param indexInFile System.Int32
 ---@return Barotrauma.GrimeSprite
-function CS.Barotrauma.GrimeSprite(spr, file, indexInFile) end
+local __ctor = function(spr, file, indexInFile) end
+CS.Barotrauma.GrimeSprite = __ctor
+CS.Barotrauma.GrimeSprite.__new = __ctor
+end
 
 ---@class Barotrauma.DecalManager: System.Object
 ---@field GrimeSpriteCount System.Int32
@@ -47100,9 +48768,13 @@ function CS.Barotrauma.DecalManager.SortAll() end
 ---@return Barotrauma.Decal
 function CS.Barotrauma.DecalManager.CreateDecal(decalName, scale, worldPosition, hull, spriteIndex) end
 
+do
 ---@private
 ---@return Barotrauma.DecalManager
-function CS.Barotrauma.DecalManager() end
+local __ctor = function() end
+CS.Barotrauma.DecalManager = __ctor
+CS.Barotrauma.DecalManager.__new = __ctor
+end
 
 ---@class Barotrauma.DecalPrefab: Barotrauma.PrefabWithUintIdentifier
 ---@field Name System.String
@@ -47118,10 +48790,14 @@ function CS.Barotrauma.DecalPrefab.get_Name() end
 
 function CS.Barotrauma.DecalPrefab.Dispose() end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.DecalsFile
 ---@return Barotrauma.DecalPrefab
-function CS.Barotrauma.DecalPrefab(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.DecalPrefab = __ctor
+CS.Barotrauma.DecalPrefab.__new = __ctor
+end
 
 ---@class Barotrauma.DisembarkPerkPrefab: Barotrauma.PrefabWithUintIdentifier
 ---@field Name Barotrauma.LocalizedString
@@ -47137,11 +48813,15 @@ CS.Barotrauma.DisembarkPerkPrefab = {}
 
 function CS.Barotrauma.DisembarkPerkPrefab.Dispose() end
 
+do
 ---@overload fun(): Barotrauma.DisembarkPerkPrefab
 ---@param element Barotrauma.ContentXElement
 ---@param prefabFile Barotrauma.DisembarkPerkFile
 ---@return Barotrauma.DisembarkPerkPrefab
-function CS.Barotrauma.DisembarkPerkPrefab(element, prefabFile) end
+local __ctor = function(element, prefabFile) end
+CS.Barotrauma.DisembarkPerkPrefab = __ctor
+CS.Barotrauma.DisembarkPerkPrefab.__new = __ctor
+end
 
 ---@enum Barotrauma.TransitionMode
 CS.Barotrauma.TransitionMode = {
@@ -47400,10 +49080,14 @@ function CS.Barotrauma.ArtifactEvent.SpawnItem() end
 ---@param deltaTime System.Single
 function CS.Barotrauma.ArtifactEvent.Update(deltaTime) end
 
+do
 ---@param prefab Barotrauma.EventPrefab
 ---@param seed System.Int32
 ---@return Barotrauma.ArtifactEvent
-function CS.Barotrauma.ArtifactEvent(prefab, seed) end
+local __ctor = function(prefab, seed) end
+CS.Barotrauma.ArtifactEvent = __ctor
+CS.Barotrauma.ArtifactEvent.__new = __ctor
+end
 
 ---@class Barotrauma.Event: System.Object
 ---@field Prefab Barotrauma.EventPrefab
@@ -47450,10 +49134,14 @@ function CS.Barotrauma.Event.Finish() end
 ---@return System.Boolean
 function CS.Barotrauma.Event.LevelMeetsRequirements() end
 
+do
 ---@param prefab Barotrauma.EventPrefab
 ---@param seed System.Int32
 ---@return Barotrauma.Event
-function CS.Barotrauma.Event(prefab, seed) end
+local __ctor = function(prefab, seed) end
+CS.Barotrauma.Event = __ctor
+CS.Barotrauma.Event.__new = __ctor
+end
 
 ---@class Barotrauma.AfflictionAction: Barotrauma.EventAction
 ---@field Affliction Barotrauma.Identifier
@@ -47476,10 +49164,14 @@ function CS.Barotrauma.AfflictionAction.Update(deltaTime) end
 ---@return System.String
 function CS.Barotrauma.AfflictionAction.ToDebugString() end
 
+do
 ---@param parentEvent Barotrauma.ScriptedEvent
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.AfflictionAction
-function CS.Barotrauma.AfflictionAction(parentEvent, element) end
+local __ctor = function(parentEvent, element) end
+CS.Barotrauma.AfflictionAction = __ctor
+CS.Barotrauma.AfflictionAction.__new = __ctor
+end
 
 ---@class Barotrauma.CheckTraitorEventStateAction: Barotrauma.BinaryOptionAction
 ---@field State Barotrauma.TraitorEvent.State
@@ -47493,10 +49185,14 @@ function CS.Barotrauma.CheckTraitorEventStateAction.DetermineSuccess() end
 ---@return System.String
 function CS.Barotrauma.CheckTraitorEventStateAction.ToDebugString() end
 
+do
 ---@param parentEvent Barotrauma.ScriptedEvent
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.CheckTraitorEventStateAction
-function CS.Barotrauma.CheckTraitorEventStateAction(parentEvent, element) end
+local __ctor = function(parentEvent, element) end
+CS.Barotrauma.CheckTraitorEventStateAction = __ctor
+CS.Barotrauma.CheckTraitorEventStateAction.__new = __ctor
+end
 
 ---@class Barotrauma.CheckTraitorVoteAction: Barotrauma.BinaryOptionAction
 ---@field Target Barotrauma.Identifier
@@ -47509,10 +49205,14 @@ function CS.Barotrauma.CheckTraitorVoteAction.DetermineSuccess() end
 ---@return System.String
 function CS.Barotrauma.CheckTraitorVoteAction.ToDebugString() end
 
+do
 ---@param parentEvent Barotrauma.ScriptedEvent
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.CheckTraitorVoteAction
-function CS.Barotrauma.CheckTraitorVoteAction(parentEvent, element) end
+local __ctor = function(parentEvent, element) end
+CS.Barotrauma.CheckTraitorVoteAction = __ctor
+CS.Barotrauma.CheckTraitorVoteAction.__new = __ctor
+end
 
 ---@class Barotrauma.EventAction: System.Object
 ---@field ParentEvent Barotrauma.ScriptedEvent
@@ -47555,10 +49255,14 @@ function CS.Barotrauma.EventAction.GetEventDebugName() end
 ---@return System.String
 function CS.Barotrauma.EventAction.ToDebugString() end
 
+do
 ---@param parentEvent Barotrauma.ScriptedEvent
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.EventAction
-function CS.Barotrauma.EventAction(parentEvent, element) end
+local __ctor = function(parentEvent, element) end
+CS.Barotrauma.EventAction = __ctor
+CS.Barotrauma.EventAction.__new = __ctor
+end
 
 ---@class Barotrauma.SetTraitorEventStateAction: Barotrauma.EventAction
 ---@field State Barotrauma.TraitorEvent.State
@@ -47578,10 +49282,14 @@ function CS.Barotrauma.SetTraitorEventStateAction.Update(deltaTime) end
 ---@return System.String
 function CS.Barotrauma.SetTraitorEventStateAction.ToDebugString() end
 
+do
 ---@param parentEvent Barotrauma.ScriptedEvent
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.SetTraitorEventStateAction
-function CS.Barotrauma.SetTraitorEventStateAction(parentEvent, element) end
+local __ctor = function(parentEvent, element) end
+CS.Barotrauma.SetTraitorEventStateAction = __ctor
+CS.Barotrauma.SetTraitorEventStateAction.__new = __ctor
+end
 
 ---@class Barotrauma.SkillCheckAction: Barotrauma.BinaryOptionAction
 ---@field RequiredSkill Barotrauma.Identifier
@@ -47597,10 +49305,14 @@ function CS.Barotrauma.SkillCheckAction.DetermineSuccess() end
 ---@return System.String
 function CS.Barotrauma.SkillCheckAction.ToDebugString() end
 
+do
 ---@param parentEvent Barotrauma.ScriptedEvent
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.SkillCheckAction
-function CS.Barotrauma.SkillCheckAction(parentEvent, element) end
+local __ctor = function(parentEvent, element) end
+CS.Barotrauma.SkillCheckAction = __ctor
+CS.Barotrauma.SkillCheckAction.__new = __ctor
+end
 
 ---@class Barotrauma.StatusEffectAction: Barotrauma.EventAction
 ---@field TargetTag Barotrauma.Identifier
@@ -47621,10 +49333,14 @@ function CS.Barotrauma.StatusEffectAction.Update(deltaTime) end
 ---@return System.String
 function CS.Barotrauma.StatusEffectAction.ToDebugString() end
 
+do
 ---@param parentEvent Barotrauma.ScriptedEvent
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.StatusEffectAction
-function CS.Barotrauma.StatusEffectAction(parentEvent, element) end
+local __ctor = function(parentEvent, element) end
+CS.Barotrauma.StatusEffectAction = __ctor
+CS.Barotrauma.StatusEffectAction.__new = __ctor
+end
 
 ---@class Barotrauma.TriggerEventAction: Barotrauma.EventAction
 ---@field Identifier Barotrauma.Identifier
@@ -47645,10 +49361,14 @@ function CS.Barotrauma.TriggerEventAction.Update(deltaTime) end
 ---@return System.String
 function CS.Barotrauma.TriggerEventAction.ToDebugString() end
 
+do
 ---@param parentEvent Barotrauma.ScriptedEvent
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.TriggerEventAction
-function CS.Barotrauma.TriggerEventAction(parentEvent, element) end
+local __ctor = function(parentEvent, element) end
+CS.Barotrauma.TriggerEventAction = __ctor
+CS.Barotrauma.TriggerEventAction.__new = __ctor
+end
 
 ---@class Barotrauma.EventManagerSettings: Barotrauma.PrefabWithUintIdentifier
 ---@field OrderedByDifficulty userdata | (fun(): Barotrauma.EventManagerSettings)
@@ -47671,11 +49391,15 @@ function CS.Barotrauma.EventManagerSettings.GetByDifficultyPercentile(p) end
 
 function CS.Barotrauma.EventManagerSettings.Dispose() end
 
+do
 ---@overload fun(): Barotrauma.EventManagerSettings
 ---@param element System.Xml.Linq.XElement
 ---@param file Barotrauma.EventManagerSettingsFile
 ---@return Barotrauma.EventManagerSettings
-function CS.Barotrauma.EventManagerSettings(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.EventManagerSettings = __ctor
+CS.Barotrauma.EventManagerSettings.__new = __ctor
+end
 
 ---@class Barotrauma.EventPrefab: Barotrauma.Prefab
 ---@field Tags userdata | (fun(): Barotrauma.Identifier)
@@ -47725,12 +49449,16 @@ function CS.Barotrauma.EventPrefab.GetUnlockPathEvent(biomeIdentifier, faction) 
 ---@return Barotrauma.EventPrefab
 function CS.Barotrauma.EventPrefab.FindEventPrefab(identifier, tag, source) end
 
+do
 ---@overload fun(): Barotrauma.EventPrefab
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.RandomEventsFile
 ---@param fallbackIdentifier? Barotrauma.Identifier
 ---@return Barotrauma.EventPrefab
-function CS.Barotrauma.EventPrefab(element, file, fallbackIdentifier) end
+local __ctor = function(element, file, fallbackIdentifier) end
+CS.Barotrauma.EventPrefab = __ctor
+CS.Barotrauma.EventPrefab.__new = __ctor
+end
 
 ---@class Barotrauma.EventSprite: Barotrauma.Prefab
 ---@field Sprite Barotrauma.Sprite
@@ -47739,11 +49467,15 @@ CS.Barotrauma.EventSprite = {}
 
 function CS.Barotrauma.EventSprite.Dispose() end
 
+do
 ---@overload fun(): Barotrauma.EventSprite
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.RandomEventsFile
 ---@return Barotrauma.EventSprite
-function CS.Barotrauma.EventSprite(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.EventSprite = __ctor
+CS.Barotrauma.EventSprite.__new = __ctor
+end
 
 ---@class Barotrauma.EventSet: Barotrauma.Prefab
 ---@field IsCampaignSet System.Boolean
@@ -47833,12 +49565,16 @@ function CS.Barotrauma.EventSet.ToString() end
 
 function CS.Barotrauma.EventSet.Dispose() end
 
+do
 ---@overload fun(): Barotrauma.EventSet
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.RandomEventsFile
 ---@param parentSet? Barotrauma.EventSet
 ---@return Barotrauma.EventSet
-function CS.Barotrauma.EventSet(element, file, parentSet) end
+local __ctor = function(element, file, parentSet) end
+CS.Barotrauma.EventSet = __ctor
+CS.Barotrauma.EventSet.__new = __ctor
+end
 
 ---@class Barotrauma.MalfunctionEvent: Barotrauma.Event
 ---@field private targetItemIdentifiers Barotrauma.Identifier[]
@@ -47860,10 +49596,14 @@ function CS.Barotrauma.MalfunctionEvent.InitEventSpecific(parentSet) end
 ---@param deltaTime System.Single
 function CS.Barotrauma.MalfunctionEvent.Update(deltaTime) end
 
+do
 ---@param prefab Barotrauma.EventPrefab
 ---@param seed System.Int32
 ---@return Barotrauma.MalfunctionEvent
-function CS.Barotrauma.MalfunctionEvent(prefab, seed) end
+local __ctor = function(prefab, seed) end
+CS.Barotrauma.MalfunctionEvent = __ctor
+CS.Barotrauma.MalfunctionEvent.__new = __ctor
+end
 
 ---@class Barotrauma.MonsterEvent: Barotrauma.Event
 ---@field Monsters userdata | { [System.Int32]: Barotrauma.Character } | (fun(): Barotrauma.Character)
@@ -47937,10 +49677,14 @@ function CS.Barotrauma.MonsterEvent.GetMinDistanceToSub(submarine) end
 ---@param deltaTime System.Single
 function CS.Barotrauma.MonsterEvent.Update(deltaTime) end
 
+do
 ---@param prefab Barotrauma.EventPrefab
 ---@param seed System.Int32
 ---@return Barotrauma.MonsterEvent
-function CS.Barotrauma.MonsterEvent(prefab, seed) end
+local __ctor = function(prefab, seed) end
+CS.Barotrauma.MonsterEvent = __ctor
+CS.Barotrauma.MonsterEvent.__new = __ctor
+end
 
 ---@class Barotrauma.ScriptedEvent: Barotrauma.Event
 ---@field CurrentActionIndex System.Int32
@@ -48020,10 +49764,14 @@ function CS.Barotrauma.ScriptedEvent.LevelMeetsRequirements() end
 
 function CS.Barotrauma.ScriptedEvent.Finish() end
 
+do
 ---@param prefab Barotrauma.EventPrefab
 ---@param seed System.Int32
 ---@return Barotrauma.ScriptedEvent
-function CS.Barotrauma.ScriptedEvent(prefab, seed) end
+local __ctor = function(prefab, seed) end
+CS.Barotrauma.ScriptedEvent = __ctor
+CS.Barotrauma.ScriptedEvent.__new = __ctor
+end
 
 ---@class Barotrauma.AutoItemPlacer: System.Object
 ---@field OutputDebugInfo System.Boolean
@@ -48066,9 +49814,13 @@ function CS.Barotrauma.AutoItemPlacer.GetValidContainers(preferredContainer, all
 ---@return userdata | { [System.Int32]: Barotrauma.Item } | (fun(): Barotrauma.Item)
 function CS.Barotrauma.AutoItemPlacer.CreateItems(itemPrefab, containers, validContainer) end
 
+do
 ---@private
 ---@return Barotrauma.AutoItemPlacer
-function CS.Barotrauma.AutoItemPlacer() end
+local __ctor = function() end
+CS.Barotrauma.AutoItemPlacer = __ctor
+CS.Barotrauma.AutoItemPlacer.__new = __ctor
+end
 
 ---@class Barotrauma.PurchasedItem: System.Object
 ---@field ItemPrefab Barotrauma.ItemPrefab
@@ -48086,6 +49838,7 @@ function CS.Barotrauma.PurchasedItem.get_ItemPrefab() end
 ---@return System.String
 function CS.Barotrauma.PurchasedItem.ToString() end
 
+do
 ---@overload fun(itemPrefab: Barotrauma.ItemPrefab, quantity: System.Int32): Barotrauma.PurchasedItem
 ---@overload fun(itemPrefab: Barotrauma.ItemPrefab, quantity: System.Int32, buyer: Barotrauma.Networking.Client): Barotrauma.PurchasedItem
 ---@overload fun(itemPrefabId: Barotrauma.Identifier, quantity: System.Int32, buyer: Barotrauma.Networking.Client): Barotrauma.PurchasedItem
@@ -48093,7 +49846,10 @@ function CS.Barotrauma.PurchasedItem.ToString() end
 ---@param quantity System.Int32
 ---@param buyerCharacterInfoId System.Int32
 ---@return Barotrauma.PurchasedItem
-function CS.Barotrauma.PurchasedItem(itemPrefab, quantity, buyerCharacterInfoId) end
+local __ctor = function(itemPrefab, quantity, buyerCharacterInfoId) end
+CS.Barotrauma.PurchasedItem = __ctor
+CS.Barotrauma.PurchasedItem.__new = __ctor
+end
 
 ---@class Barotrauma.SoldItem: System.Object
 ---@field ItemPrefab Barotrauma.ItemPrefab
@@ -48106,13 +49862,17 @@ CS.Barotrauma.SoldItem = {}
 ---@param id System.UInt16
 function CS.Barotrauma.SoldItem.SetItemId(id) end
 
+do
 ---@param itemPrefab Barotrauma.ItemPrefab
 ---@param id System.UInt16
 ---@param removed System.Boolean
 ---@param sellerId System.Byte
 ---@param origin Barotrauma.SoldItem.SellOrigin
 ---@return Barotrauma.SoldItem
-function CS.Barotrauma.SoldItem(itemPrefab, id, removed, sellerId, origin) end
+local __ctor = function(itemPrefab, id, removed, sellerId, origin) end
+CS.Barotrauma.SoldItem = __ctor
+CS.Barotrauma.SoldItem.__new = __ctor
+end
 
 ---@class Barotrauma.Faction: System.Object
 ---@field Reputation Barotrauma.Reputation
@@ -48126,10 +49886,14 @@ function CS.Barotrauma.Faction.GetPlayerAffiliationStatus(faction) end
 ---@return System.String
 function CS.Barotrauma.Faction.ToString() end
 
+do
 ---@param metadata Barotrauma.CampaignMetadata
 ---@param prefab Barotrauma.FactionPrefab
 ---@return Barotrauma.Faction
-function CS.Barotrauma.Faction(metadata, prefab) end
+local __ctor = function(metadata, prefab) end
+CS.Barotrauma.Faction = __ctor
+CS.Barotrauma.Faction.__new = __ctor
+end
 
 ---@class Barotrauma.FactionPrefab: Barotrauma.Prefab
 ---@field Name Barotrauma.LocalizedString
@@ -48157,11 +49921,15 @@ function CS.Barotrauma.FactionPrefab.ToString() end
 
 function CS.Barotrauma.FactionPrefab.Dispose() end
 
+do
 ---@overload fun(): Barotrauma.FactionPrefab
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.FactionsFile
 ---@return Barotrauma.FactionPrefab
-function CS.Barotrauma.FactionPrefab(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.FactionPrefab = __ctor
+CS.Barotrauma.FactionPrefab.__new = __ctor
+end
 
 ---@class Barotrauma.Reputation: System.Object
 ---@field Identifier Barotrauma.Identifier
@@ -48229,6 +49997,7 @@ function CS.Barotrauma.Reputation.GetFormattedReputationText(addColorTags) end
 ---@return Barotrauma.LocalizedString
 function CS.Barotrauma.Reputation.GetFormattedReputationText(normalizedValue, value, addColorTags) end
 
+do
 ---@overload fun(metadata: Barotrauma.CampaignMetadata, faction: Barotrauma.Faction, minReputation: System.Int32, maxReputation: System.Int32, initialReputation: System.Int32): Barotrauma.Reputation
 ---@overload fun(metadata: Barotrauma.CampaignMetadata, faction: Barotrauma.Faction, location: Barotrauma.Location, identifier: Barotrauma.Identifier, minReputation: System.Int32, maxReputation: System.Int32, initialReputation: System.Int32): Barotrauma.Reputation
 ---@overload fun(): Barotrauma.Reputation
@@ -48239,7 +50008,10 @@ function CS.Barotrauma.Reputation.GetFormattedReputationText(normalizedValue, va
 ---@param maxReputation System.Int32
 ---@param initialReputation System.Int32
 ---@return Barotrauma.Reputation
-function CS.Barotrauma.Reputation(metadata, location, identifier, minReputation, maxReputation, initialReputation) end
+local __ctor = function(metadata, location, identifier, minReputation, maxReputation, initialReputation) end
+CS.Barotrauma.Reputation = __ctor
+CS.Barotrauma.Reputation.__new = __ctor
+end
 
 ---@class Barotrauma.WalletChangedEvent: System.ValueType
 ---@field Owner userdata
@@ -48248,11 +50020,15 @@ function CS.Barotrauma.Reputation(metadata, location, identifier, minReputation,
 ---@field ChangedData Barotrauma.WalletChangedData
 CS.Barotrauma.WalletChangedEvent = {}
 
+do
 ---@param wallet Barotrauma.Wallet
 ---@param changedData Barotrauma.WalletChangedData
 ---@param info Barotrauma.WalletInfo
 ---@return Barotrauma.WalletChangedEvent
-function CS.Barotrauma.WalletChangedEvent(wallet, changedData, info) end
+local __ctor = function(wallet, changedData, info) end
+CS.Barotrauma.WalletChangedEvent = __ctor
+CS.Barotrauma.WalletChangedEvent.__new = __ctor
+end
 
 ---@class Barotrauma.CharacterCampaignData: System.Object
 ---@field OrderData System.Xml.Linq.XElement
@@ -48265,17 +50041,25 @@ function CS.Barotrauma.WalletChangedEvent(wallet, changedData, info) end
 ---@field WalletData System.Xml.Linq.XElement
 CS.Barotrauma.CharacterCampaignData = {}
 
+do
 ---@return Barotrauma.CharacterCampaignData
-function CS.Barotrauma.CharacterCampaignData() end
+local __ctor = function() end
+CS.Barotrauma.CharacterCampaignData = __ctor
+CS.Barotrauma.CharacterCampaignData.__new = __ctor
+end
 
 ---@class Barotrauma.CoOpMode: Barotrauma.MissionMode
 CS.Barotrauma.CoOpMode = {}
 
+do
 ---@overload fun(preset: Barotrauma.GameModePreset, missionTypes: (userdata | (fun(): Barotrauma.Identifier)), seed: System.String): Barotrauma.CoOpMode
 ---@param preset Barotrauma.GameModePreset
 ---@param missionPrefabs userdata | (fun(): Barotrauma.MissionPrefab)
 ---@return Barotrauma.CoOpMode
-function CS.Barotrauma.CoOpMode(preset, missionPrefabs) end
+local __ctor = function(preset, missionPrefabs) end
+CS.Barotrauma.CoOpMode = __ctor
+CS.Barotrauma.CoOpMode.__new = __ctor
+end
 
 ---@class Barotrauma.GameModePreset: System.Object
 ---@field GameModeType System.Type
@@ -48297,13 +50081,17 @@ CS.Barotrauma.GameModePreset = {}
 
 function CS.Barotrauma.GameModePreset.Init() end
 
+do
 ---@overload fun(): Barotrauma.GameModePreset
 ---@param identifier Barotrauma.Identifier
 ---@param type System.Type
 ---@param isSinglePlayer? System.Boolean
 ---@param votable? System.Boolean
 ---@return Barotrauma.GameModePreset
-function CS.Barotrauma.GameModePreset(identifier, type, isSinglePlayer, votable) end
+local __ctor = function(identifier, type, isSinglePlayer, votable) end
+CS.Barotrauma.GameModePreset = __ctor
+CS.Barotrauma.GameModePreset.__new = __ctor
+end
 
 ---@class Barotrauma.TutorialPrefab: Barotrauma.Prefab
 ---@field Order System.Int32
@@ -48326,11 +50114,15 @@ function CS.Barotrauma.TutorialPrefab.GetTutorialCharacterInfo() end
 
 function CS.Barotrauma.TutorialPrefab.Dispose() end
 
+do
 ---@overload fun(): Barotrauma.TutorialPrefab
 ---@param file Barotrauma.ContentFile
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.TutorialPrefab
-function CS.Barotrauma.TutorialPrefab(file, element) end
+local __ctor = function(file, element) end
+CS.Barotrauma.TutorialPrefab = __ctor
+CS.Barotrauma.TutorialPrefab.__new = __ctor
+end
 
 ---@class Barotrauma.HireManager: System.Object
 ---@field AvailableCharacters userdata | { [System.Int32]: Barotrauma.CharacterInfo } | (fun(): Barotrauma.CharacterInfo)
@@ -48360,8 +50152,12 @@ function CS.Barotrauma.HireManager.Remove() end
 ---@param newName System.String
 function CS.Barotrauma.HireManager.RenameCharacter(characterInfo, newName) end
 
+do
 ---@return Barotrauma.HireManager
-function CS.Barotrauma.HireManager() end
+local __ctor = function() end
+CS.Barotrauma.HireManager = __ctor
+CS.Barotrauma.HireManager.__new = __ctor
+end
 
 ---@class Barotrauma.SlideshowPrefab: Barotrauma.Prefab
 ---@field Slides userdata | { [System.Int32]: Barotrauma.SlideshowPrefab.Slide } | (fun(): Barotrauma.SlideshowPrefab.Slide)
@@ -48370,11 +50166,15 @@ CS.Barotrauma.SlideshowPrefab = {}
 
 function CS.Barotrauma.SlideshowPrefab.Dispose() end
 
+do
 ---@overload fun(): Barotrauma.SlideshowPrefab
 ---@param file Barotrauma.ContentFile
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.SlideshowPrefab
-function CS.Barotrauma.SlideshowPrefab(file, element) end
+local __ctor = function(file, element) end
+CS.Barotrauma.SlideshowPrefab = __ctor
+CS.Barotrauma.SlideshowPrefab.__new = __ctor
+end
 
 ---@class Barotrauma.PurchasedUpgrade: System.Object
 ---@field Category Barotrauma.UpgradeCategory
@@ -48387,21 +50187,29 @@ CS.Barotrauma.PurchasedUpgrade = {}
 ---@param level System.Int32
 function CS.Barotrauma.PurchasedUpgrade.Deconstruct(prefab, category, level) end
 
+do
 ---@param upgradePrefab Barotrauma.UpgradePrefab
 ---@param category Barotrauma.UpgradeCategory
 ---@param level? System.Int32
 ---@return Barotrauma.PurchasedUpgrade
-function CS.Barotrauma.PurchasedUpgrade(upgradePrefab, category, level) end
+local __ctor = function(upgradePrefab, category, level) end
+CS.Barotrauma.PurchasedUpgrade = __ctor
+CS.Barotrauma.PurchasedUpgrade.__new = __ctor
+end
 
 ---@class Barotrauma.PurchasedItemSwap: System.Object
 ---@field ItemToRemove Barotrauma.Item
 ---@field ItemToInstall Barotrauma.ItemPrefab
 CS.Barotrauma.PurchasedItemSwap = {}
 
+do
 ---@param itemToRemove Barotrauma.Item
 ---@param itemToInstall Barotrauma.ItemPrefab
 ---@return Barotrauma.PurchasedItemSwap
-function CS.Barotrauma.PurchasedItemSwap(itemToRemove, itemToInstall) end
+local __ctor = function(itemToRemove, itemToInstall) end
+CS.Barotrauma.PurchasedItemSwap = __ctor
+CS.Barotrauma.PurchasedItemSwap.__new = __ctor
+end
 
 ---@enum Barotrauma.InputType
 CS.Barotrauma.InputType = {
@@ -48541,11 +50349,15 @@ function CS.Barotrauma.WearableSprite.Init(picker) end
 
 function CS.Barotrauma.WearableSprite.Remove() end
 
+do
 ---@overload fun(subElement: Barotrauma.ContentXElement, wearable: Barotrauma.Items.Components.Wearable, variant?: System.Int32): Barotrauma.WearableSprite
 ---@param subElement Barotrauma.ContentXElement
 ---@param type Barotrauma.WearableType
 ---@return Barotrauma.WearableSprite
-function CS.Barotrauma.WearableSprite(subElement, type) end
+local __ctor = function(subElement, type) end
+CS.Barotrauma.WearableSprite = __ctor
+CS.Barotrauma.WearableSprite.__new = __ctor
+end
 
 ---@class Barotrauma.ContainerTagPrefab: Barotrauma.Prefab
 ---@field Name Barotrauma.LocalizedString
@@ -48568,11 +50380,15 @@ function CS.Barotrauma.ContainerTagPrefab.CheckForContainerTagErrors() end
 
 function CS.Barotrauma.ContainerTagPrefab.Dispose() end
 
+do
 ---@overload fun(): Barotrauma.ContainerTagPrefab
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.ContainerTagFile
 ---@return Barotrauma.ContainerTagPrefab
-function CS.Barotrauma.ContainerTagPrefab(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.ContainerTagPrefab = __ctor
+CS.Barotrauma.ContainerTagPrefab.__new = __ctor
+end
 
 ---@class Barotrauma.SkillRequirementHint: System.ValueType
 ---@field Skill Barotrauma.Identifier
@@ -48585,9 +50401,13 @@ CS.Barotrauma.SkillRequirementHint = {}
 ---@return Barotrauma.LocalizedString
 function CS.Barotrauma.SkillRequirementHint.GetFormattedText(skillLevel, levelColorTag) end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.SkillRequirementHint
-function CS.Barotrauma.SkillRequirementHint(element) end
+local __ctor = function(element) end
+CS.Barotrauma.SkillRequirementHint = __ctor
+CS.Barotrauma.SkillRequirementHint.__new = __ctor
+end
 
 ---@class Barotrauma.DeconstructItem: System.ValueType
 ---@field ItemIdentifier Barotrauma.Identifier
@@ -48609,10 +50429,14 @@ CS.Barotrauma.DeconstructItem = {}
 ---@return System.Boolean
 function CS.Barotrauma.DeconstructItem.IsValidDeconstructor(deconstructor) end
 
+do
 ---@param element System.Xml.Linq.XElement
 ---@param parentDebugName Barotrauma.Identifier
 ---@return Barotrauma.DeconstructItem
-function CS.Barotrauma.DeconstructItem(element, parentDebugName) end
+local __ctor = function(element, parentDebugName) end
+CS.Barotrauma.DeconstructItem = __ctor
+CS.Barotrauma.DeconstructItem.__new = __ctor
+end
 
 ---@class Barotrauma.FabricationRecipe: System.Object
 ---@field TargetItem Barotrauma.ItemPrefab
@@ -48646,10 +50470,14 @@ function CS.Barotrauma.FabricationRecipe.get_DisplayName() end
 ---@return System.UInt32
 function CS.Barotrauma.FabricationRecipe.GenerateHash() end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param itemPrefab Barotrauma.Identifier
 ---@return Barotrauma.FabricationRecipe
-function CS.Barotrauma.FabricationRecipe(element, itemPrefab) end
+local __ctor = function(element, itemPrefab) end
+CS.Barotrauma.FabricationRecipe = __ctor
+CS.Barotrauma.FabricationRecipe.__new = __ctor
+end
 
 ---@class Barotrauma.PreferredContainer: System.Object
 ---@field Primary userdata | (fun(): Barotrauma.Identifier)
@@ -48669,9 +50497,13 @@ function CS.Barotrauma.FabricationRecipe(element, itemPrefab) end
 ---@field MaxLevelDifficulty System.Single
 CS.Barotrauma.PreferredContainer = {}
 
+do
 ---@param element System.Xml.Linq.XElement
 ---@return Barotrauma.PreferredContainer
-function CS.Barotrauma.PreferredContainer(element) end
+local __ctor = function(element) end
+CS.Barotrauma.PreferredContainer = __ctor
+CS.Barotrauma.PreferredContainer.__new = __ctor
+end
 
 ---@class Barotrauma.SwappableItem: System.Object
 ---@field BasePrice System.Int32
@@ -48688,9 +50520,13 @@ CS.Barotrauma.SwappableItem = {}
 ---@return System.Int32
 function CS.Barotrauma.SwappableItem.GetPrice(location) end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.SwappableItem
-function CS.Barotrauma.SwappableItem(element) end
+local __ctor = function(element) end
+CS.Barotrauma.SwappableItem = __ctor
+CS.Barotrauma.SwappableItem.__new = __ctor
+end
 
 ---@class Barotrauma.TalentStatIdentifier: System.ValueType
 ---@field Stat Barotrauma.ItemTalentStats
@@ -48718,12 +50554,16 @@ function CS.Barotrauma.TalentStatIdentifier.Serialize() end
 ---@return userdata
 function CS.Barotrauma.TalentStatIdentifier.TryLoadFromXML(element) end
 
+do
 ---@param Stat Barotrauma.ItemTalentStats
 ---@param TalentIdentifier Barotrauma.Identifier
 ---@param UniqueCharacterId userdata
 ---@param Save System.Boolean
 ---@return Barotrauma.TalentStatIdentifier
-function CS.Barotrauma.TalentStatIdentifier(Stat, TalentIdentifier, UniqueCharacterId, Save) end
+local __ctor = function(Stat, TalentIdentifier, UniqueCharacterId, Save) end
+CS.Barotrauma.TalentStatIdentifier = __ctor
+CS.Barotrauma.TalentStatIdentifier.__new = __ctor
+end
 
 ---@class Barotrauma.RelatedItem: System.Object
 ---@field MatchOnEmpty System.Boolean
@@ -48795,11 +50635,15 @@ function CS.Barotrauma.RelatedItem.Save(element) end
 ---@return Barotrauma.RelatedItem
 function CS.Barotrauma.RelatedItem.Load(element, returnEmpty, parentDebugName) end
 
+do
 ---@overload fun(element: Barotrauma.ContentXElement, parentDebugName: System.String): Barotrauma.RelatedItem
 ---@param identifiers Barotrauma.Identifier[]
 ---@param excludedIdentifiers Barotrauma.Identifier[]
 ---@return Barotrauma.RelatedItem
-function CS.Barotrauma.RelatedItem(identifiers, excludedIdentifiers) end
+local __ctor = function(identifiers, excludedIdentifiers) end
+CS.Barotrauma.RelatedItem = __ctor
+CS.Barotrauma.RelatedItem.__new = __ctor
+end
 
 ---@class Barotrauma.StartItem: System.Object
 ---@field Item Barotrauma.Identifier
@@ -48807,9 +50651,13 @@ function CS.Barotrauma.RelatedItem(identifiers, excludedIdentifiers) end
 ---@field MultiPlayerOnly System.Boolean
 CS.Barotrauma.StartItem = {}
 
+do
 ---@param element System.Xml.Linq.XElement
 ---@return Barotrauma.StartItem
-function CS.Barotrauma.StartItem(element) end
+local __ctor = function(element) end
+CS.Barotrauma.StartItem = __ctor
+CS.Barotrauma.StartItem.__new = __ctor
+end
 
 ---@class Barotrauma.StartItemSet: Barotrauma.PrefabWithUintIdentifier
 ---@field Items userdata | { [System.Int32]: Barotrauma.StartItem } | (fun(): Barotrauma.StartItem)
@@ -48819,11 +50667,15 @@ CS.Barotrauma.StartItemSet = {}
 
 function CS.Barotrauma.StartItemSet.Dispose() end
 
+do
 ---@overload fun(): Barotrauma.StartItemSet
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.StartItemsFile
 ---@return Barotrauma.StartItemSet
-function CS.Barotrauma.StartItemSet(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.StartItemSet = __ctor
+CS.Barotrauma.StartItemSet.__new = __ctor
+end
 
 ---@class Barotrauma.LuaCsHook: System.Object
 ---@field private harmony HarmonyLib.Harmony
@@ -48999,11 +50851,15 @@ function CS.Barotrauma.LuaCsHook.UnhookMethod(identifier, method, hookType) end
 ---@param hookType? Barotrauma.LuaCsHook.HookMethodType
 function CS.Barotrauma.LuaCsHook.UnhookMethod(identifier, className, methodName, parameterNames, hookType) end
 
+do
 ---@package
 ---@overload fun(): Barotrauma.LuaCsHook
 ---@param luaCs Barotrauma.LuaCsSetup
 ---@return Barotrauma.LuaCsHook
-function CS.Barotrauma.LuaCsHook(luaCs) end
+local __ctor = function(luaCs) end
+CS.Barotrauma.LuaCsHook = __ctor
+CS.Barotrauma.LuaCsHook.__new = __ctor
+end
 
 ---@class Barotrauma.LuaCsPerformanceCounter: System.Object
 ---@field MemoryUsage System.Single
@@ -49020,8 +50876,12 @@ function CS.Barotrauma.LuaCsPerformanceCounter.get_MemoryUsage() end
 ---@param ticks System.Int64
 function CS.Barotrauma.LuaCsPerformanceCounter.SetHookElapsedTicks(eventName, hookName, ticks) end
 
+do
 ---@return Barotrauma.LuaCsPerformanceCounter
-function CS.Barotrauma.LuaCsPerformanceCounter() end
+local __ctor = function() end
+CS.Barotrauma.LuaCsPerformanceCounter = __ctor
+CS.Barotrauma.LuaCsPerformanceCounter.__new = __ctor
+end
 
 ---@class Barotrauma.LuaCsSetupConfig: System.Object
 ---@field HideUserNames System.Boolean
@@ -49037,9 +50897,13 @@ function CS.Barotrauma.LuaCsSetupConfig.get_HideUserNames() end
 ---@param value System.Boolean
 function CS.Barotrauma.LuaCsSetupConfig.set_HideUserNames(value) end
 
+do
 ---@overload fun(config: Barotrauma.LuaCsSetupConfig): Barotrauma.LuaCsSetupConfig
 ---@return Barotrauma.LuaCsSetupConfig
-function CS.Barotrauma.LuaCsSetupConfig() end
+local __ctor = function() end
+CS.Barotrauma.LuaCsSetupConfig = __ctor
+CS.Barotrauma.LuaCsSetupConfig.__new = __ctor
+end
 
 ---@class Barotrauma.LuaCsSteam: System.Object
 ---@field private lastTimeChecked System.Double
@@ -49077,8 +50941,12 @@ function CS.Barotrauma.LuaCsSteam.GetWorkshopItem(id, callback) end
 
 function CS.Barotrauma.LuaCsSteam.Update() end
 
+do
 ---@return Barotrauma.LuaCsSteam
-function CS.Barotrauma.LuaCsSteam() end
+local __ctor = function() end
+CS.Barotrauma.LuaCsSteam = __ctor
+CS.Barotrauma.LuaCsSteam.__new = __ctor
+end
 
 ---@class Barotrauma.LuaCsTimer: System.Object
 ---@field Time System.Double
@@ -49113,8 +50981,12 @@ function CS.Barotrauma.LuaCsTimer.Wait(action, millisecondDelay) end
 ---@param action fun(...: System.Object)
 function CS.Barotrauma.LuaCsTimer.NextFrame(action) end
 
+do
 ---@return Barotrauma.LuaCsTimer
-function CS.Barotrauma.LuaCsTimer() end
+local __ctor = function() end
+CS.Barotrauma.LuaCsTimer = __ctor
+CS.Barotrauma.LuaCsTimer.__new = __ctor
+end
 
 ---@class Barotrauma.LuaCsFile: System.Object
 CS.Barotrauma.LuaCsFile = {}
@@ -49193,8 +51065,12 @@ function CS.Barotrauma.LuaCsFile.GetDirectories(path) end
 ---@return System.String[]
 function CS.Barotrauma.LuaCsFile.DirSearch(sDir) end
 
+do
 ---@return Barotrauma.LuaCsFile
-function CS.Barotrauma.LuaCsFile() end
+local __ctor = function() end
+CS.Barotrauma.LuaCsFile = __ctor
+CS.Barotrauma.LuaCsFile.__new = __ctor
+end
 
 ---@class Barotrauma.LuaCsConfig: System.Object
 CS.Barotrauma.LuaCsConfig = {}
@@ -49244,8 +51120,12 @@ function CS.Barotrauma.LuaCsConfig.ParseObject(types, name, value) end
 ---@param obj System.Object
 function CS.Barotrauma.LuaCsConfig.Save(file, obj) end
 
+do
 ---@return Barotrauma.LuaCsConfig
-function CS.Barotrauma.LuaCsConfig() end
+local __ctor = function() end
+CS.Barotrauma.LuaCsConfig = __ctor
+CS.Barotrauma.LuaCsConfig.__new = __ctor
+end
 
 ---@class Barotrauma.LuaGame: System.Object
 ---@field IsSingleplayer System.Boolean
@@ -49517,8 +51397,12 @@ function CS.Barotrauma.LuaGame.LoadGame(path) end
 
 function CS.Barotrauma.LuaGame.Stop() end
 
+do
 ---@return Barotrauma.LuaGame
-function CS.Barotrauma.LuaGame() end
+local __ctor = function() end
+CS.Barotrauma.LuaGame = __ctor
+CS.Barotrauma.LuaGame.__new = __ctor
+end
 
 ---@class Barotrauma.LuaSByte: System.ValueType
 ---@field Value System.SByte
@@ -49531,10 +51415,14 @@ function CS.Barotrauma.LuaSByte.op_Implicit(luaValue) end
 ---@return System.String
 function CS.Barotrauma.LuaSByte.ToString() end
 
+do
 ---@overload fun(v: System.String, radix?: System.Int32): Barotrauma.LuaSByte
 ---@param v System.Double
 ---@return Barotrauma.LuaSByte
-function CS.Barotrauma.LuaSByte(v) end
+local __ctor = function(v) end
+CS.Barotrauma.LuaSByte = __ctor
+CS.Barotrauma.LuaSByte.__new = __ctor
+end
 
 ---@class Barotrauma.LuaByte: System.ValueType
 ---@field Value System.Byte
@@ -49547,10 +51435,14 @@ function CS.Barotrauma.LuaByte.op_Implicit(luaValue) end
 ---@return System.String
 function CS.Barotrauma.LuaByte.ToString() end
 
+do
 ---@overload fun(v: System.String, radix?: System.Int32): Barotrauma.LuaByte
 ---@param v System.Double
 ---@return Barotrauma.LuaByte
-function CS.Barotrauma.LuaByte(v) end
+local __ctor = function(v) end
+CS.Barotrauma.LuaByte = __ctor
+CS.Barotrauma.LuaByte.__new = __ctor
+end
 
 ---@class Barotrauma.LuaInt16: System.ValueType
 ---@field Value System.Int16
@@ -49563,10 +51455,14 @@ function CS.Barotrauma.LuaInt16.op_Implicit(luaValue) end
 ---@return System.String
 function CS.Barotrauma.LuaInt16.ToString() end
 
+do
 ---@overload fun(v: System.String, radix?: System.Int32): Barotrauma.LuaInt16
 ---@param v System.Double
 ---@return Barotrauma.LuaInt16
-function CS.Barotrauma.LuaInt16(v) end
+local __ctor = function(v) end
+CS.Barotrauma.LuaInt16 = __ctor
+CS.Barotrauma.LuaInt16.__new = __ctor
+end
 
 ---@class Barotrauma.LuaUInt16: System.ValueType
 ---@field Value System.UInt16
@@ -49579,10 +51475,14 @@ function CS.Barotrauma.LuaUInt16.op_Implicit(luaValue) end
 ---@return System.String
 function CS.Barotrauma.LuaUInt16.ToString() end
 
+do
 ---@overload fun(v: System.String, radix?: System.Int32): Barotrauma.LuaUInt16
 ---@param v System.Double
 ---@return Barotrauma.LuaUInt16
-function CS.Barotrauma.LuaUInt16(v) end
+local __ctor = function(v) end
+CS.Barotrauma.LuaUInt16 = __ctor
+CS.Barotrauma.LuaUInt16.__new = __ctor
+end
 
 ---@class Barotrauma.LuaInt32: System.ValueType
 ---@field Value System.Int32
@@ -49595,10 +51495,14 @@ function CS.Barotrauma.LuaInt32.op_Implicit(luaValue) end
 ---@return System.String
 function CS.Barotrauma.LuaInt32.ToString() end
 
+do
 ---@overload fun(v: System.String, radix?: System.Int32): Barotrauma.LuaInt32
 ---@param v System.Double
 ---@return Barotrauma.LuaInt32
-function CS.Barotrauma.LuaInt32(v) end
+local __ctor = function(v) end
+CS.Barotrauma.LuaInt32 = __ctor
+CS.Barotrauma.LuaInt32.__new = __ctor
+end
 
 ---@class Barotrauma.LuaUInt32: System.ValueType
 ---@field Value System.UInt32
@@ -49611,10 +51515,14 @@ function CS.Barotrauma.LuaUInt32.op_Implicit(luaValue) end
 ---@return System.String
 function CS.Barotrauma.LuaUInt32.ToString() end
 
+do
 ---@overload fun(v: System.String, radix?: System.Int32): Barotrauma.LuaUInt32
 ---@param v System.Double
 ---@return Barotrauma.LuaUInt32
-function CS.Barotrauma.LuaUInt32(v) end
+local __ctor = function(v) end
+CS.Barotrauma.LuaUInt32 = __ctor
+CS.Barotrauma.LuaUInt32.__new = __ctor
+end
 
 ---@class Barotrauma.LuaInt64: System.ValueType
 ---@field Value System.Int64
@@ -49627,11 +51535,15 @@ function CS.Barotrauma.LuaInt64.op_Implicit(luaValue) end
 ---@return System.String
 function CS.Barotrauma.LuaInt64.ToString() end
 
+do
 ---@overload fun(lo: System.Double, hi: System.Double): Barotrauma.LuaInt64
 ---@overload fun(v: System.String, radix?: System.Int32): Barotrauma.LuaInt64
 ---@param v System.Double
 ---@return Barotrauma.LuaInt64
-function CS.Barotrauma.LuaInt64(v) end
+local __ctor = function(v) end
+CS.Barotrauma.LuaInt64 = __ctor
+CS.Barotrauma.LuaInt64.__new = __ctor
+end
 
 ---@class Barotrauma.LuaUInt64: System.ValueType
 ---@field Value System.UInt64
@@ -49644,11 +51556,15 @@ function CS.Barotrauma.LuaUInt64.op_Implicit(luaValue) end
 ---@return System.String
 function CS.Barotrauma.LuaUInt64.ToString() end
 
+do
 ---@overload fun(lo: System.Double, hi: System.Double): Barotrauma.LuaUInt64
 ---@overload fun(v: System.String, radix?: System.Int32): Barotrauma.LuaUInt64
 ---@param v System.Double
 ---@return Barotrauma.LuaUInt64
-function CS.Barotrauma.LuaUInt64(v) end
+local __ctor = function(v) end
+CS.Barotrauma.LuaUInt64 = __ctor
+CS.Barotrauma.LuaUInt64.__new = __ctor
+end
 
 ---@class Barotrauma.LuaSingle: System.ValueType
 ---@field Value System.Single
@@ -49661,10 +51577,14 @@ function CS.Barotrauma.LuaSingle.op_Implicit(luaValue) end
 ---@return System.String
 function CS.Barotrauma.LuaSingle.ToString() end
 
+do
 ---@overload fun(v: System.String): Barotrauma.LuaSingle
 ---@param v System.Double
 ---@return Barotrauma.LuaSingle
-function CS.Barotrauma.LuaSingle(v) end
+local __ctor = function(v) end
+CS.Barotrauma.LuaSingle = __ctor
+CS.Barotrauma.LuaSingle.__new = __ctor
+end
 
 ---@class Barotrauma.LuaDouble: System.ValueType
 ---@field Value System.Double
@@ -49677,10 +51597,14 @@ function CS.Barotrauma.LuaDouble.op_Implicit(luaValue) end
 ---@return System.String
 function CS.Barotrauma.LuaDouble.ToString() end
 
+do
 ---@overload fun(v: System.String): Barotrauma.LuaDouble
 ---@param v System.Double
 ---@return Barotrauma.LuaDouble
-function CS.Barotrauma.LuaDouble(v) end
+local __ctor = function(v) end
+CS.Barotrauma.LuaDouble = __ctor
+CS.Barotrauma.LuaDouble.__new = __ctor
+end
 
 ---@class Barotrauma.LuaUserData: System.Object
 CS.Barotrauma.LuaUserData = {}
@@ -49791,8 +51715,12 @@ function CS.Barotrauma.LuaUserData.CreateUserDataFromDescriptor(scriptObject, de
 ---@return MoonSharp.Interpreter.DynValue
 function CS.Barotrauma.LuaUserData.CreateUserDataFromType(scriptObject, desiredType) end
 
+do
 ---@return Barotrauma.LuaUserData
-function CS.Barotrauma.LuaUserData() end
+local __ctor = function() end
+CS.Barotrauma.LuaUserData = __ctor
+CS.Barotrauma.LuaUserData.__new = __ctor
+end
 
 ---@class Barotrauma.AssemblyManager: System.Object
 ---@field StillUnloadingACLs userdata | { [System.Int32]: userdata } | (fun(): userdata)
@@ -49876,9 +51804,13 @@ function CS.Barotrauma.AssemblyManager.DisposeACL(id) end
 ---@private
 function CS.Barotrauma.AssemblyManager.RebuildTypesList() end
 
+do
 ---@package
 ---@return Barotrauma.AssemblyManager
-function CS.Barotrauma.AssemblyManager() end
+local __ctor = function() end
+CS.Barotrauma.AssemblyManager = __ctor
+CS.Barotrauma.AssemblyManager.__new = __ctor
+end
 
 ---@class Barotrauma.CsPackageManager: System.Object
 ---@field AssembliesLoaded System.Boolean
@@ -49996,12 +51928,16 @@ function CS.Barotrauma.CsPackageManager.TryBuildDependenciesMap(packages, depend
 ---@return System.Boolean
 function CS.Barotrauma.CsPackageManager.OrderAndFilterPackagesByDependencies(packages, readyToLoad, cannotLoadPackages, packageChecksPredicate) end
 
+do
 ---@package
 ---@overload fun(): Barotrauma.CsPackageManager
 ---@param assemblyManager Barotrauma.AssemblyManager
 ---@param luaCsSetup Barotrauma.LuaCsSetup
 ---@return Barotrauma.CsPackageManager
-function CS.Barotrauma.CsPackageManager(assemblyManager, luaCsSetup) end
+local __ctor = function(assemblyManager, luaCsSetup) end
+CS.Barotrauma.CsPackageManager = __ctor
+CS.Barotrauma.CsPackageManager.__new = __ctor
+end
 
 ---@class Barotrauma.CoreEntityPrefab: Barotrauma.MapEntityPrefab
 ---@field HullPrefab Barotrauma.CoreEntityPrefab
@@ -50036,6 +51972,7 @@ function CS.Barotrauma.CoreEntityPrefab.get_Category() end
 
 function CS.Barotrauma.CoreEntityPrefab.Dispose() end
 
+do
 ---@private
 ---@overload fun(): Barotrauma.CoreEntityPrefab
 ---@param identifier Barotrauma.Identifier
@@ -50046,7 +51983,10 @@ function CS.Barotrauma.CoreEntityPrefab.Dispose() end
 ---@param allowedLinks? userdata | (fun(): Barotrauma.Identifier)
 ---@param aliases? userdata | (fun(): System.String)
 ---@return Barotrauma.CoreEntityPrefab
-function CS.Barotrauma.CoreEntityPrefab(identifier, constructor, resizeHorizontal, resizeVertical, linkable, allowedLinks, aliases) end
+local __ctor = function(identifier, constructor, resizeHorizontal, resizeVertical, linkable, allowedLinks, aliases) end
+CS.Barotrauma.CoreEntityPrefab = __ctor
+CS.Barotrauma.CoreEntityPrefab.__new = __ctor
+end
 
 ---@class Barotrauma.BallastFloraPrefab: Barotrauma.Prefab
 ---@field OriginalName System.String
@@ -50062,11 +52002,15 @@ function CS.Barotrauma.BallastFloraPrefab.Find(identifier) end
 
 function CS.Barotrauma.BallastFloraPrefab.Dispose() end
 
+do
 ---@overload fun(): Barotrauma.BallastFloraPrefab
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.BallastFloraFile
 ---@return Barotrauma.BallastFloraPrefab
-function CS.Barotrauma.BallastFloraPrefab(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.BallastFloraPrefab = __ctor
+CS.Barotrauma.BallastFloraPrefab.__new = __ctor
+end
 
 ---@class Barotrauma.DummyFireSource: Barotrauma.FireSource
 ---@field protected SpreadToOtherHullsProbability System.Single
@@ -50094,12 +52038,16 @@ function CS.Barotrauma.DummyFireSource.AdjustXPos(growModifier, deltaTime) end
 ---@param deltaTime System.Single
 function CS.Barotrauma.DummyFireSource.ReduceOxygen(deltaTime) end
 
+do
 ---@param maxSize Microsoft.Xna.Framework.Vector2
 ---@param worldPosition Microsoft.Xna.Framework.Vector2
 ---@param spawningHull? Barotrauma.Hull
 ---@param isNetworkMessage? System.Boolean
 ---@return Barotrauma.DummyFireSource
-function CS.Barotrauma.DummyFireSource(maxSize, worldPosition, spawningHull, isNetworkMessage) end
+local __ctor = function(maxSize, worldPosition, spawningHull, isNetworkMessage) end
+CS.Barotrauma.DummyFireSource = __ctor
+CS.Barotrauma.DummyFireSource.__new = __ctor
+end
 
 ---@class Barotrauma.Entity: System.Object
 ---@field EntityCount System.Int32
@@ -50197,11 +52145,15 @@ function CS.Barotrauma.Entity.Remove() end
 ---@param filename System.String
 function CS.Barotrauma.Entity.DumpIds(count, filename) end
 
+do
 ---@overload fun(): Barotrauma.Entity
 ---@param submarine Barotrauma.Submarine
 ---@param id System.UInt16
 ---@return Barotrauma.Entity
-function CS.Barotrauma.Entity(submarine, id) end
+local __ctor = function(submarine, id) end
+CS.Barotrauma.Entity = __ctor
+CS.Barotrauma.Entity.__new = __ctor
+end
 
 ---@class Barotrauma.EntityGrid: System.Object
 ---@field WorldRect Microsoft.Xna.Framework.Rectangle
@@ -50238,11 +52190,15 @@ function CS.Barotrauma.EntityGrid.GetEntities(position) end
 ---@return Microsoft.Xna.Framework.Rectangle
 function CS.Barotrauma.EntityGrid.GetIndices(rect) end
 
+do
 ---@overload fun(worldRect: Microsoft.Xna.Framework.Rectangle, cellSize: System.Single): Barotrauma.EntityGrid
 ---@param submarine Barotrauma.Submarine
 ---@param cellSize System.Single
 ---@return Barotrauma.EntityGrid
-function CS.Barotrauma.EntityGrid(submarine, cellSize) end
+local __ctor = function(submarine, cellSize) end
+CS.Barotrauma.EntityGrid = __ctor
+CS.Barotrauma.EntityGrid.__new = __ctor
+end
 
 ---@class Barotrauma.Biome: Barotrauma.PrefabWithUintIdentifier
 ---@field ActualMaxDifficulty System.Single
@@ -50283,11 +52239,15 @@ function CS.Barotrauma.Biome.IsSubmarineAvailable(info, locationType) end
 
 function CS.Barotrauma.Biome.Dispose() end
 
+do
 ---@overload fun(): Barotrauma.Biome
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.LevelGenerationParametersFile
 ---@return Barotrauma.Biome
-function CS.Barotrauma.Biome(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.Biome = __ctor
+CS.Barotrauma.Biome.__new = __ctor
+end
 
 ---@class Barotrauma.CaveGenerationParams: Barotrauma.PrefabWithUintIdentifier
 ---@field Name System.String
@@ -50368,11 +52328,15 @@ function CS.Barotrauma.CaveGenerationParams.Save(element) end
 
 function CS.Barotrauma.CaveGenerationParams.Dispose() end
 
+do
 ---@overload fun(): Barotrauma.CaveGenerationParams
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.CaveGenerationParametersFile
 ---@return Barotrauma.CaveGenerationParams
-function CS.Barotrauma.CaveGenerationParams(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.CaveGenerationParams = __ctor
+CS.Barotrauma.CaveGenerationParams.__new = __ctor
+end
 
 ---@class Barotrauma.LevelData: System.Object
 ---@field GenerationParams Barotrauma.LevelGenerationParams
@@ -50450,6 +52414,7 @@ function CS.Barotrauma.LevelData.GetSuitableOutpostGenerationParams(location, le
 ---@param parentElement System.Xml.Linq.XElement
 function CS.Barotrauma.LevelData.Save(parentElement) end
 
+do
 ---@overload fun(element: System.Xml.Linq.XElement, forceDifficulty?: (System.Single|nil), clampDifficultyToBiome?: System.Boolean): Barotrauma.LevelData
 ---@overload fun(locationConnection: Barotrauma.LocationConnection): Barotrauma.LevelData
 ---@overload fun(location: Barotrauma.Location, map: Barotrauma.Map, difficulty: System.Single): Barotrauma.LevelData
@@ -50459,7 +52424,10 @@ function CS.Barotrauma.LevelData.Save(parentElement) end
 ---@param generationParams Barotrauma.LevelGenerationParams
 ---@param biome Barotrauma.Biome
 ---@return Barotrauma.LevelData
-function CS.Barotrauma.LevelData(seed, difficulty, sizeFactor, generationParams, biome) end
+local __ctor = function(seed, difficulty, sizeFactor, generationParams, biome) end
+CS.Barotrauma.LevelData = __ctor
+CS.Barotrauma.LevelData.__new = __ctor
+end
 
 ---@class Barotrauma.LinkedSubmarinePrefab: Barotrauma.MapEntityPrefab
 ---@field Sprite Barotrauma.Sprite
@@ -50496,9 +52464,13 @@ function CS.Barotrauma.LinkedSubmarinePrefab.get_Category() end
 ---@param rect Microsoft.Xna.Framework.Rectangle
 function CS.Barotrauma.LinkedSubmarinePrefab.CreateInstance(rect) end
 
+do
 ---@param subInfo Barotrauma.SubmarineInfo
 ---@return Barotrauma.LinkedSubmarinePrefab
-function CS.Barotrauma.LinkedSubmarinePrefab(subInfo) end
+local __ctor = function(subInfo) end
+CS.Barotrauma.LinkedSubmarinePrefab = __ctor
+CS.Barotrauma.LinkedSubmarinePrefab.__new = __ctor
+end
 
 ---@enum Barotrauma.MapEntityCategory
 CS.Barotrauma.MapEntityCategory = {
@@ -50875,6 +52847,7 @@ function CS.Barotrauma.Location.Remove() end
 
 function CS.Barotrauma.Location.RemoveProjSpecific() end
 
+do
 ---@overload fun(campaign: Barotrauma.CampaignMode, element: System.Xml.Linq.XElement): Barotrauma.Location
 ---@param mapPosition Microsoft.Xna.Framework.Vector2
 ---@param zone System.Int32|nil
@@ -50884,7 +52857,10 @@ function CS.Barotrauma.Location.RemoveProjSpecific() end
 ---@param forceLocationType? Barotrauma.LocationType
 ---@param existingLocations? userdata | (fun(): Barotrauma.Location)
 ---@return Barotrauma.Location
-function CS.Barotrauma.Location(mapPosition, zone, biomeId, rand, requireOutpost, forceLocationType, existingLocations) end
+local __ctor = function(mapPosition, zone, biomeId, rand, requireOutpost, forceLocationType, existingLocations) end
+CS.Barotrauma.Location = __ctor
+CS.Barotrauma.Location.__new = __ctor
+end
 
 ---@class Barotrauma.LocationConnection: System.Object
 ---@field LevelData Barotrauma.LevelData
@@ -50910,10 +52886,14 @@ function CS.Barotrauma.LocationConnection.get_AvailableMissions() end
 ---@return Barotrauma.Location
 function CS.Barotrauma.LocationConnection.OtherLocation(location) end
 
+do
 ---@param location1 Barotrauma.Location
 ---@param location2 Barotrauma.Location
 ---@return Barotrauma.LocationConnection
-function CS.Barotrauma.LocationConnection(location1, location2) end
+local __ctor = function(location1, location2) end
+CS.Barotrauma.LocationConnection = __ctor
+CS.Barotrauma.LocationConnection.__new = __ctor
+end
 
 ---@class Barotrauma.LocationType: Barotrauma.PrefabWithUintIdentifier
 ---@field BiomeGate Barotrauma.LocationType.BiomeGateSetting
@@ -51018,11 +52998,15 @@ function CS.Barotrauma.LocationType.HasCounts() end
 
 function CS.Barotrauma.LocationType.Dispose() end
 
+do
 ---@overload fun(): Barotrauma.LocationType
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.LocationTypesFile
 ---@return Barotrauma.LocationType
-function CS.Barotrauma.LocationType(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.LocationType = __ctor
+CS.Barotrauma.LocationType.__new = __ctor
+end
 
 ---@class Barotrauma.LocationTypeChange: System.Object
 ---@field CurrentType Barotrauma.Identifier
@@ -51046,12 +53030,16 @@ function CS.Barotrauma.LocationTypeChange.GetMessages(faction) end
 ---@return System.Single
 function CS.Barotrauma.LocationTypeChange.DetermineProbability(location) end
 
+do
 ---@param currentType Barotrauma.Identifier
 ---@param element Barotrauma.ContentXElement
 ---@param requireChangeMessages System.Boolean
 ---@param defaultProbability? System.Single
 ---@return Barotrauma.LocationTypeChange
-function CS.Barotrauma.LocationTypeChange(currentType, element, requireChangeMessages, defaultProbability) end
+local __ctor = function(currentType, element, requireChangeMessages, defaultProbability) end
+CS.Barotrauma.LocationTypeChange = __ctor
+CS.Barotrauma.LocationTypeChange.__new = __ctor
+end
 
 ---@class Barotrauma.MapGenerationParams: Barotrauma.Prefab
 ---@field Instance Barotrauma.MapGenerationParams
@@ -51102,11 +53090,15 @@ function CS.Barotrauma.MapGenerationParams.get_Name() end
 
 function CS.Barotrauma.MapGenerationParams.Dispose() end
 
+do
 ---@overload fun(): Barotrauma.MapGenerationParams
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.MapGenerationParametersFile
 ---@return Barotrauma.MapGenerationParams
-function CS.Barotrauma.MapGenerationParams(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.MapGenerationParams = __ctor
+CS.Barotrauma.MapGenerationParams.__new = __ctor
+end
 
 ---@class Barotrauma.RadiationParams: System.Object
 ---@field Name System.String
@@ -51128,9 +53120,13 @@ CS.Barotrauma.RadiationParams = {}
 ---@return System.String
 function CS.Barotrauma.RadiationParams.get_Name() end
 
+do
 ---@param element System.Xml.Linq.XElement
 ---@return Barotrauma.RadiationParams
-function CS.Barotrauma.RadiationParams(element) end
+local __ctor = function(element) end
+CS.Barotrauma.RadiationParams = __ctor
+CS.Barotrauma.RadiationParams.__new = __ctor
+end
 
 ---@class Barotrauma.OrderTarget: System.Object
 ---@field Position Microsoft.Xna.Framework.Vector2
@@ -51149,11 +53145,15 @@ function CS.Barotrauma.OrderTarget.get_SimPosition() end
 ---@return Barotrauma.Submarine
 function CS.Barotrauma.OrderTarget.get_Submarine() end
 
+do
 ---@param position Microsoft.Xna.Framework.Vector2
 ---@param hull Barotrauma.Hull
 ---@param creatingFromExistingData? System.Boolean
 ---@return Barotrauma.OrderTarget
-function CS.Barotrauma.OrderTarget(position, hull, creatingFromExistingData) end
+local __ctor = function(position, hull, creatingFromExistingData) end
+CS.Barotrauma.OrderTarget = __ctor
+CS.Barotrauma.OrderTarget.__new = __ctor
+end
 
 ---@class Barotrauma.ExtraSubmarineInfo: System.Object
 ---@field Name System.String
@@ -51166,24 +53166,32 @@ CS.Barotrauma.ExtraSubmarineInfo = {}
 ---@param element System.Xml.Linq.XElement
 function CS.Barotrauma.ExtraSubmarineInfo.Save(element) end
 
+do
 ---@overload fun(submarineInfo: Barotrauma.SubmarineInfo): Barotrauma.ExtraSubmarineInfo
 ---@overload fun(original: Barotrauma.ExtraSubmarineInfo): Barotrauma.ExtraSubmarineInfo
 ---@param submarineInfo Barotrauma.SubmarineInfo
 ---@param element System.Xml.Linq.XElement
 ---@return Barotrauma.ExtraSubmarineInfo
-function CS.Barotrauma.ExtraSubmarineInfo(submarineInfo, element) end
+local __ctor = function(submarineInfo, element) end
+CS.Barotrauma.ExtraSubmarineInfo = __ctor
+CS.Barotrauma.ExtraSubmarineInfo.__new = __ctor
+end
 
 ---@class Barotrauma.EnemySubmarineInfo: Barotrauma.ExtraSubmarineInfo
 ---@field Reward System.Single
 ---@field PreferredDifficulty System.Single
 CS.Barotrauma.EnemySubmarineInfo = {}
 
+do
 ---@overload fun(submarineInfo: Barotrauma.SubmarineInfo): Barotrauma.EnemySubmarineInfo
 ---@overload fun(original: Barotrauma.EnemySubmarineInfo): Barotrauma.EnemySubmarineInfo
 ---@param submarineInfo Barotrauma.SubmarineInfo
 ---@param element System.Xml.Linq.XElement
 ---@return Barotrauma.EnemySubmarineInfo
-function CS.Barotrauma.EnemySubmarineInfo(submarineInfo, element) end
+local __ctor = function(submarineInfo, element) end
+CS.Barotrauma.EnemySubmarineInfo = __ctor
+CS.Barotrauma.EnemySubmarineInfo.__new = __ctor
+end
 
 ---@class Barotrauma.OutpostGenerationParams: Barotrauma.PrefabWithUintIdentifier
 ---@field Name System.String
@@ -51257,11 +53265,15 @@ function CS.Barotrauma.OutpostGenerationParams.GetStoreIdentifiers() end
 
 function CS.Barotrauma.OutpostGenerationParams.Dispose() end
 
+do
 ---@overload fun(): Barotrauma.OutpostGenerationParams
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.ContentFile
 ---@return Barotrauma.OutpostGenerationParams
-function CS.Barotrauma.OutpostGenerationParams(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.OutpostGenerationParams = __ctor
+CS.Barotrauma.OutpostGenerationParams.__new = __ctor
+end
 
 ---@class Barotrauma.OutpostGenerator: System.Object
 ---@field private usedForceOutpostModule Barotrauma.SubmarineInfo
@@ -51441,9 +53453,13 @@ function CS.Barotrauma.OutpostGenerator.PowerUpOutpost(sub) end
 ---@param outpost Barotrauma.Submarine
 function CS.Barotrauma.OutpostGenerator.SpawnNPCs(location, outpost) end
 
+do
 ---@private
 ---@return Barotrauma.OutpostGenerator
-function CS.Barotrauma.OutpostGenerator() end
+local __ctor = function() end
+CS.Barotrauma.OutpostGenerator = __ctor
+CS.Barotrauma.OutpostGenerator.__new = __ctor
+end
 
 ---@class Barotrauma.PriceInfo: System.Object
 ---@field Price System.Int32
@@ -51522,10 +53538,14 @@ function CS.Barotrauma.PriceInfo.GetMinLevelDifficulty(element, defaultValue) en
 ---@return System.String
 function CS.Barotrauma.PriceInfo.GetStoreIdentifier(element, defaultValue) end
 
+do
 ---@overload fun(price: System.Int32, canBeBought: System.Boolean, minAmount?: System.Int32, maxAmount?: System.Int32, canBeSpecial?: System.Boolean, minLevelDifficulty?: System.Int32, buyingPriceMultiplier?: System.Single, displayNonEmpty?: System.Boolean, requiresUnlock?: System.Boolean, storeIdentifier?: System.String): Barotrauma.PriceInfo
 ---@param element System.Xml.Linq.XElement
 ---@return Barotrauma.PriceInfo
-function CS.Barotrauma.PriceInfo(element) end
+local __ctor = function(element) end
+CS.Barotrauma.PriceInfo = __ctor
+CS.Barotrauma.PriceInfo.__new = __ctor
+end
 
 ---@class Barotrauma.WallSection: System.Object
 ---@field Wall Barotrauma.Structure
@@ -51560,21 +53580,29 @@ function CS.Barotrauma.WallSection.get_WorldRect() end
 ---@return System.Boolean
 function CS.Barotrauma.WallSection.IgnoreByAI(character) end
 
+do
 ---@param rect Microsoft.Xna.Framework.Rectangle
 ---@param wall Barotrauma.Structure
 ---@param damage? System.Single
 ---@return Barotrauma.WallSection
-function CS.Barotrauma.WallSection(rect, wall, damage) end
+local __ctor = function(rect, wall, damage) end
+CS.Barotrauma.WallSection = __ctor
+CS.Barotrauma.WallSection.__new = __ctor
+end
 
 ---@class Barotrauma.AbilityAttackerSubmarine: Barotrauma.Abilities.AbilityObject
 ---@field Character Barotrauma.Character
 ---@field Submarine Barotrauma.Submarine
 CS.Barotrauma.AbilityAttackerSubmarine = {}
 
+do
 ---@param character Barotrauma.Character
 ---@param submarine Barotrauma.Submarine
 ---@return Barotrauma.AbilityAttackerSubmarine
-function CS.Barotrauma.AbilityAttackerSubmarine(character, submarine) end
+local __ctor = function(character, submarine) end
+CS.Barotrauma.AbilityAttackerSubmarine = __ctor
+CS.Barotrauma.AbilityAttackerSubmarine.__new = __ctor
+end
 
 ---@enum Barotrauma.SubmarineTag
 CS.Barotrauma.SubmarineTag = {
@@ -51647,8 +53675,12 @@ function CS.Barotrauma.PerformanceCounter.GetAverageElapsedMillisecs(identifier)
 ---@return System.Boolean
 function CS.Barotrauma.PerformanceCounter.Update(deltaTime) end
 
+do
 ---@return Barotrauma.PerformanceCounter
-function CS.Barotrauma.PerformanceCounter() end
+local __ctor = function() end
+CS.Barotrauma.PerformanceCounter = __ctor
+CS.Barotrauma.PerformanceCounter.__new = __ctor
+end
 
 ---@class Barotrauma.Physics: System.Object
 ---@field DisplayToRealWorldRatio System.Single
@@ -51674,9 +53706,13 @@ CS.Barotrauma.Physics = {}
 ---@return System.Boolean
 function CS.Barotrauma.Physics.TryParseCollisionCategory(categoryName, category) end
 
+do
 ---@private
 ---@return Barotrauma.Physics
-function CS.Barotrauma.Physics() end
+local __ctor = function() end
+CS.Barotrauma.Physics = __ctor
+CS.Barotrauma.Physics.__new = __ctor
+end
 
 ---@class Barotrauma.Key: System.Object
 ---@field private binding Barotrauma.KeyOrMouse
@@ -51737,9 +53773,13 @@ function CS.Barotrauma.Key.ResetHit() end
 
 function CS.Barotrauma.Key.ResetHeld() end
 
+do
 ---@param inputType Barotrauma.InputType
 ---@return Barotrauma.Key
-function CS.Barotrauma.Key(inputType) end
+local __ctor = function(inputType) end
+CS.Barotrauma.Key = __ctor
+CS.Barotrauma.Key.__new = __ctor
+end
 
 ---@class Barotrauma.Prefab: System.Object
 ---@field ContentPackage Barotrauma.ContentPackage
@@ -51765,22 +53805,30 @@ function CS.Barotrauma.Prefab.DetermineIdentifier(element) end
 
 function CS.Barotrauma.Prefab.Dispose() end
 
+do
 ---@private
 ---@overload fun(file: Barotrauma.ContentFile, identifier: Barotrauma.Identifier): Barotrauma.Prefab
 ---@overload fun(file: Barotrauma.ContentFile, element: Barotrauma.ContentXElement): Barotrauma.Prefab
 ---@return Barotrauma.Prefab
-function CS.Barotrauma.Prefab() end
+local __ctor = function() end
+CS.Barotrauma.Prefab = __ctor
+CS.Barotrauma.Prefab.__new = __ctor
+end
 
 ---@class Barotrauma.PrefabWithUintIdentifier: Barotrauma.Prefab
 ---@field UintIdentifier System.UInt32
 CS.Barotrauma.PrefabWithUintIdentifier = {}
 
+do
 ---@protected
 ---@overload fun(file: Barotrauma.ContentFile, element: Barotrauma.ContentXElement): Barotrauma.PrefabWithUintIdentifier
 ---@param file Barotrauma.ContentFile
 ---@param identifier Barotrauma.Identifier
 ---@return Barotrauma.PrefabWithUintIdentifier
-function CS.Barotrauma.PrefabWithUintIdentifier(file, identifier) end
+local __ctor = function(file, identifier) end
+CS.Barotrauma.PrefabWithUintIdentifier = __ctor
+CS.Barotrauma.PrefabWithUintIdentifier.__new = __ctor
+end
 
 ---@class Barotrauma.SerializableProperty: System.Object
 ---@field Name System.String
@@ -51887,10 +53935,14 @@ function CS.Barotrauma.SerializableProperty.SerializeProperties(obj, element, sa
 ---@param savedVersion System.Version
 function CS.Barotrauma.SerializableProperty.UpgradeGameVersion(entity, configElement, savedVersion) end
 
+do
 ---@overload fun(): Barotrauma.SerializableProperty
 ---@param property System.ComponentModel.PropertyDescriptor
 ---@return Barotrauma.SerializableProperty
-function CS.Barotrauma.SerializableProperty(property) end
+local __ctor = function(property) end
+CS.Barotrauma.SerializableProperty = __ctor
+CS.Barotrauma.SerializableProperty.__new = __ctor
+end
 
 ---@class Barotrauma.XMLExtensions: System.Object
 ---@field private Converters userdata | { [System.Type]: fun(arg1: System.String, arg2: System.Object): System.Object } | (fun(): userdata)
@@ -52279,9 +54331,13 @@ function CS.Barotrauma.XMLExtensions.ParseEnumValue(value, defaultValue, attribu
 ---@return T
 function CS.Barotrauma.XMLExtensions.GetAttributeEnum(element, name, defaultValue) end
 
+do
 ---@private
 ---@return Barotrauma.XMLExtensions
-function CS.Barotrauma.XMLExtensions() end
+local __ctor = function() end
+CS.Barotrauma.XMLExtensions = __ctor
+CS.Barotrauma.XMLExtensions.__new = __ctor
+end
 
 ---@class Barotrauma.CreatureMetrics: System.Object
 ---@field RecentlyEncountered userdata | (fun(): Barotrauma.Identifier)
@@ -52313,9 +54369,13 @@ function CS.Barotrauma.CreatureMetrics.UnlockInEditor(species) end
 ---@private
 function CS.Barotrauma.CreatureMetrics.SyncSets() end
 
+do
 ---@private
 ---@return Barotrauma.CreatureMetrics
-function CS.Barotrauma.CreatureMetrics() end
+local __ctor = function() end
+CS.Barotrauma.CreatureMetrics = __ctor
+CS.Barotrauma.CreatureMetrics.__new = __ctor
+end
 
 ---@class Barotrauma.GameSettings: System.Object
 ---@field CurrentConfig Barotrauma.GameSettings.Config
@@ -52349,6 +54409,7 @@ function CS.Barotrauma.GameSettings.LoadSubEditorImages(configElement) end
 ---@field Delay System.Single
 CS.Barotrauma.DelayedListElement = {}
 
+do
 ---@param parentEffect Barotrauma.DelayedEffect
 ---@param parentEntity Barotrauma.Entity
 ---@param targets userdata | (fun(): Barotrauma.ISerializableEntity)
@@ -52356,7 +54417,10 @@ CS.Barotrauma.DelayedListElement = {}
 ---@param worldPosition Microsoft.Xna.Framework.Vector2|nil
 ---@param startPosition Microsoft.Xna.Framework.Vector2|nil
 ---@return Barotrauma.DelayedListElement
-function CS.Barotrauma.DelayedListElement(parentEffect, parentEntity, targets, delay, worldPosition, startPosition) end
+local __ctor = function(parentEffect, parentEntity, targets, delay, worldPosition, startPosition) end
+CS.Barotrauma.DelayedListElement = __ctor
+CS.Barotrauma.DelayedListElement.__new = __ctor
+end
 
 ---@class Barotrauma.DelayedEffect: Barotrauma.StatusEffect
 ---@field private delayType Barotrauma.DelayedEffect.DelayTypes
@@ -52375,11 +54439,15 @@ function CS.Barotrauma.DelayedEffect.Apply(type, deltaTime, entity, target, worl
 ---@param deltaTime System.Single
 function CS.Barotrauma.DelayedEffect.Update(deltaTime) end
 
+do
 ---@overload fun(): Barotrauma.DelayedEffect
 ---@param element Barotrauma.ContentXElement
 ---@param parentDebugName System.String
 ---@return Barotrauma.DelayedEffect
-function CS.Barotrauma.DelayedEffect(element, parentDebugName) end
+local __ctor = function(element, parentDebugName) end
+CS.Barotrauma.DelayedEffect = __ctor
+CS.Barotrauma.DelayedEffect.__new = __ctor
+end
 
 ---@class Barotrauma.PropertyConditional: System.Object
 ---@field private ComparisonOperatorIsNotEquals System.Boolean
@@ -52481,6 +54549,7 @@ function CS.Barotrauma.PropertyConditional.LoadConditionals(element, defaultOper
 ---@return System.Boolean
 function CS.Barotrauma.PropertyConditional.CheckConditionals(conditionalTarget, conditionals, logicalOperator) end
 
+do
 ---@private
 ---@param attributeName Barotrauma.Identifier
 ---@param comparisonOperator Barotrauma.PropertyConditional.ComparisonOperatorType
@@ -52493,7 +54562,10 @@ function CS.Barotrauma.PropertyConditional.CheckConditionals(conditionalTarget, 
 ---@param targetContainedItem System.Boolean
 ---@param conditionType Barotrauma.PropertyConditional.ConditionType
 ---@return Barotrauma.PropertyConditional
-function CS.Barotrauma.PropertyConditional(attributeName, comparisonOperator, attributeValue, targetItemComponent, itemComponentComparison, targetSelf, targetContainer, targetGrandParent, targetContainedItem, conditionType) end
+local __ctor = function(attributeName, comparisonOperator, attributeValue, targetItemComponent, itemComponentComparison, targetSelf, targetContainer, targetGrandParent, targetContainedItem, conditionType) end
+CS.Barotrauma.PropertyConditional = __ctor
+CS.Barotrauma.PropertyConditional.__new = __ctor
+end
 
 ---@class Barotrauma.DurationListElement: System.Object
 ---@field Duration System.Single
@@ -52508,13 +54580,17 @@ CS.Barotrauma.DurationListElement = {}
 ---@param newUser Barotrauma.Character
 function CS.Barotrauma.DurationListElement.Reset(duration, newUser) end
 
+do
 ---@param parentEffect Barotrauma.StatusEffect
 ---@param parentEntity Barotrauma.Entity
 ---@param targets userdata | (fun(): Barotrauma.ISerializableEntity)
 ---@param duration System.Single
 ---@param user Barotrauma.Character
 ---@return Barotrauma.DurationListElement
-function CS.Barotrauma.DurationListElement(parentEffect, parentEntity, targets, duration, user) end
+local __ctor = function(parentEffect, parentEntity, targets, duration, user) end
+CS.Barotrauma.DurationListElement = __ctor
+CS.Barotrauma.DurationListElement.__new = __ctor
+end
 
 ---@class Barotrauma.AddedPunctuationLString: Barotrauma.LocalizedString
 ---@field Loaded System.Boolean
@@ -52527,10 +54603,14 @@ function CS.Barotrauma.AddedPunctuationLString.get_Loaded() end
 
 function CS.Barotrauma.AddedPunctuationLString.RetrieveValue() end
 
+do
 ---@param symbol System.Char
 ---@param ... Barotrauma.LocalizedString
 ---@return Barotrauma.AddedPunctuationLString
-function CS.Barotrauma.AddedPunctuationLString(symbol, ...) end
+local __ctor = function(symbol, ...) end
+CS.Barotrauma.AddedPunctuationLString = __ctor
+CS.Barotrauma.AddedPunctuationLString.__new = __ctor
+end
 
 ---@class Barotrauma.CapitalizeLString: Barotrauma.LocalizedString
 ---@field Loaded System.Boolean
@@ -52542,9 +54622,13 @@ function CS.Barotrauma.CapitalizeLString.get_Loaded() end
 
 function CS.Barotrauma.CapitalizeLString.RetrieveValue() end
 
+do
 ---@param nStr Barotrauma.LocalizedString
 ---@return Barotrauma.CapitalizeLString
-function CS.Barotrauma.CapitalizeLString(nStr) end
+local __ctor = function(nStr) end
+CS.Barotrauma.CapitalizeLString = __ctor
+CS.Barotrauma.CapitalizeLString.__new = __ctor
+end
 
 ---@class Barotrauma.ConcatLString: Barotrauma.LocalizedString
 ---@field Loaded System.Boolean
@@ -52557,10 +54641,14 @@ function CS.Barotrauma.ConcatLString.get_Loaded() end
 
 function CS.Barotrauma.ConcatLString.RetrieveValue() end
 
+do
 ---@param l Barotrauma.LocalizedString
 ---@param r Barotrauma.LocalizedString
 ---@return Barotrauma.ConcatLString
-function CS.Barotrauma.ConcatLString(l, r) end
+local __ctor = function(l, r) end
+CS.Barotrauma.ConcatLString = __ctor
+CS.Barotrauma.ConcatLString.__new = __ctor
+end
 
 ---@class Barotrauma.FallbackLString: Barotrauma.LocalizedString
 ---@field PrimaryIsLoaded System.Boolean
@@ -52582,11 +54670,15 @@ function CS.Barotrauma.FallbackLString.RetrieveValue() end
 ---@return Barotrauma.LocalizedString
 function CS.Barotrauma.FallbackLString.GetLastFallback() end
 
+do
 ---@param primary Barotrauma.LocalizedString
 ---@param fallback Barotrauma.LocalizedString
 ---@param useDefaultLanguageIfFound? System.Boolean
 ---@return Barotrauma.FallbackLString
-function CS.Barotrauma.FallbackLString(primary, fallback, useDefaultLanguageIfFound) end
+local __ctor = function(primary, fallback, useDefaultLanguageIfFound) end
+CS.Barotrauma.FallbackLString = __ctor
+CS.Barotrauma.FallbackLString.__new = __ctor
+end
 
 ---@class Barotrauma.FormattedLString: Barotrauma.LocalizedString
 ---@field Loaded System.Boolean
@@ -52599,10 +54691,14 @@ function CS.Barotrauma.FormattedLString.get_Loaded() end
 
 function CS.Barotrauma.FormattedLString.RetrieveValue() end
 
+do
 ---@param str Barotrauma.LocalizedString
 ---@param ... Barotrauma.LocalizedString
 ---@return Barotrauma.FormattedLString
-function CS.Barotrauma.FormattedLString(str, ...) end
+local __ctor = function(str, ...) end
+CS.Barotrauma.FormattedLString = __ctor
+CS.Barotrauma.FormattedLString.__new = __ctor
+end
 
 ---@class Barotrauma.InputTypeLString: Barotrauma.LocalizedString
 ---@field Loaded System.Boolean
@@ -52619,10 +54715,14 @@ function CS.Barotrauma.InputTypeLString.get_Loaded() end
 
 function CS.Barotrauma.InputTypeLString.RetrieveValue() end
 
+do
 ---@param nStr Barotrauma.LocalizedString
 ---@param useColorHighlight? System.Boolean
 ---@return Barotrauma.InputTypeLString
-function CS.Barotrauma.InputTypeLString(nStr, useColorHighlight) end
+local __ctor = function(nStr, useColorHighlight) end
+CS.Barotrauma.InputTypeLString = __ctor
+CS.Barotrauma.InputTypeLString.__new = __ctor
+end
 
 ---@class Barotrauma.JoinLString: Barotrauma.LocalizedString
 ---@field Loaded System.Boolean
@@ -52635,10 +54735,14 @@ function CS.Barotrauma.JoinLString.get_Loaded() end
 
 function CS.Barotrauma.JoinLString.RetrieveValue() end
 
+do
 ---@param separator System.String
 ---@param subStrs userdata | (fun(): Barotrauma.LocalizedString)
 ---@return Barotrauma.JoinLString
-function CS.Barotrauma.JoinLString(separator, subStrs) end
+local __ctor = function(separator, subStrs) end
+CS.Barotrauma.JoinLString = __ctor
+CS.Barotrauma.JoinLString.__new = __ctor
+end
 
 ---@class Barotrauma.LocalizedString: System.Object
 ---@field Language Barotrauma.LanguageIdentifier
@@ -52760,10 +54864,14 @@ function CS.Barotrauma.LocalizedString.GetHashCode() end
 ---@return System.Int32
 function CS.Barotrauma.LocalizedString.CompareTo(obj) end
 
+do
 ---@protected
 ---@overload fun(): Barotrauma.LocalizedString
 ---@return Barotrauma.LocalizedString
-function CS.Barotrauma.LocalizedString() end
+local __ctor = function() end
+CS.Barotrauma.LocalizedString = __ctor
+CS.Barotrauma.LocalizedString.__new = __ctor
+end
 
 ---@class Barotrauma.LowerLString: Barotrauma.LocalizedString
 ---@field Loaded System.Boolean
@@ -52775,9 +54883,13 @@ function CS.Barotrauma.LowerLString.get_Loaded() end
 
 function CS.Barotrauma.LowerLString.RetrieveValue() end
 
+do
 ---@param nestedStr Barotrauma.LocalizedString
 ---@return Barotrauma.LowerLString
-function CS.Barotrauma.LowerLString(nestedStr) end
+local __ctor = function(nestedStr) end
+CS.Barotrauma.LowerLString = __ctor
+CS.Barotrauma.LowerLString.__new = __ctor
+end
 
 ---@class Barotrauma.RawLString: Barotrauma.LocalizedString
 ---@field Loaded System.Boolean
@@ -52792,9 +54904,13 @@ function CS.Barotrauma.RawLString.get_Loaded() end
 
 function CS.Barotrauma.RawLString.RetrieveValue() end
 
+do
 ---@param value System.String
 ---@return Barotrauma.RawLString
-function CS.Barotrauma.RawLString(value) end
+local __ctor = function(value) end
+CS.Barotrauma.RawLString = __ctor
+CS.Barotrauma.RawLString.__new = __ctor
+end
 
 ---@class Barotrauma.ReplaceLString: Barotrauma.LocalizedString
 ---@field Loaded System.Boolean
@@ -52815,6 +54931,7 @@ function CS.Barotrauma.ReplaceLString.get_Loaded() end
 
 function CS.Barotrauma.ReplaceLString.RetrieveValue() end
 
+do
 ---@overload fun(nStr: Barotrauma.LocalizedString, sc: System.StringComparison, ...: userdata): Barotrauma.ReplaceLString
 ---@overload fun(nStr: Barotrauma.LocalizedString, sc: System.StringComparison, r: (userdata | (fun(): userdata))): Barotrauma.ReplaceLString
 ---@overload fun(nStr: Barotrauma.LocalizedString, sc: System.StringComparison, ...: userdata): Barotrauma.ReplaceLString
@@ -52822,7 +54939,10 @@ function CS.Barotrauma.ReplaceLString.RetrieveValue() end
 ---@param sc System.StringComparison
 ---@param r userdata | (fun(): userdata)
 ---@return Barotrauma.ReplaceLString
-function CS.Barotrauma.ReplaceLString(nStr, sc, r) end
+local __ctor = function(nStr, sc, r) end
+CS.Barotrauma.ReplaceLString = __ctor
+CS.Barotrauma.ReplaceLString.__new = __ctor
+end
 
 ---@class Barotrauma.ServerMsgLString: Barotrauma.LocalizedString
 ---@field Loaded System.Boolean
@@ -52845,10 +54965,14 @@ function CS.Barotrauma.ServerMsgLString.get_Loaded() end
 
 function CS.Barotrauma.ServerMsgLString.RetrieveValue() end
 
+do
 ---@overload fun(): Barotrauma.ServerMsgLString
 ---@param serverMsg System.String
 ---@return Barotrauma.ServerMsgLString
-function CS.Barotrauma.ServerMsgLString(serverMsg) end
+local __ctor = function(serverMsg) end
+CS.Barotrauma.ServerMsgLString = __ctor
+CS.Barotrauma.ServerMsgLString.__new = __ctor
+end
 
 ---@class Barotrauma.SplitLString: Barotrauma.LocalizedString
 ---@field Loaded System.Boolean
@@ -52862,10 +54986,14 @@ function CS.Barotrauma.SplitLString.get_Loaded() end
 
 function CS.Barotrauma.SplitLString.RetrieveValue() end
 
+do
 ---@param splitter Barotrauma.LStringSplitter
 ---@param index System.Int32
 ---@return Barotrauma.SplitLString
-function CS.Barotrauma.SplitLString(splitter, index) end
+local __ctor = function(splitter, index) end
+CS.Barotrauma.SplitLString = __ctor
+CS.Barotrauma.SplitLString.__new = __ctor
+end
 
 ---@class Barotrauma.TagLString: Barotrauma.LocalizedString
 ---@field UsingDefaultLanguageAsFallback System.Boolean
@@ -52879,9 +55007,13 @@ function CS.Barotrauma.TagLString.get_Loaded() end
 
 function CS.Barotrauma.TagLString.RetrieveValue() end
 
+do
 ---@param ... Barotrauma.Identifier
 ---@return Barotrauma.TagLString
-function CS.Barotrauma.TagLString(...) end
+local __ctor = function(...) end
+CS.Barotrauma.TagLString = __ctor
+CS.Barotrauma.TagLString.__new = __ctor
+end
 
 ---@class Barotrauma.TrimLString: Barotrauma.LocalizedString
 ---@field Loaded System.Boolean
@@ -52894,10 +55026,14 @@ function CS.Barotrauma.TrimLString.get_Loaded() end
 
 function CS.Barotrauma.TrimLString.RetrieveValue() end
 
+do
 ---@param nestedStr Barotrauma.LocalizedString
 ---@param mode Barotrauma.TrimLString.Mode
 ---@return Barotrauma.TrimLString
-function CS.Barotrauma.TrimLString(nestedStr, mode) end
+local __ctor = function(nestedStr, mode) end
+CS.Barotrauma.TrimLString = __ctor
+CS.Barotrauma.TrimLString.__new = __ctor
+end
 
 ---@class Barotrauma.UpperLString: Barotrauma.LocalizedString
 ---@field Loaded System.Boolean
@@ -52912,9 +55048,13 @@ function CS.Barotrauma.UpperLString.RetrieveValue() end
 ---@return Barotrauma.LocalizedString
 function CS.Barotrauma.UpperLString.ToUpper() end
 
+do
 ---@param nestedStr Barotrauma.LocalizedString
 ---@return Barotrauma.UpperLString
-function CS.Barotrauma.UpperLString(nestedStr) end
+local __ctor = function(nestedStr) end
+CS.Barotrauma.UpperLString = __ctor
+CS.Barotrauma.UpperLString.__new = __ctor
+end
 
 ---@class Barotrauma.RichString: System.Object
 ---@field SanitizedValue System.String
@@ -53014,6 +55154,7 @@ function CS.Barotrauma.RichString.op_Equality(a, b) end
 ---@return System.Boolean
 function CS.Barotrauma.RichString.op_Inequality(a, b) end
 
+do
 ---@private
 ---@overload fun(nestedStr: Barotrauma.LocalizedString, shouldParseRichTextData: System.Boolean, postProcess?: (fun(arg: System.String): System.String)): Barotrauma.RichString
 ---@param nestedStr Barotrauma.LocalizedString
@@ -53022,7 +55163,10 @@ function CS.Barotrauma.RichString.op_Inequality(a, b) end
 ---@param font? Barotrauma.GUIFont
 ---@param componentStyle? Barotrauma.GUIComponentStyle
 ---@return Barotrauma.RichString
-function CS.Barotrauma.RichString(nestedStr, shouldParseRichTextData, postProcess, font, componentStyle) end
+local __ctor = function(nestedStr, shouldParseRichTextData, postProcess, font, componentStyle) end
+CS.Barotrauma.RichString = __ctor
+CS.Barotrauma.RichString.__new = __ctor
+end
 
 ---@class Barotrauma.StripRichTagsLString: Barotrauma.LocalizedString
 ---@field Loaded System.Boolean
@@ -53034,9 +55178,13 @@ function CS.Barotrauma.StripRichTagsLString.get_Loaded() end
 
 function CS.Barotrauma.StripRichTagsLString.RetrieveValue() end
 
+do
 ---@param richStr Barotrauma.RichString
 ---@return Barotrauma.StripRichTagsLString
-function CS.Barotrauma.StripRichTagsLString(richStr) end
+local __ctor = function(richStr) end
+CS.Barotrauma.StripRichTagsLString = __ctor
+CS.Barotrauma.StripRichTagsLString.__new = __ctor
+end
 
 ---@class Barotrauma.TextManager: System.Object
 ---@field AvailableLanguages userdata | (fun(): Barotrauma.LanguageIdentifier)
@@ -53191,9 +55339,13 @@ function CS.Barotrauma.TextManager.Capitalize(str) end
 
 function CS.Barotrauma.TextManager.IncrementLanguageVersion() end
 
+do
 ---@private
 ---@return Barotrauma.TextManager
-function CS.Barotrauma.TextManager() end
+local __ctor = function() end
+CS.Barotrauma.TextManager = __ctor
+CS.Barotrauma.TextManager.__new = __ctor
+end
 
 ---@class Barotrauma.LanguageIdentifier: System.ValueType
 ---@field ValueHash System.Int32
@@ -53224,10 +55376,14 @@ function CS.Barotrauma.LanguageIdentifier.op_Inequality(a, b) end
 ---@return System.String
 function CS.Barotrauma.LanguageIdentifier.ToString() end
 
+do
 ---@overload fun(): Barotrauma.LanguageIdentifier
 ---@param value Barotrauma.Identifier
 ---@return Barotrauma.LanguageIdentifier
-function CS.Barotrauma.LanguageIdentifier(value) end
+local __ctor = function(value) end
+CS.Barotrauma.LanguageIdentifier = __ctor
+CS.Barotrauma.LanguageIdentifier.__new = __ctor
+end
 
 ---@class Barotrauma.TextPack: System.Object
 ---@field Texts userdata | { [Barotrauma.Identifier]: userdata | { [System.Int32]: Barotrauma.TextPack.Text } | (fun(): Barotrauma.TextPack.Text) } | (fun(): userdata)
@@ -53245,12 +55401,16 @@ function CS.Barotrauma.TextPack.VerifyLoaded() end
 
 function CS.Barotrauma.TextPack.Unload() end
 
+do
 ---@param file Barotrauma.TextFile
 ---@param mainElement Barotrauma.ContentXElement
 ---@param language Barotrauma.LanguageIdentifier
 ---@param load? System.Boolean
 ---@return Barotrauma.TextPack
-function CS.Barotrauma.TextPack(file, mainElement, language, load) end
+local __ctor = function(file, mainElement, language, load) end
+CS.Barotrauma.TextPack = __ctor
+CS.Barotrauma.TextPack.__new = __ctor
+end
 
 ---@class Barotrauma.TraitorEvent: Barotrauma.ScriptedEvent
 ---@field Prefab Barotrauma.TraitorEventPrefab
@@ -53303,11 +55463,15 @@ function CS.Barotrauma.TraitorEvent.SetTraitor(traitor) end
 ---@param traitors userdata | (fun(): Barotrauma.Networking.Client)
 function CS.Barotrauma.TraitorEvent.SetSecondaryTraitors(traitors) end
 
+do
 ---@overload fun(): Barotrauma.TraitorEvent
 ---@param prefab Barotrauma.TraitorEventPrefab
 ---@param seed System.Int32
 ---@return Barotrauma.TraitorEvent
-function CS.Barotrauma.TraitorEvent(prefab, seed) end
+local __ctor = function(prefab, seed) end
+CS.Barotrauma.TraitorEvent = __ctor
+CS.Barotrauma.TraitorEvent.__new = __ctor
+end
 
 ---@class Barotrauma.TraitorEventPrefab: Barotrauma.EventPrefab
 ---@field HasReputationRequirements System.Boolean
@@ -53359,11 +55523,15 @@ function CS.Barotrauma.TraitorEventPrefab.Dispose() end
 ---@return System.String
 function CS.Barotrauma.TraitorEventPrefab.ToString() end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.RandomEventsFile
 ---@param fallbackIdentifier? Barotrauma.Identifier
 ---@return Barotrauma.TraitorEventPrefab
-function CS.Barotrauma.TraitorEventPrefab(element, file, fallbackIdentifier) end
+local __ctor = function(element, file, fallbackIdentifier) end
+CS.Barotrauma.TraitorEventPrefab = __ctor
+CS.Barotrauma.TraitorEventPrefab.__new = __ctor
+end
 
 ---@class Barotrauma.Upgrade: System.Object
 ---@field private TargetEntity Barotrauma.ISerializableEntity
@@ -53395,12 +55563,16 @@ function CS.Barotrauma.Upgrade.ApplyUpgrade() end
 
 function CS.Barotrauma.Upgrade.Dispose() end
 
+do
 ---@param targetEntity Barotrauma.ISerializableEntity
 ---@param prefab Barotrauma.UpgradePrefab
 ---@param level System.Int32
 ---@param saveElement? System.Xml.Linq.XContainer
 ---@return Barotrauma.Upgrade
-function CS.Barotrauma.Upgrade(targetEntity, prefab, level, saveElement) end
+local __ctor = function(targetEntity, prefab, level, saveElement) end
+CS.Barotrauma.Upgrade = __ctor
+CS.Barotrauma.Upgrade.__new = __ctor
+end
 
 ---@class Barotrauma.UpgradePrice: System.ValueType
 ---@field BasePrice System.Int32
@@ -53415,20 +55587,28 @@ CS.Barotrauma.UpgradePrice = {}
 ---@return System.Int32
 function CS.Barotrauma.UpgradePrice.GetBuyPrice(prefab, level, location, characterList) end
 
+do
 ---@param prefab Barotrauma.UpgradePrefab
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.UpgradePrice
-function CS.Barotrauma.UpgradePrice(prefab, element) end
+local __ctor = function(prefab, element) end
+CS.Barotrauma.UpgradePrice = __ctor
+CS.Barotrauma.UpgradePrice.__new = __ctor
+end
 
 ---@class Barotrauma.UpgradeContentPrefab: Barotrauma.Prefab
 ---@field PrefabsAndCategories userdata | { [Barotrauma.Identifier]: Barotrauma.UpgradeContentPrefab } | { [System.String]: Barotrauma.UpgradeContentPrefab } | (fun(): Barotrauma.UpgradeContentPrefab)
 CS.Barotrauma.UpgradeContentPrefab = {}
 
+do
 ---@overload fun(): Barotrauma.UpgradeContentPrefab
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.UpgradeModulesFile
 ---@return Barotrauma.UpgradeContentPrefab
-function CS.Barotrauma.UpgradeContentPrefab(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.UpgradeContentPrefab = __ctor
+CS.Barotrauma.UpgradeContentPrefab.__new = __ctor
+end
 
 ---@class Barotrauma.UpgradeCategory: Barotrauma.UpgradeContentPrefab
 ---@field private selfItemTags userdata | (fun(): Barotrauma.Identifier)
@@ -53453,11 +55633,15 @@ function CS.Barotrauma.UpgradeCategory.Find(identifier) end
 
 function CS.Barotrauma.UpgradeCategory.Dispose() end
 
+do
 ---@overload fun(): Barotrauma.UpgradeCategory
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.UpgradeModulesFile
 ---@return Barotrauma.UpgradeCategory
-function CS.Barotrauma.UpgradeCategory(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.UpgradeCategory = __ctor
+CS.Barotrauma.UpgradeCategory.__new = __ctor
+end
 
 ---@class Barotrauma.UpgradeMaxLevelMod: System.ValueType
 ---@field private tierOrClass userdata
@@ -53474,9 +55658,13 @@ function CS.Barotrauma.UpgradeMaxLevelMod.GetLevelAfter(level) end
 ---@return System.Boolean
 function CS.Barotrauma.UpgradeMaxLevelMod.AppliesTo(subClass, subTier) end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.UpgradeMaxLevelMod
-function CS.Barotrauma.UpgradeMaxLevelMod(element) end
+local __ctor = function(element) end
+CS.Barotrauma.UpgradeMaxLevelMod = __ctor
+CS.Barotrauma.UpgradeMaxLevelMod.__new = __ctor
+end
 
 ---@class Barotrauma.UpgradeResourceCost: System.ValueType
 ---@field Amount System.Int32
@@ -53494,9 +55682,13 @@ function CS.Barotrauma.UpgradeResourceCost.AppliesForLevel(currentLevel) end
 ---@return System.Boolean
 function CS.Barotrauma.UpgradeResourceCost.MatchesItem(item) end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.UpgradeResourceCost
-function CS.Barotrauma.UpgradeResourceCost(element) end
+local __ctor = function(element) end
+CS.Barotrauma.UpgradeResourceCost = __ctor
+CS.Barotrauma.UpgradeResourceCost.__new = __ctor
+end
 
 ---@class Barotrauma.Md5Hash: System.Object
 ---@field ByteRepresentation System.Byte[]
@@ -53578,12 +55770,16 @@ function CS.Barotrauma.Md5Hash.op_Equality(a, b) end
 ---@return System.Boolean
 function CS.Barotrauma.Md5Hash.op_Inequality(a, b) end
 
+do
 ---@private
 ---@overload fun(bytes: System.Byte[], calculate: System.Boolean): Barotrauma.Md5Hash
 ---@overload fun(): Barotrauma.Md5Hash
 ---@param md5Hash System.String
 ---@return Barotrauma.Md5Hash
-function CS.Barotrauma.Md5Hash(md5Hash) end
+local __ctor = function(md5Hash) end
+CS.Barotrauma.Md5Hash = __ctor
+CS.Barotrauma.Md5Hash.__new = __ctor
+end
 
 ---@class Barotrauma.NetLimitedString: System.ValueType
 ---@field Value System.String
@@ -53594,10 +55790,14 @@ CS.Barotrauma.NetLimitedString = {}
 ---@return System.String
 function CS.Barotrauma.NetLimitedString.ToString() end
 
+do
 ---@overload fun(): Barotrauma.NetLimitedString
 ---@param value System.String
 ---@return Barotrauma.NetLimitedString
-function CS.Barotrauma.NetLimitedString(value) end
+local __ctor = function(value) end
+CS.Barotrauma.NetLimitedString = __ctor
+CS.Barotrauma.NetLimitedString.__new = __ctor
+end
 
 ---@class Barotrauma.Rand: System.Object
 ---@field private localRandom System.Random
@@ -53647,9 +55847,13 @@ function CS.Barotrauma.Rand.Value(sync) end
 ---@return Microsoft.Xna.Framework.Color
 function CS.Barotrauma.Rand.Color(randomAlpha, sync) end
 
+do
 ---@private
 ---@return Barotrauma.Rand
-function CS.Barotrauma.Rand() end
+local __ctor = function() end
+CS.Barotrauma.Rand = __ctor
+CS.Barotrauma.Rand.__new = __ctor
+end
 
 ---@class Barotrauma.RichTextData: System.Object
 ---@field StartIndex System.Int32
@@ -53670,8 +55874,12 @@ CS.Barotrauma.RichTextData = {}
 ---@return (userdata | { [System.Int32]: Barotrauma.RichTextData } | (fun(): Barotrauma.RichTextData))|nil
 function CS.Barotrauma.RichTextData.GetRichTextData(text, sanitizedText) end
 
+do
 ---@return Barotrauma.RichTextData
-function CS.Barotrauma.RichTextData() end
+local __ctor = function() end
+CS.Barotrauma.RichTextData = __ctor
+CS.Barotrauma.RichTextData.__new = __ctor
+end
 
 ---@enum Barotrauma.AITarget.TargetType
 CS.Barotrauma.AITarget.TargetType = {
@@ -53699,6 +55907,7 @@ function CS.Barotrauma.Character.GUIMessage.get_Value() end
 ---@param value System.Int32
 function CS.Barotrauma.Character.GUIMessage.set_Value(value) end
 
+do
 ---@param rawText System.String
 ---@param color Microsoft.Xna.Framework.Color
 ---@param delay System.Single
@@ -53706,7 +55915,10 @@ function CS.Barotrauma.Character.GUIMessage.set_Value(value) end
 ---@param value? System.Int32|nil
 ---@param lifeTime? System.Single
 ---@return Barotrauma.Character.GUIMessage
-function CS.Barotrauma.Character.GUIMessage(rawText, color, delay, identifier, value, lifeTime) end
+local __ctor = function(rawText, color, delay, identifier, value, lifeTime) end
+CS.Barotrauma.Character.GUIMessage = __ctor
+CS.Barotrauma.Character.GUIMessage.__new = __ctor
+end
 
 ---@class Barotrauma.Character.ObjectiveEntity: System.Object
 ---@field Entity Barotrauma.Entity
@@ -53714,11 +55926,15 @@ function CS.Barotrauma.Character.GUIMessage(rawText, color, delay, identifier, v
 ---@field Color Microsoft.Xna.Framework.Color
 CS.Barotrauma.Character.ObjectiveEntity = {}
 
+do
 ---@param entity Barotrauma.Entity
 ---@param sprite Barotrauma.Sprite
 ---@param color? Microsoft.Xna.Framework.Color|nil
 ---@return Barotrauma.Character.ObjectiveEntity
-function CS.Barotrauma.Character.ObjectiveEntity(entity, sprite, color) end
+local __ctor = function(entity, sprite, color) end
+CS.Barotrauma.Character.ObjectiveEntity = __ctor
+CS.Barotrauma.Character.ObjectiveEntity.__new = __ctor
+end
 
 ---@class Barotrauma.Character.SpeechBubble: System.Object
 ---@field RichTextData (userdata | { [System.Int32]: Barotrauma.RichTextData } | (fun(): Barotrauma.RichTextData))|nil
@@ -53738,20 +55954,28 @@ CS.Barotrauma.Character.SpeechBubble = {}
 ---@return Microsoft.Xna.Framework.Vector2
 function CS.Barotrauma.Character.SpeechBubble.GetDesiredPosition() end
 
+do
 ---@param character Barotrauma.Character
 ---@param lifeTime System.Single
 ---@param color Microsoft.Xna.Framework.Color
 ---@param text? System.String
 ---@return Barotrauma.Character.SpeechBubble
-function CS.Barotrauma.Character.SpeechBubble(character, lifeTime, color, text) end
+local __ctor = function(character, lifeTime, color, text) end
+CS.Barotrauma.Character.SpeechBubble = __ctor
+CS.Barotrauma.Character.SpeechBubble.__new = __ctor
+end
 
 ---@class Barotrauma.Character.Attacker: System.Object
 ---@field Character Barotrauma.Character
 ---@field Damage System.Single
 CS.Barotrauma.Character.Attacker = {}
 
+do
 ---@return Barotrauma.Character.Attacker
-function CS.Barotrauma.Character.Attacker() end
+local __ctor = function() end
+CS.Barotrauma.Character.Attacker = __ctor
+CS.Barotrauma.Character.Attacker.__new = __ctor
+end
 
 ---@class Barotrauma.Character.OnDeathHandler: System.MulticastDelegate
 CS.Barotrauma.Character.OnDeathHandler = {}
@@ -53770,10 +55994,14 @@ function CS.Barotrauma.Character.OnDeathHandler.BeginInvoke(character, causeOfDe
 ---@param result System.IAsyncResult
 function CS.Barotrauma.Character.OnDeathHandler.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return Barotrauma.Character.OnDeathHandler
-function CS.Barotrauma.Character.OnDeathHandler(object, method) end
+local __ctor = function(object, method) end
+CS.Barotrauma.Character.OnDeathHandler = __ctor
+CS.Barotrauma.Character.OnDeathHandler.__new = __ctor
+end
 
 ---@class Barotrauma.Character.OnAttackedHandler: System.MulticastDelegate
 CS.Barotrauma.Character.OnAttackedHandler = {}
@@ -53792,10 +56020,14 @@ function CS.Barotrauma.Character.OnAttackedHandler.BeginInvoke(attacker, attackR
 ---@param result System.IAsyncResult
 function CS.Barotrauma.Character.OnAttackedHandler.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return Barotrauma.Character.OnAttackedHandler
-function CS.Barotrauma.Character.OnAttackedHandler(object, method) end
+local __ctor = function(object, method) end
+CS.Barotrauma.Character.OnAttackedHandler = __ctor
+CS.Barotrauma.Character.OnAttackedHandler.__new = __ctor
+end
 
 ---@class Barotrauma.Character.AttackTargetData: System.ValueType
 ---@field AttackLimb Barotrauma.Limb
@@ -53845,9 +56077,13 @@ CS.Barotrauma.Character.InventoryStateEventData = {}
 ---@return Barotrauma.Character.EventType
 function CS.Barotrauma.Character.InventoryStateEventData.get_EventType() end
 
+do
 ---@param slotRange System.Range
 ---@return Barotrauma.Character.InventoryStateEventData
-function CS.Barotrauma.Character.InventoryStateEventData(slotRange) end
+local __ctor = function(slotRange) end
+CS.Barotrauma.Character.InventoryStateEventData = __ctor
+CS.Barotrauma.Character.InventoryStateEventData.__new = __ctor
+end
 
 ---@class Barotrauma.Character.ControlEventData: System.ValueType
 ---@field EventType Barotrauma.Character.EventType
@@ -53857,9 +56093,13 @@ CS.Barotrauma.Character.ControlEventData = {}
 ---@return Barotrauma.Character.EventType
 function CS.Barotrauma.Character.ControlEventData.get_EventType() end
 
+do
 ---@param owner Barotrauma.Networking.Client
 ---@return Barotrauma.Character.ControlEventData
-function CS.Barotrauma.Character.ControlEventData(owner) end
+local __ctor = function(owner) end
+CS.Barotrauma.Character.ControlEventData = __ctor
+CS.Barotrauma.Character.ControlEventData.__new = __ctor
+end
 
 ---@class Barotrauma.Character.CharacterStatusEventData: System.ValueType
 ---@field EventType Barotrauma.Character.EventType
@@ -53908,12 +56148,16 @@ CS.Barotrauma.Character.SetAttackTargetEventData = {}
 ---@return Barotrauma.Character.EventType
 function CS.Barotrauma.Character.SetAttackTargetEventData.get_EventType() end
 
+do
 ---@param attackLimb Barotrauma.Limb
 ---@param targetEntity Barotrauma.IDamageable
 ---@param targetLimb Barotrauma.Limb
 ---@param targetSimPos Microsoft.Xna.Framework.Vector2
 ---@return Barotrauma.Character.SetAttackTargetEventData
-function CS.Barotrauma.Character.SetAttackTargetEventData(attackLimb, targetEntity, targetLimb, targetSimPos) end
+local __ctor = function(attackLimb, targetEntity, targetLimb, targetSimPos) end
+CS.Barotrauma.Character.SetAttackTargetEventData = __ctor
+CS.Barotrauma.Character.SetAttackTargetEventData.__new = __ctor
+end
 
 ---@class Barotrauma.Character.ExecuteAttackEventData: System.ValueType
 ---@field EventType Barotrauma.Character.EventType
@@ -53926,12 +56170,16 @@ CS.Barotrauma.Character.ExecuteAttackEventData = {}
 ---@return Barotrauma.Character.EventType
 function CS.Barotrauma.Character.ExecuteAttackEventData.get_EventType() end
 
+do
 ---@param attackLimb Barotrauma.Limb
 ---@param targetEntity Barotrauma.IDamageable
 ---@param targetLimb Barotrauma.Limb
 ---@param targetSimPos Microsoft.Xna.Framework.Vector2
 ---@return Barotrauma.Character.ExecuteAttackEventData
-function CS.Barotrauma.Character.ExecuteAttackEventData(attackLimb, targetEntity, targetLimb, targetSimPos) end
+local __ctor = function(attackLimb, targetEntity, targetLimb, targetSimPos) end
+CS.Barotrauma.Character.ExecuteAttackEventData = __ctor
+CS.Barotrauma.Character.ExecuteAttackEventData.__new = __ctor
+end
 
 ---@class Barotrauma.Character.AssignCampaignInteractionEventData: System.ValueType
 ---@field EventType Barotrauma.Character.EventType
@@ -53949,9 +56197,13 @@ CS.Barotrauma.Character.ObjectiveManagerStateEventData = {}
 ---@return Barotrauma.Character.EventType
 function CS.Barotrauma.Character.ObjectiveManagerStateEventData.get_EventType() end
 
+do
 ---@param objectiveType Barotrauma.AIObjectiveManager.ObjectiveType
 ---@return Barotrauma.Character.ObjectiveManagerStateEventData
-function CS.Barotrauma.Character.ObjectiveManagerStateEventData(objectiveType) end
+local __ctor = function(objectiveType) end
+CS.Barotrauma.Character.ObjectiveManagerStateEventData = __ctor
+CS.Barotrauma.Character.ObjectiveManagerStateEventData.__new = __ctor
+end
 
 ---@class Barotrauma.Character.LatchedOntoTargetEventData: System.ValueType
 ---@field EventType Barotrauma.Character.EventType
@@ -53967,6 +56219,7 @@ CS.Barotrauma.Character.LatchedOntoTargetEventData = {}
 ---@return Barotrauma.Character.EventType
 function CS.Barotrauma.Character.LatchedOntoTargetEventData.get_EventType() end
 
+do
 ---@private
 ---@overload fun(character: Barotrauma.Character, targetCharacter: Barotrauma.Character, attachSurfaceNormal: Microsoft.Xna.Framework.Vector2, attachPos: Microsoft.Xna.Framework.Vector2): Barotrauma.Character.LatchedOntoTargetEventData
 ---@overload fun(character: Barotrauma.Character, targetStructure: Barotrauma.Structure, attachSurfaceNormal: Microsoft.Xna.Framework.Vector2, attachPos: Microsoft.Xna.Framework.Vector2): Barotrauma.Character.LatchedOntoTargetEventData
@@ -53976,7 +56229,10 @@ function CS.Barotrauma.Character.LatchedOntoTargetEventData.get_EventType() end
 ---@param attachSurfaceNormal Microsoft.Xna.Framework.Vector2
 ---@param attachPos Microsoft.Xna.Framework.Vector2
 ---@return Barotrauma.Character.LatchedOntoTargetEventData
-function CS.Barotrauma.Character.LatchedOntoTargetEventData(character, attachSurfaceNormal, attachPos) end
+local __ctor = function(character, attachSurfaceNormal, attachPos) end
+CS.Barotrauma.Character.LatchedOntoTargetEventData = __ctor
+CS.Barotrauma.Character.LatchedOntoTargetEventData.__new = __ctor
+end
 
 ---@class Barotrauma.Character.TeamChangeEventData: System.ValueType
 ---@field EventType Barotrauma.Character.EventType
@@ -53991,10 +56247,14 @@ function CS.Barotrauma.Character.TeamChangeEventData.get_EventType() end
 ---@field ItemIds userdata | { [System.Int32]: System.UInt16 } | (fun(): System.UInt16)
 CS.Barotrauma.Character.ItemTeamChange = {}
 
+do
 ---@param TeamId Barotrauma.CharacterTeamType
 ---@param ItemIds userdata | { [System.Int32]: System.UInt16 } | (fun(): System.UInt16)
 ---@return Barotrauma.Character.ItemTeamChange
-function CS.Barotrauma.Character.ItemTeamChange(TeamId, ItemIds) end
+local __ctor = function(TeamId, ItemIds) end
+CS.Barotrauma.Character.ItemTeamChange = __ctor
+CS.Barotrauma.Character.ItemTeamChange.__new = __ctor
+end
 
 ---@class Barotrauma.Character.AddToCrewEventData: System.ValueType
 ---@field EventType Barotrauma.Character.EventType
@@ -54004,10 +56264,14 @@ CS.Barotrauma.Character.AddToCrewEventData = {}
 ---@return Barotrauma.Character.EventType
 function CS.Barotrauma.Character.AddToCrewEventData.get_EventType() end
 
+do
 ---@param teamType Barotrauma.CharacterTeamType
 ---@param inventoryItems userdata | (fun(): Barotrauma.Item)
 ---@return Barotrauma.Character.AddToCrewEventData
-function CS.Barotrauma.Character.AddToCrewEventData(teamType, inventoryItems) end
+local __ctor = function(teamType, inventoryItems) end
+CS.Barotrauma.Character.AddToCrewEventData = __ctor
+CS.Barotrauma.Character.AddToCrewEventData.__new = __ctor
+end
 
 ---@class Barotrauma.Character.RemoveFromCrewEventData: System.ValueType
 ---@field EventType Barotrauma.Character.EventType
@@ -54017,10 +56281,14 @@ CS.Barotrauma.Character.RemoveFromCrewEventData = {}
 ---@return Barotrauma.Character.EventType
 function CS.Barotrauma.Character.RemoveFromCrewEventData.get_EventType() end
 
+do
 ---@param teamType Barotrauma.CharacterTeamType
 ---@param inventoryItems userdata | (fun(): Barotrauma.Item)
 ---@return Barotrauma.Character.RemoveFromCrewEventData
-function CS.Barotrauma.Character.RemoveFromCrewEventData(teamType, inventoryItems) end
+local __ctor = function(teamType, inventoryItems) end
+CS.Barotrauma.Character.RemoveFromCrewEventData = __ctor
+CS.Barotrauma.Character.RemoveFromCrewEventData.__new = __ctor
+end
 
 ---@class Barotrauma.Character.UpdateExperienceEventData: System.ValueType
 ---@field EventType Barotrauma.Character.EventType
@@ -54047,10 +56315,14 @@ CS.Barotrauma.Character.UpdateSkillsEventData = {}
 ---@return Barotrauma.Character.EventType
 function CS.Barotrauma.Character.UpdateSkillsEventData.get_EventType() end
 
+do
 ---@param skillIdentifier Barotrauma.Identifier
 ---@param forceNotification System.Boolean
 ---@return Barotrauma.Character.UpdateSkillsEventData
-function CS.Barotrauma.Character.UpdateSkillsEventData(skillIdentifier, forceNotification) end
+local __ctor = function(skillIdentifier, forceNotification) end
+CS.Barotrauma.Character.UpdateSkillsEventData = __ctor
+CS.Barotrauma.Character.UpdateSkillsEventData.__new = __ctor
+end
 
 ---@class Barotrauma.Character.UpdateMoneyEventData: System.ValueType
 ---@field EventType Barotrauma.Character.EventType
@@ -54068,9 +56340,13 @@ CS.Barotrauma.Character.UpdatePermanentStatsEventData = {}
 ---@return Barotrauma.Character.EventType
 function CS.Barotrauma.Character.UpdatePermanentStatsEventData.get_EventType() end
 
+do
 ---@param statType Barotrauma.StatTypes
 ---@return Barotrauma.Character.UpdatePermanentStatsEventData
-function CS.Barotrauma.Character.UpdatePermanentStatsEventData(statType) end
+local __ctor = function(statType) end
+CS.Barotrauma.Character.UpdatePermanentStatsEventData = __ctor
+CS.Barotrauma.Character.UpdatePermanentStatsEventData.__new = __ctor
+end
 
 ---@class Barotrauma.Character.UpdateRefundPointsEventData: System.ValueType
 ---@field EventType Barotrauma.Character.EventType
@@ -54150,10 +56426,14 @@ function CS.Barotrauma.CharacterHUD.ProgressBar.get_Color() end
 ---@return System.Boolean
 function CS.Barotrauma.CharacterHUD.ProgressBar.IsDuplicate(targetObject) end
 
+do
 ---@param label Barotrauma.LocalizedString
 ---@param fadeTimer? System.Single
 ---@return Barotrauma.CharacterHUD.ProgressBar
-function CS.Barotrauma.CharacterHUD.ProgressBar(label, fadeTimer) end
+local __ctor = function(label, fadeTimer) end
+CS.Barotrauma.CharacterHUD.ProgressBar = __ctor
+CS.Barotrauma.CharacterHUD.ProgressBar.__new = __ctor
+end
 
 ---@class Barotrauma.CharacterHUD.HealthBar: Barotrauma.CharacterHUD.ProgressBar
 ---@field State System.Single
@@ -54183,9 +56463,13 @@ function CS.Barotrauma.CharacterHUD.HealthBar.get_NumberToDisplay() end
 ---@return System.Boolean
 function CS.Barotrauma.CharacterHUD.HealthBar.IsDuplicate(targetObject) end
 
+do
 ---@param character Barotrauma.Character
 ---@return Barotrauma.CharacterHUD.HealthBar
-function CS.Barotrauma.CharacterHUD.HealthBar(character) end
+local __ctor = function(character) end
+CS.Barotrauma.CharacterHUD.HealthBar = __ctor
+CS.Barotrauma.CharacterHUD.HealthBar.__new = __ctor
+end
 
 ---@class Barotrauma.CharacterHUD.MissionProgressBar: Barotrauma.CharacterHUD.ProgressBar
 ---@field State System.Single
@@ -54215,9 +56499,13 @@ function CS.Barotrauma.CharacterHUD.MissionProgressBar.get_NumberToDisplay() end
 ---@return System.Boolean
 function CS.Barotrauma.CharacterHUD.MissionProgressBar.IsDuplicate(targetObject) end
 
+do
 ---@param mission Barotrauma.Mission
 ---@return Barotrauma.CharacterHUD.MissionProgressBar
-function CS.Barotrauma.CharacterHUD.MissionProgressBar(mission) end
+local __ctor = function(mission) end
+CS.Barotrauma.CharacterHUD.MissionProgressBar = __ctor
+CS.Barotrauma.CharacterHUD.MissionProgressBar.__new = __ctor
+end
 
 ---@class Barotrauma.CharacterInfo.AppearanceCustomizationMenu: System.Object
 ---@field CharacterInfo Barotrauma.CharacterInfo
@@ -54260,11 +56548,15 @@ function CS.Barotrauma.CharacterInfo.AppearanceCustomizationMenu.ClearSprites() 
 
 function CS.Barotrauma.CharacterInfo.AppearanceCustomizationMenu.Dispose() end
 
+do
 ---@param info Barotrauma.CharacterInfo
 ---@param parent Barotrauma.GUIComponent
 ---@param hasIcon? System.Boolean
 ---@return Barotrauma.CharacterInfo.AppearanceCustomizationMenu
-function CS.Barotrauma.CharacterInfo.AppearanceCustomizationMenu(info, parent, hasIcon) end
+local __ctor = function(info, parent, hasIcon) end
+CS.Barotrauma.CharacterInfo.AppearanceCustomizationMenu = __ctor
+CS.Barotrauma.CharacterInfo.AppearanceCustomizationMenu.__new = __ctor
+end
 
 ---@class Barotrauma.CharacterInfo.HeadInfo: System.Object
 ---@field HairIndex System.Int32
@@ -54307,6 +56599,7 @@ function CS.Barotrauma.CharacterInfo.HeadInfo.get_FaceAttachment() end
 
 function CS.Barotrauma.CharacterInfo.HeadInfo.ResetAttachmentIndices() end
 
+do
 ---@param characterInfo Barotrauma.CharacterInfo
 ---@param headPreset Barotrauma.CharacterInfo.HeadPreset
 ---@param hairIndex? System.Int32
@@ -54314,7 +56607,10 @@ function CS.Barotrauma.CharacterInfo.HeadInfo.ResetAttachmentIndices() end
 ---@param moustacheIndex? System.Int32
 ---@param faceAttachmentIndex? System.Int32
 ---@return Barotrauma.CharacterInfo.HeadInfo
-function CS.Barotrauma.CharacterInfo.HeadInfo(characterInfo, headPreset, hairIndex, beardIndex, moustacheIndex, faceAttachmentIndex) end
+local __ctor = function(characterInfo, headPreset, hairIndex, beardIndex, moustacheIndex, faceAttachmentIndex) end
+CS.Barotrauma.CharacterInfo.HeadInfo = __ctor
+CS.Barotrauma.CharacterInfo.HeadInfo.__new = __ctor
+end
 
 ---@class Barotrauma.CharacterInfo.HeadPreset: System.Object
 ---@field MenuCategory Barotrauma.Identifier
@@ -54343,10 +56639,14 @@ function CS.Barotrauma.CharacterInfo.HeadPreset.get_Name() end
 ---@param element System.Xml.Linq.XElement
 function CS.Barotrauma.CharacterInfo.HeadPreset.DetermineTagsFromLegacyFormat(element) end
 
+do
 ---@param charInfoPrefab Barotrauma.CharacterInfoPrefab
 ---@param element System.Xml.Linq.XElement
 ---@return Barotrauma.CharacterInfo.HeadPreset
-function CS.Barotrauma.CharacterInfo.HeadPreset(charInfoPrefab, element) end
+local __ctor = function(charInfoPrefab, element) end
+CS.Barotrauma.CharacterInfo.HeadPreset = __ctor
+CS.Barotrauma.CharacterInfo.HeadPreset.__new = __ctor
+end
 
 ---@enum Barotrauma.CharacterSound.SoundType
 CS.Barotrauma.CharacterSound.SoundType = {
@@ -54373,11 +56673,15 @@ CS.Barotrauma.CharacterHealth.DamageOverlayPrefab = {}
 
 function CS.Barotrauma.CharacterHealth.DamageOverlayPrefab.Dispose() end
 
+do
 ---@overload fun(): Barotrauma.CharacterHealth.DamageOverlayPrefab
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.AfflictionsFile
 ---@return Barotrauma.CharacterHealth.DamageOverlayPrefab
-function CS.Barotrauma.CharacterHealth.DamageOverlayPrefab(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.CharacterHealth.DamageOverlayPrefab = __ctor
+CS.Barotrauma.CharacterHealth.DamageOverlayPrefab.__new = __ctor
+end
 
 ---@class Barotrauma.CharacterHealth.LimbHealth: System.Object
 ---@field IndicatorSprite Barotrauma.Sprite
@@ -54388,9 +56692,13 @@ function CS.Barotrauma.CharacterHealth.DamageOverlayPrefab(element, file) end
 ---@field VitalityTypeMultipliers userdata | { [Barotrauma.Identifier]: System.Single } | (fun(): userdata)
 CS.Barotrauma.CharacterHealth.LimbHealth = {}
 
+do
 ---@overload fun(element: Barotrauma.ContentXElement, characterHealth: Barotrauma.CharacterHealth): Barotrauma.CharacterHealth.LimbHealth
 ---@return Barotrauma.CharacterHealth.LimbHealth
-function CS.Barotrauma.CharacterHealth.LimbHealth() end
+local __ctor = function() end
+CS.Barotrauma.CharacterHealth.LimbHealth = __ctor
+CS.Barotrauma.CharacterHealth.LimbHealth.__new = __ctor
+end
 
 ---@class Barotrauma.JobPrefab.JobItem: System.Object
 ---@field ItemIdentifier Barotrauma.Identifier
@@ -54409,10 +56717,14 @@ CS.Barotrauma.JobPrefab.JobItem = {}
 ---@return Barotrauma.Identifier
 function CS.Barotrauma.JobPrefab.JobItem.GetItemIdentifier(team, isPvPMode) end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param parentItem Barotrauma.JobPrefab.JobItem
 ---@return Barotrauma.JobPrefab.JobItem
-function CS.Barotrauma.JobPrefab.JobItem(element, parentItem) end
+local __ctor = function(element, parentItem) end
+CS.Barotrauma.JobPrefab.JobItem = __ctor
+CS.Barotrauma.JobPrefab.JobItem.__new = __ctor
+end
 
 ---@class Barotrauma.Limb.SpriteState: System.Object
 ---@field RotationState System.Single
@@ -54424,8 +56736,12 @@ function CS.Barotrauma.JobPrefab.JobItem(element, parentItem) end
 ---@field IsActive System.Boolean
 CS.Barotrauma.Limb.SpriteState = {}
 
+do
 ---@return Barotrauma.Limb.SpriteState
-function CS.Barotrauma.Limb.SpriteState() end
+local __ctor = function() end
+CS.Barotrauma.Limb.SpriteState = __ctor
+CS.Barotrauma.Limb.SpriteState.__new = __ctor
+end
 
 ---@enum Barotrauma.CircuitBoxInputOutputNode.Type
 CS.Barotrauma.CircuitBoxInputOutputNode.Type = {
@@ -54504,11 +56820,15 @@ function CS.Barotrauma.ContentPackageManager.PackageSource.get_Count() end
 ---@return System.Boolean
 function CS.Barotrauma.ContentPackageManager.PackageSource.get_IsReadOnly() end
 
+do
 ---@param dir System.String
 ---@param skipPredicate fun(obj: System.String): System.Boolean
 ---@param onLoadFail fun(arg1: System.String, arg2: System.Exception)
 ---@return Barotrauma.ContentPackageManager.PackageSource
-function CS.Barotrauma.ContentPackageManager.PackageSource(dir, skipPredicate, onLoadFail) end
+local __ctor = function(dir, skipPredicate, onLoadFail) end
+CS.Barotrauma.ContentPackageManager.PackageSource = __ctor
+CS.Barotrauma.ContentPackageManager.PackageSource.__new = __ctor
+end
 
 ---@class Barotrauma.ContentPackageManager.EnabledPackages: System.Object
 ---@field Core Barotrauma.CorePackage
@@ -54567,9 +56887,13 @@ function CS.Barotrauma.ContentPackageManager.EnabledPackages.BackUp() end
 
 function CS.Barotrauma.ContentPackageManager.EnabledPackages.Restore() end
 
+do
 ---@private
 ---@return Barotrauma.ContentPackageManager.EnabledPackages
-function CS.Barotrauma.ContentPackageManager.EnabledPackages() end
+local __ctor = function() end
+CS.Barotrauma.ContentPackageManager.EnabledPackages = __ctor
+CS.Barotrauma.ContentPackageManager.EnabledPackages.__new = __ctor
+end
 
 ---@class Barotrauma.ContentPackageManager.LoadProgress: System.ValueType
 ---@field Result userdata
@@ -54588,9 +56912,13 @@ function CS.Barotrauma.ContentPackageManager.LoadProgress.Progress(value) end
 ---@return Barotrauma.ContentPackageManager.LoadProgress
 function CS.Barotrauma.ContentPackageManager.LoadProgress.Transform(range) end
 
+do
 ---@param Result userdata
 ---@return Barotrauma.ContentPackageManager.LoadProgress
-function CS.Barotrauma.ContentPackageManager.LoadProgress(Result) end
+local __ctor = function(Result) end
+CS.Barotrauma.ContentPackageManager.LoadProgress = __ctor
+CS.Barotrauma.ContentPackageManager.LoadProgress.__new = __ctor
+end
 
 ---@class Barotrauma.ModProject.File: System.Object
 ---@field Path System.String
@@ -54609,12 +56937,16 @@ function CS.Barotrauma.ModProject.File.FromPath(path, type) end
 ---@return System.Xml.Linq.XElement
 function CS.Barotrauma.ModProject.File.ToXElement() end
 
+do
 ---@private
 ---@overload fun(f: Barotrauma.ContentFile): Barotrauma.ModProject.File
 ---@param path System.String
 ---@param type System.Type
 ---@return Barotrauma.ModProject.File
-function CS.Barotrauma.ModProject.File(path, type) end
+local __ctor = function(path, type) end
+CS.Barotrauma.ModProject.File = __ctor
+CS.Barotrauma.ModProject.File.__new = __ctor
+end
 
 ---@class Barotrauma.DebugConsole.Command: System.Object
 ---@field OnClientExecute fun(obj: System.String[])
@@ -54635,13 +56967,17 @@ function CS.Barotrauma.DebugConsole.Command.Execute(args) end
 ---@return System.Int32
 function CS.Barotrauma.DebugConsole.Command.GetHashCode() end
 
+do
 ---@param name System.String
 ---@param help System.String
 ---@param onExecute fun(obj: System.String[])
 ---@param getValidArgs? fun(): System.String[][]
 ---@param isCheat? System.Boolean
 ---@return Barotrauma.DebugConsole.Command
-function CS.Barotrauma.DebugConsole.Command(name, help, onExecute, getValidArgs, isCheat) end
+local __ctor = function(name, help, onExecute, getValidArgs, isCheat) end
+CS.Barotrauma.DebugConsole.Command = __ctor
+CS.Barotrauma.DebugConsole.Command.__new = __ctor
+end
 
 ---@enum Barotrauma.EventObjectiveAction.SegmentActionType
 CS.Barotrauma.EventObjectiveAction.SegmentActionType = {
@@ -54660,29 +56996,41 @@ CS.Barotrauma.EventObjectiveAction.SegmentActionType = {
 ---@field Entries userdata | { [System.Int32]: Barotrauma.EventLog.Entry } | (fun(): Barotrauma.EventLog.Entry)
 CS.Barotrauma.EventLog.Event = {}
 
+do
 ---@param eventPrefabId Barotrauma.Identifier
 ---@return Barotrauma.EventLog.Event
-function CS.Barotrauma.EventLog.Event(eventPrefabId) end
+local __ctor = function(eventPrefabId) end
+CS.Barotrauma.EventLog.Event = __ctor
+CS.Barotrauma.EventLog.Event.__new = __ctor
+end
 
 ---@class Barotrauma.EventLog.Entry: System.Object
 ---@field Identifier Barotrauma.Identifier
 ---@field Text System.String
 CS.Barotrauma.EventLog.Entry = {}
 
+do
 ---@param identifier Barotrauma.Identifier
 ---@param text System.String
 ---@return Barotrauma.EventLog.Entry
-function CS.Barotrauma.EventLog.Entry(identifier, text) end
+local __ctor = function(identifier, text) end
+CS.Barotrauma.EventLog.Entry = __ctor
+CS.Barotrauma.EventLog.Entry.__new = __ctor
+end
 
 ---@class Barotrauma.EventManager.DebugLine: System.ValueType
 ---@field Position Microsoft.Xna.Framework.Vector2
 ---@field Color Microsoft.Xna.Framework.Color
 CS.Barotrauma.EventManager.DebugLine = {}
 
+do
 ---@param position Microsoft.Xna.Framework.Vector2
 ---@param color Microsoft.Xna.Framework.Color
 ---@return Barotrauma.EventManager.DebugLine
-function CS.Barotrauma.EventManager.DebugLine(position, color) end
+local __ctor = function(position, color) end
+CS.Barotrauma.EventManager.DebugLine = __ctor
+CS.Barotrauma.EventManager.DebugLine.__new = __ctor
+end
 
 ---@enum Barotrauma.EventManager.NetworkEventType
 CS.Barotrauma.EventManager.NetworkEventType = {
@@ -54701,11 +57049,15 @@ CS.Barotrauma.EventManager.NetworkEventType = {
 ---@field Text System.String
 CS.Barotrauma.EventManager.NetEventLogEntry = {}
 
+do
 ---@param EventPrefabId Barotrauma.Identifier
 ---@param LogEntryId Barotrauma.Identifier
 ---@param Text System.String
 ---@return Barotrauma.EventManager.NetEventLogEntry
-function CS.Barotrauma.EventManager.NetEventLogEntry(EventPrefabId, LogEntryId, Text) end
+local __ctor = function(EventPrefabId, LogEntryId, Text) end
+CS.Barotrauma.EventManager.NetEventLogEntry = __ctor
+CS.Barotrauma.EventManager.NetEventLogEntry.__new = __ctor
+end
 
 ---@class Barotrauma.EventManager.NetEventObjective: System.ValueType
 ---@field Type Barotrauma.EventObjectiveAction.SegmentActionType
@@ -54716,6 +57068,7 @@ function CS.Barotrauma.EventManager.NetEventLogEntry(EventPrefabId, LogEntryId, 
 ---@field CanBeCompleted System.Boolean
 CS.Barotrauma.EventManager.NetEventObjective = {}
 
+do
 ---@param Type Barotrauma.EventObjectiveAction.SegmentActionType
 ---@param Identifier Barotrauma.Identifier
 ---@param ObjectiveTag Barotrauma.Identifier
@@ -54723,26 +57076,37 @@ CS.Barotrauma.EventManager.NetEventObjective = {}
 ---@param ParentObjectiveId Barotrauma.Identifier
 ---@param CanBeCompleted System.Boolean
 ---@return Barotrauma.EventManager.NetEventObjective
-function CS.Barotrauma.EventManager.NetEventObjective(Type, Identifier, ObjectiveTag, TextTag, ParentObjectiveId, CanBeCompleted) end
+local __ctor = function(Type, Identifier, ObjectiveTag, TextTag, ParentObjectiveId, CanBeCompleted) end
+CS.Barotrauma.EventManager.NetEventObjective = __ctor
+CS.Barotrauma.EventManager.NetEventObjective.__new = __ctor
+end
 
 ---@class Barotrauma.EventManager.TimeStamp: System.ValueType
 ---@field Time System.Double
 ---@field Event Barotrauma.Event
 CS.Barotrauma.EventManager.TimeStamp = {}
 
+do
 ---@param e Barotrauma.Event
 ---@return Barotrauma.EventManager.TimeStamp
-function CS.Barotrauma.EventManager.TimeStamp(e) end
+local __ctor = function(e) end
+CS.Barotrauma.EventManager.TimeStamp = __ctor
+CS.Barotrauma.EventManager.TimeStamp.__new = __ctor
+end
 
 ---@class Barotrauma.Mission.DelayedTriggerEvent: System.Object
 ---@field TriggerEvent Barotrauma.MissionPrefab.TriggerEvent
 ---@field Delay System.Single
 CS.Barotrauma.Mission.DelayedTriggerEvent = {}
 
+do
 ---@param triggerEvent Barotrauma.MissionPrefab.TriggerEvent
 ---@param delay System.Single
 ---@return Barotrauma.Mission.DelayedTriggerEvent
-function CS.Barotrauma.Mission.DelayedTriggerEvent(triggerEvent, delay) end
+local __ctor = function(triggerEvent, delay) end
+CS.Barotrauma.Mission.DelayedTriggerEvent = __ctor
+CS.Barotrauma.Mission.DelayedTriggerEvent.__new = __ctor
+end
 
 ---@class Barotrauma.MissionPrefab.TriggerEvent: System.Object
 ---@field EventIdentifier Barotrauma.Identifier
@@ -54752,9 +57116,13 @@ function CS.Barotrauma.Mission.DelayedTriggerEvent(triggerEvent, delay) end
 ---@field CampaignOnly System.Boolean
 CS.Barotrauma.MissionPrefab.TriggerEvent = {}
 
+do
 ---@param element System.Xml.Linq.XElement
 ---@return Barotrauma.MissionPrefab.TriggerEvent
-function CS.Barotrauma.MissionPrefab.TriggerEvent(element) end
+local __ctor = function(element) end
+CS.Barotrauma.MissionPrefab.TriggerEvent = __ctor
+CS.Barotrauma.MissionPrefab.TriggerEvent.__new = __ctor
+end
 
 ---@class Barotrauma.CrewManager.CharacterInfoComparer: System.Object
 CS.Barotrauma.CrewManager.CharacterInfoComparer = {}
@@ -54768,8 +57136,12 @@ function CS.Barotrauma.CrewManager.CharacterInfoComparer.Equals(x, y) end
 ---@return System.Int32
 function CS.Barotrauma.CrewManager.CharacterInfoComparer.GetHashCode(obj) end
 
+do
 ---@return Barotrauma.CrewManager.CharacterInfoComparer
-function CS.Barotrauma.CrewManager.CharacterInfoComparer() end
+local __ctor = function() end
+CS.Barotrauma.CrewManager.CharacterInfoComparer = __ctor
+CS.Barotrauma.CrewManager.CharacterInfoComparer.__new = __ctor
+end
 
 ---@enum Barotrauma.GUI.OutlinePosition
 CS.Barotrauma.GUI.OutlinePosition = {
@@ -54814,10 +57186,14 @@ function CS.Barotrauma.GUIButton.OnClickedHandler.BeginInvoke(button, obj, callb
 ---@return System.Boolean
 function CS.Barotrauma.GUIButton.OnClickedHandler.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return Barotrauma.GUIButton.OnClickedHandler
-function CS.Barotrauma.GUIButton.OnClickedHandler(object, method) end
+local __ctor = function(object, method) end
+CS.Barotrauma.GUIButton.OnClickedHandler = __ctor
+CS.Barotrauma.GUIButton.OnClickedHandler.__new = __ctor
+end
 
 ---@class Barotrauma.GUIButton.OnPressedHandler: System.MulticastDelegate
 CS.Barotrauma.GUIButton.OnPressedHandler = {}
@@ -54834,10 +57210,14 @@ function CS.Barotrauma.GUIButton.OnPressedHandler.BeginInvoke(callback, object) 
 ---@return System.Boolean
 function CS.Barotrauma.GUIButton.OnPressedHandler.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return Barotrauma.GUIButton.OnPressedHandler
-function CS.Barotrauma.GUIButton.OnPressedHandler(object, method) end
+local __ctor = function(object, method) end
+CS.Barotrauma.GUIButton.OnPressedHandler = __ctor
+CS.Barotrauma.GUIButton.OnPressedHandler.__new = __ctor
+end
 
 ---@class Barotrauma.GUIButton.OnButtonDownHandler: System.MulticastDelegate
 CS.Barotrauma.GUIButton.OnButtonDownHandler = {}
@@ -54854,10 +57234,14 @@ function CS.Barotrauma.GUIButton.OnButtonDownHandler.BeginInvoke(callback, objec
 ---@return System.Boolean
 function CS.Barotrauma.GUIButton.OnButtonDownHandler.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return Barotrauma.GUIButton.OnButtonDownHandler
-function CS.Barotrauma.GUIButton.OnButtonDownHandler(object, method) end
+local __ctor = function(object, method) end
+CS.Barotrauma.GUIButton.OnButtonDownHandler = __ctor
+CS.Barotrauma.GUIButton.OnButtonDownHandler.__new = __ctor
+end
 
 ---@enum Barotrauma.GUICanvas.ResizeAxis
 CS.Barotrauma.GUICanvas.ResizeAxis = {
@@ -54885,10 +57269,14 @@ function CS.Barotrauma.GUIColorPicker.OnColorSelectedHandler.BeginInvoke(compone
 ---@return System.Boolean
 function CS.Barotrauma.GUIColorPicker.OnColorSelectedHandler.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return Barotrauma.GUIColorPicker.OnColorSelectedHandler
-function CS.Barotrauma.GUIColorPicker.OnColorSelectedHandler(object, method) end
+local __ctor = function(object, method) end
+CS.Barotrauma.GUIColorPicker.OnColorSelectedHandler = __ctor
+CS.Barotrauma.GUIColorPicker.OnColorSelectedHandler.__new = __ctor
+end
 
 ---@class Barotrauma.GUIComponent.SecondaryButtonDownHandler: System.MulticastDelegate
 CS.Barotrauma.GUIComponent.SecondaryButtonDownHandler = {}
@@ -54909,10 +57297,14 @@ function CS.Barotrauma.GUIComponent.SecondaryButtonDownHandler.BeginInvoke(compo
 ---@return System.Boolean
 function CS.Barotrauma.GUIComponent.SecondaryButtonDownHandler.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return Barotrauma.GUIComponent.SecondaryButtonDownHandler
-function CS.Barotrauma.GUIComponent.SecondaryButtonDownHandler(object, method) end
+local __ctor = function(object, method) end
+CS.Barotrauma.GUIComponent.SecondaryButtonDownHandler = __ctor
+CS.Barotrauma.GUIComponent.SecondaryButtonDownHandler.__new = __ctor
+end
 
 ---@enum Barotrauma.GUIComponent.ComponentState
 CS.Barotrauma.GUIComponent.ComponentState = {
@@ -54942,10 +57334,14 @@ function CS.Barotrauma.GUIDropDown.OnSelectedHandler.BeginInvoke(selected, obj, 
 ---@return System.Boolean
 function CS.Barotrauma.GUIDropDown.OnSelectedHandler.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return Barotrauma.GUIDropDown.OnSelectedHandler
-function CS.Barotrauma.GUIDropDown.OnSelectedHandler(object, method) end
+local __ctor = function(object, method) end
+CS.Barotrauma.GUIDropDown.OnSelectedHandler = __ctor
+CS.Barotrauma.GUIDropDown.OnSelectedHandler.__new = __ctor
+end
 
 ---@enum Barotrauma.GUIImage.ScalingMode
 CS.Barotrauma.GUIImage.ScalingMode = {
@@ -54973,10 +57369,14 @@ function CS.Barotrauma.GUIListBox.OnSelectedHandler.BeginInvoke(component, obj, 
 ---@return System.Boolean
 function CS.Barotrauma.GUIListBox.OnSelectedHandler.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return Barotrauma.GUIListBox.OnSelectedHandler
-function CS.Barotrauma.GUIListBox.OnSelectedHandler(object, method) end
+local __ctor = function(object, method) end
+CS.Barotrauma.GUIListBox.OnSelectedHandler = __ctor
+CS.Barotrauma.GUIListBox.OnSelectedHandler.__new = __ctor
+end
 
 ---@class Barotrauma.GUIListBox.CheckSelectedHandler: System.MulticastDelegate
 CS.Barotrauma.GUIListBox.CheckSelectedHandler = {}
@@ -54993,10 +57393,14 @@ function CS.Barotrauma.GUIListBox.CheckSelectedHandler.BeginInvoke(callback, obj
 ---@return System.Object
 function CS.Barotrauma.GUIListBox.CheckSelectedHandler.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return Barotrauma.GUIListBox.CheckSelectedHandler
-function CS.Barotrauma.GUIListBox.CheckSelectedHandler(object, method) end
+local __ctor = function(object, method) end
+CS.Barotrauma.GUIListBox.CheckSelectedHandler = __ctor
+CS.Barotrauma.GUIListBox.CheckSelectedHandler.__new = __ctor
+end
 
 ---@class Barotrauma.GUIListBox.OnRearrangedHandler: System.MulticastDelegate
 CS.Barotrauma.GUIListBox.OnRearrangedHandler = {}
@@ -55015,10 +57419,14 @@ function CS.Barotrauma.GUIListBox.OnRearrangedHandler.BeginInvoke(listBox, obj, 
 ---@param result System.IAsyncResult
 function CS.Barotrauma.GUIListBox.OnRearrangedHandler.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return Barotrauma.GUIListBox.OnRearrangedHandler
-function CS.Barotrauma.GUIListBox.OnRearrangedHandler(object, method) end
+local __ctor = function(object, method) end
+CS.Barotrauma.GUIListBox.OnRearrangedHandler = __ctor
+CS.Barotrauma.GUIListBox.OnRearrangedHandler.__new = __ctor
+end
 
 ---@enum Barotrauma.GUIListBox.SelectMode
 CS.Barotrauma.GUIListBox.SelectMode = {
@@ -55084,10 +57492,14 @@ function CS.Barotrauma.GUINumberInput.OnValueEnteredHandler.BeginInvoke(numberIn
 ---@param result System.IAsyncResult
 function CS.Barotrauma.GUINumberInput.OnValueEnteredHandler.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return Barotrauma.GUINumberInput.OnValueEnteredHandler
-function CS.Barotrauma.GUINumberInput.OnValueEnteredHandler(object, method) end
+local __ctor = function(object, method) end
+CS.Barotrauma.GUINumberInput.OnValueEnteredHandler = __ctor
+CS.Barotrauma.GUINumberInput.OnValueEnteredHandler.__new = __ctor
+end
 
 ---@class Barotrauma.GUINumberInput.OnValueChangedHandler: System.MulticastDelegate
 CS.Barotrauma.GUINumberInput.OnValueChangedHandler = {}
@@ -55104,10 +57516,14 @@ function CS.Barotrauma.GUINumberInput.OnValueChangedHandler.BeginInvoke(numberIn
 ---@param result System.IAsyncResult
 function CS.Barotrauma.GUINumberInput.OnValueChangedHandler.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return Barotrauma.GUINumberInput.OnValueChangedHandler
-function CS.Barotrauma.GUINumberInput.OnValueChangedHandler(object, method) end
+local __ctor = function(object, method) end
+CS.Barotrauma.GUINumberInput.OnValueChangedHandler = __ctor
+CS.Barotrauma.GUINumberInput.OnValueChangedHandler.__new = __ctor
+end
 
 ---@enum Barotrauma.GUINumberInput.ButtonVisibility
 CS.Barotrauma.GUINumberInput.ButtonVisibility = {
@@ -55132,10 +57548,14 @@ function CS.Barotrauma.GUIProgressBar.ProgressGetterHandler.BeginInvoke(callback
 ---@return System.Single
 function CS.Barotrauma.GUIProgressBar.ProgressGetterHandler.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return Barotrauma.GUIProgressBar.ProgressGetterHandler
-function CS.Barotrauma.GUIProgressBar.ProgressGetterHandler(object, method) end
+local __ctor = function(object, method) end
+CS.Barotrauma.GUIProgressBar.ProgressGetterHandler = __ctor
+CS.Barotrauma.GUIProgressBar.ProgressGetterHandler.__new = __ctor
+end
 
 ---@class Barotrauma.GUIRadioButtonGroup.RadioButtonGroupDelegate: System.MulticastDelegate
 CS.Barotrauma.GUIRadioButtonGroup.RadioButtonGroupDelegate = {}
@@ -55154,10 +57574,14 @@ function CS.Barotrauma.GUIRadioButtonGroup.RadioButtonGroupDelegate.BeginInvoke(
 ---@param result System.IAsyncResult
 function CS.Barotrauma.GUIRadioButtonGroup.RadioButtonGroupDelegate.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return Barotrauma.GUIRadioButtonGroup.RadioButtonGroupDelegate
-function CS.Barotrauma.GUIRadioButtonGroup.RadioButtonGroupDelegate(object, method) end
+local __ctor = function(object, method) end
+CS.Barotrauma.GUIRadioButtonGroup.RadioButtonGroupDelegate = __ctor
+CS.Barotrauma.GUIRadioButtonGroup.RadioButtonGroupDelegate.__new = __ctor
+end
 
 ---@class Barotrauma.GUIScrollBar.OnMovedHandler: System.MulticastDelegate
 CS.Barotrauma.GUIScrollBar.OnMovedHandler = {}
@@ -55178,10 +57602,14 @@ function CS.Barotrauma.GUIScrollBar.OnMovedHandler.BeginInvoke(scrollBar, barScr
 ---@return System.Boolean
 function CS.Barotrauma.GUIScrollBar.OnMovedHandler.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return Barotrauma.GUIScrollBar.OnMovedHandler
-function CS.Barotrauma.GUIScrollBar.OnMovedHandler(object, method) end
+local __ctor = function(object, method) end
+CS.Barotrauma.GUIScrollBar.OnMovedHandler = __ctor
+CS.Barotrauma.GUIScrollBar.OnMovedHandler.__new = __ctor
+end
 
 ---@class Barotrauma.GUIScrollBar.ScrollConversion: System.MulticastDelegate
 CS.Barotrauma.GUIScrollBar.ScrollConversion = {}
@@ -55202,10 +57630,14 @@ function CS.Barotrauma.GUIScrollBar.ScrollConversion.BeginInvoke(scrollBar, f, c
 ---@return System.Single
 function CS.Barotrauma.GUIScrollBar.ScrollConversion.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return Barotrauma.GUIScrollBar.ScrollConversion
-function CS.Barotrauma.GUIScrollBar.ScrollConversion(object, method) end
+local __ctor = function(object, method) end
+CS.Barotrauma.GUIScrollBar.ScrollConversion = __ctor
+CS.Barotrauma.GUIScrollBar.ScrollConversion.__new = __ctor
+end
 
 ---@class Barotrauma.GUITextBlock.TextGetterHandler: System.MulticastDelegate
 CS.Barotrauma.GUITextBlock.TextGetterHandler = {}
@@ -55222,10 +57654,14 @@ function CS.Barotrauma.GUITextBlock.TextGetterHandler.BeginInvoke(callback, obje
 ---@return Barotrauma.LocalizedString
 function CS.Barotrauma.GUITextBlock.TextGetterHandler.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return Barotrauma.GUITextBlock.TextGetterHandler
-function CS.Barotrauma.GUITextBlock.TextGetterHandler(object, method) end
+local __ctor = function(object, method) end
+CS.Barotrauma.GUITextBlock.TextGetterHandler = __ctor
+CS.Barotrauma.GUITextBlock.TextGetterHandler.__new = __ctor
+end
 
 ---@class Barotrauma.GUITextBlock.StrikethroughSettings: System.Object
 ---@field Color Microsoft.Xna.Framework.Color
@@ -55239,11 +57675,15 @@ CS.Barotrauma.GUITextBlock.StrikethroughSettings = {}
 ---@param yPos System.Single
 function CS.Barotrauma.GUITextBlock.StrikethroughSettings.Draw(spriteBatch, textSizeHalf, xPos, yPos) end
 
+do
 ---@param color? Microsoft.Xna.Framework.Color|nil
 ---@param thickness? System.Int32
 ---@param expand? System.Int32
 ---@return Barotrauma.GUITextBlock.StrikethroughSettings
-function CS.Barotrauma.GUITextBlock.StrikethroughSettings(color, thickness, expand) end
+local __ctor = function(color, thickness, expand) end
+CS.Barotrauma.GUITextBlock.StrikethroughSettings = __ctor
+CS.Barotrauma.GUITextBlock.StrikethroughSettings.__new = __ctor
+end
 
 ---@class Barotrauma.GUITextBlock.ClickableArea: System.ValueType
 ---@field Data Barotrauma.RichTextData
@@ -55271,10 +57711,14 @@ function CS.Barotrauma.GUITextBox.OnEnterHandler.BeginInvoke(textBox, text, call
 ---@return System.Boolean
 function CS.Barotrauma.GUITextBox.OnEnterHandler.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return Barotrauma.GUITextBox.OnEnterHandler
-function CS.Barotrauma.GUITextBox.OnEnterHandler(object, method) end
+local __ctor = function(object, method) end
+CS.Barotrauma.GUITextBox.OnEnterHandler = __ctor
+CS.Barotrauma.GUITextBox.OnEnterHandler.__new = __ctor
+end
 
 ---@class Barotrauma.GUITextBox.OnTextChangedHandler: System.MulticastDelegate
 CS.Barotrauma.GUITextBox.OnTextChangedHandler = {}
@@ -55295,10 +57739,14 @@ function CS.Barotrauma.GUITextBox.OnTextChangedHandler.BeginInvoke(textBox, text
 ---@return System.Boolean
 function CS.Barotrauma.GUITextBox.OnTextChangedHandler.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return Barotrauma.GUITextBox.OnTextChangedHandler
-function CS.Barotrauma.GUITextBox.OnTextChangedHandler(object, method) end
+local __ctor = function(object, method) end
+CS.Barotrauma.GUITextBox.OnTextChangedHandler = __ctor
+CS.Barotrauma.GUITextBox.OnTextChangedHandler.__new = __ctor
+end
 
 ---@class Barotrauma.GUITextBox.TextPosPreservation: System.ValueType
 ---@field private textBlock Barotrauma.GUITextBlock
@@ -55313,9 +57761,13 @@ function CS.Barotrauma.GUITextBox.TextPosPreservation.get_textBlock() end
 
 function CS.Barotrauma.GUITextBox.TextPosPreservation.Dispose() end
 
+do
 ---@param tb Barotrauma.GUITextBox
 ---@return Barotrauma.GUITextBox.TextPosPreservation
-function CS.Barotrauma.GUITextBox.TextPosPreservation(tb) end
+local __ctor = function(tb) end
+CS.Barotrauma.GUITextBox.TextPosPreservation = __ctor
+CS.Barotrauma.GUITextBox.TextPosPreservation.__new = __ctor
+end
 
 ---@class Barotrauma.GUITickBox.OnSelectedHandler: System.MulticastDelegate
 CS.Barotrauma.GUITickBox.OnSelectedHandler = {}
@@ -55334,20 +57786,28 @@ function CS.Barotrauma.GUITickBox.OnSelectedHandler.BeginInvoke(obj, callback, o
 ---@return System.Boolean
 function CS.Barotrauma.GUITickBox.OnSelectedHandler.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return Barotrauma.GUITickBox.OnSelectedHandler
-function CS.Barotrauma.GUITickBox.OnSelectedHandler(object, method) end
+local __ctor = function(object, method) end
+CS.Barotrauma.GUITickBox.OnSelectedHandler = __ctor
+CS.Barotrauma.GUITickBox.OnSelectedHandler.__new = __ctor
+end
 
 ---@class Barotrauma.LoadingScreen.PendingSplashScreen: System.ValueType
 ---@field Filename System.String
 ---@field Gain System.Single
 CS.Barotrauma.LoadingScreen.PendingSplashScreen = {}
 
+do
 ---@param filename System.String
 ---@param gain System.Single
 ---@return Barotrauma.LoadingScreen.PendingSplashScreen
-function CS.Barotrauma.LoadingScreen.PendingSplashScreen(filename, gain) end
+local __ctor = function(filename, gain) end
+CS.Barotrauma.LoadingScreen.PendingSplashScreen = __ctor
+CS.Barotrauma.LoadingScreen.PendingSplashScreen.__new = __ctor
+end
 
 ---@class Barotrauma.SubmarineSelection.SubmarineDisplayContent: System.ValueType
 ---@field background Barotrauma.GUIFrame
@@ -55382,10 +57842,14 @@ function CS.Barotrauma.TalentMenu.StartAnimation.BeginInvoke(start, __end__, dur
 ---@param result System.IAsyncResult
 function CS.Barotrauma.TalentMenu.StartAnimation.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return Barotrauma.TalentMenu.StartAnimation
-function CS.Barotrauma.TalentMenu.StartAnimation(object, method) end
+local __ctor = function(object, method) end
+CS.Barotrauma.TalentMenu.StartAnimation = __ctor
+CS.Barotrauma.TalentMenu.StartAnimation.__new = __ctor
+end
 
 ---@class Barotrauma.UpgradeStore.CategoryData: System.ValueType
 ---@field Category Barotrauma.UpgradeCategory
@@ -55393,11 +57857,15 @@ function CS.Barotrauma.TalentMenu.StartAnimation(object, method) end
 ---@field SinglePrefab Barotrauma.UpgradePrefab
 CS.Barotrauma.UpgradeStore.CategoryData = {}
 
+do
 ---@overload fun(category: Barotrauma.UpgradeCategory, prefab: Barotrauma.UpgradePrefab): Barotrauma.UpgradeStore.CategoryData
 ---@param category Barotrauma.UpgradeCategory
 ---@param prefabs userdata | { [System.Int32]: Barotrauma.UpgradePrefab } | (fun(): Barotrauma.UpgradePrefab)
 ---@return Barotrauma.UpgradeStore.CategoryData
-function CS.Barotrauma.UpgradeStore.CategoryData(category, prefabs) end
+local __ctor = function(category, prefabs) end
+CS.Barotrauma.UpgradeStore.CategoryData = __ctor
+CS.Barotrauma.UpgradeStore.CategoryData.__new = __ctor
+end
 
 ---@enum Barotrauma.UpgradeStore.UpgradeTab
 CS.Barotrauma.UpgradeStore.UpgradeTab = {
@@ -55422,22 +57890,30 @@ CS.Barotrauma.UpgradeStore.UpgradeStoreUserData = {
 ---@field PriceText Barotrauma.GUITextBlock
 CS.Barotrauma.UpgradeStore.BuyButtonFrame = {}
 
+do
 ---@param Layout Barotrauma.GUILayoutGroup
 ---@param MaterialCostList Barotrauma.GUIListBox
 ---@param BuyButton Barotrauma.GUIButton
 ---@param PriceText Barotrauma.GUITextBlock
 ---@return Barotrauma.UpgradeStore.BuyButtonFrame
-function CS.Barotrauma.UpgradeStore.BuyButtonFrame(Layout, MaterialCostList, BuyButton, PriceText) end
+local __ctor = function(Layout, MaterialCostList, BuyButton, PriceText) end
+CS.Barotrauma.UpgradeStore.BuyButtonFrame = __ctor
+CS.Barotrauma.UpgradeStore.BuyButtonFrame.__new = __ctor
+end
 
 ---@class Barotrauma.UpgradeStore.ProgressBarFrame: System.ValueType
 ---@field ProgressText Barotrauma.GUITextBlock
 ---@field ProgressBar Barotrauma.GUIProgressBar
 CS.Barotrauma.UpgradeStore.ProgressBarFrame = {}
 
+do
 ---@param ProgressText Barotrauma.GUITextBlock
 ---@param ProgressBar Barotrauma.GUIProgressBar
 ---@return Barotrauma.UpgradeStore.ProgressBarFrame
-function CS.Barotrauma.UpgradeStore.ProgressBarFrame(ProgressText, ProgressBar) end
+local __ctor = function(ProgressText, ProgressBar) end
+CS.Barotrauma.UpgradeStore.ProgressBarFrame = __ctor
+CS.Barotrauma.UpgradeStore.ProgressBarFrame.__new = __ctor
+end
 
 ---@class Barotrauma.UpgradeStore.UpgradeFrame: System.ValueType
 ---@field Frame Barotrauma.GUIFrame
@@ -55448,6 +57924,7 @@ function CS.Barotrauma.UpgradeStore.ProgressBarFrame(ProgressText, ProgressBar) 
 ---@field ProgressBar userdata
 CS.Barotrauma.UpgradeStore.UpgradeFrame = {}
 
+do
 ---@param Frame Barotrauma.GUIFrame
 ---@param Icon Barotrauma.GUIImage
 ---@param Name Barotrauma.GUITextBlock
@@ -55455,26 +57932,37 @@ CS.Barotrauma.UpgradeStore.UpgradeFrame = {}
 ---@param BuyButton userdata
 ---@param ProgressBar userdata
 ---@return Barotrauma.UpgradeStore.UpgradeFrame
-function CS.Barotrauma.UpgradeStore.UpgradeFrame(Frame, Icon, Name, Description, BuyButton, ProgressBar) end
+local __ctor = function(Frame, Icon, Name, Description, BuyButton, ProgressBar) end
+CS.Barotrauma.UpgradeStore.UpgradeFrame = __ctor
+CS.Barotrauma.UpgradeStore.UpgradeFrame.__new = __ctor
+end
 
 ---@class Barotrauma.VideoPlayer.TextSettings: System.Object
 ---@field Text Barotrauma.LocalizedString
 ---@field Width System.Int32
 CS.Barotrauma.VideoPlayer.TextSettings = {}
 
+do
 ---@overload fun(element: System.Xml.Linq.XElement): Barotrauma.VideoPlayer.TextSettings
 ---@param textTag Barotrauma.Identifier
 ---@param width System.Int32
 ---@return Barotrauma.VideoPlayer.TextSettings
-function CS.Barotrauma.VideoPlayer.TextSettings(textTag, width) end
+local __ctor = function(textTag, width) end
+CS.Barotrauma.VideoPlayer.TextSettings = __ctor
+CS.Barotrauma.VideoPlayer.TextSettings.__new = __ctor
+end
 
 ---@class Barotrauma.VideoPlayer.VideoSettings: System.Object
 ---@field File System.String
 CS.Barotrauma.VideoPlayer.VideoSettings = {}
 
+do
 ---@param file System.String
 ---@return Barotrauma.VideoPlayer.VideoSettings
-function CS.Barotrauma.VideoPlayer.VideoSettings(file) end
+local __ctor = function(file) end
+CS.Barotrauma.VideoPlayer.VideoSettings = __ctor
+CS.Barotrauma.VideoPlayer.VideoSettings.__new = __ctor
+end
 
 ---@enum Barotrauma.CharacterInventory.Layout
 CS.Barotrauma.CharacterInventory.Layout = {
@@ -55513,9 +58001,13 @@ CS.Barotrauma.Item.CombineEventData = {}
 ---@return Barotrauma.Item.EventType
 function CS.Barotrauma.Item.CombineEventData.get_EventType() end
 
+do
 ---@param combineTarget Barotrauma.Item
 ---@return Barotrauma.Item.CombineEventData
-function CS.Barotrauma.Item.CombineEventData(combineTarget) end
+local __ctor = function(combineTarget) end
+CS.Barotrauma.Item.CombineEventData = __ctor
+CS.Barotrauma.Item.CombineEventData.__new = __ctor
+end
 
 ---@class Barotrauma.Item.TreatmentEventData: System.ValueType
 ---@field EventType Barotrauma.Item.EventType
@@ -55530,10 +58022,14 @@ function CS.Barotrauma.Item.TreatmentEventData.get_EventType() end
 ---@return System.Byte
 function CS.Barotrauma.Item.TreatmentEventData.get_LimbIndex() end
 
+do
 ---@param targetCharacter Barotrauma.Character
 ---@param targetLimb Barotrauma.Limb
 ---@return Barotrauma.Item.TreatmentEventData
-function CS.Barotrauma.Item.TreatmentEventData(targetCharacter, targetLimb) end
+local __ctor = function(targetCharacter, targetLimb) end
+CS.Barotrauma.Item.TreatmentEventData = __ctor
+CS.Barotrauma.Item.TreatmentEventData.__new = __ctor
+end
 
 ---@enum Barotrauma.Item.EventType
 CS.Barotrauma.Item.EventType = {
@@ -55571,10 +58067,14 @@ CS.Barotrauma.Item.ComponentStateEventData = {}
 ---@return Barotrauma.Item.EventType
 function CS.Barotrauma.Item.ComponentStateEventData.get_EventType() end
 
+do
 ---@param component Barotrauma.Items.Components.ItemComponent
 ---@param componentData Barotrauma.Items.Components.ItemComponent.IEventData
 ---@return Barotrauma.Item.ComponentStateEventData
-function CS.Barotrauma.Item.ComponentStateEventData(component, componentData) end
+local __ctor = function(component, componentData) end
+CS.Barotrauma.Item.ComponentStateEventData = __ctor
+CS.Barotrauma.Item.ComponentStateEventData.__new = __ctor
+end
 
 ---@class Barotrauma.Item.InventoryStateEventData: System.ValueType
 ---@field EventType Barotrauma.Item.EventType
@@ -55585,10 +58085,14 @@ CS.Barotrauma.Item.InventoryStateEventData = {}
 ---@return Barotrauma.Item.EventType
 function CS.Barotrauma.Item.InventoryStateEventData.get_EventType() end
 
+do
 ---@param component Barotrauma.Items.Components.ItemContainer
 ---@param slotRange System.Range
 ---@return Barotrauma.Item.InventoryStateEventData
-function CS.Barotrauma.Item.InventoryStateEventData(component, slotRange) end
+local __ctor = function(component, slotRange) end
+CS.Barotrauma.Item.InventoryStateEventData = __ctor
+CS.Barotrauma.Item.InventoryStateEventData.__new = __ctor
+end
 
 ---@class Barotrauma.Item.ChangePropertyEventData: System.ValueType
 ---@field EventType Barotrauma.Item.EventType
@@ -55599,10 +58103,14 @@ CS.Barotrauma.Item.ChangePropertyEventData = {}
 ---@return Barotrauma.Item.EventType
 function CS.Barotrauma.Item.ChangePropertyEventData.get_EventType() end
 
+do
 ---@param serializableProperty Barotrauma.SerializableProperty
 ---@param entity Barotrauma.ISerializableEntity
 ---@return Barotrauma.Item.ChangePropertyEventData
-function CS.Barotrauma.Item.ChangePropertyEventData(serializableProperty, entity) end
+local __ctor = function(serializableProperty, entity) end
+CS.Barotrauma.Item.ChangePropertyEventData = __ctor
+CS.Barotrauma.Item.ChangePropertyEventData.__new = __ctor
+end
 
 ---@class Barotrauma.Item.SetItemStatEventData: System.ValueType
 ---@field EventType Barotrauma.Item.EventType
@@ -55612,9 +58120,13 @@ CS.Barotrauma.Item.SetItemStatEventData = {}
 ---@return Barotrauma.Item.EventType
 function CS.Barotrauma.Item.SetItemStatEventData.get_EventType() end
 
+do
 ---@param stats userdata | { [Barotrauma.TalentStatIdentifier]: System.Single } | (fun(): userdata)
 ---@return Barotrauma.Item.SetItemStatEventData
-function CS.Barotrauma.Item.SetItemStatEventData(stats) end
+local __ctor = function(stats) end
+CS.Barotrauma.Item.SetItemStatEventData = __ctor
+CS.Barotrauma.Item.SetItemStatEventData.__new = __ctor
+end
 
 ---@class Barotrauma.Item.ItemStatusEventData: System.ValueType
 ---@field EventType Barotrauma.Item.EventType
@@ -55624,9 +58136,13 @@ CS.Barotrauma.Item.ItemStatusEventData = {}
 ---@return Barotrauma.Item.EventType
 function CS.Barotrauma.Item.ItemStatusEventData.get_EventType() end
 
+do
 ---@param loadingRound System.Boolean
 ---@return Barotrauma.Item.ItemStatusEventData
-function CS.Barotrauma.Item.ItemStatusEventData(loadingRound) end
+local __ctor = function(loadingRound) end
+CS.Barotrauma.Item.ItemStatusEventData = __ctor
+CS.Barotrauma.Item.ItemStatusEventData.__new = __ctor
+end
 
 ---@class Barotrauma.Item.AssignCampaignInteractionEventData: System.ValueType
 ---@field EventType Barotrauma.Item.EventType
@@ -55636,9 +58152,13 @@ CS.Barotrauma.Item.AssignCampaignInteractionEventData = {}
 ---@return Barotrauma.Item.EventType
 function CS.Barotrauma.Item.AssignCampaignInteractionEventData.get_EventType() end
 
+do
 ---@param targetClients userdata | (fun(): Barotrauma.Networking.Client)
 ---@return Barotrauma.Item.AssignCampaignInteractionEventData
-function CS.Barotrauma.Item.AssignCampaignInteractionEventData(targetClients) end
+local __ctor = function(targetClients) end
+CS.Barotrauma.Item.AssignCampaignInteractionEventData = __ctor
+CS.Barotrauma.Item.AssignCampaignInteractionEventData.__new = __ctor
+end
 
 ---@class Barotrauma.Item.ApplyStatusEffectEventData: System.ValueType
 ---@field EventType Barotrauma.Item.EventType
@@ -55653,6 +58173,7 @@ CS.Barotrauma.Item.ApplyStatusEffectEventData = {}
 ---@return Barotrauma.Item.EventType
 function CS.Barotrauma.Item.ApplyStatusEffectEventData.get_EventType() end
 
+do
 ---@param actionType Barotrauma.ActionType
 ---@param targetItemComponent? Barotrauma.Items.Components.ItemComponent
 ---@param targetCharacter? Barotrauma.Character
@@ -55660,7 +58181,10 @@ function CS.Barotrauma.Item.ApplyStatusEffectEventData.get_EventType() end
 ---@param useTarget? Barotrauma.Entity
 ---@param worldPosition? Microsoft.Xna.Framework.Vector2|nil
 ---@return Barotrauma.Item.ApplyStatusEffectEventData
-function CS.Barotrauma.Item.ApplyStatusEffectEventData(actionType, targetItemComponent, targetCharacter, targetLimb, useTarget, worldPosition) end
+local __ctor = function(actionType, targetItemComponent, targetCharacter, targetLimb, useTarget, worldPosition) end
+CS.Barotrauma.Item.ApplyStatusEffectEventData = __ctor
+CS.Barotrauma.Item.ApplyStatusEffectEventData.__new = __ctor
+end
 
 ---@class Barotrauma.Item.UpgradeEventData: System.ValueType
 ---@field EventType Barotrauma.Item.EventType
@@ -55670,9 +58194,13 @@ CS.Barotrauma.Item.UpgradeEventData = {}
 ---@return Barotrauma.Item.EventType
 function CS.Barotrauma.Item.UpgradeEventData.get_EventType() end
 
+do
 ---@param upgrade Barotrauma.Upgrade
 ---@return Barotrauma.Item.UpgradeEventData
-function CS.Barotrauma.Item.UpgradeEventData(upgrade) end
+local __ctor = function(upgrade) end
+CS.Barotrauma.Item.UpgradeEventData = __ctor
+CS.Barotrauma.Item.UpgradeEventData.__new = __ctor
+end
 
 ---@class Barotrauma.Item.SwapItemEventData: System.ValueType
 ---@field EventType Barotrauma.Item.EventType
@@ -55683,10 +58211,14 @@ CS.Barotrauma.Item.SwapItemEventData = {}
 ---@return Barotrauma.Item.EventType
 function CS.Barotrauma.Item.SwapItemEventData.get_EventType() end
 
+do
 ---@param newItem Barotrauma.ItemPrefab
 ---@param newId System.UInt16
 ---@return Barotrauma.Item.SwapItemEventData
-function CS.Barotrauma.Item.SwapItemEventData(newItem, newId) end
+local __ctor = function(newItem, newId) end
+CS.Barotrauma.Item.SwapItemEventData = __ctor
+CS.Barotrauma.Item.SwapItemEventData.__new = __ctor
+end
 
 ---@enum Barotrauma.ContainedItemSprite.DecorativeSpriteBehaviorType
 CS.Barotrauma.ContainedItemSprite.DecorativeSpriteBehaviorType = {
@@ -55722,8 +58254,12 @@ function CS.Barotrauma.LuaCsSetup.LuaCsModStore.GetCsStore(modName) end
 ---@return Barotrauma.LuaCsSetup.LuaCsModStore.LuaModStore
 function CS.Barotrauma.LuaCsSetup.LuaCsModStore.GetLuaStore(modName) end
 
+do
 ---@return Barotrauma.LuaCsSetup.LuaCsModStore
-function CS.Barotrauma.LuaCsSetup.LuaCsModStore() end
+local __ctor = function() end
+CS.Barotrauma.LuaCsSetup.LuaCsModStore = __ctor
+CS.Barotrauma.LuaCsSetup.LuaCsModStore.__new = __ctor
+end
 
 ---@enum Barotrauma.Hull.EventType
 CS.Barotrauma.Hull.EventType = {
@@ -55759,9 +58295,13 @@ CS.Barotrauma.Hull.DecalEventData = {}
 ---@return Barotrauma.Hull.EventType
 function CS.Barotrauma.Hull.DecalEventData.get_EventType() end
 
+do
 ---@param decal Barotrauma.Decal
 ---@return Barotrauma.Hull.DecalEventData
-function CS.Barotrauma.Hull.DecalEventData(decal) end
+local __ctor = function(decal) end
+CS.Barotrauma.Hull.DecalEventData = __ctor
+CS.Barotrauma.Hull.DecalEventData.__new = __ctor
+end
 
 ---@class Barotrauma.Hull.BackgroundSectionsEventData: System.ValueType
 ---@field EventType Barotrauma.Hull.EventType
@@ -55771,9 +58311,13 @@ CS.Barotrauma.Hull.BackgroundSectionsEventData = {}
 ---@return Barotrauma.Hull.EventType
 function CS.Barotrauma.Hull.BackgroundSectionsEventData.get_EventType() end
 
+do
 ---@param sectorStartIndex System.Int32
 ---@return Barotrauma.Hull.BackgroundSectionsEventData
-function CS.Barotrauma.Hull.BackgroundSectionsEventData(sectorStartIndex) end
+local __ctor = function(sectorStartIndex) end
+CS.Barotrauma.Hull.BackgroundSectionsEventData = __ctor
+CS.Barotrauma.Hull.BackgroundSectionsEventData.__new = __ctor
+end
 
 ---@class Barotrauma.Hull.BallastFloraEventData: System.ValueType
 ---@field EventType Barotrauma.Hull.EventType
@@ -55784,10 +58328,14 @@ CS.Barotrauma.Hull.BallastFloraEventData = {}
 ---@return Barotrauma.Hull.EventType
 function CS.Barotrauma.Hull.BallastFloraEventData.get_EventType() end
 
+do
 ---@param behavior Barotrauma.MapCreatures.Behavior.BallastFloraBehavior
 ---@param subEventData Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.IEventData
 ---@return Barotrauma.Hull.BallastFloraEventData
-function CS.Barotrauma.Hull.BallastFloraEventData(behavior, subEventData) end
+local __ctor = function(behavior, subEventData) end
+CS.Barotrauma.Hull.BallastFloraEventData = __ctor
+CS.Barotrauma.Hull.BallastFloraEventData.__new = __ctor
+end
 
 ---@enum Barotrauma.Level.PlacementType
 CS.Barotrauma.Level.PlacementType = {
@@ -55827,6 +58375,7 @@ CS.Barotrauma.Level.InterestingPosition = {}
 ---@return System.Boolean
 function CS.Barotrauma.Level.InterestingPosition.IsEnclosedArea() end
 
+do
 ---@overload fun(position: Microsoft.Xna.Framework.Point, positionType: Barotrauma.Level.PositionType, ruin: Barotrauma.RuinGeneration.Ruin, isValid?: System.Boolean): Barotrauma.Level.InterestingPosition
 ---@overload fun(position: Microsoft.Xna.Framework.Point, positionType: Barotrauma.Level.PositionType, cave: Barotrauma.Level.Cave, isValid?: System.Boolean): Barotrauma.Level.InterestingPosition
 ---@param position Microsoft.Xna.Framework.Point
@@ -55834,7 +58383,10 @@ function CS.Barotrauma.Level.InterestingPosition.IsEnclosedArea() end
 ---@param submarine? Barotrauma.Submarine
 ---@param isValid? System.Boolean
 ---@return Barotrauma.Level.InterestingPosition
-function CS.Barotrauma.Level.InterestingPosition(position, positionType, submarine, isValid) end
+local __ctor = function(position, positionType, submarine, isValid) end
+CS.Barotrauma.Level.InterestingPosition = __ctor
+CS.Barotrauma.Level.InterestingPosition.__new = __ctor
+end
 
 ---@enum Barotrauma.Level.TunnelType
 CS.Barotrauma.Level.TunnelType = {
@@ -55852,12 +58404,16 @@ CS.Barotrauma.Level.TunnelType = {
 ---@field Type Barotrauma.Level.TunnelType
 CS.Barotrauma.Level.Tunnel = {}
 
+do
 ---@param type Barotrauma.Level.TunnelType
 ---@param nodes userdata | { [System.Int32]: Microsoft.Xna.Framework.Point } | (fun(): Microsoft.Xna.Framework.Point)
 ---@param minWidth System.Int32
 ---@param parentTunnel Barotrauma.Level.Tunnel
 ---@return Barotrauma.Level.Tunnel
-function CS.Barotrauma.Level.Tunnel(type, nodes, minWidth, parentTunnel) end
+local __ctor = function(type, nodes, minWidth, parentTunnel) end
+CS.Barotrauma.Level.Tunnel = __ctor
+CS.Barotrauma.Level.Tunnel.__new = __ctor
+end
 
 ---@class Barotrauma.Level.Cave: System.Object
 ---@field Area Microsoft.Xna.Framework.Rectangle
@@ -55868,22 +58424,30 @@ function CS.Barotrauma.Level.Tunnel(type, nodes, minWidth, parentTunnel) end
 ---@field CaveGenerationParams Barotrauma.CaveGenerationParams
 CS.Barotrauma.Level.Cave = {}
 
+do
 ---@param caveGenerationParams Barotrauma.CaveGenerationParams
 ---@param area Microsoft.Xna.Framework.Rectangle
 ---@param startPos Microsoft.Xna.Framework.Point
 ---@param endPos Microsoft.Xna.Framework.Point
 ---@return Barotrauma.Level.Cave
-function CS.Barotrauma.Level.Cave(caveGenerationParams, area, startPos, endPos) end
+local __ctor = function(caveGenerationParams, area, startPos, endPos) end
+CS.Barotrauma.Level.Cave = __ctor
+CS.Barotrauma.Level.Cave.__new = __ctor
+end
 
 ---@class Barotrauma.Level.AbyssIsland: System.Object
 ---@field Area Microsoft.Xna.Framework.Rectangle
 ---@field Cells userdata | { [System.Int32]: Voronoi2.VoronoiCell } | (fun(): Voronoi2.VoronoiCell)
 CS.Barotrauma.Level.AbyssIsland = {}
 
+do
 ---@param area Microsoft.Xna.Framework.Rectangle
 ---@param cells userdata | { [System.Int32]: Voronoi2.VoronoiCell } | (fun(): Voronoi2.VoronoiCell)
 ---@return Barotrauma.Level.AbyssIsland
-function CS.Barotrauma.Level.AbyssIsland(area, cells) end
+local __ctor = function(area, cells) end
+CS.Barotrauma.Level.AbyssIsland = __ctor
+CS.Barotrauma.Level.AbyssIsland.__new = __ctor
+end
 
 ---@enum Barotrauma.Level.LevelGenStage
 CS.Barotrauma.Level.LevelGenStage = {
@@ -55926,6 +58490,7 @@ function CS.Barotrauma.Level.PathPoint.get_NextClusterProbability() end
 ---@return Barotrauma.Level.PathPoint
 function CS.Barotrauma.Level.PathPoint.WithResources(containsResources) end
 
+do
 ---@private
 ---@overload fun(id: System.String, position: Microsoft.Xna.Framework.Vector2, shouldContainResources: System.Boolean, tunnelType: Barotrauma.Level.TunnelType): Barotrauma.Level.PathPoint
 ---@param id System.String
@@ -55936,7 +58501,10 @@ function CS.Barotrauma.Level.PathPoint.WithResources(containsResources) end
 ---@param resourceIds userdata | { [System.Int32]: Barotrauma.Identifier } | (fun(): Barotrauma.Identifier)
 ---@param clusterLocations userdata | { [System.Int32]: Barotrauma.Level.ClusterLocation } | (fun(): Barotrauma.Level.ClusterLocation)
 ---@return Barotrauma.Level.PathPoint
-function CS.Barotrauma.Level.PathPoint(id, position, shouldContainResources, tunnelType, resourceTags, resourceIds, clusterLocations) end
+local __ctor = function(id, position, shouldContainResources, tunnelType, resourceTags, resourceIds, clusterLocations) end
+CS.Barotrauma.Level.PathPoint = __ctor
+CS.Barotrauma.Level.PathPoint.__new = __ctor
+end
 
 ---@class Barotrauma.Level.ClusterLocation: System.ValueType
 ---@field Cell Voronoi2.VoronoiCell
@@ -55952,11 +58520,15 @@ function CS.Barotrauma.Level.ClusterLocation.Equals(anotherLocation) end
 
 function CS.Barotrauma.Level.ClusterLocation.InitializeResources() end
 
+do
 ---@param cell Voronoi2.VoronoiCell
 ---@param edge Voronoi2.GraphEdge
 ---@param initializeResourceList? System.Boolean
 ---@return Barotrauma.Level.ClusterLocation
-function CS.Barotrauma.Level.ClusterLocation(cell, edge, initializeResourceList) end
+local __ctor = function(cell, edge, initializeResourceList) end
+CS.Barotrauma.Level.ClusterLocation = __ctor
+CS.Barotrauma.Level.ClusterLocation.__new = __ctor
+end
 
 ---@class Barotrauma.Level.PlaceableWreck: System.ValueType
 ---@field WreckFile Barotrauma.WreckFile
@@ -55967,18 +58539,26 @@ CS.Barotrauma.Level.PlaceableWreck = {}
 ---@return userdata
 function CS.Barotrauma.Level.PlaceableWreck.TryCreate(wreckFile) end
 
+do
 ---@param WreckFile Barotrauma.WreckFile
 ---@param WreckInfo Barotrauma.WreckInfo
 ---@return Barotrauma.Level.PlaceableWreck
-function CS.Barotrauma.Level.PlaceableWreck(WreckFile, WreckInfo) end
+local __ctor = function(WreckFile, WreckInfo) end
+CS.Barotrauma.Level.PlaceableWreck = __ctor
+CS.Barotrauma.Level.PlaceableWreck.__new = __ctor
+end
 
 ---@class Barotrauma.LevelObjectManager.EventData: System.ValueType
 ---@field LevelObject Barotrauma.LevelObject
 CS.Barotrauma.LevelObjectManager.EventData = {}
 
+do
 ---@param levelObject Barotrauma.LevelObject
 ---@return Barotrauma.LevelObjectManager.EventData
-function CS.Barotrauma.LevelObjectManager.EventData(levelObject) end
+local __ctor = function(levelObject) end
+CS.Barotrauma.LevelObjectManager.EventData = __ctor
+CS.Barotrauma.LevelObjectManager.EventData.__new = __ctor
+end
 
 ---@class Barotrauma.LevelObjectManager.SpawnPosition: System.Object
 ---@field GraphEdge Voronoi2.GraphEdge
@@ -55993,13 +58573,17 @@ CS.Barotrauma.LevelObjectManager.SpawnPosition = {}
 ---@return System.Single
 function CS.Barotrauma.LevelObjectManager.SpawnPosition.GetSpawnProbability(prefab) end
 
+do
 ---@overload fun(graphEdge: Voronoi2.GraphEdge, normal: Microsoft.Xna.Framework.Vector2, spawnPosTypes: (userdata | (fun(): Barotrauma.LevelObjectPrefab.SpawnPosType)), alignment: Barotrauma.Alignment): Barotrauma.LevelObjectManager.SpawnPosition
 ---@param graphEdge Voronoi2.GraphEdge
 ---@param normal Microsoft.Xna.Framework.Vector2
 ---@param spawnPosType Barotrauma.LevelObjectPrefab.SpawnPosType
 ---@param alignment Barotrauma.Alignment
 ---@return Barotrauma.LevelObjectManager.SpawnPosition
-function CS.Barotrauma.LevelObjectManager.SpawnPosition(graphEdge, normal, spawnPosType, alignment) end
+local __ctor = function(graphEdge, normal, spawnPosType, alignment) end
+CS.Barotrauma.LevelObjectManager.SpawnPosition = __ctor
+CS.Barotrauma.LevelObjectManager.SpawnPosition.__new = __ctor
+end
 
 ---@class Barotrauma.LevelObjectPrefab.SoundConfig: System.Object
 ---@field SoundElement Barotrauma.ContentXElement
@@ -56007,10 +58591,14 @@ function CS.Barotrauma.LevelObjectManager.SpawnPosition(graphEdge, normal, spawn
 ---@field TriggerIndex System.Int32
 CS.Barotrauma.LevelObjectPrefab.SoundConfig = {}
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param triggerIndex System.Int32
 ---@return Barotrauma.LevelObjectPrefab.SoundConfig
-function CS.Barotrauma.LevelObjectPrefab.SoundConfig(element, triggerIndex) end
+local __ctor = function(element, triggerIndex) end
+CS.Barotrauma.LevelObjectPrefab.SoundConfig = __ctor
+CS.Barotrauma.LevelObjectPrefab.SoundConfig.__new = __ctor
+end
 
 ---@class Barotrauma.LevelObjectPrefab.ChildObject: System.Object
 ---@field AllowedNames userdata | { [System.Int32]: System.String } | (fun(): System.String)
@@ -56018,9 +58606,13 @@ function CS.Barotrauma.LevelObjectPrefab.SoundConfig(element, triggerIndex) end
 ---@field MaxCount System.Int32
 CS.Barotrauma.LevelObjectPrefab.ChildObject = {}
 
+do
 ---@overload fun(element: System.Xml.Linq.XElement): Barotrauma.LevelObjectPrefab.ChildObject
 ---@return Barotrauma.LevelObjectPrefab.ChildObject
-function CS.Barotrauma.LevelObjectPrefab.ChildObject() end
+local __ctor = function() end
+CS.Barotrauma.LevelObjectPrefab.ChildObject = __ctor
+CS.Barotrauma.LevelObjectPrefab.ChildObject.__new = __ctor
+end
 
 ---@enum Barotrauma.LevelObjectPrefab.SpawnPosType
 CS.Barotrauma.LevelObjectPrefab.SpawnPosType = {
@@ -56064,11 +58656,15 @@ CS.Barotrauma.LevelTrigger.TriggerForceMode = {
 ---@field Normal Microsoft.Xna.Framework.Vector2
 CS.Barotrauma.SubmarineBody.Impact = {}
 
+do
 ---@param f1 FarseerPhysics.Dynamics.Fixture
 ---@param f2 FarseerPhysics.Dynamics.Fixture
 ---@param contact FarseerPhysics.Dynamics.Contacts.Contact
 ---@return Barotrauma.SubmarineBody.Impact
-function CS.Barotrauma.SubmarineBody.Impact(f1, f2, contact) end
+local __ctor = function(f1, f2, contact) end
+CS.Barotrauma.SubmarineBody.Impact = __ctor
+CS.Barotrauma.SubmarineBody.Impact.__new = __ctor
+end
 
 ---@class Barotrauma.SubmarineInfo.PendingSubInfo: System.ValueType
 ---@field PendingSub Barotrauma.SubmarineInfo
@@ -56076,11 +58672,15 @@ function CS.Barotrauma.SubmarineBody.Impact(f1, f2, contact) end
 ---@field RealWorldCrushDepth System.Single
 CS.Barotrauma.SubmarineInfo.PendingSubInfo = {}
 
+do
 ---@param PendingSub? Barotrauma.SubmarineInfo
 ---@param StructuresDefineRealWorldCrushDepth? System.Boolean
 ---@param RealWorldCrushDepth? System.Single
 ---@return Barotrauma.SubmarineInfo.PendingSubInfo
-function CS.Barotrauma.SubmarineInfo.PendingSubInfo(PendingSub, StructuresDefineRealWorldCrushDepth, RealWorldCrushDepth) end
+local __ctor = function(PendingSub, StructuresDefineRealWorldCrushDepth, RealWorldCrushDepth) end
+CS.Barotrauma.SubmarineInfo.PendingSubInfo = __ctor
+CS.Barotrauma.SubmarineInfo.PendingSubInfo.__new = __ctor
+end
 
 ---@enum Barotrauma.SubmarineInfo.CrewExperienceLevel
 CS.Barotrauma.SubmarineInfo.CrewExperienceLevel = {
@@ -56097,9 +58697,13 @@ CS.Barotrauma.SubmarineInfo.CrewExperienceLevel = {
 ---@field NameIdentifier Barotrauma.Identifier
 CS.Barotrauma.SubmarinePreview.LoadedHull = {}
 
+do
 ---@param element System.Xml.Linq.XElement
 ---@return Barotrauma.SubmarinePreview.LoadedHull
-function CS.Barotrauma.SubmarinePreview.LoadedHull(element) end
+local __ctor = function(element) end
+CS.Barotrauma.SubmarinePreview.LoadedHull = __ctor
+CS.Barotrauma.SubmarinePreview.LoadedHull.__new = __ctor
+end
 
 ---@class Barotrauma.SubmarinePreview.HullCollection: System.Object
 ---@field Hulls userdata | { [System.Int32]: Barotrauma.SubmarinePreview.LoadedHull } | (fun(): Barotrauma.SubmarinePreview.LoadedHull)
@@ -56119,17 +58723,25 @@ function CS.Barotrauma.SubmarinePreview.HullCollection.Contains(hullId) end
 ---@return System.Boolean
 function CS.Barotrauma.SubmarinePreview.HullCollection.IsLinkedTo(other) end
 
+do
 ---@param hull Barotrauma.SubmarinePreview.LoadedHull
 ---@return Barotrauma.SubmarinePreview.HullCollection
-function CS.Barotrauma.SubmarinePreview.HullCollection(hull) end
+local __ctor = function(hull) end
+CS.Barotrauma.SubmarinePreview.HullCollection = __ctor
+CS.Barotrauma.SubmarinePreview.HullCollection.__new = __ctor
+end
 
 ---@class Barotrauma.SubmarinePreview.Door: System.ValueType
 ---@field Rect Microsoft.Xna.Framework.Rectangle
 CS.Barotrauma.SubmarinePreview.Door = {}
 
+do
 ---@param rect Microsoft.Xna.Framework.Rectangle
 ---@return Barotrauma.SubmarinePreview.Door
-function CS.Barotrauma.SubmarinePreview.Door(rect) end
+local __ctor = function(rect) end
+CS.Barotrauma.SubmarinePreview.Door = __ctor
+CS.Barotrauma.SubmarinePreview.Door.__new = __ctor
+end
 
 ---@class Barotrauma.EntitySpawner.CharacterSpawnInfo: System.Object
 ---@field Identifier Barotrauma.Identifier
@@ -56145,13 +58757,17 @@ function CS.Barotrauma.EntitySpawner.CharacterSpawnInfo.Spawn() end
 ---@param spawnedCharacter Barotrauma.Entity
 function CS.Barotrauma.EntitySpawner.CharacterSpawnInfo.OnSpawned(spawnedCharacter) end
 
+do
 ---@overload fun(identifier: Barotrauma.Identifier, position: Microsoft.Xna.Framework.Vector2, sub: Barotrauma.Submarine, onSpawn?: (fun(obj: Barotrauma.Character))): Barotrauma.EntitySpawner.CharacterSpawnInfo
 ---@overload fun(identifier: Barotrauma.Identifier, position: Microsoft.Xna.Framework.Vector2, characterInfo: Barotrauma.CharacterInfo, onSpawn?: (fun(obj: Barotrauma.Character))): Barotrauma.EntitySpawner.CharacterSpawnInfo
 ---@param identifier Barotrauma.Identifier
 ---@param worldPosition Microsoft.Xna.Framework.Vector2
 ---@param onSpawn? fun(obj: Barotrauma.Character)
 ---@return Barotrauma.EntitySpawner.CharacterSpawnInfo
-function CS.Barotrauma.EntitySpawner.CharacterSpawnInfo(identifier, worldPosition, onSpawn) end
+local __ctor = function(identifier, worldPosition, onSpawn) end
+CS.Barotrauma.EntitySpawner.CharacterSpawnInfo = __ctor
+CS.Barotrauma.EntitySpawner.CharacterSpawnInfo.__new = __ctor
+end
 
 ---@class Barotrauma.EntitySpawner.SubmarineSpawnInfo: System.Object
 ---@field Name System.String
@@ -56165,21 +58781,29 @@ function CS.Barotrauma.EntitySpawner.SubmarineSpawnInfo.Spawn() end
 ---@param spawnedCharacter Barotrauma.Entity
 function CS.Barotrauma.EntitySpawner.SubmarineSpawnInfo.OnSpawned(spawnedCharacter) end
 
+do
 ---@param name System.String
 ---@param worldPosition Microsoft.Xna.Framework.Vector2
 ---@param onSpawn? fun(obj: Barotrauma.Character)
 ---@return Barotrauma.EntitySpawner.SubmarineSpawnInfo
-function CS.Barotrauma.EntitySpawner.SubmarineSpawnInfo(name, worldPosition, onSpawn) end
+local __ctor = function(name, worldPosition, onSpawn) end
+CS.Barotrauma.EntitySpawner.SubmarineSpawnInfo = __ctor
+CS.Barotrauma.EntitySpawner.SubmarineSpawnInfo.__new = __ctor
+end
 
 ---@class Barotrauma.Voting.SubmarineVoteInfo: System.ValueType
 ---@field SubmarineInfo Barotrauma.SubmarineInfo
 ---@field TransferItems System.Boolean
 CS.Barotrauma.Voting.SubmarineVoteInfo = {}
 
+do
 ---@param submarineInfo Barotrauma.SubmarineInfo
 ---@param transferItems System.Boolean
 ---@return Barotrauma.Voting.SubmarineVoteInfo
-function CS.Barotrauma.Voting.SubmarineVoteInfo(submarineInfo, transferItems) end
+local __ctor = function(submarineInfo, transferItems) end
+CS.Barotrauma.Voting.SubmarineVoteInfo = __ctor
+CS.Barotrauma.Voting.SubmarineVoteInfo.__new = __ctor
+end
 
 ---@class Barotrauma.LevelEditorScreen.Wizard: System.Object
 ---@field Instance Barotrauma.LevelEditorScreen.Wizard
@@ -56195,8 +58819,12 @@ function CS.Barotrauma.LevelEditorScreen.Wizard.AddToGUIUpdateList() end
 ---@return Barotrauma.GUIMessageBox
 function CS.Barotrauma.LevelEditorScreen.Wizard.Create() end
 
+do
 ---@return Barotrauma.LevelEditorScreen.Wizard
-function CS.Barotrauma.LevelEditorScreen.Wizard() end
+local __ctor = function() end
+CS.Barotrauma.LevelEditorScreen.Wizard = __ctor
+CS.Barotrauma.LevelEditorScreen.Wizard.__new = __ctor
+end
 
 ---@enum Barotrauma.NetLobbyScreen.SubmarineDeliveryData
 CS.Barotrauma.NetLobbyScreen.SubmarineDeliveryData = {
@@ -56214,8 +58842,12 @@ CS.Barotrauma.NetLobbyScreen.SubmarineDeliveryData = {
 ---@field IsActive System.Boolean
 CS.Barotrauma.DecorativeSprite.State = {}
 
+do
 ---@return Barotrauma.DecorativeSprite.State
-function CS.Barotrauma.DecorativeSprite.State() end
+local __ctor = function() end
+CS.Barotrauma.DecorativeSprite.State = __ctor
+CS.Barotrauma.DecorativeSprite.State.__new = __ctor
+end
 
 ---@enum Barotrauma.DecorativeSprite.AnimationType
 CS.Barotrauma.DecorativeSprite.AnimationType = {
@@ -56230,8 +58862,12 @@ CS.Barotrauma.DecorativeSprite.AnimationType = {
 ---@field RefCount System.Int32
 CS.Barotrauma.Sprite.TextureRefCounter = {}
 
+do
 ---@return Barotrauma.Sprite.TextureRefCounter
-function CS.Barotrauma.Sprite.TextureRefCounter() end
+local __ctor = function() end
+CS.Barotrauma.Sprite.TextureRefCounter = __ctor
+CS.Barotrauma.Sprite.TextureRefCounter.__new = __ctor
+end
 
 ---@enum Barotrauma.StatusEffect.TargetType
 CS.Barotrauma.StatusEffect.TargetType = {
@@ -56272,28 +58908,40 @@ CS.Barotrauma.StatusEffect.ItemSpawnInfo = {}
 ---@return System.Int32
 function CS.Barotrauma.StatusEffect.ItemSpawnInfo.GetCount(randSync) end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param parentDebugName System.String
 ---@return Barotrauma.StatusEffect.ItemSpawnInfo
-function CS.Barotrauma.StatusEffect.ItemSpawnInfo(element, parentDebugName) end
+local __ctor = function(element, parentDebugName) end
+CS.Barotrauma.StatusEffect.ItemSpawnInfo = __ctor
+CS.Barotrauma.StatusEffect.ItemSpawnInfo.__new = __ctor
+end
 
 ---@class Barotrauma.StatusEffect.AbilityStatusEffectIdentifier: Barotrauma.Abilities.AbilityObject
 ---@field EffectIdentifier Barotrauma.Identifier
 CS.Barotrauma.StatusEffect.AbilityStatusEffectIdentifier = {}
 
+do
 ---@param effectIdentifier Barotrauma.Identifier
 ---@return Barotrauma.StatusEffect.AbilityStatusEffectIdentifier
-function CS.Barotrauma.StatusEffect.AbilityStatusEffectIdentifier(effectIdentifier) end
+local __ctor = function(effectIdentifier) end
+CS.Barotrauma.StatusEffect.AbilityStatusEffectIdentifier = __ctor
+CS.Barotrauma.StatusEffect.AbilityStatusEffectIdentifier.__new = __ctor
+end
 
 ---@class Barotrauma.StatusEffect.GiveTalentInfo: System.Object
 ---@field TalentIdentifiers Barotrauma.Identifier[]
 ---@field GiveRandom System.Boolean
 CS.Barotrauma.StatusEffect.GiveTalentInfo = {}
 
+do
 ---@param element System.Xml.Linq.XElement
 ---@param _ System.String
 ---@return Barotrauma.StatusEffect.GiveTalentInfo
-function CS.Barotrauma.StatusEffect.GiveTalentInfo(element, _) end
+local __ctor = function(element, _) end
+CS.Barotrauma.StatusEffect.GiveTalentInfo = __ctor
+CS.Barotrauma.StatusEffect.GiveTalentInfo.__new = __ctor
+end
 
 ---@class Barotrauma.StatusEffect.GiveSkill: System.Object
 ---@field SkillIdentifier Barotrauma.Identifier
@@ -56304,10 +58952,14 @@ function CS.Barotrauma.StatusEffect.GiveTalentInfo(element, _) end
 ---@field AlwayShowNotification System.Boolean
 CS.Barotrauma.StatusEffect.GiveSkill = {}
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param parentDebugName System.String
 ---@return Barotrauma.StatusEffect.GiveSkill
-function CS.Barotrauma.StatusEffect.GiveSkill(element, parentDebugName) end
+local __ctor = function(element, parentDebugName) end
+CS.Barotrauma.StatusEffect.GiveSkill = __ctor
+CS.Barotrauma.StatusEffect.GiveSkill.__new = __ctor
+end
 
 ---@class Barotrauma.StatusEffect.CharacterSpawnInfo: System.Object
 ---@field Name System.String
@@ -56332,10 +58984,14 @@ CS.Barotrauma.StatusEffect.CharacterSpawnInfo = {}
 ---@return System.String
 function CS.Barotrauma.StatusEffect.CharacterSpawnInfo.get_Name() end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param parentDebugName System.String
 ---@return Barotrauma.StatusEffect.CharacterSpawnInfo
-function CS.Barotrauma.StatusEffect.CharacterSpawnInfo(element, parentDebugName) end
+local __ctor = function(element, parentDebugName) end
+CS.Barotrauma.StatusEffect.CharacterSpawnInfo = __ctor
+CS.Barotrauma.StatusEffect.CharacterSpawnInfo.__new = __ctor
+end
 
 ---@class Barotrauma.StatusEffect.AITrigger: System.Object
 ---@field Name System.String
@@ -56362,9 +59018,13 @@ function CS.Barotrauma.StatusEffect.AITrigger.Reset() end
 ---@param deltaTime System.Single
 function CS.Barotrauma.StatusEffect.AITrigger.UpdateTimer(deltaTime) end
 
+do
 ---@param element System.Xml.Linq.XElement
 ---@return Barotrauma.StatusEffect.AITrigger
-function CS.Barotrauma.StatusEffect.AITrigger(element) end
+local __ctor = function(element) end
+CS.Barotrauma.StatusEffect.AITrigger = __ctor
+CS.Barotrauma.StatusEffect.AITrigger.__new = __ctor
+end
 
 ---@class Barotrauma.StatusEffect.SteamTimeLineEvent: System.ValueType
 ---@field title System.String
@@ -56372,11 +59032,15 @@ function CS.Barotrauma.StatusEffect.AITrigger(element) end
 ---@field icon System.String
 CS.Barotrauma.StatusEffect.SteamTimeLineEvent = {}
 
+do
 ---@param title System.String
 ---@param description System.String
 ---@param icon System.String
 ---@return Barotrauma.StatusEffect.SteamTimeLineEvent
-function CS.Barotrauma.StatusEffect.SteamTimeLineEvent(title, description, icon) end
+local __ctor = function(title, description, icon) end
+CS.Barotrauma.StatusEffect.SteamTimeLineEvent = __ctor
+CS.Barotrauma.StatusEffect.SteamTimeLineEvent.__new = __ctor
+end
 
 ---@class Barotrauma.StatusEffect.AnimLoadInfo: System.ValueType
 ---@field Type Barotrauma.AnimationType
@@ -56385,12 +59049,16 @@ function CS.Barotrauma.StatusEffect.SteamTimeLineEvent(title, description, icon)
 ---@field ExpectedSpeciesNames userdata | { [System.Int32]: Barotrauma.Identifier } | (fun(): Barotrauma.Identifier)
 CS.Barotrauma.StatusEffect.AnimLoadInfo = {}
 
+do
 ---@param Type Barotrauma.AnimationType
 ---@param File userdata
 ---@param Priority System.Single
 ---@param ExpectedSpeciesNames userdata | { [System.Int32]: Barotrauma.Identifier } | (fun(): Barotrauma.Identifier)
 ---@return Barotrauma.StatusEffect.AnimLoadInfo
-function CS.Barotrauma.StatusEffect.AnimLoadInfo(Type, File, Priority, ExpectedSpeciesNames) end
+local __ctor = function(Type, File, Priority, ExpectedSpeciesNames) end
+CS.Barotrauma.StatusEffect.AnimLoadInfo = __ctor
+CS.Barotrauma.StatusEffect.AnimLoadInfo.__new = __ctor
+end
 
 ---@class Barotrauma.StatusEffect.ShouldShortCircuit: System.MulticastDelegate
 CS.Barotrauma.StatusEffect.ShouldShortCircuit = {}
@@ -56412,10 +59080,14 @@ function CS.Barotrauma.StatusEffect.ShouldShortCircuit.BeginInvoke(condition, va
 ---@return System.Boolean
 function CS.Barotrauma.StatusEffect.ShouldShortCircuit.EndInvoke(valueToReturn, result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return Barotrauma.StatusEffect.ShouldShortCircuit
-function CS.Barotrauma.StatusEffect.ShouldShortCircuit(object, method) end
+local __ctor = function(object, method) end
+CS.Barotrauma.StatusEffect.ShouldShortCircuit = __ctor
+CS.Barotrauma.StatusEffect.ShouldShortCircuit.__new = __ctor
+end
 
 ---@enum Barotrauma.SteamTimelineManager.TimelineGameMode
 CS.Barotrauma.SteamTimelineManager.TimelineGameMode = {
@@ -56436,10 +59108,14 @@ CS.Barotrauma.TraitorManager.TraitorResults = {}
 ---@return Barotrauma.Networking.Client
 function CS.Barotrauma.TraitorManager.TraitorResults.GetTraitorClient() end
 
+do
 ---@param votedAsTraitor Barotrauma.Networking.Client
 ---@param traitorEvent Barotrauma.TraitorEvent
 ---@return Barotrauma.TraitorManager.TraitorResults
-function CS.Barotrauma.TraitorManager.TraitorResults(votedAsTraitor, traitorEvent) end
+local __ctor = function(votedAsTraitor, traitorEvent) end
+CS.Barotrauma.TraitorManager.TraitorResults = __ctor
+CS.Barotrauma.TraitorManager.TraitorResults.__new = __ctor
+end
 
 ---@class Barotrauma.SpriteRecorder.Command: System.ValueType
 ---@field Texture Microsoft.Xna.Framework.Graphics.Texture2D
@@ -56478,6 +59154,7 @@ function CS.Barotrauma.SpriteRecorder.Command.FromTransform(texture, pos, srcRec
 ---@return System.Boolean
 function CS.Barotrauma.SpriteRecorder.Command.Overlaps(other) end
 
+do
 ---@param Texture Microsoft.Xna.Framework.Graphics.Texture2D
 ---@param VertexBL Microsoft.Xna.Framework.Graphics.VertexPositionColorTexture
 ---@param VertexBR Microsoft.Xna.Framework.Graphics.VertexPositionColorTexture
@@ -56488,7 +59165,10 @@ function CS.Barotrauma.SpriteRecorder.Command.Overlaps(other) end
 ---@param Max Microsoft.Xna.Framework.Vector2
 ---@param Index System.Int32
 ---@return Barotrauma.SpriteRecorder.Command
-function CS.Barotrauma.SpriteRecorder.Command(Texture, VertexBL, VertexBR, VertexTL, VertexTR, Depth, Min, Max, Index) end
+local __ctor = function(Texture, VertexBL, VertexBR, VertexTL, VertexTR, Depth, Min, Max, Index) end
+CS.Barotrauma.SpriteRecorder.Command = __ctor
+CS.Barotrauma.SpriteRecorder.Command.__new = __ctor
+end
 
 ---@class Barotrauma.SpriteRecorder.RecordedBuffer: System.ValueType
 ---@field Texture Microsoft.Xna.Framework.Graphics.Texture2D
@@ -56496,11 +59176,15 @@ function CS.Barotrauma.SpriteRecorder.Command(Texture, VertexBL, VertexBR, Verte
 ---@field PolyCount System.Int32
 CS.Barotrauma.SpriteRecorder.RecordedBuffer = {}
 
+do
 ---@param commandList userdata | { [System.Int32]: Barotrauma.SpriteRecorder.Command } | (fun(): Barotrauma.SpriteRecorder.Command)
 ---@param startIndex System.Int32
 ---@param count System.Int32
 ---@return Barotrauma.SpriteRecorder.RecordedBuffer
-function CS.Barotrauma.SpriteRecorder.RecordedBuffer(commandList, startIndex, count) end
+local __ctor = function(commandList, startIndex, count) end
+CS.Barotrauma.SpriteRecorder.RecordedBuffer = __ctor
+CS.Barotrauma.SpriteRecorder.RecordedBuffer.__new = __ctor
+end
 
 ---@enum Barotrauma.AIObjectiveCheckStolenItems.State
 CS.Barotrauma.AIObjectiveCheckStolenItems.State = {
@@ -56599,9 +59283,13 @@ CS.Barotrauma.PetBehavior.ItemProduction = {}
 ---@param deltaTime System.Single
 function CS.Barotrauma.PetBehavior.ItemProduction.Update(pet, deltaTime) end
 
+do
 ---@param element System.Xml.Linq.XElement
 ---@return Barotrauma.PetBehavior.ItemProduction
-function CS.Barotrauma.PetBehavior.ItemProduction(element) end
+local __ctor = function(element) end
+CS.Barotrauma.PetBehavior.ItemProduction = __ctor
+CS.Barotrauma.PetBehavior.ItemProduction.__new = __ctor
+end
 
 ---@class Barotrauma.PetBehavior.Food: System.Object
 ---@field Tag Barotrauma.Identifier
@@ -56613,8 +59301,12 @@ function CS.Barotrauma.PetBehavior.ItemProduction(element) end
 ---@field TargetParams Barotrauma.CharacterParams.TargetParams
 CS.Barotrauma.PetBehavior.Food = {}
 
+do
 ---@return Barotrauma.PetBehavior.Food
-function CS.Barotrauma.PetBehavior.Food() end
+local __ctor = function() end
+CS.Barotrauma.PetBehavior.Food = __ctor
+CS.Barotrauma.PetBehavior.Food.__new = __ctor
+end
 
 ---@enum Barotrauma.ShipCommandManager.NavigationStates
 CS.Barotrauma.ShipCommandManager.NavigationStates = {
@@ -56683,10 +59375,14 @@ CS.Barotrauma.AfflictionPrefab.Effect = {}
 ---@return System.Single
 function CS.Barotrauma.AfflictionPrefab.Effect.GetStrengthFactor(affliction) end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param parentDebugName System.String
 ---@return Barotrauma.AfflictionPrefab.Effect
-function CS.Barotrauma.AfflictionPrefab.Effect(element, parentDebugName) end
+local __ctor = function(element, parentDebugName) end
+CS.Barotrauma.AfflictionPrefab.Effect = __ctor
+CS.Barotrauma.AfflictionPrefab.Effect.__new = __ctor
+end
 
 ---@class Barotrauma.AfflictionPrefab.Description: System.Object
 ---@field Text Barotrauma.LocalizedString
@@ -56696,10 +59392,14 @@ function CS.Barotrauma.AfflictionPrefab.Effect(element, parentDebugName) end
 ---@field Target Barotrauma.AfflictionPrefab.Description.TargetType
 CS.Barotrauma.AfflictionPrefab.Description = {}
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param affliction Barotrauma.AfflictionPrefab
 ---@return Barotrauma.AfflictionPrefab.Description
-function CS.Barotrauma.AfflictionPrefab.Description(element, affliction) end
+local __ctor = function(element, affliction) end
+CS.Barotrauma.AfflictionPrefab.Description = __ctor
+CS.Barotrauma.AfflictionPrefab.Description.__new = __ctor
+end
 
 ---@class Barotrauma.AfflictionPrefab.PeriodicEffect: System.Object
 ---@field StatusEffects userdata | { [System.Int32]: Barotrauma.StatusEffect } | (fun(): Barotrauma.StatusEffect)
@@ -56709,10 +59409,14 @@ function CS.Barotrauma.AfflictionPrefab.Description(element, affliction) end
 ---@field MaxStrength System.Single
 CS.Barotrauma.AfflictionPrefab.PeriodicEffect = {}
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param parentDebugName System.String
 ---@return Barotrauma.AfflictionPrefab.PeriodicEffect
-function CS.Barotrauma.AfflictionPrefab.PeriodicEffect(element, parentDebugName) end
+local __ctor = function(element, parentDebugName) end
+CS.Barotrauma.AfflictionPrefab.PeriodicEffect = __ctor
+CS.Barotrauma.AfflictionPrefab.PeriodicEffect.__new = __ctor
+end
 
 ---@class Barotrauma.CharacterParams.SoundParams: Barotrauma.CharacterParams.SubParam
 ---@field Name System.String
@@ -56734,10 +59438,14 @@ function CS.Barotrauma.CharacterParams.SoundParams.get_Tags() end
 ---@param value System.String
 function CS.Barotrauma.CharacterParams.SoundParams.set_Tags(value) end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param character Barotrauma.CharacterParams
 ---@return Barotrauma.CharacterParams.SoundParams
-function CS.Barotrauma.CharacterParams.SoundParams(element, character) end
+local __ctor = function(element, character) end
+CS.Barotrauma.CharacterParams.SoundParams = __ctor
+CS.Barotrauma.CharacterParams.SoundParams.__new = __ctor
+end
 
 ---@class Barotrauma.CharacterParams.ParticleParams: Barotrauma.CharacterParams.SubParam
 ---@field Name System.String
@@ -56759,10 +59467,14 @@ CS.Barotrauma.CharacterParams.ParticleParams = {}
 ---@return System.String
 function CS.Barotrauma.CharacterParams.ParticleParams.get_Name() end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param character Barotrauma.CharacterParams
 ---@return Barotrauma.CharacterParams.ParticleParams
-function CS.Barotrauma.CharacterParams.ParticleParams(element, character) end
+local __ctor = function(element, character) end
+CS.Barotrauma.CharacterParams.ParticleParams = __ctor
+CS.Barotrauma.CharacterParams.ParticleParams.__new = __ctor
+end
 
 ---@class Barotrauma.CharacterParams.HealthParams: Barotrauma.CharacterParams.SubParam
 ---@field Name System.String
@@ -56793,10 +59505,14 @@ function CS.Barotrauma.CharacterParams.HealthParams.get_Name() end
 ---@return userdata | (fun(): Barotrauma.Identifier)
 function CS.Barotrauma.CharacterParams.HealthParams.get_ImmunityIdentifiers() end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param character Barotrauma.CharacterParams
 ---@return Barotrauma.CharacterParams.HealthParams
-function CS.Barotrauma.CharacterParams.HealthParams(element, character) end
+local __ctor = function(element, character) end
+CS.Barotrauma.CharacterParams.HealthParams = __ctor
+CS.Barotrauma.CharacterParams.HealthParams.__new = __ctor
+end
 
 ---@class Barotrauma.CharacterParams.InventoryParams: Barotrauma.CharacterParams.SubParam
 ---@field Name System.String
@@ -56816,10 +59532,14 @@ function CS.Barotrauma.CharacterParams.InventoryParams.AddItem(identifier) end
 ---@return System.Boolean
 function CS.Barotrauma.CharacterParams.InventoryParams.RemoveItem(item) end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param character Barotrauma.CharacterParams
 ---@return Barotrauma.CharacterParams.InventoryParams
-function CS.Barotrauma.CharacterParams.InventoryParams(element, character) end
+local __ctor = function(element, character) end
+CS.Barotrauma.CharacterParams.InventoryParams = __ctor
+CS.Barotrauma.CharacterParams.InventoryParams.__new = __ctor
+end
 
 ---@class Barotrauma.CharacterParams.AIParams: Barotrauma.CharacterParams.SubParam
 ---@field Name System.String
@@ -56926,10 +59646,14 @@ function CS.Barotrauma.CharacterParams.AIParams.TryGetTargets(target, targetPara
 ---@return System.Boolean
 function CS.Barotrauma.CharacterParams.AIParams.TryGetHighestPriorityTarget(target, targetParams) end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param character Barotrauma.CharacterParams
 ---@return Barotrauma.CharacterParams.AIParams
-function CS.Barotrauma.CharacterParams.AIParams(element, character) end
+local __ctor = function(element, character) end
+CS.Barotrauma.CharacterParams.AIParams = __ctor
+CS.Barotrauma.CharacterParams.AIParams.__new = __ctor
+end
 
 ---@class Barotrauma.CharacterParams.TargetParams: Barotrauma.CharacterParams.SubParam
 ---@field Name System.String
@@ -56978,13 +59702,17 @@ function CS.Barotrauma.CharacterParams.TargetParams.get_Name() end
 ---@return Barotrauma.ContentXElement
 function CS.Barotrauma.CharacterParams.TargetParams.CreateNewElement(character, tag, state, priority) end
 
+do
 ---@overload fun(element: Barotrauma.ContentXElement, character: Barotrauma.CharacterParams): Barotrauma.CharacterParams.TargetParams
 ---@param tag System.String
 ---@param state Barotrauma.AIState
 ---@param priority System.Single
 ---@param character Barotrauma.CharacterParams
 ---@return Barotrauma.CharacterParams.TargetParams
-function CS.Barotrauma.CharacterParams.TargetParams(tag, state, priority, character) end
+local __ctor = function(tag, state, priority, character) end
+CS.Barotrauma.CharacterParams.TargetParams = __ctor
+CS.Barotrauma.CharacterParams.TargetParams.__new = __ctor
+end
 
 ---@class Barotrauma.CharacterParams.SubParam: System.Object
 ---@field Name System.String
@@ -57024,10 +59752,14 @@ function CS.Barotrauma.CharacterParams.SubParam.AddToEditor(editor, recursive, s
 ---@return System.Boolean
 function CS.Barotrauma.CharacterParams.SubParam.RemoveSubParam(subParam, collection) end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param character Barotrauma.CharacterParams
 ---@return Barotrauma.CharacterParams.SubParam
-function CS.Barotrauma.CharacterParams.SubParam(element, character) end
+local __ctor = function(element, character) end
+CS.Barotrauma.CharacterParams.SubParam = __ctor
+CS.Barotrauma.CharacterParams.SubParam.__new = __ctor
+end
 
 ---@class Barotrauma.RagdollParams.JointParams: Barotrauma.RagdollParams.SubParam
 ---@field Name System.String
@@ -57057,10 +59789,14 @@ function CS.Barotrauma.RagdollParams.JointParams.set_Name(value) end
 ---@return System.String
 function CS.Barotrauma.RagdollParams.JointParams.GenerateName() end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param ragdoll Barotrauma.RagdollParams
 ---@return Barotrauma.RagdollParams.JointParams
-function CS.Barotrauma.RagdollParams.JointParams(element, ragdoll) end
+local __ctor = function(element, ragdoll) end
+CS.Barotrauma.RagdollParams.JointParams = __ctor
+CS.Barotrauma.RagdollParams.JointParams.__new = __ctor
+end
 
 ---@class Barotrauma.RagdollParams.LimbParams: Barotrauma.RagdollParams.SubParam
 ---@field Attack Barotrauma.RagdollParams.AttackParams
@@ -57178,10 +59914,14 @@ function CS.Barotrauma.RagdollParams.LimbParams.RemoveDamageModifier(damageModif
 ---@return System.Boolean
 function CS.Barotrauma.RagdollParams.LimbParams.RemoveSubParam(subParam, collection) end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param ragdoll Barotrauma.RagdollParams
 ---@return Barotrauma.RagdollParams.LimbParams
-function CS.Barotrauma.RagdollParams.LimbParams(element, ragdoll) end
+local __ctor = function(element, ragdoll) end
+CS.Barotrauma.RagdollParams.LimbParams = __ctor
+CS.Barotrauma.RagdollParams.LimbParams.__new = __ctor
+end
 
 ---@class Barotrauma.RagdollParams.DecorativeSpriteParams: Barotrauma.RagdollParams.SpriteParams
 ---@field DecorativeSprite Barotrauma.DecorativeSprite
@@ -57199,19 +59939,27 @@ function CS.Barotrauma.RagdollParams.DecorativeSpriteParams.Serialize(element, r
 
 function CS.Barotrauma.RagdollParams.DecorativeSpriteParams.Reset() end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param ragdoll Barotrauma.RagdollParams
 ---@return Barotrauma.RagdollParams.DecorativeSpriteParams
-function CS.Barotrauma.RagdollParams.DecorativeSpriteParams(element, ragdoll) end
+local __ctor = function(element, ragdoll) end
+CS.Barotrauma.RagdollParams.DecorativeSpriteParams = __ctor
+CS.Barotrauma.RagdollParams.DecorativeSpriteParams.__new = __ctor
+end
 
 ---@class Barotrauma.RagdollParams.DeformSpriteParams: Barotrauma.RagdollParams.SpriteParams
 ---@field Deformation Barotrauma.RagdollParams.DeformationParams
 CS.Barotrauma.RagdollParams.DeformSpriteParams = {}
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param ragdoll Barotrauma.RagdollParams
 ---@return Barotrauma.RagdollParams.DeformSpriteParams
-function CS.Barotrauma.RagdollParams.DeformSpriteParams(element, ragdoll) end
+local __ctor = function(element, ragdoll) end
+CS.Barotrauma.RagdollParams.DeformSpriteParams = __ctor
+CS.Barotrauma.RagdollParams.DeformSpriteParams.__new = __ctor
+end
 
 ---@class Barotrauma.RagdollParams.SpriteParams: Barotrauma.RagdollParams.SubParam
 ---@field SourceRect Microsoft.Xna.Framework.Rectangle
@@ -57231,10 +59979,14 @@ function CS.Barotrauma.RagdollParams.SpriteParams.get_Name() end
 ---@return System.String
 function CS.Barotrauma.RagdollParams.SpriteParams.GetTexturePath() end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param ragdoll Barotrauma.RagdollParams
 ---@return Barotrauma.RagdollParams.SpriteParams
-function CS.Barotrauma.RagdollParams.SpriteParams(element, ragdoll) end
+local __ctor = function(element, ragdoll) end
+CS.Barotrauma.RagdollParams.SpriteParams = __ctor
+CS.Barotrauma.RagdollParams.SpriteParams.__new = __ctor
+end
 
 ---@class Barotrauma.RagdollParams.DeformationParams: Barotrauma.RagdollParams.SubParam
 ---@field Deformations userdata | { [Barotrauma.SpriteDeformations.SpriteDeformationParams]: System.Xml.Linq.XElement } | (fun(): userdata)
@@ -57252,10 +60004,14 @@ function CS.Barotrauma.RagdollParams.DeformationParams.Serialize(element, recurs
 
 function CS.Barotrauma.RagdollParams.DeformationParams.Reset() end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param ragdoll Barotrauma.RagdollParams
 ---@return Barotrauma.RagdollParams.DeformationParams
-function CS.Barotrauma.RagdollParams.DeformationParams(element, ragdoll) end
+local __ctor = function(element, ragdoll) end
+CS.Barotrauma.RagdollParams.DeformationParams = __ctor
+CS.Barotrauma.RagdollParams.DeformationParams.__new = __ctor
+end
 
 ---@class Barotrauma.RagdollParams.ColliderParams: Barotrauma.RagdollParams.SubParam
 ---@field Name System.String
@@ -57272,11 +60028,15 @@ function CS.Barotrauma.RagdollParams.ColliderParams.get_Name() end
 ---@param value System.String
 function CS.Barotrauma.RagdollParams.ColliderParams.set_Name(value) end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param ragdoll Barotrauma.RagdollParams
 ---@param name? System.String
 ---@return Barotrauma.RagdollParams.ColliderParams
-function CS.Barotrauma.RagdollParams.ColliderParams(element, ragdoll, name) end
+local __ctor = function(element, ragdoll, name) end
+CS.Barotrauma.RagdollParams.ColliderParams = __ctor
+CS.Barotrauma.RagdollParams.ColliderParams.__new = __ctor
+end
 
 ---@class Barotrauma.RagdollParams.LightSourceParams: Barotrauma.RagdollParams.SubParam
 ---@field Texture Barotrauma.RagdollParams.LightSourceParams.LightTexture
@@ -57295,10 +60055,14 @@ function CS.Barotrauma.RagdollParams.LightSourceParams.Serialize(element, recurs
 
 function CS.Barotrauma.RagdollParams.LightSourceParams.Reset() end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param ragdoll Barotrauma.RagdollParams
 ---@return Barotrauma.RagdollParams.LightSourceParams
-function CS.Barotrauma.RagdollParams.LightSourceParams(element, ragdoll) end
+local __ctor = function(element, ragdoll) end
+CS.Barotrauma.RagdollParams.LightSourceParams = __ctor
+CS.Barotrauma.RagdollParams.LightSourceParams.__new = __ctor
+end
 
 ---@class Barotrauma.RagdollParams.AttackParams: Barotrauma.RagdollParams.SubParam
 ---@field Attack Barotrauma.Attack
@@ -57323,10 +60087,14 @@ function CS.Barotrauma.RagdollParams.AttackParams.AddNewAffliction() end
 ---@return System.Boolean
 function CS.Barotrauma.RagdollParams.AttackParams.RemoveAffliction(affliction) end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param ragdoll Barotrauma.RagdollParams
 ---@return Barotrauma.RagdollParams.AttackParams
-function CS.Barotrauma.RagdollParams.AttackParams(element, ragdoll) end
+local __ctor = function(element, ragdoll) end
+CS.Barotrauma.RagdollParams.AttackParams = __ctor
+CS.Barotrauma.RagdollParams.AttackParams.__new = __ctor
+end
 
 ---@class Barotrauma.RagdollParams.DamageModifierParams: Barotrauma.RagdollParams.SubParam
 ---@field DamageModifier Barotrauma.DamageModifier
@@ -57344,10 +60112,14 @@ function CS.Barotrauma.RagdollParams.DamageModifierParams.Serialize(element, rec
 
 function CS.Barotrauma.RagdollParams.DamageModifierParams.Reset() end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param ragdoll Barotrauma.RagdollParams
 ---@return Barotrauma.RagdollParams.DamageModifierParams
-function CS.Barotrauma.RagdollParams.DamageModifierParams(element, ragdoll) end
+local __ctor = function(element, ragdoll) end
+CS.Barotrauma.RagdollParams.DamageModifierParams = __ctor
+CS.Barotrauma.RagdollParams.DamageModifierParams.__new = __ctor
+end
 
 ---@class Barotrauma.RagdollParams.SoundParams: Barotrauma.RagdollParams.SubParam
 ---@field Name System.String
@@ -57357,10 +60129,14 @@ CS.Barotrauma.RagdollParams.SoundParams = {}
 ---@return System.String
 function CS.Barotrauma.RagdollParams.SoundParams.get_Name() end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param ragdoll Barotrauma.RagdollParams
 ---@return Barotrauma.RagdollParams.SoundParams
-function CS.Barotrauma.RagdollParams.SoundParams(element, ragdoll) end
+local __ctor = function(element, ragdoll) end
+CS.Barotrauma.RagdollParams.SoundParams = __ctor
+CS.Barotrauma.RagdollParams.SoundParams.__new = __ctor
+end
 
 ---@class Barotrauma.TalentMigration.TalentMigrationCtor: System.MulticastDelegate
 CS.Barotrauma.TalentMigration.TalentMigrationCtor = {}
@@ -57381,10 +60157,14 @@ function CS.Barotrauma.TalentMigration.TalentMigrationCtor.BeginInvoke(version, 
 ---@return Barotrauma.TalentMigration
 function CS.Barotrauma.TalentMigration.TalentMigrationCtor.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return Barotrauma.TalentMigration.TalentMigrationCtor
-function CS.Barotrauma.TalentMigration.TalentMigrationCtor(object, method) end
+local __ctor = function(object, method) end
+CS.Barotrauma.TalentMigration.TalentMigrationCtor = __ctor
+CS.Barotrauma.TalentMigration.TalentMigrationCtor.__new = __ctor
+end
 
 ---@enum Barotrauma.TalentTree.TalentStages
 CS.Barotrauma.TalentTree.TalentStages = {
@@ -57413,9 +60193,13 @@ function CS.Barotrauma.ContentFile.TypeInfo.MutateContentPath(path) end
 ---@return Barotrauma.ContentFile
 function CS.Barotrauma.ContentFile.TypeInfo.CreateInstance(contentPackage, path) end
 
+do
 ---@param type System.Type
 ---@return Barotrauma.ContentFile.TypeInfo
-function CS.Barotrauma.ContentFile.TypeInfo(type) end
+local __ctor = function(type) end
+CS.Barotrauma.ContentFile.TypeInfo = __ctor
+CS.Barotrauma.ContentFile.TypeInfo.__new = __ctor
+end
 
 ---@class Barotrauma.ContentPackage.LoadError: System.ValueType
 ---@field Message System.String
@@ -57425,10 +60209,14 @@ CS.Barotrauma.ContentPackage.LoadError = {}
 ---@return System.String
 function CS.Barotrauma.ContentPackage.LoadError.ToString() end
 
+do
 ---@param Message System.String
 ---@param Exception System.Exception
 ---@return Barotrauma.ContentPackage.LoadError
-function CS.Barotrauma.ContentPackage.LoadError(Message, Exception) end
+local __ctor = function(Message, Exception) end
+CS.Barotrauma.ContentPackage.LoadError = __ctor
+CS.Barotrauma.ContentPackage.LoadError.__new = __ctor
+end
 
 ---@enum Barotrauma.ContentPackage.UgcStatus
 CS.Barotrauma.ContentPackage.UgcStatus = {
@@ -57468,10 +60256,14 @@ function CS.Barotrauma.EventAction.SubactionGroup.Reset() end
 ---@param deltaTime System.Single
 function CS.Barotrauma.EventAction.SubactionGroup.Update(deltaTime) end
 
+do
 ---@param scriptedEvent Barotrauma.ScriptedEvent
 ---@param elem Barotrauma.ContentXElement
 ---@return Barotrauma.EventAction.SubactionGroup
-function CS.Barotrauma.EventAction.SubactionGroup(scriptedEvent, elem) end
+local __ctor = function(scriptedEvent, elem) end
+CS.Barotrauma.EventAction.SubactionGroup = __ctor
+CS.Barotrauma.EventAction.SubactionGroup.__new = __ctor
+end
 
 ---@enum Barotrauma.TagAction.CharacterTeam
 CS.Barotrauma.TagAction.CharacterTeam = {
@@ -57488,9 +60280,13 @@ CS.Barotrauma.TagAction.CharacterTeam = {
 ---@field MonsterStrength System.Single
 CS.Barotrauma.EventSet.EventDebugStats = {}
 
+do
 ---@param rootSet Barotrauma.EventSet
 ---@return Barotrauma.EventSet.EventDebugStats
-function CS.Barotrauma.EventSet.EventDebugStats(rootSet) end
+local __ctor = function(rootSet) end
+CS.Barotrauma.EventSet.EventDebugStats = __ctor
+CS.Barotrauma.EventSet.EventDebugStats.__new = __ctor
+end
 
 ---@class Barotrauma.EventSet.SubEventPrefab: System.ValueType
 ---@field EventPrefabs userdata | (fun(): Barotrauma.EventPrefab)
@@ -57519,23 +60315,31 @@ function CS.Barotrauma.EventSet.SubEventPrefab.Deconstruct(eventPrefabs, commonn
 ---@return userdata | (fun(): Barotrauma.Identifier)
 function CS.Barotrauma.EventSet.SubEventPrefab.GetMissingIdentifiers() end
 
+do
 ---@param prefabOrIdentifiers userdata
 ---@param commonness System.Single|nil
 ---@param probability System.Single|nil
 ---@param factionId Barotrauma.Identifier
 ---@return Barotrauma.EventSet.SubEventPrefab
-function CS.Barotrauma.EventSet.SubEventPrefab(prefabOrIdentifiers, commonness, probability, factionId) end
+local __ctor = function(prefabOrIdentifiers, commonness, probability, factionId) end
+CS.Barotrauma.EventSet.SubEventPrefab = __ctor
+CS.Barotrauma.EventSet.SubEventPrefab.__new = __ctor
+end
 
 ---@class Barotrauma.ScriptedEvent.TargetPredicate: System.Object
 ---@field Type Barotrauma.ScriptedEvent.TargetPredicate.EntityType
 ---@field Predicate fun(obj: Barotrauma.Entity): System.Boolean
 CS.Barotrauma.ScriptedEvent.TargetPredicate = {}
 
+do
 ---@overload fun(original: Barotrauma.ScriptedEvent.TargetPredicate): Barotrauma.ScriptedEvent.TargetPredicate
 ---@param Type Barotrauma.ScriptedEvent.TargetPredicate.EntityType
 ---@param Predicate fun(obj: Barotrauma.Entity): System.Boolean
 ---@return Barotrauma.ScriptedEvent.TargetPredicate
-function CS.Barotrauma.ScriptedEvent.TargetPredicate(Type, Predicate) end
+local __ctor = function(Type, Predicate) end
+CS.Barotrauma.ScriptedEvent.TargetPredicate = __ctor
+CS.Barotrauma.ScriptedEvent.TargetPredicate.__new = __ctor
+end
 
 ---@class Barotrauma.FactionPrefab.HireableCharacter: System.Object
 ---@field NPCSetIdentifier Barotrauma.Identifier
@@ -57543,9 +60347,13 @@ function CS.Barotrauma.ScriptedEvent.TargetPredicate(Type, Predicate) end
 ---@field MinReputation System.Single
 CS.Barotrauma.FactionPrefab.HireableCharacter = {}
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.FactionPrefab.HireableCharacter
-function CS.Barotrauma.FactionPrefab.HireableCharacter(element) end
+local __ctor = function(element) end
+CS.Barotrauma.FactionPrefab.HireableCharacter = __ctor
+CS.Barotrauma.FactionPrefab.HireableCharacter.__new = __ctor
+end
 
 ---@class Barotrauma.FactionPrefab.AutomaticMission: System.Object
 ---@field MissionTag Barotrauma.Identifier
@@ -57558,10 +60366,14 @@ function CS.Barotrauma.FactionPrefab.HireableCharacter(element) end
 ---@field DisallowBetweenOtherFactionOutposts System.Boolean
 CS.Barotrauma.FactionPrefab.AutomaticMission = {}
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param parentDebugName System.String
 ---@return Barotrauma.FactionPrefab.AutomaticMission
-function CS.Barotrauma.FactionPrefab.AutomaticMission(element, parentDebugName) end
+local __ctor = function(element, parentDebugName) end
+CS.Barotrauma.FactionPrefab.AutomaticMission = __ctor
+CS.Barotrauma.FactionPrefab.AutomaticMission.__new = __ctor
+end
 
 ---@enum Barotrauma.WearableSprite.ObscuringMode
 CS.Barotrauma.WearableSprite.ObscuringMode = {
@@ -57600,6 +60412,7 @@ function CS.Barotrauma.FabricationRecipe.RequiredItem.get_FirstMatchingPrefab() 
 ---@return System.Boolean
 function CS.Barotrauma.FabricationRecipe.RequiredItem.IsConditionSuitable(conditionPercentage) end
 
+do
 ---@param amount System.Int32
 ---@param minCondition System.Single
 ---@param maxCondition System.Single
@@ -57608,7 +60421,10 @@ function CS.Barotrauma.FabricationRecipe.RequiredItem.IsConditionSuitable(condit
 ---@param overrideHeader Barotrauma.LocalizedString
 ---@param defaultItem Barotrauma.Identifier
 ---@return Barotrauma.FabricationRecipe.RequiredItem
-function CS.Barotrauma.FabricationRecipe.RequiredItem(amount, minCondition, maxCondition, useCondition, overrideDescription, overrideHeader, defaultItem) end
+local __ctor = function(amount, minCondition, maxCondition, useCondition, overrideDescription, overrideHeader, defaultItem) end
+CS.Barotrauma.FabricationRecipe.RequiredItem = __ctor
+CS.Barotrauma.FabricationRecipe.RequiredItem.__new = __ctor
+end
 
 ---@class Barotrauma.FabricationRecipe.RequiredItemByIdentifier: Barotrauma.FabricationRecipe.RequiredItem
 ---@field ItemPrefab Barotrauma.ItemPrefab
@@ -57636,6 +60452,7 @@ function CS.Barotrauma.FabricationRecipe.RequiredItemByIdentifier.MatchesItem(it
 ---@return System.String
 function CS.Barotrauma.FabricationRecipe.RequiredItemByIdentifier.ToString() end
 
+do
 ---@param itemPrefab Barotrauma.Identifier
 ---@param amount System.Int32
 ---@param minCondition System.Single
@@ -57644,7 +60461,10 @@ function CS.Barotrauma.FabricationRecipe.RequiredItemByIdentifier.ToString() end
 ---@param overrideDescription Barotrauma.LocalizedString
 ---@param overrideHeader Barotrauma.LocalizedString
 ---@return Barotrauma.FabricationRecipe.RequiredItemByIdentifier
-function CS.Barotrauma.FabricationRecipe.RequiredItemByIdentifier(itemPrefab, amount, minCondition, maxCondition, useCondition, overrideDescription, overrideHeader) end
+local __ctor = function(itemPrefab, amount, minCondition, maxCondition, useCondition, overrideDescription, overrideHeader) end
+CS.Barotrauma.FabricationRecipe.RequiredItemByIdentifier = __ctor
+CS.Barotrauma.FabricationRecipe.RequiredItemByIdentifier.__new = __ctor
+end
 
 ---@class Barotrauma.FabricationRecipe.RequiredItemByTag: Barotrauma.FabricationRecipe.RequiredItem
 ---@field UintIdentifier System.UInt32
@@ -57668,6 +60488,7 @@ function CS.Barotrauma.FabricationRecipe.RequiredItemByTag.MatchesItem(item) end
 ---@return System.String
 function CS.Barotrauma.FabricationRecipe.RequiredItemByTag.ToString() end
 
+do
 ---@param tag Barotrauma.Identifier
 ---@param amount System.Int32
 ---@param minCondition System.Single
@@ -57677,7 +60498,10 @@ function CS.Barotrauma.FabricationRecipe.RequiredItemByTag.ToString() end
 ---@param overrideHeader Barotrauma.LocalizedString
 ---@param defaultItem Barotrauma.Identifier
 ---@return Barotrauma.FabricationRecipe.RequiredItemByTag
-function CS.Barotrauma.FabricationRecipe.RequiredItemByTag(tag, amount, minCondition, maxCondition, useCondition, overrideDescription, overrideHeader, defaultItem) end
+local __ctor = function(tag, amount, minCondition, maxCondition, useCondition, overrideDescription, overrideHeader, defaultItem) end
+CS.Barotrauma.FabricationRecipe.RequiredItemByTag = __ctor
+CS.Barotrauma.FabricationRecipe.RequiredItemByTag.__new = __ctor
+end
 
 ---@enum Barotrauma.LuaCsHook.HookMethodType
 CS.Barotrauma.LuaCsHook.HookMethodType = {
@@ -57691,19 +60515,27 @@ CS.Barotrauma.LuaCsHook.HookMethodType = {
 ---@field func fun(...: System.Object): System.Object
 CS.Barotrauma.LuaCsHook.LuaCsHookCallback = {}
 
+do
 ---@param name System.String
 ---@param hookName System.String
 ---@param func fun(...: System.Object): System.Object
 ---@return Barotrauma.LuaCsHook.LuaCsHookCallback
-function CS.Barotrauma.LuaCsHook.LuaCsHookCallback(name, hookName, func) end
+local __ctor = function(name, hookName, func) end
+CS.Barotrauma.LuaCsHook.LuaCsHookCallback = __ctor
+CS.Barotrauma.LuaCsHook.LuaCsHookCallback.__new = __ctor
+end
 
 ---@class Barotrauma.LuaCsHook.LuaCsPatch: System.Object
 ---@field Identifier System.String
 ---@field PatchFunc fun(instance: System.Object, ptable: Barotrauma.LuaCsHook.ParameterTable): MoonSharp.Interpreter.DynValue
 CS.Barotrauma.LuaCsHook.LuaCsPatch = {}
 
+do
 ---@return Barotrauma.LuaCsHook.LuaCsPatch
-function CS.Barotrauma.LuaCsHook.LuaCsPatch() end
+local __ctor = function() end
+CS.Barotrauma.LuaCsHook.LuaCsPatch = __ctor
+CS.Barotrauma.LuaCsHook.LuaCsPatch.__new = __ctor
+end
 
 ---@class Barotrauma.LuaCsHook.PatchedMethod: System.Object
 ---@field HarmonyPrefixMethod System.Reflection.MethodInfo
@@ -57718,10 +60550,14 @@ function CS.Barotrauma.LuaCsHook.PatchedMethod.GetPrefixEnumerator() end
 ---@return userdata | (fun(): Barotrauma.LuaCsHook.LuaCsPatch)
 function CS.Barotrauma.LuaCsHook.PatchedMethod.GetPostfixEnumerator() end
 
+do
 ---@param harmonyPrefix System.Reflection.MethodInfo
 ---@param harmonyPostfix System.Reflection.MethodInfo
 ---@return Barotrauma.LuaCsHook.PatchedMethod
-function CS.Barotrauma.LuaCsHook.PatchedMethod(harmonyPrefix, harmonyPostfix) end
+local __ctor = function(harmonyPrefix, harmonyPostfix) end
+CS.Barotrauma.LuaCsHook.PatchedMethod = __ctor
+CS.Barotrauma.LuaCsHook.PatchedMethod.__new = __ctor
+end
 
 ---@class Barotrauma.LuaCsHook.ParameterTable: System.Object, { [System.String]: System.Object }
 ---@field OriginalReturnValue System.Object
@@ -57751,9 +60587,13 @@ function CS.Barotrauma.LuaCsHook.ParameterTable.set_ReturnValue(value) end
 ---@return userdata | { [System.String]: System.Object } | (fun(): userdata)
 function CS.Barotrauma.LuaCsHook.ParameterTable.get_OriginalParameters() end
 
+do
 ---@param dict userdata | { [System.String]: System.Object } | (fun(): userdata)
 ---@return Barotrauma.LuaCsHook.ParameterTable
-function CS.Barotrauma.LuaCsHook.ParameterTable(dict) end
+local __ctor = function(dict) end
+CS.Barotrauma.LuaCsHook.ParameterTable = __ctor
+CS.Barotrauma.LuaCsHook.ParameterTable.__new = __ctor
+end
 
 ---@class Barotrauma.LuaCsHook.MethodKey: System.ValueType
 ---@field ModuleHandle System.ModuleHandle
@@ -57789,11 +60629,15 @@ function CS.Barotrauma.LuaCsHook.MethodKey.Create(method) end
 ---@field HarmonyPatchParamType System.Type
 CS.Barotrauma.LuaCsHook.DynamicParameterMapping = {}
 
+do
 ---@param name System.String
 ---@param originalMethodParamType System.Type
 ---@param harmonyPatchParamType System.Type
 ---@return Barotrauma.LuaCsHook.DynamicParameterMapping
-function CS.Barotrauma.LuaCsHook.DynamicParameterMapping(name, originalMethodParamType, harmonyPatchParamType) end
+local __ctor = function(name, originalMethodParamType, harmonyPatchParamType) end
+CS.Barotrauma.LuaCsHook.DynamicParameterMapping = __ctor
+CS.Barotrauma.LuaCsHook.DynamicParameterMapping.__new = __ctor
+end
 
 ---@class Barotrauma.IDamageable.AttackEventData: System.ValueType
 ---@field Attacker Barotrauma.ISpatialEntity
@@ -57802,12 +60646,16 @@ function CS.Barotrauma.LuaCsHook.DynamicParameterMapping(name, originalMethodPar
 ---@field AttackSimPosition Microsoft.Xna.Framework.Vector2
 CS.Barotrauma.IDamageable.AttackEventData = {}
 
+do
 ---@param attacker Barotrauma.ISpatialEntity
 ---@param targetEntity Barotrauma.IDamageable
 ---@param targetLimb Barotrauma.Limb
 ---@param attackSimPosition Microsoft.Xna.Framework.Vector2
 ---@return Barotrauma.IDamageable.AttackEventData
-function CS.Barotrauma.IDamageable.AttackEventData(attacker, targetEntity, targetLimb, attackSimPosition) end
+local __ctor = function(attacker, targetEntity, targetLimb, attackSimPosition) end
+CS.Barotrauma.IDamageable.AttackEventData = __ctor
+CS.Barotrauma.IDamageable.AttackEventData.__new = __ctor
+end
 
 ---@class Barotrauma.Biome.SubmarineAvailability: System.ValueType
 ---@field LocationType Barotrauma.Identifier
@@ -57815,11 +60663,15 @@ function CS.Barotrauma.IDamageable.AttackEventData(attacker, targetEntity, targe
 ---@field MaxTier System.Int32
 CS.Barotrauma.Biome.SubmarineAvailability = {}
 
+do
 ---@param LocationType Barotrauma.Identifier
 ---@param Class? Barotrauma.SubmarineClass
 ---@param MaxTier? System.Int32
 ---@return Barotrauma.Biome.SubmarineAvailability
-function CS.Barotrauma.Biome.SubmarineAvailability(LocationType, Class, MaxTier) end
+local __ctor = function(LocationType, Class, MaxTier) end
+CS.Barotrauma.Biome.SubmarineAvailability = __ctor
+CS.Barotrauma.Biome.SubmarineAvailability.__new = __ctor
+end
 
 ---@enum Barotrauma.LevelData.LevelType
 CS.Barotrauma.LevelData.LevelType = {
@@ -57842,9 +60694,13 @@ CS.Barotrauma.LevelData.ThalamusSpawn = {
 ---@field SelectedMission System.Boolean
 CS.Barotrauma.Location.LoadedMission = {}
 
+do
 ---@param element System.Xml.Linq.XElement
 ---@return Barotrauma.Location.LoadedMission
-function CS.Barotrauma.Location.LoadedMission(element) end
+local __ctor = function(element) end
+CS.Barotrauma.Location.LoadedMission = __ctor
+CS.Barotrauma.Location.LoadedMission.__new = __ctor
+end
 
 ---@class Barotrauma.NetSerializableProperties.IReadWriteBehavior
 ---@field ReadAction fun(inc: Barotrauma.Networking.IReadMessage, attribute: Barotrauma.NetworkSerialize, bitField: Barotrauma.ReadOnlyBitField): System.Object
@@ -57896,10 +60752,14 @@ CS.Barotrauma.PropertyConditional.ComparisonOperatorType = {
 ---@field LogicalOperator Barotrauma.PropertyConditional.LogicalOperatorType
 CS.Barotrauma.PropertyConditional.LogicalComparison = {}
 
+do
 ---@param conditionals userdata | (fun(): Barotrauma.PropertyConditional)
 ---@param logicalOperator Barotrauma.PropertyConditional.LogicalOperatorType
 ---@return Barotrauma.PropertyConditional.LogicalComparison
-function CS.Barotrauma.PropertyConditional.LogicalComparison(conditionals, logicalOperator) end
+local __ctor = function(conditionals, logicalOperator) end
+CS.Barotrauma.PropertyConditional.LogicalComparison = __ctor
+CS.Barotrauma.PropertyConditional.LogicalComparison.__new = __ctor
+end
 
 ---@enum Barotrauma.TraitorEvent.State
 CS.Barotrauma.TraitorEvent.State = {
@@ -57918,10 +60778,14 @@ CS.Barotrauma.TraitorEventPrefab.MissionRequirement = {}
 ---@return System.Boolean
 function CS.Barotrauma.TraitorEventPrefab.MissionRequirement.Match(mission) end
 
+do
 ---@param element System.Xml.Linq.XElement
 ---@param prefab Barotrauma.TraitorEventPrefab
 ---@return Barotrauma.TraitorEventPrefab.MissionRequirement
-function CS.Barotrauma.TraitorEventPrefab.MissionRequirement(element, prefab) end
+local __ctor = function(element, prefab) end
+CS.Barotrauma.TraitorEventPrefab.MissionRequirement = __ctor
+CS.Barotrauma.TraitorEventPrefab.MissionRequirement.__new = __ctor
+end
 
 ---@class Barotrauma.TraitorEventPrefab.LevelRequirement: System.Object
 ---@field LocationTypes userdata | { [System.Int32]: Barotrauma.Identifier } | (fun(): Barotrauma.Identifier)
@@ -57935,10 +60799,14 @@ CS.Barotrauma.TraitorEventPrefab.LevelRequirement = {}
 ---@return System.Boolean
 function CS.Barotrauma.TraitorEventPrefab.LevelRequirement.Match(level) end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param prefab Barotrauma.TraitorEventPrefab
 ---@return Barotrauma.TraitorEventPrefab.LevelRequirement
-function CS.Barotrauma.TraitorEventPrefab.LevelRequirement(element, prefab) end
+local __ctor = function(element, prefab) end
+CS.Barotrauma.TraitorEventPrefab.LevelRequirement = __ctor
+CS.Barotrauma.TraitorEventPrefab.LevelRequirement.__new = __ctor
+end
 
 ---@class Barotrauma.TraitorEventPrefab.ReputationRequirement: System.Object
 ---@field Faction Barotrauma.Identifier
@@ -57951,10 +60819,14 @@ CS.Barotrauma.TraitorEventPrefab.ReputationRequirement = {}
 ---@return System.Boolean
 function CS.Barotrauma.TraitorEventPrefab.ReputationRequirement.Match(campaign) end
 
+do
 ---@param element System.Xml.Linq.XElement
 ---@param prefab Barotrauma.TraitorEventPrefab
 ---@return Barotrauma.TraitorEventPrefab.ReputationRequirement
-function CS.Barotrauma.TraitorEventPrefab.ReputationRequirement(element, prefab) end
+local __ctor = function(element, prefab) end
+CS.Barotrauma.TraitorEventPrefab.ReputationRequirement = __ctor
+CS.Barotrauma.TraitorEventPrefab.ReputationRequirement.__new = __ctor
+end
 
 ---@enum Barotrauma.UpgradeMaxLevelMod.MaxLevelModType
 CS.Barotrauma.UpgradeMaxLevelMod.MaxLevelModType = {
@@ -57987,11 +60859,15 @@ CS.Barotrauma.ContentPackageManager.EnabledPackages.BackupPackages = {}
 ---@field ErrorsOrException userdata
 CS.Barotrauma.ContentPackageManager.LoadProgress.Error = {}
 
+do
 ---@overload fun(errorMessages: (userdata | (fun(): System.String))): Barotrauma.ContentPackageManager.LoadProgress.Error
 ---@overload fun(exception: System.Exception): Barotrauma.ContentPackageManager.LoadProgress.Error
 ---@param ErrorsOrException userdata
 ---@return Barotrauma.ContentPackageManager.LoadProgress.Error
-function CS.Barotrauma.ContentPackageManager.LoadProgress.Error(ErrorsOrException) end
+local __ctor = function(ErrorsOrException) end
+CS.Barotrauma.ContentPackageManager.LoadProgress.Error = __ctor
+CS.Barotrauma.ContentPackageManager.LoadProgress.Error.__new = __ctor
+end
 
 ---@class Barotrauma.GUITextBlock.ClickableArea.OnClickDelegate: System.MulticastDelegate
 CS.Barotrauma.GUITextBlock.ClickableArea.OnClickDelegate = {}
@@ -58010,10 +60886,14 @@ function CS.Barotrauma.GUITextBlock.ClickableArea.OnClickDelegate.BeginInvoke(te
 ---@param result System.IAsyncResult
 function CS.Barotrauma.GUITextBlock.ClickableArea.OnClickDelegate.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return Barotrauma.GUITextBlock.ClickableArea.OnClickDelegate
-function CS.Barotrauma.GUITextBlock.ClickableArea.OnClickDelegate(object, method) end
+local __ctor = function(object, method) end
+CS.Barotrauma.GUITextBlock.ClickableArea.OnClickDelegate = __ctor
+CS.Barotrauma.GUITextBlock.ClickableArea.OnClickDelegate.__new = __ctor
+end
 
 ---@class Barotrauma.LuaCsSetup.LuaCsModStore.LuaModStore: userdata
 ---@field Name System.String
@@ -58061,9 +60941,13 @@ function CS.Barotrauma.LuaCsSetup.LuaCsModStore.LuaModStore.ReferenceEquals(objA
 ---@return System.Int32
 function CS.Barotrauma.LuaCsSetup.LuaCsModStore.LuaModStore.GetHashCode() end
 
+do
 ---@param store userdata | { [System.String]: MoonSharp.Interpreter.DynValue } | (fun(): userdata)
 ---@return Barotrauma.LuaCsSetup.LuaCsModStore.LuaModStore
-function CS.Barotrauma.LuaCsSetup.LuaCsModStore.LuaModStore(store) end
+local __ctor = function(store) end
+CS.Barotrauma.LuaCsSetup.LuaCsModStore.LuaModStore = __ctor
+CS.Barotrauma.LuaCsSetup.LuaCsModStore.LuaModStore.__new = __ctor
+end
 
 ---@class Barotrauma.LuaCsSetup.LuaCsModStore.CsModStore: userdata
 ---@field Mod Barotrauma.ACsMod
@@ -58111,9 +60995,13 @@ function CS.Barotrauma.LuaCsSetup.LuaCsModStore.CsModStore.ReferenceEquals(objA,
 ---@return System.Int32
 function CS.Barotrauma.LuaCsSetup.LuaCsModStore.CsModStore.GetHashCode() end
 
+do
 ---@param store userdata | { [System.String]: System.Object } | (fun(): userdata)
 ---@return Barotrauma.LuaCsSetup.LuaCsModStore.CsModStore
-function CS.Barotrauma.LuaCsSetup.LuaCsModStore.CsModStore(store) end
+local __ctor = function(store) end
+CS.Barotrauma.LuaCsSetup.LuaCsModStore.CsModStore = __ctor
+CS.Barotrauma.LuaCsSetup.LuaCsModStore.CsModStore.__new = __ctor
+end
 
 ---@enum Barotrauma.StatusEffect.ItemSpawnInfo.SpawnPositionType
 CS.Barotrauma.StatusEffect.ItemSpawnInfo.SpawnPositionType = {
@@ -58148,9 +61036,13 @@ CS.Barotrauma.PetBehavior.ItemProduction.Item = {}
 ---@field private Value System.Single
 CS.Barotrauma.AfflictionPrefab.Effect.AppliedStatValue = {}
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.AfflictionPrefab.Effect.AppliedStatValue
-function CS.Barotrauma.AfflictionPrefab.Effect.AppliedStatValue(element) end
+local __ctor = function(element) end
+CS.Barotrauma.AfflictionPrefab.Effect.AppliedStatValue = __ctor
+CS.Barotrauma.AfflictionPrefab.Effect.AppliedStatValue.__new = __ctor
+end
 
 ---@enum Barotrauma.AfflictionPrefab.Description.TargetType
 CS.Barotrauma.AfflictionPrefab.Description.TargetType = {
@@ -58167,10 +61059,14 @@ CS.Barotrauma.CharacterParams.InventoryParams.InventoryItem = {}
 ---@return System.String
 function CS.Barotrauma.CharacterParams.InventoryParams.InventoryItem.get_Name() end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param character Barotrauma.CharacterParams
 ---@return Barotrauma.CharacterParams.InventoryParams.InventoryItem
-function CS.Barotrauma.CharacterParams.InventoryParams.InventoryItem(element, character) end
+local __ctor = function(element, character) end
+CS.Barotrauma.CharacterParams.InventoryParams.InventoryItem = __ctor
+CS.Barotrauma.CharacterParams.InventoryParams.InventoryItem.__new = __ctor
+end
 
 ---@enum Barotrauma.ScriptedEvent.TargetPredicate.EntityType
 CS.Barotrauma.ScriptedEvent.TargetPredicate.EntityType = {
@@ -58202,10 +61098,14 @@ function CS.Barotrauma.NetSerializableProperties.IReadWriteBehavior.ReadDelegate
 ---@return System.Object
 function CS.Barotrauma.NetSerializableProperties.IReadWriteBehavior.ReadDelegate.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return Barotrauma.NetSerializableProperties.IReadWriteBehavior.ReadDelegate
-function CS.Barotrauma.NetSerializableProperties.IReadWriteBehavior.ReadDelegate(object, method) end
+local __ctor = function(object, method) end
+CS.Barotrauma.NetSerializableProperties.IReadWriteBehavior.ReadDelegate = __ctor
+CS.Barotrauma.NetSerializableProperties.IReadWriteBehavior.ReadDelegate.__new = __ctor
+end
 
 ---@class Barotrauma.NetSerializableProperties.IReadWriteBehavior.WriteDelegate: System.MulticastDelegate
 CS.Barotrauma.NetSerializableProperties.IReadWriteBehavior.WriteDelegate = {}
@@ -58228,10 +61128,14 @@ function CS.Barotrauma.NetSerializableProperties.IReadWriteBehavior.WriteDelegat
 ---@param result System.IAsyncResult
 function CS.Barotrauma.NetSerializableProperties.IReadWriteBehavior.WriteDelegate.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return Barotrauma.NetSerializableProperties.IReadWriteBehavior.WriteDelegate
-function CS.Barotrauma.NetSerializableProperties.IReadWriteBehavior.WriteDelegate(object, method) end
+local __ctor = function(object, method) end
+CS.Barotrauma.NetSerializableProperties.IReadWriteBehavior.WriteDelegate = __ctor
+CS.Barotrauma.NetSerializableProperties.IReadWriteBehavior.WriteDelegate.__new = __ctor
+end
 
 ---@enum Barotrauma.TraitorEventPrefab.LevelRequirement.LevelType
 CS.Barotrauma.TraitorEventPrefab.LevelRequirement.LevelType = {

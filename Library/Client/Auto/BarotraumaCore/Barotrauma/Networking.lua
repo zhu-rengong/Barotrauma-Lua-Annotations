@@ -37,9 +37,13 @@ function CS.Barotrauma.Networking.Address.op_Equality(a, b) end
 ---@return System.Boolean
 function CS.Barotrauma.Networking.Address.op_Inequality(a, b) end
 
+do
 ---@protected
 ---@return Barotrauma.Networking.Address
-function CS.Barotrauma.Networking.Address() end
+local __ctor = function() end
+CS.Barotrauma.Networking.Address = __ctor
+CS.Barotrauma.Networking.Address.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.EosP2PAddress: Barotrauma.Networking.P2PAddress
 ---@field StringRepresentation System.String
@@ -65,9 +69,13 @@ function CS.Barotrauma.Networking.EosP2PAddress.Equals(obj) end
 ---@return System.Int32
 function CS.Barotrauma.Networking.EosP2PAddress.GetHashCode() end
 
+do
 ---@param value System.String
 ---@return Barotrauma.Networking.EosP2PAddress
-function CS.Barotrauma.Networking.EosP2PAddress(value) end
+local __ctor = function(value) end
+CS.Barotrauma.Networking.EosP2PAddress = __ctor
+CS.Barotrauma.Networking.EosP2PAddress.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.LidgrenAddress: Barotrauma.Networking.Address
 ---@field StringRepresentation System.String
@@ -106,9 +114,13 @@ function CS.Barotrauma.Networking.LidgrenAddress.op_Equality(a, b) end
 ---@return System.Boolean
 function CS.Barotrauma.Networking.LidgrenAddress.op_Inequality(a, b) end
 
+do
 ---@param netAddress System.Net.IPAddress
 ---@return Barotrauma.Networking.LidgrenAddress
-function CS.Barotrauma.Networking.LidgrenAddress(netAddress) end
+local __ctor = function(netAddress) end
+CS.Barotrauma.Networking.LidgrenAddress = __ctor
+CS.Barotrauma.Networking.LidgrenAddress.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.P2PAddress: Barotrauma.Networking.Address
 CS.Barotrauma.Networking.P2PAddress = {}
@@ -117,9 +129,13 @@ CS.Barotrauma.Networking.P2PAddress = {}
 ---@return userdata
 function CS.Barotrauma.Networking.P2PAddress.Parse(str) end
 
+do
 ---@protected
 ---@return Barotrauma.Networking.P2PAddress
-function CS.Barotrauma.Networking.P2PAddress() end
+local __ctor = function() end
+CS.Barotrauma.Networking.P2PAddress = __ctor
+CS.Barotrauma.Networking.P2PAddress.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.PipeAddress: Barotrauma.Networking.Address
 ---@field StringRepresentation System.String
@@ -149,8 +165,12 @@ function CS.Barotrauma.Networking.PipeAddress.op_Equality(a, b) end
 ---@return System.Boolean
 function CS.Barotrauma.Networking.PipeAddress.op_Inequality(a, b) end
 
+do
 ---@return Barotrauma.Networking.PipeAddress
-function CS.Barotrauma.Networking.PipeAddress() end
+local __ctor = function() end
+CS.Barotrauma.Networking.PipeAddress = __ctor
+CS.Barotrauma.Networking.PipeAddress.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.SteamP2PAddress: Barotrauma.Networking.P2PAddress
 ---@field StringRepresentation System.String
@@ -185,9 +205,13 @@ function CS.Barotrauma.Networking.SteamP2PAddress.op_Equality(a, b) end
 ---@return System.Boolean
 function CS.Barotrauma.Networking.SteamP2PAddress.op_Inequality(a, b) end
 
+do
 ---@param steamId Barotrauma.Networking.SteamId
 ---@return Barotrauma.Networking.SteamP2PAddress
-function CS.Barotrauma.Networking.SteamP2PAddress(steamId) end
+local __ctor = function(steamId) end
+CS.Barotrauma.Networking.SteamP2PAddress = __ctor
+CS.Barotrauma.Networking.SteamP2PAddress.__new = __ctor
+end
 
 ---@class Barotrauma.Networking.UnknownAddress: Barotrauma.Networking.Address
 ---@field StringRepresentation System.String
@@ -207,8 +231,12 @@ function CS.Barotrauma.Networking.UnknownAddress.Equals(obj) end
 ---@return System.Int32
 function CS.Barotrauma.Networking.UnknownAddress.GetHashCode() end
 
+do
 ---@return Barotrauma.Networking.UnknownAddress
-function CS.Barotrauma.Networking.UnknownAddress() end
+local __ctor = function() end
+CS.Barotrauma.Networking.UnknownAddress = __ctor
+CS.Barotrauma.Networking.UnknownAddress.__new = __ctor
+end
 
 ---@enum Barotrauma.Networking.DeliveryMethod
 CS.Barotrauma.Networking.DeliveryMethod = {

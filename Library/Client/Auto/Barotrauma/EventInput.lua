@@ -27,20 +27,28 @@ function CS.EventInput.CharacterEventArgs.get_PreviousState() end
 ---@return System.Boolean
 function CS.EventInput.CharacterEventArgs.get_TransitionState() end
 
+do
 ---@param Character System.Char
 ---@param Param System.Int64
 ---@return EventInput.CharacterEventArgs
-function CS.EventInput.CharacterEventArgs(Character, Param) end
+local __ctor = function(Character, Param) end
+CS.EventInput.CharacterEventArgs = __ctor
+CS.EventInput.CharacterEventArgs.__new = __ctor
+end
 
 ---@class EventInput.KeyEventArgs: System.ValueType
 ---@field KeyCode Microsoft.Xna.Framework.Input.Keys
 ---@field Character System.Char
 CS.EventInput.KeyEventArgs = {}
 
+do
 ---@param KeyCode Microsoft.Xna.Framework.Input.Keys
 ---@param Character System.Char
 ---@return EventInput.KeyEventArgs
-function CS.EventInput.KeyEventArgs(KeyCode, Character) end
+local __ctor = function(KeyCode, Character) end
+CS.EventInput.KeyEventArgs = __ctor
+CS.EventInput.KeyEventArgs.__new = __ctor
+end
 
 ---@class EventInput.CharEnteredHandler: System.MulticastDelegate
 CS.EventInput.CharEnteredHandler = {}
@@ -59,10 +67,14 @@ function CS.EventInput.CharEnteredHandler.BeginInvoke(sender, e, callback, objec
 ---@param result System.IAsyncResult
 function CS.EventInput.CharEnteredHandler.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return EventInput.CharEnteredHandler
-function CS.EventInput.CharEnteredHandler(object, method) end
+local __ctor = function(object, method) end
+CS.EventInput.CharEnteredHandler = __ctor
+CS.EventInput.CharEnteredHandler.__new = __ctor
+end
 
 ---@class EventInput.KeyEventHandler: System.MulticastDelegate
 CS.EventInput.KeyEventHandler = {}
@@ -81,10 +93,14 @@ function CS.EventInput.KeyEventHandler.BeginInvoke(sender, e, callback, object) 
 ---@param result System.IAsyncResult
 function CS.EventInput.KeyEventHandler.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return EventInput.KeyEventHandler
-function CS.EventInput.KeyEventHandler(object, method) end
+local __ctor = function(object, method) end
+CS.EventInput.KeyEventHandler = __ctor
+CS.EventInput.KeyEventHandler.__new = __ctor
+end
 
 ---@class EventInput.EditingTextHandler: System.MulticastDelegate
 CS.EventInput.EditingTextHandler = {}
@@ -103,10 +119,14 @@ function CS.EventInput.EditingTextHandler.BeginInvoke(sender, e, callback, objec
 ---@param result System.IAsyncResult
 function CS.EventInput.EditingTextHandler.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return EventInput.EditingTextHandler
-function CS.EventInput.EditingTextHandler(object, method) end
+local __ctor = function(object, method) end
+CS.EventInput.EditingTextHandler = __ctor
+CS.EventInput.EditingTextHandler.__new = __ctor
+end
 
 ---@class EventInput.EventInput: System.Object
 ---@field private initialized System.Boolean
@@ -184,7 +204,11 @@ function CS.EventInput.KeyboardDispatcher.get_Subscriber() end
 ---@param value EventInput.IKeyboardSubscriber
 function CS.EventInput.KeyboardDispatcher.set_Subscriber(value) end
 
+do
 ---@param window Microsoft.Xna.Framework.GameWindow
 ---@return EventInput.KeyboardDispatcher
-function CS.EventInput.KeyboardDispatcher(window) end
+local __ctor = function(window) end
+CS.EventInput.KeyboardDispatcher = __ctor
+CS.EventInput.KeyboardDispatcher.__new = __ctor
+end
 

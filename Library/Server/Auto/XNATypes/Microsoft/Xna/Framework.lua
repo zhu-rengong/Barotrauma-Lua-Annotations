@@ -228,6 +228,7 @@ function CS.Microsoft.Xna.Framework.Color.get_DebugDisplayString() end
 ---@return System.String
 function CS.Microsoft.Xna.Framework.Color.ToString() end
 
+do
 ---@private
 ---@overload fun(packedValue: System.UInt32): Microsoft.Xna.Framework.Color
 ---@overload fun(color: Microsoft.Xna.Framework.Vector4): Microsoft.Xna.Framework.Color
@@ -240,7 +241,10 @@ function CS.Microsoft.Xna.Framework.Color.ToString() end
 ---@overload fun(r: System.Int32, g: System.Int32, b: System.Int32, alpha: System.Int32): Microsoft.Xna.Framework.Color
 ---@overload fun(r: System.Byte, g: System.Byte, b: System.Byte, alpha: System.Byte): Microsoft.Xna.Framework.Color
 ---@return Microsoft.Xna.Framework.Color
-function CS.Microsoft.Xna.Framework.Color() end
+local __ctor = function() end
+CS.Microsoft.Xna.Framework.Color = __ctor
+CS.Microsoft.Xna.Framework.Color.__new = __ctor
+end
 
 ---@class Microsoft.Xna.Framework.MathHelper: System.Object
 ---@field E System.Single
@@ -696,6 +700,7 @@ function CS.Microsoft.Xna.Framework.Matrix.Transpose(matrix) end
 ---@param minor12 System.Single
 function CS.Microsoft.Xna.Framework.Matrix.FindDeterminants(matrix, major, minor1, minor2, minor3, minor4, minor5, minor6, minor7, minor8, minor9, minor10, minor11, minor12) end
 
+do
 ---@overload fun(row1: Microsoft.Xna.Framework.Vector4, row2: Microsoft.Xna.Framework.Vector4, row3: Microsoft.Xna.Framework.Vector4, row4: Microsoft.Xna.Framework.Vector4): Microsoft.Xna.Framework.Matrix
 ---@overload fun(): Microsoft.Xna.Framework.Matrix
 ---@param m11 System.Single
@@ -715,7 +720,10 @@ function CS.Microsoft.Xna.Framework.Matrix.FindDeterminants(matrix, major, minor
 ---@param m43 System.Single
 ---@param m44 System.Single
 ---@return Microsoft.Xna.Framework.Matrix
-function CS.Microsoft.Xna.Framework.Matrix(m11, m12, m13, m14, m21, m22, m23, m24, m31, m32, m33, m34, m41, m42, m43, m44) end
+local __ctor = function(m11, m12, m13, m14, m21, m22, m23, m24, m31, m32, m33, m34, m41, m42, m43, m44) end
+CS.Microsoft.Xna.Framework.Matrix = __ctor
+CS.Microsoft.Xna.Framework.Matrix.__new = __ctor
+end
 
 ---@class Microsoft.Xna.Framework.Point: System.ValueType
 ---@field Zero Microsoft.Xna.Framework.Point
@@ -784,12 +792,16 @@ function CS.Microsoft.Xna.Framework.Point.ToString() end
 ---@return Microsoft.Xna.Framework.Vector2
 function CS.Microsoft.Xna.Framework.Point.ToVector2() end
 
+do
 ---@overload fun(value: System.Int32): Microsoft.Xna.Framework.Point
 ---@overload fun(): Microsoft.Xna.Framework.Point
 ---@param x System.Int32
 ---@param y System.Int32
 ---@return Microsoft.Xna.Framework.Point
-function CS.Microsoft.Xna.Framework.Point(x, y) end
+local __ctor = function(x, y) end
+CS.Microsoft.Xna.Framework.Point = __ctor
+CS.Microsoft.Xna.Framework.Point.__new = __ctor
+end
 
 ---@class Microsoft.Xna.Framework.Rectangle: System.ValueType
 ---@field Empty Microsoft.Xna.Framework.Rectangle
@@ -912,6 +924,7 @@ function CS.Microsoft.Xna.Framework.Rectangle.Union(value1, value2) end
 ---@param point Microsoft.Xna.Framework.Point
 function CS.Microsoft.Xna.Framework.Rectangle.AddPoint(point) end
 
+do
 ---@overload fun(location: Microsoft.Xna.Framework.Point, size: Microsoft.Xna.Framework.Point): Microsoft.Xna.Framework.Rectangle
 ---@overload fun(): Microsoft.Xna.Framework.Rectangle
 ---@param x System.Int32
@@ -919,7 +932,10 @@ function CS.Microsoft.Xna.Framework.Rectangle.AddPoint(point) end
 ---@param width System.Int32
 ---@param height System.Int32
 ---@return Microsoft.Xna.Framework.Rectangle
-function CS.Microsoft.Xna.Framework.Rectangle(x, y, width, height) end
+local __ctor = function(x, y, width, height) end
+CS.Microsoft.Xna.Framework.Rectangle = __ctor
+CS.Microsoft.Xna.Framework.Rectangle.__new = __ctor
+end
 
 ---@class Microsoft.Xna.Framework.Vector2: System.ValueType
 ---@field Zero Microsoft.Xna.Framework.Vector2
@@ -1174,12 +1190,16 @@ function CS.Microsoft.Xna.Framework.Vector2.TransformNormal(normal, matrix) end
 ---@param y System.Single
 function CS.Microsoft.Xna.Framework.Vector2.Deconstruct(x, y) end
 
+do
 ---@overload fun(value: System.Single): Microsoft.Xna.Framework.Vector2
 ---@overload fun(): Microsoft.Xna.Framework.Vector2
 ---@param x System.Single
 ---@param y System.Single
 ---@return Microsoft.Xna.Framework.Vector2
-function CS.Microsoft.Xna.Framework.Vector2(x, y) end
+local __ctor = function(x, y) end
+CS.Microsoft.Xna.Framework.Vector2 = __ctor
+CS.Microsoft.Xna.Framework.Vector2.__new = __ctor
+end
 
 ---@class Microsoft.Xna.Framework.Vector3: System.ValueType
 ---@field Zero Microsoft.Xna.Framework.Vector3
@@ -1474,6 +1494,7 @@ function CS.Microsoft.Xna.Framework.Vector3.op_Division(value1, value2) end
 ---@return Microsoft.Xna.Framework.Vector3
 function CS.Microsoft.Xna.Framework.Vector3.op_Implicit(tuple) end
 
+do
 ---@overload fun(value: System.Single): Microsoft.Xna.Framework.Vector3
 ---@overload fun(value: Microsoft.Xna.Framework.Vector2, z: System.Single): Microsoft.Xna.Framework.Vector3
 ---@overload fun(): Microsoft.Xna.Framework.Vector3
@@ -1481,7 +1502,10 @@ function CS.Microsoft.Xna.Framework.Vector3.op_Implicit(tuple) end
 ---@param y System.Single
 ---@param z System.Single
 ---@return Microsoft.Xna.Framework.Vector3
-function CS.Microsoft.Xna.Framework.Vector3(x, y, z) end
+local __ctor = function(x, y, z) end
+CS.Microsoft.Xna.Framework.Vector3 = __ctor
+CS.Microsoft.Xna.Framework.Vector3.__new = __ctor
+end
 
 ---@class Microsoft.Xna.Framework.Vector4: System.ValueType
 ---@field Zero Microsoft.Xna.Framework.Vector4
@@ -1741,6 +1765,7 @@ function CS.Microsoft.Xna.Framework.Vector4.op_Division(value1, value2) end
 ---@return Microsoft.Xna.Framework.Vector4
 function CS.Microsoft.Xna.Framework.Vector4.op_Implicit(tuple) end
 
+do
 ---@overload fun(value: Microsoft.Xna.Framework.Vector2, z: System.Single, w: System.Single): Microsoft.Xna.Framework.Vector4
 ---@overload fun(value: Microsoft.Xna.Framework.Vector3, w: System.Single): Microsoft.Xna.Framework.Vector4
 ---@overload fun(value: System.Single): Microsoft.Xna.Framework.Vector4
@@ -1750,5 +1775,8 @@ function CS.Microsoft.Xna.Framework.Vector4.op_Implicit(tuple) end
 ---@param z System.Single
 ---@param w System.Single
 ---@return Microsoft.Xna.Framework.Vector4
-function CS.Microsoft.Xna.Framework.Vector4(x, y, z, w) end
+local __ctor = function(x, y, z, w) end
+CS.Microsoft.Xna.Framework.Vector4 = __ctor
+CS.Microsoft.Xna.Framework.Vector4.__new = __ctor
+end
 

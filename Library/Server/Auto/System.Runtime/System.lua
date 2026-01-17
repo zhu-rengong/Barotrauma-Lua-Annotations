@@ -150,9 +150,13 @@ function CS.System.Boolean.Parse(s, provider) end
 ---@return System.Boolean
 function CS.System.Boolean.TryParse(s, provider, result) end
 
+do
 ---@private
 ---@return System.Boolean
-function CS.System.Boolean() end
+local __ctor = function() end
+CS.System.Boolean = __ctor
+CS.System.Boolean.__new = __ctor
+end
 
 ---@class System.Byte: System.ValueType, integer
 ---@field private ["System.Numerics.IAdditiveIdentity<System.Byte,System.Byte>.AdditiveIdentity"] System.Byte
@@ -2268,6 +2272,7 @@ function CS.System.Decimal.AsMutable(d) end
 ---@return System.UInt32
 function CS.System.Decimal.DecDivMod1E9(value) end
 
+do
 ---@package
 ---@overload fun(value: System.Int32): System.Decimal
 ---@overload fun(value: System.UInt32): System.Decimal
@@ -2284,7 +2289,10 @@ function CS.System.Decimal.DecDivMod1E9(value) end
 ---@overload fun(): System.Decimal
 ---@param value System.Currency
 ---@return System.Decimal
-function CS.System.Decimal(value) end
+local __ctor = function(value) end
+CS.System.Decimal = __ctor
+CS.System.Decimal.__new = __ctor
+end
 
 ---@class System.Delegate: System.Object
 ---@field Target System.Object
@@ -2469,12 +2477,16 @@ function CS.System.Delegate.op_Equality(d1, d2) end
 ---@return System.Boolean
 function CS.System.Delegate.op_Inequality(d1, d2) end
 
+do
 ---@protected
 ---@overload fun(target: System.Type, method: System.String): System.Delegate
 ---@param target System.Object
 ---@param method System.String
 ---@return System.Delegate
-function CS.System.Delegate(target, method) end
+local __ctor = function(target, method) end
+CS.System.Delegate = __ctor
+CS.System.Delegate.__new = __ctor
+end
 
 ---@class System.Double: System.ValueType, number
 ---@field package BiasedExponent System.UInt16
@@ -3567,11 +3579,15 @@ function CS.System.Exception.SetRemoteStackTrace(stackTrace) end
 ---@return System.String
 function CS.System.Exception.get_SerializationStackTraceString() end
 
+do
 ---@overload fun(message: System.String): System.Exception
 ---@overload fun(message: System.String, innerException: System.Exception): System.Exception
 ---@overload fun(info: System.Runtime.Serialization.SerializationInfo, context: System.Runtime.Serialization.StreamingContext): System.Exception
 ---@return System.Exception
-function CS.System.Exception() end
+local __ctor = function() end
+CS.System.Exception = __ctor
+CS.System.Exception.__new = __ctor
+end
 
 ---@class System.Int16: System.ValueType, integer
 ---@field private ["System.Numerics.IAdditiveIdentity<System.Int16,System.Int16>.AdditiveIdentity"] System.Int16
@@ -5999,12 +6015,16 @@ function CS.System.MulticastDelegate.CtorCollectibleOpened(target, methodPtr, sh
 ---@param gchandle System.IntPtr
 function CS.System.MulticastDelegate.CtorCollectibleVirtualDispatch(target, methodPtr, shuffleThunk, gchandle) end
 
+do
 ---@protected
 ---@overload fun(target: System.Type, method: System.String): System.MulticastDelegate
 ---@param target System.Object
 ---@param method System.String
 ---@return System.MulticastDelegate
-function CS.System.MulticastDelegate(target, method) end
+local __ctor = function(target, method) end
+CS.System.MulticastDelegate = __ctor
+CS.System.MulticastDelegate.__new = __ctor
+end
 
 ---@class System.Object: userdata
 CS.System.Object = {}
@@ -6039,8 +6059,12 @@ function CS.System.Object.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.System.Object.GetHashCode() end
 
+do
 ---@return System.Object
-function CS.System.Object() end
+local __ctor = function() end
+CS.System.Object = __ctor
+CS.System.Object.__new = __ctor
+end
 
 ---@class System.SByte: System.ValueType, integer
 ---@field private ["System.Numerics.IAdditiveIdentity<System.SByte,System.SByte>.AdditiveIdentity"] System.SByte
@@ -8278,6 +8302,7 @@ function CS.System.String.LastIndexOf(value) end
 ---@return System.Int32
 function CS.System.String.LastIndexOfAny(anyOf) end
 
+do
 ---@overload fun(value: System.Char[], startIndex: System.Int32, length: System.Int32): System.String
 ---@overload fun(value: System.Char*): System.String
 ---@overload fun(value: System.Char*, startIndex: System.Int32, length: System.Int32): System.String
@@ -8288,7 +8313,10 @@ function CS.System.String.LastIndexOfAny(anyOf) end
 ---@overload fun(value: (userdata | { [System.Int32]: System.Char })): System.String
 ---@param value System.Char[]
 ---@return System.String
-function CS.System.String(value) end
+local __ctor = function(value) end
+CS.System.String = __ctor
+CS.System.String.__new = __ctor
+end
 
 ---@class System.TimeSpan: System.ValueType
 ---@field Ticks System.Int64
@@ -8579,6 +8607,7 @@ function CS.System.TimeSpan.op_GreaterThan(t1, t2) end
 ---@return System.Boolean
 function CS.System.TimeSpan.op_GreaterThanOrEqual(t1, t2) end
 
+do
 ---@overload fun(hours: System.Int32, minutes: System.Int32, seconds: System.Int32): System.TimeSpan
 ---@overload fun(days: System.Int32, hours: System.Int32, minutes: System.Int32, seconds: System.Int32): System.TimeSpan
 ---@overload fun(days: System.Int32, hours: System.Int32, minutes: System.Int32, seconds: System.Int32, milliseconds: System.Int32): System.TimeSpan
@@ -8586,7 +8615,10 @@ function CS.System.TimeSpan.op_GreaterThanOrEqual(t1, t2) end
 ---@overload fun(): System.TimeSpan
 ---@param ticks System.Int64
 ---@return System.TimeSpan
-function CS.System.TimeSpan(ticks) end
+local __ctor = function(ticks) end
+CS.System.TimeSpan = __ctor
+CS.System.TimeSpan.__new = __ctor
+end
 
 ---@class System.Type: System.Reflection.MemberInfo
 ---@field IsInterface System.Boolean
@@ -9297,10 +9329,14 @@ function CS.System.Type.FilterAttributeImpl(m, filterCriteria) end
 ---@return System.Boolean
 function CS.System.Type.FilterNameImpl(m, filterCriteria, comparison) end
 
+do
 ---@protected
 ---@overload fun(): System.Type
 ---@return System.Type
-function CS.System.Type() end
+local __ctor = function() end
+CS.System.Type = __ctor
+CS.System.Type.__new = __ctor
+end
 
 ---@class System.UInt16: System.ValueType, integer
 ---@field private ["System.Numerics.IAdditiveIdentity<System.UInt16,System.UInt16>.AdditiveIdentity"] System.UInt16
@@ -11111,9 +11147,13 @@ function CS.System.ValueType.GetHashCode() end
 ---@return System.String
 function CS.System.ValueType.ToString() end
 
+do
 ---@protected
 ---@return System.ValueType
-function CS.System.ValueType() end
+local __ctor = function() end
+CS.System.ValueType = __ctor
+CS.System.ValueType.__new = __ctor
+end
 
 ---@class System.Void: System.ValueType
 CS.System.Void = {}

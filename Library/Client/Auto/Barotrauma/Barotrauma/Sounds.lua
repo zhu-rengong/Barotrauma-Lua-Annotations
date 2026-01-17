@@ -46,12 +46,16 @@ function CS.Barotrauma.Sounds.OggSound.FillAlBuffers() end
 
 function CS.Barotrauma.Sounds.OggSound.Dispose() end
 
+do
 ---@param owner Barotrauma.Sounds.SoundManager
 ---@param filename System.String
 ---@param stream System.Boolean
 ---@param xElement Barotrauma.ContentXElement
 ---@return Barotrauma.Sounds.OggSound
-function CS.Barotrauma.Sounds.OggSound(owner, filename, stream, xElement) end
+local __ctor = function(owner, filename, stream, xElement) end
+CS.Barotrauma.Sounds.OggSound = __ctor
+CS.Barotrauma.Sounds.OggSound.__new = __ctor
+end
 
 ---@class Barotrauma.Sounds.Sound: System.Object
 ---@field Disposed System.Boolean
@@ -132,6 +136,7 @@ function CS.Barotrauma.Sounds.Sound.DeleteAlBuffers() end
 
 function CS.Barotrauma.Sounds.Sound.Dispose() end
 
+do
 ---@param owner Barotrauma.Sounds.SoundManager
 ---@param filename System.String
 ---@param stream System.Boolean
@@ -139,7 +144,10 @@ function CS.Barotrauma.Sounds.Sound.Dispose() end
 ---@param xElement? Barotrauma.ContentXElement
 ---@param getFullPath? System.Boolean
 ---@return Barotrauma.Sounds.Sound
-function CS.Barotrauma.Sounds.Sound(owner, filename, stream, streamsReliably, xElement, getFullPath) end
+local __ctor = function(owner, filename, stream, streamsReliably, xElement, getFullPath) end
+CS.Barotrauma.Sounds.Sound = __ctor
+CS.Barotrauma.Sounds.Sound.__new = __ctor
+end
 
 ---@class Barotrauma.Sounds.SoundBuffers: System.Object
 ---@field BuffersGenerated System.Int32
@@ -157,10 +165,14 @@ function CS.Barotrauma.Sounds.SoundBuffers.ClearPool() end
 ---@return System.Boolean
 function CS.Barotrauma.Sounds.SoundBuffers.RequestAlBuffers() end
 
+do
 ---@overload fun(): Barotrauma.Sounds.SoundBuffers
 ---@param sound Barotrauma.Sounds.Sound
 ---@return Barotrauma.Sounds.SoundBuffers
-function CS.Barotrauma.Sounds.SoundBuffers(sound) end
+local __ctor = function(sound) end
+CS.Barotrauma.Sounds.SoundBuffers = __ctor
+CS.Barotrauma.Sounds.SoundBuffers.__new = __ctor
+end
 
 ---@class Barotrauma.Sounds.SoundSourcePool: System.Object
 ---@field ALSources System.UInt32[]
@@ -168,9 +180,13 @@ CS.Barotrauma.Sounds.SoundSourcePool = {}
 
 function CS.Barotrauma.Sounds.SoundSourcePool.Dispose() end
 
+do
 ---@param sourceCount? System.Int32
 ---@return Barotrauma.Sounds.SoundSourcePool
-function CS.Barotrauma.Sounds.SoundSourcePool(sourceCount) end
+local __ctor = function(sourceCount) end
+CS.Barotrauma.Sounds.SoundSourcePool = __ctor
+CS.Barotrauma.Sounds.SoundSourcePool.__new = __ctor
+end
 
 ---@class Barotrauma.Sounds.SoundChannel: System.Object
 ---@field Position Microsoft.Xna.Framework.Vector3|nil
@@ -288,6 +304,7 @@ function CS.Barotrauma.Sounds.SoundChannel.Dispose() end
 
 function CS.Barotrauma.Sounds.SoundChannel.UpdateStream() end
 
+do
 ---@param sound Barotrauma.Sounds.Sound
 ---@param gain System.Single
 ---@param position Microsoft.Xna.Framework.Vector3|nil
@@ -297,7 +314,10 @@ function CS.Barotrauma.Sounds.SoundChannel.UpdateStream() end
 ---@param category Barotrauma.Identifier
 ---@param muffle? System.Boolean
 ---@return Barotrauma.Sounds.SoundChannel
-function CS.Barotrauma.Sounds.SoundChannel(sound, gain, position, freqMult, near, far, category, muffle) end
+local __ctor = function(sound, gain, position, freqMult, near, far, category, muffle) end
+CS.Barotrauma.Sounds.SoundChannel = __ctor
+CS.Barotrauma.Sounds.SoundChannel.__new = __ctor
+end
 
 ---@class Barotrauma.Sounds.BiQuad: System.Object
 ---@field protected A0 System.Double
@@ -323,6 +343,7 @@ function CS.Barotrauma.Sounds.BiQuad.Process(input) end
 ---@protected
 function CS.Barotrauma.Sounds.BiQuad.CalculateBiQuadCoefficients() end
 
+do
 ---@protected
 ---@overload fun(): Barotrauma.Sounds.BiQuad
 ---@param sampleRate System.Int32
@@ -330,7 +351,10 @@ function CS.Barotrauma.Sounds.BiQuad.CalculateBiQuadCoefficients() end
 ---@param q System.Double
 ---@param gainDb System.Double
 ---@return Barotrauma.Sounds.BiQuad
-function CS.Barotrauma.Sounds.BiQuad(sampleRate, frequency, q, gainDb) end
+local __ctor = function(sampleRate, frequency, q, gainDb) end
+CS.Barotrauma.Sounds.BiQuad = __ctor
+CS.Barotrauma.Sounds.BiQuad.__new = __ctor
+end
 
 ---@class Barotrauma.Sounds.LowpassFilter: Barotrauma.Sounds.BiQuad
 CS.Barotrauma.Sounds.LowpassFilter = {}
@@ -338,10 +362,14 @@ CS.Barotrauma.Sounds.LowpassFilter = {}
 ---@protected
 function CS.Barotrauma.Sounds.LowpassFilter.CalculateBiQuadCoefficients() end
 
+do
 ---@param sampleRate System.Int32
 ---@param frequency System.Double
 ---@return Barotrauma.Sounds.LowpassFilter
-function CS.Barotrauma.Sounds.LowpassFilter(sampleRate, frequency) end
+local __ctor = function(sampleRate, frequency) end
+CS.Barotrauma.Sounds.LowpassFilter = __ctor
+CS.Barotrauma.Sounds.LowpassFilter.__new = __ctor
+end
 
 ---@class Barotrauma.Sounds.HighpassFilter: Barotrauma.Sounds.BiQuad
 CS.Barotrauma.Sounds.HighpassFilter = {}
@@ -349,10 +377,14 @@ CS.Barotrauma.Sounds.HighpassFilter = {}
 ---@protected
 function CS.Barotrauma.Sounds.HighpassFilter.CalculateBiQuadCoefficients() end
 
+do
 ---@param sampleRate System.Int32
 ---@param frequency System.Double
 ---@return Barotrauma.Sounds.HighpassFilter
-function CS.Barotrauma.Sounds.HighpassFilter(sampleRate, frequency) end
+local __ctor = function(sampleRate, frequency) end
+CS.Barotrauma.Sounds.HighpassFilter = __ctor
+CS.Barotrauma.Sounds.HighpassFilter.__new = __ctor
+end
 
 ---@class Barotrauma.Sounds.BandpassFilter: Barotrauma.Sounds.BiQuad
 CS.Barotrauma.Sounds.BandpassFilter = {}
@@ -360,10 +392,14 @@ CS.Barotrauma.Sounds.BandpassFilter = {}
 ---@protected
 function CS.Barotrauma.Sounds.BandpassFilter.CalculateBiQuadCoefficients() end
 
+do
 ---@param sampleRate System.Int32
 ---@param frequency System.Double
 ---@return Barotrauma.Sounds.BandpassFilter
-function CS.Barotrauma.Sounds.BandpassFilter(sampleRate, frequency) end
+local __ctor = function(sampleRate, frequency) end
+CS.Barotrauma.Sounds.BandpassFilter = __ctor
+CS.Barotrauma.Sounds.BandpassFilter.__new = __ctor
+end
 
 ---@class Barotrauma.Sounds.NotchFilter: Barotrauma.Sounds.BiQuad
 CS.Barotrauma.Sounds.NotchFilter = {}
@@ -371,10 +407,14 @@ CS.Barotrauma.Sounds.NotchFilter = {}
 ---@protected
 function CS.Barotrauma.Sounds.NotchFilter.CalculateBiQuadCoefficients() end
 
+do
 ---@param sampleRate System.Int32
 ---@param frequency System.Double
 ---@return Barotrauma.Sounds.NotchFilter
-function CS.Barotrauma.Sounds.NotchFilter(sampleRate, frequency) end
+local __ctor = function(sampleRate, frequency) end
+CS.Barotrauma.Sounds.NotchFilter = __ctor
+CS.Barotrauma.Sounds.NotchFilter.__new = __ctor
+end
 
 ---@class Barotrauma.Sounds.LowShelfFilter: Barotrauma.Sounds.BiQuad
 CS.Barotrauma.Sounds.LowShelfFilter = {}
@@ -382,11 +422,15 @@ CS.Barotrauma.Sounds.LowShelfFilter = {}
 ---@protected
 function CS.Barotrauma.Sounds.LowShelfFilter.CalculateBiQuadCoefficients() end
 
+do
 ---@param sampleRate System.Int32
 ---@param frequency System.Double
 ---@param gainDB System.Double
 ---@return Barotrauma.Sounds.LowShelfFilter
-function CS.Barotrauma.Sounds.LowShelfFilter(sampleRate, frequency, gainDB) end
+local __ctor = function(sampleRate, frequency, gainDB) end
+CS.Barotrauma.Sounds.LowShelfFilter = __ctor
+CS.Barotrauma.Sounds.LowShelfFilter.__new = __ctor
+end
 
 ---@class Barotrauma.Sounds.HighShelfFilter: Barotrauma.Sounds.BiQuad
 CS.Barotrauma.Sounds.HighShelfFilter = {}
@@ -394,11 +438,15 @@ CS.Barotrauma.Sounds.HighShelfFilter = {}
 ---@protected
 function CS.Barotrauma.Sounds.HighShelfFilter.CalculateBiQuadCoefficients() end
 
+do
 ---@param sampleRate System.Int32
 ---@param frequency System.Double
 ---@param gainDB System.Double
 ---@return Barotrauma.Sounds.HighShelfFilter
-function CS.Barotrauma.Sounds.HighShelfFilter(sampleRate, frequency, gainDB) end
+local __ctor = function(sampleRate, frequency, gainDB) end
+CS.Barotrauma.Sounds.HighShelfFilter = __ctor
+CS.Barotrauma.Sounds.HighShelfFilter.__new = __ctor
+end
 
 ---@class Barotrauma.Sounds.PeakFilter: Barotrauma.Sounds.BiQuad
 CS.Barotrauma.Sounds.PeakFilter = {}
@@ -406,12 +454,16 @@ CS.Barotrauma.Sounds.PeakFilter = {}
 ---@protected
 function CS.Barotrauma.Sounds.PeakFilter.CalculateBiQuadCoefficients() end
 
+do
 ---@param sampleRate System.Int32
 ---@param frequency System.Double
 ---@param bandWidth System.Double
 ---@param peakGainDB System.Double
 ---@return Barotrauma.Sounds.PeakFilter
-function CS.Barotrauma.Sounds.PeakFilter(sampleRate, frequency, bandWidth, peakGainDB) end
+local __ctor = function(sampleRate, frequency, bandWidth, peakGainDB) end
+CS.Barotrauma.Sounds.PeakFilter = __ctor
+CS.Barotrauma.Sounds.PeakFilter.__new = __ctor
+end
 
 ---@class Barotrauma.Sounds.SoundManager: System.Object
 ---@field Disabled System.Boolean
@@ -582,9 +634,13 @@ function CS.Barotrauma.Sounds.SoundManager.Dispose() end
 
 function CS.Barotrauma.Sounds.SoundManager.TryRefreshDevice() end
 
+do
 ---@overload fun(): Barotrauma.Sounds.SoundManager
 ---@return Barotrauma.Sounds.SoundManager
-function CS.Barotrauma.Sounds.SoundManager() end
+local __ctor = function() end
+CS.Barotrauma.Sounds.SoundManager = __ctor
+CS.Barotrauma.Sounds.SoundManager.__new = __ctor
+end
 
 ---@class Barotrauma.Sounds.VideoSound: Barotrauma.Sounds.Sound
 ---@field DurationSeconds System.Double|nil
@@ -624,13 +680,17 @@ function CS.Barotrauma.Sounds.VideoSound.FillStreamBuffer(samplePos, buffer) end
 
 function CS.Barotrauma.Sounds.VideoSound.Dispose() end
 
+do
 ---@param owner Barotrauma.Sounds.SoundManager
 ---@param filename System.String
 ---@param sampleRate System.Int32
 ---@param channelCount System.Int32
 ---@param vid Barotrauma.Media.Video
 ---@return Barotrauma.Sounds.VideoSound
-function CS.Barotrauma.Sounds.VideoSound(owner, filename, sampleRate, channelCount, vid) end
+local __ctor = function(owner, filename, sampleRate, channelCount, vid) end
+CS.Barotrauma.Sounds.VideoSound = __ctor
+CS.Barotrauma.Sounds.VideoSound.__new = __ctor
+end
 
 ---@class Barotrauma.Sounds.VoipSound: Barotrauma.Sounds.Sound
 ---@field DurationSeconds System.Double|nil
@@ -704,11 +764,15 @@ function CS.Barotrauma.Sounds.VoipSound.FillStreamBuffer(samplePos, buffer) end
 
 function CS.Barotrauma.Sounds.VoipSound.Dispose() end
 
+do
 ---@param targetClient Barotrauma.Networking.Client
 ---@param owner Barotrauma.Sounds.SoundManager
 ---@param q Barotrauma.Networking.VoipQueue
 ---@return Barotrauma.Sounds.VoipSound
-function CS.Barotrauma.Sounds.VoipSound(targetClient, owner, q) end
+local __ctor = function(targetClient, owner, q) end
+CS.Barotrauma.Sounds.VoipSound = __ctor
+CS.Barotrauma.Sounds.VoipSound.__new = __ctor
+end
 
 ---@class Barotrauma.Sounds.OggSound.TaskResult: System.ValueType
 ---@field SampleBuffer System.Int16[]
@@ -716,11 +780,15 @@ function CS.Barotrauma.Sounds.VoipSound(targetClient, owner, q) end
 ---@field PlaybackAmplitude userdata | { [System.Int32]: System.Single } | (fun(): System.Single)
 CS.Barotrauma.Sounds.OggSound.TaskResult = {}
 
+do
 ---@param SampleBuffer System.Int16[]
 ---@param MuffleBuffer System.Int16[]
 ---@param PlaybackAmplitude userdata | { [System.Int32]: System.Single } | (fun(): System.Single)
 ---@return Barotrauma.Sounds.OggSound.TaskResult
-function CS.Barotrauma.Sounds.OggSound.TaskResult(SampleBuffer, MuffleBuffer, PlaybackAmplitude) end
+local __ctor = function(SampleBuffer, MuffleBuffer, PlaybackAmplitude) end
+CS.Barotrauma.Sounds.OggSound.TaskResult = __ctor
+CS.Barotrauma.Sounds.OggSound.TaskResult.__new = __ctor
+end
 
 ---@enum Barotrauma.Sounds.SoundManager.SourcePoolIndex
 CS.Barotrauma.Sounds.SoundManager.SourcePoolIndex = {
@@ -737,9 +805,13 @@ CS.Barotrauma.Sounds.SoundManager.CategoryModifier = {}
 ---@param gain System.Single
 function CS.Barotrauma.Sounds.SoundManager.CategoryModifier.SetGainMultiplier(index, gain) end
 
+do
 ---@param gainMultiplierIndex System.Int32
 ---@param gain System.Single
 ---@param muffle System.Boolean
 ---@return Barotrauma.Sounds.SoundManager.CategoryModifier
-function CS.Barotrauma.Sounds.SoundManager.CategoryModifier(gainMultiplierIndex, gain, muffle) end
+local __ctor = function(gainMultiplierIndex, gain, muffle) end
+CS.Barotrauma.Sounds.SoundManager.CategoryModifier = __ctor
+CS.Barotrauma.Sounds.SoundManager.CategoryModifier.__new = __ctor
+end
 

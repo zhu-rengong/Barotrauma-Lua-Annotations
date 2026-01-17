@@ -15,9 +15,13 @@ function CS.Barotrauma.RuinGeneration.RuinGenerationParams.SaveAll() end
 
 function CS.Barotrauma.RuinGeneration.RuinGenerationParams.Dispose() end
 
+do
 ---@overload fun(): Barotrauma.RuinGeneration.RuinGenerationParams
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.RuinConfigFile
 ---@return Barotrauma.RuinGeneration.RuinGenerationParams
-function CS.Barotrauma.RuinGeneration.RuinGenerationParams(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.RuinGeneration.RuinGenerationParams = __ctor
+CS.Barotrauma.RuinGeneration.RuinGenerationParams.__new = __ctor
+end
 

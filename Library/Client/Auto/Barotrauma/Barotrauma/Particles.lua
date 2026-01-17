@@ -116,8 +116,12 @@ function CS.Barotrauma.Particles.Particle.UpdateDrawPos() end
 ---@param spriteBatch Microsoft.Xna.Framework.Graphics.SpriteBatch
 function CS.Barotrauma.Particles.Particle.Draw(spriteBatch) end
 
+do
 ---@return Barotrauma.Particles.Particle
-function CS.Barotrauma.Particles.Particle() end
+local __ctor = function() end
+CS.Barotrauma.Particles.Particle = __ctor
+CS.Barotrauma.Particles.Particle.__new = __ctor
+end
 
 ---@class Barotrauma.Particles.ParticleEmitterProperties: System.Object
 ---@field Name System.String
@@ -189,9 +193,13 @@ function CS.Barotrauma.Particles.ParticleEmitterProperties.get_Velocity() end
 ---@param value System.Single
 function CS.Barotrauma.Particles.ParticleEmitterProperties.set_Velocity(value) end
 
+do
 ---@param element System.Xml.Linq.XElement
 ---@return Barotrauma.Particles.ParticleEmitterProperties
-function CS.Barotrauma.Particles.ParticleEmitterProperties(element) end
+local __ctor = function(element) end
+CS.Barotrauma.Particles.ParticleEmitterProperties = __ctor
+CS.Barotrauma.Particles.ParticleEmitterProperties.__new = __ctor
+end
 
 ---@class Barotrauma.Particles.ParticleEmitter: System.Object
 ---@field private emitTimer System.Single
@@ -231,10 +239,14 @@ function CS.Barotrauma.Particles.ParticleEmitter.Emit(position, hullGuess, angle
 ---@return Microsoft.Xna.Framework.Rectangle
 function CS.Barotrauma.Particles.ParticleEmitter.CalculateParticleBounds(startPosition) end
 
+do
 ---@overload fun(prefab: Barotrauma.Particles.ParticleEmitterPrefab): Barotrauma.Particles.ParticleEmitter
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Particles.ParticleEmitter
-function CS.Barotrauma.Particles.ParticleEmitter(element) end
+local __ctor = function(element) end
+CS.Barotrauma.Particles.ParticleEmitter = __ctor
+CS.Barotrauma.Particles.ParticleEmitter.__new = __ctor
+end
 
 ---@class Barotrauma.Particles.ParticleEmitterPrefab: System.Object
 ---@field ParticlePrefab Barotrauma.Particles.ParticlePrefab
@@ -250,10 +262,14 @@ function CS.Barotrauma.Particles.ParticleEmitterPrefab.get_ParticlePrefab() end
 ---@return Barotrauma.Particles.ParticleDrawOrder
 function CS.Barotrauma.Particles.ParticleEmitterPrefab.get_DrawOrder() end
 
+do
 ---@overload fun(prefab: Barotrauma.Particles.ParticlePrefab, properties: Barotrauma.Particles.ParticleEmitterProperties): Barotrauma.Particles.ParticleEmitterPrefab
 ---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.Particles.ParticleEmitterPrefab
-function CS.Barotrauma.Particles.ParticleEmitterPrefab(element) end
+local __ctor = function(element) end
+CS.Barotrauma.Particles.ParticleEmitterPrefab = __ctor
+CS.Barotrauma.Particles.ParticleEmitterPrefab.__new = __ctor
+end
 
 ---@enum Barotrauma.Particles.ParticleBlendState
 CS.Barotrauma.Particles.ParticleBlendState = {
@@ -341,9 +357,13 @@ function CS.Barotrauma.Particles.ParticleManager.ClearParticles() end
 ---@param prefab Barotrauma.Particles.ParticlePrefab
 function CS.Barotrauma.Particles.ParticleManager.RemoveByPrefab(prefab) end
 
+do
 ---@param cam Barotrauma.Camera
 ---@return Barotrauma.Particles.ParticleManager
-function CS.Barotrauma.Particles.ParticleManager(cam) end
+local __ctor = function(cam) end
+CS.Barotrauma.Particles.ParticleManager = __ctor
+CS.Barotrauma.Particles.ParticleManager.__new = __ctor
+end
 
 ---@class Barotrauma.Particles.ParticlePrefab: Barotrauma.Prefab
 ---@field Name System.String
@@ -456,11 +476,15 @@ function CS.Barotrauma.Particles.ParticlePrefab.CalculateEndPosition(startPositi
 ---@return Microsoft.Xna.Framework.Vector2
 function CS.Barotrauma.Particles.ParticlePrefab.CalculateEndSize() end
 
+do
 ---@overload fun(): Barotrauma.Particles.ParticlePrefab
 ---@param element Barotrauma.ContentXElement
 ---@param file Barotrauma.ContentFile
 ---@return Barotrauma.Particles.ParticlePrefab
-function CS.Barotrauma.Particles.ParticlePrefab(element, file) end
+local __ctor = function(element, file) end
+CS.Barotrauma.Particles.ParticlePrefab = __ctor
+CS.Barotrauma.Particles.ParticlePrefab.__new = __ctor
+end
 
 ---@class Barotrauma.Particles.Particle.OnChangeHullHandler: System.MulticastDelegate
 CS.Barotrauma.Particles.Particle.OnChangeHullHandler = {}
@@ -479,10 +503,14 @@ function CS.Barotrauma.Particles.Particle.OnChangeHullHandler.BeginInvoke(positi
 ---@param result System.IAsyncResult
 function CS.Barotrauma.Particles.Particle.OnChangeHullHandler.EndInvoke(result) end
 
+do
 ---@param object System.Object
 ---@param method System.IntPtr
 ---@return Barotrauma.Particles.Particle.OnChangeHullHandler
-function CS.Barotrauma.Particles.Particle.OnChangeHullHandler(object, method) end
+local __ctor = function(object, method) end
+CS.Barotrauma.Particles.Particle.OnChangeHullHandler = __ctor
+CS.Barotrauma.Particles.Particle.OnChangeHullHandler.__new = __ctor
+end
 
 ---@enum Barotrauma.Particles.Particle.UpdateResult
 CS.Barotrauma.Particles.Particle.UpdateResult = {

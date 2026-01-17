@@ -32,7 +32,11 @@ function CS.FarseerPhysics.ConvertUnits.ToDisplayUnits(simUnits) end
 ---@return System.Single
 function CS.FarseerPhysics.ConvertUnits.ToSimUnits(displayUnits) end
 
+do
 ---@private
 ---@return FarseerPhysics.ConvertUnits
-function CS.FarseerPhysics.ConvertUnits() end
+local __ctor = function() end
+CS.FarseerPhysics.ConvertUnits = __ctor
+CS.FarseerPhysics.ConvertUnits.__new = __ctor
+end
 

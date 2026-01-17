@@ -113,10 +113,14 @@ function CS.Barotrauma.Identifier.IndexOf(c) end
 ---@return Barotrauma.Identifier
 function CS.Barotrauma.Identifier.get_Item(range) end
 
+do
 ---@overload fun(): Barotrauma.Identifier
 ---@param str System.String
 ---@return Barotrauma.Identifier
-function CS.Barotrauma.Identifier(str) end
+local __ctor = function(str) end
+CS.Barotrauma.Identifier = __ctor
+CS.Barotrauma.Identifier.__new = __ctor
+end
 
 ---@enum Barotrauma.Alignment
 CS.Barotrauma.Alignment = {

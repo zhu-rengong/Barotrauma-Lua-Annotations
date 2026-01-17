@@ -10,10 +10,14 @@ CS.Barotrauma.PerkBehaviors.GiveTalentPointPerk = {}
 ---@param teamSubmarine Barotrauma.Submarine
 function CS.Barotrauma.PerkBehaviors.GiveTalentPointPerk.ApplyOnRoundStart(teamCharacters, teamSubmarine) end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param prefab Barotrauma.DisembarkPerkPrefab
 ---@return Barotrauma.PerkBehaviors.GiveTalentPointPerk
-function CS.Barotrauma.PerkBehaviors.GiveTalentPointPerk(element, prefab) end
+local __ctor = function(element, prefab) end
+CS.Barotrauma.PerkBehaviors.GiveTalentPointPerk = __ctor
+CS.Barotrauma.PerkBehaviors.GiveTalentPointPerk.__new = __ctor
+end
 
 ---@enum Barotrauma.PerkBehaviors.PerkSimulation
 CS.Barotrauma.PerkBehaviors.PerkSimulation = {
@@ -48,11 +52,15 @@ function CS.Barotrauma.PerkBehaviors.PerkBase.ApplyOnRoundStart(teamCharacters, 
 ---@return System.Boolean
 function CS.Barotrauma.PerkBehaviors.PerkBase.TryLoadFromXml(element, prefab, perk) end
 
+do
 ---@protected
 ---@param element Barotrauma.ContentXElement
 ---@param prefab Barotrauma.DisembarkPerkPrefab
 ---@return Barotrauma.PerkBehaviors.PerkBase
-function CS.Barotrauma.PerkBehaviors.PerkBase(element, prefab) end
+local __ctor = function(element, prefab) end
+CS.Barotrauma.PerkBehaviors.PerkBase = __ctor
+CS.Barotrauma.PerkBehaviors.PerkBase.__new = __ctor
+end
 
 ---@class Barotrauma.PerkBehaviors.SpawnItemPerk: Barotrauma.PerkBehaviors.PerkBase
 ---@field Simulation Barotrauma.PerkBehaviors.PerkSimulation
@@ -89,10 +97,14 @@ function CS.Barotrauma.PerkBehaviors.SpawnItemPerk.SpawnItemInCrate(prefab, subm
 ---@param submarine Barotrauma.Submarine
 function CS.Barotrauma.PerkBehaviors.SpawnItemPerk.SpawnInContainer(prefab, amount, containers, submarine) end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param prefab Barotrauma.DisembarkPerkPrefab
 ---@return Barotrauma.PerkBehaviors.SpawnItemPerk
-function CS.Barotrauma.PerkBehaviors.SpawnItemPerk(element, prefab) end
+local __ctor = function(element, prefab) end
+CS.Barotrauma.PerkBehaviors.SpawnItemPerk = __ctor
+CS.Barotrauma.PerkBehaviors.SpawnItemPerk.__new = __ctor
+end
 
 ---@class Barotrauma.PerkBehaviors.SubItemSwapPerk: Barotrauma.PerkBehaviors.PerkBase
 ---@field TargetItem Barotrauma.Identifier
@@ -111,10 +123,14 @@ function CS.Barotrauma.PerkBehaviors.SubItemSwapPerk.CanApply(submarine) end
 ---@param teamSubmarine Barotrauma.Submarine
 function CS.Barotrauma.PerkBehaviors.SubItemSwapPerk.ApplyOnRoundStart(teamCharacters, teamSubmarine) end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param prefab Barotrauma.DisembarkPerkPrefab
 ---@return Barotrauma.PerkBehaviors.SubItemSwapPerk
-function CS.Barotrauma.PerkBehaviors.SubItemSwapPerk(element, prefab) end
+local __ctor = function(element, prefab) end
+CS.Barotrauma.PerkBehaviors.SubItemSwapPerk = __ctor
+CS.Barotrauma.PerkBehaviors.SubItemSwapPerk.__new = __ctor
+end
 
 ---@class Barotrauma.PerkBehaviors.UpgradeSubmarinePerk: Barotrauma.PerkBehaviors.PerkBase
 ---@field UpgradeIdentifier Barotrauma.Identifier
@@ -130,10 +146,14 @@ function CS.Barotrauma.PerkBehaviors.UpgradeSubmarinePerk.get_Simulation() end
 ---@param teamSubmarine Barotrauma.Submarine
 function CS.Barotrauma.PerkBehaviors.UpgradeSubmarinePerk.ApplyOnRoundStart(teamCharacters, teamSubmarine) end
 
+do
 ---@param element Barotrauma.ContentXElement
 ---@param prefab Barotrauma.DisembarkPerkPrefab
 ---@return Barotrauma.PerkBehaviors.UpgradeSubmarinePerk
-function CS.Barotrauma.PerkBehaviors.UpgradeSubmarinePerk(element, prefab) end
+local __ctor = function(element, prefab) end
+CS.Barotrauma.PerkBehaviors.UpgradeSubmarinePerk = __ctor
+CS.Barotrauma.PerkBehaviors.UpgradeSubmarinePerk.__new = __ctor
+end
 
 ---@class Barotrauma.PerkBehaviors.SpawnItemPerk.SuitableContainers: System.ValueType
 ---@field PriorityContainers userdata | (fun(): Barotrauma.Items.Components.ItemContainer)
@@ -144,9 +164,13 @@ CS.Barotrauma.PerkBehaviors.SpawnItemPerk.SuitableContainers = {}
 ---@return System.Boolean
 function CS.Barotrauma.PerkBehaviors.SpawnItemPerk.SuitableContainers.Any() end
 
+do
 ---@param PriorityContainers userdata | (fun(): Barotrauma.Items.Components.ItemContainer)
 ---@param PreferredContainers userdata | (fun(): Barotrauma.Items.Components.ItemContainer)
 ---@param SecondaryContainers userdata | (fun(): Barotrauma.Items.Components.ItemContainer)
 ---@return Barotrauma.PerkBehaviors.SpawnItemPerk.SuitableContainers
-function CS.Barotrauma.PerkBehaviors.SpawnItemPerk.SuitableContainers(PriorityContainers, PreferredContainers, SecondaryContainers) end
+local __ctor = function(PriorityContainers, PreferredContainers, SecondaryContainers) end
+CS.Barotrauma.PerkBehaviors.SpawnItemPerk.SuitableContainers = __ctor
+CS.Barotrauma.PerkBehaviors.SpawnItemPerk.SuitableContainers.__new = __ctor
+end
 
