@@ -7,7 +7,7 @@
 ## 使用
 
 **以 VSCode 为例:**
-你需要安装 [Lua Language Server](https://luals.github.io/) 插件，然后添加如下的工作空间（只是推荐这么做）：
+你需要安装 [Lua Language Server](https://luals.github.io/) 插件，将该仓库克隆到本地，然后添加如下的工作空间（只是推荐这么做）：
 
 ```json
 {

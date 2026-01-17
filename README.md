@@ -7,7 +7,7 @@ Lua script annotations generated using the [EmmyLuaDocxgen](https://github.com/z
 ## Usage
 
 **Using VS Code as an example:**
-You need to install the [Lua Language Server](https://luals.github.io/) plugin, then add the following workspace configuration (recommended setup):
+You need to install the [Lua Language Server](https://luals.github.io/) plugin, clone this repository, then add the following workspace configuration (recommended setup):
 
 ```json
 {
