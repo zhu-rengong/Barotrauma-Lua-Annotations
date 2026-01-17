@@ -22,8 +22,34 @@ UpperLString = CS.Barotrauma.UpperLString
 StripRichTagsLString = CS.Barotrauma.StripRichTagsLString
 
 -- Shared:
+
+---@param o any
+function printerror(o) end
+
+---@param ... string
+function setmodulepaths(...) end
+
+Logger = CS.Barotrauma.LuaCsLogger
+LuaUserData = CS.Barotrauma.LuaUserData
+Game = CS.Barotrauma.LuaGame
+Hook = CS.Barotrauma.LuaCsHook
+ModStore = CS.Barotrauma.LuaCsSetup.LuaCsModStore
+Timer = CS.Barotrauma.LuaCsTimer
+File = CS.Barotrauma.LuaCsFile
+Networking = CS.Barotrauma.LuaCsNetworking
+Steam = CS.Barotrauma.LuaCsSteam
+PerformanceCounter = CS.Barotrauma.LuaCsPerformanceCounter
+LuaCsConfig = CS.Barotrauma.LuaCsConfig
+LuaCsConfig = CS.Barotrauma.LuaCsConfig
+
+---@type integer
+ExecutionNumber = nil
+
 ---@type boolean
 CSActive = nil
+
+SERVER = false
+CLIENT = true
 
 ---@type table<string, MoonSharp.Interpreter.Interop.IUserDataDescriptor>
 Descriptors = {}
