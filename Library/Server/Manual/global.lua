@@ -48,8 +48,8 @@ ExecutionNumber = nil
 ---@type boolean
 CSActive = nil
 
-SERVER = false
-CLIENT = true
+SERVER = true
+CLIENT = false
 
 ---@type table<string, MoonSharp.Interpreter.Interop.IUserDataDescriptor>
 Descriptors = {}
