@@ -252,6 +252,111 @@ function CS.Microsoft.Xna.Framework.Graphics.Texture2D.GetTextureSampleDescripti
 ---@param textureStream System.IO.Stream
 function CS.Microsoft.Xna.Framework.Graphics.Texture2D.PlatformReload(textureStream) end
 
+---@generic T : System.ValueType
+---@param __genericMethodMaker_T T
+---@param level System.Int32
+---@param arraySlice System.Int32
+---@param rect Microsoft.Xna.Framework.Rectangle|nil
+---@param data T[]
+---@param startIndex System.Int32
+---@param elementCount System.Int32
+function CS.Microsoft.Xna.Framework.Graphics.Texture2D.SetData(__genericMethodMaker_T, level, arraySlice, rect, data, startIndex, elementCount) end
+
+---@generic T : System.ValueType
+---@param __genericMethodMaker_T T
+---@param level System.Int32
+---@param rect Microsoft.Xna.Framework.Rectangle|nil
+---@param data T[]
+---@param startIndex System.Int32
+---@param elementCount System.Int32
+function CS.Microsoft.Xna.Framework.Graphics.Texture2D.SetData(__genericMethodMaker_T, level, rect, data, startIndex, elementCount) end
+
+---@generic T : System.ValueType
+---@param __genericMethodMaker_T T
+---@param data T[]
+---@param startIndex System.Int32
+---@param elementCount System.Int32
+function CS.Microsoft.Xna.Framework.Graphics.Texture2D.SetData(__genericMethodMaker_T, data, startIndex, elementCount) end
+
+---@generic T : System.ValueType
+---@param __genericMethodMaker_T T
+---@param data T[]
+function CS.Microsoft.Xna.Framework.Graphics.Texture2D.SetData(__genericMethodMaker_T, data) end
+
+---@generic T : System.ValueType
+---@param __genericMethodMaker_T T
+---@param level System.Int32
+---@param arraySlice System.Int32
+---@param rect Microsoft.Xna.Framework.Rectangle|nil
+---@param data T[]
+---@param startIndex System.Int32
+---@param elementCount System.Int32
+function CS.Microsoft.Xna.Framework.Graphics.Texture2D.GetData(__genericMethodMaker_T, level, arraySlice, rect, data, startIndex, elementCount) end
+
+---@generic T : System.ValueType
+---@param __genericMethodMaker_T T
+---@param level System.Int32
+---@param rect Microsoft.Xna.Framework.Rectangle|nil
+---@param data T[]
+---@param startIndex System.Int32
+---@param elementCount System.Int32
+function CS.Microsoft.Xna.Framework.Graphics.Texture2D.GetData(__genericMethodMaker_T, level, rect, data, startIndex, elementCount) end
+
+---@generic T : System.ValueType
+---@param __genericMethodMaker_T T
+---@param data T[]
+---@param startIndex System.Int32
+---@param elementCount System.Int32
+function CS.Microsoft.Xna.Framework.Graphics.Texture2D.GetData(__genericMethodMaker_T, data, startIndex, elementCount) end
+
+---@generic T : System.ValueType
+---@param __genericMethodMaker_T T
+---@param data T[]
+function CS.Microsoft.Xna.Framework.Graphics.Texture2D.GetData(__genericMethodMaker_T, data) end
+
+---@private
+---@generic T : System.ValueType
+---@param __genericMethodMaker_T T
+---@param level System.Int32
+---@param arraySlice System.Int32
+---@param rect Microsoft.Xna.Framework.Rectangle|nil
+---@param data T[]
+---@param startIndex System.Int32
+---@param elementCount System.Int32
+---@param checkedRect Microsoft.Xna.Framework.Rectangle
+function CS.Microsoft.Xna.Framework.Graphics.Texture2D.ValidateParams(__genericMethodMaker_T, level, arraySlice, rect, data, startIndex, elementCount, checkedRect) end
+
+---@private
+---@generic T : System.ValueType
+---@param __genericMethodMaker_T T
+---@param level System.Int32
+---@param data T[]
+---@param startIndex System.Int32
+---@param elementCount System.Int32
+function CS.Microsoft.Xna.Framework.Graphics.Texture2D.PlatformSetData(__genericMethodMaker_T, level, data, startIndex, elementCount) end
+
+---@private
+---@generic T : System.ValueType
+---@param __genericMethodMaker_T T
+---@param level System.Int32
+---@param arraySlice System.Int32
+---@param rect Microsoft.Xna.Framework.Rectangle
+---@param data T[]
+---@param startIndex System.Int32
+---@param elementCount System.Int32
+function CS.Microsoft.Xna.Framework.Graphics.Texture2D.PlatformSetData(__genericMethodMaker_T, level, arraySlice, rect, data, startIndex, elementCount) end
+
+---@private
+---@generic T : System.ValueType
+---@param __genericMethodMaker_T T
+---@param level System.Int32
+---@param arraySlice System.Int32
+---@param rect Microsoft.Xna.Framework.Rectangle
+---@param data T[]
+---@param startIndex System.Int32
+---@param elementCount System.Int32
+function CS.Microsoft.Xna.Framework.Graphics.Texture2D.PlatformGetData(__genericMethodMaker_T, level, arraySlice, rect, data, startIndex, elementCount) end
+
 do
 ---@overload fun(graphicsDevice: Microsoft.Xna.Framework.Graphics.GraphicsDevice, width: System.Int32, height: System.Int32, mipmap: System.Boolean, format: Microsoft.Xna.Framework.Graphics.SurfaceFormat): Microsoft.Xna.Framework.Graphics.Texture2D
 ---@overload fun(graphicsDevice: Microsoft.Xna.Framework.Graphics.GraphicsDevice, width: System.Int32, height: System.Int32, mipmap: System.Boolean, format: Microsoft.Xna.Framework.Graphics.SurfaceFormat, arraySize: System.Int32): Microsoft.Xna.Framework.Graphics.Texture2D

@@ -223,6 +223,11 @@ function CS.Steamworks.SteamServer.ReferenceEquals(objA, objB) end
 ---@return System.Int32
 function CS.Steamworks.SteamServer.GetHashCode() end
 
+---@package
+---@generic T : Steamworks.SteamClass
+---@param __genericMethodMaker_T T
+function CS.Steamworks.SteamServer.AddInterface(__genericMethodMaker_T) end
+
 do
 ---@overload fun(): Steamworks.SteamServer
 ---@return Steamworks.SteamServer

@@ -294,10 +294,11 @@ CS.Barotrauma.LuaCs.INetworkIdProvider = {}
 function CS.Barotrauma.LuaCs.INetworkIdProvider.GetNetworkIdForInstance(instance) end
 
 ---@generic TEntity : Barotrauma.Entity
+---@param __genericMethodMaker_TEntity TEntity
 ---@param instance Barotrauma.LuaCs.Data.IDataInfo
 ---@param attachedEntity TEntity
 ---@return System.Guid
-function CS.Barotrauma.LuaCs.INetworkIdProvider.GetNetworkIdForInstance(instance, attachedEntity) end
+function CS.Barotrauma.LuaCs.INetworkIdProvider.GetNetworkIdForInstance(__genericMethodMaker_TEntity, instance, attachedEntity) end
 
 
 ---@class Barotrauma.LuaCs.INetworkSyncVar: Barotrauma.LuaCs.Data.IDataInfo
@@ -353,10 +354,11 @@ function CS.Barotrauma.LuaCs.NetworkingIdProvider.GetNetworkIdFromStringMd5(id) 
 function CS.Barotrauma.LuaCs.NetworkingIdProvider.GetNetworkIdForInstance(instance) end
 
 ---@generic TEntity : Barotrauma.Entity
+---@param __genericMethodMaker_TEntity TEntity
 ---@param instance Barotrauma.LuaCs.Data.IDataInfo
 ---@param attachedEntity TEntity
 ---@return System.Guid
-function CS.Barotrauma.LuaCs.NetworkingIdProvider.GetNetworkIdForInstance(instance, attachedEntity) end
+function CS.Barotrauma.LuaCs.NetworkingIdProvider.GetNetworkIdForInstance(__genericMethodMaker_TEntity, instance, attachedEntity) end
 
 do
 ---@return Barotrauma.LuaCs.NetworkingIdProvider
@@ -614,6 +616,12 @@ function CS.Barotrauma.LuaCs.ConfigService.DisposePackageData(package) end
 ---@return FluentResults.Result
 function CS.Barotrauma.LuaCs.ConfigService.DisposeAllPackageData() end
 
+---@generic T : Barotrauma.LuaCs.Data.ISettingBase
+---@param __genericMethodMaker_T T
+---@param typeIdentifier System.String
+---@param settingFactory fun(arg: userdata): T
+function CS.Barotrauma.LuaCs.ConfigService.RegisterSettingTypeInitializer(__genericMethodMaker_T, typeIdentifier, settingFactory) end
+
 do
 ---@param logger Barotrauma.LuaCs.ILoggerService
 ---@param storageService Barotrauma.LuaCs.IStorageService
@@ -755,13 +763,43 @@ function CS.Barotrauma.LuaCs.EventService.RemovePatch(identifier, className, met
 function CS.Barotrauma.LuaCs.EventService.HookMethod(identifier, method, patch, hookType, owner) end
 
 ---@generic T : userdata
+---@param __genericMethodMaker_T T
+---@param identifier System.String
+---@param callbacks userdata | { [System.String]: fun(...: System.Object): System.Object } | (fun(): userdata)
+function CS.Barotrauma.LuaCs.EventService.Subscribe(__genericMethodMaker_T, identifier, callbacks) end
+
+---@generic T : userdata
+---@param __genericMethodMaker_T T
+---@param subscriberRunner fun(...: System.Object): System.Object
+function CS.Barotrauma.LuaCs.EventService.PublishLuaEvent(__genericMethodMaker_T, subscriberRunner) end
+
+---@generic T : userdata
+---@param __genericMethodMaker_T T
+---@param luaEventName System.String
+---@param targetMethod System.String
+---@return FluentResults.Result
+function CS.Barotrauma.LuaCs.EventService.RegisterLuaEventAlias(__genericMethodMaker_T, luaEventName, targetMethod) end
+
+---@generic T : userdata
+---@param __genericMethodMaker_T T
 ---@param subscriber T
 ---@return FluentResults.Result
-function CS.Barotrauma.LuaCs.EventService.Subscribe(subscriber) end
+function CS.Barotrauma.LuaCs.EventService.Subscribe(__genericMethodMaker_T, subscriber) end
 
 ---@generic T : Barotrauma.LuaCs.Events.IEvent
+---@param __genericMethodMaker_T T
 ---@param subscriber T
-function CS.Barotrauma.LuaCs.EventService.Unsubscribe(subscriber) end
+function CS.Barotrauma.LuaCs.EventService.Unsubscribe(__genericMethodMaker_T, subscriber) end
+
+---@generic T : Barotrauma.LuaCs.Events.IEvent
+---@param __genericMethodMaker_T T
+function CS.Barotrauma.LuaCs.EventService.ClearAllEventSubscribers(__genericMethodMaker_T) end
+
+---@generic T : userdata
+---@param __genericMethodMaker_T T
+---@param action fun(obj: T)
+---@return FluentResults.Result
+function CS.Barotrauma.LuaCs.EventService.PublishEvent(__genericMethodMaker_T, action) end
 
 do
 ---@param loggerService Barotrauma.LuaCs.ILoggerService
@@ -1563,9 +1601,55 @@ function CS.Barotrauma.LuaCs.ServicesProvider.CompileAndRun() end
 
 function CS.Barotrauma.LuaCs.ServicesProvider.DisposeAndReset() end
 
+---@generic TSvcInterface : Barotrauma.LuaCs.IService
+---@generic TService : Barotrauma.LuaCs.IService, Barotrauma.LuaCs.ServicesProvider.TSvcInterface
+---@param __genericMethodMaker_TSvcInterface TSvcInterface
+---@param __genericMethodMaker_TService TService
+---@param lifetime Barotrauma.LuaCs.ServiceLifetime
+---@param lifetimeInstance? LightInject.ILifetime
+function CS.Barotrauma.LuaCs.ServicesProvider.RegisterServiceType(__genericMethodMaker_TSvcInterface, __genericMethodMaker_TService, lifetime, lifetimeInstance) end
+
+---@generic TSvcInterface : Barotrauma.LuaCs.IService
+---@generic TService : Barotrauma.LuaCs.IService, Barotrauma.LuaCs.ServicesProvider.TSvcInterface
+---@param __genericMethodMaker_TSvcInterface TSvcInterface
+---@param __genericMethodMaker_TService TService
+---@param name System.String
+---@param lifetime Barotrauma.LuaCs.ServiceLifetime
+---@param lifetimeInstance? LightInject.ILifetime
+function CS.Barotrauma.LuaCs.ServicesProvider.RegisterServiceType(__genericMethodMaker_TSvcInterface, __genericMethodMaker_TService, name, lifetime, lifetimeInstance) end
+
+---@generic TSvcInterface : Barotrauma.LuaCs.IService
+---@param __genericMethodMaker_TSvcInterface TSvcInterface
+---@param factory fun(arg: LightInject.ServiceContainer): TSvcInterface
+function CS.Barotrauma.LuaCs.ServicesProvider.RegisterServiceResolver(__genericMethodMaker_TSvcInterface, factory) end
+
 ---@generic T : System.Object
+---@param __genericMethodMaker_T T
 ---@param inst T
-function CS.Barotrauma.LuaCs.ServicesProvider.InjectServices(inst) end
+function CS.Barotrauma.LuaCs.ServicesProvider.InjectServices(__genericMethodMaker_T, inst) end
+
+---@generic TSvcInterface : Barotrauma.LuaCs.IService
+---@param __genericMethodMaker_TSvcInterface TSvcInterface
+---@param service TSvcInterface
+---@return System.Boolean
+function CS.Barotrauma.LuaCs.ServicesProvider.TryGetService(__genericMethodMaker_TSvcInterface, service) end
+
+---@generic TSvcInterface : Barotrauma.LuaCs.IService
+---@param __genericMethodMaker_TSvcInterface TSvcInterface
+---@return TSvcInterface
+function CS.Barotrauma.LuaCs.ServicesProvider.GetService(__genericMethodMaker_TSvcInterface) end
+
+---@generic TSvcInterface : Barotrauma.LuaCs.IService
+---@param __genericMethodMaker_TSvcInterface TSvcInterface
+---@param name System.String
+---@param service TSvcInterface
+---@return System.Boolean
+function CS.Barotrauma.LuaCs.ServicesProvider.TryGetService(__genericMethodMaker_TSvcInterface, name, service) end
+
+---@generic TSvc : Barotrauma.LuaCs.IService
+---@param __genericMethodMaker_TSvc TSvc
+---@return userdata | { [System.Int32]: TSvc } | (fun(): TSvc)
+function CS.Barotrauma.LuaCs.ServicesProvider.GetAllServices(__genericMethodMaker_TSvc) end
 
 do
 ---@return Barotrauma.LuaCs.ServicesProvider
@@ -1939,17 +2023,19 @@ function CS.Barotrauma.LuaCs.StorageService.SaveLocalText(package, localFilePath
 
 ---@private
 ---@generic TException : System.Exception
+---@param __genericMethodMaker_TException TException
 ---@param exception TException
 ---@param package Barotrauma.ContentPackage
 ---@return FluentResults.Result
-function CS.Barotrauma.LuaCs.StorageService.ReturnException(exception, package) end
+function CS.Barotrauma.LuaCs.StorageService.ReturnException(__genericMethodMaker_TException, exception, package) end
 
 ---@private
 ---@generic TException : System.Exception
+---@param __genericMethodMaker_TException TException
 ---@param exception TException
 ---@param filePath System.String
 ---@return FluentResults.Result
-function CS.Barotrauma.LuaCs.StorageService.ReturnException(exception, filePath) end
+function CS.Barotrauma.LuaCs.StorageService.ReturnException(__genericMethodMaker_TException, exception, filePath) end
 
 do
 ---@param configData Barotrauma.LuaCs.Data.IStorageServiceConfig
@@ -1996,6 +2082,12 @@ function CS.Barotrauma.LuaCs.IConfigService.DisposePackageData(package) end
 ---@return FluentResults.Result
 function CS.Barotrauma.LuaCs.IConfigService.DisposeAllPackageData() end
 
+---@generic T : Barotrauma.LuaCs.Data.ISettingBase
+---@param __genericMethodMaker_T T
+---@param typeIdentifier System.String
+---@param settingFactory fun(arg: userdata): T
+function CS.Barotrauma.LuaCs.IConfigService.RegisterSettingTypeInitializer(__genericMethodMaker_T, typeIdentifier, settingFactory) end
+
 
 ---@class Barotrauma.LuaCs.IConsoleCommandsService: Barotrauma.LuaCs.IService, System.IDisposable
 CS.Barotrauma.LuaCs.IConsoleCommandsService = {}
@@ -2034,13 +2126,25 @@ function CS.Barotrauma.LuaCs.IEventService.AddDispatcherEventService(eventServic
 function CS.Barotrauma.LuaCs.IEventService.RemoveDispatcherEventService(eventService) end
 
 ---@generic T : userdata
+---@param __genericMethodMaker_T T
 ---@param subscriber T
 ---@return FluentResults.Result
-function CS.Barotrauma.LuaCs.IEventService.Subscribe(subscriber) end
+function CS.Barotrauma.LuaCs.IEventService.Subscribe(__genericMethodMaker_T, subscriber) end
 
 ---@generic T : Barotrauma.LuaCs.Events.IEvent
+---@param __genericMethodMaker_T T
 ---@param subscriber T
-function CS.Barotrauma.LuaCs.IEventService.Unsubscribe(subscriber) end
+function CS.Barotrauma.LuaCs.IEventService.Unsubscribe(__genericMethodMaker_T, subscriber) end
+
+---@generic T : Barotrauma.LuaCs.Events.IEvent
+---@param __genericMethodMaker_T T
+function CS.Barotrauma.LuaCs.IEventService.ClearAllEventSubscribers(__genericMethodMaker_T) end
+
+---@generic T : userdata
+---@param __genericMethodMaker_T T
+---@param action fun(obj: T)
+---@return FluentResults.Result
+function CS.Barotrauma.LuaCs.IEventService.PublishEvent(__genericMethodMaker_T, action) end
 
 
 ---@class Barotrauma.LuaCs.PendingLog: System.ValueType
@@ -2360,6 +2464,19 @@ function CS.Barotrauma.LuaCs.IPluginService.DisposePlugins() end
 ---@return Barotrauma.LuaCs.PluginRunState
 function CS.Barotrauma.LuaCs.IPluginService.GetPluginRunState() end
 
+---@generic T : Barotrauma.LuaCs.IAssemblyPlugin
+---@param __genericMethodMaker_T T
+---@param assemblyResourcesInfo userdata | (fun(): Barotrauma.LuaCs.Data.IAssemblyResourceInfo)
+---@param injectServices System.Boolean
+---@param typeInstances userdata | { [System.Int32]: T } | (fun(): T)
+---@return FluentResults.Result
+function CS.Barotrauma.LuaCs.IPluginService.LoadAndInstanceTypes(__genericMethodMaker_T, assemblyResourcesInfo, injectServices, typeInstances) end
+
+---@generic T : Barotrauma.LuaCs.IAssemblyPlugin
+---@param __genericMethodMaker_T T
+---@return userdata
+function CS.Barotrauma.LuaCs.IPluginService.GetLoadedPluginTypesInPackage(__genericMethodMaker_T) end
+
 
 ---@enum Barotrauma.LuaCs.PluginRunState
 CS.Barotrauma.LuaCs.PluginRunState = {
@@ -2436,9 +2553,55 @@ function CS.Barotrauma.LuaCs.IServicesProvider.CompileAndRun() end
 
 function CS.Barotrauma.LuaCs.IServicesProvider.DisposeAndReset() end
 
+---@generic TSvcInterface : Barotrauma.LuaCs.IService
+---@generic TService : Barotrauma.LuaCs.IService, Barotrauma.LuaCs.IServicesProvider.TSvcInterface
+---@param __genericMethodMaker_TSvcInterface TSvcInterface
+---@param __genericMethodMaker_TService TService
+---@param lifetime Barotrauma.LuaCs.ServiceLifetime
+---@param lifetimeInstance? LightInject.ILifetime
+function CS.Barotrauma.LuaCs.IServicesProvider.RegisterServiceType(__genericMethodMaker_TSvcInterface, __genericMethodMaker_TService, lifetime, lifetimeInstance) end
+
+---@generic TSvcInterface : Barotrauma.LuaCs.IService
+---@generic TService : Barotrauma.LuaCs.IService, Barotrauma.LuaCs.IServicesProvider.TSvcInterface
+---@param __genericMethodMaker_TSvcInterface TSvcInterface
+---@param __genericMethodMaker_TService TService
+---@param name System.String
+---@param lifetime Barotrauma.LuaCs.ServiceLifetime
+---@param lifetimeInstance? LightInject.ILifetime
+function CS.Barotrauma.LuaCs.IServicesProvider.RegisterServiceType(__genericMethodMaker_TSvcInterface, __genericMethodMaker_TService, name, lifetime, lifetimeInstance) end
+
+---@generic TSvcInterface : Barotrauma.LuaCs.IService
+---@param __genericMethodMaker_TSvcInterface TSvcInterface
+---@param factory fun(arg: LightInject.ServiceContainer): TSvcInterface
+function CS.Barotrauma.LuaCs.IServicesProvider.RegisterServiceResolver(__genericMethodMaker_TSvcInterface, factory) end
+
 ---@generic T : System.Object
+---@param __genericMethodMaker_T T
 ---@param inst T
-function CS.Barotrauma.LuaCs.IServicesProvider.InjectServices(inst) end
+function CS.Barotrauma.LuaCs.IServicesProvider.InjectServices(__genericMethodMaker_T, inst) end
+
+---@generic TSvcInterface : Barotrauma.LuaCs.IService
+---@param __genericMethodMaker_TSvcInterface TSvcInterface
+---@param service TSvcInterface
+---@return System.Boolean
+function CS.Barotrauma.LuaCs.IServicesProvider.TryGetService(__genericMethodMaker_TSvcInterface, service) end
+
+---@generic TSvcInterface : Barotrauma.LuaCs.IService
+---@param __genericMethodMaker_TSvcInterface TSvcInterface
+---@return TSvcInterface
+function CS.Barotrauma.LuaCs.IServicesProvider.GetService(__genericMethodMaker_TSvcInterface) end
+
+---@generic TSvcInterface : Barotrauma.LuaCs.IService
+---@param __genericMethodMaker_TSvcInterface TSvcInterface
+---@param name System.String
+---@param service TSvcInterface
+---@return System.Boolean
+function CS.Barotrauma.LuaCs.IServicesProvider.TryGetService(__genericMethodMaker_TSvcInterface, name, service) end
+
+---@generic TSvc : Barotrauma.LuaCs.IService
+---@param __genericMethodMaker_TSvc TSvc
+---@return userdata | { [System.Int32]: TSvc } | (fun(): TSvc)
+function CS.Barotrauma.LuaCs.IServicesProvider.GetAllServices(__genericMethodMaker_TSvc) end
 
 
 ---@enum Barotrauma.LuaCs.ServiceLifetime
@@ -2733,6 +2896,24 @@ CS.Barotrauma.LuaCs.ILuaSafeEventService = {}
 ---@param eventName System.String
 ---@param identifier System.String
 function CS.Barotrauma.LuaCs.ILuaSafeEventService.Unsubscribe(eventName, identifier) end
+
+---@generic T : userdata
+---@param __genericMethodMaker_T T
+---@param identifier System.String
+---@param callbacks userdata | { [System.String]: fun(...: System.Object): System.Object } | (fun(): userdata)
+function CS.Barotrauma.LuaCs.ILuaSafeEventService.Subscribe(__genericMethodMaker_T, identifier, callbacks) end
+
+---@generic T : userdata
+---@param __genericMethodMaker_T T
+---@param subscriberRunner fun(...: System.Object): System.Object
+function CS.Barotrauma.LuaCs.ILuaSafeEventService.PublishLuaEvent(__genericMethodMaker_T, subscriberRunner) end
+
+---@generic T : userdata
+---@param __genericMethodMaker_T T
+---@param luaEventName System.String
+---@param targetMethod System.String
+---@return FluentResults.Result
+function CS.Barotrauma.LuaCs.ILuaSafeEventService.RegisterLuaEventAlias(__genericMethodMaker_T, luaEventName, targetMethod) end
 
 
 ---@class Barotrauma.LuaCs.ILuaEventService: Barotrauma.LuaCs.ILuaSafeEventService, Barotrauma.LuaCs.ILuaService, Barotrauma.LuaCs.IService, System.IDisposable, Barotrauma.LuaCs.Compatibility.ILuaCsHook, Barotrauma.LuaCs.ILuaPatcher, Barotrauma.LuaCs.IReusableService, Barotrauma.LuaCs.Compatibility.ILuaCsShim

@@ -1277,6 +1277,20 @@ function CS.Barotrauma.Items.Components.ItemComponent.ParseMsg() end
 ---@return System.Boolean
 function CS.Barotrauma.Items.Components.ItemComponent.ValidateEventData(data) end
 
+---@protected
+---@generic T : Barotrauma.Items.Components.ItemComponent
+---@param __genericMethodMaker_T T
+---@param container Barotrauma.Items.Components.ItemContainer
+---@param character Barotrauma.Character
+---@param currentObjective Barotrauma.AIObjective
+---@param itemCount System.Int32
+---@param equip System.Boolean
+---@param removeEmpty System.Boolean
+---@param spawnItemIfNotFound? System.Boolean
+---@param dropItemOnDeselected? System.Boolean
+---@return Barotrauma.AIObjectiveContainItem
+function CS.Barotrauma.Items.Components.ItemComponent.AIContainItems(__genericMethodMaker_T, container, character, currentObjective, itemCount, equip, removeEmpty, spawnItemIfNotFound, dropItemOnDeselected) end
+
 do
 ---@param item Barotrauma.Item
 ---@param element Barotrauma.ContentXElement

@@ -955,6 +955,13 @@ function CS.Barotrauma.CharacterEditor.Wizard.View.HasOnlyOneLimbOfType(elements
 ---@return System.Boolean
 function CS.Barotrauma.CharacterEditor.Wizard.View.IsType(element, type) end
 
+---@protected
+---@generic T : Barotrauma.CharacterEditor.Wizard.View
+---@param __genericMethodMaker_T T
+---@param instance T
+---@return T
+function CS.Barotrauma.CharacterEditor.Wizard.View.Get(__genericMethodMaker_T, instance) end
+
 do
 ---@protected
 ---@return Barotrauma.CharacterEditor.Wizard.View

@@ -1766,9 +1766,25 @@ function CS.Barotrauma.AIObjective.CanPutInInventory(character, item, allowWeari
 function CS.Barotrauma.AIObjective.CanEquip(item, allowWearing) end
 
 ---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@param objective T
+function CS.Barotrauma.AIObjective.RemoveSubObjective(__genericMethodMaker_T, objective) end
+
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
 ---@param otherObjective T
 ---@return System.Boolean
-function CS.Barotrauma.AIObjective.IsDuplicate(otherObjective) end
+function CS.Barotrauma.AIObjective.IsDuplicate(__genericMethodMaker_T, otherObjective) end
+
+---@protected
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@param objective T
+---@param constructor fun(): T
+---@param onCompleted? fun()
+---@param onAbandon? fun()
+---@return System.Boolean
+function CS.Barotrauma.AIObjective.TryAddSubObjective(__genericMethodMaker_T, objective, constructor, onCompleted, onAbandon) end
 
 do
 ---@param character Barotrauma.Character
@@ -5789,6 +5805,13 @@ function CS.Barotrauma.CharacterHealth.Save(healthElement) end
 ---@param afflictionPredicate? fun(arg: Barotrauma.AfflictionPrefab): System.Boolean
 function CS.Barotrauma.CharacterHealth.Load(element, afflictionPredicate) end
 
+---@generic T : Barotrauma.Affliction
+---@param __genericMethodMaker_T T
+---@param identifier Barotrauma.Identifier
+---@param allowLimbAfflictions? System.Boolean
+---@return T
+function CS.Barotrauma.CharacterHealth.GetAffliction(__genericMethodMaker_T, identifier, allowLimbAfflictions) end
+
 do
 ---@overload fun(element: Barotrauma.ContentXElement, character: Barotrauma.Character, limbHealthElement?: Barotrauma.ContentXElement): Barotrauma.CharacterHealth
 ---@overload fun(): Barotrauma.CharacterHealth
@@ -7655,6 +7678,31 @@ function CS.Barotrauma.DebugConsole.SaveLogs() end
 function CS.Barotrauma.DebugConsole.ToggleEnemyAITargetingRestrictions(restrictions) end
 
 function CS.Barotrauma.DebugConsole.DeactivateCheats() end
+
+---@private
+---@generic TFile : Barotrauma.BaseSubFile
+---@param __genericMethodMaker_TFile TFile
+---@param submarineName System.String
+---@return TFile
+function CS.Barotrauma.DebugConsole.GetSubmarineFile(__genericMethodMaker_TFile, submarineName) end
+
+---@private
+---@generic TFile : Barotrauma.ContentFile
+---@param __genericMethodMaker_TFile TFile
+---@return userdata | { [System.Int32]: TFile } | (fun(): TFile)
+function CS.Barotrauma.DebugConsole.GetContentFiles(__genericMethodMaker_TFile) end
+
+---@private
+---@generic TFile : Barotrauma.BaseSubFile
+---@param __genericMethodMaker_TFile TFile
+---@return userdata | { [System.Int32]: TFile } | (fun(): TFile)
+function CS.Barotrauma.DebugConsole.GetSubmarineFiles(__genericMethodMaker_TFile) end
+
+---@private
+---@generic TFile : Barotrauma.BaseSubFile
+---@param __genericMethodMaker_TFile TFile
+---@return System.String[]
+function CS.Barotrauma.DebugConsole.ListSubmarineFileNames(__genericMethodMaker_TFile) end
 
 do
 ---@private
@@ -13621,6 +13669,63 @@ function CS.Barotrauma.GUI.SetSavingIndicatorState(enabled) end
 ---@param delay? System.Single
 function CS.Barotrauma.GUI.DisableSavingIndicatorDelayed(delay) end
 
+---@generic T : Barotrauma.GUIComponent
+---@param __genericMethodMaker_T T
+---@param count System.Int32
+---@param relativeSize Microsoft.Xna.Framework.Vector2
+---@param parent Barotrauma.RectTransform
+---@param constructor fun(arg: Barotrauma.RectTransform): T
+---@param anchor? Barotrauma.Anchor
+---@param pivot? Barotrauma.Pivot|nil
+---@param minSize? Microsoft.Xna.Framework.Point|nil
+---@param maxSize? Microsoft.Xna.Framework.Point|nil
+---@param absoluteSpacing? System.Int32
+---@param relativeSpacing? System.Single
+---@param extraSpacing? fun(arg: System.Int32): System.Int32
+---@param startOffsetAbsolute? System.Int32
+---@param startOffsetRelative? System.Single
+---@param isHorizontal? System.Boolean
+---@return userdata | { [System.Int32]: T } | (fun(): T)
+function CS.Barotrauma.GUI.CreateElements(__genericMethodMaker_T, count, relativeSize, parent, constructor, anchor, pivot, minSize, maxSize, absoluteSpacing, relativeSpacing, extraSpacing, startOffsetAbsolute, startOffsetRelative, isHorizontal) end
+
+---@generic T : Barotrauma.GUIComponent
+---@param __genericMethodMaker_T T
+---@param count System.Int32
+---@param absoluteSize Microsoft.Xna.Framework.Point
+---@param parent Barotrauma.RectTransform
+---@param constructor fun(arg: Barotrauma.RectTransform): T
+---@param anchor? Barotrauma.Anchor
+---@param pivot? Barotrauma.Pivot|nil
+---@param absoluteSpacing? System.Int32
+---@param relativeSpacing? System.Single
+---@param extraSpacing? fun(arg: System.Int32): System.Int32
+---@param startOffsetAbsolute? System.Int32
+---@param startOffsetRelative? System.Single
+---@param isHorizontal? System.Boolean
+---@return userdata | { [System.Int32]: T } | (fun(): T)
+function CS.Barotrauma.GUI.CreateElements(__genericMethodMaker_T, count, absoluteSize, parent, constructor, anchor, pivot, absoluteSpacing, relativeSpacing, extraSpacing, startOffsetAbsolute, startOffsetRelative, isHorizontal) end
+
+---@private
+---@generic T : Barotrauma.GUIComponent
+---@param __genericMethodMaker_T T
+---@param count System.Int32
+---@param parent Barotrauma.RectTransform
+---@param constructor fun(arg: Barotrauma.RectTransform): T
+---@param relativeSize? Microsoft.Xna.Framework.Vector2|nil
+---@param absoluteSize? Microsoft.Xna.Framework.Point|nil
+---@param anchor? Barotrauma.Anchor
+---@param pivot? Barotrauma.Pivot|nil
+---@param minSize? Microsoft.Xna.Framework.Point|nil
+---@param maxSize? Microsoft.Xna.Framework.Point|nil
+---@param absoluteSpacing? System.Int32
+---@param relativeSpacing? System.Single
+---@param extraSpacing? fun(arg: System.Int32): System.Int32
+---@param startOffsetAbsolute? System.Int32
+---@param startOffsetRelative? System.Single
+---@param isHorizontal? System.Boolean
+---@return userdata | { [System.Int32]: T } | (fun(): T)
+function CS.Barotrauma.GUI.CreateElements(__genericMethodMaker_T, count, parent, constructor, relativeSize, absoluteSize, anchor, pivot, minSize, maxSize, absoluteSpacing, relativeSpacing, extraSpacing, startOffsetAbsolute, startOffsetRelative, isHorizontal) end
+
 do
 ---@private
 ---@return Barotrauma.GUI
@@ -14323,6 +14428,21 @@ function CS.Barotrauma.GUIComponent.LoadGUIImage(element, parent) end
 ---@param openOnTop System.Boolean
 ---@return Barotrauma.GUIButton
 function CS.Barotrauma.GUIComponent.LoadAccordion(element, parent, openOnTop) end
+
+---@generic T : Barotrauma.GUIComponent
+---@param __genericMethodMaker_T T
+---@return T
+function CS.Barotrauma.GUIComponent.GetChild(__genericMethodMaker_T) end
+
+---@generic T : Barotrauma.GUIComponent
+---@param __genericMethodMaker_T T
+---@return T
+function CS.Barotrauma.GUIComponent.GetAnyChild(__genericMethodMaker_T) end
+
+---@generic T : Barotrauma.GUIComponent
+---@param __genericMethodMaker_T T
+---@return userdata | (fun(): T)
+function CS.Barotrauma.GUIComponent.GetAllChildren(__genericMethodMaker_T) end
 
 do
 ---@protected
@@ -21105,6 +21225,52 @@ function CS.Barotrauma.Item.RemoveProjSpecific() end
 ---@param prefab Barotrauma.ItemPrefab
 function CS.Barotrauma.Item.RemoveByPrefab(prefab) end
 
+---@generic T : Barotrauma.Items.Components.ItemComponent
+---@param __genericMethodMaker_T T
+---@return T
+function CS.Barotrauma.Item.GetComponent(__genericMethodMaker_T) end
+
+---@generic T : Barotrauma.Items.Components.ItemComponent
+---@param __genericMethodMaker_T T
+---@param connectionFilter? fun(arg: Barotrauma.Items.Components.Connection): System.Boolean
+---@return T
+function CS.Barotrauma.Item.GetDirectlyConnectedComponent(__genericMethodMaker_T, connectionFilter) end
+
+---@generic T : Barotrauma.Items.Components.ItemComponent
+---@param __genericMethodMaker_T T
+---@param recursive? System.Boolean
+---@param allowTraversingBackwards? System.Boolean
+---@param connectionFilter? fun(arg: Barotrauma.Items.Components.Connection): System.Boolean
+---@return userdata | { [System.Int32]: T } | (fun(): T)
+function CS.Barotrauma.Item.GetConnectedComponents(__genericMethodMaker_T, recursive, allowTraversingBackwards, connectionFilter) end
+
+---@private
+---@generic T : Barotrauma.Items.Components.ItemComponent
+---@param __genericMethodMaker_T T
+---@param alreadySearched userdata | (fun(): Barotrauma.Items.Components.Connection)
+---@param connectedComponents userdata | { [System.Int32]: T } | (fun(): T)
+---@param ignoreInactiveRelays? System.Boolean
+---@param allowTraversingBackwards? System.Boolean
+function CS.Barotrauma.Item.GetConnectedComponentsRecursive(__genericMethodMaker_T, alreadySearched, connectedComponents, ignoreInactiveRelays, allowTraversingBackwards) end
+
+---@generic T : Barotrauma.Items.Components.ItemComponent
+---@param __genericMethodMaker_T T
+---@param c Barotrauma.Items.Components.Connection
+---@param ignoreInactiveRelays? System.Boolean
+---@param allowTraversingBackwards? System.Boolean
+---@return userdata | { [System.Int32]: T } | (fun(): T)
+function CS.Barotrauma.Item.GetConnectedComponentsRecursive(__genericMethodMaker_T, c, ignoreInactiveRelays, allowTraversingBackwards) end
+
+---@private
+---@generic T : Barotrauma.Items.Components.ItemComponent
+---@param __genericMethodMaker_T T
+---@param c Barotrauma.Items.Components.Connection
+---@param alreadySearched userdata | (fun(): Barotrauma.Items.Components.Connection)
+---@param connectedComponents userdata | { [System.Int32]: T } | (fun(): T)
+---@param ignoreInactiveRelays System.Boolean
+---@param allowTraversingBackwards? System.Boolean
+function CS.Barotrauma.Item.GetConnectedComponentsRecursive(__genericMethodMaker_T, c, alreadySearched, connectedComponents, ignoreInactiveRelays, allowTraversingBackwards) end
+
 do
 ---@overload fun(newRect: Microsoft.Xna.Framework.Rectangle, itemPrefab: Barotrauma.ItemPrefab, submarine: Barotrauma.Submarine, callOnItemLoaded?: System.Boolean, id?: System.UInt16): Barotrauma.Item
 ---@overload fun(): Barotrauma.Item
@@ -25337,6 +25503,24 @@ function CS.Barotrauma.MapEntity.Save(parentElement) end
 ---@param e Barotrauma.MapEntity
 function CS.Barotrauma.MapEntity.RemoveLinked(e) end
 
+---@generic T : Barotrauma.MapEntity
+---@param __genericMethodMaker_T T
+---@param list? userdata | (fun(): T)
+---@param maxDepth? System.Int32|nil
+---@param filter? fun(arg: T): System.Boolean
+---@return userdata | (fun(): T)
+function CS.Barotrauma.MapEntity.GetLinkedEntities(__genericMethodMaker_T, list, maxDepth, filter) end
+
+---@private
+---@generic T : Barotrauma.MapEntity
+---@param __genericMethodMaker_T T
+---@param mapEntity Barotrauma.MapEntity
+---@param linkedTargets userdata | (fun(): T)
+---@param depth System.Int32
+---@param maxDepth? System.Int32|nil
+---@param filter? fun(arg: T): System.Boolean
+function CS.Barotrauma.MapEntity.GetLinkedEntitiesRecursive(__genericMethodMaker_T, mapEntity, linkedTargets, depth, maxDepth, filter) end
+
 do
 ---@overload fun(): Barotrauma.MapEntity
 ---@param prefab Barotrauma.MapEntityPrefab
@@ -26963,6 +27147,20 @@ function CS.Barotrauma.Submarine.GetRelativeSimPosition(from, to, targetWorldPos
 ---@return Microsoft.Xna.Framework.Vector2
 function CS.Barotrauma.Submarine.GetRelativeSimPositionFromWorldPosition(targetWorldPos, fromSub, toSub) end
 
+---@generic T : Barotrauma.MapEntity
+---@param __genericMethodMaker_T T
+---@param includingConnectedSubs System.Boolean
+---@param list userdata | { [System.Int32]: T } | (fun(): T)
+---@return userdata | { [System.Int32]: T } | (fun(): T)
+function CS.Barotrauma.Submarine.GetEntities(__genericMethodMaker_T, includingConnectedSubs, list) end
+
+---@generic T : Barotrauma.MapEntity
+---@param __genericMethodMaker_T T
+---@param includingConnectedSubs System.Boolean
+---@param list userdata | (fun(): T)
+---@return userdata | (fun(): T)
+function CS.Barotrauma.Submarine.GetEntities(__genericMethodMaker_T, includingConnectedSubs, list) end
+
 do
 ---@overload fun(): Barotrauma.Submarine
 ---@param info Barotrauma.SubmarineInfo
@@ -27604,6 +27802,16 @@ function CS.Barotrauma.WayPoint.ShallowRemove() end
 
 function CS.Barotrauma.WayPoint.Remove() end
 
+---@private
+---@generic T : Barotrauma.MapEntity
+---@param __genericMethodMaker_T T
+---@param worldPos Microsoft.Xna.Framework.Vector2
+---@param list userdata | (fun(): T)
+---@param match fun(obj: T)
+---@param noMatch fun(obj: T)
+---@param inflate? System.Int32
+function CS.Barotrauma.WayPoint.UpdateLinkedEntity(__genericMethodMaker_T, worldPos, list, match, noMatch, inflate) end
+
 do
 ---@overload fun(prefab: Barotrauma.MapEntityPrefab, rectangle: Microsoft.Xna.Framework.Rectangle): Barotrauma.WayPoint
 ---@overload fun(newRect: Microsoft.Xna.Framework.Rectangle, submarine: Barotrauma.Submarine): Barotrauma.WayPoint
@@ -28147,6 +28355,15 @@ function CS.Barotrauma.PhysicsBody.IsValidShape(radius, height, width) end
 ---@param height System.Single
 ---@return Barotrauma.PhysicsBody.Shape
 function CS.Barotrauma.PhysicsBody.DefineBodyShape(radius, width, height) end
+
+---@generic T : Barotrauma.PosInfo
+---@param __genericMethodMaker_T T
+---@param positionBuffer userdata | { [System.Int32]: T } | (fun(): T)
+---@param newPosition Microsoft.Xna.Framework.Vector2
+---@param newVelocity Microsoft.Xna.Framework.Vector2
+---@param newRotation System.Single
+---@param newAngularVelocity System.Single
+function CS.Barotrauma.PhysicsBody.CorrectPosition(__genericMethodMaker_T, positionBuffer, newPosition, newVelocity, newRotation, newAngularVelocity) end
 
 do
 ---@overload fun(cParams: Barotrauma.RagdollParams.ColliderParams, findNewContacts?: System.Boolean): Barotrauma.PhysicsBody
@@ -31395,12 +31612,13 @@ function CS.Barotrauma.SettingsMenu.ApplyInstalledModChanges() end
 function CS.Barotrauma.SettingsMenu.Close() end
 
 ---@generic T : System.Enum
+---@param __genericMethodMaker_T T
 ---@param parent Barotrauma.GUILayoutGroup
 ---@param textFunc fun(arg: T): Barotrauma.LocalizedString
 ---@param tooltipFunc fun(arg: T): Barotrauma.LocalizedString
 ---@param currentValue T
 ---@param setter fun(obj: T)
-function CS.Barotrauma.SettingsMenu.DropdownEnum(parent, textFunc, tooltipFunc, currentValue, setter) end
+function CS.Barotrauma.SettingsMenu.DropdownEnum(__genericMethodMaker_T, parent, textFunc, tooltipFunc, currentValue, setter) end
 
 do
 ---@private
@@ -33254,6 +33472,13 @@ function CS.Barotrauma.ToolBox.GetClosestPointOnRectangle(rect, point) end
 ---@return userdata | { [System.Int32]: System.UInt32 } | (fun(): System.UInt32)
 function CS.Barotrauma.ToolBox.PrefabCollectionToUintIdentifierArray(prefabs) end
 
+---@generic T : Barotrauma.PrefabWithUintIdentifier
+---@param __genericMethodMaker_T T
+---@param Prefabs userdata | { [Barotrauma.Identifier]: T } | { [System.String]: T } | (fun(): T)
+---@param uintIdentifiers userdata | (fun(): System.UInt32)
+---@return userdata | { [System.Int32]: T } | (fun(): T)
+function CS.Barotrauma.ToolBox.UintIdentifierArrayToPrefabCollection(__genericMethodMaker_T, Prefabs, uintIdentifiers) end
+
 do
 ---@private
 ---@return Barotrauma.ToolBox
@@ -33965,9 +34190,25 @@ function CS.Barotrauma.AIObjectiveChargeBatteries.ReferenceEquals(objA, objB) en
 function CS.Barotrauma.AIObjectiveChargeBatteries.GetHashCode() end
 
 ---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@param objective T
+function CS.Barotrauma.AIObjectiveChargeBatteries.RemoveSubObjective(__genericMethodMaker_T, objective) end
+
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
 ---@param otherObjective T
 ---@return System.Boolean
-function CS.Barotrauma.AIObjectiveChargeBatteries.IsDuplicate(otherObjective) end
+function CS.Barotrauma.AIObjectiveChargeBatteries.IsDuplicate(__genericMethodMaker_T, otherObjective) end
+
+---@protected
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@param objective T
+---@param constructor fun(): T
+---@param onCompleted? fun()
+---@param onAbandon? fun()
+---@return System.Boolean
+function CS.Barotrauma.AIObjectiveChargeBatteries.TryAddSubObjective(__genericMethodMaker_T, objective, constructor, onCompleted, onAbandon) end
 
 do
 ---@param character Barotrauma.Character
@@ -34540,9 +34781,25 @@ function CS.Barotrauma.AIObjectiveCleanupItems.ReferenceEquals(objA, objB) end
 function CS.Barotrauma.AIObjectiveCleanupItems.GetHashCode() end
 
 ---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@param objective T
+function CS.Barotrauma.AIObjectiveCleanupItems.RemoveSubObjective(__genericMethodMaker_T, objective) end
+
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
 ---@param otherObjective T
 ---@return System.Boolean
-function CS.Barotrauma.AIObjectiveCleanupItems.IsDuplicate(otherObjective) end
+function CS.Barotrauma.AIObjectiveCleanupItems.IsDuplicate(__genericMethodMaker_T, otherObjective) end
+
+---@protected
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@param objective T
+---@param constructor fun(): T
+---@param onCompleted? fun()
+---@param onAbandon? fun()
+---@return System.Boolean
+function CS.Barotrauma.AIObjectiveCleanupItems.TryAddSubObjective(__genericMethodMaker_T, objective, constructor, onCompleted, onAbandon) end
 
 do
 ---@overload fun(character: Barotrauma.Character, objectiveManager: Barotrauma.AIObjectiveManager, prioritizedItems: (userdata | (fun(): Barotrauma.Item)), priorityModifier?: System.Single): Barotrauma.AIObjectiveCleanupItems
@@ -35432,9 +35689,25 @@ function CS.Barotrauma.AIObjectiveDeconstructItems.ReferenceEquals(objA, objB) e
 function CS.Barotrauma.AIObjectiveDeconstructItems.GetHashCode() end
 
 ---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@param objective T
+function CS.Barotrauma.AIObjectiveDeconstructItems.RemoveSubObjective(__genericMethodMaker_T, objective) end
+
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
 ---@param otherObjective T
 ---@return System.Boolean
-function CS.Barotrauma.AIObjectiveDeconstructItems.IsDuplicate(otherObjective) end
+function CS.Barotrauma.AIObjectiveDeconstructItems.IsDuplicate(__genericMethodMaker_T, otherObjective) end
+
+---@protected
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@param objective T
+---@param constructor fun(): T
+---@param onCompleted? fun()
+---@param onAbandon? fun()
+---@return System.Boolean
+function CS.Barotrauma.AIObjectiveDeconstructItems.TryAddSubObjective(__genericMethodMaker_T, objective, constructor, onCompleted, onAbandon) end
 
 do
 ---@param character Barotrauma.Character
@@ -35985,9 +36258,25 @@ function CS.Barotrauma.AIObjectiveExtinguishFires.ReferenceEquals(objA, objB) en
 function CS.Barotrauma.AIObjectiveExtinguishFires.GetHashCode() end
 
 ---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@param objective T
+function CS.Barotrauma.AIObjectiveExtinguishFires.RemoveSubObjective(__genericMethodMaker_T, objective) end
+
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
 ---@param otherObjective T
 ---@return System.Boolean
-function CS.Barotrauma.AIObjectiveExtinguishFires.IsDuplicate(otherObjective) end
+function CS.Barotrauma.AIObjectiveExtinguishFires.IsDuplicate(__genericMethodMaker_T, otherObjective) end
+
+---@protected
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@param objective T
+---@param constructor fun(): T
+---@param onCompleted? fun()
+---@param onAbandon? fun()
+---@return System.Boolean
+function CS.Barotrauma.AIObjectiveExtinguishFires.TryAddSubObjective(__genericMethodMaker_T, objective, constructor, onCompleted, onAbandon) end
 
 do
 ---@param character Barotrauma.Character
@@ -36419,9 +36708,25 @@ function CS.Barotrauma.AIObjectiveFightIntruders.ReferenceEquals(objA, objB) end
 function CS.Barotrauma.AIObjectiveFightIntruders.GetHashCode() end
 
 ---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@param objective T
+function CS.Barotrauma.AIObjectiveFightIntruders.RemoveSubObjective(__genericMethodMaker_T, objective) end
+
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
 ---@param otherObjective T
 ---@return System.Boolean
-function CS.Barotrauma.AIObjectiveFightIntruders.IsDuplicate(otherObjective) end
+function CS.Barotrauma.AIObjectiveFightIntruders.IsDuplicate(__genericMethodMaker_T, otherObjective) end
+
+---@protected
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@param objective T
+---@param constructor fun(): T
+---@param onCompleted? fun()
+---@param onAbandon? fun()
+---@return System.Boolean
+function CS.Barotrauma.AIObjectiveFightIntruders.TryAddSubObjective(__genericMethodMaker_T, objective, constructor, onCompleted, onAbandon) end
 
 do
 ---@param character Barotrauma.Character
@@ -37046,9 +37351,25 @@ function CS.Barotrauma.AIObjectiveFindThieves.ReferenceEquals(objA, objB) end
 function CS.Barotrauma.AIObjectiveFindThieves.GetHashCode() end
 
 ---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@param objective T
+function CS.Barotrauma.AIObjectiveFindThieves.RemoveSubObjective(__genericMethodMaker_T, objective) end
+
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
 ---@param otherObjective T
 ---@return System.Boolean
-function CS.Barotrauma.AIObjectiveFindThieves.IsDuplicate(otherObjective) end
+function CS.Barotrauma.AIObjectiveFindThieves.IsDuplicate(__genericMethodMaker_T, otherObjective) end
+
+---@protected
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@param objective T
+---@param constructor fun(): T
+---@param onCompleted? fun()
+---@param onAbandon? fun()
+---@return System.Boolean
+function CS.Barotrauma.AIObjectiveFindThieves.TryAddSubObjective(__genericMethodMaker_T, objective, constructor, onCompleted, onAbandon) end
 
 do
 ---@overload fun(): Barotrauma.AIObjectiveFindThieves
@@ -37544,9 +37865,25 @@ function CS.Barotrauma.AIObjectiveFixLeaks.ReferenceEquals(objA, objB) end
 function CS.Barotrauma.AIObjectiveFixLeaks.GetHashCode() end
 
 ---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@param objective T
+function CS.Barotrauma.AIObjectiveFixLeaks.RemoveSubObjective(__genericMethodMaker_T, objective) end
+
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
 ---@param otherObjective T
 ---@return System.Boolean
-function CS.Barotrauma.AIObjectiveFixLeaks.IsDuplicate(otherObjective) end
+function CS.Barotrauma.AIObjectiveFixLeaks.IsDuplicate(__genericMethodMaker_T, otherObjective) end
+
+---@protected
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@param objective T
+---@param constructor fun(): T
+---@param onCompleted? fun()
+---@param onAbandon? fun()
+---@return System.Boolean
+function CS.Barotrauma.AIObjectiveFixLeaks.TryAddSubObjective(__genericMethodMaker_T, objective, constructor, onCompleted, onAbandon) end
 
 do
 ---@param character Barotrauma.Character
@@ -38550,9 +38887,25 @@ function CS.Barotrauma.AIObjectiveLoadItems.ReferenceEquals(objA, objB) end
 function CS.Barotrauma.AIObjectiveLoadItems.GetHashCode() end
 
 ---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@param objective T
+function CS.Barotrauma.AIObjectiveLoadItems.RemoveSubObjective(__genericMethodMaker_T, objective) end
+
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
 ---@param otherObjective T
 ---@return System.Boolean
-function CS.Barotrauma.AIObjectiveLoadItems.IsDuplicate(otherObjective) end
+function CS.Barotrauma.AIObjectiveLoadItems.IsDuplicate(__genericMethodMaker_T, otherObjective) end
+
+---@protected
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@param objective T
+---@param constructor fun(): T
+---@param onCompleted? fun()
+---@param onAbandon? fun()
+---@return System.Boolean
+function CS.Barotrauma.AIObjectiveLoadItems.TryAddSubObjective(__genericMethodMaker_T, objective, constructor, onCompleted, onAbandon) end
 
 do
 ---@param character Barotrauma.Character
@@ -38672,14 +39025,67 @@ function CS.Barotrauma.AIObjectiveManager.GetOrderPriority(objective) end
 function CS.Barotrauma.AIObjectiveManager.GetCurrentOrderInfo() end
 
 ---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
 ---@param objective T
-function CS.Barotrauma.AIObjectiveManager.AddObjective(objective) end
+function CS.Barotrauma.AIObjectiveManager.AddObjective(__genericMethodMaker_T, objective) end
 
 ---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
 ---@param objective T
 ---@param delay System.Single
 ---@param callback? fun()
-function CS.Barotrauma.AIObjectiveManager.AddObjective(objective, delay, callback) end
+function CS.Barotrauma.AIObjectiveManager.AddObjective(__genericMethodMaker_T, objective, delay, callback) end
+
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@return T
+function CS.Barotrauma.AIObjectiveManager.GetObjective(__genericMethodMaker_T) end
+
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@return System.Boolean
+function CS.Barotrauma.AIObjectiveManager.IsCurrentOrder(__genericMethodMaker_T) end
+
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@return System.Boolean
+function CS.Barotrauma.AIObjectiveManager.IsCurrentObjective(__genericMethodMaker_T) end
+
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@return System.Boolean
+function CS.Barotrauma.AIObjectiveManager.HasObjectiveOrOrder(__genericMethodMaker_T) end
+
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@return T
+function CS.Barotrauma.AIObjectiveManager.GetOrder(__genericMethodMaker_T) end
+
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@return T
+function CS.Barotrauma.AIObjectiveManager.GetLastActiveObjective(__genericMethodMaker_T) end
+
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@return T
+function CS.Barotrauma.AIObjectiveManager.GetFirstActiveObjective(__genericMethodMaker_T) end
+
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@return userdata | (fun(): T)
+function CS.Barotrauma.AIObjectiveManager.GetActiveObjectives(__genericMethodMaker_T) end
+
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@return System.Boolean
+function CS.Barotrauma.AIObjectiveManager.HasActiveObjective(__genericMethodMaker_T) end
+
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@param predicate? fun(arg: T): System.Boolean
+---@return System.Boolean
+function CS.Barotrauma.AIObjectiveManager.HasOrder(__genericMethodMaker_T, predicate) end
 
 do
 ---@param character Barotrauma.Character
@@ -38836,9 +39242,10 @@ function CS.Barotrauma.AIObjectiveOperateItem.Reset() end
 function CS.Barotrauma.AIObjectiveOperateItem.IsItemOperatedByAnother(target) end
 
 ---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
 ---@param otherObjective T
 ---@return System.Boolean
-function CS.Barotrauma.AIObjectiveOperateItem.IsDuplicate(otherObjective) end
+function CS.Barotrauma.AIObjectiveOperateItem.IsDuplicate(__genericMethodMaker_T, otherObjective) end
 
 do
 ---@param item Barotrauma.Items.Components.ItemComponent
@@ -39340,9 +39747,25 @@ function CS.Barotrauma.AIObjectivePumpWater.ReferenceEquals(objA, objB) end
 function CS.Barotrauma.AIObjectivePumpWater.GetHashCode() end
 
 ---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@param objective T
+function CS.Barotrauma.AIObjectivePumpWater.RemoveSubObjective(__genericMethodMaker_T, objective) end
+
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
 ---@param otherObjective T
 ---@return System.Boolean
-function CS.Barotrauma.AIObjectivePumpWater.IsDuplicate(otherObjective) end
+function CS.Barotrauma.AIObjectivePumpWater.IsDuplicate(__genericMethodMaker_T, otherObjective) end
+
+---@protected
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@param objective T
+---@param constructor fun(): T
+---@param onCompleted? fun()
+---@param onAbandon? fun()
+---@return System.Boolean
+function CS.Barotrauma.AIObjectivePumpWater.TryAddSubObjective(__genericMethodMaker_T, objective, constructor, onCompleted, onAbandon) end
 
 do
 ---@param character Barotrauma.Character
@@ -39871,14 +40294,31 @@ function CS.Barotrauma.AIObjectiveRepairItems.ReferenceEquals(objA, objB) end
 function CS.Barotrauma.AIObjectiveRepairItems.GetHashCode() end
 
 ---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
 ---@param otherObjective T
 ---@return System.Boolean
-function CS.Barotrauma.AIObjectiveRepairItems.IsDuplicate(otherObjective) end
+function CS.Barotrauma.AIObjectiveRepairItems.IsDuplicate(__genericMethodMaker_T, otherObjective) end
 
 ---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@param objective T
+function CS.Barotrauma.AIObjectiveRepairItems.RemoveSubObjective(__genericMethodMaker_T, objective) end
+
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
 ---@param otherObjective T
 ---@return System.Boolean
-function CS.Barotrauma.AIObjectiveRepairItems.IsDuplicate(otherObjective) end
+function CS.Barotrauma.AIObjectiveRepairItems.IsDuplicate(__genericMethodMaker_T, otherObjective) end
+
+---@protected
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@param objective T
+---@param constructor fun(): T
+---@param onCompleted? fun()
+---@param onAbandon? fun()
+---@return System.Boolean
+function CS.Barotrauma.AIObjectiveRepairItems.TryAddSubObjective(__genericMethodMaker_T, objective, constructor, onCompleted, onAbandon) end
 
 do
 ---@param character Barotrauma.Character
@@ -40429,9 +40869,25 @@ function CS.Barotrauma.AIObjectiveRescueAll.ReferenceEquals(objA, objB) end
 function CS.Barotrauma.AIObjectiveRescueAll.GetHashCode() end
 
 ---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@param objective T
+function CS.Barotrauma.AIObjectiveRescueAll.RemoveSubObjective(__genericMethodMaker_T, objective) end
+
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
 ---@param otherObjective T
 ---@return System.Boolean
-function CS.Barotrauma.AIObjectiveRescueAll.IsDuplicate(otherObjective) end
+function CS.Barotrauma.AIObjectiveRescueAll.IsDuplicate(__genericMethodMaker_T, otherObjective) end
+
+---@protected
+---@generic T : Barotrauma.AIObjective
+---@param __genericMethodMaker_T T
+---@param objective T
+---@param constructor fun(): T
+---@param onCompleted? fun()
+---@param onAbandon? fun()
+---@return System.Boolean
+function CS.Barotrauma.AIObjectiveRescueAll.TryAddSubObjective(__genericMethodMaker_T, objective, constructor, onCompleted, onAbandon) end
 
 do
 ---@param character Barotrauma.Character
@@ -43319,6 +43775,49 @@ function CS.Barotrauma.AnimationParams.Redo() end
 
 function CS.Barotrauma.AnimationParams.ClearHistory() end
 
+---@protected
+---@generic T : Barotrauma.AnimationParams
+---@param __genericMethodMaker_T T
+---@param character Barotrauma.Character
+---@param animType Barotrauma.AnimationType
+---@return T
+function CS.Barotrauma.AnimationParams.GetDefaultAnimParams(__genericMethodMaker_T, character, animType) end
+
+---@protected
+---@generic T : Barotrauma.AnimationParams
+---@param __genericMethodMaker_T T
+---@param character Barotrauma.Character
+---@param animType Barotrauma.AnimationType
+---@param file userdata
+---@param throwErrors? System.Boolean
+---@return T
+function CS.Barotrauma.AnimationParams.GetAnimParams(__genericMethodMaker_T, character, animType, file, throwErrors) end
+
+---@private
+---@generic T : Barotrauma.AnimationParams
+---@param __genericMethodMaker_T T
+---@param speciesName Barotrauma.Identifier
+---@param animSpecies Barotrauma.Identifier
+---@param fallbackSpecies Barotrauma.Identifier
+---@param animType Barotrauma.AnimationType
+---@param file userdata
+---@param throwErrors? System.Boolean
+---@return T
+function CS.Barotrauma.AnimationParams.GetAnimParams(__genericMethodMaker_T, speciesName, animSpecies, fallbackSpecies, animType, file, throwErrors) end
+
+---@generic T : Barotrauma.AnimationParams
+---@param __genericMethodMaker_T T
+---@param fullPath System.String
+---@param speciesName Barotrauma.Identifier
+---@param animationType Barotrauma.AnimationType
+---@return T
+function CS.Barotrauma.AnimationParams.Create(__genericMethodMaker_T, fullPath, speciesName, animationType) end
+
+---@protected
+---@generic T : Barotrauma.AnimationParams
+---@param __genericMethodMaker_T T
+function CS.Barotrauma.AnimationParams.StoreSnapshot(__genericMethodMaker_T) end
+
 do
 ---@protected
 ---@overload fun(): Barotrauma.AnimationParams
@@ -43841,10 +44340,22 @@ function CS.Barotrauma.CharacterParams.RemoveInventory(inventory) end
 
 ---@protected
 ---@generic T : Barotrauma.CharacterParams.SubParam
+---@param __genericMethodMaker_T T
 ---@param subParam T
 ---@param collection? userdata | { [System.Int32]: T } | (fun(): T)
 ---@return System.Boolean
-function CS.Barotrauma.CharacterParams.RemoveSubParam(subParam, collection) end
+function CS.Barotrauma.CharacterParams.RemoveSubParam(__genericMethodMaker_T, subParam, collection) end
+
+---@protected
+---@generic T : Barotrauma.CharacterParams.SubParam
+---@param __genericMethodMaker_T T
+---@param element Barotrauma.ContentXElement
+---@param constructor fun(arg1: Barotrauma.ContentXElement, arg2: Barotrauma.CharacterParams): T
+---@param subParam T
+---@param collection? userdata | { [System.Int32]: T } | (fun(): T)
+---@param filter? fun(arg: (userdata | { [System.Int32]: T } | (fun(): T))): System.Boolean
+---@return System.Boolean
+function CS.Barotrauma.CharacterParams.TryAddSubParam(__genericMethodMaker_T, element, constructor, subParam, collection, filter) end
 
 do
 ---@param file Barotrauma.CharacterFile
@@ -44093,6 +44604,45 @@ function CS.Barotrauma.RagdollParams.ClearHistory() end
 ---@private
 ---@param source Barotrauma.RagdollParams
 function CS.Barotrauma.RagdollParams.RevertTo(source) end
+
+---@generic T : Barotrauma.RagdollParams
+---@param __genericMethodMaker_T T
+---@param character Barotrauma.Character
+---@return T
+function CS.Barotrauma.RagdollParams.GetDefaultRagdollParams(__genericMethodMaker_T, character) end
+
+---@generic T : Barotrauma.RagdollParams
+---@param __genericMethodMaker_T T
+---@param speciesName Barotrauma.Identifier
+---@param characterParams Barotrauma.CharacterParams
+---@param contentPackage Barotrauma.ContentPackage
+---@return T
+function CS.Barotrauma.RagdollParams.GetDefaultRagdollParams(__genericMethodMaker_T, speciesName, characterParams, contentPackage) end
+
+---@generic T : Barotrauma.RagdollParams
+---@param __genericMethodMaker_T T
+---@param speciesName Barotrauma.Identifier
+---@param characterRootElement System.Xml.Linq.XElement
+---@param contentPackage Barotrauma.ContentPackage
+---@return T
+function CS.Barotrauma.RagdollParams.GetDefaultRagdollParams(__genericMethodMaker_T, speciesName, characterRootElement, contentPackage) end
+
+---@generic T : Barotrauma.RagdollParams
+---@param __genericMethodMaker_T T
+---@param speciesName Barotrauma.Identifier
+---@param ragdollSpecies Barotrauma.Identifier
+---@param file userdata
+---@param contentPackage Barotrauma.ContentPackage
+---@return T
+function CS.Barotrauma.RagdollParams.GetRagdollParams(__genericMethodMaker_T, speciesName, ragdollSpecies, file, contentPackage) end
+
+---@generic T : Barotrauma.RagdollParams
+---@param __genericMethodMaker_T T
+---@param fullPath System.String
+---@param speciesName Barotrauma.Identifier
+---@param mainElement System.Xml.Linq.XElement
+---@return T
+function CS.Barotrauma.RagdollParams.CreateDefault(__genericMethodMaker_T, fullPath, speciesName, mainElement) end
 
 do
 ---@overload fun(): Barotrauma.RagdollParams
@@ -48422,6 +48972,19 @@ function CS.Barotrauma.ContentPackage.TryDeleteLocal() end
 ---@return System.Boolean
 function CS.Barotrauma.ContentPackage.TryCreateLocalFromWorkshop() end
 
+---@generic T : Barotrauma.ContentFile
+---@param __genericMethodMaker_T T
+---@return userdata | (fun(): T)
+function CS.Barotrauma.ContentPackage.GetFiles(__genericMethodMaker_T) end
+
+---@generic T : Barotrauma.ContentFile
+---@param __genericMethodMaker_T T
+function CS.Barotrauma.ContentPackage.LoadFilesOfType(__genericMethodMaker_T) end
+
+---@generic T : Barotrauma.ContentFile
+---@param __genericMethodMaker_T T
+function CS.Barotrauma.ContentPackage.UnloadFilesOfType(__genericMethodMaker_T) end
+
 do
 ---@protected
 ---@overload fun(): Barotrauma.ContentPackage
@@ -48841,6 +49404,20 @@ function CS.Barotrauma.ContentXElement.op_Equality(a, b) end
 ---@param b Barotrauma.ContentXElement
 ---@return System.Boolean
 function CS.Barotrauma.ContentXElement.op_Inequality(a, b) end
+
+---@generic T : System.Enum, System.ValueType
+---@param __genericMethodMaker_T T
+---@param key System.String
+---@param def T
+---@return T
+function CS.Barotrauma.ContentXElement.GetAttributeEnum(__genericMethodMaker_T, key, def) end
+
+---@generic T : System.Enum, System.ValueType
+---@param __genericMethodMaker_T T
+---@param key System.String
+---@param def T[]
+---@return T[]
+function CS.Barotrauma.ContentXElement.GetAttributeEnumArray(__genericMethodMaker_T, key, def) end
 
 do
 ---@param contentPackage Barotrauma.ContentPackage
@@ -49586,6 +50163,13 @@ function CS.Barotrauma.EventPrefab.GetUnlockPathEvent(biomeIdentifier, faction) 
 ---@param source Barotrauma.ContentPackage
 ---@return Barotrauma.EventPrefab
 function CS.Barotrauma.EventPrefab.FindEventPrefab(identifier, tag, source) end
+
+---@generic T : Barotrauma.Event
+---@param __genericMethodMaker_T T
+---@param seed System.Int32
+---@param instance T
+---@return System.Boolean
+function CS.Barotrauma.EventPrefab.TryCreateInstance(__genericMethodMaker_T, seed, instance) end
 
 do
 ---@overload fun(): Barotrauma.EventPrefab
@@ -53409,6 +53993,11 @@ function CS.Barotrauma.SerializableProperty.SerializeProperties(obj, element, sa
 ---@param savedVersion System.Version
 function CS.Barotrauma.SerializableProperty.UpgradeGameVersion(entity, configElement, savedVersion) end
 
+---@generic T : System.Attribute
+---@param __genericMethodMaker_T T
+---@return T
+function CS.Barotrauma.SerializableProperty.GetAttribute(__genericMethodMaker_T) end
+
 do
 ---@overload fun(): Barotrauma.SerializableProperty
 ---@param property System.ComponentModel.PropertyDescriptor
@@ -53797,18 +54386,28 @@ function CS.Barotrauma.XMLExtensions.ComesAfter(element, other) end
 function CS.Barotrauma.XMLExtensions.NameAsIdentifier(elem) end
 
 ---@generic T : System.Enum, System.ValueType
+---@param __genericMethodMaker_T T
 ---@param value System.String
 ---@param defaultValue T
 ---@param attribute System.Xml.Linq.XAttribute
 ---@return T
-function CS.Barotrauma.XMLExtensions.ParseEnumValue(value, defaultValue, attribute) end
+function CS.Barotrauma.XMLExtensions.ParseEnumValue(__genericMethodMaker_T, value, defaultValue, attribute) end
 
 ---@generic T : System.Enum, System.ValueType
+---@param __genericMethodMaker_T T
 ---@param element System.Xml.Linq.XElement
 ---@param name System.String
 ---@param defaultValue T
 ---@return T
-function CS.Barotrauma.XMLExtensions.GetAttributeEnum(element, name, defaultValue) end
+function CS.Barotrauma.XMLExtensions.GetAttributeEnum(__genericMethodMaker_T, element, name, defaultValue) end
+
+---@generic T : System.Enum, System.ValueType
+---@param __genericMethodMaker_T T
+---@param element System.Xml.Linq.XElement
+---@param name System.String
+---@param defaultValue T[]
+---@return T[]
+function CS.Barotrauma.XMLExtensions.GetAttributeEnumArray(__genericMethodMaker_T, element, name, defaultValue) end
 
 do
 ---@private
@@ -56417,6 +57016,12 @@ function CS.Barotrauma.ModProject.File.FromPath(path, type) end
 
 ---@return System.Xml.Linq.XElement
 function CS.Barotrauma.ModProject.File.ToXElement() end
+
+---@generic T : Barotrauma.ContentFile
+---@param __genericMethodMaker_T T
+---@param path System.String
+---@return Barotrauma.ModProject.File
+function CS.Barotrauma.ModProject.File.FromPath(__genericMethodMaker_T, path) end
 
 do
 ---@private
@@ -59194,10 +59799,11 @@ function CS.Barotrauma.CharacterParams.SubParam.AddToEditor(editor, recursive, s
 
 ---@protected
 ---@generic T : Barotrauma.CharacterParams.SubParam
+---@param __genericMethodMaker_T T
 ---@param subParam T
 ---@param collection? userdata | { [System.Int32]: T } | (fun(): T)
 ---@return System.Boolean
-function CS.Barotrauma.CharacterParams.SubParam.RemoveSubParam(subParam, collection) end
+function CS.Barotrauma.CharacterParams.SubParam.RemoveSubParam(__genericMethodMaker_T, subParam, collection) end
 
 do
 ---@param element Barotrauma.ContentXElement
@@ -59356,10 +59962,22 @@ function CS.Barotrauma.RagdollParams.LimbParams.RemoveDamageModifier(damageModif
 
 ---@protected
 ---@generic T : Barotrauma.RagdollParams.SubParam
+---@param __genericMethodMaker_T T
+---@param element Barotrauma.ContentXElement
+---@param constructor fun(arg1: Barotrauma.ContentXElement, arg2: Barotrauma.RagdollParams): T
+---@param subParam T
+---@param collection? userdata | { [System.Int32]: T } | (fun(): T)
+---@param filter? fun(arg: (userdata | { [System.Int32]: T } | (fun(): T))): System.Boolean
+---@return System.Boolean
+function CS.Barotrauma.RagdollParams.LimbParams.TryAddSubParam(__genericMethodMaker_T, element, constructor, subParam, collection, filter) end
+
+---@protected
+---@generic T : Barotrauma.RagdollParams.SubParam
+---@param __genericMethodMaker_T T
 ---@param subParam T
 ---@param collection? userdata | { [System.Int32]: T } | (fun(): T)
 ---@return System.Boolean
-function CS.Barotrauma.RagdollParams.LimbParams.RemoveSubParam(subParam, collection) end
+function CS.Barotrauma.RagdollParams.LimbParams.RemoveSubParam(__genericMethodMaker_T, subParam, collection) end
 
 do
 ---@param element Barotrauma.ContentXElement

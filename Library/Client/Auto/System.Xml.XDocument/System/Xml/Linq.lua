@@ -419,6 +419,12 @@ function CS.System.Xml.Linq.XDocument.ValidateDocument(previous, allowBefore, al
 ---@param s System.String
 function CS.System.Xml.Linq.XDocument.ValidateString(s) end
 
+---@private
+---@generic T : System.Xml.Linq.XNode
+---@param __genericMethodMaker_T T
+---@return T
+function CS.System.Xml.Linq.XDocument.GetFirstNode(__genericMethodMaker_T) end
+
 do
 ---@overload fun(...: System.Object): System.Xml.Linq.XDocument
 ---@overload fun(declaration: System.Xml.Linq.XDeclaration, ...: System.Object): System.Xml.Linq.XDocument
@@ -1072,6 +1078,20 @@ function CS.System.Xml.Linq.XObject.SkipNotify() end
 ---@package
 ---@return System.Xml.Linq.SaveOptions
 function CS.System.Xml.Linq.XObject.GetSaveOptionsFromAnnotations() end
+
+---@generic T : System.Object
+---@param __genericMethodMaker_T T
+---@return T
+function CS.System.Xml.Linq.XObject.Annotation(__genericMethodMaker_T) end
+
+---@generic T : System.Object
+---@param __genericMethodMaker_T T
+---@return userdata | (fun(): T)
+function CS.System.Xml.Linq.XObject.Annotations(__genericMethodMaker_T) end
+
+---@generic T : System.Object
+---@param __genericMethodMaker_T T
+function CS.System.Xml.Linq.XObject.RemoveAnnotations(__genericMethodMaker_T) end
 
 do
 ---@package
