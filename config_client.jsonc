@@ -226,9 +226,10 @@
         "Barotrauma.LuaUInt64",
         "Barotrauma.LuaSingle",
         "Barotrauma.LuaDouble",
-        
+
         "Barotrauma.LuaCs*",
 
+        "Barotrauma.ModUtils*",
         "Barotrauma.ToolBox",
 
         "Barotrauma.Rand",

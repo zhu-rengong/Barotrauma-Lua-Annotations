@@ -31787,6 +31787,10 @@ CS.Barotrauma.LuaCsExceptionHandler = __ctor
 CS.Barotrauma.LuaCsExceptionHandler.__new = __ctor
 end
 
+---@class Barotrauma.ModUtils: System.Object
+CS.Barotrauma.ModUtils = {}
+
+
 ---@enum Barotrauma.LuaCsMessageOrigin
 CS.Barotrauma.LuaCsMessageOrigin = {
     LuaCs = 0,
@@ -42518,6 +42522,151 @@ CS.Barotrauma.ModUtils.ItemPrefab = {}
 function CS.Barotrauma.ModUtils.ItemPrefab.GetItemPrefab(itemNameOrId) end
 
 
+---@class Barotrauma.ModUtils.Client: System.Object
+---@field package ClientList userdata | { [System.Int32]: Barotrauma.Networking.Client } | (fun(): Barotrauma.Networking.Client)
+CS.Barotrauma.ModUtils.Client = {}
+
+---@package
+---@param client Barotrauma.Networking.Client
+---@return System.UInt64
+function CS.Barotrauma.ModUtils.Client.GetSteamId(client) end
+
+---@package
+---@param playerName System.String
+function CS.Barotrauma.ModUtils.Client.UnbanPlayer(playerName) end
+
+---@package
+---@param player System.String
+---@param reason System.String
+---@param range? System.Boolean
+---@param seconds? System.Single
+function CS.Barotrauma.ModUtils.Client.BanPlayer(player, reason, range, seconds) end
+
+---@package
+---@return userdata | { [System.Int32]: Barotrauma.Networking.Client } | (fun(): Barotrauma.Networking.Client)
+function CS.Barotrauma.ModUtils.Client.get_ClientList() end
+
+
+---@class Barotrauma.ModUtils.Definitions: System.Object
+---@field LuaCsForBarotrauma System.String
+CS.Barotrauma.ModUtils.Definitions = {}
+
+
+---@class Barotrauma.ModUtils.Environment: System.Object
+---@field MainThreadId System.Int32
+---@field IsMainThread System.Boolean
+---@field CurrentPlatform Barotrauma.LuaCs.Data.Platform
+---@field CurrentTarget Barotrauma.LuaCs.Data.Target
+CS.Barotrauma.ModUtils.Environment = {}
+
+---@package
+function CS.Barotrauma.ModUtils.Environment.SetCurrentThreadAsMain() end
+
+---@return System.Boolean
+function CS.Barotrauma.ModUtils.Environment.get_IsMainThread() end
+
+do
+---@private
+---@return Barotrauma.ModUtils.Environment
+local __ctor = function() end
+CS.Barotrauma.ModUtils.Environment = __ctor
+CS.Barotrauma.ModUtils.Environment.__new = __ctor
+end
+
+---@class Barotrauma.ModUtils.Logging: System.Object
+CS.Barotrauma.ModUtils.Logging = {}
+
+---@param s System.String
+function CS.Barotrauma.ModUtils.Logging.PrintMessage(s) end
+
+---@param s System.String
+function CS.Barotrauma.ModUtils.Logging.PrintWarning(s) end
+
+---@param s System.String
+function CS.Barotrauma.ModUtils.Logging.PrintError(s) end
+
+
+---@class Barotrauma.ModUtils.IO: System.Object
+CS.Barotrauma.ModUtils.IO = {}
+
+---@param folder System.String
+---@param pattern System.String
+---@param option System.IO.SearchOption
+---@return userdata | (fun(): System.String)
+function CS.Barotrauma.ModUtils.IO.FindAllFilesInDirectory(folder, pattern, option) end
+
+---@overload fun(path: System.String, fileName: System.String): System.String
+---@param filePath System.String
+---@return System.String
+function CS.Barotrauma.ModUtils.IO.PrepareFilePathString(filePath) end
+
+---@param fileName System.String
+---@return System.String
+function CS.Barotrauma.ModUtils.IO.SanitizeFileName(fileName) end
+
+---@param package Barotrauma.ContentPackage
+---@return System.String
+function CS.Barotrauma.ModUtils.IO.GetContentPackageDir(package) end
+
+---@param path System.String
+---@return System.String
+function CS.Barotrauma.ModUtils.IO.SanitizePath(path) end
+
+---@param filePath System.String
+---@param fileText System.String
+---@param fileDataFactory? fun(): System.String
+---@param createFile? System.Boolean
+---@return Barotrauma.ModUtils.IO.IOActionResultState
+function CS.Barotrauma.ModUtils.IO.GetOrCreateFileText(filePath, fileText, fileDataFactory, createFile) end
+
+---@param filePath System.String
+---@param formattedFilePath System.String
+---@param fileDataFactory? fun(): System.String
+---@return Barotrauma.ModUtils.IO.IOActionResultState
+function CS.Barotrauma.ModUtils.IO.CreateFilePath(filePath, formattedFilePath, fileDataFactory) end
+
+---@param filePath System.String
+---@param fileText System.String
+---@return Barotrauma.ModUtils.IO.IOActionResultState
+function CS.Barotrauma.ModUtils.IO.WriteFileText(filePath, fileText) end
+
+---@generic T : System.Object
+---@param __genericMethodMaker_T T
+---@param instance T
+---@param filepath System.String
+---@param typeFactory? fun(): T
+---@param createFile? System.Boolean
+---@return System.Boolean
+function CS.Barotrauma.ModUtils.IO.LoadOrCreateTypeXml(__genericMethodMaker_T, instance, filepath, typeFactory, createFile) end
+
+
+---@class Barotrauma.ModUtils.Game: System.Object
+CS.Barotrauma.ModUtils.Game = {}
+
+---@return System.Boolean
+function CS.Barotrauma.ModUtils.Game.IsRoundInProgress() end
+
+
+---@class Barotrauma.ModUtils.Threading: System.Object
+CS.Barotrauma.ModUtils.Threading = {}
+
+---@param var System.Int32
+---@return System.Boolean
+function CS.Barotrauma.ModUtils.Threading.GetBool(var) end
+
+---@param var System.Int32
+---@param value System.Boolean
+function CS.Barotrauma.ModUtils.Threading.SetBool(var, value) end
+
+---@param var System.Int32
+---@return System.Boolean
+function CS.Barotrauma.ModUtils.Threading.CheckIfClearAndSetBool(var) end
+
+---@param var System.Int32
+---@return System.Boolean
+function CS.Barotrauma.ModUtils.Threading.CheckIfSetAndClearBool(var) end
+
+
 ---@class Barotrauma.LuaCsSteam.WorkshopItemDownload: System.ValueType
 ---@field Item Steamworks.Ugc.Item
 ---@field Destination System.String
@@ -43150,6 +43299,19 @@ CS.Barotrauma.ScriptedEvent.TargetPredicate.EntityType = {
     Item = 2,
     Structure = 3,
     Submarine = 4
+}
+
+---@enum Barotrauma.ModUtils.IO.IOActionResultState
+CS.Barotrauma.ModUtils.IO.IOActionResultState = {
+    Success = 0,
+    FileNotFound = 1,
+    FilePathNull = 2,
+    FilePathInvalid = 3,
+    DirectoryMissing = 4,
+    PathTooLong = 5,
+    InvalidOperation = 6,
+    IOFailure = 7,
+    UnknownError = 8
 }
 
 ---@class Barotrauma.NetSerializableProperties.IReadWriteBehavior.ReadDelegate: System.MulticastDelegate, System.ICloneable, System.Runtime.Serialization.ISerializable

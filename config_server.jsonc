@@ -148,6 +148,7 @@
 
         "Barotrauma.LuaCs*",
 
+        "Barotrauma.ModUtils*",
         "Barotrauma.ToolBox",
 
         "Barotrauma.Rand",
