@@ -91,30 +91,72 @@ GUI = {
 
 -- Shared:
 
+---@class ManualGlobal.SettingBase
+---@field Boolean Barotrauma.LuaCs.Data.ISettingBase<System.Boolean>
+---@field String Barotrauma.LuaCs.Data.ISettingBase<System.String>
+---@field Byte Barotrauma.LuaCs.Data.ISettingBase<System.Byte>
+---@field SByte Barotrauma.LuaCs.Data.ISettingBase<System.SByte>
+---@field UInt16 Barotrauma.LuaCs.Data.ISettingBase<System.UInt16>
+---@field Int16 Barotrauma.LuaCs.Data.ISettingBase<System.Int16>
+---@field Char Barotrauma.LuaCs.Data.ISettingBase<System.Char>
+---@field UInt32 Barotrauma.LuaCs.Data.ISettingBase<System.UInt32>
+---@field Int32 Barotrauma.LuaCs.Data.ISettingBase<System.Int32>
+---@field UInt64 Barotrauma.LuaCs.Data.ISettingBase<System.UInt64>
+---@field Int64 Barotrauma.LuaCs.Data.ISettingBase<System.Int64>
+---@field Single Barotrauma.LuaCs.Data.ISettingBase<System.Single>
+---@field Double Barotrauma.LuaCs.Data.ISettingBase<System.Double>
+SettingBase = {}
+
+---@class ManualGlobal.SettingRangeBase
+---@field Single Barotrauma.LuaCs.Data.ISettingBase<System.Single>
+---@field Int16 Barotrauma.LuaCs.Data.ISettingBase<System.Int16>
+SettingRangeBase = {}
+
+---@class ManualGlobal.SettingList
+---@field String Barotrauma.LuaCs.Data.ISettingBase<System.String>
+---@field Byte Barotrauma.LuaCs.Data.ISettingBase<System.Byte>
+---@field SByte Barotrauma.LuaCs.Data.ISettingBase<System.SByte>
+---@field UInt16 Barotrauma.LuaCs.Data.ISettingBase<System.UInt16>
+---@field Int16 Barotrauma.LuaCs.Data.ISettingBase<System.Int16>
+---@field Char Barotrauma.LuaCs.Data.ISettingBase<System.Char>
+---@field UInt32 Barotrauma.LuaCs.Data.ISettingBase<System.UInt32>
+---@field Int32 Barotrauma.LuaCs.Data.ISettingBase<System.Int32>
+---@field UInt64 Barotrauma.LuaCs.Data.ISettingBase<System.UInt64>
+---@field Int64 Barotrauma.LuaCs.Data.ISettingBase<System.Int64>
+---@field Single Barotrauma.LuaCs.Data.ISettingBase<System.Single>
+---@field Double Barotrauma.LuaCs.Data.ISettingBase<System.Double>
+SettingList = {}
+
 ---@param o any
 function printerror(o) end
 
 ---@param ... string
 function setmodulepaths(...) end
 
-Logger = CS.Barotrauma.LuaCsLogger
-LuaUserData = CS.Barotrauma.LuaUserData
-Game = CS.Barotrauma.LuaGame
-Hook = CS.Barotrauma.LuaCsHook
-ModStore = CS.Barotrauma.LuaCsSetup.LuaCsModStore
-Timer = CS.Barotrauma.LuaCsTimer
+Game = CS.Barotrauma.LuaCs.LuaGame
+Hook = CS.Barotrauma.LuaCs.IEventService
+Timer = CS.Barotrauma.LuaCs.Compatibility.ILuaCsTimer
 File = CS.Barotrauma.LuaCsFile
-Networking = CS.Barotrauma.LuaCsNetworking
-Steam = CS.Barotrauma.LuaCsSteam
-PerformanceCounter = CS.Barotrauma.LuaCsPerformanceCounter
-LuaCsConfig = CS.Barotrauma.LuaCsConfig
-LuaCsConfig = CS.Barotrauma.LuaCsConfig
+ConfigService = CS.Barotrauma.LuaCs.ILuaConfigService
+Networking = CS.Barotrauma.LuaCs.INetworkingService
+
+---@param name string
+---@return boolean
+---@return Barotrauma.ContentPackage
+function trygetpackage(name) end
+
+---@type Barotrauma.LuaCs.ISafeLuaUserDataService | Barotrauma.LuaCs.ILuaUserDataService
+LuaUserData = nil
+
+Events = CS.Barotrauma.LuaCs.Events
 
 ---@type integer
 ExecutionNumber = nil
 
 ---@type boolean
 CSActive = nil
+
+function debug.breakpoint() end
 
 SERVER = false
 CLIENT = true

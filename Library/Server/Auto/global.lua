@@ -6,6 +6,11 @@ CS = {
         Items = {
             Components = {}
         },
+        LuaCs = {
+            Compatibility = {},
+            Data = {},
+            Events = {}
+        },
         MapCreatures = {
             Behavior = {}
         },

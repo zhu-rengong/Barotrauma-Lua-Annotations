@@ -2,7 +2,7 @@
 ---Auto-generated from BarotraumaCore
 ---Namespace: Barotrauma
 
----@class Barotrauma.Identifier: System.ValueType, { [System.Range]: Barotrauma.Identifier } | { [System.Int32]: System.Char }
+---@class Barotrauma.Identifier: System.ValueType, System.IComparable, { [System.Range]: Barotrauma.Identifier } | { [System.Int32]: System.Char }
 ---@field Value System.String
 ---@field HashCode System.Int32
 ---@field IsEmpty System.Boolean

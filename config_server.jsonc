@@ -146,19 +146,7 @@
         "Barotrauma.LuaSingle",
         "Barotrauma.LuaDouble",
 
-        "Barotrauma.LuaCsLogger",
-        "Barotrauma.LuaUserData",
-        "Barotrauma.LuaGame",
-        "Barotrauma.LuaCsHook*",
-        "Barotrauma.LuaCsTimer",
-        "Barotrauma.LuaCsFile",
-        "Barotrauma.LuaCsNetworking",
-        "Barotrauma.LuaCsSteam",
-        "Barotrauma.LuaCsPerformanceCounter",
-        "Barotrauma.LuaCsConfig",
-        "Barotrauma.LuaCsSetup*",
-        "Barotrauma.AssemblyManager",
-        "Barotrauma.CsPackageManager",
+        "Barotrauma.LuaCs*",
 
         "Barotrauma.ToolBox",
 

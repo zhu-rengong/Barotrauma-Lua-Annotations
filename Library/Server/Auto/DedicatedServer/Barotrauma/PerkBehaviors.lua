@@ -2,7 +2,7 @@
 ---Auto-generated from DedicatedServer
 ---Namespace: Barotrauma.PerkBehaviors
 
----@class Barotrauma.PerkBehaviors.GiveTalentPointPerk: Barotrauma.PerkBehaviors.PerkBase
+---@class Barotrauma.PerkBehaviors.GiveTalentPointPerk: Barotrauma.PerkBehaviors.PerkBase, Barotrauma.ISerializableEntity
 ---@field Amount System.Int32
 CS.Barotrauma.PerkBehaviors.GiveTalentPointPerk = {}
 
@@ -25,7 +25,7 @@ CS.Barotrauma.PerkBehaviors.PerkSimulation = {
     ServerAndClients = 1
 }
 
----@class Barotrauma.PerkBehaviors.PerkBase: System.Object
+---@class Barotrauma.PerkBehaviors.PerkBase: System.Object, Barotrauma.ISerializableEntity
 ---@field Name System.String
 ---@field SerializableProperties userdata | { [Barotrauma.Identifier]: Barotrauma.SerializableProperty } | (fun(): userdata)
 ---@field Simulation Barotrauma.PerkBehaviors.PerkSimulation
@@ -62,7 +62,7 @@ CS.Barotrauma.PerkBehaviors.PerkBase = __ctor
 CS.Barotrauma.PerkBehaviors.PerkBase.__new = __ctor
 end
 
----@class Barotrauma.PerkBehaviors.SpawnItemPerk: Barotrauma.PerkBehaviors.PerkBase
+---@class Barotrauma.PerkBehaviors.SpawnItemPerk: Barotrauma.PerkBehaviors.PerkBase, Barotrauma.ISerializableEntity
 ---@field Simulation Barotrauma.PerkBehaviors.PerkSimulation
 ---@field Identifier Barotrauma.Identifier
 ---@field Tag Barotrauma.Identifier
@@ -106,7 +106,7 @@ CS.Barotrauma.PerkBehaviors.SpawnItemPerk = __ctor
 CS.Barotrauma.PerkBehaviors.SpawnItemPerk.__new = __ctor
 end
 
----@class Barotrauma.PerkBehaviors.SubItemSwapPerk: Barotrauma.PerkBehaviors.PerkBase
+---@class Barotrauma.PerkBehaviors.SubItemSwapPerk: Barotrauma.PerkBehaviors.PerkBase, Barotrauma.ISerializableEntity
 ---@field TargetItem Barotrauma.Identifier
 ---@field ReplacementItem Barotrauma.Identifier
 ---@field Simulation Barotrauma.PerkBehaviors.PerkSimulation
@@ -132,7 +132,7 @@ CS.Barotrauma.PerkBehaviors.SubItemSwapPerk = __ctor
 CS.Barotrauma.PerkBehaviors.SubItemSwapPerk.__new = __ctor
 end
 
----@class Barotrauma.PerkBehaviors.UpgradeSubmarinePerk: Barotrauma.PerkBehaviors.PerkBase
+---@class Barotrauma.PerkBehaviors.UpgradeSubmarinePerk: Barotrauma.PerkBehaviors.PerkBase, Barotrauma.ISerializableEntity
 ---@field UpgradeIdentifier Barotrauma.Identifier
 ---@field CategoryIdentifier Barotrauma.Identifier
 ---@field Level System.Int32

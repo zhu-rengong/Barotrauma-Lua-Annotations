@@ -2,7 +2,7 @@
 ---Auto-generated from Barotrauma
 ---Namespace: Barotrauma.Media
 
----@class Barotrauma.Media.Video: System.Object
+---@class Barotrauma.Media.Video: System.Object, System.IDisposable
 ---@field Width System.Int32
 ---@field Height System.Int32
 ---@field AudioGain System.Single
@@ -73,7 +73,7 @@ CS.Barotrauma.Media.Video = __ctor
 CS.Barotrauma.Media.Video.__new = __ctor
 end
 
----@class Barotrauma.Media.Video.Internal.EventCallback: System.MulticastDelegate
+---@class Barotrauma.Media.Video.Internal.EventCallback: System.MulticastDelegate, System.ICloneable, System.Runtime.Serialization.ISerializable
 CS.Barotrauma.Media.Video.Internal.EventCallback = {}
 
 ---@param videoInternal System.IntPtr

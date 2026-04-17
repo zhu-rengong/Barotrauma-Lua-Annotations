@@ -2,7 +2,7 @@
 ---Auto-generated from Barotrauma
 ---Namespace: Barotrauma.Sounds
 
----@class Barotrauma.Sounds.OggSound: Barotrauma.Sounds.Sound
+---@class Barotrauma.Sounds.OggSound: Barotrauma.Sounds.Sound, System.IDisposable
 ---@field MaxStreamSamplePos System.Int64
 ---@field DurationSeconds System.Double|nil
 ---@field private streamReader NVorbis.VorbisReader
@@ -57,7 +57,7 @@ CS.Barotrauma.Sounds.OggSound = __ctor
 CS.Barotrauma.Sounds.OggSound.__new = __ctor
 end
 
----@class Barotrauma.Sounds.Sound: System.Object
+---@class Barotrauma.Sounds.Sound: System.Object, System.IDisposable
 ---@field Disposed System.Boolean
 ---@field DurationSeconds System.Double|nil
 ---@field Loading System.Boolean
@@ -149,7 +149,7 @@ CS.Barotrauma.Sounds.Sound = __ctor
 CS.Barotrauma.Sounds.Sound.__new = __ctor
 end
 
----@class Barotrauma.Sounds.SoundBuffers: System.Object
+---@class Barotrauma.Sounds.SoundBuffers: System.Object, System.IDisposable
 ---@field BuffersGenerated System.Int32
 ---@field AlBuffer System.UInt32
 ---@field AlMuffledBuffer System.UInt32
@@ -174,7 +174,7 @@ CS.Barotrauma.Sounds.SoundBuffers = __ctor
 CS.Barotrauma.Sounds.SoundBuffers.__new = __ctor
 end
 
----@class Barotrauma.Sounds.SoundSourcePool: System.Object
+---@class Barotrauma.Sounds.SoundSourcePool: System.Object, System.IDisposable
 ---@field ALSources System.UInt32[]
 CS.Barotrauma.Sounds.SoundSourcePool = {}
 
@@ -188,7 +188,7 @@ CS.Barotrauma.Sounds.SoundSourcePool = __ctor
 CS.Barotrauma.Sounds.SoundSourcePool.__new = __ctor
 end
 
----@class Barotrauma.Sounds.SoundChannel: System.Object
+---@class Barotrauma.Sounds.SoundChannel: System.Object, System.IDisposable
 ---@field Position Microsoft.Xna.Framework.Vector3|nil
 ---@field Near System.Single
 ---@field Far System.Single
@@ -465,7 +465,7 @@ CS.Barotrauma.Sounds.PeakFilter = __ctor
 CS.Barotrauma.Sounds.PeakFilter.__new = __ctor
 end
 
----@class Barotrauma.Sounds.SoundManager: System.Object
+---@class Barotrauma.Sounds.SoundManager: System.Object, System.IDisposable
 ---@field Disabled System.Boolean
 ---@field LoadedSounds userdata | { [System.Int32]: Barotrauma.Sounds.Sound } | (fun(): Barotrauma.Sounds.Sound)
 ---@field CanDetectDisconnect System.Boolean
@@ -642,7 +642,7 @@ CS.Barotrauma.Sounds.SoundManager = __ctor
 CS.Barotrauma.Sounds.SoundManager.__new = __ctor
 end
 
----@class Barotrauma.Sounds.VideoSound: Barotrauma.Sounds.Sound
+---@class Barotrauma.Sounds.VideoSound: Barotrauma.Sounds.Sound, System.IDisposable
 ---@field DurationSeconds System.Double|nil
 ---@field private mutex System.Object
 ---@field private sampleQueue userdata | (fun(): System.Int16[])
@@ -692,7 +692,7 @@ CS.Barotrauma.Sounds.VideoSound = __ctor
 CS.Barotrauma.Sounds.VideoSound.__new = __ctor
 end
 
----@class Barotrauma.Sounds.VoipSound: Barotrauma.Sounds.Sound
+---@class Barotrauma.Sounds.VoipSound: Barotrauma.Sounds.Sound, System.IDisposable
 ---@field DurationSeconds System.Double|nil
 ---@field SourcePoolIndex Barotrauma.Sounds.SoundManager.SourcePoolIndex
 ---@field IsPlaying System.Boolean

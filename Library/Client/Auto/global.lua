@@ -8,6 +8,11 @@ CS = {
             Components = {}
         },
         Lights = {},
+        LuaCs = {
+            Compatibility = {},
+            Data = {},
+            Events = {}
+        },
         MapCreatures = {
             Behavior = {}
         },

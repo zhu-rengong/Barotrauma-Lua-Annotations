@@ -50,7 +50,7 @@ CS.EventInput.KeyEventArgs = __ctor
 CS.EventInput.KeyEventArgs.__new = __ctor
 end
 
----@class EventInput.CharEnteredHandler: System.MulticastDelegate
+---@class EventInput.CharEnteredHandler: System.MulticastDelegate, System.ICloneable, System.Runtime.Serialization.ISerializable
 CS.EventInput.CharEnteredHandler = {}
 
 ---@param sender System.Object
@@ -76,7 +76,7 @@ CS.EventInput.CharEnteredHandler = __ctor
 CS.EventInput.CharEnteredHandler.__new = __ctor
 end
 
----@class EventInput.KeyEventHandler: System.MulticastDelegate
+---@class EventInput.KeyEventHandler: System.MulticastDelegate, System.ICloneable, System.Runtime.Serialization.ISerializable
 CS.EventInput.KeyEventHandler = {}
 
 ---@param sender System.Object
@@ -102,7 +102,7 @@ CS.EventInput.KeyEventHandler = __ctor
 CS.EventInput.KeyEventHandler.__new = __ctor
 end
 
----@class EventInput.EditingTextHandler: System.MulticastDelegate
+---@class EventInput.EditingTextHandler: System.MulticastDelegate, System.ICloneable, System.Runtime.Serialization.ISerializable
 CS.EventInput.EditingTextHandler = {}
 
 ---@param sender System.Object

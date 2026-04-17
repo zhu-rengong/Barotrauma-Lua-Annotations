@@ -2,7 +2,7 @@
 ---Auto-generated from System.Runtime
 ---Namespace: System.Text
 
----@class System.Text.StringBuilder: System.Object, string | { [System.Int32]: System.Char }
+---@class System.Text.StringBuilder: System.Object, System.Runtime.Serialization.ISerializable, string | { [System.Int32]: System.Char }
 ---@field Capacity System.Int32
 ---@field MaxCapacity System.Int32
 ---@field Length System.Int32

@@ -2,267 +2,6 @@
 ---Auto-generated from DedicatedServer
 ---Namespace: Barotrauma.Networking
 
----@class Barotrauma.Networking.Client: System.Object
----@field JobPreferences userdata | { [System.Int32]: Barotrauma.JobVariant } | (fun(): Barotrauma.JobVariant)
----@field CharacterInfo Barotrauma.CharacterInfo
----@field Connection Barotrauma.Networking.NetworkConnection
----@field Karma System.Single
----@field KickVoteCount System.Int32
----@field ClientList userdata | { [System.Int32]: Barotrauma.Networking.Client } | (fun(): Barotrauma.Networking.Client)
----@field SteamID System.UInt64
----@field AccountId userdata
----@field TeamID Barotrauma.CharacterTeamType
----@field Character Barotrauma.Character
----@field SpectatePos Microsoft.Xna.Framework.Vector2|nil
----@field Spectating System.Boolean
----@field Muted System.Boolean
----@field HasPermissions System.Boolean
----@field VoipQueue Barotrauma.Networking.VoipQueue
----@field InGame System.Boolean
----@field VoiceEnabled System.Boolean
----@field VoipServerDecoder Barotrauma.VoipServerDecoder
----@field LastRecvClientListUpdate System.UInt16
----@field LastSentServerSettingsUpdate System.UInt16
----@field LastRecvServerSettingsUpdate System.UInt16
----@field LastRecvLobbyUpdate System.UInt16
----@field InitialLobbyUpdateSent System.Boolean
----@field LastSentChatMsgID System.UInt16
----@field LastRecvChatMsgID System.UInt16
----@field LastSentEntityEventID System.UInt16
----@field LastRecvEntityEventID System.UInt16
----@field LastRecvCampaignUpdate userdata | { [Barotrauma.MultiPlayerCampaign.NetFlags]: System.UInt16 } | (fun(): userdata)
----@field LastRecvCampaignSave System.UInt16
----@field LastCampaignSaveSendTime userdata
----@field ChatMsgQueue userdata | { [System.Int32]: Barotrauma.Networking.ChatMessage } | (fun(): Barotrauma.Networking.ChatMessage)
----@field LastChatMsgQueueID System.UInt16
----@field LastSentChatMessages userdata | { [System.Int32]: System.String } | (fun(): System.String)
----@field ChatSpamSpeed System.Single
----@field ChatSpamTimer System.Single
----@field ChatSpamCount System.Int32
----@field RejectedName System.String
----@field KickAFKTimer System.Single
----@field MidRoundSyncTimeOut System.Double
----@field NeedsMidRoundSync System.Boolean
----@field UnreceivedEntityEventCount System.UInt16
----@field FirstNewEventID System.UInt16
----@field EntityEventLastSent userdata | { [System.UInt16]: System.Double } | (fun(): userdata)
----@field PositionUpdateLastSent userdata | { [Barotrauma.Entity]: System.Single } | (fun(): userdata)
----@field PendingPositionUpdates userdata | (fun(): Barotrauma.Entity)
----@field ReadyToStart System.Boolean
----@field AssignedJob Barotrauma.JobVariant
----@field DeleteDisconnectedTimer System.Single
----@field JoinTime System.DateTime
----@field LastNameChangeTime System.DateTime
----@field private characterInfo Barotrauma.CharacterInfo
----@field PendingName System.String
----@field SpectateOnly System.Boolean
----@field AFK System.Boolean
----@field WaitForNextRoundRespawn System.Boolean|nil
----@field KarmaKickCount System.Int32
----@field private syncedKarma System.Single
----@field private karma System.Single
----@field private kickVoters userdata | { [System.Int32]: Barotrauma.Networking.Client } | (fun(): Barotrauma.Networking.Client)
----@field PreviousCharacter userdata
----@field Name System.String
----@field NameId System.UInt16
----@field SessionId System.Byte
----@field AccountInfo Barotrauma.Networking.AccountInfo
----@field Language Barotrauma.LanguageIdentifier
----@field Ping System.UInt16
----@field PreferredJob Barotrauma.Identifier
----@field private teamID Barotrauma.CharacterTeamType
----@field PreferredTeam Barotrauma.CharacterTeamType
----@field private character Barotrauma.Character
----@field UsingFreeCam System.Boolean
----@field CharacterID System.UInt16
----@field private spectatePos Microsoft.Xna.Framework.Vector2
----@field private muted System.Boolean
----@field private inGame System.Boolean
----@field HasSpawned System.Boolean
----@field GivenAchievements userdata | (fun(): Barotrauma.Identifier)
----@field Permissions Barotrauma.Networking.ClientPermissions
----@field PermittedConsoleCommands userdata | (fun(): Barotrauma.DebugConsole.Command)
----@field private votes System.Object[]
----@field NameChangeCoolDown System.TimeSpan
----@field MaxNameLength System.Int32
-CS.Barotrauma.Networking.Client = {}
-
----@param character Barotrauma.Character
-function CS.Barotrauma.Networking.Client.SetClientCharacter(character) end
-
----@param reason? System.String
-function CS.Barotrauma.Networking.Client.Kick(reason) end
-
----@param reason? System.String
----@param seconds? System.Single
-function CS.Barotrauma.Networking.Client.Ban(reason, seconds) end
-
----@param playerName System.String
-function CS.Barotrauma.Networking.Client.UnbanPlayer(playerName) end
-
----@param player System.String
----@param reason System.String
----@param range? System.Boolean
----@param seconds? System.Single
-function CS.Barotrauma.Networking.Client.BanPlayer(player, reason, range, seconds) end
-
----@param permissions Barotrauma.Networking.ClientPermissions
----@return System.Boolean
-function CS.Barotrauma.Networking.Client.CheckPermission(permissions) end
-
----@return Barotrauma.CharacterInfo
-function CS.Barotrauma.Networking.Client.get_CharacterInfo() end
-
----@param value Barotrauma.CharacterInfo
-function CS.Barotrauma.Networking.Client.set_CharacterInfo(value) end
-
----@return System.Single
-function CS.Barotrauma.Networking.Client.get_Karma() end
-
----@param value System.Single
-function CS.Barotrauma.Networking.Client.set_Karma(value) end
-
----@return System.Int32
-function CS.Barotrauma.Networking.Client.get_KickVoteCount() end
-
-function CS.Barotrauma.Networking.Client.InitClientSync() end
-
----@param name System.String
----@param serverSettings Barotrauma.Networking.ServerSettings
----@return System.Boolean
-function CS.Barotrauma.Networking.Client.IsValidName(name, serverSettings) end
-
----@param address Barotrauma.Networking.Address
----@return System.Boolean
-function CS.Barotrauma.Networking.Client.AddressMatches(address) end
-
----@param voter Barotrauma.Networking.Client
-function CS.Barotrauma.Networking.Client.AddKickVote(voter) end
-
----@param voter Barotrauma.Networking.Client
-function CS.Barotrauma.Networking.Client.RemoveKickVote(voter) end
-
----@param voter Barotrauma.Networking.Client
----@return System.Boolean
-function CS.Barotrauma.Networking.Client.HasKickVoteFrom(voter) end
-
----@param id System.Int32
----@return System.Boolean
-function CS.Barotrauma.Networking.Client.HasKickVoteFromSessionId(id) end
-
----@param connectedClients userdata | { [System.Int32]: Barotrauma.Networking.Client } | (fun(): Barotrauma.Networking.Client)
-function CS.Barotrauma.Networking.Client.UpdateKickVotes(connectedClients) end
-
----@param resetKickVotes System.Boolean
-function CS.Barotrauma.Networking.Client.ResetVotes(resetKickVotes) end
-
----@param permissions Barotrauma.Networking.ClientPermissions
----@param permittedConsoleCommands userdata | (fun(): Barotrauma.DebugConsole.Command)
-function CS.Barotrauma.Networking.Client.SetPermissions(permissions, permittedConsoleCommands) end
-
----@param permission Barotrauma.Networking.ClientPermissions
-function CS.Barotrauma.Networking.Client.GivePermission(permission) end
-
----@param permission Barotrauma.Networking.ClientPermissions
-function CS.Barotrauma.Networking.Client.RemovePermission(permission) end
-
----@param permission Barotrauma.Networking.ClientPermissions
----@return System.Boolean
-function CS.Barotrauma.Networking.Client.HasPermission(permission) end
-
----@param botCharacter Barotrauma.Character
----@return System.Boolean
-function CS.Barotrauma.Networking.Client.TryTakeOverBot(botCharacter) end
-
-function CS.Barotrauma.Networking.Client.ResetSync() end
-
----@return userdata | { [System.Int32]: Barotrauma.Networking.Client } | (fun(): Barotrauma.Networking.Client)
-function CS.Barotrauma.Networking.Client.get_ClientList() end
-
----@return System.UInt64
-function CS.Barotrauma.Networking.Client.get_SteamID() end
-
----@return userdata
-function CS.Barotrauma.Networking.Client.get_AccountId() end
-
----@return Barotrauma.CharacterTeamType
-function CS.Barotrauma.Networking.Client.get_TeamID() end
-
----@param value Barotrauma.CharacterTeamType
-function CS.Barotrauma.Networking.Client.set_TeamID(value) end
-
----@return Barotrauma.Character
-function CS.Barotrauma.Networking.Client.get_Character() end
-
----@param value Barotrauma.Character
-function CS.Barotrauma.Networking.Client.set_Character(value) end
-
----@return Microsoft.Xna.Framework.Vector2|nil
-function CS.Barotrauma.Networking.Client.get_SpectatePos() end
-
----@param value Microsoft.Xna.Framework.Vector2|nil
-function CS.Barotrauma.Networking.Client.set_SpectatePos(value) end
-
----@return System.Boolean
-function CS.Barotrauma.Networking.Client.get_Spectating() end
-
----@return System.Boolean
-function CS.Barotrauma.Networking.Client.get_Muted() end
-
----@param value System.Boolean
-function CS.Barotrauma.Networking.Client.set_Muted(value) end
-
----@return System.Boolean
-function CS.Barotrauma.Networking.Client.get_HasPermissions() end
-
----@return System.Boolean
-function CS.Barotrauma.Networking.Client.get_InGame() end
-
----@param value System.Boolean
-function CS.Barotrauma.Networking.Client.set_InGame(value) end
-
----@private
-function CS.Barotrauma.Networking.Client.InitProjSpecific() end
-
----@private
-function CS.Barotrauma.Networking.Client.DisposeProjSpecific() end
-
----@param voteType Barotrauma.Networking.VoteType
----@param value System.Object
-function CS.Barotrauma.Networking.Client.SetVote(voteType, value) end
-
----@param userId System.String
----@return System.Boolean
-function CS.Barotrauma.Networking.Client.SessionOrAccountIdMatches(userId) end
-
----@param msg Barotrauma.Networking.IWriteMessage
-function CS.Barotrauma.Networking.Client.WritePermissions(msg) end
-
----@param inc Barotrauma.Networking.IReadMessage
----@param permissions Barotrauma.Networking.ClientPermissions
----@param permittedCommands userdata | { [System.Int32]: Barotrauma.DebugConsole.Command } | (fun(): Barotrauma.DebugConsole.Command)
-function CS.Barotrauma.Networking.Client.ReadPermissions(inc, permissions, permittedCommands) end
-
----@param inc Barotrauma.Networking.IReadMessage
-function CS.Barotrauma.Networking.Client.ReadPermissions(inc) end
-
----@param name System.String
----@param maxLength? System.Int32
----@return System.String
-function CS.Barotrauma.Networking.Client.SanitizeName(name, maxLength) end
-
-function CS.Barotrauma.Networking.Client.Dispose() end
-
-do
----@overload fun(): Barotrauma.Networking.Client
----@param name System.String
----@param sessionId System.Byte
----@return Barotrauma.Networking.Client
-local __ctor = function(name, sessionId) end
-CS.Barotrauma.Networking.Client = __ctor
-CS.Barotrauma.Networking.Client.__new = __ctor
-end
-
 ---@class Barotrauma.Networking.BannedPlayer: System.Object
 ---@field Expired System.Boolean
 ---@field Name System.String
@@ -484,6 +223,236 @@ do
 local __ctor = function(senderName, text, type, sender, client, changeType, textColor) end
 CS.Barotrauma.Networking.ChatMessage = __ctor
 CS.Barotrauma.Networking.ChatMessage.__new = __ctor
+end
+
+---@class Barotrauma.Networking.Client: System.Object, System.IDisposable
+---@field JobPreferences userdata | { [System.Int32]: Barotrauma.JobVariant } | (fun(): Barotrauma.JobVariant)
+---@field CharacterInfo Barotrauma.CharacterInfo
+---@field Connection Barotrauma.Networking.NetworkConnection
+---@field Karma System.Single
+---@field KickVoteCount System.Int32
+---@field AccountId userdata
+---@field TeamID Barotrauma.CharacterTeamType
+---@field Character Barotrauma.Character
+---@field SpectatePos Microsoft.Xna.Framework.Vector2|nil
+---@field Spectating System.Boolean
+---@field Muted System.Boolean
+---@field HasPermissions System.Boolean
+---@field VoipQueue Barotrauma.Networking.VoipQueue
+---@field InGame System.Boolean
+---@field VoiceEnabled System.Boolean
+---@field VoipServerDecoder Barotrauma.VoipServerDecoder
+---@field LastRecvClientListUpdate System.UInt16
+---@field LastSentServerSettingsUpdate System.UInt16
+---@field LastRecvServerSettingsUpdate System.UInt16
+---@field LastRecvLobbyUpdate System.UInt16
+---@field InitialLobbyUpdateSent System.Boolean
+---@field LastSentChatMsgID System.UInt16
+---@field LastRecvChatMsgID System.UInt16
+---@field LastSentEntityEventID System.UInt16
+---@field LastRecvEntityEventID System.UInt16
+---@field LastRecvCampaignUpdate userdata | { [Barotrauma.MultiPlayerCampaign.NetFlags]: System.UInt16 } | (fun(): userdata)
+---@field LastRecvCampaignSave System.UInt16
+---@field LastCampaignSaveSendTime userdata
+---@field ChatMsgQueue userdata | { [System.Int32]: Barotrauma.Networking.ChatMessage } | (fun(): Barotrauma.Networking.ChatMessage)
+---@field LastChatMsgQueueID System.UInt16
+---@field LastSentChatMessages userdata | { [System.Int32]: System.String } | (fun(): System.String)
+---@field ChatSpamSpeed System.Single
+---@field ChatSpamTimer System.Single
+---@field ChatSpamCount System.Int32
+---@field RejectedName System.String
+---@field KickAFKTimer System.Single
+---@field MidRoundSyncTimeOut System.Double
+---@field NeedsMidRoundSync System.Boolean
+---@field UnreceivedEntityEventCount System.UInt16
+---@field FirstNewEventID System.UInt16
+---@field EntityEventLastSent userdata | { [System.UInt16]: System.Double } | (fun(): userdata)
+---@field PositionUpdateLastSent userdata | { [Barotrauma.Entity]: System.Single } | (fun(): userdata)
+---@field PendingPositionUpdates userdata | (fun(): Barotrauma.Entity)
+---@field ReadyToStart System.Boolean
+---@field AssignedJob Barotrauma.JobVariant
+---@field DeleteDisconnectedTimer System.Single
+---@field JoinTime System.DateTime
+---@field LastNameChangeTime System.DateTime
+---@field private characterInfo Barotrauma.CharacterInfo
+---@field PendingName System.String
+---@field SpectateOnly System.Boolean
+---@field AFK System.Boolean
+---@field WaitForNextRoundRespawn System.Boolean|nil
+---@field KarmaKickCount System.Int32
+---@field private syncedKarma System.Single
+---@field private karma System.Single
+---@field private kickVoters userdata | { [System.Int32]: Barotrauma.Networking.Client } | (fun(): Barotrauma.Networking.Client)
+---@field PreviousCharacter userdata
+---@field Name System.String
+---@field NameId System.UInt16
+---@field SessionId System.Byte
+---@field AccountInfo Barotrauma.Networking.AccountInfo
+---@field Language Barotrauma.LanguageIdentifier
+---@field Ping System.UInt16
+---@field PreferredJob Barotrauma.Identifier
+---@field private teamID Barotrauma.CharacterTeamType
+---@field PreferredTeam Barotrauma.CharacterTeamType
+---@field private character Barotrauma.Character
+---@field UsingFreeCam System.Boolean
+---@field CharacterID System.UInt16
+---@field private spectatePos Microsoft.Xna.Framework.Vector2
+---@field private muted System.Boolean
+---@field private inGame System.Boolean
+---@field HasSpawned System.Boolean
+---@field GivenAchievements userdata | (fun(): Barotrauma.Identifier)
+---@field Permissions Barotrauma.Networking.ClientPermissions
+---@field PermittedConsoleCommands userdata | (fun(): Barotrauma.DebugConsole.Command)
+---@field private votes System.Object[]
+---@field NameChangeCoolDown System.TimeSpan
+---@field MaxNameLength System.Int32
+CS.Barotrauma.Networking.Client = {}
+
+---@return Barotrauma.CharacterInfo
+function CS.Barotrauma.Networking.Client.get_CharacterInfo() end
+
+---@param value Barotrauma.CharacterInfo
+function CS.Barotrauma.Networking.Client.set_CharacterInfo(value) end
+
+---@return System.Single
+function CS.Barotrauma.Networking.Client.get_Karma() end
+
+---@param value System.Single
+function CS.Barotrauma.Networking.Client.set_Karma(value) end
+
+---@return System.Int32
+function CS.Barotrauma.Networking.Client.get_KickVoteCount() end
+
+function CS.Barotrauma.Networking.Client.InitClientSync() end
+
+---@param name System.String
+---@param serverSettings Barotrauma.Networking.ServerSettings
+---@return System.Boolean
+function CS.Barotrauma.Networking.Client.IsValidName(name, serverSettings) end
+
+---@param address Barotrauma.Networking.Address
+---@return System.Boolean
+function CS.Barotrauma.Networking.Client.AddressMatches(address) end
+
+---@param voter Barotrauma.Networking.Client
+function CS.Barotrauma.Networking.Client.AddKickVote(voter) end
+
+---@param voter Barotrauma.Networking.Client
+function CS.Barotrauma.Networking.Client.RemoveKickVote(voter) end
+
+---@param voter Barotrauma.Networking.Client
+---@return System.Boolean
+function CS.Barotrauma.Networking.Client.HasKickVoteFrom(voter) end
+
+---@param id System.Int32
+---@return System.Boolean
+function CS.Barotrauma.Networking.Client.HasKickVoteFromSessionId(id) end
+
+---@param connectedClients userdata | { [System.Int32]: Barotrauma.Networking.Client } | (fun(): Barotrauma.Networking.Client)
+function CS.Barotrauma.Networking.Client.UpdateKickVotes(connectedClients) end
+
+---@param resetKickVotes System.Boolean
+function CS.Barotrauma.Networking.Client.ResetVotes(resetKickVotes) end
+
+---@param permissions Barotrauma.Networking.ClientPermissions
+---@param permittedConsoleCommands userdata | (fun(): Barotrauma.DebugConsole.Command)
+function CS.Barotrauma.Networking.Client.SetPermissions(permissions, permittedConsoleCommands) end
+
+---@param permission Barotrauma.Networking.ClientPermissions
+function CS.Barotrauma.Networking.Client.GivePermission(permission) end
+
+---@param permission Barotrauma.Networking.ClientPermissions
+function CS.Barotrauma.Networking.Client.RemovePermission(permission) end
+
+---@param permission Barotrauma.Networking.ClientPermissions
+---@return System.Boolean
+function CS.Barotrauma.Networking.Client.HasPermission(permission) end
+
+---@param botCharacter Barotrauma.Character
+---@return System.Boolean
+function CS.Barotrauma.Networking.Client.TryTakeOverBot(botCharacter) end
+
+function CS.Barotrauma.Networking.Client.ResetSync() end
+
+---@return userdata
+function CS.Barotrauma.Networking.Client.get_AccountId() end
+
+---@return Barotrauma.CharacterTeamType
+function CS.Barotrauma.Networking.Client.get_TeamID() end
+
+---@param value Barotrauma.CharacterTeamType
+function CS.Barotrauma.Networking.Client.set_TeamID(value) end
+
+---@return Barotrauma.Character
+function CS.Barotrauma.Networking.Client.get_Character() end
+
+---@param value Barotrauma.Character
+function CS.Barotrauma.Networking.Client.set_Character(value) end
+
+---@return Microsoft.Xna.Framework.Vector2|nil
+function CS.Barotrauma.Networking.Client.get_SpectatePos() end
+
+---@param value Microsoft.Xna.Framework.Vector2|nil
+function CS.Barotrauma.Networking.Client.set_SpectatePos(value) end
+
+---@return System.Boolean
+function CS.Barotrauma.Networking.Client.get_Spectating() end
+
+---@return System.Boolean
+function CS.Barotrauma.Networking.Client.get_Muted() end
+
+---@param value System.Boolean
+function CS.Barotrauma.Networking.Client.set_Muted(value) end
+
+---@return System.Boolean
+function CS.Barotrauma.Networking.Client.get_HasPermissions() end
+
+---@return System.Boolean
+function CS.Barotrauma.Networking.Client.get_InGame() end
+
+---@param value System.Boolean
+function CS.Barotrauma.Networking.Client.set_InGame(value) end
+
+---@private
+function CS.Barotrauma.Networking.Client.InitProjSpecific() end
+
+---@private
+function CS.Barotrauma.Networking.Client.DisposeProjSpecific() end
+
+---@param voteType Barotrauma.Networking.VoteType
+---@param value System.Object
+function CS.Barotrauma.Networking.Client.SetVote(voteType, value) end
+
+---@param userId System.String
+---@return System.Boolean
+function CS.Barotrauma.Networking.Client.SessionOrAccountIdMatches(userId) end
+
+---@param msg Barotrauma.Networking.IWriteMessage
+function CS.Barotrauma.Networking.Client.WritePermissions(msg) end
+
+---@param inc Barotrauma.Networking.IReadMessage
+---@param permissions Barotrauma.Networking.ClientPermissions
+---@param permittedCommands userdata | { [System.Int32]: Barotrauma.DebugConsole.Command } | (fun(): Barotrauma.DebugConsole.Command)
+function CS.Barotrauma.Networking.Client.ReadPermissions(inc, permissions, permittedCommands) end
+
+---@param inc Barotrauma.Networking.IReadMessage
+function CS.Barotrauma.Networking.Client.ReadPermissions(inc) end
+
+---@param name System.String
+---@param maxLength? System.Int32
+---@return System.String
+function CS.Barotrauma.Networking.Client.SanitizeName(name, maxLength) end
+
+function CS.Barotrauma.Networking.Client.Dispose() end
+
+do
+---@overload fun(): Barotrauma.Networking.Client
+---@param name System.String
+---@param sessionId System.Byte
+---@return Barotrauma.Networking.Client
+local __ctor = function(name, sessionId) end
+CS.Barotrauma.Networking.Client = __ctor
+CS.Barotrauma.Networking.Client.__new = __ctor
 end
 
 ---@class Barotrauma.Networking.FileSender: System.Object
@@ -1660,7 +1629,7 @@ CS.Barotrauma.Networking.ServerPeer = __ctor
 CS.Barotrauma.Networking.ServerPeer.__new = __ctor
 end
 
----@class Barotrauma.Networking.RespawnManager: Barotrauma.Entity
+---@class Barotrauma.Networking.RespawnManager: Barotrauma.Entity, Barotrauma.ISpatialEntity, Barotrauma.Networking.IServerSerializable, Barotrauma.Networking.INetSerializable
 ---@field IsShuttleInsideLevel System.Boolean
 ---@field SkillLossPercentageOnDeath System.Single
 ---@field SkillLossPercentageOnImmediateRespawn System.Single
@@ -1856,7 +1825,7 @@ CS.Barotrauma.Networking.RespawnManager = __ctor
 CS.Barotrauma.Networking.RespawnManager.__new = __ctor
 end
 
----@class Barotrauma.Networking.ServerSettings: System.Object
+---@class Barotrauma.Networking.ServerSettings: System.Object, Barotrauma.ISerializableEntity
 ---@field Name System.String
 ---@field SerializableProperties userdata | { [Barotrauma.Identifier]: Barotrauma.SerializableProperty } | (fun(): userdata)
 ---@field ServerName System.String
@@ -2343,7 +2312,7 @@ CS.Barotrauma.Networking.ChatMessageType = {
     BlockedBySpamFilter = 13
 }
 
----@class Barotrauma.Networking.TempClient: System.ValueType
+---@class Barotrauma.Networking.TempClient: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field Name System.String
 ---@field PreferredJob Barotrauma.Identifier
 ---@field TeamID Barotrauma.CharacterTeamType
@@ -2386,7 +2355,7 @@ CS.Barotrauma.Networking.ClientPermissions = {
     All = 524287
 }
 
----@class Barotrauma.Networking.IClientSerializable
+---@class Barotrauma.Networking.IClientSerializable: Barotrauma.Networking.INetSerializable
 CS.Barotrauma.Networking.IClientSerializable = {}
 
 ---@param msg Barotrauma.Networking.IReadMessage
@@ -2413,6 +2382,7 @@ function CS.Barotrauma.Networking.IClientSerializable.ServerEventRead(msg, c) en
 ---@field SparseHullUpdateInterval System.Single
 ---@field HullUpdateDistance System.Single
 ---@field MaxEventPacketsPerUpdate System.Int32
+---@field UseLenientHandshake System.Boolean
 ---@field DefaultPort System.Int32
 ---@field DefaultQueryPort System.Int32
 ---@field MaxPhysicsBodyVelocity System.Single
@@ -2476,7 +2446,7 @@ CS.Barotrauma.Networking.NetEntityEvent = __ctor
 CS.Barotrauma.Networking.NetEntityEvent.__new = __ctor
 end
 
----@class Barotrauma.Networking.EntityEventException: System.Exception
+---@class Barotrauma.Networking.EntityEventException: System.Exception, System.Runtime.Serialization.ISerializable
 ---@field Entity Barotrauma.Entity
 CS.Barotrauma.Networking.EntityEventException = {}
 
@@ -2548,8 +2518,7 @@ CS.Barotrauma.Networking.ClientPacketHeader = {
     READY_TO_SPAWN = 23,
     TAKEOVERBOT = 24,
     TOGGLE_RESERVE_BENCH = 25,
-    REQUEST_BACKUP_INDICES = 26,
-    LUA_NET_MESSAGE = 27
+    REQUEST_BACKUP_INDICES = 26
 }
 
 ---@enum Barotrauma.Networking.ClientNetSegment
@@ -2599,8 +2568,7 @@ CS.Barotrauma.Networking.ServerPacketHeader = {
     MONEY = 26,
     READY_CHECK = 27,
     UNLOCKRECIPE = 28,
-    SEND_BACKUP_INDICES = 29,
-    LUA_NET_MESSAGE = 30
+    SEND_BACKUP_INDICES = 29
 }
 
 ---@enum Barotrauma.Networking.VoteType
@@ -2618,7 +2586,7 @@ CS.Barotrauma.Networking.VoteType = {
     Traitor = 10
 }
 
----@class Barotrauma.Networking.AccountInfo: System.ValueType
+---@class Barotrauma.Networking.AccountInfo: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field IsNone System.Boolean
 ---@field AccountId userdata
 ---@field OtherMatchingIds userdata | { [System.Int32]: Barotrauma.Networking.AccountId } | (fun(): Barotrauma.Networking.AccountId)
@@ -3040,7 +3008,7 @@ function CS.Barotrauma.Networking.IWriteMessage.set_LengthBits(value) end
 function CS.Barotrauma.Networking.IWriteMessage.get_LengthBytes() end
 
 
----@class Barotrauma.Networking.WriteOnlyMessage: System.Object
+---@class Barotrauma.Networking.WriteOnlyMessage: System.Object, Barotrauma.Networking.IWriteMessage
 ---@field BitPosition System.Int32
 ---@field BytePosition System.Int32
 ---@field Buffer System.Byte[]
@@ -3148,7 +3116,7 @@ CS.Barotrauma.Networking.WriteOnlyMessage = __ctor
 CS.Barotrauma.Networking.WriteOnlyMessage.__new = __ctor
 end
 
----@class Barotrauma.Networking.ReadOnlyMessage: System.Object
+---@class Barotrauma.Networking.ReadOnlyMessage: System.Object, Barotrauma.Networking.IReadMessage
 ---@field BitPosition System.Int32
 ---@field BytePosition System.Int32
 ---@field Buffer System.Byte[]
@@ -3254,7 +3222,7 @@ CS.Barotrauma.Networking.ReadOnlyMessage = __ctor
 CS.Barotrauma.Networking.ReadOnlyMessage.__new = __ctor
 end
 
----@class Barotrauma.Networking.ReadWriteMessage: System.Object
+---@class Barotrauma.Networking.ReadWriteMessage: System.Object, Barotrauma.Networking.IWriteMessage, Barotrauma.Networking.IReadMessage
 ---@field BitPosition System.Int32
 ---@field BytePosition System.Int32
 ---@field Buffer System.Byte[]
@@ -3878,7 +3846,7 @@ CS.Barotrauma.Networking.SteamP2PConnection = __ctor
 CS.Barotrauma.Networking.SteamP2PConnection.__new = __ctor
 end
 
----@class Barotrauma.Networking.ClientAuthTicketAndVersionPacket: System.ValueType
+---@class Barotrauma.Networking.ClientAuthTicketAndVersionPacket: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field Name System.String
 ---@field OwnerKey userdata
 ---@field AccountId userdata
@@ -3888,7 +3856,7 @@ end
 CS.Barotrauma.Networking.ClientAuthTicketAndVersionPacket = {}
 
 
----@class Barotrauma.Networking.PeerPacketMessage: System.ValueType
+---@class Barotrauma.Networking.PeerPacketMessage: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field Length System.Int32
 ---@field Buffer System.Byte[]
 CS.Barotrauma.Networking.PeerPacketMessage = {}
@@ -3905,12 +3873,12 @@ function CS.Barotrauma.Networking.PeerPacketMessage.GetReadMessageUncompressed()
 function CS.Barotrauma.Networking.PeerPacketMessage.GetReadMessage(isCompressed, conn) end
 
 
----@class Barotrauma.Networking.ClientPeerPasswordPacket: System.ValueType
+---@class Barotrauma.Networking.ClientPeerPasswordPacket: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field Password System.Byte[]
 CS.Barotrauma.Networking.ClientPeerPasswordPacket = {}
 
 
----@class Barotrauma.Networking.ServerContentPackage: System.Object
+---@class Barotrauma.Networking.ServerContentPackage: System.Object, Barotrauma.INetSerializableStruct
 ---@field Hash Barotrauma.Md5Hash
 ---@field InstallTime System.DateTime
 ---@field RegularPackage Barotrauma.RegularPackage
@@ -4006,7 +3974,7 @@ CS.Barotrauma.Networking.VoipConfig = __ctor
 CS.Barotrauma.Networking.VoipConfig.__new = __ctor
 end
 
----@class Barotrauma.Networking.VoipQueue: System.Object
+---@class Barotrauma.Networking.VoipQueue: System.Object, System.IDisposable
 ---@field EnqueuedTotalLength System.Int32
 ---@field BufferToQueue System.Byte[]
 ---@field QueueID System.Byte
@@ -4129,7 +4097,7 @@ end
 CS.Barotrauma.Networking.NetEntityEvent.IData = {}
 
 
----@class Barotrauma.Networking.MessageFragment.Id: System.ValueType
+---@class Barotrauma.Networking.MessageFragment.Id: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field FragmentIndex System.UInt16
 ---@field FragmentCount System.UInt16
 ---@field MessageId System.UInt16

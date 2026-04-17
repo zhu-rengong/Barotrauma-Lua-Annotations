@@ -2,7 +2,7 @@
 ---Auto-generated from System.Net.Primitives
 ---Namespace: System.Net
 
----@class System.Net.IPAddress: System.Object
+---@class System.Net.IPAddress: System.Object, System.ISpanFormattable, System.IFormattable, System.IUtf8SpanFormattable
 ---@field private IsIPv4 System.Boolean
 ---@field private IsIPv6 System.Boolean
 ---@field package PrivateAddress System.UInt32

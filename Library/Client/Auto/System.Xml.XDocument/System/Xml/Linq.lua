@@ -2,7 +2,7 @@
 ---Auto-generated from System.Xml.XDocument
 ---Namespace: System.Xml.Linq
 
----@class System.Xml.Linq.XAttribute: System.Xml.Linq.XObject
+---@class System.Xml.Linq.XAttribute: System.Xml.Linq.XObject, System.Xml.IXmlLineInfo
 ---@field EmptySequence userdata | (fun(): System.Xml.Linq.XAttribute)
 ---@field IsNamespaceDeclaration System.Boolean
 ---@field Name System.Xml.Linq.XName
@@ -99,7 +99,7 @@ CS.System.Xml.Linq.XAttribute = __ctor
 CS.System.Xml.Linq.XAttribute.__new = __ctor
 end
 
----@class System.Xml.Linq.XContainer: System.Xml.Linq.XNode
+---@class System.Xml.Linq.XContainer: System.Xml.Linq.XNode, System.Xml.IXmlLineInfo
 ---@field FirstNode System.Xml.Linq.XNode
 ---@field LastNode System.Xml.Linq.XNode
 ---@field package content System.Object
@@ -287,7 +287,7 @@ CS.System.Xml.Linq.XContainer = __ctor
 CS.System.Xml.Linq.XContainer.__new = __ctor
 end
 
----@class System.Xml.Linq.XDocument: System.Xml.Linq.XContainer
+---@class System.Xml.Linq.XDocument: System.Xml.Linq.XContainer, System.Xml.IXmlLineInfo
 ---@field Declaration System.Xml.Linq.XDeclaration
 ---@field DocumentType System.Xml.Linq.XDocumentType
 ---@field NodeType System.Xml.XmlNodeType
@@ -429,7 +429,7 @@ CS.System.Xml.Linq.XDocument = __ctor
 CS.System.Xml.Linq.XDocument.__new = __ctor
 end
 
----@class System.Xml.Linq.XElement: System.Xml.Linq.XContainer
+---@class System.Xml.Linq.XElement: System.Xml.Linq.XContainer, System.Xml.IXmlLineInfo, System.Xml.Serialization.IXmlSerializable
 ---@field EmptySequence userdata | (fun(): System.Xml.Linq.XElement)
 ---@field FirstAttribute System.Xml.Linq.XAttribute
 ---@field HasAttributes System.Boolean
@@ -739,7 +739,7 @@ CS.System.Xml.Linq.XElement = __ctor
 CS.System.Xml.Linq.XElement.__new = __ctor
 end
 
----@class System.Xml.Linq.XName: System.Object
+---@class System.Xml.Linq.XName: System.Object, System.Runtime.Serialization.ISerializable
 ---@field LocalName System.String
 ---@field Namespace System.Xml.Linq.XNamespace
 ---@field NamespaceName System.String
@@ -806,7 +806,7 @@ CS.System.Xml.Linq.XName = __ctor
 CS.System.Xml.Linq.XName.__new = __ctor
 end
 
----@class System.Xml.Linq.XNode: System.Xml.Linq.XObject
+---@class System.Xml.Linq.XNode: System.Xml.Linq.XObject, System.Xml.IXmlLineInfo
 ---@field NextNode System.Xml.Linq.XNode
 ---@field PreviousNode System.Xml.Linq.XNode
 ---@field DocumentOrderComparer System.Xml.Linq.XNodeDocumentOrderComparer
@@ -968,7 +968,7 @@ CS.System.Xml.Linq.XNode = __ctor
 CS.System.Xml.Linq.XNode.__new = __ctor
 end
 
----@class System.Xml.Linq.XObject: System.Object
+---@class System.Xml.Linq.XObject: System.Object, System.Xml.IXmlLineInfo
 ---@field BaseUri System.String
 ---@field Document System.Xml.Linq.XDocument
 ---@field NodeType System.Xml.XmlNodeType

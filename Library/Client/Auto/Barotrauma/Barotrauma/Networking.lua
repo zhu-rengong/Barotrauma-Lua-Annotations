@@ -182,14 +182,12 @@ CS.Barotrauma.Networking.ChatMessage = __ctor
 CS.Barotrauma.Networking.ChatMessage.__new = __ctor
 end
 
----@class Barotrauma.Networking.Client: System.Object
+---@class Barotrauma.Networking.Client: System.Object, System.IDisposable
 ---@field VoipSound Barotrauma.Sounds.VoipSound
 ---@field VoiceVolume System.Single
 ---@field RadioNoise System.Single
 ---@field MutedLocally System.Boolean
 ---@field AllowKicking System.Boolean
----@field ClientList userdata | { [System.Int32]: Barotrauma.Networking.Client } | (fun(): Barotrauma.Networking.Client)
----@field SteamID System.UInt64
 ---@field AccountId userdata
 ---@field TeamID Barotrauma.CharacterTeamType
 ---@field Character Barotrauma.Character
@@ -269,12 +267,6 @@ function CS.Barotrauma.Networking.Client.RemovePermission(permission) end
 function CS.Barotrauma.Networking.Client.HasPermission(permission) end
 
 function CS.Barotrauma.Networking.Client.ResetVotes() end
-
----@return userdata | { [System.Int32]: Barotrauma.Networking.Client } | (fun(): Barotrauma.Networking.Client)
-function CS.Barotrauma.Networking.Client.get_ClientList() end
-
----@return System.UInt64
-function CS.Barotrauma.Networking.Client.get_SteamID() end
 
 ---@return userdata
 function CS.Barotrauma.Networking.Client.get_AccountId() end
@@ -1565,7 +1557,7 @@ CS.Barotrauma.Networking.P2POwnerPeer = __ctor
 CS.Barotrauma.Networking.P2POwnerPeer.__new = __ctor
 end
 
----@class Barotrauma.Networking.RespawnManager: Barotrauma.Entity
+---@class Barotrauma.Networking.RespawnManager: Barotrauma.Entity, Barotrauma.ISpatialEntity, Barotrauma.Networking.IServerSerializable, Barotrauma.Networking.INetSerializable
 ---@field PendingRespawnCount System.Int32
 ---@field RequiredRespawnCount System.Int32
 ---@field ForceSpawnInMainSub System.Boolean
@@ -1777,7 +1769,7 @@ CS.Barotrauma.Networking.ServerLog = __ctor
 CS.Barotrauma.Networking.ServerLog.__new = __ctor
 end
 
----@class Barotrauma.Networking.ServerSettings: System.Object
+---@class Barotrauma.Networking.ServerSettings: System.Object, Barotrauma.ISerializableEntity
 ---@field Name System.String
 ---@field SerializableProperties userdata | { [Barotrauma.Identifier]: Barotrauma.SerializableProperty } | (fun(): userdata)
 ---@field ServerName System.String
@@ -2254,7 +2246,7 @@ CS.Barotrauma.Networking.ServerSettings = __ctor
 CS.Barotrauma.Networking.ServerSettings.__new = __ctor
 end
 
----@class Barotrauma.Networking.VoipCapture: Barotrauma.Networking.VoipQueue
+---@class Barotrauma.Networking.VoipCapture: Barotrauma.Networking.VoipQueue, System.IDisposable
 ---@field Instance Barotrauma.Networking.VoipCapture
 ---@field LastdB System.Double
 ---@field LastAmplitude System.Double
@@ -2319,7 +2311,7 @@ CS.Barotrauma.Networking.VoipCapture = __ctor
 CS.Barotrauma.Networking.VoipCapture.__new = __ctor
 end
 
----@class Barotrauma.Networking.VoipClient: System.Object
+---@class Barotrauma.Networking.VoipClient: System.Object, System.IDisposable
 ---@field private gameClient Barotrauma.Networking.GameClient
 ---@field private netClient Barotrauma.Networking.ClientPeer
 ---@field private lastSendTime System.DateTime
@@ -2396,7 +2388,7 @@ CS.Barotrauma.Networking.ChatMessageType = {
     BlockedBySpamFilter = 13
 }
 
----@class Barotrauma.Networking.TempClient: System.ValueType
+---@class Barotrauma.Networking.TempClient: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field Name System.String
 ---@field PreferredJob Barotrauma.Identifier
 ---@field TeamID Barotrauma.CharacterTeamType
@@ -2439,7 +2431,7 @@ CS.Barotrauma.Networking.ClientPermissions = {
     All = 524287
 }
 
----@class Barotrauma.Networking.IClientSerializable
+---@class Barotrauma.Networking.IClientSerializable: Barotrauma.Networking.INetSerializable
 CS.Barotrauma.Networking.IClientSerializable = {}
 
 ---@param msg Barotrauma.Networking.IWriteMessage
@@ -2466,6 +2458,7 @@ function CS.Barotrauma.Networking.IClientSerializable.ClientEventWrite(msg, extr
 ---@field SparseHullUpdateInterval System.Single
 ---@field HullUpdateDistance System.Single
 ---@field MaxEventPacketsPerUpdate System.Int32
+---@field UseLenientHandshake System.Boolean
 ---@field DefaultPort System.Int32
 ---@field DefaultQueryPort System.Int32
 ---@field MaxPhysicsBodyVelocity System.Single
@@ -2529,7 +2522,7 @@ CS.Barotrauma.Networking.NetEntityEvent = __ctor
 CS.Barotrauma.Networking.NetEntityEvent.__new = __ctor
 end
 
----@class Barotrauma.Networking.EntityEventException: System.Exception
+---@class Barotrauma.Networking.EntityEventException: System.Exception, System.Runtime.Serialization.ISerializable
 ---@field Entity Barotrauma.Entity
 CS.Barotrauma.Networking.EntityEventException = {}
 
@@ -2601,8 +2594,7 @@ CS.Barotrauma.Networking.ClientPacketHeader = {
     READY_TO_SPAWN = 23,
     TAKEOVERBOT = 24,
     TOGGLE_RESERVE_BENCH = 25,
-    REQUEST_BACKUP_INDICES = 26,
-    LUA_NET_MESSAGE = 27
+    REQUEST_BACKUP_INDICES = 26
 }
 
 ---@enum Barotrauma.Networking.ClientNetSegment
@@ -2652,8 +2644,7 @@ CS.Barotrauma.Networking.ServerPacketHeader = {
     MONEY = 26,
     READY_CHECK = 27,
     UNLOCKRECIPE = 28,
-    SEND_BACKUP_INDICES = 29,
-    LUA_NET_MESSAGE = 30
+    SEND_BACKUP_INDICES = 29
 }
 
 ---@enum Barotrauma.Networking.VoteType
@@ -2751,7 +2742,7 @@ CS.Barotrauma.Networking.NetworkMember = __ctor
 CS.Barotrauma.Networking.NetworkMember.__new = __ctor
 end
 
----@class Barotrauma.Networking.AccountInfo: System.ValueType
+---@class Barotrauma.Networking.AccountInfo: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field IsNone System.Boolean
 ---@field AccountId userdata
 ---@field OtherMatchingIds userdata | { [System.Int32]: Barotrauma.Networking.AccountId } | (fun(): Barotrauma.Networking.AccountId)
@@ -3173,7 +3164,7 @@ function CS.Barotrauma.Networking.IWriteMessage.set_LengthBits(value) end
 function CS.Barotrauma.Networking.IWriteMessage.get_LengthBytes() end
 
 
----@class Barotrauma.Networking.WriteOnlyMessage: System.Object
+---@class Barotrauma.Networking.WriteOnlyMessage: System.Object, Barotrauma.Networking.IWriteMessage
 ---@field BitPosition System.Int32
 ---@field BytePosition System.Int32
 ---@field Buffer System.Byte[]
@@ -3281,7 +3272,7 @@ CS.Barotrauma.Networking.WriteOnlyMessage = __ctor
 CS.Barotrauma.Networking.WriteOnlyMessage.__new = __ctor
 end
 
----@class Barotrauma.Networking.ReadOnlyMessage: System.Object
+---@class Barotrauma.Networking.ReadOnlyMessage: System.Object, Barotrauma.Networking.IReadMessage
 ---@field BitPosition System.Int32
 ---@field BytePosition System.Int32
 ---@field Buffer System.Byte[]
@@ -3387,7 +3378,7 @@ CS.Barotrauma.Networking.ReadOnlyMessage = __ctor
 CS.Barotrauma.Networking.ReadOnlyMessage.__new = __ctor
 end
 
----@class Barotrauma.Networking.ReadWriteMessage: System.Object
+---@class Barotrauma.Networking.ReadWriteMessage: System.Object, Barotrauma.Networking.IWriteMessage, Barotrauma.Networking.IReadMessage
 ---@field BitPosition System.Int32
 ---@field BytePosition System.Int32
 ---@field Buffer System.Byte[]
@@ -4011,7 +4002,7 @@ CS.Barotrauma.Networking.SteamP2PConnection = __ctor
 CS.Barotrauma.Networking.SteamP2PConnection.__new = __ctor
 end
 
----@class Barotrauma.Networking.ClientAuthTicketAndVersionPacket: System.ValueType
+---@class Barotrauma.Networking.ClientAuthTicketAndVersionPacket: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field Name System.String
 ---@field OwnerKey userdata
 ---@field AccountId userdata
@@ -4021,7 +4012,7 @@ end
 CS.Barotrauma.Networking.ClientAuthTicketAndVersionPacket = {}
 
 
----@class Barotrauma.Networking.PeerPacketMessage: System.ValueType
+---@class Barotrauma.Networking.PeerPacketMessage: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field Length System.Int32
 ---@field Buffer System.Byte[]
 CS.Barotrauma.Networking.PeerPacketMessage = {}
@@ -4038,12 +4029,12 @@ function CS.Barotrauma.Networking.PeerPacketMessage.GetReadMessageUncompressed()
 function CS.Barotrauma.Networking.PeerPacketMessage.GetReadMessage(isCompressed, conn) end
 
 
----@class Barotrauma.Networking.ClientPeerPasswordPacket: System.ValueType
+---@class Barotrauma.Networking.ClientPeerPasswordPacket: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field Password System.Byte[]
 CS.Barotrauma.Networking.ClientPeerPasswordPacket = {}
 
 
----@class Barotrauma.Networking.ServerContentPackage: System.Object
+---@class Barotrauma.Networking.ServerContentPackage: System.Object, Barotrauma.INetSerializableStruct
 ---@field Hash Barotrauma.Md5Hash
 ---@field InstallTime System.DateTime
 ---@field RegularPackage Barotrauma.RegularPackage
@@ -4088,7 +4079,7 @@ CS.Barotrauma.Networking.ServerContentPackage = __ctor
 CS.Barotrauma.Networking.ServerContentPackage.__new = __ctor
 end
 
----@class Barotrauma.Networking.VoipQueue: System.Object
+---@class Barotrauma.Networking.VoipQueue: System.Object, System.IDisposable
 ---@field EnqueuedTotalLength System.Int32
 ---@field BufferToQueue System.Byte[]
 ---@field QueueID System.Byte
@@ -4275,7 +4266,7 @@ CS.Barotrauma.Networking.RespawnManager.TeamSpecificState = __ctor
 CS.Barotrauma.Networking.RespawnManager.TeamSpecificState.__new = __ctor
 end
 
----@class Barotrauma.Networking.PingUtils.LobbyDataChangedEventHandler: System.ValueType
+---@class Barotrauma.Networking.PingUtils.LobbyDataChangedEventHandler: System.ValueType, System.IDisposable
 ---@field private action fun(obj: Steamworks.Data.Lobby)
 CS.Barotrauma.Networking.PingUtils.LobbyDataChangedEventHandler = {}
 
@@ -4343,7 +4334,7 @@ end
 CS.Barotrauma.Networking.NetEntityEvent.IData = {}
 
 
----@class Barotrauma.Networking.MessageFragment.Id: System.ValueType
+---@class Barotrauma.Networking.MessageFragment.Id: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field FragmentIndex System.UInt16
 ---@field FragmentCount System.UInt16
 ---@field MessageId System.UInt16
@@ -4359,7 +4350,7 @@ CS.Barotrauma.Networking.MessageFragment.Id = __ctor
 CS.Barotrauma.Networking.MessageFragment.Id.__new = __ctor
 end
 
----@class Barotrauma.Networking.ClientPeer.Callbacks.MessageCallback: System.MulticastDelegate
+---@class Barotrauma.Networking.ClientPeer.Callbacks.MessageCallback: System.MulticastDelegate, System.ICloneable, System.Runtime.Serialization.ISerializable
 CS.Barotrauma.Networking.ClientPeer.Callbacks.MessageCallback = {}
 
 ---@param message Barotrauma.Networking.IReadMessage
@@ -4383,7 +4374,7 @@ CS.Barotrauma.Networking.ClientPeer.Callbacks.MessageCallback = __ctor
 CS.Barotrauma.Networking.ClientPeer.Callbacks.MessageCallback.__new = __ctor
 end
 
----@class Barotrauma.Networking.ClientPeer.Callbacks.DisconnectCallback: System.MulticastDelegate
+---@class Barotrauma.Networking.ClientPeer.Callbacks.DisconnectCallback: System.MulticastDelegate, System.ICloneable, System.Runtime.Serialization.ISerializable
 CS.Barotrauma.Networking.ClientPeer.Callbacks.DisconnectCallback = {}
 
 ---@param disconnectPacket Barotrauma.Networking.PeerDisconnectPacket
@@ -4407,7 +4398,7 @@ CS.Barotrauma.Networking.ClientPeer.Callbacks.DisconnectCallback = __ctor
 CS.Barotrauma.Networking.ClientPeer.Callbacks.DisconnectCallback.__new = __ctor
 end
 
----@class Barotrauma.Networking.ClientPeer.Callbacks.InitializationCompleteCallback: System.MulticastDelegate
+---@class Barotrauma.Networking.ClientPeer.Callbacks.InitializationCompleteCallback: System.MulticastDelegate, System.ICloneable, System.Runtime.Serialization.ISerializable
 CS.Barotrauma.Networking.ClientPeer.Callbacks.InitializationCompleteCallback = {}
 
 function CS.Barotrauma.Networking.ClientPeer.Callbacks.InitializationCompleteCallback.Invoke() end

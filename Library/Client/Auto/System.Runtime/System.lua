@@ -2,7 +2,7 @@
 ---Auto-generated from System.Runtime
 ---Namespace: System
 
----@class System.Boolean: System.ValueType, boolean
+---@class System.Boolean: System.ValueType, System.IComparable, System.IConvertible, boolean
 ---@field private m_value System.Boolean
 ---@field TrueString System.String
 ---@field FalseString System.String
@@ -158,7 +158,7 @@ CS.System.Boolean = __ctor
 CS.System.Boolean.__new = __ctor
 end
 
----@class System.Byte: System.ValueType, integer
+---@class System.Byte: System.ValueType, System.IComparable, System.IConvertible, System.ISpanFormattable, System.IFormattable, System.IUtf8SpanFormattable, integer
 ---@field private ["System.Numerics.IAdditiveIdentity<System.Byte,System.Byte>.AdditiveIdentity"] System.Byte
 ---@field private ["System.Numerics.IBinaryNumber<System.Byte>.AllBitsSet"] System.Byte
 ---@field private ["System.Numerics.IMinMaxValue<System.Byte>.MinValue"] System.Byte
@@ -769,7 +769,7 @@ function CS.System.Byte.MultiplyBy10(value) end
 function CS.System.Byte.MultiplyBy16(value) end
 
 
----@class System.Char: System.ValueType, string
+---@class System.Char: System.ValueType, System.IComparable, System.IConvertible, System.ISpanFormattable, System.IFormattable, System.IUtf8SpanFormattable, string
 ---@field private Latin1CharInfo userdata | { [System.Int32]: System.Byte }
 ---@field private ["System.Numerics.IAdditiveIdentity<System.Char,System.Char>.AdditiveIdentity"] System.Char
 ---@field private ["System.Numerics.IBinaryNumber<System.Char>.AllBitsSet"] System.Char
@@ -1596,7 +1596,7 @@ function CS.System.Char.MultiplyBy10(value) end
 function CS.System.Char.MultiplyBy16(value) end
 
 
----@class System.Decimal: System.ValueType, number
+---@class System.Decimal: System.ValueType, System.ISpanFormattable, System.IFormattable, System.IComparable, System.IConvertible, System.Runtime.Serialization.ISerializable, System.Runtime.Serialization.IDeserializationCallback, System.IUtf8SpanFormattable, number
 ---@field Scale System.Byte
 ---@field private Exponent System.SByte
 ---@field private ["System.Numerics.IAdditiveIdentity<System.Decimal,System.Decimal>.AdditiveIdentity"] System.Decimal
@@ -2294,7 +2294,7 @@ CS.System.Decimal = __ctor
 CS.System.Decimal.__new = __ctor
 end
 
----@class System.Delegate: System.Object
+---@class System.Delegate: System.Object, System.ICloneable, System.Runtime.Serialization.ISerializable
 ---@field Target System.Object
 ---@field Method System.Reflection.MethodInfo
 ---@field package _target System.Object
@@ -2488,7 +2488,7 @@ CS.System.Delegate = __ctor
 CS.System.Delegate.__new = __ctor
 end
 
----@class System.Double: System.ValueType, number
+---@class System.Double: System.ValueType, System.IComparable, System.IConvertible, System.ISpanFormattable, System.IFormattable, System.IUtf8SpanFormattable, number
 ---@field package BiasedExponent System.UInt16
 ---@field package Exponent System.Int16
 ---@field package Significand System.UInt64
@@ -3391,7 +3391,7 @@ function CS.System.Double.SinForIntervalPiBy4(x, xTail) end
 function CS.System.Double.TanForIntervalPiBy4(x, xTail, isReciprocal) end
 
 
----@class System.Exception: System.Object
+---@class System.Exception: System.Object, System.Runtime.Serialization.ISerializable
 ---@field TargetSite System.Reflection.MethodBase
 ---@field private HasBeenThrown System.Boolean
 ---@field private SerializationWatsonBuckets System.Object
@@ -3589,7 +3589,7 @@ CS.System.Exception = __ctor
 CS.System.Exception.__new = __ctor
 end
 
----@class System.Int16: System.ValueType, integer
+---@class System.Int16: System.ValueType, System.IComparable, System.IConvertible, System.ISpanFormattable, System.IFormattable, System.IUtf8SpanFormattable, integer
 ---@field private ["System.Numerics.IAdditiveIdentity<System.Int16,System.Int16>.AdditiveIdentity"] System.Int16
 ---@field private ["System.Numerics.IBinaryNumber<System.Int16>.AllBitsSet"] System.Int16
 ---@field private ["System.Numerics.IMinMaxValue<System.Int16>.MinValue"] System.Int16
@@ -4185,7 +4185,7 @@ function CS.System.Int16.MultiplyBy10(value) end
 function CS.System.Int16.MultiplyBy16(value) end
 
 
----@class System.Int32: System.ValueType, integer
+---@class System.Int32: System.ValueType, System.IComparable, System.IConvertible, System.ISpanFormattable, System.IFormattable, System.IUtf8SpanFormattable, integer
 ---@field private ["System.Numerics.IAdditiveIdentity<System.Int32,System.Int32>.AdditiveIdentity"] System.Int32
 ---@field private ["System.Numerics.IBinaryNumber<System.Int32>.AllBitsSet"] System.Int32
 ---@field private ["System.Numerics.IMinMaxValue<System.Int32>.MinValue"] System.Int32
@@ -4781,7 +4781,7 @@ function CS.System.Int32.MultiplyBy10(value) end
 function CS.System.Int32.MultiplyBy16(value) end
 
 
----@class System.Int64: System.ValueType, integer
+---@class System.Int64: System.ValueType, System.IComparable, System.IConvertible, System.ISpanFormattable, System.IFormattable, System.IUtf8SpanFormattable, integer
 ---@field private ["System.Numerics.IAdditiveIdentity<System.Int64,System.Int64>.AdditiveIdentity"] System.Int64
 ---@field private ["System.Numerics.IBinaryNumber<System.Int64>.AllBitsSet"] System.Int64
 ---@field private ["System.Numerics.IMinMaxValue<System.Int64>.MinValue"] System.Int64
@@ -5865,7 +5865,7 @@ function CS.System.MathF.Truncate(x) end
 function CS.System.MathF.ScaleB(x, n) end
 
 
----@class System.MulticastDelegate: System.Delegate
+---@class System.MulticastDelegate: System.Delegate, System.ICloneable, System.Runtime.Serialization.ISerializable
 ---@field private _invocationList System.Object
 ---@field private _invocationCount System.IntPtr
 CS.System.MulticastDelegate = {}
@@ -6066,7 +6066,7 @@ CS.System.Object = __ctor
 CS.System.Object.__new = __ctor
 end
 
----@class System.SByte: System.ValueType, integer
+---@class System.SByte: System.ValueType, System.IComparable, System.IConvertible, System.ISpanFormattable, System.IFormattable, System.IUtf8SpanFormattable, integer
 ---@field private ["System.Numerics.IAdditiveIdentity<System.SByte,System.SByte>.AdditiveIdentity"] System.SByte
 ---@field private ["System.Numerics.IBinaryNumber<System.SByte>.AllBitsSet"] System.SByte
 ---@field private ["System.Numerics.IMinMaxValue<System.SByte>.MinValue"] System.SByte
@@ -6662,7 +6662,7 @@ function CS.System.SByte.MultiplyBy10(value) end
 function CS.System.SByte.MultiplyBy16(value) end
 
 
----@class System.Single: System.ValueType, number
+---@class System.Single: System.ValueType, System.IComparable, System.IConvertible, System.ISpanFormattable, System.IFormattable, System.IUtf8SpanFormattable, number
 ---@field package BiasedExponent System.Byte
 ---@field package Exponent System.SByte
 ---@field package Significand System.UInt32
@@ -7562,7 +7562,7 @@ function CS.System.Single.SinForIntervalPiBy4(x) end
 function CS.System.Single.TanForIntervalPiBy4(x, isReciprocal) end
 
 
----@class System.String: System.Object, string | { [System.Int32]: System.Char } | (fun(): System.Char)
+---@class System.String: System.Object, System.IComparable, System.Collections.IEnumerable, System.IConvertible, System.ICloneable, string | { [System.Int32]: System.Char } | (fun(): System.Char)
 ---@field Length System.Int32
 ---@field private _stringLength System.Int32
 ---@field private _firstChar System.Char
@@ -8318,7 +8318,7 @@ CS.System.String = __ctor
 CS.System.String.__new = __ctor
 end
 
----@class System.TimeSpan: System.ValueType
+---@class System.TimeSpan: System.ValueType, System.IComparable, System.ISpanFormattable, System.IFormattable, System.IUtf8SpanFormattable
 ---@field Ticks System.Int64
 ---@field Days System.Int32
 ---@field Hours System.Int32
@@ -8620,7 +8620,7 @@ CS.System.TimeSpan = __ctor
 CS.System.TimeSpan.__new = __ctor
 end
 
----@class System.Type: System.Reflection.MemberInfo
+---@class System.Type: System.Reflection.MemberInfo, System.Reflection.ICustomAttributeProvider, System.Reflection.IReflect
 ---@field IsInterface System.Boolean
 ---@field MemberType System.Reflection.MemberTypes
 ---@field Namespace System.String
@@ -9338,7 +9338,7 @@ CS.System.Type = __ctor
 CS.System.Type.__new = __ctor
 end
 
----@class System.UInt16: System.ValueType, integer
+---@class System.UInt16: System.ValueType, System.IComparable, System.IConvertible, System.ISpanFormattable, System.IFormattable, System.IUtf8SpanFormattable, integer
 ---@field private ["System.Numerics.IAdditiveIdentity<System.UInt16,System.UInt16>.AdditiveIdentity"] System.UInt16
 ---@field private ["System.Numerics.IBinaryNumber<System.UInt16>.AllBitsSet"] System.UInt16
 ---@field private ["System.Numerics.IMinMaxValue<System.UInt16>.MinValue"] System.UInt16
@@ -9935,7 +9935,7 @@ function CS.System.UInt16.MultiplyBy10(value) end
 function CS.System.UInt16.MultiplyBy16(value) end
 
 
----@class System.UInt32: System.ValueType, integer
+---@class System.UInt32: System.ValueType, System.IComparable, System.IConvertible, System.ISpanFormattable, System.IFormattable, System.IUtf8SpanFormattable, integer
 ---@field private ["System.Numerics.IAdditiveIdentity<System.UInt32,System.UInt32>.AdditiveIdentity"] System.UInt32
 ---@field private ["System.Numerics.IBinaryNumber<System.UInt32>.AllBitsSet"] System.UInt32
 ---@field private ["System.Numerics.IMinMaxValue<System.UInt32>.MinValue"] System.UInt32
@@ -10532,7 +10532,7 @@ function CS.System.UInt32.MultiplyBy10(value) end
 function CS.System.UInt32.MultiplyBy16(value) end
 
 
----@class System.UInt64: System.ValueType, integer
+---@class System.UInt64: System.ValueType, System.IComparable, System.IConvertible, System.ISpanFormattable, System.IFormattable, System.IUtf8SpanFormattable, integer
 ---@field private ["System.Numerics.IAdditiveIdentity<System.UInt64,System.UInt64>.AdditiveIdentity"] System.UInt64
 ---@field private ["System.Numerics.IBinaryNumber<System.UInt64>.AllBitsSet"] System.UInt64
 ---@field private ["System.Numerics.IMinMaxValue<System.UInt64>.MinValue"] System.UInt64

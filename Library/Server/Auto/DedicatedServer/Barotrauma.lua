@@ -111,7 +111,7 @@ CS.Barotrauma.Camera = __ctor
 CS.Barotrauma.Camera.__new = __ctor
 end
 
----@class Barotrauma.Character: Barotrauma.Entity
+---@class Barotrauma.Character: Barotrauma.Entity, Barotrauma.ISpatialEntity, Barotrauma.IDamageable, Barotrauma.ISerializableEntity, Barotrauma.Networking.IClientSerializable, Barotrauma.Networking.INetSerializable, Barotrauma.Networking.IServerPositionSync, Barotrauma.Networking.IServerSerializable
 ---@field Controlled Barotrauma.Character
 ---@field ContentPackage Barotrauma.ContentPackage
 ---@field Enabled System.Boolean
@@ -126,6 +126,7 @@ end
 ---@field IsEscorted System.Boolean
 ---@field JobIdentifier Barotrauma.Identifier
 ---@field DoesBleed System.Boolean
+---@field IsContainable System.Boolean
 ---@field SerializableProperties userdata | { [Barotrauma.Identifier]: Barotrauma.SerializableProperty } | (fun(): userdata)
 ---@field Keys Barotrauma.Key[]
 ---@field HumanPrefab Barotrauma.HumanPrefab
@@ -329,6 +330,7 @@ end
 ---@field private statusEffects userdata | { [Barotrauma.ActionType]: userdata | { [System.Int32]: Barotrauma.StatusEffect } | (fun(): Barotrauma.StatusEffect) } | (fun(): userdata)
 ---@field private info Barotrauma.CharacterInfo
 ---@field private hideFaceTimer System.Single
+---@field private lastInventoryItemSetTransformPosition Microsoft.Xna.Framework.Vector2
 ---@field private onCustomInteract fun(arg1: Barotrauma.Character, arg2: Barotrauma.Character)
 ---@field ActiveConversation Barotrauma.ConversationAction
 ---@field RequireConsciousnessForCustomInteract System.Boolean
@@ -1307,6 +1309,12 @@ function CS.Barotrauma.Character.Speak(message, messageType, delay, identifier, 
 ---@param deltaTime System.Single
 function CS.Barotrauma.Character.UpdateAIChatMessages(deltaTime) end
 
+---@param messageToSay Barotrauma.LocalizedString
+---@param sayInRadio System.Boolean
+---@param removeQuotes? System.Boolean
+---@param delay? System.Single
+function CS.Barotrauma.Character.ForceSay(messageToSay, sayInRadio, removeQuotes, delay) end
+
 ---@param damageAmount System.Single
 ---@param bleedingDamageAmount System.Single
 ---@param burnDamageAmount System.Single
@@ -1400,6 +1408,12 @@ function CS.Barotrauma.Character.BreakJoints() end
 ---@param huskInfection? Barotrauma.AfflictionPrefabHusk
 ---@param playDead? System.Boolean|nil
 function CS.Barotrauma.Character.TurnIntoHusk(huskInfection, playDead) end
+
+---@return System.Boolean
+function CS.Barotrauma.Character.IsAttachedToController() end
+
+---@return System.Boolean
+function CS.Barotrauma.Character.ShouldAvoidStayingAttachedToController() end
 
 ---@param causeOfDeath Barotrauma.CauseOfDeathType
 ---@param causeOfDeathAffliction Barotrauma.Affliction
@@ -2201,7 +2215,7 @@ CS.Barotrauma.CharacterInfo = __ctor
 CS.Barotrauma.CharacterInfo.__new = __ctor
 end
 
----@class Barotrauma.Limb: System.Object
+---@class Barotrauma.Limb: System.Object, Barotrauma.ISerializableEntity, Barotrauma.ISpatialEntity
 ---@field LagCompensatedBody Barotrauma.PhysicsBody
 ---@field MemState userdata | (fun(): Barotrauma.PosInfo)
 ---@field SeveredFadeOutTime System.Single
@@ -3265,8 +3279,9 @@ function CS.Barotrauma.AbandonedOutpostMission.TrackKillTargetCount() end
 function CS.Barotrauma.AbandonedOutpostMission.UpdateMissionSpecific(deltaTime) end
 
 ---@protected
+---@param transitionType Barotrauma.CampaignMode.TransitionType
 ---@return System.Boolean
-function CS.Barotrauma.AbandonedOutpostMission.DetermineCompleted() end
+function CS.Barotrauma.AbandonedOutpostMission.DetermineCompleted(transitionType) end
 
 ---@protected
 ---@param completed System.Boolean
@@ -3338,8 +3353,9 @@ function CS.Barotrauma.CargoMission.LoadItemAsChild(element, parent) end
 function CS.Barotrauma.CargoMission.StartMissionSpecific(level) end
 
 ---@protected
+---@param transitionType Barotrauma.CampaignMode.TransitionType
 ---@return System.Boolean
-function CS.Barotrauma.CargoMission.DetermineCompleted() end
+function CS.Barotrauma.CargoMission.DetermineCompleted(transitionType) end
 
 ---@protected
 ---@param completed System.Boolean
@@ -3449,8 +3465,9 @@ function CS.Barotrauma.CombatMission.IsInWinningTeam(character) end
 function CS.Barotrauma.CombatMission.StartMissionSpecific(level) end
 
 ---@protected
+---@param transitionType Barotrauma.CampaignMode.TransitionType
 ---@return System.Boolean
-function CS.Barotrauma.CombatMission.DetermineCompleted() end
+function CS.Barotrauma.CombatMission.DetermineCompleted(transitionType) end
 
 do
 ---@overload fun(): Barotrauma.CombatMission
@@ -3506,8 +3523,9 @@ function CS.Barotrauma.EliminateTargetsMission.IsItemDestroyed(item) end
 function CS.Barotrauma.EliminateTargetsMission.IsEnemyDefeated(enemy) end
 
 ---@protected
+---@param transitionType Barotrauma.CampaignMode.TransitionType
 ---@return System.Boolean
-function CS.Barotrauma.EliminateTargetsMission.DetermineCompleted() end
+function CS.Barotrauma.EliminateTargetsMission.DetermineCompleted(transitionType) end
 
 ---@protected
 ---@param completed System.Boolean
@@ -3573,8 +3591,9 @@ function CS.Barotrauma.EndMission.StartMissionSpecific(level) end
 function CS.Barotrauma.EndMission.UpdateMissionSpecific(deltaTime) end
 
 ---@protected
+---@param transitionType Barotrauma.CampaignMode.TransitionType
 ---@return System.Boolean
-function CS.Barotrauma.EndMission.DetermineCompleted() end
+function CS.Barotrauma.EndMission.DetermineCompleted(transitionType) end
 
 do
 ---@param prefab Barotrauma.MissionPrefab
@@ -3651,8 +3670,9 @@ function CS.Barotrauma.EscortMission.Survived(character) end
 function CS.Barotrauma.EscortMission.IsAlive(character) end
 
 ---@protected
+---@param transitionType Barotrauma.CampaignMode.TransitionType
 ---@return System.Boolean
-function CS.Barotrauma.EscortMission.DetermineCompleted() end
+function CS.Barotrauma.EscortMission.DetermineCompleted(transitionType) end
 
 ---@protected
 ---@param completed System.Boolean
@@ -3670,6 +3690,7 @@ end
 
 ---@class Barotrauma.MineralMission: Barotrauma.Mission
 ---@field SonarLabels userdata | (fun(): userdata)
+---@field SpawnedResources userdata | (fun(): userdata | { [System.Int32]: Barotrauma.Item } | (fun(): Barotrauma.Item))
 ---@field SuccessMessage Barotrauma.LocalizedString
 ---@field FailureMessage Barotrauma.LocalizedString
 ---@field Description Barotrauma.LocalizedString
@@ -3690,6 +3711,9 @@ function CS.Barotrauma.MineralMission.ServerWriteInitial(msg, c) end
 
 ---@return userdata | (fun(): userdata)
 function CS.Barotrauma.MineralMission.get_SonarLabels() end
+
+---@return userdata | (fun(): userdata | { [System.Int32]: Barotrauma.Item } | (fun(): Barotrauma.Item))
+function CS.Barotrauma.MineralMission.get_SpawnedResources() end
 
 ---@return Barotrauma.LocalizedString
 function CS.Barotrauma.MineralMission.get_SuccessMessage() end
@@ -3712,8 +3736,9 @@ function CS.Barotrauma.MineralMission.StartMissionSpecific(level) end
 function CS.Barotrauma.MineralMission.UpdateMissionSpecific(deltaTime) end
 
 ---@protected
+---@param transitionType Barotrauma.CampaignMode.TransitionType
 ---@return System.Boolean
-function CS.Barotrauma.MineralMission.DetermineCompleted() end
+function CS.Barotrauma.MineralMission.DetermineCompleted(transitionType) end
 
 ---@protected
 ---@param completed System.Boolean
@@ -3967,11 +3992,13 @@ function CS.Barotrauma.Mission.TryTriggerEvent(trigger) end
 ---@param trigger Barotrauma.MissionPrefab.TriggerEvent
 function CS.Barotrauma.Mission.TriggerEvent(trigger) end
 
-function CS.Barotrauma.Mission.End() end
+---@param transitionType Barotrauma.CampaignMode.TransitionType
+function CS.Barotrauma.Mission.End(transitionType) end
 
 ---@protected
+---@param transitionType Barotrauma.CampaignMode.TransitionType
 ---@return System.Boolean
-function CS.Barotrauma.Mission.DetermineCompleted() end
+function CS.Barotrauma.Mission.DetermineCompleted(transitionType) end
 
 ---@protected
 ---@param completed System.Boolean
@@ -4095,8 +4122,9 @@ function CS.Barotrauma.MonsterMission.MissionStateChanged(previousState) end
 function CS.Barotrauma.MonsterMission.UpdateMissionSpecific(deltaTime) end
 
 ---@protected
+---@param transitionType Barotrauma.CampaignMode.TransitionType
 ---@return System.Boolean
-function CS.Barotrauma.MonsterMission.DetermineCompleted() end
+function CS.Barotrauma.MonsterMission.DetermineCompleted(transitionType) end
 
 ---@protected
 ---@param completed System.Boolean
@@ -4158,8 +4186,9 @@ function CS.Barotrauma.NestMission.UpdateMissionSpecific(deltaTime) end
 function CS.Barotrauma.NestMission.AllItemsDestroyedOrRetrieved() end
 
 ---@protected
+---@param transitionType Barotrauma.CampaignMode.TransitionType
 ---@return System.Boolean
-function CS.Barotrauma.NestMission.DetermineCompleted() end
+function CS.Barotrauma.NestMission.DetermineCompleted(transitionType) end
 
 ---@protected
 ---@param completed System.Boolean
@@ -4276,8 +4305,9 @@ function CS.Barotrauma.PirateMission.CheckWinState() end
 function CS.Barotrauma.PirateMission.DeadOrCaptured(character) end
 
 ---@protected
+---@param transitionType Barotrauma.CampaignMode.TransitionType
 ---@return System.Boolean
-function CS.Barotrauma.PirateMission.DetermineCompleted() end
+function CS.Barotrauma.PirateMission.DetermineCompleted(transitionType) end
 
 ---@protected
 ---@param completed System.Boolean
@@ -4344,8 +4374,9 @@ function CS.Barotrauma.SalvageMission.IsValidSubmarine(sub, spawnPosType) end
 function CS.Barotrauma.SalvageMission.UpdateMissionSpecific(deltaTime) end
 
 ---@protected
+---@param transitionType Barotrauma.CampaignMode.TransitionType
 ---@return System.Boolean
-function CS.Barotrauma.SalvageMission.DetermineCompleted() end
+function CS.Barotrauma.SalvageMission.DetermineCompleted(transitionType) end
 
 ---@protected
 ---@param completed System.Boolean
@@ -4379,7 +4410,7 @@ end
 ---@field private parentInventoryIDs userdata | { [Barotrauma.Item]: System.UInt16 } | (fun(): userdata)
 ---@field private inventorySlotIndices userdata | { [Barotrauma.Item]: System.Int32 } | (fun(): userdata)
 ---@field private parentItemContainerIndices userdata | { [Barotrauma.Item]: System.Byte } | (fun(): userdata)
----@field private targetsToScan System.Int32
+---@field private totalTargetsToScan System.Int32
 ---@field private scanTargets userdata | { [Barotrauma.WayPoint]: System.Boolean } | (fun(): userdata)
 ---@field private newTargetsScanned userdata | (fun(): Barotrauma.WayPoint)
 ---@field private minTargetDistance System.Single
@@ -4442,8 +4473,9 @@ function CS.Barotrauma.ScanMission.UpdateMissionSpecific(deltaTime) end
 function CS.Barotrauma.ScanMission.AllTargetsScanned() end
 
 ---@protected
+---@param transitionType Barotrauma.CampaignMode.TransitionType
 ---@return System.Boolean
-function CS.Barotrauma.ScanMission.DetermineCompleted() end
+function CS.Barotrauma.ScanMission.DetermineCompleted(transitionType) end
 
 ---@protected
 ---@param completed System.Boolean
@@ -4470,7 +4502,6 @@ end
 ---@field CommandLineArgs System.String[]
 ---@field Version System.Version
 ---@field private world FarseerPhysics.Dynamics.World
----@field LuaCs Barotrauma.LuaCsSetup
 ---@field Server Barotrauma.Networking.GameServer
 ---@field GameSession Barotrauma.GameSession
 ---@field GameScreen Barotrauma.GameScreen
@@ -5892,11 +5923,12 @@ CS.Barotrauma.UpgradeManager = __ctor
 CS.Barotrauma.UpgradeManager.__new = __ctor
 end
 
----@class Barotrauma.CharacterInventory: Barotrauma.Inventory
+---@class Barotrauma.CharacterInventory: Barotrauma.Inventory, Barotrauma.Networking.IClientSerializable, Barotrauma.Networking.INetSerializable
 ---@field SlotTypes Barotrauma.InvSlotType[]
 ---@field AccessibleWhenAlive System.Boolean
 ---@field AccessibleByOwner System.Boolean
 ---@field private character Barotrauma.Character
+---@field private slotsByType userdata | { [Barotrauma.InvSlotType]: userdata | { [System.Int32]: Barotrauma.Inventory.ItemSlot } | (fun(): Barotrauma.Inventory.ItemSlot) } | (fun(): userdata)
 ---@field protected IsEquipped System.Boolean[]
 ---@field AnySlot userdata | { [System.Int32]: Barotrauma.InvSlotType } | (fun(): Barotrauma.InvSlotType)
 ---@field BagSlot userdata | { [System.Int32]: Barotrauma.InvSlotType } | (fun(): Barotrauma.InvSlotType)
@@ -5927,6 +5959,10 @@ function CS.Barotrauma.CharacterInventory.FindLimbSlot(limbSlot) end
 ---@param limbSlot Barotrauma.InvSlotType
 ---@return Barotrauma.Item
 function CS.Barotrauma.CharacterInventory.GetItemInLimbSlot(limbSlot) end
+
+---@param limbSlot Barotrauma.InvSlotType
+---@return userdata | (fun(): Barotrauma.Item)
+function CS.Barotrauma.CharacterInventory.GetItemsInLimbSlot(limbSlot) end
 
 ---@param item Barotrauma.Item
 ---@param limbSlot Barotrauma.InvSlotType
@@ -5960,14 +5996,15 @@ function CS.Barotrauma.CharacterInventory.RemoveItem(item) end
 ---@return System.Boolean
 function CS.Barotrauma.CharacterInventory.TryPutItemWithAutoEquipCheck(item, user, allowedSlots, createNetworkEvent) end
 
----@overload fun(item: Barotrauma.Item, index: System.Int32, allowSwapping: System.Boolean, allowCombine: System.Boolean, user: Barotrauma.Character, createNetworkEvent?: System.Boolean, ignoreCondition?: System.Boolean): System.Boolean
+---@overload fun(item: Barotrauma.Item, index: System.Int32, allowSwapping: System.Boolean, allowCombine: System.Boolean, user: Barotrauma.Character, createNetworkEvent?: System.Boolean, ignoreCondition?: System.Boolean, triggerOnInsertedEffects?: System.Boolean): System.Boolean
 ---@param item Barotrauma.Item
 ---@param user Barotrauma.Character
 ---@param allowedSlots? userdata | (fun(): Barotrauma.InvSlotType)
 ---@param createNetworkEvent? System.Boolean
 ---@param ignoreCondition? System.Boolean
+---@param triggerOnInsertedEffects? System.Boolean
 ---@return System.Boolean
-function CS.Barotrauma.CharacterInventory.TryPutItem(item, user, allowedSlots, createNetworkEvent, ignoreCondition) end
+function CS.Barotrauma.CharacterInventory.TryPutItem(item, user, allowedSlots, createNetworkEvent, ignoreCondition, triggerOnInsertedEffects) end
 
 ---@param item Barotrauma.Item
 ---@return System.Boolean
@@ -5985,7 +6022,8 @@ function CS.Barotrauma.CharacterInventory.GetFreeAnySlot(item, inWrongSlot) end
 ---@param user Barotrauma.Character
 ---@param removeItem? System.Boolean
 ---@param createNetworkEvent? System.Boolean
-function CS.Barotrauma.CharacterInventory.PutItem(item, i, user, removeItem, createNetworkEvent) end
+---@param triggerOnInsertedEffects? System.Boolean
+function CS.Barotrauma.CharacterInventory.PutItem(item, i, user, removeItem, createNetworkEvent, triggerOnInsertedEffects) end
 
 ---@protected
 ---@param slotRange System.Range
@@ -6002,7 +6040,7 @@ CS.Barotrauma.CharacterInventory = __ctor
 CS.Barotrauma.CharacterInventory.__new = __ctor
 end
 
----@class Barotrauma.Inventory: System.Object
+---@class Barotrauma.Inventory: System.Object, Barotrauma.Networking.IClientSerializable, Barotrauma.Networking.INetSerializable
 ---@field ExtraStackSize System.Int32
 ---@field AllItems userdata | (fun(): Barotrauma.Item)
 ---@field AllItemsMod userdata | (fun(): Barotrauma.Item)
@@ -6126,14 +6164,15 @@ function CS.Barotrauma.Inventory.CanProbablyBePut(itemPrefab, condition, quality
 ---@return System.Int32
 function CS.Barotrauma.Inventory.HowManyCanBePut(itemPrefab, condition) end
 
----@overload fun(item: Barotrauma.Item, i: System.Int32, allowSwapping: System.Boolean, allowCombine: System.Boolean, user: Barotrauma.Character, createNetworkEvent?: System.Boolean, ignoreCondition?: System.Boolean): System.Boolean
+---@overload fun(item: Barotrauma.Item, i: System.Int32, allowSwapping: System.Boolean, allowCombine: System.Boolean, user: Barotrauma.Character, createNetworkEvent?: System.Boolean, ignoreCondition?: System.Boolean, triggerOnInsertedEffects?: System.Boolean): System.Boolean
 ---@param item Barotrauma.Item
 ---@param user Barotrauma.Character
 ---@param allowedSlots? userdata | (fun(): Barotrauma.InvSlotType)
 ---@param createNetworkEvent? System.Boolean
 ---@param ignoreCondition? System.Boolean
+---@param triggerOnInsertedEffects? System.Boolean
 ---@return System.Boolean
-function CS.Barotrauma.Inventory.TryPutItem(item, user, allowedSlots, createNetworkEvent, ignoreCondition) end
+function CS.Barotrauma.Inventory.TryPutItem(item, user, allowedSlots, createNetworkEvent, ignoreCondition, triggerOnInsertedEffects) end
 
 ---@protected
 ---@param item Barotrauma.Item
@@ -6141,7 +6180,8 @@ function CS.Barotrauma.Inventory.TryPutItem(item, user, allowedSlots, createNetw
 ---@param user Barotrauma.Character
 ---@param removeItem? System.Boolean
 ---@param createNetworkEvent? System.Boolean
-function CS.Barotrauma.Inventory.PutItem(item, i, user, removeItem, createNetworkEvent) end
+---@param triggerOnInsertedEffects? System.Boolean
+function CS.Barotrauma.Inventory.PutItem(item, i, user, removeItem, createNetworkEvent, triggerOnInsertedEffects) end
 
 ---@return System.Boolean
 function CS.Barotrauma.Inventory.IsEmpty() end
@@ -6227,7 +6267,7 @@ CS.Barotrauma.Inventory = __ctor
 CS.Barotrauma.Inventory.__new = __ctor
 end
 
----@class Barotrauma.Item: Barotrauma.MapEntity
+---@class Barotrauma.Item: Barotrauma.MapEntity, Barotrauma.ISpatialEntity, Barotrauma.IDamageable, Barotrauma.ISerializableEntity, Barotrauma.Networking.IServerSerializable, Barotrauma.Networking.INetSerializable, Barotrauma.Networking.IClientSerializable, Barotrauma.IIgnorable, Barotrauma.Networking.IServerPositionSync
 ---@field Sprite Barotrauma.Sprite
 ---@field DangerousItems userdata | (fun(): Barotrauma.Item)
 ---@field RepairableItems userdata | (fun(): Barotrauma.Item)
@@ -6248,6 +6288,7 @@ end
 ---@field SerializableProperties userdata | { [Barotrauma.Identifier]: Barotrauma.SerializableProperty } | (fun(): userdata)
 ---@field private HasInGameEditableProperties System.Boolean
 ---@field EditableWhenEquipped System.Boolean
+---@field PreviousParentInventory Barotrauma.Inventory
 ---@field ParentInventory Barotrauma.Inventory
 ---@field RootContainer Barotrauma.Item
 ---@field Container Barotrauma.Item
@@ -6270,6 +6311,7 @@ end
 ---@field InteractionRect Microsoft.Xna.Framework.Rectangle
 ---@field Scale System.Single
 ---@field PositionUpdateInterval System.Single
+---@field OverrideInventorySprite Barotrauma.Sprite
 ---@field SpriteColor Microsoft.Xna.Framework.Color
 ---@field InventoryIconColor Microsoft.Xna.Framework.Color
 ---@field ContainerColor Microsoft.Xna.Framework.Color
@@ -6341,7 +6383,6 @@ end
 ---@field LastEatenTime System.Single
 ---@field DroppedStack userdata | (fun(): Barotrauma.Item)
 ---@field private logPropertyChangeCoroutine Barotrauma.CoroutineHandle
----@field PreviousParentInventory Barotrauma.Inventory
 ---@field private campaignInteractionTypePerClient userdata | { [Barotrauma.Networking.Client]: Barotrauma.CampaignMode.InteractionType } | (fun(): userdata)
 ---@field private tags userdata | (fun(): Barotrauma.Identifier)
 ---@field private isWire System.Boolean
@@ -6455,11 +6496,6 @@ function CS.Barotrauma.Item.GetPositionUpdateInterval(recipient) end
 ---@param tempBuffer Barotrauma.Networking.ReadWriteMessage
 ---@param c Barotrauma.Networking.Client
 function CS.Barotrauma.Item.ServerWritePosition(tempBuffer, c) end
-
----@overload fun(component: System.String, extraData: System.Object[]): System.Object
----@param component System.String
----@return System.Object
-function CS.Barotrauma.Item.CreateServerEventString(component) end
 
 ---@return userdata | (fun(): Barotrauma.Item)
 function CS.Barotrauma.Item.get_DangerousItems() end
@@ -6922,6 +6958,10 @@ function CS.Barotrauma.Item.GetTags() end
 function CS.Barotrauma.Item.ConditionalMatches(conditional) end
 
 ---@param type Barotrauma.ActionType
+---@return userdata | (fun(): Barotrauma.StatusEffect)
+function CS.Barotrauma.Item.GetStatusEffectsOfType(type) end
+
+---@param type Barotrauma.ActionType
 ---@param deltaTime System.Single
 ---@param character? Barotrauma.Character
 ---@param limb? Barotrauma.Limb
@@ -7154,10 +7194,6 @@ function CS.Barotrauma.Item.RemoveFromLists() end
 ---@param prefab Barotrauma.ItemPrefab
 function CS.Barotrauma.Item.RemoveByPrefab(prefab) end
 
----@param component System.String
----@return System.Object
-function CS.Barotrauma.Item.GetComponentString(component) end
-
 do
 ---@overload fun(newRect: Microsoft.Xna.Framework.Rectangle, itemPrefab: Barotrauma.ItemPrefab, submarine: Barotrauma.Submarine, callOnItemLoaded?: System.Boolean, id?: System.UInt16): Barotrauma.Item
 ---@overload fun(): Barotrauma.Item
@@ -7172,7 +7208,7 @@ CS.Barotrauma.Item = __ctor
 CS.Barotrauma.Item.__new = __ctor
 end
 
----@class Barotrauma.ItemInventory: Barotrauma.Inventory
+---@class Barotrauma.ItemInventory: Barotrauma.Inventory, Barotrauma.Networking.IClientSerializable, Barotrauma.Networking.INetSerializable
 ---@field Container Barotrauma.Items.Components.ItemContainer
 ---@field private container Barotrauma.Items.Components.ItemContainer
 CS.Barotrauma.ItemInventory = {}
@@ -7208,14 +7244,15 @@ function CS.Barotrauma.ItemInventory.HowManyCanBePut(itemPrefab, i, condition, i
 ---@return System.Boolean
 function CS.Barotrauma.ItemInventory.IsFull(takeStacksIntoAccount) end
 
----@overload fun(item: Barotrauma.Item, i: System.Int32, allowSwapping: System.Boolean, allowCombine: System.Boolean, user: Barotrauma.Character, createNetworkEvent?: System.Boolean, ignoreCondition?: System.Boolean): System.Boolean
+---@overload fun(item: Barotrauma.Item, i: System.Int32, allowSwapping: System.Boolean, allowCombine: System.Boolean, user: Barotrauma.Character, createNetworkEvent?: System.Boolean, ignoreCondition?: System.Boolean, triggerOnInsertedEffects?: System.Boolean): System.Boolean
 ---@param item Barotrauma.Item
 ---@param user Barotrauma.Character
 ---@param allowedSlots? userdata | (fun(): Barotrauma.InvSlotType)
 ---@param createNetworkEvent? System.Boolean
 ---@param ignoreCondition? System.Boolean
+---@param triggerOnInsertedEffects? System.Boolean
 ---@return System.Boolean
-function CS.Barotrauma.ItemInventory.TryPutItem(item, user, allowedSlots, createNetworkEvent, ignoreCondition) end
+function CS.Barotrauma.ItemInventory.TryPutItem(item, user, allowedSlots, createNetworkEvent, ignoreCondition, triggerOnInsertedEffects) end
 
 ---@protected
 ---@param slotRange System.Range
@@ -7235,7 +7272,7 @@ CS.Barotrauma.ItemInventory = __ctor
 CS.Barotrauma.ItemInventory.__new = __ctor
 end
 
----@class Barotrauma.Level: Barotrauma.Entity
+---@class Barotrauma.Level: Barotrauma.Entity, Barotrauma.ISpatialEntity, Barotrauma.Networking.IServerSerializable, Barotrauma.Networking.INetSerializable
 ---@field Loaded Barotrauma.Level
 ---@field AbyssArea Microsoft.Xna.Framework.Rectangle
 ---@field AbyssStart System.Int32
@@ -7299,6 +7336,7 @@ end
 ---@field private startExitPosition Microsoft.Xna.Framework.Point
 ---@field private endExitPosition Microsoft.Xna.Framework.Point
 ---@field private beaconSonar Barotrauma.Items.Components.Sonar
+---@field private beaconTransducers userdata | { [System.Int32]: Barotrauma.Items.Components.SonarTransducer } | (fun(): Barotrauma.Items.Components.SonarTransducer)
 ---@field private preSelectedStartOutpost Barotrauma.SubmarineInfo
 ---@field private preSelectedEndOutpost Barotrauma.SubmarineInfo
 ---@field LevelData Barotrauma.LevelData
@@ -7730,140 +7768,219 @@ CS.Barotrauma.Level = __ctor
 CS.Barotrauma.Level.__new = __ctor
 end
 
----@class Barotrauma.LuaCsNetworking: System.Object
----@field FileSenderMaxPacketsPerUpdate System.Int32
----@field LastClientListUpdateID System.UInt16
----@field private clientRegisterCount userdata | { [System.String]: System.Int32 } | (fun(): userdata)
----@field private currentId System.UInt16
----@field RestrictMessageSize System.Boolean
----@field private netReceives userdata | { [System.String]: fun(...: System.Object) } | (fun(): userdata)
----@field private idToString userdata | { [System.UInt16]: System.String } | (fun(): userdata)
----@field private stringToId userdata | { [System.String]: System.UInt16 } | (fun(): userdata)
----@field private client System.Net.Http.HttpClient
----@field private MaxRegisterPerClient System.Int32
-CS.Barotrauma.LuaCsNetworking = {}
+---@class Barotrauma.LuaCsInstaller: System.Object
+---@field private trackingFiles System.String[]
+CS.Barotrauma.LuaCsInstaller = {}
 
----@param netMessage Barotrauma.Networking.IReadMessage
----@param header Barotrauma.Networking.ClientPacketHeader
----@param client? Barotrauma.Networking.Client
-function CS.Barotrauma.LuaCsNetworking.NetMessageReceived(netMessage, header, client) end
+function CS.Barotrauma.LuaCsInstaller.Install() end
 
 ---@private
----@param netMessage Barotrauma.Networking.IReadMessage
----@param client? Barotrauma.Networking.Client
-function CS.Barotrauma.LuaCsNetworking.HandleNetMessageId(netMessage, client) end
-
----@overload fun(): Barotrauma.Networking.IWriteMessage
----@param netMessageName System.String
----@return Barotrauma.Networking.IWriteMessage
-function CS.Barotrauma.LuaCsNetworking.Start(netMessageName) end
-
----@param netMessageName System.String
----@param callback fun(...: System.Object)
-function CS.Barotrauma.LuaCsNetworking.Receive(netMessageName, callback) end
-
----@param name System.String
----@return System.UInt16
-function CS.Barotrauma.LuaCsNetworking.RegisterId(name) end
-
----@private
----@param netMessage Barotrauma.Networking.IReadMessage
----@param client Barotrauma.Networking.Client
-function CS.Barotrauma.LuaCsNetworking.RequestIdSingle(netMessage, client) end
-
----@private
----@param id System.UInt16
----@param name System.String
-function CS.Barotrauma.LuaCsNetworking.WriteIdToAll(id, name) end
-
----@private
----@param client Barotrauma.Networking.Client
-function CS.Barotrauma.LuaCsNetworking.WriteAllIds(client) end
-
----@param client Barotrauma.Networking.Client
-function CS.Barotrauma.LuaCsNetworking.ClientWriteLobby(client) end
-
----@param netMessage Barotrauma.Networking.IWriteMessage
----@param connection? Barotrauma.Networking.NetworkConnection
----@param deliveryMethod? Barotrauma.Networking.DeliveryMethod
-function CS.Barotrauma.LuaCsNetworking.Send(netMessage, connection, deliveryMethod) end
-
----@param client Barotrauma.Networking.Client
-function CS.Barotrauma.LuaCsNetworking.UpdateClientPermissions(client) end
-
----@return System.Int32
-function CS.Barotrauma.LuaCsNetworking.get_FileSenderMaxPacketsPerUpdate() end
-
----@param value System.Int32
-function CS.Barotrauma.LuaCsNetworking.set_FileSenderMaxPacketsPerUpdate(value) end
-
-function CS.Barotrauma.LuaCsNetworking.Initialize() end
-
----@param netMessageName System.String
-function CS.Barotrauma.LuaCsNetworking.Remove(netMessageName) end
-
----@param id System.UInt16
----@return System.String
-function CS.Barotrauma.LuaCsNetworking.IdToString(id) end
-
----@param name System.String
----@return System.UInt16
-function CS.Barotrauma.LuaCsNetworking.StringToId(name) end
-
----@private
----@param netMessage Barotrauma.Networking.IReadMessage
----@param name System.String
----@param client? Barotrauma.Networking.Client
-function CS.Barotrauma.LuaCsNetworking.HandleNetMessage(netMessage, name, client) end
-
----@private
----@param netMessage Barotrauma.Networking.IReadMessage
----@param client? Barotrauma.Networking.Client
-function CS.Barotrauma.LuaCsNetworking.HandleNetMessageString(netMessage, client) end
-
----@async
----@param url System.String
----@param callback fun(...: System.Object)
----@param data? System.String
----@param method? System.String
----@param contentType? System.String
----@param headers? userdata | { [System.String]: System.String } | (fun(): userdata)
----@param savePath? System.String
-function CS.Barotrauma.LuaCsNetworking.HttpRequest(url, callback, data, method, contentType, headers, savePath) end
-
----@param url System.String
----@param callback fun(...: System.Object)
----@param data System.String
----@param contentType? System.String
----@param headers? userdata | { [System.String]: System.String } | (fun(): userdata)
----@param savePath? System.String
-function CS.Barotrauma.LuaCsNetworking.HttpPost(url, callback, data, contentType, headers, savePath) end
-
----@param url System.String
----@param callback fun(...: System.Object)
----@param headers? userdata | { [System.String]: System.String } | (fun(): userdata)
----@param savePath? System.String
-function CS.Barotrauma.LuaCsNetworking.HttpGet(url, callback, headers, savePath) end
-
----@param entity Barotrauma.Networking.INetSerializable
----@param extraData Barotrauma.Networking.NetEntityEvent.IData
-function CS.Barotrauma.LuaCsNetworking.CreateEntityEvent(entity, extraData) end
-
----@return System.UInt16
-function CS.Barotrauma.LuaCsNetworking.get_LastClientListUpdateID() end
-
----@param value System.UInt16
-function CS.Barotrauma.LuaCsNetworking.set_LastClientListUpdateID(value) end
+function CS.Barotrauma.LuaCsInstaller.CreateMissingDirectory() end
 
 do
----@overload fun(): Barotrauma.LuaCsNetworking
----@return Barotrauma.LuaCsNetworking
+---@private
+---@return Barotrauma.LuaCsInstaller
 local __ctor = function() end
-CS.Barotrauma.LuaCsNetworking = __ctor
-CS.Barotrauma.LuaCsNetworking.__new = __ctor
+CS.Barotrauma.LuaCsInstaller = __ctor
+CS.Barotrauma.LuaCsInstaller.__new = __ctor
 end
 
----@class Barotrauma.Hull: Barotrauma.MapEntity
+---@class Barotrauma.LuaCsSetup: System.Object, System.IDisposable, Barotrauma.LuaCs.Events.IEventScreenSelected, Barotrauma.LuaCs.Events.IEvent, Barotrauma.LuaCs.Events.IEventEnabledPackageListChanged, Barotrauma.LuaCs.Events.IEventReloadAllPackages
+---@field Instance Barotrauma.LuaCsSetup
+---@field PerformanceCounterService Barotrauma.PerformanceCounterService
+---@field Logger Barotrauma.LuaCs.ILoggerService
+---@field ConfigService Barotrauma.LuaCs.IConfigService
+---@field PackageManagementService Barotrauma.LuaCs.IPackageManagementService
+---@field PluginManagementService Barotrauma.LuaCs.IPluginManagementService
+---@field LuaScriptManagementService Barotrauma.LuaCs.ILuaScriptManagementService
+---@field NetworkingService Barotrauma.LuaCs.INetworkingService
+---@field EventService Barotrauma.LuaCs.IEventService
+---@field Game Barotrauma.LuaCs.LuaGame
+---@field Lua MoonSharp.Interpreter.Script
+---@field IsCsEnabledForSession System.Boolean
+---@field IsCsEnabled System.Boolean
+---@field HideUserNamesInLogs System.Boolean
+---@field UseCaching System.Boolean
+---@field CurrentRunState Barotrauma.RunState
+---@field PerformanceCounter Barotrauma.LuaCsPerformanceCounter
+---@field PluginPackageManager Barotrauma.LuaCs.IPluginManagementService
+---@field Hook Barotrauma.LuaCs.Compatibility.ILuaCsHook
+---@field Networking Barotrauma.LuaCs.INetworkingService
+---@field Timer Barotrauma.LuaCs.Compatibility.ILuaCsTimer
+---@field private _servicesProvider Barotrauma.LuaCs.IServicesProvider
+---@field private _performanceCounterService Barotrauma.PerformanceCounterService
+---@field private _eventService Barotrauma.LuaCs.IEventService
+---@field private _game Barotrauma.LuaCs.LuaGame
+---@field private _isCsEnabledForSession userdata
+---@field private _csRunPolicy userdata
+---@field private _hideUserNamesInLogs userdata
+---@field private _useCaching userdata
+---@field private _runState Barotrauma.RunState
+---@field private _runStateMachine userdata
+---@field private _luaCsSetup Barotrauma.LuaCsSetup
+---@field PackageName System.String
+---@field IsServer System.Boolean
+---@field IsClient System.Boolean
+CS.Barotrauma.LuaCsSetup = {}
+
+---@return Barotrauma.LuaCsSetup
+function CS.Barotrauma.LuaCsSetup.get_Instance() end
+
+---@private
+function CS.Barotrauma.LuaCsSetup.SubscribeToLuaCsEvents() end
+
+---@return Barotrauma.PerformanceCounterService
+function CS.Barotrauma.LuaCsSetup.get_PerformanceCounterService() end
+
+---@return Barotrauma.LuaCs.ILoggerService
+function CS.Barotrauma.LuaCsSetup.get_Logger() end
+
+---@return Barotrauma.LuaCs.IConfigService
+function CS.Barotrauma.LuaCsSetup.get_ConfigService() end
+
+---@return Barotrauma.LuaCs.IPackageManagementService
+function CS.Barotrauma.LuaCsSetup.get_PackageManagementService() end
+
+---@return Barotrauma.LuaCs.IPluginManagementService
+function CS.Barotrauma.LuaCsSetup.get_PluginManagementService() end
+
+---@return Barotrauma.LuaCs.ILuaScriptManagementService
+function CS.Barotrauma.LuaCsSetup.get_LuaScriptManagementService() end
+
+---@return Barotrauma.LuaCs.INetworkingService
+function CS.Barotrauma.LuaCsSetup.get_NetworkingService() end
+
+---@return Barotrauma.LuaCs.IEventService
+function CS.Barotrauma.LuaCsSetup.get_EventService() end
+
+---@return Barotrauma.LuaCs.LuaGame
+function CS.Barotrauma.LuaCsSetup.get_Game() end
+
+---@return MoonSharp.Interpreter.Script
+function CS.Barotrauma.LuaCsSetup.get_Lua() end
+
+---@return System.Boolean
+function CS.Barotrauma.LuaCsSetup.get_IsCsEnabledForSession() end
+
+---@package
+---@param value System.Boolean
+function CS.Barotrauma.LuaCsSetup.set_IsCsEnabledForSession(value) end
+
+---@return System.Boolean
+function CS.Barotrauma.LuaCsSetup.get_IsCsEnabled() end
+
+---@return System.Boolean
+function CS.Barotrauma.LuaCsSetup.get_HideUserNamesInLogs() end
+
+---@package
+---@param value System.Boolean
+function CS.Barotrauma.LuaCsSetup.set_HideUserNamesInLogs(value) end
+
+---@return System.Boolean
+function CS.Barotrauma.LuaCsSetup.get_UseCaching() end
+
+---@return Barotrauma.ContentPackage
+function CS.Barotrauma.LuaCsSetup.GetLuaCsPackage() end
+
+---@private
+function CS.Barotrauma.LuaCsSetup.LoadLuaCsConfig() end
+
+---@private
+---@return Barotrauma.LuaCs.IServicesProvider
+function CS.Barotrauma.LuaCsSetup.SetupServicesProvider() end
+
+---@return Barotrauma.RunState
+function CS.Barotrauma.LuaCsSetup.get_CurrentRunState() end
+
+---@private
+---@param value Barotrauma.RunState
+function CS.Barotrauma.LuaCsSetup.set_CurrentRunState(value) end
+
+---@param package Barotrauma.CorePackage
+---@param regularPackages userdata | (fun(): Barotrauma.RegularPackage)
+function CS.Barotrauma.LuaCsSetup.OnEnabledPackageListChanged(package, regularPackages) end
+
+function CS.Barotrauma.LuaCsSetup.OnReloadAllPackages() end
+
+---@private
+---@param packages userdata | { [System.Int32]: Barotrauma.ContentPackage } | (fun(): Barotrauma.ContentPackage)
+function CS.Barotrauma.LuaCsSetup.ProcessEnabledPackageChanges(packages) end
+
+---@param targetRunState Barotrauma.RunState
+function CS.Barotrauma.LuaCsSetup.SetRunState(targetRunState) end
+
+---@private
+---@return userdata | { [System.Int32]: Barotrauma.ContentPackage } | (fun(): Barotrauma.ContentPackage)
+function CS.Barotrauma.LuaCsSetup.GetEnabledPackagesList() end
+
+---@private
+---@param enabledRegular userdata | { [System.Int32]: Barotrauma.ContentPackage } | (fun(): Barotrauma.ContentPackage)
+---@return userdata | { [System.Int32]: Barotrauma.ContentPackage } | (fun(): Barotrauma.ContentPackage)
+function CS.Barotrauma.LuaCsSetup.GetLuaCsEnabledPackagesList(enabledRegular) end
+
+---@private
+---@return userdata
+function CS.Barotrauma.LuaCsSetup.SetupStateMachine() end
+
+---@private
+---@param onReadyToRun fun()
+function CS.Barotrauma.LuaCsSetup.CheckReadyToRun(onReadyToRun) end
+
+---@return Barotrauma.LuaCs.IPluginManagementService
+function CS.Barotrauma.LuaCsSetup.get_PluginPackageManager() end
+
+---@return Barotrauma.LuaCs.Compatibility.ILuaCsHook
+function CS.Barotrauma.LuaCsSetup.get_Hook() end
+
+---@return Barotrauma.LuaCs.INetworkingService
+function CS.Barotrauma.LuaCsSetup.get_Networking() end
+
+---@return Barotrauma.LuaCs.Compatibility.ILuaCsTimer
+function CS.Barotrauma.LuaCsSetup.get_Timer() end
+
+---@param __function__ System.Object
+---@param ... System.Object
+---@return MoonSharp.Interpreter.DynValue
+function CS.Barotrauma.LuaCsSetup.CallLuaFunction(__function__, ...) end
+
+function CS.Barotrauma.LuaCsSetup.Dispose() end
+
+---@param screen Barotrauma.Screen
+function CS.Barotrauma.LuaCsSetup.OnScreenSelected(screen) end
+
+---@private
+function CS.Barotrauma.LuaCsSetup.DisposeLuaCsConfig() end
+
+---@param message System.Object
+function CS.Barotrauma.LuaCsSetup.PrintLuaError(message) end
+
+---@param message System.Object
+function CS.Barotrauma.LuaCsSetup.PrintCsError(message) end
+
+---@param message System.Object
+function CS.Barotrauma.LuaCsSetup.PrintGenericError(message) end
+
+---@package
+---@param message System.Object
+function CS.Barotrauma.LuaCsSetup.PrintMessage(message) end
+
+---@param message System.Object
+function CS.Barotrauma.LuaCsSetup.PrintCsMessage(message) end
+
+---@package
+---@param ex System.Exception
+---@param origin Barotrauma.LuaCsMessageOrigin
+function CS.Barotrauma.LuaCsSetup.HandleException(ex, origin) end
+
+do
+---@private
+---@return Barotrauma.LuaCsSetup
+local __ctor = function() end
+CS.Barotrauma.LuaCsSetup = __ctor
+CS.Barotrauma.LuaCsSetup.__new = __ctor
+end
+
+---@class Barotrauma.Hull: Barotrauma.MapEntity, Barotrauma.ISpatialEntity, Barotrauma.ISerializableEntity, Barotrauma.Networking.IServerSerializable, Barotrauma.Networking.INetSerializable, Barotrauma.Networking.IClientSerializable
 ---@field SerializableProperties userdata | { [Barotrauma.Identifier]: Barotrauma.SerializableProperty } | (fun(): userdata)
 ---@field Name System.String
 ---@field DisplayName Barotrauma.LocalizedString
@@ -7945,6 +8062,7 @@ end
 ---@field OxygenDistributionSpeed System.Single
 ---@field OxygenDeteriorationSpeed System.Single
 ---@field OxygenConsumptionSpeed System.Single
+---@field private DecalAlphaRemoveThreshold System.Single
 ---@field WaveWidth System.Int32
 ---@field MaxCompress System.Single
 ---@field BackgroundSectionSize System.Int32
@@ -8302,7 +8420,7 @@ CS.Barotrauma.Hull = __ctor
 CS.Barotrauma.Hull.__new = __ctor
 end
 
----@class Barotrauma.Structure: Barotrauma.MapEntity
+---@class Barotrauma.Structure: Barotrauma.MapEntity, Barotrauma.ISpatialEntity, Barotrauma.IDamageable, Barotrauma.Networking.IServerSerializable, Barotrauma.Networking.INetSerializable, Barotrauma.ISerializableEntity
 ---@field ContentPackage Barotrauma.ContentPackage
 ---@field Indestructible System.Boolean
 ---@field Sections Barotrauma.WallSection[]
@@ -8642,7 +8760,7 @@ CS.Barotrauma.Structure = __ctor
 CS.Barotrauma.Structure.__new = __ctor
 end
 
----@class Barotrauma.Submarine: Barotrauma.Entity
+---@class Barotrauma.Submarine: Barotrauma.Entity, Barotrauma.ISpatialEntity, Barotrauma.Networking.IServerPositionSync, Barotrauma.Networking.IServerSerializable, Barotrauma.Networking.INetSerializable
 ---@field Info Barotrauma.SubmarineInfo
 ---@field HiddenSubPosition Microsoft.Xna.Framework.Vector2
 ---@field IdOffset System.UInt16
@@ -9145,7 +9263,7 @@ CS.Barotrauma.Submarine = __ctor
 CS.Barotrauma.Submarine.__new = __ctor
 end
 
----@class Barotrauma.EntitySpawner: Barotrauma.Entity
+---@class Barotrauma.EntitySpawner: Barotrauma.Entity, Barotrauma.ISpatialEntity, Barotrauma.Networking.IServerSerializable, Barotrauma.Networking.INetSerializable
 ---@field private spawnOrRemoveQueue userdata | (fun(): userdata)
 CS.Barotrauma.EntitySpawner = {}
 
@@ -9210,7 +9328,7 @@ CS.Barotrauma.EntitySpawner = __ctor
 CS.Barotrauma.EntitySpawner.__new = __ctor
 end
 
----@class Barotrauma.KarmaManager: System.Object
+---@class Barotrauma.KarmaManager: System.Object, Barotrauma.ISerializableEntity
 ---@field Name System.String
 ---@field SerializableProperties userdata | { [Barotrauma.Identifier]: Barotrauma.SerializableProperty } | (fun(): userdata)
 ---@field ResetKarmaBetweenRounds System.Boolean
@@ -9629,6 +9747,11 @@ function CS.Barotrauma.PhysicsBody.CreateBody(width, height, radius, density, bo
 ---@return Microsoft.Xna.Framework.Vector2
 function CS.Barotrauma.PhysicsBody.GetLocalFront(spritesheetRotation) end
 
+---@param v Microsoft.Xna.Framework.Vector2
+---@param rotation System.Single
+---@return Microsoft.Xna.Framework.Vector2
+function CS.Barotrauma.PhysicsBody.RotateVector(v, rotation) end
+
 ---@return System.Single
 function CS.Barotrauma.PhysicsBody.GetMaxExtent() end
 
@@ -9966,7 +10089,7 @@ CS.Barotrauma.TraitorManager = __ctor
 CS.Barotrauma.TraitorManager.__new = __ctor
 end
 
----@class Barotrauma.AICharacter: Barotrauma.Character
+---@class Barotrauma.AICharacter: Barotrauma.Character, Barotrauma.ISpatialEntity, Barotrauma.IDamageable, Barotrauma.ISerializableEntity, Barotrauma.Networking.IClientSerializable, Barotrauma.Networking.INetSerializable, Barotrauma.Networking.IServerPositionSync, Barotrauma.Networking.IServerSerializable
 ---@field AIController Barotrauma.AIController
 ---@field private aiController Barotrauma.AIController
 CS.Barotrauma.AICharacter = {}
@@ -10015,7 +10138,7 @@ CS.Barotrauma.AIChatMessage = __ctor
 CS.Barotrauma.AIChatMessage.__new = __ctor
 end
 
----@class Barotrauma.AIController: System.Object
+---@class Barotrauma.AIController: System.Object, Barotrauma.ISteerable
 ---@field SelectedAiTarget Barotrauma.AITarget
 ---@field SteeringManager Barotrauma.SteeringManager
 ---@field Steering Microsoft.Xna.Framework.Vector2
@@ -10230,6 +10353,7 @@ end
 ---@field StaticSound System.Boolean
 ---@field StaticSight System.Boolean
 ---@field SoundRange System.Single
+---@field SoundRangeOnSonarMultiplier System.Single
 ---@field SightRange System.Single
 ---@field SectorDegrees System.Single
 ---@field SectorDir Microsoft.Xna.Framework.Vector2
@@ -10366,7 +10490,7 @@ CS.Barotrauma.AttackPattern = {
     Circle = 2
 }
 
----@class Barotrauma.EnemyAIController: Barotrauma.AIController
+---@class Barotrauma.EnemyAIController: Barotrauma.AIController, Barotrauma.ISteerable
 ---@field State Barotrauma.AIState
 ---@field PreviousState Barotrauma.AIState
 ---@field private PathSteering Barotrauma.IndoorsSteeringManager
@@ -10391,7 +10515,6 @@ CS.Barotrauma.AttackPattern = {
 ---@field AttackRooms System.Boolean
 ---@field CanEnterSubmarine Barotrauma.CanEnterSubmarine
 ---@field CanFlip System.Boolean
----@field UnattackableSubmarines userdata | (fun(): Barotrauma.Submarine)
 ---@field private IsBeingChased System.Boolean
 ---@field Reverse System.Boolean
 ---@field AIParams Barotrauma.CharacterParams.AIParams
@@ -10439,6 +10562,7 @@ CS.Barotrauma.AttackPattern = {
 ---@field private playDeadTimer System.Single
 ---@field private disableTailCoroutine Barotrauma.CoroutineHandle
 ---@field private myBodies userdata | { [System.Int32]: FarseerPhysics.Dynamics.Body } | (fun(): FarseerPhysics.Dynamics.Body)
+---@field private unattackableSubmarines userdata | (fun(): Barotrauma.Submarine)
 ---@field private reverse System.Boolean
 ---@field private maxSteeringBuffer System.Single
 ---@field private minSteeringBuffer System.Single
@@ -10447,6 +10571,8 @@ CS.Barotrauma.AttackPattern = {
 ---@field private _aiParams Barotrauma.CharacterParams.AIParams
 ---@field private _targetingTags userdata | { [System.Int32]: Barotrauma.Identifier } | (fun(): Barotrauma.Identifier)
 ---@field private movementMargin System.Single
+---@field private lastDroppingTime System.Double
+---@field private droppingTimer System.Single
 ---@field private targetHulls userdata | { [System.Int32]: Barotrauma.Hull } | (fun(): Barotrauma.Hull)
 ---@field private hullWeights userdata | { [System.Int32]: System.Single } | (fun(): System.Single)
 ---@field private patrolTarget Barotrauma.Hull
@@ -10460,9 +10586,9 @@ CS.Barotrauma.AttackPattern = {
 ---@field private reachTimer System.Single
 ---@field private attackLimbs userdata | { [System.Int32]: Barotrauma.Limb } | (fun(): Barotrauma.Limb)
 ---@field private weights userdata | { [System.Int32]: System.Single } | (fun(): System.Single)
----@field private aimTimer System.Single
----@field private visibilityCheckTimer System.Single
+---@field private lastVisibilityCheckTime System.Double
 ---@field private canSeeTarget System.Boolean
+---@field private aimTimer System.Single
 ---@field private sinTime System.Single
 ---@field private blockCheckInterval System.Single
 ---@field private blockCheckTimer System.Single
@@ -10489,7 +10615,10 @@ CS.Barotrauma.AttackPattern = {
 ---@field TargetingRestrictions Barotrauma.EnemyTargetingRestrictions
 ---@field private minPriority System.Single
 ---@field private PlayDeadCoolDown System.Single
+---@field private MaxDroppingInterval System.Single
+---@field private MaxDroppingTime System.Single
 ---@field private reachTimeOut System.Single
+---@field private VisibilityCheckStep System.Single
 CS.Barotrauma.EnemyAIController = {}
 
 ---@return Barotrauma.AIState
@@ -10576,6 +10705,12 @@ function CS.Barotrauma.EnemyAIController.get_CanEnterSubmarine() end
 ---@return System.Boolean
 function CS.Barotrauma.EnemyAIController.get_CanFlip() end
 
+---@param submarine Barotrauma.Submarine
+---@param includeOwnSub? System.Boolean
+---@param includeConnectedSubs? System.Boolean
+---@param clearExisting? System.Boolean
+function CS.Barotrauma.EnemyAIController.SetUnattackableSubmarines(submarine, includeOwnSub, includeConnectedSubs, clearExisting) end
+
 ---@param target Barotrauma.Character
 ---@param character Barotrauma.Character
 ---@return System.Boolean
@@ -10632,6 +10767,10 @@ function CS.Barotrauma.EnemyAIController.EvaluatePlayDeadProbability(probability
 
 ---@param deltaTime System.Single
 function CS.Barotrauma.EnemyAIController.Update(deltaTime) end
+
+---@private
+---@param deltaTime System.Single
+function CS.Barotrauma.EnemyAIController.HandleLaddersAndPlatforms(deltaTime) end
 
 ---@private
 ---@param deltaTime System.Single
@@ -10696,6 +10835,11 @@ function CS.Barotrauma.EnemyAIController.GetRelativeDamage(dmg, vitality) end
 ---@param targetLimb? Barotrauma.Limb
 ---@return System.Boolean
 function CS.Barotrauma.EnemyAIController.UpdateLimbAttack(deltaTime, attackSimPos, damageTarget, distance, targetLimb) end
+
+---@private
+---@param target Barotrauma.ISpatialEntity
+---@return System.Boolean
+function CS.Barotrauma.EnemyAIController.CanSeeTarget(target) end
 
 ---@private
 ---@param deltaTime System.Single
@@ -10912,7 +11056,7 @@ CS.Barotrauma.AITargetMemory = __ctor
 CS.Barotrauma.AITargetMemory.__new = __ctor
 end
 
----@class Barotrauma.HumanAIController: Barotrauma.AIController
+---@class Barotrauma.HumanAIController: Barotrauma.AIController, Barotrauma.ISteerable
 ---@field SortTimer System.Single
 ---@field Hearing System.Single
 ---@field ReportRange System.Single
@@ -11409,20 +11553,12 @@ function CS.Barotrauma.IndoorsSteeringManager.DoSteeringSeek(target, weight) end
 
 ---@private
 ---@return Microsoft.Xna.Framework.Vector2
-function CS.Barotrauma.IndoorsSteeringManager.DiffToCurrentNode() end
-
----@private
----@param checkDoors System.Boolean
-function CS.Barotrauma.IndoorsSteeringManager.NextNode(checkDoors) end
+function CS.Barotrauma.IndoorsSteeringManager.GetDiffAndAdvance() end
 
 ---@param door Barotrauma.Items.Components.Door
 ---@param buttonFilter? fun(arg: Barotrauma.Items.Components.Controller): System.Boolean
 ---@return System.Boolean
 function CS.Barotrauma.IndoorsSteeringManager.CanAccessDoor(door, buttonFilter) end
-
----@private
----@return Microsoft.Xna.Framework.Vector2
-function CS.Barotrauma.IndoorsSteeringManager.GetColliderSize() end
 
 ---@private
 ---@return System.Single
@@ -11565,6 +11701,8 @@ end
 ---@field BasePriority System.Single
 ---@field PriorityModifier System.Single
 ---@field ForceHighestPriority System.Boolean
+---@field ForceWalkTemporarily System.Boolean
+---@field ForceWalkPermanently System.Boolean
 ---@field ForceWalk System.Boolean
 ---@field IgnoreAtOutpost System.Boolean
 ---@field Abandon System.Boolean
@@ -11675,6 +11813,9 @@ function CS.Barotrauma.AIObjective.get_ForceHighestPriority() end
 
 ---@param value System.Boolean
 function CS.Barotrauma.AIObjective.set_ForceHighestPriority(value) end
+
+---@return System.Boolean
+function CS.Barotrauma.AIObjective.get_ForceWalk() end
 
 ---@return System.Boolean
 function CS.Barotrauma.AIObjective.get_Abandon() end
@@ -11859,6 +12000,8 @@ end
 ---@field BasePriority System.Single
 ---@field PriorityModifier System.Single
 ---@field ForceHighestPriority System.Boolean
+---@field ForceWalkTemporarily System.Boolean
+---@field ForceWalkPermanently System.Boolean
 ---@field ForceWalk System.Boolean
 ---@field IgnoreAtOutpost System.Boolean
 ---@field Abandon System.Boolean
@@ -12072,6 +12215,9 @@ function CS.Barotrauma.AIObjectiveChargeBatteries.get_ForceHighestPriority() end
 
 ---@param value System.Boolean
 function CS.Barotrauma.AIObjectiveChargeBatteries.set_ForceHighestPriority(value) end
+
+---@return System.Boolean
+function CS.Barotrauma.AIObjectiveChargeBatteries.get_ForceWalk() end
 
 ---@return System.Boolean
 function CS.Barotrauma.AIObjectiveChargeBatteries.get_Abandon() end
@@ -12398,6 +12544,8 @@ end
 ---@field BasePriority System.Single
 ---@field PriorityModifier System.Single
 ---@field ForceHighestPriority System.Boolean
+---@field ForceWalkTemporarily System.Boolean
+---@field ForceWalkPermanently System.Boolean
 ---@field ForceWalk System.Boolean
 ---@field IgnoreAtOutpost System.Boolean
 ---@field Abandon System.Boolean
@@ -12631,6 +12779,9 @@ function CS.Barotrauma.AIObjectiveCleanupItems.get_ForceHighestPriority() end
 
 ---@param value System.Boolean
 function CS.Barotrauma.AIObjectiveCleanupItems.set_ForceHighestPriority(value) end
+
+---@return System.Boolean
+function CS.Barotrauma.AIObjectiveCleanupItems.get_ForceWalk() end
 
 ---@return System.Boolean
 function CS.Barotrauma.AIObjectiveCleanupItems.get_Abandon() end
@@ -13283,6 +13434,8 @@ end
 ---@field BasePriority System.Single
 ---@field PriorityModifier System.Single
 ---@field ForceHighestPriority System.Boolean
+---@field ForceWalkTemporarily System.Boolean
+---@field ForceWalkPermanently System.Boolean
 ---@field ForceWalk System.Boolean
 ---@field IgnoreAtOutpost System.Boolean
 ---@field Abandon System.Boolean
@@ -13507,6 +13660,9 @@ function CS.Barotrauma.AIObjectiveDeconstructItems.get_ForceHighestPriority() en
 
 ---@param value System.Boolean
 function CS.Barotrauma.AIObjectiveDeconstructItems.set_ForceHighestPriority(value) end
+
+---@return System.Boolean
+function CS.Barotrauma.AIObjectiveDeconstructItems.get_ForceWalk() end
 
 ---@return System.Boolean
 function CS.Barotrauma.AIObjectiveDeconstructItems.get_Abandon() end
@@ -13789,10 +13945,10 @@ end
 ---@field Identifier Barotrauma.Identifier
 ---@field ForceRun System.Boolean
 ---@field protected AllowInAnySub System.Boolean
+---@field protected IgnoreListClearInterval System.Single
 ---@field Targets userdata | (fun(): Barotrauma.Hull)
 ---@field Objectives userdata | { [Barotrauma.Hull]: Barotrauma.AIObjective } | (fun(): userdata)
 ---@field protected TargetUpdateTimeMultiplier System.Single
----@field protected IgnoreListClearInterval System.Single
 ---@field ReportedTargets userdata | (fun(): Barotrauma.Hull)
 ---@field CanBeCompleted System.Boolean
 ---@field AbandonWhenCannotCompleteSubObjectives System.Boolean
@@ -13820,6 +13976,8 @@ end
 ---@field BasePriority System.Single
 ---@field PriorityModifier System.Single
 ---@field ForceHighestPriority System.Boolean
+---@field ForceWalkTemporarily System.Boolean
+---@field ForceWalkPermanently System.Boolean
 ---@field ForceWalk System.Boolean
 ---@field IgnoreAtOutpost System.Boolean
 ---@field Abandon System.Boolean
@@ -13862,6 +14020,11 @@ function CS.Barotrauma.AIObjectiveExtinguishFires.get_ForceRun() end
 function CS.Barotrauma.AIObjectiveExtinguishFires.get_AllowInAnySub() end
 
 ---@protected
+---@overload fun(): System.Single
+---@return System.Single
+function CS.Barotrauma.AIObjectiveExtinguishFires.get_IgnoreListClearInterval() end
+
+---@protected
 ---@overload fun(target: Barotrauma.Hull): System.Boolean
 ---@param hull Barotrauma.Hull
 ---@return System.Boolean
@@ -13897,10 +14060,6 @@ function CS.Barotrauma.AIObjectiveExtinguishFires.OnObjectiveCompleted(objective
 ---@param character Barotrauma.Character
 ---@return System.Boolean
 function CS.Barotrauma.AIObjectiveExtinguishFires.IsValidTarget(hull, character) end
-
----@protected
----@return System.Single
-function CS.Barotrauma.AIObjectiveExtinguishFires.get_IgnoreListClearInterval() end
 
 ---@param target Barotrauma.Hull
 ---@return System.Boolean
@@ -14037,6 +14196,9 @@ function CS.Barotrauma.AIObjectiveExtinguishFires.get_ForceHighestPriority() end
 
 ---@param value System.Boolean
 function CS.Barotrauma.AIObjectiveExtinguishFires.set_ForceHighestPriority(value) end
+
+---@return System.Boolean
+function CS.Barotrauma.AIObjectiveExtinguishFires.get_ForceWalk() end
 
 ---@return System.Boolean
 function CS.Barotrauma.AIObjectiveExtinguishFires.get_Abandon() end
@@ -14234,6 +14396,8 @@ end
 ---@field BasePriority System.Single
 ---@field PriorityModifier System.Single
 ---@field ForceHighestPriority System.Boolean
+---@field ForceWalkTemporarily System.Boolean
+---@field ForceWalkPermanently System.Boolean
 ---@field ForceWalk System.Boolean
 ---@field IgnoreAtOutpost System.Boolean
 ---@field Abandon System.Boolean
@@ -14453,6 +14617,9 @@ function CS.Barotrauma.AIObjectiveFightIntruders.get_ForceHighestPriority() end
 
 ---@param value System.Boolean
 function CS.Barotrauma.AIObjectiveFightIntruders.set_ForceHighestPriority(value) end
+
+---@return System.Boolean
+function CS.Barotrauma.AIObjectiveFightIntruders.get_ForceWalk() end
 
 ---@return System.Boolean
 function CS.Barotrauma.AIObjectiveFightIntruders.get_Abandon() end
@@ -14823,6 +14990,8 @@ end
 ---@field BasePriority System.Single
 ---@field PriorityModifier System.Single
 ---@field ForceHighestPriority System.Boolean
+---@field ForceWalkTemporarily System.Boolean
+---@field ForceWalkPermanently System.Boolean
 ---@field ForceWalk System.Boolean
 ---@field IgnoreAtOutpost System.Boolean
 ---@field Abandon System.Boolean
@@ -15064,6 +15233,9 @@ function CS.Barotrauma.AIObjectiveFindThieves.get_ForceHighestPriority() end
 
 ---@param value System.Boolean
 function CS.Barotrauma.AIObjectiveFindThieves.set_ForceHighestPriority(value) end
+
+---@return System.Boolean
+function CS.Barotrauma.AIObjectiveFindThieves.get_ForceWalk() end
 
 ---@return System.Boolean
 function CS.Barotrauma.AIObjectiveFindThieves.get_Abandon() end
@@ -15324,6 +15496,8 @@ end
 ---@field BasePriority System.Single
 ---@field PriorityModifier System.Single
 ---@field ForceHighestPriority System.Boolean
+---@field ForceWalkTemporarily System.Boolean
+---@field ForceWalkPermanently System.Boolean
 ---@field ForceWalk System.Boolean
 ---@field IgnoreAtOutpost System.Boolean
 ---@field Abandon System.Boolean
@@ -15544,6 +15718,9 @@ function CS.Barotrauma.AIObjectiveFixLeaks.get_ForceHighestPriority() end
 function CS.Barotrauma.AIObjectiveFixLeaks.set_ForceHighestPriority(value) end
 
 ---@return System.Boolean
+function CS.Barotrauma.AIObjectiveFixLeaks.get_ForceWalk() end
+
+---@return System.Boolean
 function CS.Barotrauma.AIObjectiveFixLeaks.get_Abandon() end
 
 ---@param value System.Boolean
@@ -15745,6 +15922,7 @@ end
 ---@field private goToObjective Barotrauma.AIObjectiveGoTo
 ---@field private currItemPriority System.Single
 ---@field private checkInventory System.Boolean
+---@field private abandonDelayIfItemNotFound System.Single
 ---@field IsFindDivingGearSubObjective System.Boolean
 ---@field private _itemCount System.Int32
 ---@field private sw System.Diagnostics.Stopwatch
@@ -15809,7 +15987,8 @@ function CS.Barotrauma.AIObjectiveGetItem.get_StopWatch() end
 function CS.Barotrauma.AIObjectiveGetItem.FindTargetItem() end
 
 ---@private
-function CS.Barotrauma.AIObjectiveGetItem.HandlePotentialItems() end
+---@param deltaTime System.Single
+function CS.Barotrauma.AIObjectiveGetItem.HandlePotentialItems(deltaTime) end
 
 ---@private
 ---@return Barotrauma.ItemPrefab
@@ -16308,6 +16487,8 @@ end
 ---@field BasePriority System.Single
 ---@field PriorityModifier System.Single
 ---@field ForceHighestPriority System.Boolean
+---@field ForceWalkTemporarily System.Boolean
+---@field ForceWalkPermanently System.Boolean
 ---@field ForceWalk System.Boolean
 ---@field IgnoreAtOutpost System.Boolean
 ---@field Abandon System.Boolean
@@ -16528,6 +16709,9 @@ function CS.Barotrauma.AIObjectiveLoadItems.get_ForceHighestPriority() end
 
 ---@param value System.Boolean
 function CS.Barotrauma.AIObjectiveLoadItems.set_ForceHighestPriority(value) end
+
+---@return System.Boolean
+function CS.Barotrauma.AIObjectiveLoadItems.get_ForceWalk() end
 
 ---@return System.Boolean
 function CS.Barotrauma.AIObjectiveLoadItems.get_Abandon() end
@@ -17084,6 +17268,8 @@ end
 ---@field BasePriority System.Single
 ---@field PriorityModifier System.Single
 ---@field ForceHighestPriority System.Boolean
+---@field ForceWalkTemporarily System.Boolean
+---@field ForceWalkPermanently System.Boolean
 ---@field ForceWalk System.Boolean
 ---@field IgnoreAtOutpost System.Boolean
 ---@field Abandon System.Boolean
@@ -17300,6 +17486,9 @@ function CS.Barotrauma.AIObjectivePumpWater.get_ForceHighestPriority() end
 
 ---@param value System.Boolean
 function CS.Barotrauma.AIObjectivePumpWater.set_ForceHighestPriority(value) end
+
+---@return System.Boolean
+function CS.Barotrauma.AIObjectivePumpWater.get_ForceWalk() end
 
 ---@return System.Boolean
 function CS.Barotrauma.AIObjectivePumpWater.get_Abandon() end
@@ -17576,6 +17765,8 @@ end
 ---@field BasePriority System.Single
 ---@field PriorityModifier System.Single
 ---@field ForceHighestPriority System.Boolean
+---@field ForceWalkTemporarily System.Boolean
+---@field ForceWalkPermanently System.Boolean
 ---@field ForceWalk System.Boolean
 ---@field IgnoreAtOutpost System.Boolean
 ---@field Abandon System.Boolean
@@ -17813,6 +18004,9 @@ function CS.Barotrauma.AIObjectiveRepairItems.get_ForceHighestPriority() end
 
 ---@param value System.Boolean
 function CS.Barotrauma.AIObjectiveRepairItems.set_ForceHighestPriority(value) end
+
+---@return System.Boolean
+function CS.Barotrauma.AIObjectiveRepairItems.get_ForceWalk() end
 
 ---@return System.Boolean
 function CS.Barotrauma.AIObjectiveRepairItems.get_Abandon() end
@@ -18113,6 +18307,8 @@ end
 ---@field BasePriority System.Single
 ---@field PriorityModifier System.Single
 ---@field ForceHighestPriority System.Boolean
+---@field ForceWalkTemporarily System.Boolean
+---@field ForceWalkPermanently System.Boolean
 ---@field ForceWalk System.Boolean
 ---@field IgnoreAtOutpost System.Boolean
 ---@field Abandon System.Boolean
@@ -18353,6 +18549,9 @@ function CS.Barotrauma.AIObjectiveRescueAll.get_ForceHighestPriority() end
 
 ---@param value System.Boolean
 function CS.Barotrauma.AIObjectiveRescueAll.set_ForceHighestPriority(value) end
+
+---@return System.Boolean
+function CS.Barotrauma.AIObjectiveRescueAll.get_ForceWalk() end
 
 ---@return System.Boolean
 function CS.Barotrauma.AIObjectiveRescueAll.get_Abandon() end
@@ -19390,7 +19589,7 @@ CS.Barotrauma.SubmarineTurretAI = __ctor
 CS.Barotrauma.SubmarineTurretAI.__new = __ctor
 end
 
----@class Barotrauma.AnimController: Barotrauma.Ragdoll
+---@class Barotrauma.AnimController: Barotrauma.Ragdoll, Barotrauma.ISerializableEntity
 ---@field SerializableProperties userdata | { [Barotrauma.Identifier]: Barotrauma.SerializableProperty } | (fun(): userdata)
 ---@field Name System.String
 ---@field RightHandIKPos Microsoft.Xna.Framework.Vector2
@@ -19702,7 +19901,7 @@ CS.Barotrauma.AnimController = __ctor
 CS.Barotrauma.AnimController.__new = __ctor
 end
 
----@class Barotrauma.FishAnimController: Barotrauma.AnimController
+---@class Barotrauma.FishAnimController: Barotrauma.AnimController, Barotrauma.ISerializableEntity
 ---@field RagdollParams Barotrauma.RagdollParams
 ---@field FishRagdollParams Barotrauma.FishRagdollParams
 ---@field FishWalkParams Barotrauma.FishWalkParams
@@ -19877,7 +20076,7 @@ CS.Barotrauma.FishAnimController = __ctor
 CS.Barotrauma.FishAnimController.__new = __ctor
 end
 
----@class Barotrauma.HumanoidAnimController: Barotrauma.AnimController
+---@class Barotrauma.HumanoidAnimController: Barotrauma.AnimController, Barotrauma.ISerializableEntity
 ---@field RagdollParams Barotrauma.RagdollParams
 ---@field HumanRagdollParams Barotrauma.HumanRagdollParams
 ---@field HumanWalkParams Barotrauma.HumanWalkParams
@@ -20336,10 +20535,10 @@ function CS.Barotrauma.Ragdoll.OnLimbCollision(f1, f2, contact) end
 ---@private
 ---@param f1 FarseerPhysics.Dynamics.Fixture
 ---@param f2 FarseerPhysics.Dynamics.Fixture
----@param localNormal Microsoft.Xna.Framework.Vector2
+---@param worldNormal Microsoft.Xna.Framework.Vector2
 ---@param impactPos Microsoft.Xna.Framework.Vector2
 ---@param velocity Microsoft.Xna.Framework.Vector2
-function CS.Barotrauma.Ragdoll.ApplyImpact(f1, f2, localNormal, impactPos, velocity) end
+function CS.Barotrauma.Ragdoll.ApplyImpact(f1, f2, worldNormal, impactPos, velocity) end
 
 ---@param impact System.Single
 ---@param impactTolerance? System.Single|nil
@@ -20573,7 +20772,7 @@ CS.Barotrauma.AttackResult = __ctor
 CS.Barotrauma.AttackResult.__new = __ctor
 end
 
----@class Barotrauma.Attack: System.Object
+---@class Barotrauma.Attack: System.Object, Barotrauma.ISerializableEntity
 ---@field Context Barotrauma.AttackContext
 ---@field TargetType Barotrauma.AttackTarget
 ---@field TargetLimbType Barotrauma.LimbType
@@ -20873,7 +21072,7 @@ CS.Barotrauma.TalentResistanceIdentifier = __ctor
 CS.Barotrauma.TalentResistanceIdentifier.__new = __ctor
 end
 
----@class Barotrauma.AbilityCharacterLoot: Barotrauma.Abilities.AbilityObject
+---@class Barotrauma.AbilityCharacterLoot: Barotrauma.Abilities.AbilityObject, Barotrauma.Abilities.IAbilityCharacter
 ---@field Character Barotrauma.Character
 CS.Barotrauma.AbilityCharacterLoot = {}
 
@@ -20885,7 +21084,7 @@ CS.Barotrauma.AbilityCharacterLoot = __ctor
 CS.Barotrauma.AbilityCharacterLoot.__new = __ctor
 end
 
----@class Barotrauma.AbilityCharacterKill: Barotrauma.Abilities.AbilityObject
+---@class Barotrauma.AbilityCharacterKill: Barotrauma.Abilities.AbilityObject, Barotrauma.Abilities.IAbilityCharacter
 ---@field Character Barotrauma.Character
 ---@field Killer Barotrauma.Character
 CS.Barotrauma.AbilityCharacterKill = {}
@@ -20899,7 +21098,7 @@ CS.Barotrauma.AbilityCharacterKill = __ctor
 CS.Barotrauma.AbilityCharacterKill.__new = __ctor
 end
 
----@class Barotrauma.AbilityCharacterKiller: Barotrauma.Abilities.AbilityObject
+---@class Barotrauma.AbilityCharacterKiller: Barotrauma.Abilities.AbilityObject, Barotrauma.Abilities.IAbilityCharacter
 ---@field Character Barotrauma.Character
 CS.Barotrauma.AbilityCharacterKiller = {}
 
@@ -20911,7 +21110,7 @@ CS.Barotrauma.AbilityCharacterKiller = __ctor
 CS.Barotrauma.AbilityCharacterKiller.__new = __ctor
 end
 
----@class Barotrauma.AbilityOrderedCharacter: Barotrauma.Abilities.AbilityObject
+---@class Barotrauma.AbilityOrderedCharacter: Barotrauma.Abilities.AbilityObject, Barotrauma.Abilities.IAbilityCharacter
 ---@field Character Barotrauma.Character
 CS.Barotrauma.AbilityOrderedCharacter = {}
 
@@ -20939,7 +21138,7 @@ CS.Barotrauma.CharacterHUD = __ctor
 CS.Barotrauma.CharacterHUD.__new = __ctor
 end
 
----@class Barotrauma.NetCharacterInfo: System.ValueType
+---@class Barotrauma.NetCharacterInfo: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field NewName System.String
 ---@field Tags userdata | { [System.Int32]: Barotrauma.Identifier } | (fun(): Barotrauma.Identifier)
 ---@field HairIndex System.Byte
@@ -21130,7 +21329,7 @@ CS.Barotrauma.CorpsePrefab = __ctor
 CS.Barotrauma.CorpsePrefab.__new = __ctor
 end
 
----@class Barotrauma.Affliction: System.Object
+---@class Barotrauma.Affliction: System.Object, Barotrauma.ISerializableEntity
 ---@field Name System.String
 ---@field SerializableProperties userdata | { [Barotrauma.Identifier]: Barotrauma.SerializableProperty } | (fun(): userdata)
 ---@field PendingGrainEffectStrength System.Single
@@ -21301,7 +21500,7 @@ CS.Barotrauma.Affliction = __ctor
 CS.Barotrauma.Affliction.__new = __ctor
 end
 
----@class Barotrauma.AfflictionBleeding: Barotrauma.Affliction
+---@class Barotrauma.AfflictionBleeding: Barotrauma.Affliction, Barotrauma.ISerializableEntity
 CS.Barotrauma.AfflictionBleeding = {}
 
 ---@param characterHealth Barotrauma.CharacterHealth
@@ -21318,7 +21517,7 @@ CS.Barotrauma.AfflictionBleeding = __ctor
 CS.Barotrauma.AfflictionBleeding.__new = __ctor
 end
 
----@class Barotrauma.AfflictionHusk: Barotrauma.Affliction
+---@class Barotrauma.AfflictionHusk: Barotrauma.Affliction, Barotrauma.ISerializableEntity
 ---@field Strength System.Single
 ---@field State Barotrauma.AfflictionHusk.InfectionState
 ---@field private DormantThreshold System.Single
@@ -21522,7 +21721,7 @@ end
 ---@field StunType Barotrauma.Identifier
 ---@field EMPType Barotrauma.Identifier
 ---@field SpaceHerpesType Barotrauma.Identifier
----@field AlienInfectedType Barotrauma.Identifier
+---@field AlienInfectionType Barotrauma.Identifier
 ---@field InvertControlsType Barotrauma.Identifier
 ---@field DisguisedAsHuskType Barotrauma.Identifier
 ---@field Prefabs userdata | { [Barotrauma.Identifier]: Barotrauma.AfflictionPrefab } | { [System.String]: Barotrauma.AfflictionPrefab } | (fun(): Barotrauma.AfflictionPrefab)
@@ -21623,7 +21822,7 @@ CS.Barotrauma.AfflictionPrefab = __ctor
 CS.Barotrauma.AfflictionPrefab.__new = __ctor
 end
 
----@class Barotrauma.AfflictionPsychosis: Barotrauma.Affliction
+---@class Barotrauma.AfflictionPsychosis: Barotrauma.Affliction, Barotrauma.ISerializableEntity
 CS.Barotrauma.AfflictionPsychosis = {}
 
 ---@param characterHealth Barotrauma.CharacterHealth
@@ -21640,7 +21839,7 @@ CS.Barotrauma.AfflictionPsychosis = __ctor
 CS.Barotrauma.AfflictionPsychosis.__new = __ctor
 end
 
----@class Barotrauma.AfflictionSpaceHerpes: Barotrauma.Affliction
+---@class Barotrauma.AfflictionSpaceHerpes: Barotrauma.Affliction, Barotrauma.ISerializableEntity
 ---@field private invertControlsCooldown System.Single
 ---@field private stunCoolDown System.Single
 ---@field private invertControlsTimer System.Single
@@ -22032,7 +22231,7 @@ CS.Barotrauma.CharacterHealth = __ctor
 CS.Barotrauma.CharacterHealth.__new = __ctor
 end
 
----@class Barotrauma.DamageModifier: System.Object
+---@class Barotrauma.DamageModifier: System.Object, Barotrauma.ISerializableEntity
 ---@field Name System.String
 ---@field SerializableProperties userdata | { [Barotrauma.Identifier]: Barotrauma.SerializableProperty } | (fun(): userdata)
 ---@field DamageMultiplier System.Single
@@ -22559,7 +22758,7 @@ CS.Barotrauma.LimbJoint = __ctor
 CS.Barotrauma.LimbJoint.__new = __ctor
 end
 
----@class Barotrauma.AbilityAfflictionCharacter: Barotrauma.Abilities.AbilityObject
+---@class Barotrauma.AbilityAfflictionCharacter: Barotrauma.Abilities.AbilityObject, Barotrauma.Abilities.IAbilityAffliction, Barotrauma.Abilities.IAbilityCharacter
 ---@field Character Barotrauma.Character
 ---@field Affliction Barotrauma.Affliction
 CS.Barotrauma.AbilityAfflictionCharacter = {}
@@ -22573,7 +22772,7 @@ CS.Barotrauma.AbilityAfflictionCharacter = __ctor
 CS.Barotrauma.AbilityAfflictionCharacter.__new = __ctor
 end
 
----@class Barotrauma.GroundedMovementParams: Barotrauma.AnimationParams
+---@class Barotrauma.GroundedMovementParams: Barotrauma.AnimationParams, Barotrauma.ISerializableEntity
 ---@field StepSize Microsoft.Xna.Framework.Vector2
 ---@field HeadPosition System.Single
 ---@field TorsoPosition System.Single
@@ -22603,7 +22802,7 @@ CS.Barotrauma.GroundedMovementParams = __ctor
 CS.Barotrauma.GroundedMovementParams.__new = __ctor
 end
 
----@class Barotrauma.SwimParams: Barotrauma.AnimationParams
+---@class Barotrauma.SwimParams: Barotrauma.AnimationParams, Barotrauma.ISerializableEntity
 ---@field SteerTorque System.Single
 ---@field LegTorque System.Single
 CS.Barotrauma.SwimParams = {}
@@ -22616,7 +22815,7 @@ CS.Barotrauma.SwimParams = __ctor
 CS.Barotrauma.SwimParams.__new = __ctor
 end
 
----@class Barotrauma.AnimationParams: Barotrauma.EditableParams
+---@class Barotrauma.AnimationParams: Barotrauma.EditableParams, Barotrauma.ISerializableEntity
 ---@field SpeciesName Barotrauma.Identifier
 ---@field IsGroundedAnimation System.Boolean
 ---@field IsSwimAnimation System.Boolean
@@ -22737,7 +22936,7 @@ CS.Barotrauma.AnimationParams = __ctor
 CS.Barotrauma.AnimationParams.__new = __ctor
 end
 
----@class Barotrauma.FishWalkParams: Barotrauma.FishGroundedParams
+---@class Barotrauma.FishWalkParams: Barotrauma.FishGroundedParams, Barotrauma.ISerializableEntity, Barotrauma.IFishAnimation
 ---@field protected Empty Barotrauma.FishWalkParams
 CS.Barotrauma.FishWalkParams = {}
 
@@ -22761,7 +22960,7 @@ CS.Barotrauma.FishWalkParams = __ctor
 CS.Barotrauma.FishWalkParams.__new = __ctor
 end
 
----@class Barotrauma.FishRunParams: Barotrauma.FishGroundedParams
+---@class Barotrauma.FishRunParams: Barotrauma.FishGroundedParams, Barotrauma.ISerializableEntity, Barotrauma.IFishAnimation
 ---@field protected Empty Barotrauma.FishRunParams
 CS.Barotrauma.FishRunParams = {}
 
@@ -22785,7 +22984,7 @@ CS.Barotrauma.FishRunParams = __ctor
 CS.Barotrauma.FishRunParams.__new = __ctor
 end
 
----@class Barotrauma.FishSwimFastParams: Barotrauma.FishSwimParams
+---@class Barotrauma.FishSwimFastParams: Barotrauma.FishSwimParams, Barotrauma.ISerializableEntity, Barotrauma.IFishAnimation
 CS.Barotrauma.FishSwimFastParams = {}
 
 ---@param character Barotrauma.Character
@@ -22807,7 +23006,7 @@ CS.Barotrauma.FishSwimFastParams = __ctor
 CS.Barotrauma.FishSwimFastParams.__new = __ctor
 end
 
----@class Barotrauma.FishSwimSlowParams: Barotrauma.FishSwimParams
+---@class Barotrauma.FishSwimSlowParams: Barotrauma.FishSwimParams, Barotrauma.ISerializableEntity, Barotrauma.IFishAnimation
 CS.Barotrauma.FishSwimSlowParams = {}
 
 ---@param character Barotrauma.Character
@@ -22829,7 +23028,7 @@ CS.Barotrauma.FishSwimSlowParams = __ctor
 CS.Barotrauma.FishSwimSlowParams.__new = __ctor
 end
 
----@class Barotrauma.FishGroundedParams: Barotrauma.GroundedMovementParams
+---@class Barotrauma.FishGroundedParams: Barotrauma.GroundedMovementParams, Barotrauma.ISerializableEntity, Barotrauma.IFishAnimation
 ---@field Flip System.Boolean
 ---@field FlipCooldown System.Single
 ---@field FlipDelay System.Single
@@ -22877,7 +23076,7 @@ CS.Barotrauma.FishGroundedParams = __ctor
 CS.Barotrauma.FishGroundedParams.__new = __ctor
 end
 
----@class Barotrauma.FishSwimParams: Barotrauma.SwimParams
+---@class Barotrauma.FishSwimParams: Barotrauma.SwimParams, Barotrauma.ISerializableEntity, Barotrauma.IFishAnimation
 ---@field UseSineMovement System.Boolean
 ---@field Flip System.Boolean
 ---@field FlipCooldown System.Single
@@ -22916,7 +23115,7 @@ CS.Barotrauma.FishSwimParams = __ctor
 CS.Barotrauma.FishSwimParams.__new = __ctor
 end
 
----@class Barotrauma.HumanWalkParams: Barotrauma.HumanGroundedParams
+---@class Barotrauma.HumanWalkParams: Barotrauma.HumanGroundedParams, Barotrauma.ISerializableEntity, Barotrauma.IHumanAnimation
 CS.Barotrauma.HumanWalkParams = {}
 
 ---@param character Barotrauma.Character
@@ -22938,7 +23137,7 @@ CS.Barotrauma.HumanWalkParams = __ctor
 CS.Barotrauma.HumanWalkParams.__new = __ctor
 end
 
----@class Barotrauma.HumanRunParams: Barotrauma.HumanGroundedParams
+---@class Barotrauma.HumanRunParams: Barotrauma.HumanGroundedParams, Barotrauma.ISerializableEntity, Barotrauma.IHumanAnimation
 CS.Barotrauma.HumanRunParams = {}
 
 ---@param character Barotrauma.Character
@@ -22960,7 +23159,7 @@ CS.Barotrauma.HumanRunParams = __ctor
 CS.Barotrauma.HumanRunParams.__new = __ctor
 end
 
----@class Barotrauma.HumanCrouchParams: Barotrauma.HumanGroundedParams
+---@class Barotrauma.HumanCrouchParams: Barotrauma.HumanGroundedParams, Barotrauma.ISerializableEntity, Barotrauma.IHumanAnimation
 ---@field MoveDownAmountWhenStationary System.Single
 ---@field ExtraHeadAngleWhenStationary System.Single
 ---@field ExtraTorsoAngleWhenStationary System.Single
@@ -22985,7 +23184,7 @@ CS.Barotrauma.HumanCrouchParams = __ctor
 CS.Barotrauma.HumanCrouchParams.__new = __ctor
 end
 
----@class Barotrauma.HumanSwimFastParams: Barotrauma.HumanSwimParams
+---@class Barotrauma.HumanSwimFastParams: Barotrauma.HumanSwimParams, Barotrauma.ISerializableEntity, Barotrauma.IHumanAnimation
 CS.Barotrauma.HumanSwimFastParams = {}
 
 ---@param character Barotrauma.Character
@@ -23007,7 +23206,7 @@ CS.Barotrauma.HumanSwimFastParams = __ctor
 CS.Barotrauma.HumanSwimFastParams.__new = __ctor
 end
 
----@class Barotrauma.HumanSwimSlowParams: Barotrauma.HumanSwimParams
+---@class Barotrauma.HumanSwimSlowParams: Barotrauma.HumanSwimParams, Barotrauma.ISerializableEntity, Barotrauma.IHumanAnimation
 CS.Barotrauma.HumanSwimSlowParams = {}
 
 ---@param character Barotrauma.Character
@@ -23029,7 +23228,7 @@ CS.Barotrauma.HumanSwimSlowParams = __ctor
 CS.Barotrauma.HumanSwimSlowParams.__new = __ctor
 end
 
----@class Barotrauma.HumanSwimParams: Barotrauma.SwimParams
+---@class Barotrauma.HumanSwimParams: Barotrauma.SwimParams, Barotrauma.ISerializableEntity, Barotrauma.IHumanAnimation
 ---@field LegMoveAmount System.Single
 ---@field LegCycleLength System.Single
 ---@field FootAngle System.Single
@@ -23056,7 +23255,7 @@ CS.Barotrauma.HumanSwimParams = __ctor
 CS.Barotrauma.HumanSwimParams.__new = __ctor
 end
 
----@class Barotrauma.HumanGroundedParams: Barotrauma.GroundedMovementParams
+---@class Barotrauma.HumanGroundedParams: Barotrauma.GroundedMovementParams, Barotrauma.ISerializableEntity, Barotrauma.IHumanAnimation
 ---@field GetUpForce System.Single
 ---@field HeadLeanAmount System.Single
 ---@field TorsoLeanAmount System.Single
@@ -23089,7 +23288,7 @@ CS.Barotrauma.HumanGroundedParams = __ctor
 CS.Barotrauma.HumanGroundedParams.__new = __ctor
 end
 
----@class Barotrauma.CharacterParams: Barotrauma.EditableParams
+---@class Barotrauma.CharacterParams: Barotrauma.EditableParams, Barotrauma.ISerializableEntity
 ---@field SpeciesName Barotrauma.Identifier
 ---@field Tags System.String
 ---@field SpeciesTranslationOverride Barotrauma.Identifier
@@ -23257,7 +23456,7 @@ CS.Barotrauma.CharacterParams = __ctor
 CS.Barotrauma.CharacterParams.__new = __ctor
 end
 
----@class Barotrauma.EditableParams: System.Object
+---@class Barotrauma.EditableParams: System.Object, Barotrauma.ISerializableEntity
 ---@field IsLoaded System.Boolean
 ---@field Name System.String
 ---@field FileName System.String
@@ -23336,7 +23535,7 @@ CS.Barotrauma.CanEnterSubmarine = {
     Partial = 2
 }
 
----@class Barotrauma.HumanRagdollParams: Barotrauma.RagdollParams
+---@class Barotrauma.HumanRagdollParams: Barotrauma.RagdollParams, Barotrauma.ISerializableEntity
 CS.Barotrauma.HumanRagdollParams = {}
 
 ---@param character Barotrauma.Character
@@ -23350,7 +23549,7 @@ CS.Barotrauma.HumanRagdollParams = __ctor
 CS.Barotrauma.HumanRagdollParams.__new = __ctor
 end
 
----@class Barotrauma.FishRagdollParams: Barotrauma.RagdollParams
+---@class Barotrauma.FishRagdollParams: Barotrauma.RagdollParams, Barotrauma.ISerializableEntity
 CS.Barotrauma.FishRagdollParams = {}
 
 ---@param character Barotrauma.Character
@@ -23364,7 +23563,7 @@ CS.Barotrauma.FishRagdollParams = __ctor
 CS.Barotrauma.FishRagdollParams.__new = __ctor
 end
 
----@class Barotrauma.RagdollParams: Barotrauma.EditableParams
+---@class Barotrauma.RagdollParams: Barotrauma.EditableParams, Barotrauma.ISerializableEntity
 ---@field SpeciesName Barotrauma.Identifier
 ---@field Texture System.String
 ---@field Color Microsoft.Xna.Framework.Color
@@ -23495,7 +23694,7 @@ CS.Barotrauma.RagdollParams = __ctor
 CS.Barotrauma.RagdollParams.__new = __ctor
 end
 
----@class Barotrauma.SkillSettings: Barotrauma.Prefab
+---@class Barotrauma.SkillSettings: Barotrauma.Prefab, Barotrauma.ISerializableEntity
 ---@field Current Barotrauma.SkillSettings
 ---@field SingleRoundSkillGainMultiplier System.Single
 ---@field SkillIncreasePerRepair System.Single
@@ -23873,7 +24072,7 @@ CS.Barotrauma.TalentOption = __ctor
 CS.Barotrauma.TalentOption.__new = __ctor
 end
 
----@class Barotrauma.CircuitBoxComponent: Barotrauma.CircuitBoxNode
+---@class Barotrauma.CircuitBoxComponent: Barotrauma.CircuitBoxNode, Barotrauma.ICircuitBoxIdentifiable
 ---@field ID System.UInt16
 ---@field Item Barotrauma.Item
 ---@field UsedResource Barotrauma.ItemPrefab
@@ -24034,7 +24233,7 @@ CS.Barotrauma.CircuitBoxInputOutputNode = __ctor
 CS.Barotrauma.CircuitBoxInputOutputNode.__new = __ctor
 end
 
----@class Barotrauma.CircuitBoxLabelNode: Barotrauma.CircuitBoxNode
+---@class Barotrauma.CircuitBoxLabelNode: Barotrauma.CircuitBoxNode, Barotrauma.ICircuitBoxIdentifiable
 ---@field ID System.UInt16
 ---@field IsResizable System.Boolean
 ---@field DefaultHeaderText Barotrauma.NetLimitedString
@@ -24102,7 +24301,7 @@ CS.Barotrauma.CircuitBoxOpcode = {
     ServerInitialize = 15
 }
 
----@class Barotrauma.CircuitBoxConnectorIdentifier: System.ValueType
+---@class Barotrauma.CircuitBoxConnectorIdentifier: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field SignalConnection Barotrauma.Identifier
 ---@field TargetId userdata
 CS.Barotrauma.CircuitBoxConnectorIdentifier = {}
@@ -24135,7 +24334,7 @@ CS.Barotrauma.CircuitBoxConnectorIdentifier = __ctor
 CS.Barotrauma.CircuitBoxConnectorIdentifier.__new = __ctor
 end
 
----@class Barotrauma.CircuitBoxAddLabelEvent: System.ValueType
+---@class Barotrauma.CircuitBoxAddLabelEvent: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field Position Microsoft.Xna.Framework.Vector2
 ---@field Color Microsoft.Xna.Framework.Color
 ---@field Header Barotrauma.NetLimitedString
@@ -24153,7 +24352,7 @@ CS.Barotrauma.CircuitBoxAddLabelEvent = __ctor
 CS.Barotrauma.CircuitBoxAddLabelEvent.__new = __ctor
 end
 
----@class Barotrauma.CircuitBoxServerAddLabelEvent: System.ValueType
+---@class Barotrauma.CircuitBoxServerAddLabelEvent: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field ID System.UInt16
 ---@field Position Microsoft.Xna.Framework.Vector2
 ---@field Size Microsoft.Xna.Framework.Vector2
@@ -24175,7 +24374,7 @@ CS.Barotrauma.CircuitBoxServerAddLabelEvent = __ctor
 CS.Barotrauma.CircuitBoxServerAddLabelEvent.__new = __ctor
 end
 
----@class Barotrauma.CircuitBoxResizeLabelEvent: System.ValueType
+---@class Barotrauma.CircuitBoxResizeLabelEvent: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field ID System.UInt16
 ---@field Position Microsoft.Xna.Framework.Vector2
 ---@field Size Microsoft.Xna.Framework.Vector2
@@ -24191,7 +24390,7 @@ CS.Barotrauma.CircuitBoxResizeLabelEvent = __ctor
 CS.Barotrauma.CircuitBoxResizeLabelEvent.__new = __ctor
 end
 
----@class Barotrauma.CircuitBoxRemoveLabelEvent: System.ValueType
+---@class Barotrauma.CircuitBoxRemoveLabelEvent: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field TargetIDs userdata | { [System.Int32]: System.UInt16 } | (fun(): System.UInt16)
 CS.Barotrauma.CircuitBoxRemoveLabelEvent = {}
 
@@ -24203,7 +24402,7 @@ CS.Barotrauma.CircuitBoxRemoveLabelEvent = __ctor
 CS.Barotrauma.CircuitBoxRemoveLabelEvent.__new = __ctor
 end
 
----@class Barotrauma.CircuitBoxAddComponentEvent: System.ValueType
+---@class Barotrauma.CircuitBoxAddComponentEvent: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field PrefabIdentifier System.UInt32
 ---@field Position Microsoft.Xna.Framework.Vector2
 CS.Barotrauma.CircuitBoxAddComponentEvent = {}
@@ -24217,7 +24416,7 @@ CS.Barotrauma.CircuitBoxAddComponentEvent = __ctor
 CS.Barotrauma.CircuitBoxAddComponentEvent.__new = __ctor
 end
 
----@class Barotrauma.CircuitBoxServerCreateComponentEvent: System.ValueType
+---@class Barotrauma.CircuitBoxServerCreateComponentEvent: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field BackingItemId System.UInt16
 ---@field UsedResource System.UInt32
 ---@field ComponentId System.UInt16
@@ -24235,7 +24434,7 @@ CS.Barotrauma.CircuitBoxServerCreateComponentEvent = __ctor
 CS.Barotrauma.CircuitBoxServerCreateComponentEvent.__new = __ctor
 end
 
----@class Barotrauma.CircuitBoxRemoveComponentEvent: System.ValueType
+---@class Barotrauma.CircuitBoxRemoveComponentEvent: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field TargetIDs userdata | { [System.Int32]: System.UInt16 } | (fun(): System.UInt16)
 CS.Barotrauma.CircuitBoxRemoveComponentEvent = {}
 
@@ -24247,7 +24446,7 @@ CS.Barotrauma.CircuitBoxRemoveComponentEvent = __ctor
 CS.Barotrauma.CircuitBoxRemoveComponentEvent.__new = __ctor
 end
 
----@class Barotrauma.CircuitBoxMoveComponentEvent: System.ValueType
+---@class Barotrauma.CircuitBoxMoveComponentEvent: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field TargetIDs userdata | { [System.Int32]: System.UInt16 } | (fun(): System.UInt16)
 ---@field IOs userdata | { [System.Int32]: Barotrauma.CircuitBoxInputOutputNode.Type } | (fun(): Barotrauma.CircuitBoxInputOutputNode.Type)
 ---@field LabelIDs userdata | { [System.Int32]: System.UInt16 } | (fun(): System.UInt16)
@@ -24265,7 +24464,7 @@ CS.Barotrauma.CircuitBoxMoveComponentEvent = __ctor
 CS.Barotrauma.CircuitBoxMoveComponentEvent.__new = __ctor
 end
 
----@class Barotrauma.CircuitBoxSelectNodesEvent: System.ValueType
+---@class Barotrauma.CircuitBoxSelectNodesEvent: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field TargetIDs userdata | { [System.Int32]: System.UInt16 } | (fun(): System.UInt16)
 ---@field IOs userdata | { [System.Int32]: Barotrauma.CircuitBoxInputOutputNode.Type } | (fun(): Barotrauma.CircuitBoxInputOutputNode.Type)
 ---@field LabelIDs userdata | { [System.Int32]: System.UInt16 } | (fun(): System.UInt16)
@@ -24285,7 +24484,7 @@ CS.Barotrauma.CircuitBoxSelectNodesEvent = __ctor
 CS.Barotrauma.CircuitBoxSelectNodesEvent.__new = __ctor
 end
 
----@class Barotrauma.CircuitBoxServerUpdateSelection: System.ValueType
+---@class Barotrauma.CircuitBoxServerUpdateSelection: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field ComponentIds userdata | { [System.Int32]: Barotrauma.CircuitBoxIdSelectionPair } | (fun(): Barotrauma.CircuitBoxIdSelectionPair)
 ---@field WireIds userdata | { [System.Int32]: Barotrauma.CircuitBoxIdSelectionPair } | (fun(): Barotrauma.CircuitBoxIdSelectionPair)
 ---@field InputOutputs userdata | { [System.Int32]: Barotrauma.CircuitBoxTypeSelectionPair } | (fun(): Barotrauma.CircuitBoxTypeSelectionPair)
@@ -24303,7 +24502,7 @@ CS.Barotrauma.CircuitBoxServerUpdateSelection = __ctor
 CS.Barotrauma.CircuitBoxServerUpdateSelection.__new = __ctor
 end
 
----@class Barotrauma.CircuitBoxIdSelectionPair: System.ValueType
+---@class Barotrauma.CircuitBoxIdSelectionPair: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field ID System.UInt16
 ---@field SelectedBy userdata
 CS.Barotrauma.CircuitBoxIdSelectionPair = {}
@@ -24317,7 +24516,7 @@ CS.Barotrauma.CircuitBoxIdSelectionPair = __ctor
 CS.Barotrauma.CircuitBoxIdSelectionPair.__new = __ctor
 end
 
----@class Barotrauma.CircuitBoxTypeSelectionPair: System.ValueType
+---@class Barotrauma.CircuitBoxTypeSelectionPair: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field Type Barotrauma.CircuitBoxInputOutputNode.Type
 ---@field SelectedBy userdata
 CS.Barotrauma.CircuitBoxTypeSelectionPair = {}
@@ -24331,7 +24530,7 @@ CS.Barotrauma.CircuitBoxTypeSelectionPair = __ctor
 CS.Barotrauma.CircuitBoxTypeSelectionPair.__new = __ctor
 end
 
----@class Barotrauma.CircuitBoxSelectWiresEvent: System.ValueType
+---@class Barotrauma.CircuitBoxSelectWiresEvent: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field TargetIDs userdata | { [System.Int32]: System.UInt16 } | (fun(): System.UInt16)
 ---@field Overwrite System.Boolean
 ---@field CharacterID System.UInt16
@@ -24347,7 +24546,7 @@ CS.Barotrauma.CircuitBoxSelectWiresEvent = __ctor
 CS.Barotrauma.CircuitBoxSelectWiresEvent.__new = __ctor
 end
 
----@class Barotrauma.CircuitBoxClientAddWireEvent: System.ValueType
+---@class Barotrauma.CircuitBoxClientAddWireEvent: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field Color Microsoft.Xna.Framework.Color
 ---@field Start Barotrauma.CircuitBoxConnectorIdentifier
 ---@field End Barotrauma.CircuitBoxConnectorIdentifier
@@ -24365,7 +24564,7 @@ CS.Barotrauma.CircuitBoxClientAddWireEvent = __ctor
 CS.Barotrauma.CircuitBoxClientAddWireEvent.__new = __ctor
 end
 
----@class Barotrauma.CircuitBoxServerCreateWireEvent: System.ValueType
+---@class Barotrauma.CircuitBoxServerCreateWireEvent: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field Request Barotrauma.CircuitBoxClientAddWireEvent
 ---@field WireId System.UInt16
 ---@field BackingItemId userdata
@@ -24381,7 +24580,7 @@ CS.Barotrauma.CircuitBoxServerCreateWireEvent = __ctor
 CS.Barotrauma.CircuitBoxServerCreateWireEvent.__new = __ctor
 end
 
----@class Barotrauma.CircuitBoxRemoveWireEvent: System.ValueType
+---@class Barotrauma.CircuitBoxRemoveWireEvent: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field TargetIDs userdata | { [System.Int32]: System.UInt16 } | (fun(): System.UInt16)
 CS.Barotrauma.CircuitBoxRemoveWireEvent = {}
 
@@ -24393,7 +24592,7 @@ CS.Barotrauma.CircuitBoxRemoveWireEvent = __ctor
 CS.Barotrauma.CircuitBoxRemoveWireEvent.__new = __ctor
 end
 
----@class Barotrauma.CircuitBoxRenameLabelEvent: System.ValueType
+---@class Barotrauma.CircuitBoxRenameLabelEvent: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field LabelId System.UInt16
 ---@field Color Microsoft.Xna.Framework.Color
 ---@field NewHeader Barotrauma.NetLimitedString
@@ -24411,7 +24610,7 @@ CS.Barotrauma.CircuitBoxRenameLabelEvent = __ctor
 CS.Barotrauma.CircuitBoxRenameLabelEvent.__new = __ctor
 end
 
----@class Barotrauma.CircuitBoxRenameConnectionLabelsEvent: System.ValueType
+---@class Barotrauma.CircuitBoxRenameConnectionLabelsEvent: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field Type Barotrauma.CircuitBoxInputOutputNode.Type
 ---@field Override userdata
 CS.Barotrauma.CircuitBoxRenameConnectionLabelsEvent = {}
@@ -24425,7 +24624,7 @@ CS.Barotrauma.CircuitBoxRenameConnectionLabelsEvent = __ctor
 CS.Barotrauma.CircuitBoxRenameConnectionLabelsEvent.__new = __ctor
 end
 
----@class Barotrauma.CircuitBoxErrorEvent: System.ValueType
+---@class Barotrauma.CircuitBoxErrorEvent: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field Message System.String
 CS.Barotrauma.CircuitBoxErrorEvent = {}
 
@@ -24437,7 +24636,7 @@ CS.Barotrauma.CircuitBoxErrorEvent = __ctor
 CS.Barotrauma.CircuitBoxErrorEvent.__new = __ctor
 end
 
----@class Barotrauma.CircuitBoxInitializeStateFromServerEvent: System.ValueType
+---@class Barotrauma.CircuitBoxInitializeStateFromServerEvent: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field Components userdata | { [System.Int32]: Barotrauma.CircuitBoxServerCreateComponentEvent } | (fun(): Barotrauma.CircuitBoxServerCreateComponentEvent)
 ---@field Wires userdata | { [System.Int32]: Barotrauma.CircuitBoxServerCreateWireEvent } | (fun(): Barotrauma.CircuitBoxServerCreateWireEvent)
 ---@field Labels userdata | { [System.Int32]: Barotrauma.CircuitBoxServerAddLabelEvent } | (fun(): Barotrauma.CircuitBoxServerAddLabelEvent)
@@ -24459,7 +24658,7 @@ CS.Barotrauma.CircuitBoxInitializeStateFromServerEvent = __ctor
 CS.Barotrauma.CircuitBoxInitializeStateFromServerEvent.__new = __ctor
 end
 
----@class Barotrauma.CircuitBoxEventData: System.ValueType
+---@class Barotrauma.CircuitBoxEventData: System.ValueType, Barotrauma.Items.Components.ItemComponent.IEventData
 ---@field Data Barotrauma.INetSerializableStruct
 ---@field Opcode Barotrauma.CircuitBoxOpcode
 CS.Barotrauma.CircuitBoxEventData = {}
@@ -24552,7 +24751,7 @@ end
 CS.Barotrauma.CircuitBoxSizes = {}
 
 
----@class Barotrauma.CircuitBoxWire: Barotrauma.CircuitBoxSelectable
+---@class Barotrauma.CircuitBoxWire: Barotrauma.CircuitBoxSelectable, Barotrauma.ICircuitBoxIdentifiable
 ---@field ID System.UInt16
 ---@field DefaultWirePrefab Barotrauma.ItemPrefab
 ---@field From Barotrauma.CircuitBoxConnection
@@ -28231,6 +28430,7 @@ function CS.Barotrauma.ContentXElementExtensions.Elements(elements) end
 ---@field private position Microsoft.Xna.Framework.Vector2
 ---@field private fadeTimer System.Single
 ---@field Sprite Barotrauma.Sprite
+---@field private baseAlpha System.Single
 ---@field private affectedSections userdata | (fun(): Barotrauma.BackgroundSection)
 ---@field private hull Barotrauma.Hull
 ---@field Scale System.Single
@@ -28252,6 +28452,12 @@ function CS.Barotrauma.Decal.get_FadeOutTime() end
 
 ---@return System.Single
 function CS.Barotrauma.Decal.get_LifeTime() end
+
+---@return System.Single
+function CS.Barotrauma.Decal.get_BaseAlpha() end
+
+---@param value System.Single
+function CS.Barotrauma.Decal.set_BaseAlpha(value) end
 
 ---@return Microsoft.Xna.Framework.Vector2
 function CS.Barotrauma.Decal.get_WorldPosition() end
@@ -28419,7 +28625,9 @@ CS.Barotrauma.ActionType = {
     OnSuccess = 22,
     OnAbility = 23,
     OnInserted = 24,
-    OnRemoved = 25
+    OnRemoved = 25,
+    OnDeconstructing = 26,
+    OnDeconstructed = 27
 }
 
 ---@enum Barotrauma.AbilityEffectType
@@ -28656,6 +28864,7 @@ end
 ---@field protected isFinished System.Boolean
 ---@field RandomSeed System.Int32
 ---@field protected prefab Barotrauma.EventPrefab
+---@field TriggeringMission Barotrauma.Mission
 ---@field SpawnPosFilter fun(arg: Barotrauma.Level.InterestingPosition): System.Boolean
 CS.Barotrauma.Event = {}
 
@@ -29135,8 +29344,9 @@ function CS.Barotrauma.BeaconMission.get_SonarLabels() end
 function CS.Barotrauma.BeaconMission.UpdateMissionSpecific(deltaTime) end
 
 ---@protected
+---@param transitionType Barotrauma.CampaignMode.TransitionType
 ---@return System.Boolean
-function CS.Barotrauma.BeaconMission.DetermineCompleted() end
+function CS.Barotrauma.BeaconMission.DetermineCompleted(transitionType) end
 
 ---@protected
 ---@param completed System.Boolean
@@ -29161,6 +29371,27 @@ CS.Barotrauma.BeaconMission = __ctor
 CS.Barotrauma.BeaconMission.__new = __ctor
 end
 
+---@class Barotrauma.CustomMission: Barotrauma.Mission
+---@field SuccessState System.Int32
+---@field FailureState System.Int32
+---@field RequireDestinationReached System.Boolean
+CS.Barotrauma.CustomMission = {}
+
+---@protected
+---@param transitionType Barotrauma.CampaignMode.TransitionType
+---@return System.Boolean
+function CS.Barotrauma.CustomMission.DetermineCompleted(transitionType) end
+
+do
+---@param prefab Barotrauma.MissionPrefab
+---@param locations Barotrauma.Location[]
+---@param sub Barotrauma.Submarine
+---@return Barotrauma.CustomMission
+local __ctor = function(prefab, locations, sub) end
+CS.Barotrauma.CustomMission = __ctor
+CS.Barotrauma.CustomMission.__new = __ctor
+end
+
 ---@class Barotrauma.GoToMission: Barotrauma.Mission
 CS.Barotrauma.GoToMission = {}
 
@@ -29169,8 +29400,9 @@ CS.Barotrauma.GoToMission = {}
 function CS.Barotrauma.GoToMission.UpdateMissionSpecific(deltaTime) end
 
 ---@protected
+---@param transitionType Barotrauma.CampaignMode.TransitionType
 ---@return System.Boolean
-function CS.Barotrauma.GoToMission.DetermineCompleted() end
+function CS.Barotrauma.GoToMission.DetermineCompleted(transitionType) end
 
 do
 ---@param prefab Barotrauma.MissionPrefab
@@ -29185,6 +29417,7 @@ end
 ---@class Barotrauma.MissionPrefab: Barotrauma.PrefabWithUintIdentifier
 ---@field Type Barotrauma.Identifier
 ---@field MissionClass System.Type
+---@field CampaignOnly System.Boolean
 ---@field MultiplayerOnly System.Boolean
 ---@field SingleplayerOnly System.Boolean
 ---@field TextIdentifier Barotrauma.Identifier
@@ -30079,7 +30312,8 @@ function CS.Barotrauma.GameSession.GetSessionCrewCharacters(type) end
 ---@param createRoundSummary? System.Boolean
 function CS.Barotrauma.GameSession.EndRound(endMessage, transitionType, traitorResults, createRoundSummary) end
 
-function CS.Barotrauma.GameSession.EndMissions() end
+---@param transitionType Barotrauma.CampaignMode.TransitionType
+function CS.Barotrauma.GameSession.EndMissions(transitionType) end
 
 ---@return Barotrauma.PerkCollection
 function CS.Barotrauma.GameSession.GetPerks() end
@@ -30555,6 +30789,7 @@ end
 ---@field DeconstructItems userdata | { [System.Int32]: Barotrauma.DeconstructItem } | (fun(): Barotrauma.DeconstructItem)
 ---@field FabricationRecipes userdata | { [System.UInt32]: Barotrauma.FabricationRecipe } | (fun(): userdata)
 ---@field DeconstructTime System.Single
+---@field DeconstructTimeInOutposts System.Single
 ---@field AllowDeconstruct System.Boolean
 ---@field PreferredContainers userdata | { [System.Int32]: Barotrauma.PreferredContainer } | (fun(): Barotrauma.PreferredContainer)
 ---@field SkillRequirementHints userdata | { [System.Int32]: Barotrauma.SkillRequirementHint } | (fun(): Barotrauma.SkillRequirementHint)
@@ -30819,10 +31054,6 @@ function CS.Barotrauma.ItemPrefab.GetParentModPackageOrThisPackage() end
 ---@return System.String
 function CS.Barotrauma.ItemPrefab.ToString() end
 
----@param itemNameOrId System.String
----@return Barotrauma.ItemPrefab
-function CS.Barotrauma.ItemPrefab.GetItemPrefab(itemNameOrId) end
-
 do
 ---@overload fun(): Barotrauma.ItemPrefab
 ---@param element Barotrauma.ContentXElement
@@ -30833,7 +31064,7 @@ CS.Barotrauma.ItemPrefab = __ctor
 CS.Barotrauma.ItemPrefab.__new = __ctor
 end
 
----@class Barotrauma.TalentStatIdentifier: System.ValueType
+---@class Barotrauma.TalentStatIdentifier: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field Stat Barotrauma.ItemTalentStats
 ---@field TalentIdentifier Barotrauma.Identifier
 ---@field UniqueCharacterId userdata
@@ -30982,358 +31213,6 @@ CS.Barotrauma.StartItemSet = __ctor
 CS.Barotrauma.StartItemSet.__new = __ctor
 end
 
----@class Barotrauma.LuaCsHook: System.Object
----@field private harmony HarmonyLib.Harmony
----@field private patchModuleBuilder userdata
----@field private hookFunctions userdata | { [System.String]: userdata | { [System.String]: userdata } | (fun(): userdata) } | (fun(): userdata)
----@field private registeredPatches userdata | { [Barotrauma.LuaCsHook.MethodKey]: Barotrauma.LuaCsHook.PatchedMethod } | (fun(): userdata)
----@field private luaCs Barotrauma.LuaCsSetup
----@field private performanceMeasurement System.Diagnostics.Stopwatch
----@field private compatHookPrefixMethods userdata | { [System.Int64]: userdata | (fun(): userdata) } | (fun(): userdata)
----@field private compatHookPostfixMethods userdata | { [System.Int64]: userdata | (fun(): userdata) } | (fun(): userdata)
----@field private prohibitedHooks System.String[]
----@field private instance Barotrauma.LuaCsHook
----@field private InvalidIdentifierCharsRegex System.Text.RegularExpressions.Regex
----@field private _miHookLuaCsPatchPrefix System.Reflection.MethodInfo
----@field private _miHookLuaCsPatchPostfix System.Reflection.MethodInfo
----@field private _miHookLuaCsPatchRetPrefix System.Reflection.MethodInfo
----@field private _miHookLuaCsPatchRetPostfix System.Reflection.MethodInfo
----@field private FIELD_LUACS System.String
-CS.Barotrauma.LuaCsHook = {}
-
----@private
----@param method System.Reflection.MethodBase
-function CS.Barotrauma.LuaCsHook.ValidatePatchTarget(method) end
-
----@private
----@param identifier System.String
----@return System.String
-function CS.Barotrauma.LuaCsHook.NormalizeIdentifier(identifier) end
-
-function CS.Barotrauma.LuaCsHook.Initialize() end
-
----@private
----@return System.Reflection.Emit.ModuleBuilder
-function CS.Barotrauma.LuaCsHook.CreateModuleBuilder() end
-
----@overload fun(name: System.String, identifier: System.String, func: (fun(...: System.Object): System.Object), owner?: Barotrauma.ACsMod)
----@param name System.String
----@param func fun(...: System.Object): System.Object
----@param owner? Barotrauma.ACsMod
-function CS.Barotrauma.LuaCsHook.Add(name, func, owner) end
-
----@param name System.String
----@param identifier System.String
----@return System.Boolean
-function CS.Barotrauma.LuaCsHook.Exists(name, identifier) end
-
----@param name System.String
----@param identifier System.String
-function CS.Barotrauma.LuaCsHook.Remove(name, identifier) end
-
-function CS.Barotrauma.LuaCsHook.Clear() end
-
----@param name System.String
----@param ... System.Object
----@return System.Object
-function CS.Barotrauma.LuaCsHook.Call(name, ...) end
-
----@private
----@param className System.String
----@param methodName System.String
----@param parameters System.String[]
----@return System.Reflection.MethodBase
-function CS.Barotrauma.LuaCsHook.ResolveMethod(className, methodName, parameters) end
-
----@private
----@param identifier System.String
----@param original System.Reflection.MethodBase
----@param hookType Barotrauma.LuaCsHook.HookMethodType
----@return System.Reflection.MethodInfo
-function CS.Barotrauma.LuaCsHook.CreateDynamicHarmonyPatch(identifier, original, hookType) end
-
----@private
----@param identifier System.String
----@param method System.Reflection.MethodBase
----@param patch fun(instance: System.Object, ptable: Barotrauma.LuaCsHook.ParameterTable): MoonSharp.Interpreter.DynValue
----@param hookType? Barotrauma.LuaCsHook.HookMethodType
----@return System.String
-function CS.Barotrauma.LuaCsHook.Patch(identifier, method, patch, hookType) end
-
----@overload fun(identifier: System.String, className: System.String, methodName: System.String, patch: (fun(instance: System.Object, ptable: Barotrauma.LuaCsHook.ParameterTable): MoonSharp.Interpreter.DynValue), hookType?: Barotrauma.LuaCsHook.HookMethodType): System.String
----@overload fun(className: System.String, methodName: System.String, parameterTypes: System.String[], patch: (fun(instance: System.Object, ptable: Barotrauma.LuaCsHook.ParameterTable): MoonSharp.Interpreter.DynValue), hookType?: Barotrauma.LuaCsHook.HookMethodType): System.String
----@overload fun(className: System.String, methodName: System.String, patch: (fun(instance: System.Object, ptable: Barotrauma.LuaCsHook.ParameterTable): MoonSharp.Interpreter.DynValue), hookType?: Barotrauma.LuaCsHook.HookMethodType): System.String
----@param identifier System.String
----@param className System.String
----@param methodName System.String
----@param parameterTypes System.String[]
----@param patch fun(instance: System.Object, ptable: Barotrauma.LuaCsHook.ParameterTable): MoonSharp.Interpreter.DynValue
----@param hookType? Barotrauma.LuaCsHook.HookMethodType
----@return System.String
-function CS.Barotrauma.LuaCsHook.Patch(identifier, className, methodName, parameterTypes, patch, hookType) end
-
----@private
----@param identifier System.String
----@param method System.Reflection.MethodBase
----@param hookType Barotrauma.LuaCsHook.HookMethodType
----@return System.Boolean
-function CS.Barotrauma.LuaCsHook.RemovePatch(identifier, method, hookType) end
-
----@overload fun(identifier: System.String, className: System.String, methodName: System.String, hookType: Barotrauma.LuaCsHook.HookMethodType): System.Boolean
----@param identifier System.String
----@param className System.String
----@param methodName System.String
----@param parameterTypes System.String[]
----@param hookType Barotrauma.LuaCsHook.HookMethodType
----@return System.Boolean
-function CS.Barotrauma.LuaCsHook.RemovePatch(identifier, className, methodName, parameterTypes, hookType) end
-
----@private
----@param __originalMethod System.Reflection.MethodBase
----@param __args System.Object[]
----@param __instance System.Object
----@param result System.Object
----@param hookType Barotrauma.LuaCsHook.HookMethodType
-function CS.Barotrauma.LuaCsHook._hookLuaCsPatch(__originalMethod, __args, __instance, result, hookType) end
-
----@private
----@param __originalMethod System.Reflection.MethodBase
----@param __args System.Object[]
----@param __instance System.Object
----@return System.Boolean
-function CS.Barotrauma.LuaCsHook.HookLuaCsPatchPrefix(__originalMethod, __args, __instance) end
-
----@private
----@param __originalMethod System.Reflection.MethodBase
----@param __args System.Object[]
----@param __instance System.Object
-function CS.Barotrauma.LuaCsHook.HookLuaCsPatchPostfix(__originalMethod, __args, __instance) end
-
----@private
----@param __originalMethod System.Reflection.MethodBase
----@param __args System.Object[]
----@param __result System.Object
----@param __instance System.Object
----@return System.Boolean
-function CS.Barotrauma.LuaCsHook.HookLuaCsPatchRetPrefix(__originalMethod, __args, __result, __instance) end
-
----@private
----@param __originalMethod System.Reflection.MethodBase
----@param __args System.Object[]
----@param __result System.Object
----@param __instance System.Object
-function CS.Barotrauma.LuaCsHook.HookLuaCsPatchRetPostfix(__originalMethod, __args, __result, __instance) end
-
----@param identifier System.String
----@param method System.Reflection.MethodBase
----@param patch fun(self: System.Object, args: (userdata | { [System.String]: System.Object } | (fun(): userdata))): System.Object
----@param hookType? Barotrauma.LuaCsHook.HookMethodType
----@param owner? Barotrauma.ACsMod
-function CS.Barotrauma.LuaCsHook.HookMethod(identifier, method, patch, hookType, owner) end
-
----@protected
----@overload fun(identifier: System.String, className: System.String, methodName: System.String, patch: (fun(self: System.Object, args: (userdata | { [System.String]: System.Object } | (fun(): userdata))): System.Object), hookMethodType?: Barotrauma.LuaCsHook.HookMethodType)
----@overload fun(className: System.String, methodName: System.String, patch: (fun(self: System.Object, args: (userdata | { [System.String]: System.Object } | (fun(): userdata))): System.Object), hookMethodType?: Barotrauma.LuaCsHook.HookMethodType)
----@overload fun(className: System.String, methodName: System.String, parameterNames: System.String[], patch: (fun(self: System.Object, args: (userdata | { [System.String]: System.Object } | (fun(): userdata))): System.Object), hookMethodType?: Barotrauma.LuaCsHook.HookMethodType)
----@param identifier System.String
----@param className System.String
----@param methodName System.String
----@param parameterNames System.String[]
----@param patch fun(self: System.Object, args: (userdata | { [System.String]: System.Object } | (fun(): userdata))): System.Object
----@param hookMethodType? Barotrauma.LuaCsHook.HookMethodType
-function CS.Barotrauma.LuaCsHook.HookMethod(identifier, className, methodName, parameterNames, patch, hookMethodType) end
-
----@param identifier System.String
----@param method System.Reflection.MethodBase
----@param hookType? Barotrauma.LuaCsHook.HookMethodType
-function CS.Barotrauma.LuaCsHook.UnhookMethod(identifier, method, hookType) end
-
----@protected
----@param identifier System.String
----@param className System.String
----@param methodName System.String
----@param parameterNames System.String[]
----@param hookType? Barotrauma.LuaCsHook.HookMethodType
-function CS.Barotrauma.LuaCsHook.UnhookMethod(identifier, className, methodName, parameterNames, hookType) end
-
-do
----@package
----@overload fun(): Barotrauma.LuaCsHook
----@param luaCs Barotrauma.LuaCsSetup
----@return Barotrauma.LuaCsHook
-local __ctor = function(luaCs) end
-CS.Barotrauma.LuaCsHook = __ctor
-CS.Barotrauma.LuaCsHook.__new = __ctor
-end
-
----@class Barotrauma.LuaCsLogger: System.Object
----@field HideUserNames System.Boolean
----@field private lockLog System.Boolean
----@field MessageLogger fun(message: System.String)
----@field ExceptionHandler fun(ex: System.Exception, origin: Barotrauma.LuaCsMessageOrigin)
----@field private LogPrefix System.String
----@field private NetMaxLength System.Int32
----@field private NetMaxMessages System.Int32
-CS.Barotrauma.LuaCsLogger = {}
-
----@param ex System.Exception
----@param origin Barotrauma.LuaCsMessageOrigin
-function CS.Barotrauma.LuaCsLogger.HandleException(ex, origin) end
-
----@overload fun(message: System.String)
----@param message System.String
----@param origin Barotrauma.LuaCsMessageOrigin
-function CS.Barotrauma.LuaCsLogger.LogError(message, origin) end
-
----@param message System.String
----@param serverColor? Microsoft.Xna.Framework.Color|nil
----@param clientColor? Microsoft.Xna.Framework.Color|nil
-function CS.Barotrauma.LuaCsLogger.LogMessage(message, serverColor, clientColor) end
-
----@param message System.String
----@param color? Microsoft.Xna.Framework.Color|nil
----@param messageType? Barotrauma.Networking.ServerLog.MessageType
-function CS.Barotrauma.LuaCsLogger.Log(message, color, messageType) end
-
-do
----@overload fun(): Barotrauma.LuaCsLogger
----@return Barotrauma.LuaCsLogger
-local __ctor = function() end
-CS.Barotrauma.LuaCsLogger = __ctor
-CS.Barotrauma.LuaCsLogger.__new = __ctor
-end
-
----@class Barotrauma.LuaCsSetup: System.Object
----@field IsRunningInsideWorkshop System.Boolean
----@field Lua MoonSharp.Interpreter.Script
----@field LuaScriptLoader Barotrauma.LuaScriptLoader
----@field Game Barotrauma.LuaGame
----@field Hook Barotrauma.LuaCsHook
----@field Timer Barotrauma.LuaCsTimer
----@field Networking Barotrauma.LuaCsNetworking
----@field Steam Barotrauma.LuaCsSteam
----@field PerformanceCounter Barotrauma.LuaCsPerformanceCounter
----@field AssemblyManager Barotrauma.AssemblyManager
----@field PluginPackageManager Barotrauma.CsPackageManager
----@field ModStore Barotrauma.LuaCsSetup.LuaCsModStore
----@field private require Barotrauma.LuaRequire
----@field Config Barotrauma.LuaCsSetupConfig
----@field DebugServer MoonSharp.VsCodeDebugger.MoonSharpVsCodeDebugServer
----@field IsInitialized System.Boolean
----@field private ShouldRunCs System.Boolean
----@field private _pluginPackageManager Barotrauma.CsPackageManager
----@field LuaForBarotraumaId Barotrauma.ContentPackageId
----@field CsForBarotraumaId Barotrauma.ContentPackageId
----@field private executionNumber System.Int32
----@field private _assemblyManager Barotrauma.AssemblyManager
----@field LuaSetupFile System.String
----@field VersionFile System.String
----@field private configFileName System.String
----@field IsServer System.Boolean
----@field IsClient System.Boolean
-CS.Barotrauma.LuaCsSetup = {}
-
----@param message System.Object
-function CS.Barotrauma.LuaCsSetup.PrintLuaError(message) end
-
----@param message System.Object
-function CS.Barotrauma.LuaCsSetup.PrintCsError(message) end
-
----@param message System.Object
-function CS.Barotrauma.LuaCsSetup.PrintGenericError(message) end
-
----@package
----@param message System.Object
-function CS.Barotrauma.LuaCsSetup.PrintMessage(message) end
-
----@param message System.Object
-function CS.Barotrauma.LuaCsSetup.PrintCsMessage(message) end
-
----@package
----@param ex System.Exception
----@param origin Barotrauma.LuaCsMessageOrigin
-function CS.Barotrauma.LuaCsSetup.HandleException(ex, origin) end
-
----@return System.Boolean
-function CS.Barotrauma.LuaCsSetup.get_IsRunningInsideWorkshop() end
-
----@return Barotrauma.AssemblyManager
-function CS.Barotrauma.LuaCsSetup.get_AssemblyManager() end
-
----@return Barotrauma.CsPackageManager
-function CS.Barotrauma.LuaCsSetup.get_PluginPackageManager() end
-
----@private
----@return System.Boolean
-function CS.Barotrauma.LuaCsSetup.get_ShouldRunCs() end
-
----@param typeName System.String
----@param throwOnError? System.Boolean
----@param ignoreCase? System.Boolean
----@return System.Type
-function CS.Barotrauma.LuaCsSetup.GetType(typeName, throwOnError, ignoreCase) end
-
----@param port? System.Int32
-function CS.Barotrauma.LuaCsSetup.ToggleDebugger(port) end
-
-function CS.Barotrauma.LuaCsSetup.AttachDebugger() end
-
-function CS.Barotrauma.LuaCsSetup.DetachDebugger() end
-
-function CS.Barotrauma.LuaCsSetup.ReadSettings() end
-
-function CS.Barotrauma.LuaCsSetup.WriteSettings() end
-
----@param id Barotrauma.ContentPackageId
----@param fallbackToAll? System.Boolean
----@param useBackup? System.Boolean
----@return Barotrauma.ContentPackage
-function CS.Barotrauma.LuaCsSetup.GetPackage(id, fallbackToAll, useBackup) end
-
----@private
----@param file System.String
----@param globalContext? MoonSharp.Interpreter.Table
----@param codeStringFriendly? System.String
----@return MoonSharp.Interpreter.DynValue
-function CS.Barotrauma.LuaCsSetup.DoFile(file, globalContext, codeStringFriendly) end
-
----@private
----@param file System.String
----@param globalContext? MoonSharp.Interpreter.Table
----@param codeStringFriendly? System.String
----@return MoonSharp.Interpreter.DynValue
-function CS.Barotrauma.LuaCsSetup.LoadFile(file, globalContext, codeStringFriendly) end
-
----@param __function__ System.Object
----@param ... System.Object
----@return MoonSharp.Interpreter.DynValue
-function CS.Barotrauma.LuaCsSetup.CallLuaFunction(__function__, ...) end
-
----@private
----@param str System.String[]
-function CS.Barotrauma.LuaCsSetup.SetModulePaths(str) end
-
-function CS.Barotrauma.LuaCsSetup.Update() end
-
-function CS.Barotrauma.LuaCsSetup.Stop() end
-
----@param forceEnableCs? System.Boolean
-function CS.Barotrauma.LuaCsSetup.Initialize(forceEnableCs) end
-
----@private
-function CS.Barotrauma.LuaCsSetup.RegisterLuaConverters() end
-
----@private
-function CS.Barotrauma.LuaCsSetup.RegisterAction() end
-
-do
----@overload fun(): Barotrauma.LuaCsSetup
----@return Barotrauma.LuaCsSetup
-local __ctor = function() end
-CS.Barotrauma.LuaCsSetup = __ctor
-CS.Barotrauma.LuaCsSetup.__new = __ctor
-end
-
 ---@class Barotrauma.LuaCsPerformanceCounter: System.Object
 ---@field MemoryUsage System.Single
 ---@field EnablePerformanceCounter System.Boolean
@@ -31356,26 +31235,117 @@ CS.Barotrauma.LuaCsPerformanceCounter = __ctor
 CS.Barotrauma.LuaCsPerformanceCounter.__new = __ctor
 end
 
----@class Barotrauma.LuaCsSetupConfig: System.Object
----@field HideUserNames System.Boolean
----@field EnableCsScripting System.Boolean
----@field TreatForcedModsAsNormal System.Boolean
----@field PreferToUseWorkshopLuaSetup System.Boolean
----@field DisableErrorGUIOverlay System.Boolean
-CS.Barotrauma.LuaCsSetupConfig = {}
+---@class Barotrauma.LuaCsMessageLogger: System.MulticastDelegate, System.ICloneable, System.Runtime.Serialization.ISerializable
+CS.Barotrauma.LuaCsMessageLogger = {}
 
----@return System.Boolean
-function CS.Barotrauma.LuaCsSetupConfig.get_HideUserNames() end
+---@param message System.String
+function CS.Barotrauma.LuaCsMessageLogger.Invoke(message) end
 
----@param value System.Boolean
-function CS.Barotrauma.LuaCsSetupConfig.set_HideUserNames(value) end
+---@param message System.String
+---@param callback fun(ar: System.IAsyncResult)
+---@param object System.Object
+---@return System.IAsyncResult
+function CS.Barotrauma.LuaCsMessageLogger.BeginInvoke(message, callback, object) end
+
+---@param result System.IAsyncResult
+function CS.Barotrauma.LuaCsMessageLogger.EndInvoke(result) end
 
 do
----@overload fun(config: Barotrauma.LuaCsSetupConfig): Barotrauma.LuaCsSetupConfig
----@return Barotrauma.LuaCsSetupConfig
+---@param object System.Object
+---@param method System.IntPtr
+---@return Barotrauma.LuaCsMessageLogger
+local __ctor = function(object, method) end
+CS.Barotrauma.LuaCsMessageLogger = __ctor
+CS.Barotrauma.LuaCsMessageLogger.__new = __ctor
+end
+
+---@class Barotrauma.LuaCsErrorHandler: System.MulticastDelegate, System.ICloneable, System.Runtime.Serialization.ISerializable
+CS.Barotrauma.LuaCsErrorHandler = {}
+
+---@param ex System.Exception
+---@param origin Barotrauma.LuaCsMessageOrigin
+function CS.Barotrauma.LuaCsErrorHandler.Invoke(ex, origin) end
+
+---@param ex System.Exception
+---@param origin Barotrauma.LuaCsMessageOrigin
+---@param callback fun(ar: System.IAsyncResult)
+---@param object System.Object
+---@return System.IAsyncResult
+function CS.Barotrauma.LuaCsErrorHandler.BeginInvoke(ex, origin, callback, object) end
+
+---@param result System.IAsyncResult
+function CS.Barotrauma.LuaCsErrorHandler.EndInvoke(result) end
+
+do
+---@param object System.Object
+---@param method System.IntPtr
+---@return Barotrauma.LuaCsErrorHandler
+local __ctor = function(object, method) end
+CS.Barotrauma.LuaCsErrorHandler = __ctor
+CS.Barotrauma.LuaCsErrorHandler.__new = __ctor
+end
+
+---@class Barotrauma.LuaCsExceptionHandler: System.MulticastDelegate, System.ICloneable, System.Runtime.Serialization.ISerializable
+CS.Barotrauma.LuaCsExceptionHandler = {}
+
+---@param ex System.Exception
+---@param origin Barotrauma.LuaCsMessageOrigin
+function CS.Barotrauma.LuaCsExceptionHandler.Invoke(ex, origin) end
+
+---@param ex System.Exception
+---@param origin Barotrauma.LuaCsMessageOrigin
+---@param callback fun(ar: System.IAsyncResult)
+---@param object System.Object
+---@return System.IAsyncResult
+function CS.Barotrauma.LuaCsExceptionHandler.BeginInvoke(ex, origin, callback, object) end
+
+---@param result System.IAsyncResult
+function CS.Barotrauma.LuaCsExceptionHandler.EndInvoke(result) end
+
+do
+---@param object System.Object
+---@param method System.IntPtr
+---@return Barotrauma.LuaCsExceptionHandler
+local __ctor = function(object, method) end
+CS.Barotrauma.LuaCsExceptionHandler = __ctor
+CS.Barotrauma.LuaCsExceptionHandler.__new = __ctor
+end
+
+---@enum Barotrauma.LuaCsMessageOrigin
+CS.Barotrauma.LuaCsMessageOrigin = {
+    LuaCs = 0,
+    Unknown = 1,
+    LuaMod = 2,
+    CSharpMod = 3
+}
+
+---@class Barotrauma.LuaCsLogger: System.Object
+CS.Barotrauma.LuaCsLogger = {}
+
+---@param ex System.Exception
+---@param origin Barotrauma.LuaCsMessageOrigin
+function CS.Barotrauma.LuaCsLogger.HandleException(ex, origin) end
+
+---@overload fun(message: System.String)
+---@param message System.String
+---@param origin Barotrauma.LuaCsMessageOrigin
+function CS.Barotrauma.LuaCsLogger.LogError(message, origin) end
+
+---@param message System.String
+---@param serverColor? Microsoft.Xna.Framework.Color|nil
+---@param clientColor? Microsoft.Xna.Framework.Color|nil
+function CS.Barotrauma.LuaCsLogger.LogMessage(message, serverColor, clientColor) end
+
+---@param message System.String
+---@param color? Microsoft.Xna.Framework.Color|nil
+---@param messageType? Barotrauma.Networking.ServerLog.MessageType
+function CS.Barotrauma.LuaCsLogger.Log(message, color, messageType) end
+
+do
+---@return Barotrauma.LuaCsLogger
 local __ctor = function() end
-CS.Barotrauma.LuaCsSetupConfig = __ctor
-CS.Barotrauma.LuaCsSetupConfig.__new = __ctor
+CS.Barotrauma.LuaCsLogger = __ctor
+CS.Barotrauma.LuaCsLogger.__new = __ctor
 end
 
 ---@class Barotrauma.LuaCsSteam: System.Object
@@ -31421,10 +31391,13 @@ CS.Barotrauma.LuaCsSteam = __ctor
 CS.Barotrauma.LuaCsSteam.__new = __ctor
 end
 
----@class Barotrauma.LuaCsTimer: System.Object
+---@class Barotrauma.LuaCsTimer: System.Object, Barotrauma.LuaCs.Compatibility.ILuaCsTimer, Barotrauma.LuaCs.IReusableService, Barotrauma.LuaCs.IService, System.IDisposable, Barotrauma.LuaCs.Compatibility.ILuaCsShim, Barotrauma.LuaCs.Events.IEventUpdate, Barotrauma.LuaCs.Events.IEvent
 ---@field Time System.Double
 ---@field AccumulatorMax System.Double
+---@field IsDisposed System.Boolean
 ---@field private timedActions userdata | { [System.Int32]: Barotrauma.LuaCsTimer.TimedAction } | (fun(): Barotrauma.LuaCsTimer.TimedAction)
+---@field private _eventService Barotrauma.LuaCs.IEventService
+---@field private _loggerService Barotrauma.LuaCs.ILoggerService
 CS.Barotrauma.LuaCsTimer = {}
 
 ---@return System.Double
@@ -31443,8 +31416,6 @@ function CS.Barotrauma.LuaCsTimer.set_AccumulatorMax(value) end
 ---@param timedAction Barotrauma.LuaCsTimer.TimedAction
 function CS.Barotrauma.LuaCsTimer.AddTimer(timedAction) end
 
-function CS.Barotrauma.LuaCsTimer.Update() end
-
 function CS.Barotrauma.LuaCsTimer.Clear() end
 
 ---@param action fun(...: System.Object)
@@ -31454,9 +31425,25 @@ function CS.Barotrauma.LuaCsTimer.Wait(action, millisecondDelay) end
 ---@param action fun(...: System.Object)
 function CS.Barotrauma.LuaCsTimer.NextFrame(action) end
 
+---@param fixedDeltaTime System.Double
+function CS.Barotrauma.LuaCsTimer.OnUpdate(fixedDeltaTime) end
+
+---@private
+function CS.Barotrauma.LuaCsTimer.SubscribeToEvents() end
+
+---@return FluentResults.Result
+function CS.Barotrauma.LuaCsTimer.Reset() end
+
+function CS.Barotrauma.LuaCsTimer.Dispose() end
+
+---@return System.Boolean
+function CS.Barotrauma.LuaCsTimer.get_IsDisposed() end
+
 do
+---@param eventService Barotrauma.LuaCs.IEventService
+---@param loggerService Barotrauma.LuaCs.ILoggerService
 ---@return Barotrauma.LuaCsTimer
-local __ctor = function() end
+local __ctor = function(eventService, loggerService) end
 CS.Barotrauma.LuaCsTimer = __ctor
 CS.Barotrauma.LuaCsTimer.__new = __ctor
 end
@@ -31543,614 +31530,6 @@ do
 local __ctor = function() end
 CS.Barotrauma.LuaCsFile = __ctor
 CS.Barotrauma.LuaCsFile.__new = __ctor
-end
-
----@class Barotrauma.LuaCsConfig: System.Object
-CS.Barotrauma.LuaCsConfig = {}
-
----@private
----@param typesElem System.Xml.Linq.XElement
----@return System.Type[]
-function CS.Barotrauma.LuaCsConfig.LoadDocTypes(typesElem) end
-
----@private
----@param types userdata | (fun(): System.Type)
----@return userdata | (fun(): System.Xml.Linq.XElement)
-function CS.Barotrauma.LuaCsConfig.SaveDocTypes(types) end
-
----@private
----@param types System.Type[]
----@param elem System.Xml.Linq.XElement
----@return System.Type
-function CS.Barotrauma.LuaCsConfig.GetTypeAttr(types, elem) end
-
----@private
----@param elem System.Xml.Linq.XElement
----@return Barotrauma.LuaCsConfig.ValueType
-function CS.Barotrauma.LuaCsConfig.GetValueType(elem) end
-
----@private
----@param types System.Type[]
----@param elem System.Xml.Linq.XElement
----@return System.Object
-function CS.Barotrauma.LuaCsConfig.ParseValue(types, elem) end
-
----@private
----@param types userdata | { [System.Int32]: System.Type } | (fun(): System.Type)
----@param type System.Type
----@param elem System.Xml.Linq.XElement
-function CS.Barotrauma.LuaCsConfig.AddTypeAttr(types, type, elem) end
-
----@private
----@param types userdata | { [System.Int32]: System.Type } | (fun(): System.Type)
----@param name System.String
----@param value System.Object
----@return System.Xml.Linq.XElement
-function CS.Barotrauma.LuaCsConfig.ParseObject(types, name, value) end
-
----@overload fun(path: System.String, obj: System.Object)
----@param file System.IO.FileStream
----@param obj System.Object
-function CS.Barotrauma.LuaCsConfig.Save(file, obj) end
-
-do
----@return Barotrauma.LuaCsConfig
-local __ctor = function() end
-CS.Barotrauma.LuaCsConfig = __ctor
-CS.Barotrauma.LuaCsConfig.__new = __ctor
-end
-
----@class Barotrauma.MapEntity: Barotrauma.Entity
----@field DisallowedUpgrades System.String
----@field FlippedX System.Boolean
----@field FlippedY System.Boolean
----@field HighlightedEntities userdata | (fun(): Barotrauma.MapEntity)
----@field ExternalHighlight System.Boolean
----@field IsHighlighted System.Boolean
----@field RotationRad System.Single
----@field RotationRadWithFlipping System.Single
----@field RotationWithFlipping System.Single
----@field Rect Microsoft.Xna.Framework.Rectangle
----@field WorldRect Microsoft.Xna.Framework.Rectangle
----@field Sprite Barotrauma.Sprite
----@field DrawBelowWater System.Boolean
----@field DrawOverWater System.Boolean
----@field Linkable System.Boolean
----@field AllowedLinks userdata | (fun(): Barotrauma.Identifier)
----@field ResizeHorizontal System.Boolean
----@field ResizeVertical System.Boolean
----@field RectWidth System.Int32
----@field RectHeight System.Int32
----@field SpriteDepthOverrideIsSet System.Boolean
----@field SpriteOverrideDepth System.Single
----@field SpriteDepth System.Single
----@field Scale System.Single
----@field HiddenInGame System.Boolean
----@field IsLayerHidden System.Boolean
----@field IsHidden System.Boolean
----@field Position Microsoft.Xna.Framework.Vector2
----@field SimPosition Microsoft.Xna.Framework.Vector2
----@field SoundRange System.Single
----@field SightRange System.Single
----@field RemoveIfLinkedOutpostDoorInUse System.Boolean
----@field Layer System.String
----@field Name System.String
----@field Prefab Barotrauma.MapEntityPrefab
----@field protected linkedToID userdata | { [System.Int32]: System.UInt16 } | (fun(): System.UInt16)
----@field unresolvedLinkedToID userdata | { [System.Int32]: System.UInt16 } | (fun(): System.UInt16)
----@field protected Upgrades userdata | { [System.Int32]: Barotrauma.Upgrade } | (fun(): Barotrauma.Upgrade)
----@field DisallowedUpgradeSet userdata | (fun(): Barotrauma.Identifier)
----@field linkedTo userdata | { [System.Int32]: Barotrauma.MapEntity } | (fun(): Barotrauma.MapEntity)
----@field ShouldBeSaved System.Boolean
----@field protected rect Microsoft.Xna.Framework.Rectangle
----@field private externalHighlight System.Boolean
----@field private isHighlighted System.Boolean
----@field private _spriteOverrideDepth System.Single
----@field OriginalModuleIndex System.Int32
----@field OriginalContainerIndex System.Int32
----@field private mapLoadedCalled System.Boolean
----@field MapEntityList userdata | { [System.Int32]: Barotrauma.MapEntity } | (fun(): Barotrauma.MapEntity)
----@field MapEntityUpdateInterval System.Int32
----@field PoweredUpdateInterval System.Int32
----@field private mapEntityUpdateTick System.Int32
----@field protected highlightedEntities userdata | (fun(): Barotrauma.MapEntity)
----@field private tempHighlightedEntities userdata | { [System.Int32]: Barotrauma.MapEntity } | (fun(): Barotrauma.MapEntity)
-CS.Barotrauma.MapEntity = {}
-
----@param entity Barotrauma.MapEntity
-function CS.Barotrauma.MapEntity.AddLinked(entity) end
-
----@return System.String
-function CS.Barotrauma.MapEntity.get_DisallowedUpgrades() end
-
----@param value System.String
-function CS.Barotrauma.MapEntity.set_DisallowedUpgrades(value) end
-
----@return userdata | (fun(): Barotrauma.MapEntity)
-function CS.Barotrauma.MapEntity.get_HighlightedEntities() end
-
----@return System.Boolean
-function CS.Barotrauma.MapEntity.get_ExternalHighlight() end
-
----@param value System.Boolean
-function CS.Barotrauma.MapEntity.set_ExternalHighlight(value) end
-
----@return System.Boolean
-function CS.Barotrauma.MapEntity.get_IsHighlighted() end
-
----@param value System.Boolean
-function CS.Barotrauma.MapEntity.set_IsHighlighted(value) end
-
----@return System.Single
-function CS.Barotrauma.MapEntity.get_RotationRadWithFlipping() end
-
----@return System.Single
-function CS.Barotrauma.MapEntity.get_RotationWithFlipping() end
-
----@return Microsoft.Xna.Framework.Rectangle
-function CS.Barotrauma.MapEntity.get_Rect() end
-
----@param value Microsoft.Xna.Framework.Rectangle
-function CS.Barotrauma.MapEntity.set_Rect(value) end
-
----@return Microsoft.Xna.Framework.Rectangle
-function CS.Barotrauma.MapEntity.get_WorldRect() end
-
----@return Barotrauma.Sprite
-function CS.Barotrauma.MapEntity.get_Sprite() end
-
----@return System.Boolean
-function CS.Barotrauma.MapEntity.get_DrawBelowWater() end
-
----@return System.Boolean
-function CS.Barotrauma.MapEntity.get_DrawOverWater() end
-
----@return System.Boolean
-function CS.Barotrauma.MapEntity.get_Linkable() end
-
----@return userdata | (fun(): Barotrauma.Identifier)
-function CS.Barotrauma.MapEntity.get_AllowedLinks() end
-
----@return System.Boolean
-function CS.Barotrauma.MapEntity.get_ResizeHorizontal() end
-
----@return System.Boolean
-function CS.Barotrauma.MapEntity.get_ResizeVertical() end
-
----@return System.Int32
-function CS.Barotrauma.MapEntity.get_RectWidth() end
-
----@param value System.Int32
-function CS.Barotrauma.MapEntity.set_RectWidth(value) end
-
----@return System.Int32
-function CS.Barotrauma.MapEntity.get_RectHeight() end
-
----@param value System.Int32
-function CS.Barotrauma.MapEntity.set_RectHeight(value) end
-
----@return System.Single
-function CS.Barotrauma.MapEntity.get_SpriteOverrideDepth() end
-
----@return System.Single
-function CS.Barotrauma.MapEntity.get_SpriteDepth() end
-
----@param value System.Single
-function CS.Barotrauma.MapEntity.set_SpriteDepth(value) end
-
----@return System.Boolean
-function CS.Barotrauma.MapEntity.get_IsHidden() end
-
----@return Microsoft.Xna.Framework.Vector2
-function CS.Barotrauma.MapEntity.get_Position() end
-
----@return Microsoft.Xna.Framework.Vector2
-function CS.Barotrauma.MapEntity.get_SimPosition() end
-
----@return System.Single
-function CS.Barotrauma.MapEntity.get_SoundRange() end
-
----@param value System.Single
-function CS.Barotrauma.MapEntity.set_SoundRange(value) end
-
----@return System.Single
-function CS.Barotrauma.MapEntity.get_SightRange() end
-
----@param value System.Single
-function CS.Barotrauma.MapEntity.set_SightRange(value) end
-
----@return System.String
-function CS.Barotrauma.MapEntity.get_Name() end
-
----@protected
----@param element System.Xml.Linq.XElement
----@param idRemap Barotrauma.IdRemap
-function CS.Barotrauma.MapEntity.ParseLinks(element, idRemap) end
-
----@param childRemap Barotrauma.IdRemap
-function CS.Barotrauma.MapEntity.ResolveLinks(childRemap) end
-
----@param amount Microsoft.Xna.Framework.Vector2
----@param ignoreContacts? System.Boolean
-function CS.Barotrauma.MapEntity.Move(amount, ignoreContacts) end
-
----@param position Microsoft.Xna.Framework.Vector2
----@return System.Boolean
-function CS.Barotrauma.MapEntity.IsMouseOn(position) end
-
----@param identifier Barotrauma.Identifier
----@return System.Boolean
-function CS.Barotrauma.MapEntity.HasUpgrade(identifier) end
-
----@param identifier Barotrauma.Identifier
----@return Barotrauma.Upgrade
-function CS.Barotrauma.MapEntity.GetUpgrade(identifier) end
-
----@return userdata | { [System.Int32]: Barotrauma.Upgrade } | (fun(): Barotrauma.Upgrade)
-function CS.Barotrauma.MapEntity.GetUpgrades() end
-
----@param upgrade Barotrauma.Upgrade
----@param createNetworkEvent? System.Boolean
-function CS.Barotrauma.MapEntity.SetUpgrade(upgrade, createNetworkEvent) end
-
----@param upgrade Barotrauma.Upgrade
----@param createNetworkEvent? System.Boolean
----@return System.Boolean
-function CS.Barotrauma.MapEntity.AddUpgrade(upgrade, createNetworkEvent) end
-
----@protected
-function CS.Barotrauma.MapEntity.CheckIsHighlighted() end
-
-function CS.Barotrauma.MapEntity.ClearHighlightedEntities() end
-
----@return Barotrauma.MapEntity
-function CS.Barotrauma.MapEntity.Clone() end
-
----@param entitiesToClone userdata | { [System.Int32]: Barotrauma.MapEntity } | (fun(): Barotrauma.MapEntity)
----@return userdata | { [System.Int32]: Barotrauma.MapEntity } | (fun(): Barotrauma.MapEntity)
-function CS.Barotrauma.MapEntity.Clone(entitiesToClone) end
-
----@protected
-function CS.Barotrauma.MapEntity.InsertToList() end
-
-function CS.Barotrauma.MapEntity.ShallowRemove() end
-
-function CS.Barotrauma.MapEntity.Remove() end
-
----@param deltaTime System.Single
----@param cam Barotrauma.Camera
-function CS.Barotrauma.MapEntity.UpdateAll(deltaTime, cam) end
-
----@param deltaTime System.Single
----@param cam Barotrauma.Camera
-function CS.Barotrauma.MapEntity.Update(deltaTime, cam) end
-
----@param relativeToSub System.Boolean
----@param force? System.Boolean
-function CS.Barotrauma.MapEntity.FlipX(relativeToSub, force) end
-
----@param relativeToSub System.Boolean
----@param force? System.Boolean
-function CS.Barotrauma.MapEntity.FlipY(relativeToSub, force) end
-
----@return Barotrauma.Quad2D
-function CS.Barotrauma.MapEntity.GetTransformedQuad() end
-
----@param submarine Barotrauma.Submarine
----@param parentElement System.Xml.Linq.XElement
----@param filePath System.String
----@param idOffset System.Int32
----@return userdata | { [System.Int32]: Barotrauma.MapEntity } | (fun(): Barotrauma.MapEntity)
-function CS.Barotrauma.MapEntity.LoadAll(submarine, parentElement, filePath, idOffset) end
-
----@param entities userdata | { [System.Int32]: Barotrauma.MapEntity } | (fun(): Barotrauma.MapEntity)
----@param updateHulls System.Boolean
-function CS.Barotrauma.MapEntity.MapLoaded(entities, updateHulls) end
-
----@private
----@param entities userdata | { [System.Int32]: Barotrauma.MapEntity } | (fun(): Barotrauma.MapEntity)
-function CS.Barotrauma.MapEntity.CreateDroppedStacks(entities) end
-
----@param entities userdata | (fun(): Barotrauma.MapEntity)
-function CS.Barotrauma.MapEntity.InitializeLoadedLinks(entities) end
-
-function CS.Barotrauma.MapEntity.OnMapLoaded() end
-
----@param parentElement System.Xml.Linq.XElement
----@return System.Xml.Linq.XElement
-function CS.Barotrauma.MapEntity.Save(parentElement) end
-
----@param e Barotrauma.MapEntity
-function CS.Barotrauma.MapEntity.RemoveLinked(e) end
-
-do
----@overload fun(): Barotrauma.MapEntity
----@param prefab Barotrauma.MapEntityPrefab
----@param submarine Barotrauma.Submarine
----@param id System.UInt16
----@return Barotrauma.MapEntity
-local __ctor = function(prefab, submarine, id) end
-CS.Barotrauma.MapEntity = __ctor
-CS.Barotrauma.MapEntity.__new = __ctor
-end
-
----@class Barotrauma.LuaGame: System.Object
----@field IsSingleplayer System.Boolean
----@field IsMultiplayer System.Boolean
----@field SaveFolder System.String
----@field Server Barotrauma.Networking.GameServer
----@field IsDedicated System.Boolean
----@field Paused System.Boolean
----@field ServerSettings Barotrauma.Networking.ServerSettings
----@field RespawnManager Barotrauma.Networking.RespawnManager
----@field MapEntityUpdateInterval System.Int32
----@field GapUpdateInterval System.Int32
----@field PoweredUpdateInterval System.Int32
----@field CharacterUpdateInterval System.Int32
----@field RoundStarted System.Boolean
----@field GameSession Barotrauma.GameSession
----@field NetLobbyScreen Barotrauma.NetLobbyScreen
----@field GameScreen Barotrauma.GameScreen
----@field World FarseerPhysics.Dynamics.World
----@field Peer Barotrauma.Networking.ServerPeer
----@field LuaAddedCommand userdata | (fun(): Barotrauma.DebugConsole.Command)
----@field Commands userdata | { [System.Int32]: Barotrauma.DebugConsole.Command } | (fun(): Barotrauma.DebugConsole.Command)
----@field ForceVoice System.Boolean|nil
----@field ForceLocalVoice System.Boolean|nil
----@field Settings MoonSharp.Interpreter.DynValue
----@field allowWifiChat System.Boolean
----@field overrideTraitors System.Boolean
----@field overrideRespawnSub System.Boolean
----@field overrideSignalRadio System.Boolean
----@field disableSpamFilter System.Boolean
----@field disableDisconnectCharacter System.Boolean
----@field enableControlHusk System.Boolean
----@field UpdatePriorityItems userdata | (fun(): Barotrauma.Item)
----@field UpdatePriorityCharacters userdata | (fun(): Barotrauma.Character)
----@field private luaAddedCommand userdata | { [System.Int32]: Barotrauma.DebugConsole.Command } | (fun(): Barotrauma.DebugConsole.Command)
-CS.Barotrauma.LuaGame = {}
-
----@return System.Boolean
-function CS.Barotrauma.LuaGame.get_IsSingleplayer() end
-
----@return System.Boolean
-function CS.Barotrauma.LuaGame.get_IsMultiplayer() end
-
----@return System.String
-function CS.Barotrauma.LuaGame.get_SaveFolder() end
-
----@return Barotrauma.Networking.GameServer
-function CS.Barotrauma.LuaGame.get_Server() end
-
----@return System.Boolean
-function CS.Barotrauma.LuaGame.get_IsDedicated() end
-
----@return System.Boolean
-function CS.Barotrauma.LuaGame.get_Paused() end
-
----@return Barotrauma.Networking.ServerSettings
-function CS.Barotrauma.LuaGame.get_ServerSettings() end
-
----@return Barotrauma.Networking.RespawnManager
-function CS.Barotrauma.LuaGame.get_RespawnManager() end
-
----@return System.Int32
-function CS.Barotrauma.LuaGame.get_MapEntityUpdateInterval() end
-
----@param value System.Int32
-function CS.Barotrauma.LuaGame.set_MapEntityUpdateInterval(value) end
-
----@return System.Int32
-function CS.Barotrauma.LuaGame.get_GapUpdateInterval() end
-
----@param value System.Int32
-function CS.Barotrauma.LuaGame.set_GapUpdateInterval(value) end
-
----@return System.Int32
-function CS.Barotrauma.LuaGame.get_PoweredUpdateInterval() end
-
----@param value System.Int32
-function CS.Barotrauma.LuaGame.set_PoweredUpdateInterval(value) end
-
----@return System.Int32
-function CS.Barotrauma.LuaGame.get_CharacterUpdateInterval() end
-
----@param value System.Int32
-function CS.Barotrauma.LuaGame.set_CharacterUpdateInterval(value) end
-
----@param item Barotrauma.Item
-function CS.Barotrauma.LuaGame.AddPriorityItem(item) end
-
----@param item Barotrauma.Item
-function CS.Barotrauma.LuaGame.RemovePriorityItem(item) end
-
-function CS.Barotrauma.LuaGame.ClearPriorityItem() end
-
----@param character Barotrauma.Character
-function CS.Barotrauma.LuaGame.AddPriorityCharacter(character) end
-
----@param character Barotrauma.Character
-function CS.Barotrauma.LuaGame.RemovePriorityCharacter(character) end
-
-function CS.Barotrauma.LuaGame.ClearPriorityCharacter() end
-
----@return System.Boolean
-function CS.Barotrauma.LuaGame.get_RoundStarted() end
-
----@return Barotrauma.GameSession
-function CS.Barotrauma.LuaGame.get_GameSession() end
-
----@return Barotrauma.NetLobbyScreen
-function CS.Barotrauma.LuaGame.get_NetLobbyScreen() end
-
----@return Barotrauma.GameScreen
-function CS.Barotrauma.LuaGame.get_GameScreen() end
-
----@return FarseerPhysics.Dynamics.World
-function CS.Barotrauma.LuaGame.get_World() end
-
----@return Barotrauma.Networking.ServerPeer
-function CS.Barotrauma.LuaGame.get_Peer() end
-
----@param o System.Boolean
-function CS.Barotrauma.LuaGame.OverrideTraitors(o) end
-
----@param o System.Boolean
-function CS.Barotrauma.LuaGame.OverrideRespawnSub(o) end
-
----@param o System.Boolean
-function CS.Barotrauma.LuaGame.AllowWifiChat(o) end
-
----@param o System.Boolean
-function CS.Barotrauma.LuaGame.OverrideSignalRadio(o) end
-
----@param o System.Boolean
-function CS.Barotrauma.LuaGame.DisableSpamFilter(o) end
-
----@param o System.Boolean
-function CS.Barotrauma.LuaGame.DisableDisconnectCharacter(o) end
-
----@param o System.Boolean
-function CS.Barotrauma.LuaGame.EnableControlHusk(o) end
-
----@param pos Microsoft.Xna.Framework.Vector2
----@param range? System.Single
----@param force? System.Single
----@param damage? System.Single
----@param structureDamage? System.Single
----@param itemDamage? System.Single
----@param empStrength? System.Single
----@param ballastFloraStrength? System.Single
-function CS.Barotrauma.LuaGame.Explode(pos, range, force, damage, structureDamage, itemDamage, empStrength, ballastFloraStrength) end
-
----@param name System.String
----@param pos Microsoft.Xna.Framework.Vector2
----@param inventory? System.Boolean
----@param character? Barotrauma.Character
----@return System.String
-function CS.Barotrauma.LuaGame.SpawnItem(name, pos, inventory, character) end
-
----@return Barotrauma.ContentPackage[]
-function CS.Barotrauma.LuaGame.GetEnabledContentPackages() end
-
----@param itemNameOrId System.String
----@return Barotrauma.ItemPrefab
-function CS.Barotrauma.LuaGame.GetItemPrefab(itemNameOrId) end
-
----@return Barotrauma.Submarine
-function CS.Barotrauma.LuaGame.GetRespawnSub() end
-
----@param sub Barotrauma.Submarine
----@return Barotrauma.Items.Components.Steering
-function CS.Barotrauma.LuaGame.GetSubmarineSteering(sub) end
-
----@param item Barotrauma.Item
----@return Barotrauma.Items.Components.WifiComponent
-function CS.Barotrauma.LuaGame.GetWifiComponent(item) end
-
----@param item Barotrauma.Item
----@return Barotrauma.Items.Components.LightComponent
-function CS.Barotrauma.LuaGame.GetLightComponent(item) end
-
----@param item Barotrauma.Item
----@return Barotrauma.Items.Components.CustomInterface
-function CS.Barotrauma.LuaGame.GetCustomInterface(item) end
-
----@param item Barotrauma.Item
----@return Barotrauma.Items.Components.Fabricator
-function CS.Barotrauma.LuaGame.GetFabricatorComponent(item) end
-
----@param item Barotrauma.Item
----@return Barotrauma.Items.Components.Holdable
-function CS.Barotrauma.LuaGame.GetHoldableComponent(item) end
-
----@param command System.String
-function CS.Barotrauma.LuaGame.ExecuteCommand(command) end
-
----@param value System.String
----@param stepsTaken? System.Int32
----@param sender? Barotrauma.Character
----@param source? Barotrauma.Item
----@param power? System.Single
----@param strength? System.Single
----@return Barotrauma.Items.Components.Signal
-function CS.Barotrauma.LuaGame.CreateSignal(value, stepsTaken, sender, source, power, strength) end
-
----@return userdata | (fun(): Barotrauma.DebugConsole.Command)
-function CS.Barotrauma.LuaGame.get_LuaAddedCommand() end
-
----@param command Barotrauma.Identifier
----@return System.Boolean
-function CS.Barotrauma.LuaGame.IsCustomCommandPermitted(command) end
-
----@param name System.String
-function CS.Barotrauma.LuaGame.RemoveCommand(name) end
-
----@param name System.String
----@param help System.String
----@param onExecute fun(...: System.Object)
----@param getValidArgs? fun(...: System.Object): System.Object
----@param isCheat? System.Boolean
-function CS.Barotrauma.LuaGame.AddCommand(name, help, onExecute, getValidArgs, isCheat) end
-
----@return userdata | { [System.Int32]: Barotrauma.DebugConsole.Command } | (fun(): Barotrauma.DebugConsole.Command)
-function CS.Barotrauma.LuaGame.get_Commands() end
-
----@param names System.String
----@param onExecute System.Object
-function CS.Barotrauma.LuaGame.AssignOnExecute(names, onExecute) end
-
----@param path System.String
-function CS.Barotrauma.LuaGame.SaveGame(path) end
-
----@param path System.String
-function CS.Barotrauma.LuaGame.LoadGame(path) end
-
----@param path System.String
----@param client? Barotrauma.Networking.Client
-function CS.Barotrauma.LuaGame.LoadCampaign(path, client) end
-
----@param msg System.String
----@param messageType? Barotrauma.Networking.ChatMessageType|nil
----@param sender? Barotrauma.Networking.Client
----@param character? Barotrauma.Character
-function CS.Barotrauma.LuaGame.SendMessage(msg, messageType, sender, character) end
-
----@param message Barotrauma.Networking.WriteOnlyMessage
----@param client Barotrauma.Networking.Client
-function CS.Barotrauma.LuaGame.SendTraitorMessage(message, client) end
-
----@overload fun(chatMessage: Barotrauma.Networking.ChatMessage, client: Barotrauma.Networking.Client)
----@param sendername System.String
----@param text System.String
----@param sender Barotrauma.Character
----@param messageType? Barotrauma.Networking.ChatMessageType
----@param client? Barotrauma.Networking.Client
----@param iconStyle? System.String
-function CS.Barotrauma.LuaGame.SendDirectChatMessage(sendername, text, sender, messageType, client, iconStyle) end
-
----@param message System.String
----@param type Barotrauma.Networking.ServerLog.MessageType
-function CS.Barotrauma.LuaGame.Log(message, type) end
-
-function CS.Barotrauma.LuaGame.DispatchRespawnSub() end
-
----@return Barotrauma.Networking.GameServer.TryStartGameResult
-function CS.Barotrauma.LuaGame.StartGame() end
-
-function CS.Barotrauma.LuaGame.EndGame() end
-
----@param names System.String
----@param onExecute System.Object
-function CS.Barotrauma.LuaGame.AssignOnClientRequestExecute(names, onExecute) end
-
-function CS.Barotrauma.LuaGame.Stop() end
-
-do
----@return Barotrauma.LuaGame
-local __ctor = function() end
-CS.Barotrauma.LuaGame = __ctor
-CS.Barotrauma.LuaGame.__new = __ctor
 end
 
 ---@class Barotrauma.LuaSByte: System.ValueType
@@ -32355,337 +31734,110 @@ CS.Barotrauma.LuaDouble = __ctor
 CS.Barotrauma.LuaDouble.__new = __ctor
 end
 
----@class Barotrauma.LuaUserData: System.Object
-CS.Barotrauma.LuaUserData = {}
+---@class Barotrauma.LuaCsPatch: System.MulticastDelegate, System.ICloneable, System.Runtime.Serialization.ISerializable
+CS.Barotrauma.LuaCsPatch = {}
 
----@param typeName System.String
----@return System.Type
-function CS.Barotrauma.LuaUserData.GetType(typeName) end
-
----@param typeName System.String
----@return MoonSharp.Interpreter.Interop.IUserDataDescriptor
-function CS.Barotrauma.LuaUserData.RegisterType(typeName) end
-
----@param typeName System.String
-function CS.Barotrauma.LuaUserData.RegisterExtensionType(typeName) end
-
----@param typeName System.String
----@return System.Boolean
-function CS.Barotrauma.LuaUserData.IsRegistered(typeName) end
-
----@param typeName System.String
----@param deleteHistory? System.Boolean
-function CS.Barotrauma.LuaUserData.UnregisterType(typeName, deleteHistory) end
-
----@param typeName System.String
----@param ... System.String
----@return MoonSharp.Interpreter.Interop.IUserDataDescriptor
-function CS.Barotrauma.LuaUserData.RegisterGenericType(typeName, ...) end
-
----@param typeName System.String
----@param ... System.String
-function CS.Barotrauma.LuaUserData.UnregisterGenericType(typeName, ...) end
-
----@param obj System.Object
----@param typeName System.String
----@return System.Boolean
-function CS.Barotrauma.LuaUserData.IsTargetType(obj, typeName) end
-
----@param obj System.Object
----@return System.String
-function CS.Barotrauma.LuaUserData.TypeOf(obj) end
-
----@param typeName System.String
+---@param self System.Object
+---@param args userdata | { [System.String]: System.Object } | (fun(): userdata)
 ---@return System.Object
-function CS.Barotrauma.LuaUserData.CreateStatic(typeName) end
+function CS.Barotrauma.LuaCsPatch.Invoke(self, args) end
 
----@param typeName System.String
+---@param self System.Object
+---@param args userdata | { [System.String]: System.Object } | (fun(): userdata)
+---@param callback fun(ar: System.IAsyncResult)
+---@param object System.Object
+---@return System.IAsyncResult
+function CS.Barotrauma.LuaCsPatch.BeginInvoke(self, args, callback, object) end
+
+---@param result System.IAsyncResult
 ---@return System.Object
-function CS.Barotrauma.LuaUserData.CreateEnumTable(typeName) end
-
----@private
----@param type System.Type
----@param fieldName System.String
----@return System.Reflection.FieldInfo
-function CS.Barotrauma.LuaUserData.FindFieldRecursively(type, fieldName) end
-
----@param IUUD MoonSharp.Interpreter.Interop.IUserDataDescriptor
----@param fieldName System.String
-function CS.Barotrauma.LuaUserData.MakeFieldAccessible(IUUD, fieldName) end
-
----@private
----@param type System.Type
----@param methodName System.String
----@param types? System.Type[]
----@return System.Reflection.MethodInfo
-function CS.Barotrauma.LuaUserData.FindMethodRecursively(type, methodName, types) end
-
----@param IUUD MoonSharp.Interpreter.Interop.IUserDataDescriptor
----@param methodName System.String
----@param parameters? System.String[]
-function CS.Barotrauma.LuaUserData.MakeMethodAccessible(IUUD, methodName, parameters) end
-
----@private
----@param type System.Type
----@param propertyName System.String
----@return System.Reflection.PropertyInfo
-function CS.Barotrauma.LuaUserData.FindPropertyRecursively(type, propertyName) end
-
----@param IUUD MoonSharp.Interpreter.Interop.IUserDataDescriptor
----@param propertyName System.String
-function CS.Barotrauma.LuaUserData.MakePropertyAccessible(IUUD, propertyName) end
-
----@param IUUD MoonSharp.Interpreter.Interop.IUserDataDescriptor
----@param methodName System.String
----@param __function__ System.Object
-function CS.Barotrauma.LuaUserData.AddMethod(IUUD, methodName, __function__) end
-
----@param IUUD MoonSharp.Interpreter.Interop.IUserDataDescriptor
----@param fieldName System.String
----@param value MoonSharp.Interpreter.DynValue
-function CS.Barotrauma.LuaUserData.AddField(IUUD, fieldName, value) end
-
----@param IUUD MoonSharp.Interpreter.Interop.IUserDataDescriptor
----@param memberName System.String
-function CS.Barotrauma.LuaUserData.RemoveMember(IUUD, memberName) end
-
----@param obj System.Object
----@param memberName System.String
----@return System.Boolean
-function CS.Barotrauma.LuaUserData.HasMember(obj, memberName) end
-
----@param scriptObject MoonSharp.Interpreter.DynValue
----@param desiredTypeDescriptor MoonSharp.Interpreter.Interop.IUserDataDescriptor
----@return MoonSharp.Interpreter.DynValue
-function CS.Barotrauma.LuaUserData.CreateUserDataFromDescriptor(scriptObject, desiredTypeDescriptor) end
-
----@param scriptObject MoonSharp.Interpreter.DynValue
----@param desiredType System.Type
----@return MoonSharp.Interpreter.DynValue
-function CS.Barotrauma.LuaUserData.CreateUserDataFromType(scriptObject, desiredType) end
+function CS.Barotrauma.LuaCsPatch.EndInvoke(result) end
 
 do
----@return Barotrauma.LuaUserData
-local __ctor = function() end
-CS.Barotrauma.LuaUserData = __ctor
-CS.Barotrauma.LuaUserData.__new = __ctor
+---@param object System.Object
+---@param method System.IntPtr
+---@return Barotrauma.LuaCsPatch
+local __ctor = function(object, method) end
+CS.Barotrauma.LuaCsPatch = __ctor
+CS.Barotrauma.LuaCsPatch.__new = __ctor
 end
 
----@class Barotrauma.AssemblyManager: System.Object
----@field StillUnloadingACLs userdata | { [System.Int32]: userdata } | (fun(): userdata)
----@field IsCurrentlyUnloading System.Boolean
----@field private _subTypesLookupCache userdata | { [System.String]: userdata | { [System.Int32]: System.Type } | (fun(): System.Type) } | (fun(): userdata)
----@field private _defaultContextTypes userdata | { [System.String]: System.Type } | (fun(): userdata)
----@field private LoadedACLs userdata | { [System.Guid]: Barotrauma.AssemblyManager.LoadedACL } | (fun(): userdata)
----@field private UnloadingACLs userdata | { [System.Int32]: userdata } | (fun(): userdata)
----@field private OpsLockLoaded System.Threading.ReaderWriterLockSlim
----@field private OpsLockUnloaded System.Threading.ReaderWriterLockSlim
-CS.Barotrauma.AssemblyManager = {}
+---@class Barotrauma.LuaCsAction: System.MulticastDelegate, System.ICloneable, System.Runtime.Serialization.ISerializable
+CS.Barotrauma.LuaCsAction = {}
 
----@return userdata | { [System.Int32]: userdata } | (fun(): userdata)
-function CS.Barotrauma.AssemblyManager.get_StillUnloadingACLs() end
+---@param ... System.Object
+function CS.Barotrauma.LuaCsAction.Invoke(...) end
 
----@return System.Boolean
-function CS.Barotrauma.AssemblyManager.get_IsCurrentlyUnloading() end
+---@param args System.Object[]
+---@param callback fun(ar: System.IAsyncResult)
+---@param object System.Object
+---@return System.IAsyncResult
+function CS.Barotrauma.LuaCsAction.BeginInvoke(args, callback, object) end
 
----@param id System.Guid
----@param types userdata | (fun(): System.Type)
----@return System.Boolean
-function CS.Barotrauma.AssemblyManager.TryGetSubTypesFromACL(id, types) end
-
----@param typeName System.String
----@return userdata | (fun(): System.Type)
-function CS.Barotrauma.AssemblyManager.GetTypesByName(typeName) end
-
----@return userdata | (fun(): System.Type)
-function CS.Barotrauma.AssemblyManager.GetAllTypesInLoadedAssemblies() end
-
----@return userdata | (fun(): Barotrauma.AssemblyManager.LoadedACL)
-function CS.Barotrauma.AssemblyManager.GetAllLoadedACLs() end
-
----@package
----@return userdata | { [System.Int32]: Barotrauma.AssemblyManager.LoadedACL } | (fun(): Barotrauma.AssemblyManager.LoadedACL)
-function CS.Barotrauma.AssemblyManager.UnsafeGetAllLoadedACLs() end
-
----@param compiledAssemblyName System.String
----@param syntaxTree userdata | (fun(): Microsoft.CodeAnalysis.SyntaxTree)
----@param externalMetadataReferences userdata | (fun(): Microsoft.CodeAnalysis.MetadataReference)
----@param compilationOptions Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
----@param friendlyName System.String
----@param id System.Guid
----@param externFileAssemblyRefs? userdata | (fun(): System.Reflection.Assembly)
----@return Barotrauma.AssemblyLoadingSuccessState
-function CS.Barotrauma.AssemblyManager.LoadAssemblyFromMemory(compiledAssemblyName, syntaxTree, externalMetadataReferences, compilationOptions, friendlyName, id, externFileAssemblyRefs) end
-
----@param guid System.Guid
----@return System.Boolean
-function CS.Barotrauma.AssemblyManager.SetACLToTemplateMode(guid) end
-
----@param filePaths userdata | (fun(): System.String)
----@param friendlyName System.String
----@param id System.Guid
----@return Barotrauma.AssemblyLoadingSuccessState
-function CS.Barotrauma.AssemblyManager.LoadAssembliesFromLocations(filePaths, friendlyName, id) end
-
----@return System.Boolean
-function CS.Barotrauma.AssemblyManager.TryBeginDispose() end
-
----@return System.Boolean
-function CS.Barotrauma.AssemblyManager.FinalizeDispose() end
-
----@param id System.Guid
----@param acl Barotrauma.AssemblyManager.LoadedACL
----@return System.Boolean
-function CS.Barotrauma.AssemblyManager.TryGetACL(id, acl) end
-
----@private
----@param id System.Guid
----@param friendlyName System.String
----@param acl Barotrauma.AssemblyManager.LoadedACL
----@return System.Boolean
-function CS.Barotrauma.AssemblyManager.GetOrCreateACL(id, friendlyName, acl) end
-
----@private
----@param id System.Guid
----@return System.Boolean
-function CS.Barotrauma.AssemblyManager.DisposeACL(id) end
-
----@private
-function CS.Barotrauma.AssemblyManager.RebuildTypesList() end
+---@param result System.IAsyncResult
+function CS.Barotrauma.LuaCsAction.EndInvoke(result) end
 
 do
----@package
----@return Barotrauma.AssemblyManager
-local __ctor = function() end
-CS.Barotrauma.AssemblyManager = __ctor
-CS.Barotrauma.AssemblyManager.__new = __ctor
+---@param object System.Object
+---@param method System.IntPtr
+---@return Barotrauma.LuaCsAction
+local __ctor = function(object, method) end
+CS.Barotrauma.LuaCsAction = __ctor
+CS.Barotrauma.LuaCsAction.__new = __ctor
 end
 
----@class Barotrauma.CsPackageManager: System.Object
----@field AssembliesLoaded System.Boolean
----@field PluginsPreInit System.Boolean
----@field PluginsInitialized System.Boolean
----@field PluginsLoaded System.Boolean
----@field private _publicizedAssembliesToLoad System.String[]
----@field private _assemblyUnloadTimeoutSeconds System.Single
----@field private _publicizedAssemblyLoader System.Guid
----@field private _currentPackagesByLoadOrder userdata | { [System.Int32]: Barotrauma.ContentPackage } | (fun(): Barotrauma.ContentPackage)
----@field private _packagesDependencies userdata | { [Barotrauma.ContentPackage]: userdata | { [System.Int32]: Barotrauma.ContentPackage } | (fun(): Barotrauma.ContentPackage) } | (fun(): userdata)
----@field private _loadedCompiledPackageAssemblies userdata | { [Barotrauma.ContentPackage]: System.Guid } | (fun(): userdata)
----@field private _reverseLookupGuidList userdata | { [System.Guid]: Barotrauma.ContentPackage } | (fun(): userdata)
----@field private _loadedPlugins userdata | { [System.Guid]: userdata | (fun(): Barotrauma.IAssemblyPlugin) } | (fun(): userdata)
----@field private _pluginTypes userdata | { [System.Guid]: userdata | (fun(): System.Type) } | (fun(): userdata)
----@field private _packageRunConfigs userdata | { [Barotrauma.ContentPackage]: Barotrauma.RunConfig } | (fun(): userdata)
----@field private _luaRegisteredTypes userdata | { [System.Guid]: userdata | { [System.Int32]: System.Type } | (fun(): System.Type) } | (fun(): userdata)
----@field private _assemblyManager Barotrauma.AssemblyManager
----@field private _luaCsSetup Barotrauma.LuaCsSetup
----@field private _assemblyUnloadStartTime System.DateTime
----@field private ScriptParseOptions Microsoft.CodeAnalysis.CSharp.CSharpParseOptions
----@field private CompilationOptions Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
----@field private BaseAssemblyImports Microsoft.CodeAnalysis.SyntaxTree
----@field private PLATFORM_TARGET System.String
----@field private ARCHITECTURE_TARGET System.String
----@field private SCRIPT_FILE_REGEX System.String
----@field private ASSEMBLY_FILE_REGEX System.String
-CS.Barotrauma.CsPackageManager = {}
+---@class Barotrauma.LuaCsFunc: System.MulticastDelegate, System.ICloneable, System.Runtime.Serialization.ISerializable
+CS.Barotrauma.LuaCsFunc = {}
 
----@param name System.String
----@param caseSensitive? System.Boolean
----@return System.Boolean
-function CS.Barotrauma.CsPackageManager.LuaTryRegisterPackageTypes(name, caseSensitive) end
+---@param ... System.Object
+---@return System.Object
+function CS.Barotrauma.LuaCsFunc.Invoke(...) end
 
----@return userdata | (fun(): Barotrauma.ContentPackage)
-function CS.Barotrauma.CsPackageManager.GetCurrentPackagesByLoadOrder() end
+---@param args System.Object[]
+---@param callback fun(ar: System.IAsyncResult)
+---@param object System.Object
+---@return System.IAsyncResult
+function CS.Barotrauma.LuaCsFunc.BeginInvoke(args, callback, object) end
 
----@param package Barotrauma.ContentPackage
----@param loadedPlugins userdata | (fun(): Barotrauma.IAssemblyPlugin)
----@return System.Boolean
-function CS.Barotrauma.CsPackageManager.TryGetLoadedPluginsForPackage(package, loadedPlugins) end
-
-function CS.Barotrauma.CsPackageManager.Dispose() end
-
----@return Barotrauma.AssemblyLoadingSuccessState
-function CS.Barotrauma.CsPackageManager.LoadAssemblyPackages() end
-
-function CS.Barotrauma.CsPackageManager.RunPluginsInit() end
-
-function CS.Barotrauma.CsPackageManager.RunPluginsPreInit() end
-
----@param force? System.Boolean
-function CS.Barotrauma.CsPackageManager.InstantiatePlugins(force) end
-
-function CS.Barotrauma.CsPackageManager.UnloadPlugins() end
-
----@param package Barotrauma.ContentPackage
----@param config Barotrauma.RunConfig
----@return System.Boolean
-function CS.Barotrauma.CsPackageManager.GetOrCreateRunConfig(package, config) end
-
----@private
----@param action fun()
----@param messageMethodName System.String
----@param messageTypeName System.String
-function CS.Barotrauma.CsPackageManager.TryRun(action, messageMethodName, messageTypeName) end
-
----@private
----@param assembly System.Reflection.Assembly
-function CS.Barotrauma.CsPackageManager.AssemblyManagerOnAssemblyUnloading(assembly) end
-
----@private
----@param assembly System.Reflection.Assembly
-function CS.Barotrauma.CsPackageManager.AssemblyManagerOnAssemblyLoaded(assembly) end
-
----@protected
-function CS.Barotrauma.CsPackageManager.Finalize() end
-
----@private
----@param package Barotrauma.ContentPackage
----@param scriptFilePaths userdata | { [System.Int32]: System.String } | (fun(): System.String)
----@return System.Boolean
-function CS.Barotrauma.CsPackageManager.TryScanPackageForScripts(package, scriptFilePaths) end
-
----@private
----@param package Barotrauma.ContentPackage
----@param assemblyFilePaths userdata | { [System.Int32]: System.String } | (fun(): System.String)
----@return System.Boolean
-function CS.Barotrauma.CsPackageManager.TryScanPackagesForAssemblies(package, assemblyFilePaths) end
-
----@private
----@param package Barotrauma.ContentPackage
----@return Barotrauma.RunConfig
-function CS.Barotrauma.CsPackageManager.GetRunConfigForPackage(package) end
-
----@private
----@return userdata | (fun(): Barotrauma.ContentPackage)
-function CS.Barotrauma.CsPackageManager.BuildPackagesList() end
-
----@private
----@return Microsoft.CodeAnalysis.SyntaxTree
-function CS.Barotrauma.CsPackageManager.GetPackageScriptImports() end
-
----@private
----@param packages userdata | { [System.Int32]: Barotrauma.ContentPackage } | (fun(): Barotrauma.ContentPackage)
----@param dependenciesMap userdata | { [Barotrauma.ContentPackage]: userdata | { [System.Int32]: Barotrauma.ContentPackage } | (fun(): Barotrauma.ContentPackage) } | (fun(): userdata)
----@return System.Boolean
-function CS.Barotrauma.CsPackageManager.TryBuildDependenciesMap(packages, dependenciesMap) end
-
----@private
----@param packages userdata | { [Barotrauma.ContentPackage]: userdata | { [System.Int32]: Barotrauma.ContentPackage } | (fun(): Barotrauma.ContentPackage) } | (fun(): userdata)
----@param readyToLoad userdata | (fun(): Barotrauma.ContentPackage)
----@param cannotLoadPackages userdata | (fun(): userdata)
----@param packageChecksPredicate? fun(arg: Barotrauma.ContentPackage): System.Boolean
----@return System.Boolean
-function CS.Barotrauma.CsPackageManager.OrderAndFilterPackagesByDependencies(packages, readyToLoad, cannotLoadPackages, packageChecksPredicate) end
+---@param result System.IAsyncResult
+---@return System.Object
+function CS.Barotrauma.LuaCsFunc.EndInvoke(result) end
 
 do
----@package
----@overload fun(): Barotrauma.CsPackageManager
----@param assemblyManager Barotrauma.AssemblyManager
----@param luaCsSetup Barotrauma.LuaCsSetup
----@return Barotrauma.CsPackageManager
-local __ctor = function(assemblyManager, luaCsSetup) end
-CS.Barotrauma.CsPackageManager = __ctor
-CS.Barotrauma.CsPackageManager.__new = __ctor
+---@param object System.Object
+---@param method System.IntPtr
+---@return Barotrauma.LuaCsFunc
+local __ctor = function(object, method) end
+CS.Barotrauma.LuaCsFunc = __ctor
+CS.Barotrauma.LuaCsFunc.__new = __ctor
+end
+
+---@class Barotrauma.LuaCsPatchFunc: System.MulticastDelegate, System.ICloneable, System.Runtime.Serialization.ISerializable
+CS.Barotrauma.LuaCsPatchFunc = {}
+
+---@param instance System.Object
+---@param ptable Barotrauma.LuaCs.LuaPatcherService.ParameterTable
+---@return MoonSharp.Interpreter.DynValue
+function CS.Barotrauma.LuaCsPatchFunc.Invoke(instance, ptable) end
+
+---@param instance System.Object
+---@param ptable Barotrauma.LuaCs.LuaPatcherService.ParameterTable
+---@param callback fun(ar: System.IAsyncResult)
+---@param object System.Object
+---@return System.IAsyncResult
+function CS.Barotrauma.LuaCsPatchFunc.BeginInvoke(instance, ptable, callback, object) end
+
+---@param result System.IAsyncResult
+---@return MoonSharp.Interpreter.DynValue
+function CS.Barotrauma.LuaCsPatchFunc.EndInvoke(result) end
+
+do
+---@param object System.Object
+---@param method System.IntPtr
+---@return Barotrauma.LuaCsPatchFunc
+local __ctor = function(object, method) end
+CS.Barotrauma.LuaCsPatchFunc = __ctor
+CS.Barotrauma.LuaCsPatchFunc.__new = __ctor
 end
 
 ---@class Barotrauma.CoreEntityPrefab: Barotrauma.MapEntityPrefab
@@ -32761,7 +31913,7 @@ CS.Barotrauma.BallastFloraPrefab = __ctor
 CS.Barotrauma.BallastFloraPrefab.__new = __ctor
 end
 
----@class Barotrauma.DummyFireSource: Barotrauma.FireSource
+---@class Barotrauma.DummyFireSource: Barotrauma.FireSource, Barotrauma.ISpatialEntity
 ---@field protected SpreadToOtherHullsProbability System.Single
 ---@field DamageRange System.Single
 ---@field private maxSize Microsoft.Xna.Framework.Vector2
@@ -32798,7 +31950,7 @@ CS.Barotrauma.DummyFireSource = __ctor
 CS.Barotrauma.DummyFireSource.__new = __ctor
 end
 
----@class Barotrauma.Entity: System.Object
+---@class Barotrauma.Entity: System.Object, Barotrauma.ISpatialEntity
 ---@field EntityCount System.Int32
 ---@field Removed System.Boolean
 ---@field IdFreed System.Boolean
@@ -33045,7 +32197,7 @@ CS.Barotrauma.Explosion = __ctor
 CS.Barotrauma.Explosion.__new = __ctor
 end
 
----@class Barotrauma.FireSource: System.Object
+---@class Barotrauma.FireSource: System.Object, Barotrauma.ISpatialEntity
 ---@field protected SpreadToOtherHullsProbability System.Single
 ---@field Submarine Barotrauma.Submarine
 ---@field Position Microsoft.Xna.Framework.Vector2
@@ -33173,7 +32325,7 @@ CS.Barotrauma.FireSource = __ctor
 CS.Barotrauma.FireSource.__new = __ctor
 end
 
----@class Barotrauma.Gap: Barotrauma.MapEntity
+---@class Barotrauma.Gap: Barotrauma.MapEntity, Barotrauma.ISpatialEntity, Barotrauma.ISerializableEntity
 ---@field IsHorizontal System.Boolean
 ---@field IsDiagonal System.Boolean
 ---@field Open System.Single
@@ -33484,7 +32636,7 @@ CS.Barotrauma.Biome = __ctor
 CS.Barotrauma.Biome.__new = __ctor
 end
 
----@class Barotrauma.CaveGenerationParams: Barotrauma.PrefabWithUintIdentifier
+---@class Barotrauma.CaveGenerationParams: Barotrauma.PrefabWithUintIdentifier, Barotrauma.ISerializableEntity
 ---@field Name System.String
 ---@field SerializableProperties userdata | { [Barotrauma.Identifier]: Barotrauma.SerializableProperty } | (fun(): userdata)
 ---@field Commonness System.Single
@@ -33573,7 +32725,7 @@ CS.Barotrauma.CaveGenerationParams = __ctor
 CS.Barotrauma.CaveGenerationParams.__new = __ctor
 end
 
----@class Barotrauma.DestructibleLevelWall: Barotrauma.LevelWall
+---@class Barotrauma.DestructibleLevelWall: Barotrauma.LevelWall, System.IDisposable, Barotrauma.IDamageable
 ---@field Damage System.Single
 ---@field MaxHealth System.Single
 ---@field Destroyed System.Boolean
@@ -33710,7 +32862,7 @@ CS.Barotrauma.LevelData = __ctor
 CS.Barotrauma.LevelData.__new = __ctor
 end
 
----@class Barotrauma.LevelGenerationParams: Barotrauma.PrefabWithUintIdentifier
+---@class Barotrauma.LevelGenerationParams: Barotrauma.PrefabWithUintIdentifier, Barotrauma.ISerializableEntity
 ---@field DisplayName Barotrauma.LocalizedString
 ---@field Description Barotrauma.LocalizedString
 ---@field Name System.String
@@ -34014,7 +33166,7 @@ CS.Barotrauma.LevelGenerationParams = __ctor
 CS.Barotrauma.LevelGenerationParams.__new = __ctor
 end
 
----@class Barotrauma.LevelObject: System.Object
+---@class Barotrauma.LevelObject: System.Object, Barotrauma.ISpatialEntity, Barotrauma.IDamageable, Barotrauma.ISerializableEntity
 ---@field PhysicsBody Barotrauma.PhysicsBody
 ---@field Triggers userdata | { [System.Int32]: Barotrauma.LevelTrigger } | (fun(): Barotrauma.LevelTrigger)
 ---@field NeedsNetworkSyncing System.Boolean
@@ -34098,7 +33250,7 @@ CS.Barotrauma.LevelObject = __ctor
 CS.Barotrauma.LevelObject.__new = __ctor
 end
 
----@class Barotrauma.LevelObjectManager: Barotrauma.Entity
+---@class Barotrauma.LevelObjectManager: Barotrauma.Entity, Barotrauma.ISpatialEntity, Barotrauma.Networking.IServerSerializable, Barotrauma.Networking.INetSerializable
 ---@field GlobalForceDecreaseTimer System.Single
 ---@field private objects userdata | { [System.Int32]: Barotrauma.LevelObject } | (fun(): Barotrauma.LevelObject)
 ---@field private updateableObjects userdata | { [System.Int32]: Barotrauma.LevelObject } | (fun(): Barotrauma.LevelObject)
@@ -34177,7 +33329,7 @@ CS.Barotrauma.LevelObjectManager = __ctor
 CS.Barotrauma.LevelObjectManager.__new = __ctor
 end
 
----@class Barotrauma.LevelObjectPrefab: Barotrauma.PrefabWithUintIdentifier
+---@class Barotrauma.LevelObjectPrefab: Barotrauma.PrefabWithUintIdentifier, Barotrauma.ISerializableEntity
 ---@field Sprites userdata | { [System.Int32]: Barotrauma.Sprite } | (fun(): Barotrauma.Sprite)
 ---@field DeformableSprite Barotrauma.DeformableSprite
 ---@field MinSize System.Single
@@ -34463,7 +33615,7 @@ CS.Barotrauma.LevelTrigger = __ctor
 CS.Barotrauma.LevelTrigger.__new = __ctor
 end
 
----@class Barotrauma.LevelWall: System.Object
+---@class Barotrauma.LevelWall: System.Object, System.IDisposable
 ---@field Cells userdata | { [System.Int32]: Voronoi2.VoronoiCell } | (fun(): Voronoi2.VoronoiCell)
 ---@field Body FarseerPhysics.Dynamics.Body
 ---@field MoveAmount Microsoft.Xna.Framework.Vector2
@@ -34563,7 +33715,7 @@ CS.Barotrauma.LinkedSubmarinePrefab = __ctor
 CS.Barotrauma.LinkedSubmarinePrefab.__new = __ctor
 end
 
----@class Barotrauma.LinkedSubmarine: Barotrauma.MapEntity
+---@class Barotrauma.LinkedSubmarine: Barotrauma.MapEntity, Barotrauma.ISpatialEntity
 ---@field LoadSub System.Boolean
 ---@field OriginalLinkedToID System.UInt16
 ---@field Sub Barotrauma.Submarine
@@ -34634,6 +33786,277 @@ do
 local __ctor = function(submarine, id) end
 CS.Barotrauma.LinkedSubmarine = __ctor
 CS.Barotrauma.LinkedSubmarine.__new = __ctor
+end
+
+---@class Barotrauma.MapEntity: Barotrauma.Entity, Barotrauma.ISpatialEntity
+---@field DisallowedUpgrades System.String
+---@field FlippedX System.Boolean
+---@field FlippedY System.Boolean
+---@field HighlightedEntities userdata | (fun(): Barotrauma.MapEntity)
+---@field ExternalHighlight System.Boolean
+---@field IsHighlighted System.Boolean
+---@field RotationRad System.Single
+---@field RotationRadWithFlipping System.Single
+---@field RotationWithFlipping System.Single
+---@field Rect Microsoft.Xna.Framework.Rectangle
+---@field WorldRect Microsoft.Xna.Framework.Rectangle
+---@field Sprite Barotrauma.Sprite
+---@field DrawBelowWater System.Boolean
+---@field DrawOverWater System.Boolean
+---@field Linkable System.Boolean
+---@field AllowedLinks userdata | (fun(): Barotrauma.Identifier)
+---@field ResizeHorizontal System.Boolean
+---@field ResizeVertical System.Boolean
+---@field RectWidth System.Int32
+---@field RectHeight System.Int32
+---@field SpriteDepthOverrideIsSet System.Boolean
+---@field SpriteOverrideDepth System.Single
+---@field SpriteDepth System.Single
+---@field Scale System.Single
+---@field HiddenInGame System.Boolean
+---@field IsLayerHidden System.Boolean
+---@field IsHidden System.Boolean
+---@field Position Microsoft.Xna.Framework.Vector2
+---@field SimPosition Microsoft.Xna.Framework.Vector2
+---@field SoundRange System.Single
+---@field SightRange System.Single
+---@field RemoveIfLinkedOutpostDoorInUse System.Boolean
+---@field Layer System.String
+---@field Name System.String
+---@field Prefab Barotrauma.MapEntityPrefab
+---@field protected linkedToID userdata | { [System.Int32]: System.UInt16 } | (fun(): System.UInt16)
+---@field unresolvedLinkedToID userdata | { [System.Int32]: System.UInt16 } | (fun(): System.UInt16)
+---@field protected Upgrades userdata | { [System.Int32]: Barotrauma.Upgrade } | (fun(): Barotrauma.Upgrade)
+---@field DisallowedUpgradeSet userdata | (fun(): Barotrauma.Identifier)
+---@field linkedTo userdata | { [System.Int32]: Barotrauma.MapEntity } | (fun(): Barotrauma.MapEntity)
+---@field ShouldBeSaved System.Boolean
+---@field protected rect Microsoft.Xna.Framework.Rectangle
+---@field private externalHighlight System.Boolean
+---@field private isHighlighted System.Boolean
+---@field private _spriteOverrideDepth System.Single
+---@field OriginalModuleIndex System.Int32
+---@field OriginalContainerIndex System.Int32
+---@field private mapLoadedCalled System.Boolean
+---@field MapEntityList userdata | { [System.Int32]: Barotrauma.MapEntity } | (fun(): Barotrauma.MapEntity)
+---@field MapEntityUpdateInterval System.Int32
+---@field PoweredUpdateInterval System.Int32
+---@field private mapEntityUpdateTick System.Int32
+---@field protected highlightedEntities userdata | (fun(): Barotrauma.MapEntity)
+---@field private tempHighlightedEntities userdata | { [System.Int32]: Barotrauma.MapEntity } | (fun(): Barotrauma.MapEntity)
+CS.Barotrauma.MapEntity = {}
+
+---@return System.String
+function CS.Barotrauma.MapEntity.get_DisallowedUpgrades() end
+
+---@param value System.String
+function CS.Barotrauma.MapEntity.set_DisallowedUpgrades(value) end
+
+---@return userdata | (fun(): Barotrauma.MapEntity)
+function CS.Barotrauma.MapEntity.get_HighlightedEntities() end
+
+---@return System.Boolean
+function CS.Barotrauma.MapEntity.get_ExternalHighlight() end
+
+---@param value System.Boolean
+function CS.Barotrauma.MapEntity.set_ExternalHighlight(value) end
+
+---@return System.Boolean
+function CS.Barotrauma.MapEntity.get_IsHighlighted() end
+
+---@param value System.Boolean
+function CS.Barotrauma.MapEntity.set_IsHighlighted(value) end
+
+---@return System.Single
+function CS.Barotrauma.MapEntity.get_RotationRadWithFlipping() end
+
+---@return System.Single
+function CS.Barotrauma.MapEntity.get_RotationWithFlipping() end
+
+---@return Microsoft.Xna.Framework.Rectangle
+function CS.Barotrauma.MapEntity.get_Rect() end
+
+---@param value Microsoft.Xna.Framework.Rectangle
+function CS.Barotrauma.MapEntity.set_Rect(value) end
+
+---@return Microsoft.Xna.Framework.Rectangle
+function CS.Barotrauma.MapEntity.get_WorldRect() end
+
+---@return Barotrauma.Sprite
+function CS.Barotrauma.MapEntity.get_Sprite() end
+
+---@return System.Boolean
+function CS.Barotrauma.MapEntity.get_DrawBelowWater() end
+
+---@return System.Boolean
+function CS.Barotrauma.MapEntity.get_DrawOverWater() end
+
+---@return System.Boolean
+function CS.Barotrauma.MapEntity.get_Linkable() end
+
+---@return userdata | (fun(): Barotrauma.Identifier)
+function CS.Barotrauma.MapEntity.get_AllowedLinks() end
+
+---@return System.Boolean
+function CS.Barotrauma.MapEntity.get_ResizeHorizontal() end
+
+---@return System.Boolean
+function CS.Barotrauma.MapEntity.get_ResizeVertical() end
+
+---@return System.Int32
+function CS.Barotrauma.MapEntity.get_RectWidth() end
+
+---@param value System.Int32
+function CS.Barotrauma.MapEntity.set_RectWidth(value) end
+
+---@return System.Int32
+function CS.Barotrauma.MapEntity.get_RectHeight() end
+
+---@param value System.Int32
+function CS.Barotrauma.MapEntity.set_RectHeight(value) end
+
+---@return System.Single
+function CS.Barotrauma.MapEntity.get_SpriteOverrideDepth() end
+
+---@return System.Single
+function CS.Barotrauma.MapEntity.get_SpriteDepth() end
+
+---@param value System.Single
+function CS.Barotrauma.MapEntity.set_SpriteDepth(value) end
+
+---@return System.Boolean
+function CS.Barotrauma.MapEntity.get_IsHidden() end
+
+---@return Microsoft.Xna.Framework.Vector2
+function CS.Barotrauma.MapEntity.get_Position() end
+
+---@return Microsoft.Xna.Framework.Vector2
+function CS.Barotrauma.MapEntity.get_SimPosition() end
+
+---@return System.Single
+function CS.Barotrauma.MapEntity.get_SoundRange() end
+
+---@param value System.Single
+function CS.Barotrauma.MapEntity.set_SoundRange(value) end
+
+---@return System.Single
+function CS.Barotrauma.MapEntity.get_SightRange() end
+
+---@param value System.Single
+function CS.Barotrauma.MapEntity.set_SightRange(value) end
+
+---@return System.String
+function CS.Barotrauma.MapEntity.get_Name() end
+
+---@protected
+---@param element System.Xml.Linq.XElement
+---@param idRemap Barotrauma.IdRemap
+function CS.Barotrauma.MapEntity.ParseLinks(element, idRemap) end
+
+---@param childRemap Barotrauma.IdRemap
+function CS.Barotrauma.MapEntity.ResolveLinks(childRemap) end
+
+---@param amount Microsoft.Xna.Framework.Vector2
+---@param ignoreContacts? System.Boolean
+function CS.Barotrauma.MapEntity.Move(amount, ignoreContacts) end
+
+---@param position Microsoft.Xna.Framework.Vector2
+---@return System.Boolean
+function CS.Barotrauma.MapEntity.IsMouseOn(position) end
+
+---@param identifier Barotrauma.Identifier
+---@return System.Boolean
+function CS.Barotrauma.MapEntity.HasUpgrade(identifier) end
+
+---@param identifier Barotrauma.Identifier
+---@return Barotrauma.Upgrade
+function CS.Barotrauma.MapEntity.GetUpgrade(identifier) end
+
+---@return userdata | { [System.Int32]: Barotrauma.Upgrade } | (fun(): Barotrauma.Upgrade)
+function CS.Barotrauma.MapEntity.GetUpgrades() end
+
+---@param upgrade Barotrauma.Upgrade
+---@param createNetworkEvent? System.Boolean
+function CS.Barotrauma.MapEntity.SetUpgrade(upgrade, createNetworkEvent) end
+
+---@param upgrade Barotrauma.Upgrade
+---@param createNetworkEvent? System.Boolean
+---@return System.Boolean
+function CS.Barotrauma.MapEntity.AddUpgrade(upgrade, createNetworkEvent) end
+
+---@protected
+function CS.Barotrauma.MapEntity.CheckIsHighlighted() end
+
+function CS.Barotrauma.MapEntity.ClearHighlightedEntities() end
+
+---@return Barotrauma.MapEntity
+function CS.Barotrauma.MapEntity.Clone() end
+
+---@param entitiesToClone userdata | { [System.Int32]: Barotrauma.MapEntity } | (fun(): Barotrauma.MapEntity)
+---@return userdata | { [System.Int32]: Barotrauma.MapEntity } | (fun(): Barotrauma.MapEntity)
+function CS.Barotrauma.MapEntity.Clone(entitiesToClone) end
+
+---@protected
+function CS.Barotrauma.MapEntity.InsertToList() end
+
+function CS.Barotrauma.MapEntity.ShallowRemove() end
+
+function CS.Barotrauma.MapEntity.Remove() end
+
+---@param deltaTime System.Single
+---@param cam Barotrauma.Camera
+function CS.Barotrauma.MapEntity.UpdateAll(deltaTime, cam) end
+
+---@param deltaTime System.Single
+---@param cam Barotrauma.Camera
+function CS.Barotrauma.MapEntity.Update(deltaTime, cam) end
+
+---@param relativeToSub System.Boolean
+---@param force? System.Boolean
+function CS.Barotrauma.MapEntity.FlipX(relativeToSub, force) end
+
+---@param relativeToSub System.Boolean
+---@param force? System.Boolean
+function CS.Barotrauma.MapEntity.FlipY(relativeToSub, force) end
+
+---@return Barotrauma.Quad2D
+function CS.Barotrauma.MapEntity.GetTransformedQuad() end
+
+---@param submarine Barotrauma.Submarine
+---@param parentElement System.Xml.Linq.XElement
+---@param filePath System.String
+---@param idOffset System.Int32
+---@return userdata | { [System.Int32]: Barotrauma.MapEntity } | (fun(): Barotrauma.MapEntity)
+function CS.Barotrauma.MapEntity.LoadAll(submarine, parentElement, filePath, idOffset) end
+
+---@param entities userdata | { [System.Int32]: Barotrauma.MapEntity } | (fun(): Barotrauma.MapEntity)
+---@param updateHulls System.Boolean
+function CS.Barotrauma.MapEntity.MapLoaded(entities, updateHulls) end
+
+---@private
+---@param entities userdata | { [System.Int32]: Barotrauma.MapEntity } | (fun(): Barotrauma.MapEntity)
+function CS.Barotrauma.MapEntity.CreateDroppedStacks(entities) end
+
+---@param entities userdata | (fun(): Barotrauma.MapEntity)
+function CS.Barotrauma.MapEntity.InitializeLoadedLinks(entities) end
+
+function CS.Barotrauma.MapEntity.OnMapLoaded() end
+
+---@param parentElement System.Xml.Linq.XElement
+---@return System.Xml.Linq.XElement
+function CS.Barotrauma.MapEntity.Save(parentElement) end
+
+---@param e Barotrauma.MapEntity
+function CS.Barotrauma.MapEntity.RemoveLinked(e) end
+
+do
+---@overload fun(): Barotrauma.MapEntity
+---@param prefab Barotrauma.MapEntityPrefab
+---@param submarine Barotrauma.Submarine
+---@param id System.UInt16
+---@return Barotrauma.MapEntity
+local __ctor = function(prefab, submarine, id) end
+CS.Barotrauma.MapEntity = __ctor
+CS.Barotrauma.MapEntity.__new = __ctor
 end
 
 ---@enum Barotrauma.MapEntityCategory
@@ -35508,7 +34931,7 @@ CS.Barotrauma.Map = __ctor
 CS.Barotrauma.Map.__new = __ctor
 end
 
----@class Barotrauma.MapGenerationParams: Barotrauma.Prefab
+---@class Barotrauma.MapGenerationParams: Barotrauma.Prefab, Barotrauma.ISerializableEntity
 ---@field Instance Barotrauma.MapGenerationParams
 ---@field DifficultyZones System.Int32
 ---@field Width System.Int32
@@ -35549,7 +34972,7 @@ CS.Barotrauma.MapGenerationParams = __ctor
 CS.Barotrauma.MapGenerationParams.__new = __ctor
 end
 
----@class Barotrauma.Radiation: System.Object
+---@class Barotrauma.Radiation: System.Object, Barotrauma.ISerializableEntity
 ---@field Name System.String
 ---@field Amount System.Single
 ---@field Enabled System.Boolean
@@ -35596,7 +35019,7 @@ CS.Barotrauma.Radiation = __ctor
 CS.Barotrauma.Radiation.__new = __ctor
 end
 
----@class Barotrauma.RadiationParams: System.Object
+---@class Barotrauma.RadiationParams: System.Object, Barotrauma.ISerializableEntity
 ---@field Name System.String
 ---@field SerializableProperties userdata | { [Barotrauma.Identifier]: Barotrauma.SerializableProperty } | (fun(): userdata)
 ---@field StartingRadiation System.Single
@@ -35624,7 +35047,7 @@ CS.Barotrauma.RadiationParams = __ctor
 CS.Barotrauma.RadiationParams.__new = __ctor
 end
 
----@class Barotrauma.OrderTarget: System.Object
+---@class Barotrauma.OrderTarget: System.Object, Barotrauma.ISpatialEntity
 ---@field Position Microsoft.Xna.Framework.Vector2
 ---@field Hull Barotrauma.Hull
 ---@field WorldPosition Microsoft.Xna.Framework.Vector2
@@ -35651,7 +35074,7 @@ CS.Barotrauma.OrderTarget = __ctor
 CS.Barotrauma.OrderTarget.__new = __ctor
 end
 
----@class Barotrauma.ExtraSubmarineInfo: System.Object
+---@class Barotrauma.ExtraSubmarineInfo: System.Object, Barotrauma.ISerializableEntity
 ---@field Name System.String
 ---@field SerializableProperties userdata | { [Barotrauma.Identifier]: Barotrauma.SerializableProperty } | (fun(): userdata)
 ---@field MissionTags userdata | (fun(): Barotrauma.Identifier)
@@ -35673,7 +35096,7 @@ CS.Barotrauma.ExtraSubmarineInfo = __ctor
 CS.Barotrauma.ExtraSubmarineInfo.__new = __ctor
 end
 
----@class Barotrauma.EnemySubmarineInfo: Barotrauma.ExtraSubmarineInfo
+---@class Barotrauma.EnemySubmarineInfo: Barotrauma.ExtraSubmarineInfo, Barotrauma.ISerializableEntity
 ---@field Reward System.Single
 ---@field PreferredDifficulty System.Single
 CS.Barotrauma.EnemySubmarineInfo = {}
@@ -35689,7 +35112,7 @@ CS.Barotrauma.EnemySubmarineInfo = __ctor
 CS.Barotrauma.EnemySubmarineInfo.__new = __ctor
 end
 
----@class Barotrauma.OutpostGenerationParams: Barotrauma.PrefabWithUintIdentifier
+---@class Barotrauma.OutpostGenerationParams: Barotrauma.PrefabWithUintIdentifier, Barotrauma.ISerializableEntity
 ---@field Name System.String
 ---@field AllowedLocationTypes userdata | (fun(): Barotrauma.Identifier)
 ---@field AllowedGameModeIdentifiers userdata | (fun(): Barotrauma.Identifier)
@@ -36043,7 +35466,7 @@ CS.Barotrauma.PriceInfo = __ctor
 CS.Barotrauma.PriceInfo.__new = __ctor
 end
 
----@class Barotrauma.WallSection: System.Object
+---@class Barotrauma.WallSection: System.Object, Barotrauma.IIgnorable, Barotrauma.ISpatialEntity
 ---@field Wall Barotrauma.Structure
 ---@field Position Microsoft.Xna.Framework.Vector2
 ---@field WorldPosition Microsoft.Xna.Framework.Vector2
@@ -36086,7 +35509,7 @@ CS.Barotrauma.WallSection = __ctor
 CS.Barotrauma.WallSection.__new = __ctor
 end
 
----@class Barotrauma.AbilityAttackerSubmarine: Barotrauma.Abilities.AbilityObject
+---@class Barotrauma.AbilityAttackerSubmarine: Barotrauma.Abilities.AbilityObject, Barotrauma.Abilities.IAbilityCharacter, Barotrauma.Abilities.IAbilitySubmarine
 ---@field Character Barotrauma.Character
 ---@field Submarine Barotrauma.Submarine
 CS.Barotrauma.AbilityAttackerSubmarine = {}
@@ -36324,7 +35747,7 @@ CS.Barotrauma.SubmarineClass = {
     Transport = 3
 }
 
----@class Barotrauma.SubmarineInfo: System.Object
+---@class Barotrauma.SubmarineInfo: System.Object, System.IDisposable
 ---@field SavedSubmarines userdata | (fun(): Barotrauma.SubmarineInfo)
 ---@field Tags Barotrauma.SubmarineTag
 ---@field Tier System.Int32
@@ -36538,7 +35961,7 @@ CS.Barotrauma.SpawnType = {
     Disabled = 64
 }
 
----@class Barotrauma.WayPoint: Barotrauma.MapEntity
+---@class Barotrauma.WayPoint: Barotrauma.MapEntity, Barotrauma.ISpatialEntity
 ---@field IsInWater System.Boolean
 ---@field IsTraversable System.Boolean
 ---@field ConnectedGap Barotrauma.Gap
@@ -37042,6 +36465,11 @@ end
 ---@field ReaderSettings System.Xml.XmlReaderSettings
 ---@field private monoGameColors userdata | { [Barotrauma.Identifier]: Microsoft.Xna.Framework.Color } | (fun(): userdata)
 CS.Barotrauma.XMLExtensions = {}
+
+---@param defaultValue System.Object
+---@param value System.Object
+---@return System.Boolean
+function CS.Barotrauma.XMLExtensions.DefaultValueEquals(defaultValue, value) end
 
 ---@param element System.Xml.Linq.XObject
 ---@return System.String
@@ -37863,6 +37291,7 @@ end
 ---@field SpawnCharacters userdata | (fun(): Barotrauma.StatusEffect.CharacterSpawnInfo)
 ---@field Range System.Single
 ---@field Offset Microsoft.Xna.Framework.Vector2
+---@field OffsetCopiesEntityTransform System.Boolean
 ---@field RandomOffset System.Single
 ---@field Tags System.String
 ---@field Disabled System.Boolean
@@ -38143,7 +37572,7 @@ CS.Barotrauma.StatusEffect = __ctor
 CS.Barotrauma.StatusEffect.__new = __ctor
 end
 
----@class Barotrauma.AddedPunctuationLString: Barotrauma.LocalizedString
+---@class Barotrauma.AddedPunctuationLString: Barotrauma.LocalizedString, System.IComparable
 ---@field Loaded System.Boolean
 ---@field private nestedStrs userdata | { [System.Int32]: Barotrauma.LocalizedString } | (fun(): Barotrauma.LocalizedString)
 ---@field private punctuationSymbol System.Char
@@ -38163,7 +37592,7 @@ CS.Barotrauma.AddedPunctuationLString = __ctor
 CS.Barotrauma.AddedPunctuationLString.__new = __ctor
 end
 
----@class Barotrauma.CapitalizeLString: Barotrauma.LocalizedString
+---@class Barotrauma.CapitalizeLString: Barotrauma.LocalizedString, System.IComparable
 ---@field Loaded System.Boolean
 ---@field private nestedStr Barotrauma.LocalizedString
 CS.Barotrauma.CapitalizeLString = {}
@@ -38181,7 +37610,7 @@ CS.Barotrauma.CapitalizeLString = __ctor
 CS.Barotrauma.CapitalizeLString.__new = __ctor
 end
 
----@class Barotrauma.ConcatLString: Barotrauma.LocalizedString
+---@class Barotrauma.ConcatLString: Barotrauma.LocalizedString, System.IComparable
 ---@field Loaded System.Boolean
 ---@field private left Barotrauma.LocalizedString
 ---@field private right Barotrauma.LocalizedString
@@ -38201,7 +37630,7 @@ CS.Barotrauma.ConcatLString = __ctor
 CS.Barotrauma.ConcatLString.__new = __ctor
 end
 
----@class Barotrauma.FallbackLString: Barotrauma.LocalizedString
+---@class Barotrauma.FallbackLString: Barotrauma.LocalizedString, System.IComparable
 ---@field PrimaryIsLoaded System.Boolean
 ---@field Loaded System.Boolean
 ---@field private primary Barotrauma.LocalizedString
@@ -38231,7 +37660,7 @@ CS.Barotrauma.FallbackLString = __ctor
 CS.Barotrauma.FallbackLString.__new = __ctor
 end
 
----@class Barotrauma.FormattedLString: Barotrauma.LocalizedString
+---@class Barotrauma.FormattedLString: Barotrauma.LocalizedString, System.IComparable
 ---@field Loaded System.Boolean
 ---@field private str Barotrauma.LocalizedString
 ---@field private subStrs userdata | { [System.Int32]: Barotrauma.LocalizedString } | (fun(): Barotrauma.LocalizedString)
@@ -38251,7 +37680,7 @@ CS.Barotrauma.FormattedLString = __ctor
 CS.Barotrauma.FormattedLString.__new = __ctor
 end
 
----@class Barotrauma.InputTypeLString: Barotrauma.LocalizedString
+---@class Barotrauma.InputTypeLString: Barotrauma.LocalizedString, System.IComparable
 ---@field Loaded System.Boolean
 ---@field private nestedStr Barotrauma.LocalizedString
 ---@field private useColorHighlight System.Boolean
@@ -38275,7 +37704,7 @@ CS.Barotrauma.InputTypeLString = __ctor
 CS.Barotrauma.InputTypeLString.__new = __ctor
 end
 
----@class Barotrauma.JoinLString: Barotrauma.LocalizedString
+---@class Barotrauma.JoinLString: Barotrauma.LocalizedString, System.IComparable
 ---@field Loaded System.Boolean
 ---@field private subStrs userdata | (fun(): Barotrauma.LocalizedString)
 ---@field private separator System.String
@@ -38295,7 +37724,7 @@ CS.Barotrauma.JoinLString = __ctor
 CS.Barotrauma.JoinLString.__new = __ctor
 end
 
----@class Barotrauma.LocalizedString: System.Object
+---@class Barotrauma.LocalizedString: System.Object, System.IComparable
 ---@field Language Barotrauma.LanguageIdentifier
 ---@field Value System.String
 ---@field Length System.Int32
@@ -38424,7 +37853,7 @@ CS.Barotrauma.LocalizedString = __ctor
 CS.Barotrauma.LocalizedString.__new = __ctor
 end
 
----@class Barotrauma.LowerLString: Barotrauma.LocalizedString
+---@class Barotrauma.LowerLString: Barotrauma.LocalizedString, System.IComparable
 ---@field Loaded System.Boolean
 ---@field private nestedStr Barotrauma.LocalizedString
 CS.Barotrauma.LowerLString = {}
@@ -38442,7 +37871,7 @@ CS.Barotrauma.LowerLString = __ctor
 CS.Barotrauma.LowerLString.__new = __ctor
 end
 
----@class Barotrauma.RawLString: Barotrauma.LocalizedString
+---@class Barotrauma.RawLString: Barotrauma.LocalizedString, System.IComparable
 ---@field Loaded System.Boolean
 CS.Barotrauma.RawLString = {}
 
@@ -38463,7 +37892,7 @@ CS.Barotrauma.RawLString = __ctor
 CS.Barotrauma.RawLString.__new = __ctor
 end
 
----@class Barotrauma.ReplaceLString: Barotrauma.LocalizedString
+---@class Barotrauma.ReplaceLString: Barotrauma.LocalizedString, System.IComparable
 ---@field Loaded System.Boolean
 ---@field private nestedStr Barotrauma.LocalizedString
 ---@field private replacements userdata | { [Barotrauma.LocalizedString]: userdata } | (fun(): userdata)
@@ -38495,7 +37924,7 @@ CS.Barotrauma.ReplaceLString = __ctor
 CS.Barotrauma.ReplaceLString.__new = __ctor
 end
 
----@class Barotrauma.ServerMsgLString: Barotrauma.LocalizedString
+---@class Barotrauma.ServerMsgLString: Barotrauma.LocalizedString, System.IComparable
 ---@field Loaded System.Boolean
 ---@field private serverMessage System.String
 ---@field private messageSplit userdata | { [System.Int32]: System.String } | (fun(): System.String)
@@ -38525,7 +37954,7 @@ CS.Barotrauma.ServerMsgLString = __ctor
 CS.Barotrauma.ServerMsgLString.__new = __ctor
 end
 
----@class Barotrauma.SplitLString: Barotrauma.LocalizedString
+---@class Barotrauma.SplitLString: Barotrauma.LocalizedString, System.IComparable
 ---@field Loaded System.Boolean
 ---@field private loaded System.Boolean
 ---@field private splitter Barotrauma.LStringSplitter
@@ -38546,7 +37975,7 @@ CS.Barotrauma.SplitLString = __ctor
 CS.Barotrauma.SplitLString.__new = __ctor
 end
 
----@class Barotrauma.TagLString: Barotrauma.LocalizedString
+---@class Barotrauma.TagLString: Barotrauma.LocalizedString, System.IComparable
 ---@field UsingDefaultLanguageAsFallback System.Boolean
 ---@field Loaded System.Boolean
 ---@field private tags userdata | { [System.Int32]: Barotrauma.Identifier } | (fun(): Barotrauma.Identifier)
@@ -38566,10 +37995,11 @@ CS.Barotrauma.TagLString = __ctor
 CS.Barotrauma.TagLString.__new = __ctor
 end
 
----@class Barotrauma.TrimLString: Barotrauma.LocalizedString
+---@class Barotrauma.TrimLString: Barotrauma.LocalizedString, System.IComparable
 ---@field Loaded System.Boolean
 ---@field private nestedStr Barotrauma.LocalizedString
 ---@field private mode Barotrauma.TrimLString.Mode
+---@field private trimCharacters System.Char[]
 CS.Barotrauma.TrimLString = {}
 
 ---@return System.Boolean
@@ -38580,13 +38010,14 @@ function CS.Barotrauma.TrimLString.RetrieveValue() end
 do
 ---@param nestedStr Barotrauma.LocalizedString
 ---@param mode Barotrauma.TrimLString.Mode
+---@param trimCharacters? System.Char[]
 ---@return Barotrauma.TrimLString
-local __ctor = function(nestedStr, mode) end
+local __ctor = function(nestedStr, mode, trimCharacters) end
 CS.Barotrauma.TrimLString = __ctor
 CS.Barotrauma.TrimLString.__new = __ctor
 end
 
----@class Barotrauma.UpperLString: Barotrauma.LocalizedString
+---@class Barotrauma.UpperLString: Barotrauma.LocalizedString, System.IComparable
 ---@field Loaded System.Boolean
 ---@field private nestedStr Barotrauma.LocalizedString
 CS.Barotrauma.UpperLString = {}
@@ -38703,7 +38134,7 @@ CS.Barotrauma.RichString = __ctor
 CS.Barotrauma.RichString.__new = __ctor
 end
 
----@class Barotrauma.StripRichTagsLString: Barotrauma.LocalizedString
+---@class Barotrauma.StripRichTagsLString: Barotrauma.LocalizedString, System.IComparable
 ---@field Loaded System.Boolean
 ---@field RichStr Barotrauma.RichString
 CS.Barotrauma.StripRichTagsLString = {}
@@ -39068,7 +38499,7 @@ CS.Barotrauma.TraitorEventPrefab = __ctor
 CS.Barotrauma.TraitorEventPrefab.__new = __ctor
 end
 
----@class Barotrauma.Upgrade: System.Object
+---@class Barotrauma.Upgrade: System.Object, System.IDisposable
 ---@field private TargetEntity Barotrauma.ISerializableEntity
 ---@field TargetComponents userdata | { [Barotrauma.ISerializableEntity]: Barotrauma.PropertyReference[] } | (fun(): userdata)
 ---@field Prefab Barotrauma.UpgradePrefab
@@ -39688,7 +39119,7 @@ CS.Barotrauma.Character.Attacker = __ctor
 CS.Barotrauma.Character.Attacker.__new = __ctor
 end
 
----@class Barotrauma.Character.OnDeathHandler: System.MulticastDelegate
+---@class Barotrauma.Character.OnDeathHandler: System.MulticastDelegate, System.ICloneable, System.Runtime.Serialization.ISerializable
 CS.Barotrauma.Character.OnDeathHandler = {}
 
 ---@param character Barotrauma.Character
@@ -39714,7 +39145,7 @@ CS.Barotrauma.Character.OnDeathHandler = __ctor
 CS.Barotrauma.Character.OnDeathHandler.__new = __ctor
 end
 
----@class Barotrauma.Character.OnAttackedHandler: System.MulticastDelegate
+---@class Barotrauma.Character.OnAttackedHandler: System.MulticastDelegate, System.ICloneable, System.Runtime.Serialization.ISerializable
 CS.Barotrauma.Character.OnAttackedHandler = {}
 
 ---@param attacker Barotrauma.Character
@@ -39772,7 +39203,7 @@ CS.Barotrauma.Character.EventType = {
     MaxValue = 18
 }
 
----@class Barotrauma.Character.IEventData
+---@class Barotrauma.Character.IEventData: Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Character.EventType
 CS.Barotrauma.Character.IEventData = {}
 
@@ -39780,7 +39211,7 @@ CS.Barotrauma.Character.IEventData = {}
 function CS.Barotrauma.Character.IEventData.get_EventType() end
 
 
----@class Barotrauma.Character.InventoryStateEventData: System.ValueType
+---@class Barotrauma.Character.InventoryStateEventData: System.ValueType, Barotrauma.Character.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Character.EventType
 ---@field SlotRange System.Range
 CS.Barotrauma.Character.InventoryStateEventData = {}
@@ -39796,7 +39227,7 @@ CS.Barotrauma.Character.InventoryStateEventData = __ctor
 CS.Barotrauma.Character.InventoryStateEventData.__new = __ctor
 end
 
----@class Barotrauma.Character.ControlEventData: System.ValueType
+---@class Barotrauma.Character.ControlEventData: System.ValueType, Barotrauma.Character.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Character.EventType
 ---@field Owner Barotrauma.Networking.Client
 CS.Barotrauma.Character.ControlEventData = {}
@@ -39812,7 +39243,7 @@ CS.Barotrauma.Character.ControlEventData = __ctor
 CS.Barotrauma.Character.ControlEventData.__new = __ctor
 end
 
----@class Barotrauma.Character.CharacterStatusEventData: System.ValueType
+---@class Barotrauma.Character.CharacterStatusEventData: System.ValueType, Barotrauma.Character.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Character.EventType
 ---@field ForceAfflictionData System.Boolean
 CS.Barotrauma.Character.CharacterStatusEventData = {}
@@ -39828,7 +39259,7 @@ CS.Barotrauma.Character.CharacterStatusEventData = __ctor
 CS.Barotrauma.Character.CharacterStatusEventData.__new = __ctor
 end
 
----@class Barotrauma.Character.TreatmentEventData: System.ValueType
+---@class Barotrauma.Character.TreatmentEventData: System.ValueType, Barotrauma.Character.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Character.EventType
 CS.Barotrauma.Character.TreatmentEventData = {}
 
@@ -39836,7 +39267,7 @@ CS.Barotrauma.Character.TreatmentEventData = {}
 function CS.Barotrauma.Character.TreatmentEventData.get_EventType() end
 
 
----@class Barotrauma.Character.IAttackEventData
+---@class Barotrauma.Character.IAttackEventData: Barotrauma.Character.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field AttackLimb Barotrauma.Limb
 ---@field TargetEntity Barotrauma.IDamageable
 ---@field TargetLimb Barotrauma.Limb
@@ -39856,7 +39287,7 @@ function CS.Barotrauma.Character.IAttackEventData.get_TargetLimb() end
 function CS.Barotrauma.Character.IAttackEventData.get_TargetSimPos() end
 
 
----@class Barotrauma.Character.SetAttackTargetEventData: System.ValueType
+---@class Barotrauma.Character.SetAttackTargetEventData: System.ValueType, Barotrauma.Character.IAttackEventData, Barotrauma.Character.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Character.EventType
 ---@field AttackLimb Barotrauma.Limb
 ---@field TargetEntity Barotrauma.IDamageable
@@ -39878,7 +39309,7 @@ CS.Barotrauma.Character.SetAttackTargetEventData = __ctor
 CS.Barotrauma.Character.SetAttackTargetEventData.__new = __ctor
 end
 
----@class Barotrauma.Character.ExecuteAttackEventData: System.ValueType
+---@class Barotrauma.Character.ExecuteAttackEventData: System.ValueType, Barotrauma.Character.IAttackEventData, Barotrauma.Character.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Character.EventType
 ---@field AttackLimb Barotrauma.Limb
 ---@field TargetEntity Barotrauma.IDamageable
@@ -39900,7 +39331,7 @@ CS.Barotrauma.Character.ExecuteAttackEventData = __ctor
 CS.Barotrauma.Character.ExecuteAttackEventData.__new = __ctor
 end
 
----@class Barotrauma.Character.AssignCampaignInteractionEventData: System.ValueType
+---@class Barotrauma.Character.AssignCampaignInteractionEventData: System.ValueType, Barotrauma.Character.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Character.EventType
 CS.Barotrauma.Character.AssignCampaignInteractionEventData = {}
 
@@ -39908,7 +39339,7 @@ CS.Barotrauma.Character.AssignCampaignInteractionEventData = {}
 function CS.Barotrauma.Character.AssignCampaignInteractionEventData.get_EventType() end
 
 
----@class Barotrauma.Character.ObjectiveManagerStateEventData: System.ValueType
+---@class Barotrauma.Character.ObjectiveManagerStateEventData: System.ValueType, Barotrauma.Character.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Character.EventType
 ---@field ObjectiveType Barotrauma.AIObjectiveManager.ObjectiveType
 CS.Barotrauma.Character.ObjectiveManagerStateEventData = {}
@@ -39924,7 +39355,7 @@ CS.Barotrauma.Character.ObjectiveManagerStateEventData = __ctor
 CS.Barotrauma.Character.ObjectiveManagerStateEventData.__new = __ctor
 end
 
----@class Barotrauma.Character.LatchedOntoTargetEventData: System.ValueType
+---@class Barotrauma.Character.LatchedOntoTargetEventData: System.ValueType, Barotrauma.Character.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Character.EventType
 ---@field IsLatched System.Boolean
 ---@field TargetCharacterID System.UInt16
@@ -39953,7 +39384,7 @@ CS.Barotrauma.Character.LatchedOntoTargetEventData = __ctor
 CS.Barotrauma.Character.LatchedOntoTargetEventData.__new = __ctor
 end
 
----@class Barotrauma.Character.TeamChangeEventData: System.ValueType
+---@class Barotrauma.Character.TeamChangeEventData: System.ValueType, Barotrauma.Character.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Character.EventType
 CS.Barotrauma.Character.TeamChangeEventData = {}
 
@@ -39961,7 +39392,7 @@ CS.Barotrauma.Character.TeamChangeEventData = {}
 function CS.Barotrauma.Character.TeamChangeEventData.get_EventType() end
 
 
----@class Barotrauma.Character.ItemTeamChange: System.ValueType
+---@class Barotrauma.Character.ItemTeamChange: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field TeamId Barotrauma.CharacterTeamType
 ---@field ItemIds userdata | { [System.Int32]: System.UInt16 } | (fun(): System.UInt16)
 CS.Barotrauma.Character.ItemTeamChange = {}
@@ -39975,7 +39406,7 @@ CS.Barotrauma.Character.ItemTeamChange = __ctor
 CS.Barotrauma.Character.ItemTeamChange.__new = __ctor
 end
 
----@class Barotrauma.Character.AddToCrewEventData: System.ValueType
+---@class Barotrauma.Character.AddToCrewEventData: System.ValueType, Barotrauma.Character.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Character.EventType
 ---@field ItemTeamChange Barotrauma.Character.ItemTeamChange
 CS.Barotrauma.Character.AddToCrewEventData = {}
@@ -39992,7 +39423,7 @@ CS.Barotrauma.Character.AddToCrewEventData = __ctor
 CS.Barotrauma.Character.AddToCrewEventData.__new = __ctor
 end
 
----@class Barotrauma.Character.RemoveFromCrewEventData: System.ValueType
+---@class Barotrauma.Character.RemoveFromCrewEventData: System.ValueType, Barotrauma.Character.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Character.EventType
 ---@field ItemTeamChange Barotrauma.Character.ItemTeamChange
 CS.Barotrauma.Character.RemoveFromCrewEventData = {}
@@ -40009,7 +39440,7 @@ CS.Barotrauma.Character.RemoveFromCrewEventData = __ctor
 CS.Barotrauma.Character.RemoveFromCrewEventData.__new = __ctor
 end
 
----@class Barotrauma.Character.UpdateExperienceEventData: System.ValueType
+---@class Barotrauma.Character.UpdateExperienceEventData: System.ValueType, Barotrauma.Character.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Character.EventType
 CS.Barotrauma.Character.UpdateExperienceEventData = {}
 
@@ -40017,7 +39448,7 @@ CS.Barotrauma.Character.UpdateExperienceEventData = {}
 function CS.Barotrauma.Character.UpdateExperienceEventData.get_EventType() end
 
 
----@class Barotrauma.Character.UpdateTalentsEventData: System.ValueType
+---@class Barotrauma.Character.UpdateTalentsEventData: System.ValueType, Barotrauma.Character.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Character.EventType
 CS.Barotrauma.Character.UpdateTalentsEventData = {}
 
@@ -40025,7 +39456,7 @@ CS.Barotrauma.Character.UpdateTalentsEventData = {}
 function CS.Barotrauma.Character.UpdateTalentsEventData.get_EventType() end
 
 
----@class Barotrauma.Character.UpdateSkillsEventData: System.ValueType
+---@class Barotrauma.Character.UpdateSkillsEventData: System.ValueType, Barotrauma.Character.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Character.EventType
 ---@field ForceNotification System.Boolean
 ---@field SkillIdentifier Barotrauma.Identifier
@@ -40043,7 +39474,7 @@ CS.Barotrauma.Character.UpdateSkillsEventData = __ctor
 CS.Barotrauma.Character.UpdateSkillsEventData.__new = __ctor
 end
 
----@class Barotrauma.Character.UpdateMoneyEventData: System.ValueType
+---@class Barotrauma.Character.UpdateMoneyEventData: System.ValueType, Barotrauma.Character.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Character.EventType
 CS.Barotrauma.Character.UpdateMoneyEventData = {}
 
@@ -40051,7 +39482,7 @@ CS.Barotrauma.Character.UpdateMoneyEventData = {}
 function CS.Barotrauma.Character.UpdateMoneyEventData.get_EventType() end
 
 
----@class Barotrauma.Character.UpdatePermanentStatsEventData: System.ValueType
+---@class Barotrauma.Character.UpdatePermanentStatsEventData: System.ValueType, Barotrauma.Character.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Character.EventType
 ---@field StatType Barotrauma.StatTypes
 CS.Barotrauma.Character.UpdatePermanentStatsEventData = {}
@@ -40067,7 +39498,7 @@ CS.Barotrauma.Character.UpdatePermanentStatsEventData = __ctor
 CS.Barotrauma.Character.UpdatePermanentStatsEventData.__new = __ctor
 end
 
----@class Barotrauma.Character.UpdateRefundPointsEventData: System.ValueType
+---@class Barotrauma.Character.UpdateRefundPointsEventData: System.ValueType, Barotrauma.Character.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Character.EventType
 CS.Barotrauma.Character.UpdateRefundPointsEventData = {}
 
@@ -40075,7 +39506,7 @@ CS.Barotrauma.Character.UpdateRefundPointsEventData = {}
 function CS.Barotrauma.Character.UpdateRefundPointsEventData.get_EventType() end
 
 
----@class Barotrauma.Character.ConfirmRefundEventData: System.ValueType
+---@class Barotrauma.Character.ConfirmRefundEventData: System.ValueType, Barotrauma.Character.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Character.EventType
 CS.Barotrauma.Character.ConfirmRefundEventData = {}
 
@@ -40167,7 +39598,7 @@ CS.Barotrauma.CharacterInfo.HeadInfo = __ctor
 CS.Barotrauma.CharacterInfo.HeadInfo.__new = __ctor
 end
 
----@class Barotrauma.CharacterInfo.HeadPreset: System.Object
+---@class Barotrauma.CharacterInfo.HeadPreset: System.Object, Barotrauma.ISerializableEntity
 ---@field MenuCategory Barotrauma.Identifier
 ---@field TagSet userdata | (fun(): Barotrauma.Identifier)
 ---@field Tags System.String
@@ -40285,7 +39716,7 @@ CS.Barotrauma.EventManager.NetworkEventType = {
     EVENTOBJECTIVE = 6
 }
 
----@class Barotrauma.EventManager.NetEventLogEntry: System.ValueType
+---@class Barotrauma.EventManager.NetEventLogEntry: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field EventPrefabId Barotrauma.Identifier
 ---@field LogEntryId Barotrauma.Identifier
 ---@field Text System.String
@@ -40301,7 +39732,7 @@ CS.Barotrauma.EventManager.NetEventLogEntry = __ctor
 CS.Barotrauma.EventManager.NetEventLogEntry.__new = __ctor
 end
 
----@class Barotrauma.EventManager.NetEventObjective: System.ValueType
+---@class Barotrauma.EventManager.NetEventObjective: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field Type Barotrauma.EventObjectiveAction.SegmentActionType
 ---@field Identifier Barotrauma.Identifier
 ---@field ObjectiveTag Barotrauma.Identifier
@@ -40357,7 +39788,7 @@ CS.Barotrauma.CharacterInventory.AccessLevel = {
     AllowFriendly = 2
 }
 
----@class Barotrauma.Item.DroppedStackEventData: System.ValueType
+---@class Barotrauma.Item.DroppedStackEventData: System.ValueType, Barotrauma.Item.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Item.EventType
 ---@field Items userdata | { [System.Int32]: Barotrauma.Item } | (fun(): Barotrauma.Item)
 CS.Barotrauma.Item.DroppedStackEventData = {}
@@ -40373,7 +39804,7 @@ CS.Barotrauma.Item.DroppedStackEventData = __ctor
 CS.Barotrauma.Item.DroppedStackEventData.__new = __ctor
 end
 
----@class Barotrauma.Item.SetHighlightEventData: System.ValueType
+---@class Barotrauma.Item.SetHighlightEventData: System.ValueType, Barotrauma.Item.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Item.EventType
 ---@field Highlighted System.Boolean
 ---@field Color Microsoft.Xna.Framework.Color
@@ -40412,7 +39843,7 @@ CS.Barotrauma.Item.EventType = {
     MaxValue = 12
 }
 
----@class Barotrauma.Item.IEventData
+---@class Barotrauma.Item.IEventData: Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Item.EventType
 CS.Barotrauma.Item.IEventData = {}
 
@@ -40420,7 +39851,7 @@ CS.Barotrauma.Item.IEventData = {}
 function CS.Barotrauma.Item.IEventData.get_EventType() end
 
 
----@class Barotrauma.Item.ComponentStateEventData: System.ValueType
+---@class Barotrauma.Item.ComponentStateEventData: System.ValueType, Barotrauma.Item.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Item.EventType
 ---@field Component Barotrauma.Items.Components.ItemComponent
 ---@field ComponentData Barotrauma.Items.Components.ItemComponent.IEventData
@@ -40438,7 +39869,7 @@ CS.Barotrauma.Item.ComponentStateEventData = __ctor
 CS.Barotrauma.Item.ComponentStateEventData.__new = __ctor
 end
 
----@class Barotrauma.Item.InventoryStateEventData: System.ValueType
+---@class Barotrauma.Item.InventoryStateEventData: System.ValueType, Barotrauma.Item.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Item.EventType
 ---@field Component Barotrauma.Items.Components.ItemContainer
 ---@field SlotRange System.Range
@@ -40456,7 +39887,7 @@ CS.Barotrauma.Item.InventoryStateEventData = __ctor
 CS.Barotrauma.Item.InventoryStateEventData.__new = __ctor
 end
 
----@class Barotrauma.Item.ChangePropertyEventData: System.ValueType
+---@class Barotrauma.Item.ChangePropertyEventData: System.ValueType, Barotrauma.Item.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Item.EventType
 ---@field SerializableProperty Barotrauma.SerializableProperty
 ---@field Entity Barotrauma.ISerializableEntity
@@ -40474,7 +39905,7 @@ CS.Barotrauma.Item.ChangePropertyEventData = __ctor
 CS.Barotrauma.Item.ChangePropertyEventData.__new = __ctor
 end
 
----@class Barotrauma.Item.SetItemStatEventData: System.ValueType
+---@class Barotrauma.Item.SetItemStatEventData: System.ValueType, Barotrauma.Item.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Item.EventType
 ---@field Stats userdata | { [Barotrauma.TalentStatIdentifier]: System.Single } | (fun(): userdata)
 CS.Barotrauma.Item.SetItemStatEventData = {}
@@ -40490,7 +39921,7 @@ CS.Barotrauma.Item.SetItemStatEventData = __ctor
 CS.Barotrauma.Item.SetItemStatEventData.__new = __ctor
 end
 
----@class Barotrauma.Item.ItemStatusEventData: System.ValueType
+---@class Barotrauma.Item.ItemStatusEventData: System.ValueType, Barotrauma.Item.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Item.EventType
 ---@field LoadingRound System.Boolean
 CS.Barotrauma.Item.ItemStatusEventData = {}
@@ -40506,7 +39937,7 @@ CS.Barotrauma.Item.ItemStatusEventData = __ctor
 CS.Barotrauma.Item.ItemStatusEventData.__new = __ctor
 end
 
----@class Barotrauma.Item.AssignCampaignInteractionEventData: System.ValueType
+---@class Barotrauma.Item.AssignCampaignInteractionEventData: System.ValueType, Barotrauma.Item.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Item.EventType
 ---@field TargetClients userdata | { [System.Int32]: Barotrauma.Networking.Client } | (fun(): Barotrauma.Networking.Client)
 CS.Barotrauma.Item.AssignCampaignInteractionEventData = {}
@@ -40522,7 +39953,7 @@ CS.Barotrauma.Item.AssignCampaignInteractionEventData = __ctor
 CS.Barotrauma.Item.AssignCampaignInteractionEventData.__new = __ctor
 end
 
----@class Barotrauma.Item.ApplyStatusEffectEventData: System.ValueType
+---@class Barotrauma.Item.ApplyStatusEffectEventData: System.ValueType, Barotrauma.Item.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Item.EventType
 ---@field ActionType Barotrauma.ActionType
 ---@field TargetItemComponent Barotrauma.Items.Components.ItemComponent
@@ -40548,7 +39979,7 @@ CS.Barotrauma.Item.ApplyStatusEffectEventData = __ctor
 CS.Barotrauma.Item.ApplyStatusEffectEventData.__new = __ctor
 end
 
----@class Barotrauma.Item.UpgradeEventData: System.ValueType
+---@class Barotrauma.Item.UpgradeEventData: System.ValueType, Barotrauma.Item.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Item.EventType
 ---@field Upgrade Barotrauma.Upgrade
 CS.Barotrauma.Item.UpgradeEventData = {}
@@ -40564,7 +39995,7 @@ CS.Barotrauma.Item.UpgradeEventData = __ctor
 CS.Barotrauma.Item.UpgradeEventData.__new = __ctor
 end
 
----@class Barotrauma.Item.SwapItemEventData: System.ValueType
+---@class Barotrauma.Item.SwapItemEventData: System.ValueType, Barotrauma.Item.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Item.EventType
 ---@field NewItem Barotrauma.ItemPrefab
 ---@field NewId System.UInt16
@@ -40582,7 +40013,7 @@ CS.Barotrauma.Item.SwapItemEventData = __ctor
 CS.Barotrauma.Item.SwapItemEventData.__new = __ctor
 end
 
----@class Barotrauma.Level.IEventData
+---@class Barotrauma.Level.IEventData: Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Level.EventType
 CS.Barotrauma.Level.IEventData = {}
 
@@ -40590,7 +40021,7 @@ CS.Barotrauma.Level.IEventData = {}
 function CS.Barotrauma.Level.IEventData.get_EventType() end
 
 
----@class Barotrauma.Level.SingleLevelWallEventData: System.ValueType
+---@class Barotrauma.Level.SingleLevelWallEventData: System.ValueType, Barotrauma.Level.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Level.EventType
 ---@field Wall Barotrauma.DestructibleLevelWall
 CS.Barotrauma.Level.SingleLevelWallEventData = {}
@@ -40606,7 +40037,7 @@ CS.Barotrauma.Level.SingleLevelWallEventData = __ctor
 CS.Barotrauma.Level.SingleLevelWallEventData.__new = __ctor
 end
 
----@class Barotrauma.Level.GlobalLevelWallEventData: System.ValueType
+---@class Barotrauma.Level.GlobalLevelWallEventData: System.ValueType, Barotrauma.Level.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Level.EventType
 CS.Barotrauma.Level.GlobalLevelWallEventData = {}
 
@@ -40835,7 +40266,7 @@ CS.Barotrauma.Hull.EventType = {
     MaxValue = 3
 }
 
----@class Barotrauma.Hull.IEventData
+---@class Barotrauma.Hull.IEventData: Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Hull.EventType
 CS.Barotrauma.Hull.IEventData = {}
 
@@ -40843,7 +40274,7 @@ CS.Barotrauma.Hull.IEventData = {}
 function CS.Barotrauma.Hull.IEventData.get_EventType() end
 
 
----@class Barotrauma.Hull.StatusEventData: System.ValueType
+---@class Barotrauma.Hull.StatusEventData: System.ValueType, Barotrauma.Hull.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Hull.EventType
 CS.Barotrauma.Hull.StatusEventData = {}
 
@@ -40851,7 +40282,7 @@ CS.Barotrauma.Hull.StatusEventData = {}
 function CS.Barotrauma.Hull.StatusEventData.get_EventType() end
 
 
----@class Barotrauma.Hull.DecalEventData: System.ValueType
+---@class Barotrauma.Hull.DecalEventData: System.ValueType, Barotrauma.Hull.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Hull.EventType
 ---@field Decal Barotrauma.Decal
 CS.Barotrauma.Hull.DecalEventData = {}
@@ -40867,7 +40298,7 @@ CS.Barotrauma.Hull.DecalEventData = __ctor
 CS.Barotrauma.Hull.DecalEventData.__new = __ctor
 end
 
----@class Barotrauma.Hull.BackgroundSectionsEventData: System.ValueType
+---@class Barotrauma.Hull.BackgroundSectionsEventData: System.ValueType, Barotrauma.Hull.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Hull.EventType
 ---@field SectorStartIndex System.Int32
 CS.Barotrauma.Hull.BackgroundSectionsEventData = {}
@@ -40883,7 +40314,7 @@ CS.Barotrauma.Hull.BackgroundSectionsEventData = __ctor
 CS.Barotrauma.Hull.BackgroundSectionsEventData.__new = __ctor
 end
 
----@class Barotrauma.Hull.BallastFloraEventData: System.ValueType
+---@class Barotrauma.Hull.BallastFloraEventData: System.ValueType, Barotrauma.Hull.IEventData, Barotrauma.Networking.NetEntityEvent.IData
 ---@field EventType Barotrauma.Hull.EventType
 ---@field Behavior Barotrauma.MapCreatures.Behavior.BallastFloraBehavior
 ---@field SubEventData Barotrauma.MapCreatures.Behavior.BallastFloraBehavior.IEventData
@@ -40901,7 +40332,7 @@ CS.Barotrauma.Hull.BallastFloraEventData = __ctor
 CS.Barotrauma.Hull.BallastFloraEventData.__new = __ctor
 end
 
----@class Barotrauma.Submarine.SetLayerEnabledEventData: System.ValueType
+---@class Barotrauma.Submarine.SetLayerEnabledEventData: System.ValueType, Barotrauma.Networking.NetEntityEvent.IData
 ---@field Layer Barotrauma.Identifier
 ---@field Enabled System.Boolean
 CS.Barotrauma.Submarine.SetLayerEnabledEventData = {}
@@ -40915,7 +40346,7 @@ CS.Barotrauma.Submarine.SetLayerEnabledEventData = __ctor
 CS.Barotrauma.Submarine.SetLayerEnabledEventData.__new = __ctor
 end
 
----@class Barotrauma.EntitySpawner.CharacterSpawnInfo: System.Object
+---@class Barotrauma.EntitySpawner.CharacterSpawnInfo: System.Object, Barotrauma.EntitySpawner.IEntitySpawnInfo
 ---@field Identifier Barotrauma.Identifier
 ---@field CharacterInfo Barotrauma.CharacterInfo
 ---@field Position Microsoft.Xna.Framework.Vector2
@@ -40941,7 +40372,7 @@ CS.Barotrauma.EntitySpawner.CharacterSpawnInfo = __ctor
 CS.Barotrauma.EntitySpawner.CharacterSpawnInfo.__new = __ctor
 end
 
----@class Barotrauma.EntitySpawner.SubmarineSpawnInfo: System.Object
+---@class Barotrauma.EntitySpawner.SubmarineSpawnInfo: System.Object, Barotrauma.EntitySpawner.IEntitySpawnInfo
 ---@field Name System.String
 ---@field Position Microsoft.Xna.Framework.Vector2
 ---@field private onSpawned fun(obj: Barotrauma.Character)
@@ -40963,7 +40394,7 @@ CS.Barotrauma.EntitySpawner.SubmarineSpawnInfo = __ctor
 CS.Barotrauma.EntitySpawner.SubmarineSpawnInfo.__new = __ctor
 end
 
----@class Barotrauma.Voting.SubmarineVote: System.Object
+---@class Barotrauma.Voting.SubmarineVote: System.Object, Barotrauma.Voting.IVote
 ---@field VoteStarter Barotrauma.Networking.Client
 ---@field VoteType Barotrauma.Networking.VoteType
 ---@field Timer System.Single
@@ -41030,7 +40461,7 @@ CS.Barotrauma.TraitorManager.ActiveTraitorEvent = __ctor
 CS.Barotrauma.TraitorManager.ActiveTraitorEvent.__new = __ctor
 end
 
----@class Barotrauma.TraitorManager.TraitorResults: System.ValueType
+---@class Barotrauma.TraitorManager.TraitorResults: System.ValueType, Barotrauma.INetSerializableStruct
 ---@field VotedAsTraitorClientSessionId System.Byte
 ---@field VotedCorrectTraitor System.Boolean
 ---@field ObjectiveSuccessful System.Boolean
@@ -41332,7 +40763,7 @@ CS.Barotrauma.JobPrefab.JobItem = __ctor
 CS.Barotrauma.JobPrefab.JobItem.__new = __ctor
 end
 
----@class Barotrauma.CharacterParams.SoundParams: Barotrauma.CharacterParams.SubParam
+---@class Barotrauma.CharacterParams.SoundParams: Barotrauma.CharacterParams.SubParam, Barotrauma.ISerializableEntity
 ---@field Name System.String
 ---@field File System.String
 ---@field Range System.Single
@@ -41360,7 +40791,7 @@ CS.Barotrauma.CharacterParams.SoundParams = __ctor
 CS.Barotrauma.CharacterParams.SoundParams.__new = __ctor
 end
 
----@class Barotrauma.CharacterParams.ParticleParams: Barotrauma.CharacterParams.SubParam
+---@class Barotrauma.CharacterParams.ParticleParams: Barotrauma.CharacterParams.SubParam, Barotrauma.ISerializableEntity
 ---@field Name System.String
 ---@field Particle System.String
 ---@field AngleMin System.Single
@@ -41389,7 +40820,7 @@ CS.Barotrauma.CharacterParams.ParticleParams = __ctor
 CS.Barotrauma.CharacterParams.ParticleParams.__new = __ctor
 end
 
----@class Barotrauma.CharacterParams.HealthParams: Barotrauma.CharacterParams.SubParam
+---@class Barotrauma.CharacterParams.HealthParams: Barotrauma.CharacterParams.SubParam, Barotrauma.ISerializableEntity
 ---@field Name System.String
 ---@field Vitality System.Single
 ---@field DoesBleed System.Boolean
@@ -41427,7 +40858,7 @@ CS.Barotrauma.CharacterParams.HealthParams = __ctor
 CS.Barotrauma.CharacterParams.HealthParams.__new = __ctor
 end
 
----@class Barotrauma.CharacterParams.InventoryParams: Barotrauma.CharacterParams.SubParam
+---@class Barotrauma.CharacterParams.InventoryParams: Barotrauma.CharacterParams.SubParam, Barotrauma.ISerializableEntity
 ---@field Name System.String
 ---@field Slots System.String
 ---@field AccessibleWhenAlive System.Boolean
@@ -41454,7 +40885,7 @@ CS.Barotrauma.CharacterParams.InventoryParams = __ctor
 CS.Barotrauma.CharacterParams.InventoryParams.__new = __ctor
 end
 
----@class Barotrauma.CharacterParams.AIParams: Barotrauma.CharacterParams.SubParam
+---@class Barotrauma.CharacterParams.AIParams: Barotrauma.CharacterParams.SubParam, Barotrauma.ISerializableEntity
 ---@field Name System.String
 ---@field CombatStrength System.Single
 ---@field Sight System.Single
@@ -41568,7 +40999,7 @@ CS.Barotrauma.CharacterParams.AIParams = __ctor
 CS.Barotrauma.CharacterParams.AIParams.__new = __ctor
 end
 
----@class Barotrauma.CharacterParams.TargetParams: Barotrauma.CharacterParams.SubParam
+---@class Barotrauma.CharacterParams.TargetParams: Barotrauma.CharacterParams.SubParam, Barotrauma.ISerializableEntity
 ---@field Name System.String
 ---@field Tag Barotrauma.Identifier
 ---@field State Barotrauma.AIState
@@ -41627,7 +41058,7 @@ CS.Barotrauma.CharacterParams.TargetParams = __ctor
 CS.Barotrauma.CharacterParams.TargetParams.__new = __ctor
 end
 
----@class Barotrauma.CharacterParams.SubParam: System.Object
+---@class Barotrauma.CharacterParams.SubParam: System.Object, Barotrauma.ISerializableEntity
 ---@field Name System.String
 ---@field SerializableProperties userdata | { [Barotrauma.Identifier]: Barotrauma.SerializableProperty } | (fun(): userdata)
 ---@field Element Barotrauma.ContentXElement
@@ -41667,7 +41098,7 @@ CS.Barotrauma.CharacterParams.SubParam = __ctor
 CS.Barotrauma.CharacterParams.SubParam.__new = __ctor
 end
 
----@class Barotrauma.RagdollParams.JointParams: Barotrauma.RagdollParams.SubParam
+---@class Barotrauma.RagdollParams.JointParams: Barotrauma.RagdollParams.SubParam, Barotrauma.ISerializableEntity
 ---@field Name System.String
 ---@field Limb1 System.Int32
 ---@field Limb2 System.Int32
@@ -41704,7 +41135,7 @@ CS.Barotrauma.RagdollParams.JointParams = __ctor
 CS.Barotrauma.RagdollParams.JointParams.__new = __ctor
 end
 
----@class Barotrauma.RagdollParams.LimbParams: Barotrauma.RagdollParams.SubParam
+---@class Barotrauma.RagdollParams.LimbParams: Barotrauma.RagdollParams.SubParam, Barotrauma.ISerializableEntity
 ---@field Attack Barotrauma.RagdollParams.AttackParams
 ---@field Sound Barotrauma.RagdollParams.SoundParams
 ---@field LightSource Barotrauma.RagdollParams.LightSourceParams
@@ -41829,7 +41260,7 @@ CS.Barotrauma.RagdollParams.LimbParams = __ctor
 CS.Barotrauma.RagdollParams.LimbParams.__new = __ctor
 end
 
----@class Barotrauma.RagdollParams.DecorativeSpriteParams: Barotrauma.RagdollParams.SpriteParams
+---@class Barotrauma.RagdollParams.DecorativeSpriteParams: Barotrauma.RagdollParams.SpriteParams, Barotrauma.ISerializableEntity
 CS.Barotrauma.RagdollParams.DecorativeSpriteParams = {}
 
 do
@@ -41841,7 +41272,7 @@ CS.Barotrauma.RagdollParams.DecorativeSpriteParams = __ctor
 CS.Barotrauma.RagdollParams.DecorativeSpriteParams.__new = __ctor
 end
 
----@class Barotrauma.RagdollParams.DeformSpriteParams: Barotrauma.RagdollParams.SpriteParams
+---@class Barotrauma.RagdollParams.DeformSpriteParams: Barotrauma.RagdollParams.SpriteParams, Barotrauma.ISerializableEntity
 ---@field Deformation Barotrauma.RagdollParams.DeformationParams
 CS.Barotrauma.RagdollParams.DeformSpriteParams = {}
 
@@ -41854,7 +41285,7 @@ CS.Barotrauma.RagdollParams.DeformSpriteParams = __ctor
 CS.Barotrauma.RagdollParams.DeformSpriteParams.__new = __ctor
 end
 
----@class Barotrauma.RagdollParams.SpriteParams: Barotrauma.RagdollParams.SubParam
+---@class Barotrauma.RagdollParams.SpriteParams: Barotrauma.RagdollParams.SubParam, Barotrauma.ISerializableEntity
 ---@field SourceRect Microsoft.Xna.Framework.Rectangle
 ---@field Origin Microsoft.Xna.Framework.Vector2
 ---@field Depth System.Single
@@ -41881,7 +41312,7 @@ CS.Barotrauma.RagdollParams.SpriteParams = __ctor
 CS.Barotrauma.RagdollParams.SpriteParams.__new = __ctor
 end
 
----@class Barotrauma.RagdollParams.DeformationParams: Barotrauma.RagdollParams.SubParam
+---@class Barotrauma.RagdollParams.DeformationParams: Barotrauma.RagdollParams.SubParam, Barotrauma.ISerializableEntity
 CS.Barotrauma.RagdollParams.DeformationParams = {}
 
 do
@@ -41893,7 +41324,7 @@ CS.Barotrauma.RagdollParams.DeformationParams = __ctor
 CS.Barotrauma.RagdollParams.DeformationParams.__new = __ctor
 end
 
----@class Barotrauma.RagdollParams.ColliderParams: Barotrauma.RagdollParams.SubParam
+---@class Barotrauma.RagdollParams.ColliderParams: Barotrauma.RagdollParams.SubParam, Barotrauma.ISerializableEntity
 ---@field Name System.String
 ---@field Radius System.Single
 ---@field Height System.Single
@@ -41918,7 +41349,7 @@ CS.Barotrauma.RagdollParams.ColliderParams = __ctor
 CS.Barotrauma.RagdollParams.ColliderParams.__new = __ctor
 end
 
----@class Barotrauma.RagdollParams.LightSourceParams: Barotrauma.RagdollParams.SubParam
+---@class Barotrauma.RagdollParams.LightSourceParams: Barotrauma.RagdollParams.SubParam, Barotrauma.ISerializableEntity
 ---@field Texture Barotrauma.RagdollParams.LightSourceParams.LightTexture
 CS.Barotrauma.RagdollParams.LightSourceParams = {}
 
@@ -41931,7 +41362,7 @@ CS.Barotrauma.RagdollParams.LightSourceParams = __ctor
 CS.Barotrauma.RagdollParams.LightSourceParams.__new = __ctor
 end
 
----@class Barotrauma.RagdollParams.AttackParams: Barotrauma.RagdollParams.SubParam
+---@class Barotrauma.RagdollParams.AttackParams: Barotrauma.RagdollParams.SubParam, Barotrauma.ISerializableEntity
 ---@field Attack Barotrauma.Attack
 CS.Barotrauma.RagdollParams.AttackParams = {}
 
@@ -41963,7 +41394,7 @@ CS.Barotrauma.RagdollParams.AttackParams = __ctor
 CS.Barotrauma.RagdollParams.AttackParams.__new = __ctor
 end
 
----@class Barotrauma.RagdollParams.DamageModifierParams: Barotrauma.RagdollParams.SubParam
+---@class Barotrauma.RagdollParams.DamageModifierParams: Barotrauma.RagdollParams.SubParam, Barotrauma.ISerializableEntity
 ---@field DamageModifier Barotrauma.DamageModifier
 CS.Barotrauma.RagdollParams.DamageModifierParams = {}
 
@@ -41988,7 +41419,7 @@ CS.Barotrauma.RagdollParams.DamageModifierParams = __ctor
 CS.Barotrauma.RagdollParams.DamageModifierParams.__new = __ctor
 end
 
----@class Barotrauma.RagdollParams.SoundParams: Barotrauma.RagdollParams.SubParam
+---@class Barotrauma.RagdollParams.SoundParams: Barotrauma.RagdollParams.SubParam, Barotrauma.ISerializableEntity
 ---@field Name System.String
 ---@field Tag System.String
 CS.Barotrauma.RagdollParams.SoundParams = {}
@@ -42005,7 +41436,7 @@ CS.Barotrauma.RagdollParams.SoundParams = __ctor
 CS.Barotrauma.RagdollParams.SoundParams.__new = __ctor
 end
 
----@class Barotrauma.TalentMigration.TalentMigrationCtor: System.MulticastDelegate
+---@class Barotrauma.TalentMigration.TalentMigrationCtor: System.MulticastDelegate, System.ICloneable, System.Runtime.Serialization.ISerializable
 CS.Barotrauma.TalentMigration.TalentMigrationCtor = {}
 
 ---@param version System.Version
@@ -42140,7 +41571,7 @@ CS.Barotrauma.ContentPackageManager.EnabledPackages = __ctor
 CS.Barotrauma.ContentPackageManager.EnabledPackages.__new = __ctor
 end
 
----@class Barotrauma.ContentPackageManager.PackageSource: System.Object, fun(): Barotrauma.ContentPackage
+---@class Barotrauma.ContentPackageManager.PackageSource: System.Object, System.Collections.IEnumerable, fun(): Barotrauma.ContentPackage
 ---@field Regular userdata | (fun(): Barotrauma.RegularPackage)
 ---@field Core userdata | (fun(): Barotrauma.CorePackage)
 ---@field Count System.Int32
@@ -42266,9 +41697,7 @@ CS.Barotrauma.ContentPackage.LoadResult = {
 
 ---@class Barotrauma.EventAction.SubactionGroup: System.Object
 ---@field CurrentSubAction Barotrauma.EventAction
----@field Text System.String
 ---@field Actions userdata | { [System.Int32]: Barotrauma.EventAction } | (fun(): Barotrauma.EventAction)
----@field EndConversation System.Boolean
 ---@field private currentSubAction System.Int32
 CS.Barotrauma.EventAction.SubactionGroup = {}
 
@@ -42290,9 +41719,9 @@ function CS.Barotrauma.EventAction.SubactionGroup.Update(deltaTime) end
 
 do
 ---@param scriptedEvent Barotrauma.ScriptedEvent
----@param elem Barotrauma.ContentXElement
+---@param element Barotrauma.ContentXElement
 ---@return Barotrauma.EventAction.SubactionGroup
-local __ctor = function(scriptedEvent, elem) end
+local __ctor = function(scriptedEvent, element) end
 CS.Barotrauma.EventAction.SubactionGroup = __ctor
 CS.Barotrauma.EventAction.SubactionGroup.__new = __ctor
 end
@@ -42551,174 +41980,49 @@ CS.Barotrauma.FabricationRecipe.RequiredItemByTag = __ctor
 CS.Barotrauma.FabricationRecipe.RequiredItemByTag.__new = __ctor
 end
 
----@enum Barotrauma.LuaCsHook.HookMethodType
-CS.Barotrauma.LuaCsHook.HookMethodType = {
-    Before = 0,
-    After = 1
-}
+---@class Barotrauma.ModUtils.ItemPrefab: System.Object
+CS.Barotrauma.ModUtils.ItemPrefab = {}
 
----@class Barotrauma.LuaCsHook.LuaCsHookCallback: System.Object
----@field name System.String
----@field hookName System.String
----@field func fun(...: System.Object): System.Object
-CS.Barotrauma.LuaCsHook.LuaCsHookCallback = {}
+---@package
+---@param itemNameOrId System.String
+---@return Barotrauma.ItemPrefab
+function CS.Barotrauma.ModUtils.ItemPrefab.GetItemPrefab(itemNameOrId) end
 
-do
----@param name System.String
----@param hookName System.String
----@param func fun(...: System.Object): System.Object
----@return Barotrauma.LuaCsHook.LuaCsHookCallback
-local __ctor = function(name, hookName, func) end
-CS.Barotrauma.LuaCsHook.LuaCsHookCallback = __ctor
-CS.Barotrauma.LuaCsHook.LuaCsHookCallback.__new = __ctor
-end
 
----@class Barotrauma.LuaCsHook.LuaCsPatch: System.Object
----@field Identifier System.String
----@field PatchFunc fun(instance: System.Object, ptable: Barotrauma.LuaCsHook.ParameterTable): MoonSharp.Interpreter.DynValue
-CS.Barotrauma.LuaCsHook.LuaCsPatch = {}
+---@class Barotrauma.LuaCsSteam.WorkshopItemDownload: System.ValueType
+---@field Item Steamworks.Ugc.Item
+---@field Destination System.String
+---@field Callback fun(...: System.Object)
+CS.Barotrauma.LuaCsSteam.WorkshopItemDownload = {}
 
-do
----@return Barotrauma.LuaCsHook.LuaCsPatch
-local __ctor = function() end
-CS.Barotrauma.LuaCsHook.LuaCsPatch = __ctor
-CS.Barotrauma.LuaCsHook.LuaCsPatch.__new = __ctor
-end
 
----@class Barotrauma.LuaCsHook.PatchedMethod: System.Object
----@field HarmonyPrefixMethod System.Reflection.MethodInfo
----@field HarmonyPostfixMethod System.Reflection.MethodInfo
----@field Prefixes userdata | { [System.String]: Barotrauma.LuaCsHook.LuaCsPatch } | (fun(): userdata)
----@field Postfixes userdata | { [System.String]: Barotrauma.LuaCsHook.LuaCsPatch } | (fun(): userdata)
-CS.Barotrauma.LuaCsHook.PatchedMethod = {}
+---@class Barotrauma.LuaCsTimer.TimerComparer: System.Object
+CS.Barotrauma.LuaCsTimer.TimerComparer = {}
 
----@return userdata | (fun(): Barotrauma.LuaCsHook.LuaCsPatch)
-function CS.Barotrauma.LuaCsHook.PatchedMethod.GetPrefixEnumerator() end
-
----@return userdata | (fun(): Barotrauma.LuaCsHook.LuaCsPatch)
-function CS.Barotrauma.LuaCsHook.PatchedMethod.GetPostfixEnumerator() end
-
-do
----@param harmonyPrefix System.Reflection.MethodInfo
----@param harmonyPostfix System.Reflection.MethodInfo
----@return Barotrauma.LuaCsHook.PatchedMethod
-local __ctor = function(harmonyPrefix, harmonyPostfix) end
-CS.Barotrauma.LuaCsHook.PatchedMethod = __ctor
-CS.Barotrauma.LuaCsHook.PatchedMethod.__new = __ctor
-end
-
----@class Barotrauma.LuaCsHook.ParameterTable: System.Object, { [System.String]: System.Object }
----@field OriginalReturnValue System.Object
----@field ReturnValue System.Object
----@field PreventExecution System.Boolean
----@field OriginalParameters userdata | { [System.String]: System.Object } | (fun(): userdata)
----@field ModifiedParameters userdata | { [System.String]: System.Object } | (fun(): userdata)
----@field private parameters userdata | { [System.String]: System.Object } | (fun(): userdata)
----@field private returnValueModified System.Boolean
----@field private returnValue System.Object
-CS.Barotrauma.LuaCsHook.ParameterTable = {}
-
----@param paramName System.String
----@return System.Object
-function CS.Barotrauma.LuaCsHook.ParameterTable.get_Item(paramName) end
-
----@param paramName System.String
----@param value System.Object
-function CS.Barotrauma.LuaCsHook.ParameterTable.set_Item(paramName, value) end
-
----@return System.Object
-function CS.Barotrauma.LuaCsHook.ParameterTable.get_ReturnValue() end
-
----@param value System.Object
-function CS.Barotrauma.LuaCsHook.ParameterTable.set_ReturnValue(value) end
-
----@return userdata | { [System.String]: System.Object } | (fun(): userdata)
-function CS.Barotrauma.LuaCsHook.ParameterTable.get_OriginalParameters() end
-
-do
----@param dict userdata | { [System.String]: System.Object } | (fun(): userdata)
----@return Barotrauma.LuaCsHook.ParameterTable
-local __ctor = function(dict) end
-CS.Barotrauma.LuaCsHook.ParameterTable = __ctor
-CS.Barotrauma.LuaCsHook.ParameterTable.__new = __ctor
-end
-
----@class Barotrauma.LuaCsHook.MethodKey: System.ValueType
----@field ModuleHandle System.ModuleHandle
----@field MetadataToken System.Int32
-CS.Barotrauma.LuaCsHook.MethodKey = {}
-
----@overload fun(other: Barotrauma.LuaCsHook.MethodKey): System.Boolean
----@param obj System.Object
----@return System.Boolean
-function CS.Barotrauma.LuaCsHook.MethodKey.Equals(obj) end
-
+---@param timedAction1 Barotrauma.LuaCsTimer.TimedAction
+---@param timedAction2 Barotrauma.LuaCsTimer.TimedAction
 ---@return System.Int32
-function CS.Barotrauma.LuaCsHook.MethodKey.GetHashCode() end
-
----@param left Barotrauma.LuaCsHook.MethodKey
----@param right Barotrauma.LuaCsHook.MethodKey
----@return System.Boolean
-function CS.Barotrauma.LuaCsHook.MethodKey.op_Equality(left, right) end
-
----@param left Barotrauma.LuaCsHook.MethodKey
----@param right Barotrauma.LuaCsHook.MethodKey
----@return System.Boolean
-function CS.Barotrauma.LuaCsHook.MethodKey.op_Inequality(left, right) end
-
----@param method System.Reflection.MethodBase
----@return Barotrauma.LuaCsHook.MethodKey
-function CS.Barotrauma.LuaCsHook.MethodKey.Create(method) end
-
-
----@class Barotrauma.LuaCsHook.DynamicParameterMapping: System.Object
----@field ParameterName System.String
----@field OriginalMethodParamType System.Type
----@field HarmonyPatchParamType System.Type
-CS.Barotrauma.LuaCsHook.DynamicParameterMapping = {}
+function CS.Barotrauma.LuaCsTimer.TimerComparer.Compare(timedAction1, timedAction2) end
 
 do
----@param name System.String
----@param originalMethodParamType System.Type
----@param harmonyPatchParamType System.Type
----@return Barotrauma.LuaCsHook.DynamicParameterMapping
-local __ctor = function(name, originalMethodParamType, harmonyPatchParamType) end
-CS.Barotrauma.LuaCsHook.DynamicParameterMapping = __ctor
-CS.Barotrauma.LuaCsHook.DynamicParameterMapping.__new = __ctor
+---@return Barotrauma.LuaCsTimer.TimerComparer
+local __ctor = function() end
+CS.Barotrauma.LuaCsTimer.TimerComparer = __ctor
+CS.Barotrauma.LuaCsTimer.TimerComparer.__new = __ctor
 end
 
----@class Barotrauma.LuaCsSetup.LuaCsModStore: System.Object
----@field private luaModInterface userdata | (fun(): Barotrauma.LuaCsSetup.LuaCsModStore.LuaModStore)
----@field private csModInterface userdata | (fun(): Barotrauma.LuaCsSetup.LuaCsModStore.CsModStore)
-CS.Barotrauma.LuaCsSetup.LuaCsModStore = {}
-
-function CS.Barotrauma.LuaCsSetup.LuaCsModStore.Initialize() end
-
-function CS.Barotrauma.LuaCsSetup.LuaCsModStore.Clear() end
-
----@protected
----@param modName System.String
----@return Barotrauma.LuaCsSetup.LuaCsModStore.LuaModStore
-function CS.Barotrauma.LuaCsSetup.LuaCsModStore.Register(modName) end
-
----@param mod Barotrauma.ACsMod
----@return Barotrauma.LuaCsSetup.LuaCsModStore.CsModStore
-function CS.Barotrauma.LuaCsSetup.LuaCsModStore.Register(mod) end
-
----@param modName System.String
----@return Barotrauma.LuaCsSetup.LuaCsModStore.CsModStore
-function CS.Barotrauma.LuaCsSetup.LuaCsModStore.GetCsStore(modName) end
-
----@protected
----@param modName System.String
----@return Barotrauma.LuaCsSetup.LuaCsModStore.LuaModStore
-function CS.Barotrauma.LuaCsSetup.LuaCsModStore.GetLuaStore(modName) end
+---@class Barotrauma.LuaCsTimer.TimedAction: System.Object
+---@field Action fun(...: System.Object)
+---@field ExecutionTime System.Double
+CS.Barotrauma.LuaCsTimer.TimedAction = {}
 
 do
----@return Barotrauma.LuaCsSetup.LuaCsModStore
-local __ctor = function() end
-CS.Barotrauma.LuaCsSetup.LuaCsModStore = __ctor
-CS.Barotrauma.LuaCsSetup.LuaCsModStore.__new = __ctor
+---@param action fun(...: System.Object)
+---@param delayMs System.Int32
+---@return Barotrauma.LuaCsTimer.TimedAction
+local __ctor = function(action, delayMs) end
+CS.Barotrauma.LuaCsTimer.TimedAction = __ctor
+CS.Barotrauma.LuaCsTimer.TimedAction.__new = __ctor
 end
 
 ---@class Barotrauma.IDamageable.AttackEventData: System.ValueType
@@ -42768,7 +42072,7 @@ CS.Barotrauma.LevelData.ThalamusSpawn = {
     Disabled = 2
 }
 
----@class Barotrauma.LevelObjectManager.EventData: System.ValueType
+---@class Barotrauma.LevelObjectManager.EventData: System.ValueType, Barotrauma.Networking.NetEntityEvent.IData
 ---@field LevelObject Barotrauma.LevelObject
 CS.Barotrauma.LevelObjectManager.EventData = {}
 
@@ -43046,7 +42350,7 @@ CS.Barotrauma.StatusEffect.GiveSkill = __ctor
 CS.Barotrauma.StatusEffect.GiveSkill.__new = __ctor
 end
 
----@class Barotrauma.StatusEffect.CharacterSpawnInfo: System.Object
+---@class Barotrauma.StatusEffect.CharacterSpawnInfo: System.Object, Barotrauma.ISerializableEntity
 ---@field Name System.String
 ---@field SerializableProperties userdata | { [Barotrauma.Identifier]: Barotrauma.SerializableProperty } | (fun(): userdata)
 ---@field SpeciesName Barotrauma.Identifier
@@ -43078,7 +42382,7 @@ CS.Barotrauma.StatusEffect.CharacterSpawnInfo = __ctor
 CS.Barotrauma.StatusEffect.CharacterSpawnInfo.__new = __ctor
 end
 
----@class Barotrauma.StatusEffect.AITrigger: System.Object
+---@class Barotrauma.StatusEffect.AITrigger: System.Object, Barotrauma.ISerializableEntity
 ---@field Name System.String
 ---@field SerializableProperties userdata | { [Barotrauma.Identifier]: Barotrauma.SerializableProperty } | (fun(): userdata)
 ---@field State Barotrauma.AIState
@@ -43129,7 +42433,7 @@ CS.Barotrauma.StatusEffect.AnimLoadInfo = __ctor
 CS.Barotrauma.StatusEffect.AnimLoadInfo.__new = __ctor
 end
 
----@class Barotrauma.StatusEffect.ShouldShortCircuit: System.MulticastDelegate
+---@class Barotrauma.StatusEffect.ShouldShortCircuit: System.MulticastDelegate, System.ICloneable, System.Runtime.Serialization.ISerializable
 CS.Barotrauma.StatusEffect.ShouldShortCircuit = {}
 
 ---@param condition System.Boolean
@@ -43273,7 +42577,7 @@ CS.Barotrauma.JobPrefab.JobItem.GameModeType = {
     PvE = 2
 }
 
----@class Barotrauma.CharacterParams.InventoryParams.InventoryItem: Barotrauma.CharacterParams.SubParam
+---@class Barotrauma.CharacterParams.InventoryParams.InventoryItem: Barotrauma.CharacterParams.SubParam, Barotrauma.ISerializableEntity
 ---@field Name System.String
 ---@field Identifier System.String
 CS.Barotrauma.CharacterParams.InventoryParams.InventoryItem = {}
@@ -43319,115 +42623,7 @@ CS.Barotrauma.ScriptedEvent.TargetPredicate.EntityType = {
     Submarine = 4
 }
 
----@class Barotrauma.LuaCsSetup.LuaCsModStore.LuaModStore: userdata
----@field Name System.String
----@field protected store userdata | { [System.String]: MoonSharp.Interpreter.DynValue } | (fun(): userdata)
-CS.Barotrauma.LuaCsSetup.LuaCsModStore.LuaModStore = {}
-
----@overload fun(value: System.String): System.Boolean
----@overload fun(obj: System.Object): System.Boolean
----@param value System.String
----@return System.Boolean
-function CS.Barotrauma.LuaCsSetup.LuaCsModStore.LuaModStore.Equals(value) end
-
----@param name System.String
----@param value MoonSharp.Interpreter.DynValue
----@return MoonSharp.Interpreter.DynValue
-function CS.Barotrauma.LuaCsSetup.LuaCsModStore.LuaModStore.Set(name, value) end
-
----@param name System.String
----@return MoonSharp.Interpreter.DynValue
-function CS.Barotrauma.LuaCsSetup.LuaCsModStore.LuaModStore.Get(name) end
-
----@return System.Type
-function CS.Barotrauma.LuaCsSetup.LuaCsModStore.LuaModStore.GetType() end
-
----@protected
----@return System.Object
-function CS.Barotrauma.LuaCsSetup.LuaCsModStore.LuaModStore.MemberwiseClone() end
-
----@protected
-function CS.Barotrauma.LuaCsSetup.LuaCsModStore.LuaModStore.Finalize() end
-
----@return System.String
-function CS.Barotrauma.LuaCsSetup.LuaCsModStore.LuaModStore.ToString() end
-
----@param objA System.Object
----@param objB System.Object
----@return System.Boolean
-function CS.Barotrauma.LuaCsSetup.LuaCsModStore.LuaModStore.Equals(objA, objB) end
-
----@param objA System.Object
----@param objB System.Object
----@return System.Boolean
-function CS.Barotrauma.LuaCsSetup.LuaCsModStore.LuaModStore.ReferenceEquals(objA, objB) end
-
----@return System.Int32
-function CS.Barotrauma.LuaCsSetup.LuaCsModStore.LuaModStore.GetHashCode() end
-
-do
----@param store userdata | { [System.String]: MoonSharp.Interpreter.DynValue } | (fun(): userdata)
----@return Barotrauma.LuaCsSetup.LuaCsModStore.LuaModStore
-local __ctor = function(store) end
-CS.Barotrauma.LuaCsSetup.LuaCsModStore.LuaModStore = __ctor
-CS.Barotrauma.LuaCsSetup.LuaCsModStore.LuaModStore.__new = __ctor
-end
-
----@class Barotrauma.LuaCsSetup.LuaCsModStore.CsModStore: userdata
----@field Mod Barotrauma.ACsMod
----@field protected store userdata | { [System.String]: System.Object } | (fun(): userdata)
-CS.Barotrauma.LuaCsSetup.LuaCsModStore.CsModStore = {}
-
----@overload fun(value: Barotrauma.ACsMod): System.Boolean
----@overload fun(obj: System.Object): System.Boolean
----@param value Barotrauma.ACsMod
----@return System.Boolean
-function CS.Barotrauma.LuaCsSetup.LuaCsModStore.CsModStore.Equals(value) end
-
----@param name System.String
----@param value System.Object
----@return System.Object
-function CS.Barotrauma.LuaCsSetup.LuaCsModStore.CsModStore.Set(name, value) end
-
----@param name System.String
----@return System.Object
-function CS.Barotrauma.LuaCsSetup.LuaCsModStore.CsModStore.Get(name) end
-
----@return System.Type
-function CS.Barotrauma.LuaCsSetup.LuaCsModStore.CsModStore.GetType() end
-
----@protected
----@return System.Object
-function CS.Barotrauma.LuaCsSetup.LuaCsModStore.CsModStore.MemberwiseClone() end
-
----@protected
-function CS.Barotrauma.LuaCsSetup.LuaCsModStore.CsModStore.Finalize() end
-
----@return System.String
-function CS.Barotrauma.LuaCsSetup.LuaCsModStore.CsModStore.ToString() end
-
----@param objA System.Object
----@param objB System.Object
----@return System.Boolean
-function CS.Barotrauma.LuaCsSetup.LuaCsModStore.CsModStore.Equals(objA, objB) end
-
----@param objA System.Object
----@param objB System.Object
----@return System.Boolean
-function CS.Barotrauma.LuaCsSetup.LuaCsModStore.CsModStore.ReferenceEquals(objA, objB) end
-
----@return System.Int32
-function CS.Barotrauma.LuaCsSetup.LuaCsModStore.CsModStore.GetHashCode() end
-
-do
----@param store userdata | { [System.String]: System.Object } | (fun(): userdata)
----@return Barotrauma.LuaCsSetup.LuaCsModStore.CsModStore
-local __ctor = function(store) end
-CS.Barotrauma.LuaCsSetup.LuaCsModStore.CsModStore = __ctor
-CS.Barotrauma.LuaCsSetup.LuaCsModStore.CsModStore.__new = __ctor
-end
-
----@class Barotrauma.NetSerializableProperties.IReadWriteBehavior.ReadDelegate: System.MulticastDelegate
+---@class Barotrauma.NetSerializableProperties.IReadWriteBehavior.ReadDelegate: System.MulticastDelegate, System.ICloneable, System.Runtime.Serialization.ISerializable
 CS.Barotrauma.NetSerializableProperties.IReadWriteBehavior.ReadDelegate = {}
 
 ---@param inc Barotrauma.Networking.IReadMessage
@@ -43457,7 +42653,7 @@ CS.Barotrauma.NetSerializableProperties.IReadWriteBehavior.ReadDelegate = __ctor
 CS.Barotrauma.NetSerializableProperties.IReadWriteBehavior.ReadDelegate.__new = __ctor
 end
 
----@class Barotrauma.NetSerializableProperties.IReadWriteBehavior.WriteDelegate: System.MulticastDelegate
+---@class Barotrauma.NetSerializableProperties.IReadWriteBehavior.WriteDelegate: System.MulticastDelegate, System.ICloneable, System.Runtime.Serialization.ISerializable
 CS.Barotrauma.NetSerializableProperties.IReadWriteBehavior.WriteDelegate = {}
 
 ---@param obj System.Object

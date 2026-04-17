@@ -123,7 +123,7 @@ CS.Barotrauma.Particles.Particle = __ctor
 CS.Barotrauma.Particles.Particle.__new = __ctor
 end
 
----@class Barotrauma.Particles.ParticleEmitterProperties: System.Object
+---@class Barotrauma.Particles.ParticleEmitterProperties: System.Object, Barotrauma.ISerializableEntity
 ---@field Name System.String
 ---@field AngleMinRad System.Single
 ---@field AngleMaxRad System.Single
@@ -365,7 +365,7 @@ CS.Barotrauma.Particles.ParticleManager = __ctor
 CS.Barotrauma.Particles.ParticleManager.__new = __ctor
 end
 
----@class Barotrauma.Particles.ParticlePrefab: Barotrauma.Prefab
+---@class Barotrauma.Particles.ParticlePrefab: Barotrauma.Prefab, Barotrauma.ISerializableEntity
 ---@field Name System.String
 ---@field LifeTime System.Single
 ---@field LifeTimeMin System.Single
@@ -486,7 +486,7 @@ CS.Barotrauma.Particles.ParticlePrefab = __ctor
 CS.Barotrauma.Particles.ParticlePrefab.__new = __ctor
 end
 
----@class Barotrauma.Particles.Particle.OnChangeHullHandler: System.MulticastDelegate
+---@class Barotrauma.Particles.Particle.OnChangeHullHandler: System.MulticastDelegate, System.ICloneable, System.Runtime.Serialization.ISerializable
 CS.Barotrauma.Particles.Particle.OnChangeHullHandler = {}
 
 ---@param position Microsoft.Xna.Framework.Vector2

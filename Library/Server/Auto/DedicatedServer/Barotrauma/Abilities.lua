@@ -201,7 +201,7 @@ function CS.Barotrauma.Abilities.IAbilitySubmarine.get_Submarine() end
 function CS.Barotrauma.Abilities.IAbilitySubmarine.set_Submarine(value) end
 
 
----@class Barotrauma.Abilities.AbilityCharacter: Barotrauma.Abilities.AbilityObject
+---@class Barotrauma.Abilities.AbilityCharacter: Barotrauma.Abilities.AbilityObject, Barotrauma.Abilities.IAbilityCharacter
 ---@field Character Barotrauma.Character
 CS.Barotrauma.Abilities.AbilityCharacter = {}
 

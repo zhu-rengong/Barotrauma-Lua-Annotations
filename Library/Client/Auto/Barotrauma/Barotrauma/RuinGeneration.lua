@@ -2,7 +2,7 @@
 ---Auto-generated from Barotrauma
 ---Namespace: Barotrauma.RuinGeneration
 
----@class Barotrauma.RuinGeneration.RuinGenerationParams: Barotrauma.OutpostGenerationParams
+---@class Barotrauma.RuinGeneration.RuinGenerationParams: Barotrauma.OutpostGenerationParams, Barotrauma.ISerializableEntity
 ---@field Name System.String
 ---@field IsMissionReady System.Boolean
 ---@field RuinParams userdata | { [Barotrauma.Identifier]: Barotrauma.RuinGeneration.RuinGenerationParams } | { [System.String]: Barotrauma.RuinGeneration.RuinGenerationParams } | (fun(): Barotrauma.RuinGeneration.RuinGenerationParams)

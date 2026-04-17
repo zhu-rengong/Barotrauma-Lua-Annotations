@@ -110,13 +110,14 @@ CS.Barotrauma.Lights.LightManager = __ctor
 CS.Barotrauma.Lights.LightManager.__new = __ctor
 end
 
----@class Barotrauma.Lights.LightSourceParams: System.Object
+---@class Barotrauma.Lights.LightSourceParams: System.Object, Barotrauma.ISerializableEntity
 ---@field Name System.String
 ---@field SerializableProperties userdata | { [Barotrauma.Identifier]: Barotrauma.SerializableProperty } | (fun(): userdata)
 ---@field Color Microsoft.Xna.Framework.Color
 ---@field Range System.Single
 ---@field Scale System.Single
 ---@field Offset Microsoft.Xna.Framework.Vector2
+---@field RotationRad System.Single
 ---@field Rotation System.Single
 ---@field Directional System.Boolean
 ---@field Flicker System.Single
@@ -145,6 +146,12 @@ function CS.Barotrauma.Lights.LightSourceParams.get_Range() end
 
 ---@param value System.Single
 function CS.Barotrauma.Lights.LightSourceParams.set_Range(value) end
+
+---@return System.Single
+function CS.Barotrauma.Lights.LightSourceParams.get_Rotation() end
+
+---@param value System.Single
+function CS.Barotrauma.Lights.LightSourceParams.set_Rotation(value) end
 
 ---@return Microsoft.Xna.Framework.Vector2
 function CS.Barotrauma.Lights.LightSourceParams.GetOffset() end
@@ -334,6 +341,9 @@ function CS.Barotrauma.Lights.LightSource.set_LightTextureTargetSize(value) end
 
 ---@return System.Single
 function CS.Barotrauma.Lights.LightSource.get_TextureRange() end
+
+---@private
+function CS.Barotrauma.Lights.LightSource.RefreshDirection() end
 
 ---@param time System.Single
 function CS.Barotrauma.Lights.LightSource.Update(time) end

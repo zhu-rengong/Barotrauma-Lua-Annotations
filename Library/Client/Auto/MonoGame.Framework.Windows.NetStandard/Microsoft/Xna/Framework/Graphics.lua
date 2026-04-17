@@ -9,7 +9,7 @@ CS.Microsoft.Xna.Framework.Graphics.SpriteEffects = {
     FlipVertically = 2
 }
 
----@class Microsoft.Xna.Framework.Graphics.SpriteBatch: Microsoft.Xna.Framework.Graphics.GraphicsResource
+---@class Microsoft.Xna.Framework.Graphics.SpriteBatch: Microsoft.Xna.Framework.Graphics.GraphicsResource, System.IDisposable, Microsoft.Xna.Framework.Graphics.ISpriteBatch
 ---@field private _batcher Microsoft.Xna.Framework.Graphics.SpriteBatcher
 ---@field private _sortMode Microsoft.Xna.Framework.Graphics.SpriteSortMode
 ---@field private _blendState Microsoft.Xna.Framework.Graphics.BlendState
@@ -104,7 +104,7 @@ CS.Microsoft.Xna.Framework.Graphics.SpriteBatch = __ctor
 CS.Microsoft.Xna.Framework.Graphics.SpriteBatch.__new = __ctor
 end
 
----@class Microsoft.Xna.Framework.Graphics.Texture2D: Microsoft.Xna.Framework.Graphics.Texture
+---@class Microsoft.Xna.Framework.Graphics.Texture2D: Microsoft.Xna.Framework.Graphics.Texture, System.IDisposable
 ---@field package TexelWidth System.Single
 ---@field package TexelHeight System.Single
 ---@field Bounds Microsoft.Xna.Framework.Rectangle

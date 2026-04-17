@@ -2,7 +2,7 @@
 ---Auto-generated from Barotrauma
 ---Namespace: Barotrauma.SpriteDeformations
 
----@class Barotrauma.SpriteDeformations.CustomDeformationParams: Barotrauma.SpriteDeformations.SpriteDeformationParams
+---@class Barotrauma.SpriteDeformations.CustomDeformationParams: Barotrauma.SpriteDeformations.SpriteDeformationParams, Barotrauma.ISerializableEntity
 ---@field Frequency System.Single
 ---@field Amplitude System.Single
 CS.Barotrauma.SpriteDeformations.CustomDeformationParams = {}
@@ -54,7 +54,7 @@ CS.Barotrauma.SpriteDeformations.CustomDeformation = __ctor
 CS.Barotrauma.SpriteDeformations.CustomDeformation.__new = __ctor
 end
 
----@class Barotrauma.SpriteDeformations.InflateParams: Barotrauma.SpriteDeformations.SpriteDeformationParams
+---@class Barotrauma.SpriteDeformations.InflateParams: Barotrauma.SpriteDeformations.SpriteDeformationParams, Barotrauma.ISerializableEntity
 ---@field Frequency System.Single
 ---@field Scale System.Single
 CS.Barotrauma.SpriteDeformations.InflateParams = {}
@@ -102,7 +102,7 @@ CS.Barotrauma.SpriteDeformations.Inflate = __ctor
 CS.Barotrauma.SpriteDeformations.Inflate.__new = __ctor
 end
 
----@class Barotrauma.SpriteDeformations.JointBendDeformationParams: Barotrauma.SpriteDeformations.SpriteDeformationParams
+---@class Barotrauma.SpriteDeformations.JointBendDeformationParams: Barotrauma.SpriteDeformations.SpriteDeformationParams, Barotrauma.ISerializableEntity
 CS.Barotrauma.SpriteDeformations.JointBendDeformationParams = {}
 
 do
@@ -183,7 +183,7 @@ CS.Barotrauma.SpriteDeformations.JointBendDeformation = __ctor
 CS.Barotrauma.SpriteDeformations.JointBendDeformation.__new = __ctor
 end
 
----@class Barotrauma.SpriteDeformations.NoiseDeformationParams: Barotrauma.SpriteDeformations.SpriteDeformationParams
+---@class Barotrauma.SpriteDeformations.NoiseDeformationParams: Barotrauma.SpriteDeformations.SpriteDeformationParams, Barotrauma.ISerializableEntity
 ---@field Frequency System.Single
 ---@field Amplitude System.Single
 ---@field ChangeSpeed System.Single
@@ -227,7 +227,7 @@ CS.Barotrauma.SpriteDeformations.NoiseDeformation = __ctor
 CS.Barotrauma.SpriteDeformations.NoiseDeformation.__new = __ctor
 end
 
----@class Barotrauma.SpriteDeformations.PositionalDeformationParams: Barotrauma.SpriteDeformations.SpriteDeformationParams
+---@class Barotrauma.SpriteDeformations.PositionalDeformationParams: Barotrauma.SpriteDeformations.SpriteDeformationParams, Barotrauma.ISerializableEntity
 ---@field Falloff System.Single
 ---@field MaxDeformation System.Single
 ---@field ReactionSpeed System.Single
@@ -275,7 +275,7 @@ CS.Barotrauma.SpriteDeformations.PositionalDeformation = __ctor
 CS.Barotrauma.SpriteDeformations.PositionalDeformation.__new = __ctor
 end
 
----@class Barotrauma.SpriteDeformations.SpriteDeformationParams: System.Object
+---@class Barotrauma.SpriteDeformations.SpriteDeformationParams: System.Object, Barotrauma.ISerializableEntity
 ---@field Sync System.Int32
 ---@field Type System.String
 ---@field BlendMode Barotrauma.SpriteDeformations.SpriteDeformation.DeformationBlendMode
