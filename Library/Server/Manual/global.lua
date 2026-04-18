@@ -66,18 +66,18 @@ function printerror(o) end
 function setmodulepaths(...) end
 
 Game = CS.Barotrauma.LuaCs.LuaGame
-Hook = CS.Barotrauma.LuaCs.IEventService
+Hook = CS.Barotrauma.LuaCs.EventService
 Timer = CS.Barotrauma.LuaCs.Compatibility.ILuaCsTimer
 File = CS.Barotrauma.LuaCsFile
 ConfigService = CS.Barotrauma.LuaCs.ILuaConfigService
-Networking = CS.Barotrauma.LuaCs.INetworkingService
+Networking = CS.Barotrauma.LuaCs.NetworkingService
 
 ---@param name string
 ---@return boolean
 ---@return Barotrauma.ContentPackage
 function trygetpackage(name) end
 
----@type Barotrauma.LuaCs.ISafeLuaUserDataService | Barotrauma.LuaCs.ILuaUserDataService
+---@type Barotrauma.LuaCs.SafeLuaUserDataService | Barotrauma.LuaCs.LuaUserDataService
 LuaUserData = nil
 
 Events = CS.Barotrauma.LuaCs.Events
