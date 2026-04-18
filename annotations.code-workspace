@@ -13,5 +13,6 @@
 		"Lua.workspace.library": [],
 		"Lua.diagnostics.disable": [],
 		"Lua.diagnostics.workspaceDelay": 300000,
+		"Lua.codeLens.enable": false,
 	}
 }

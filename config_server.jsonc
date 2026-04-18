@@ -119,6 +119,7 @@
 
         "FarseerPhysics.Dynamics.World",
         "FarseerPhysics.Dynamics.Fixture",
+        "FarseerPhysics.Dynamics.Body",
       ]
     },
     {

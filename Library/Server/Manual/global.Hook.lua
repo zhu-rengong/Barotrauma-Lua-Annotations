@@ -1,0 +1,49 @@
+---@meta
+
+---@class ManualGlobal.Hook.PresetCallbacks
+---@field OnModifyMessagePredicate fun(message : Barotrauma.Networking.ChatMessageType, senderRadio: Barotrauma.Items.Components.WifiComponent) : boolean? # `Barotrauma.LuaCs.Events.IEventModifyChatMessage`
+---@field OnAfflictionUpdate fun(affliction : Barotrauma.Affliction, characterHealth : Barotrauma.CharacterHealth, targetLimb : Barotrauma.Limb, deltaTime : System.Single) # `Barotrauma.LuaCs.Events.IEventAfflictionUpdate`
+---@field OnGiveCharacterJobItems fun(character : Barotrauma.Character, spawnPoint : Barotrauma.WayPoint, isPvPMode : boolean) # `Barotrauma.LuaCs.Events.IEventGiveCharacterJobItems`
+---@field OnCharacterCreated fun(character : Barotrauma.Character) # `Barotrauma.LuaCs.Events.IEventCharacterCreated`
+---@field OnCharacterCPRSuccess fun(animController : Barotrauma.HumanoidAnimController) # `Barotrauma.LuaCs.Events.IEventHumanCPRSuccess`
+---@field OnCharacterCPRFailed fun(animController : Barotrauma.HumanoidAnimController) # `Barotrauma.LuaCs.Events.IEventHumanCPRFailed`
+---@field OnClientControlHusk fun(client : Barotrauma.Networking.Client, husk : Barotrauma.Character) # `Barotrauma.LuaCs.Events.IEventClientControlHusk`
+---@field OnMeleeWeaponHandleImpact fun(meleeWeapon : Barotrauma.Items.Components.MeleeWeapon, target : FarseerPhysics.Dynamics.Body) # `Barotrauma.LuaCs.Events.IEventMeleeWeaponHandleImpact`
+---@field OnServerLog fun(line : System.String, messageType : Barotrauma.Networking.ServerLog.MessageType) # `Barotrauma.LuaCs.Events.IEventServerLog`
+---@field OnChatMessage fun(messageText : System.String, sender : Barotrauma.Networking.Client, type : Barotrauma.Networking.ChatMessageType, message : Barotrauma.Networking.ChatMessage) : boolean? # `Barotrauma.LuaCs.Events.IEventChatMessage`
+---@field OnTryClienChangeName fun(client : Barotrauma.Networking.Client, newName : System.String, newJob : Barotrauma.Identifier, newTeam : Barotrauma.CharacterTeamType) : boolean? # `Barotrauma.LuaCs.Events.IEventTryClientChangeName`
+---@field OnChangeFallDamage fun(impactDamage : System.Single, character : Barotrauma.Character, impactPos : Microsoft.Xna.Framework.Vector2, velocity : Microsoft.Xna.Framework.Vector2) : number? # `Barotrauma.LuaCs.Events.IEventChangeFallDamage`
+---@field OnGapOxygenUpdate fun(gap : Barotrauma.Gap, hull1 : Barotrauma.Hull, hull2: Barotrauma.Hull) : boolean? # `Barotrauma.LuaCs.Events.IEventGapOxygenUpdate`
+---@field OnCharacterApplyDamage fun(characterHealth : Barotrauma.CharacterHealth, attackResult : Barotrauma.AttackResult, hitLimb : Barotrauma.Limb, allowStacking : System.Boolean) : boolean? # `Barotrauma.LuaCs.Events.IEventCharacterApplyDamage`
+---@field OnCharacterApplyAffliction fun(characterHealth : Barotrauma.CharacterHealth, limbHealth : Barotrauma.CharacterHealth.LimbHealth, newAffliction : Barotrauma.Affliction, allowStacking : System.Boolean) : boolean? # `Barotrauma.LuaCs.Events.IEventCharacterApplyAffliction`
+---@field OnItemReadPropertyChange fun(item : Barotrauma.Item, property : Barotrauma.SerializableProperty, parentObject : System.Object, allowEditing : System.Boolean, sender : Barotrauma.Networking.Client) : boolean? # `Barotrauma.LuaCs.Events.IEventItemReadPropertyChange`
+---@field OnCanUseVoiceRadio fun(sender : Barotrauma.Networking.Client, recipient : Barotrauma.Networking.Client) : boolean? # `Barotrauma.LuaCs.Events.IEventCanUseVoiceRadio`
+---@field OnChangeLocalVoiceRange fun(sender : Barotrauma.Networking.Client, recipient : Barotrauma.Networking.Client) : number? # `Barotrauma.LuaCs.Events.IEventChangeLocalVoiceRange`
+---@field OnItemDeconstructed fun(item:Barotrauma.Item, deconstructor : Barotrauma.Items.Components.Deconstructor, user : Barotrauma.Character, allowRemove : System.Boolean) : boolean? # `Barotrauma.LuaCs.Events.IEventItemDeconstructed`
+---@field OnWifiSignalTransmitted fun(wifiComponent : Barotrauma.Items.Components.WifiComponent, signal : Barotrauma.Items.Components.Signal, sentFromChat : System.Boolean) : boolean? # `Barotrauma.LuaCs.Events.IEventWifiSignalTransmitted`
+---@field OnCharacterDeath fun(character : Barotrauma.Character, causeOfDeathAffliction : Barotrauma.Affliction, causeOfDeathType : Barotrauma.CauseOfDeathType) # `Barotrauma.LuaCs.Events.IEventCharacterDeath`
+---@field OnKeyUpdate fun(deltaTime : System.Double) # `Barotrauma.LuaCs.Events.IEventKeyUpdate`
+---@field OnRoundStarting fun() # `Barotrauma.LuaCs.Events.IEventRoundStarting`
+---@field OnRoundStart fun() # `Barotrauma.LuaCs.Events.IEventRoundStarted`
+---@field OnRoundEnd fun() # `Barotrauma.LuaCs.Events.IEventRoundEnded`
+---@field OnMissionsEnded fun(missions : Barotrauma.Mission[] | (fun(): Barotrauma.Mission)) # `Barotrauma.LuaCs.Events.IEventMissionsEnded`
+---@field OnUpdate fun(deltaTime : System.Double) # `Barotrauma.LuaCs.Events.IEventUpdate`
+---@field OnDrawUpdate fun(deltaTime : System.Double) # `Barotrauma.LuaCs.Events.IEventDrawUpdate`
+---@field OnSignalReceived fun(signal : Barotrauma.Items.Components.Signal, connection : Barotrauma.Items.Components.Connection) # `Barotrauma.LuaCs.Events.IEventSignalReceived`
+---@field OnItemCreated fun(item : Barotrauma.Item) # `Barotrauma.LuaCs.Events.IEventItemCreated`
+---@field OnItemRemoved fun(item : Barotrauma.Item) # `Barotrauma.LuaCs.Events.IEventItemRemoved`
+---@field OnItemUsed fun(item : Barotrauma.Item, user : Barotrauma.Character, targetLimb : Barotrauma.Limb, useTarget : Barotrauma.Entity) : boolean? # `Barotrauma.LuaCs.Events.IEventItemUse`
+---@field OnItemSecondaryUsed fun(item : Barotrauma.Item, user : Barotrauma.Character) : boolean? # `Barotrauma.LuaCs.Events.IEventItemSecondaryUse`
+---@field OnCharacterDamageLimb fun(character : Barotrauma.Character, worldPosition : Microsoft.Xna.Framework.Vector2, hitLimb : Barotrauma.Limb, afflictions : (fun() : Barotrauma.Affliction), stun : System.Single, playSound : System.Boolean, attackImpulse : Microsoft.Xna.Framework.Vector2, attacker? : Barotrauma.Character, damageMultiplier : System.Single, allowStacking : System.Boolean, penetration : System.Single, shouldImplode : System.Boolean) : Barotrauma.AttackResult? # `Barotrauma.LuaCs.Events.IEventCharacterDamageLimb`
+---@field OnInventoryPutItem fun(inventory : Barotrauma.Inventory, item : Barotrauma.Item, user : Barotrauma.Character, i : System.Int32, removeItem : System.Boolean) : boolean? # `Barotrauma.LuaCs.Events.IEventInventoryPutItem`
+---@field OnInventoryItemSwap fun(inventory : Barotrauma.Inventory, item : Barotrauma.Item, user : Barotrauma.Character, i : System.Int32, swapWholeStack : System.Boolean) : boolean? # `Barotrauma.LuaCs.Events.IEventInventoryItemSwap`
+---@field OnReceivedClientNetMessage fun(netMessage : Barotrauma.Networking.IReadMessage, clientPacketHeader : Barotrauma.Networking.ClientPacketHeader, client : Barotrauma.Networking.Client) # `Barotrauma.LuaCs.Events.IEventClientRawNetMessageReceived`
+---@field OnClientConnected fun(client : Barotrauma.Networking.Client) # `Barotrauma.LuaCs.Events.IEventClientConnected`
+---@field OnClientDisconnected fun(client : Barotrauma.Networking.Client) # `Barotrauma.LuaCs.Events.IEventClientDisconnected`
+---@field OnJobsAssigned fun(unassignedClients : Barotrauma.Networking.Client[] | (fun(): Barotrauma.Networking.Client)) # `Barotrauma.LuaCs.Events.IEventJobsAssigned`
+
+---@generic T : Barotrauma.LuaCs.Events.IEvent
+---@param __genericMethodMaker_T T
+---@param identifier string
+---@param callbacks ManualGlobal.Hook.PresetCallbacks
+function Hook.Subscribe(__genericMethodMaker_T, identifier, callbacks) end
